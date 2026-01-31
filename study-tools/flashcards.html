@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flashcards | P&C Insurance Study Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config = { darkMode: 'class' }</script>
+    <link rel="stylesheet" href="../css/styles.css">
+    <script src="../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+        }
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <!-- Settings Button -->
+    <button onclick="showAPIKeySetup()" class="fixed top-4 right-20 z-50 bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings">
+        <svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+        </svg>
+    </button>
+
+    <!-- Theme Toggle -->
+    <button onclick="toggleTheme()" class="fixed top-4 right-4 z-50 bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+        <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/>
+        </svg>
+        <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+        </svg>
+    </button>
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <a href="../index.html" class="text-blue-200 hover:text-white text-sm mb-2 inline-block">← Back to Home</a>
+            <h1 class="text-3xl font-bold">Flashcards</h1>
+            <p class="text-blue-200 mt-1">Click cards to flip - Rate your confidence to track progress</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-8 max-w-3xl">
+        <!-- Chapter Selection -->
+        <div class="mb-6">
+            <label class="block text-gray-700 dark:text-gray-300 font-semibold mb-2">Select Chapter:</label>
+            <select id="chapterSelect" onchange="loadChapter()" class="w-full p-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200">
+                <option value="all">All Chapters</option>
+                <option value="1">Chapter 1: Fundamentals & Key Terms</option>
+                <option value="2">Chapter 2: Policy Structure</option>
+                <option value="3">Chapter 3: Commercial General Liability</option>
+            </select>
+        </div>
+
+        <!-- Progress Stats -->
+        <div class="grid grid-cols-3 gap-4 mb-6">
+            <div class="bg-green-50 dark:bg-green-900/30 p-4 rounded-lg text-center">
+                <p class="text-2xl font-bold text-green-600 dark:text-green-400" id="masteredCount">0</p>
+                <p class="text-sm text-gray-600 dark:text-gray-400">Mastered</p>
+            </div>
+            <div class="bg-amber-50 dark:bg-amber-900/30 p-4 rounded-lg text-center">
+                <p class="text-2xl font-bold text-amber-600 dark:text-amber-400" id="learningCount">0</p>
+                <p class="text-sm text-gray-600 dark:text-gray-400">Learning</p>
+            </div>
+            <div class="bg-red-50 dark:bg-red-900/30 p-4 rounded-lg text-center">
+                <p class="text-2xl font-bold text-red-600 dark:text-red-400" id="newCount">0</p>
+                <p class="text-sm text-gray-600 dark:text-gray-400">New/Hard</p>
+            </div>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="mb-6">
+            <div class="flex justify-between text-sm text-gray-600 dark:text-gray-400 mb-1">
+                <span>Progress</span>
+                <span id="progressText">0 / 0</span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-bar-fill" id="progressBar" style="width: 0%"></div>
+            </div>
+        </div>
+
+        <!-- Flashcard -->
+        <div class="flashcard-container mb-6">
+            <div class="flashcard" id="flashcard" onclick="flipCard()">
+                <div class="flashcard-face flashcard-front">
+                    <div class="text-center">
+                        <p class="text-sm opacity-75 mb-2">Term</p>
+                        <p class="text-xl font-bold" id="cardFront">Click Start to begin</p>
+                    </div>
+                </div>
+                <div class="flashcard-face flashcard-back">
+                    <div class="text-center">
+                        <p class="text-sm opacity-75 mb-2">Definition</p>
+                        <p class="text-lg" id="cardBack">The answer will appear here</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card Number -->
+        <p class="text-center text-gray-500 dark:text-gray-400 mb-4" id="cardNumber">Card 0 of 0</p>
+
+        <!-- Confidence Buttons (shown after flip) -->
+        <div id="confidenceButtons" class="hidden mb-6">
+            <p class="text-center text-gray-600 dark:text-gray-400 mb-3">How well did you know this?</p>
+            <div class="flex justify-center gap-3">
+                <button onclick="rateCard('hard')" class="confidence-btn hard">
+                    Hard - Again
+                </button>
+                <button onclick="rateCard('medium')" class="confidence-btn medium">
+                    Medium - Review
+                </button>
+                <button onclick="rateCard('easy')" class="confidence-btn easy">
+                    Easy - Got it!
+                </button>
+            </div>
+            <!-- Ask AI Button -->
+            <div class="text-center mt-4">
+                <button onclick="askAIAboutCard()" class="ask-ai-btn">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/>
+                    </svg>
+                    Ask AI About This
+                </button>
+            </div>
+        </div>
+
+        <!-- Navigation Buttons -->
+        <div class="flex justify-center gap-4 mb-8">
+            <button onclick="prevCard()" class="px-6 py-3 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors">
+                ← Previous
+            </button>
+            <button onclick="shuffleCards()" class="px-6 py-3 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 rounded-lg hover:bg-purple-200 dark:hover:bg-purple-900/50 transition-colors">
+                Shuffle
+            </button>
+            <button onclick="nextCard()" class="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                Next →
+            </button>
+        </div>
+
+        <!-- Study Mode Options -->
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+            <h3 class="font-bold text-gray-800 dark:text-gray-200 mb-4">Study Options</h3>
+            <div class="space-y-3">
+                <label class="flex items-center">
+                    <input type="checkbox" id="prioritizeHard" checked class="mr-3 w-4 h-4">
+                    <span class="text-gray-700 dark:text-gray-300">Prioritize cards I find difficult</span>
+                </label>
+                <label class="flex items-center">
+                    <input type="checkbox" id="showNew" checked class="mr-3 w-4 h-4">
+                    <span class="text-gray-700 dark:text-gray-300">Include new cards</span>
+                </label>
+                <button onclick="resetProgress()" class="text-red-600 dark:text-red-400 text-sm hover:underline">
+                    Reset all progress
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Flashcard Data
+        const flashcardData = {
+            1: [
+                { term: "ISO (Insurance Services Office)", definition: "Organization that creates standardized P&C insurance policies which are approved by each state, then used as base forms by insurers." },
+                { term: "Pure Risk", definition: "Risk with only two outcomes: LOSS or NO LOSS. Only type of risk that is insurable. Examples: natural disasters, accidents, theft." },
+                { term: "Speculative Risk", definition: "Risk with three outcomes: loss, gain, or break-even. NOT insurable. Examples: gambling, investing, business ventures." },
+                { term: "Peril", definition: "The CAUSE of loss - the actual event that triggers coverage. Examples: fire, theft, windstorm, premature death." },
+                { term: "Hazard", definition: "A CONDITION that increases the probability of loss occurring. Makes perils more likely to happen." },
+                { term: "Physical Hazard", definition: "Tangible conditions you can see/touch that increase risk. Examples: slippery floors, faulty wiring, icy roads." },
+                { term: "Moral Hazard", definition: "INTENTIONAL dishonesty or bad behavior to cause/exaggerate loss. Examples: arson for insurance money, lying on applications, staged accidents." },
+                { term: "Morale Hazard", definition: "CARELESSNESS (not intentional) because you're insured. 'Why be careful? Insurance will pay!' Examples: leaving doors unlocked, skipping maintenance." },
+                { term: "Indemnity", definition: "Insurance principle that restores you to pre-loss position - NO MORE, NO LESS. Prevents profiting from insurance claims." },
+                { term: "Subrogation", definition: "After insurer pays your claim, they 'step into your shoes' to pursue the at-fault third party for reimbursement." },
+                { term: "Insurable Interest", definition: "Legitimate stake in what you're insuring (financial, family, business). Must exist at TIME OF LOSS for property insurance." },
+                { term: "Depreciation", definition: "Decrease in asset value over time due to wear and tear, age, or obsolescence." },
+                { term: "Negligence", definition: "Failure to use care that a REASONABLE, PRUDENT person would in the same situation. Not intentional, just careless." },
+                { term: "Accident", definition: "SUDDEN, unexpected, unplanned event NOT in insured's control resulting in injury or damage." },
+                { term: "Occurrence", definition: "BROADER than accident - includes gradual/continuous exposure to conditions causing harm over time." },
+                { term: "Burglary", definition: "Unlawful entry using FORCE into/out of premises with intent to commit crime. REQUIRES visible signs of forced entry for insurance." },
+                { term: "Robbery", definition: "Taking property directly from a PERSON using force or threat of harm. Violence against a person is key." },
+                { term: "Theft", definition: "BROADEST term for stealing - encompasses both burglary and robbery." },
+                { term: "Mysterious Disappearance", definition: "Property vanishes with no knowledge of where, when, or how. NOT COVERED by insurance - can't verify loss occurred." },
+                { term: "MedPay (Medical Payments)", definition: "NO-FAULT coverage - pays regardless of who's responsible. Fast, automatic, smaller limits ($1K-$5K). Goodwill gesture." },
+                { term: "Liability Coverage", definition: "FAULT-BASED - only pays if YOU are legally responsible. Requires proving negligence. Higher limits ($100K-$1M+). Includes legal defense." },
+                { term: "Absolute/Strict Liability", definition: "Liable even WITHOUT negligence or intent. Applies to ultra-hazardous activities (explosives, wild animals)." },
+                { term: "Vicarious Liability", definition: "Responsibility shifts to supervisory person for another's actions. Examples: parents for children, employers for employees." },
+                { term: "Bodily Injury (BI) Liability", definition: "Liability for physical harm to another person's body - injury, sickness, disease, or death." },
+                { term: "Property Damage (PD) Liability", definition: "Liability for physical damage to another person's tangible property." },
+                { term: "Personal Injury Liability", definition: "Harm to reputation, rights, or emotions - NOT physical. Examples: false arrest, defamation, invasion of privacy." },
+                { term: "Warranty (Insurance)", definition: "STRICTEST standard - a PROMISE/guarantee in the contract. ANY breach = automatic void, even if unrelated to loss." },
+                { term: "Representation", definition: "Statement of fact on application. To void: must prove it was FALSE AND MATERIAL (would have changed insurer's decision)." },
+                { term: "Concealment", definition: "INTENTIONALLY failing to disclose material information. Lie by omission. Must be intentional AND material to void." },
+                { term: "Deductible", definition: "Amount YOU pay before insurance kicks in. Higher deductible = lower premium (you take more risk)." },
+                { term: "Binder", definition: "TEMPORARY proof of insurance providing immediate coverage while actual policy is being prepared." },
+                { term: "Law of Large Numbers", definition: "Larger sample size = more accurate predictions. Insurers use large data pools to predict losses and set premiums." }
+            ],
+            2: [
+                { term: "Declarations (Dec Page)", definition: "Usually FIRST PAGE - contains insured's name, address, coverage amounts, premiums, policy period, description of insured property." },
+                { term: "Definitions Section", definition: "Clarifies terms used in policy. Words in bold, italics, or quotes have specific meanings defined here." },
+                { term: "Insuring Agreement", definition: "Establishes insurer's OBLIGATION to provide coverage. Lists parties, dates, coverage description, and perils covered." },
+                { term: "Additional Coverage", definition: "Extra coverage for specific expenses at NO additional premium. Examples: lawyer fees, temporary repairs, debris removal." },
+                { term: "Exclusions", definition: "What is NOT covered - perils excluded and people not insured. Examples: earthquakes, floods, intentional acts, war." },
+                { term: "Endorsements (Riders)", definition: "Written addendums that CHANGE original policy terms. Must be in writing, attached to policy, signed by executive officer." },
+                { term: "Policy Limits", definition: "MAXIMUM amount insurer will pay. Coverage stops at limit regardless of actual damages." },
+                { term: "Earned Premium", definition: "Portion of premium that belongs to insurer for elapsed time. Pay $12K/year = $1K earned after 1 month." },
+                { term: "Liberalization Clause", definition: "If insurer improves coverage, you get the benefit AUTOMATICALLY without requesting it - free of charge." },
+                { term: "Appraisal", definition: "Professional assessment to determine extent of damage. Used when insured and insurer disagree on value." },
+                { term: "Proof of Loss", definition: "SWORN statement from insured describing what happened, date, and amount claimed. Required for claim processing." },
+                { term: "Arbitration", definition: "Third party helps decide claim dispute. Can be BINDING (final, no appeal) or NON-BINDING (can still go to court)." },
+                { term: "Actual Cash Value (ACV)", definition: "Replacement cost MINUS depreciation. What the item is worth TODAY, not what you paid." },
+                { term: "Replacement Cost", definition: "Cost to replace with NEW item of like kind and quality - NO depreciation deducted. Better for insured." },
+                { term: "Agreed Value", definition: "Pre-determined value agreed by both parties at policy inception. No dispute at claim time." },
+                { term: "Cancellation", definition: "Termination BEFORE expiration date. Can be voluntary (insured), involuntary (insurer), or mutual." },
+                { term: "Nonrenewal", definition: "Termination AT expiration by not offering continuation. Policy runs full term first, then ends." },
+                { term: "Underwriting", definition: "Risk selection - reviewing applications to determine eligibility for coverage and appropriate premium." },
+                { term: "Third Party", definition: "Anyone OTHER than the two main parties (insured and insurer). Example: person you hit in accident." },
+                { term: "Duties After Loss", definition: "Insured must: protect property from further damage, inventory damaged items, cooperate, report theft to police, submit proof of loss." }
+            ],
+            3: [
+                { term: "Commercial General Liability (CGL)", definition: "Business liability policy covering bodily injury, property damage, and personal injury claims. Comes in Occurrence or Claims-Made forms." },
+                { term: "Occurrence Form", definition: "Coverage triggered by WHEN DAMAGE HAPPENED. Doesn't matter when claim is filed - goes back to policy active during incident." },
+                { term: "Claims-Made Form", definition: "Coverage triggered by WHEN CLAIM IS FILED. Policy must be active when claim is made, not just when incident occurred." },
+                { term: "Retroactive Date", definition: "Earliest date claims-made policy covers. Starts as inception date. Claims for incidents before this date = NOT covered." },
+                { term: "Tail Coverage", definition: "Extended reporting period after canceling claims-made policy. Covers claims filed later for incidents during coverage. Costs 1.5-2x last premium." },
+                { term: "Premises & Operations Hazard", definition: "Covers ownership, maintenance, use of YOUR premises and business operations. Excludes products/completed operations." },
+                { term: "Products & Completed Operations", definition: "Covers harm AFTER job is done or product left your control. Examples: defective product injures customer later." },
+                { term: "Aggregate Limit", definition: "MAXIMUM total payable during entire policy period. All claims combined can't exceed this amount." },
+                { term: "Bailee", definition: "Someone trusted with another's property but has NO ownership. Example: mechanic holding your car for repairs." },
+                { term: "SIR (Self-Insured Retention)", definition: "Deductible you must pay before umbrella policy kicks in when underlying coverage won't cover the loss." },
+                { term: "Independent Contractor Coverage", definition: "ICs are only covered under your General Liability with an ENDORSEMENT - not automatic." },
+                { term: "OCP (Owners & Contractors Protective)", definition: "Endorsement providing coverage for claims caused by negligence of contractors or subcontractors working for you." },
+                { term: "CGL Covered Contract #1: Lease of Premises", definition: "When you rent space - lease makes you liable for customer injuries. CGL COVERS even though you agreed in lease." },
+                { term: "CGL Covered Contract #2: Sidetrack Agreements", definition: "Railroad track agreements for your business. If you're liable for accidents on your spur, CGL covers." },
+                { term: "CGL Covered Contract #3: Easement Agreements", definition: "Using others' property via easement. If agreement makes you liable for damage, CGL covers. EXCEPT within 50ft of railroad construction." },
+                { term: "CGL Covered Contract #4: Municipality Indemnification", definition: "Agreements with city (permits, events). CGL covers IF not doing work FOR the municipality." },
+                { term: "CGL Covered Contract #5: Elevator Maintenance", definition: "If you service elevators and contract makes you liable for malfunctions, CGL covers." },
+                { term: "CGL Covered Contract #6: Liability You'd Have Anyway", definition: "If you'd be liable even without the contract (basic tort law), CGL covers. Exception: can't indemnify railroads, architects, engineers." },
+                { term: "Coverage Trigger", definition: "What makes a policy RESPOND to a claim. Occurrence = when damage happened. Claims-Made = when claim filed." },
+                { term: "Actual Cash Value (ACV)", definition: "Valuation method: Replacement Cost - Depreciation = value at time of loss, not original price." }
+            ]
+        };
+
+        // State
+        let currentCards = [];
+        let currentIndex = 0;
+        let isFlipped = false;
+        let cardProgress = {};
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            loadProgress();
+            // Check for chapter URL parameter
+            const urlParams = new URLSearchParams(window.location.search);
+            const chapterParam = urlParams.get('chapter');
+            if (chapterParam && ['1', '2', '3'].includes(chapterParam)) {
+                document.getElementById('chapterSelect').value = chapterParam;
+            }
+            loadChapter();
+        });
+
+        // Load progress from cookies
+        function loadProgress() {
+            const saved = getCookie('flashcardProgress');
+            if (saved) {
+                try {
+                    cardProgress = JSON.parse(saved);
+                } catch (e) {
+                    cardProgress = {};
+                }
+            }
+        }
+
+        // Save progress to cookies
+        function saveProgress() {
+            setCookie('flashcardProgress', JSON.stringify(cardProgress), 365);
+            updateStats();
+        }
+
+        // Cookie helpers
+        function setCookie(name, value, days) {
+            const expires = new Date(Date.now() + days * 864e5).toUTCString();
+            document.cookie = name + '=' + encodeURIComponent(value) + '; expires=' + expires + '; path=/';
+        }
+
+        function getCookie(name) {
+            return document.cookie.split('; ').reduce((r, v) => {
+                const parts = v.split('=');
+                return parts[0] === name ? decodeURIComponent(parts[1]) : r;
+            }, '');
+        }
+
+        // Load chapter cards
+        function loadChapter() {
+            const chapter = document.getElementById('chapterSelect').value;
+            currentCards = [];
+
+            if (chapter === 'all') {
+                Object.values(flashcardData).forEach(cards => {
+                    currentCards = currentCards.concat(cards);
+                });
+            } else {
+                currentCards = [...flashcardData[chapter]];
+            }
+
+            // Sort by difficulty if enabled
+            if (document.getElementById('prioritizeHard').checked) {
+                currentCards.sort((a, b) => {
+                    const aLevel = cardProgress[a.term] || 0;
+                    const bLevel = cardProgress[b.term] || 0;
+                    return aLevel - bLevel;
+                });
+            }
+
+            currentIndex = 0;
+            showCard();
+            updateStats();
+        }
+
+        // Show current card
+        function showCard() {
+            if (currentCards.length === 0) return;
+
+            const card = currentCards[currentIndex];
+            document.getElementById('cardFront').textContent = card.term;
+            document.getElementById('cardBack').textContent = card.definition;
+            document.getElementById('cardNumber').textContent = `Card ${currentIndex + 1} of ${currentCards.length}`;
+
+            // Reset flip state
+            document.getElementById('flashcard').classList.remove('flipped');
+            isFlipped = false;
+            document.getElementById('confidenceButtons').classList.add('hidden');
+
+            // Update progress bar
+            const progress = ((currentIndex + 1) / currentCards.length) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+            document.getElementById('progressText').textContent = `${currentIndex + 1} / ${currentCards.length}`;
+        }
+
+        // Flip card
+        function flipCard() {
+            isFlipped = !isFlipped;
+            document.getElementById('flashcard').classList.toggle('flipped', isFlipped);
+
+            if (isFlipped) {
+                document.getElementById('confidenceButtons').classList.remove('hidden');
+            } else {
+                document.getElementById('confidenceButtons').classList.add('hidden');
+            }
+        }
+
+        // Rate card
+        function rateCard(rating) {
+            const card = currentCards[currentIndex];
+            const levels = { hard: 0, medium: 1, easy: 2 };
+            cardProgress[card.term] = levels[rating];
+            saveProgress();
+            nextCard();
+        }
+
+        // Navigation
+        function nextCard() {
+            if (currentIndex < currentCards.length - 1) {
+                currentIndex++;
+                showCard();
+            } else {
+                // Completed all cards
+                alert('You\'ve completed all flashcards! Great job!');
+                currentIndex = 0;
+                showCard();
+            }
+        }
+
+        function prevCard() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                showCard();
+            }
+        }
+
+        // Shuffle cards
+        function shuffleCards() {
+            for (let i = currentCards.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [currentCards[i], currentCards[j]] = [currentCards[j], currentCards[i]];
+            }
+            currentIndex = 0;
+            showCard();
+        }
+
+        // Update stats display
+        function updateStats() {
+            let mastered = 0, learning = 0, newCards = 0;
+
+            currentCards.forEach(card => {
+                const level = cardProgress[card.term];
+                if (level === 2) mastered++;
+                else if (level === 1) learning++;
+                else newCards++;
+            });
+
+            document.getElementById('masteredCount').textContent = mastered;
+            document.getElementById('learningCount').textContent = learning;
+            document.getElementById('newCount').textContent = newCards;
+        }
+
+        // Reset progress
+        function resetProgress() {
+            if (confirm('Are you sure you want to reset all flashcard progress?')) {
+                cardProgress = {};
+                saveProgress();
+                showCard();
+            }
+        }
+
+        // Ask AI about current card
+        function askAIAboutCard() {
+            const card = currentCards[currentIndex];
+            const context = `Current flashcard being studied:
+Term: ${card.term}
+Definition: ${card.definition}
+
+This is a P&C (Property & Casualty) insurance exam study flashcard.`;
+
+            showAIChatModal(context, `Ask About: ${card.term}`, [
+                'Explain with an example',
+                'Why is this important for the exam?',
+                'Compare to similar concepts',
+                'What are common mistakes?'
+            ]);
+        }
+    </script>
+</body>
+</html>

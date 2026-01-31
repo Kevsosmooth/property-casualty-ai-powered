@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 2: Policy Structure | P&C Study Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <link rel="stylesheet" href="../../css/styles.css">
+    <script src="../../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+        }
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <!-- Settings Button -->
+    <button onclick="showAPIKeySetup()" class="fixed top-4 right-20 z-50 bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings">
+        <svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+        </svg>
+    </button>
+
+    <!-- Theme Toggle -->
+    <button onclick="toggleTheme()" class="fixed top-4 right-4 z-50 bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+        <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/>
+        </svg>
+        <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+        </svg>
+    </button>
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-purple-600 to-purple-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <a href="../../index.html" class="text-purple-200 hover:text-white text-sm mb-2 inline-block">← Back to Home</a>
+            <h1 class="text-3xl font-bold">Chapter 2: Policy Structure</h1>
+            <p class="text-purple-200 mt-1">Understanding Insurance Policy Components</p>
+        </div>
+    </header>
+
+    <!-- Table of Contents -->
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-wrap gap-2 text-sm">
+                <a href="#definitions" class="text-purple-600 dark:text-purple-400 hover:text-purple-800 px-2 py-1 rounded hover:bg-purple-50 dark:hover:bg-gray-700">Definitions</a>
+                <a href="#policy-parts" class="text-purple-600 dark:text-purple-400 hover:text-purple-800 px-2 py-1 rounded hover:bg-purple-50 dark:hover:bg-gray-700">Policy Parts</a>
+                <a href="#conditions" class="text-purple-600 dark:text-purple-400 hover:text-purple-800 px-2 py-1 rounded hover:bg-purple-50 dark:hover:bg-gray-700">Conditions</a>
+                <a href="#duties" class="text-purple-600 dark:text-purple-400 hover:text-purple-800 px-2 py-1 rounded hover:bg-purple-50 dark:hover:bg-gray-700">Duties After Loss</a>
+                <a href="#claims" class="text-purple-600 dark:text-purple-400 hover:text-purple-800 px-2 py-1 rounded hover:bg-purple-50 dark:hover:bg-gray-700">Claims</a>
+                <a href="#cancellation" class="text-purple-600 dark:text-purple-400 hover:text-purple-800 px-2 py-1 rounded hover:bg-purple-50 dark:hover:bg-gray-700">Cancellation</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 py-8 max-w-4xl">
+
+        <!-- Key Definitions -->
+        <section id="definitions" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-200 dark:text-gray-100 mb-4">Key Definitions</h2>
+
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="border-l-4 border-purple-500 pl-4 py-2">
+                        <p class="font-semibold text-purple-800 dark:text-purple-300 dark:text-purple-300">Appraisal</p>
+                        <p class="text-gray-700 dark:text-gray-300 dark:text-gray-300 text-sm">A professional assessment to determine the extent of damage.</p>
+                        <p class="text-xs text-gray-500 dark:text-gray-400 italic mt-1">Example: After a fire, an appraiser inspects your home to determine $75,000 in damage.</p>
+                    </div>
+
+                    <div class="border-l-4 border-blue-500 pl-4 py-2">
+                        <p class="font-semibold text-blue-800 dark:text-blue-300">Earned Premium</p>
+                        <p class="text-gray-700 dark:text-gray-300 dark:text-gray-300 text-sm">Portion of premium that now belongs to the insurer because it applies to elapsed time.</p>
+                        <p class="text-xs text-gray-500 dark:text-gray-400 italic mt-1">Example: Pay $12,000 annually upfront. After 1 month, insurer has "earned" $1,000 (1/12th).</p>
+                    </div>
+
+                    <div class="border-l-4 border-green-500 pl-4 py-2">
+                        <p class="font-semibold text-green-800 dark:text-green-300">Liberalization</p>
+                        <p class="text-gray-700 dark:text-gray-300 dark:text-gray-300 text-sm">Removal or loosening of restrictions. Allows insurers to update clauses benefiting the insured automatically.</p>
+                        <p class="text-xs text-gray-500 dark:text-gray-400 italic mt-1">Example: Insurer improves coverage terms - you get the benefit automatically without requesting it.</p>
+                    </div>
+
+                    <div class="border-l-4 border-red-500 pl-4 py-2">
+                        <p class="font-semibold text-red-800 dark:text-red-300">Negligence</p>
+                        <p class="text-gray-700 dark:text-gray-300 dark:text-gray-300 text-sm">Failure to use care that a reasonable, prudent person would under the same circumstances.</p>
+                    </div>
+
+                    <div class="border-l-4 border-amber-500 pl-4 py-2">
+                        <p class="font-semibold text-amber-800 dark:text-amber-300">Policyowner</p>
+                        <p class="text-gray-700 dark:text-gray-300 dark:text-gray-300 text-sm">The person entitled to exercise rights and privileges in the policy.</p>
+                    </div>
+
+                    <div class="border-l-4 border-teal-500 pl-4 py-2">
+                        <p class="font-semibold text-teal-800 dark:text-teal-300">Third Party</p>
+                        <p class="text-gray-700 dark:text-gray-300 dark:text-gray-300 text-sm">Anyone other than the two main parties (insured and insurer).</p>
+                        <p class="text-xs text-gray-500 dark:text-gray-400 italic mt-1">Example: You hit someone's car - that person is the third party.</p>
+                    </div>
+
+                    <div class="border-l-4 border-indigo-500 pl-4 py-2">
+                        <p class="font-semibold text-indigo-800 dark:text-indigo-300">Underwriting</p>
+                        <p class="text-gray-700 dark:text-gray-300 dark:text-gray-300 text-sm">Risk selection - reviewing applications to determine eligibility for coverage.</p>
+                        <p class="text-xs text-gray-500 dark:text-gray-400 italic mt-1">Example: Underwriter reviews your driving record to decide if you qualify for auto insurance and at what rate.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Policy Structure -->
+        <section id="policy-parts" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-200 dark:text-gray-100 mb-4">Policy Structure Components</h2>
+
+                <div class="space-y-6">
+                    <!-- Declarations -->
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-5 border-l-4 border-blue-500">
+                        <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg mb-2">1. Declarations (Dec Page)</h3>
+                        <p class="text-gray-700 dark:text-gray-300 dark:text-gray-300 mb-3">Usually the FIRST PAGE - contains basic underwriting information.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-semibold text-sm mb-2">Includes:</p>
+                            <ul class="text-sm text-gray-600 dark:text-gray-400 grid md:grid-cols-2 gap-1">
+                                <li>• Insured's name & address</li>
+                                <li>• Amount of coverage</li>
+                                <li>• Premium amounts</li>
+                                <li>• Description of insured location</li>
+                                <li>• Policy period dates</li>
+                                <li>• Supplemental representations</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Definitions -->
+                    <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-5 border-l-4 border-purple-500">
+                        <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg mb-2">2. Definitions</h3>
+                        <p class="text-gray-700 dark:text-gray-300">Clarifies terms used in the policy. Words in <strong>bold</strong>, <em>italics</em>, or "quotations" typically have specific definitions.</p>
+                        <p class="text-sm text-gray-500 italic mt-2">Example: "Residence premises" might be specifically defined as "the dwelling where you live" - important because coverage may not apply elsewhere.</p>
+                    </div>
+
+                    <!-- Insuring Agreement -->
+                    <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-5 border-l-4 border-green-500">
+                        <h3 class="font-bold text-green-800 dark:text-green-300 text-lg mb-2">3. Insuring Agreement</h3>
+                        <p class="text-gray-700 dark:text-gray-300 dark:text-gray-300 mb-3">Establishes the insurance company's obligation to provide coverage.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-semibold text-sm mb-2">Contains:</p>
+                            <ul class="text-sm text-gray-600 dark:text-gray-400 space-y-1">
+                                <li>• Parties to the contract</li>
+                                <li>• Effective and renewal dates</li>
+                                <li>• Description of coverage provided</li>
+                                <li>• Perils covered</li>
+                            </ul>
+                        </div>
+                        <p class="text-sm text-gray-500 mt-2">Usually found after Declarations (may be after Definitions).</p>
+                    </div>
+
+                    <!-- Additional Coverage -->
+                    <div class="bg-amber-50 dark:bg-amber-900/20 rounded-lg p-5 border-l-4 border-amber-500">
+                        <h3 class="font-bold text-amber-800 dark:text-amber-300 text-lg mb-2">4. Additional Coverage (Supplementary Coverage)</h3>
+                        <p class="text-gray-700 dark:text-gray-300 dark:text-gray-300 mb-3">Extra coverage for specific loss expenses at NO additional premium.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-semibold text-sm mb-2">Examples:</p>
+                            <ul class="text-sm text-gray-600 dark:text-gray-400 space-y-1">
+                                <li>• Lawyer fees for covered liability case</li>
+                                <li>• Temporary repairs (tarp over hole from fallen tree)</li>
+                                <li>• Debris removal costs</li>
+                                <li>• Fire department service charges</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Exclusions -->
+                    <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-5 border-l-4 border-red-500">
+                        <h3 class="font-bold text-red-800 dark:text-red-300 text-lg mb-2">5. Exclusions</h3>
+                        <p class="text-gray-700 dark:text-gray-300 dark:text-gray-300 mb-3">Details what perils are NOT covered and who is NOT insured.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-semibold text-sm mb-2">Common Exclusions:</p>
+                            <ul class="text-sm text-gray-600 dark:text-gray-400 space-y-1">
+                                <li>• Earth movement (earthquakes, mudflow, volcanic eruption)</li>
+                                <li>• Flood water</li>
+                                <li>• Water backup or sump pump failure</li>
+                                <li>• Underground water</li>
+                                <li>• Intentional acts</li>
+                                <li>• War and nuclear hazards</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Endorsements -->
+                    <div class="bg-teal-50 dark:bg-teal-900/20 rounded-lg p-5 border-l-4 border-teal-500">
+                        <h3 class="font-bold text-teal-800 dark:text-teal-300 text-lg mb-2">6. Endorsements (Riders)</h3>
+                        <p class="text-gray-700 dark:text-gray-300 dark:text-gray-300 mb-3">Addendums that change the policy's original terms, conditions, or coverages.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded text-sm">
+                            <p><strong>Requirements to be valid:</strong></p>
+                            <ul class="text-gray-600 mt-1 space-y-1">
+                                <li>• Must be in writing</li>
+                                <li>• Must be attached to policy</li>
+                                <li>• Must be signed by executive officer of insurer</li>
+                            </ul>
+                        </div>
+                        <p class="text-sm text-gray-500 mt-2">Can be added at policy inception or during the term.</p>
+                    </div>
+
+                    <!-- Policy Limits -->
+                    <div class="bg-indigo-50 dark:bg-indigo-900/20 rounded-lg p-5 border-l-4 border-indigo-500">
+                        <h3 class="font-bold text-indigo-800 dark:text-indigo-300 text-lg mb-2">7. Policy Limits (Limitations)</h3>
+                        <p class="text-gray-700 dark:text-gray-300">The maximum amount an insured may collect or be protected under the policy terms.</p>
+                        <p class="text-sm text-gray-500 italic mt-2">Example: Policy limit of $300,000 means the most you can recover is $300,000, even if your loss is $400,000.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Conditions -->
+        <section id="conditions" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-200 dark:text-gray-100 mb-4">Policy Conditions</h2>
+                <p class="text-gray-600 dark:text-gray-400 mb-4">Rules both the insurer and insured must follow based on policy terms.</p>
+
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
+                        <h4 class="font-bold text-gray-800 dark:text-gray-200">Inspections</h4>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Insurer may inspect the insured location or books to determine exposure for underwriting and rating purposes.</p>
+                    </div>
+
+                    <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
+                        <h4 class="font-bold text-gray-800 dark:text-gray-200">Changes to Policy</h4>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Must be made by the insurer and be in writing.</p>
+                    </div>
+
+                    <div class="bg-green-50 p-4 rounded-lg border border-green-200">
+                        <h4 class="font-bold text-green-800">Liberalization Clause</h4>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Improved coverage provided free of charge - insured gets new benefit automatically.</p>
+                    </div>
+
+                    <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
+                        <h4 class="font-bold text-gray-800 dark:text-gray-200">Return of Premium</h4>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Dictates method used to calculate premium refund if cancelled before expiration date.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Duties After Loss -->
+        <section id="duties" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-200 dark:text-gray-100 mb-4">Duties After a Loss (Insured's Responsibilities)</h2>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border border-amber-200 dark:border-amber-800 rounded-lg p-4 mb-4">
+                    <p class="font-bold text-amber-800">Important: Failing to fulfill these duties may result in claim denial!</p>
+                </div>
+
+                <ol class="space-y-4">
+                    <li class="flex items-start">
+                        <span class="bg-purple-600 dark:bg-purple-700 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3 flex-shrink-0 font-bold">1</span>
+                        <div>
+                            <p class="font-semibold">Protect Property from Further Damage</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Take reasonable steps to prevent additional loss (cover broken windows, turn off water, etc.)</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="bg-purple-600 dark:bg-purple-700 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3 flex-shrink-0 font-bold">2</span>
+                        <div>
+                            <p class="font-semibold">Begin Inventory Count</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Document all damaged property with descriptions, quantities, and values.</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="bg-purple-600 dark:bg-purple-700 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3 flex-shrink-0 font-bold">3</span>
+                        <div>
+                            <p class="font-semibold">Cooperate with Insurer</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Work with the insurance company in settling the loss.</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="bg-purple-600 dark:bg-purple-700 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3 flex-shrink-0 font-bold">4</span>
+                        <div>
+                            <p class="font-semibold">Contact Police (if theft)</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Report theft losses to law enforcement.</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="bg-purple-600 dark:bg-purple-700 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3 flex-shrink-0 font-bold">5</span>
+                        <div>
+                            <p class="font-semibold">Submit Proof of Loss</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Provide a signed, sworn proof of loss within the specified timeframe after insurer requests it.</p>
+                        </div>
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- Claims Related -->
+        <section id="claims" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-200 dark:text-gray-100 mb-4">Claims & Settlement</h2>
+
+                <div class="space-y-4">
+                    <div class="bg-blue-50 p-4 rounded-lg">
+                        <h4 class="font-bold text-blue-800">Proof of Loss</h4>
+                        <p class="text-gray-700 dark:text-gray-300">A sworn statement from insured to insurer that includes:</p>
+                        <ul class="text-sm text-gray-600 dark:text-gray-400 mt-2 list-disc list-inside">
+                            <li>Description of what happened</li>
+                            <li>Date of occurrence</li>
+                            <li>Amount of indemnity claimed</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-purple-50 p-4 rounded-lg">
+                        <h4 class="font-bold text-purple-800">Arbitration</h4>
+                        <p class="text-gray-700 dark:text-gray-300">A third party helps decide a claim dispute between insured and insurer.</p>
+                        <div class="grid md:grid-cols-2 gap-2 mt-2 text-sm">
+                            <div class="bg-white dark:bg-gray-700 p-2 rounded">
+                                <p class="font-semibold">Binding</p>
+                                <p class="text-gray-600">Cannot appeal - decision is final</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-2 rounded">
+                                <p class="font-semibold">Non-Binding</p>
+                                <p class="text-gray-600">Can still go to court if unsatisfied</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-green-50 p-4 rounded-lg">
+                        <h4 class="font-bold text-green-800">Loss Settlement Methods</h4>
+                        <p class="text-gray-700 dark:text-gray-300 mb-2">How claims are paid:</p>
+                        <div class="space-y-2 text-sm">
+                            <div class="bg-white dark:bg-gray-700 p-2 rounded">
+                                <p class="font-semibold">Actual Cash Value (ACV)</p>
+                                <p class="text-gray-600">Replacement cost minus depreciation. What the item is worth TODAY.</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-2 rounded">
+                                <p class="font-semibold">Replacement Cost</p>
+                                <p class="text-gray-600">Cost to replace with new item of like kind and quality - no depreciation deducted.</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-2 rounded">
+                                <p class="font-semibold">Agreed Value</p>
+                                <p class="text-gray-600">Pre-determined value agreed upon by both parties at policy inception.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-amber-50 p-4 rounded-lg">
+                        <h4 class="font-bold text-amber-800">Other Insurance Provision</h4>
+                        <p class="text-gray-700 dark:text-gray-300">Determines how insurance responds when multiple policies cover the same loss.</p>
+                        <p class="text-sm text-gray-500 italic mt-1">Example: If you have two auto policies, this provision determines which pays first or how they share the loss.</p>
+                    </div>
+
+                    <div class="bg-teal-50 p-4 rounded-lg">
+                        <h4 class="font-bold text-teal-800">Consent to Settle</h4>
+                        <p class="text-gray-700 dark:text-gray-300">Found in professional liability policies - insurer must seek insured's consent before settling a claim for a specific amount.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cancellation -->
+        <section id="cancellation" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-200 dark:text-gray-100 mb-4">Cancellation & Nonrenewal</h2>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-5 border border-red-200">
+                        <h3 class="font-bold text-red-800 dark:text-red-300 text-lg mb-2">Cancellation</h3>
+                        <p class="text-gray-700 dark:text-gray-300 dark:text-gray-300 mb-3">Termination of a policy BEFORE the expiration date.</p>
+                        <p class="font-semibold text-sm mb-2">Can be:</p>
+                        <ul class="text-sm text-gray-600 dark:text-gray-400 space-y-1">
+                            <li>• <strong>Voluntary</strong> - Insured requests cancellation</li>
+                            <li>• <strong>Involuntary</strong> - Insurer cancels (non-payment, fraud, etc.)</li>
+                            <li>• <strong>Mutual</strong> - Both parties agree</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-amber-50 dark:bg-amber-900/20 rounded-lg p-5 border border-amber-200">
+                        <h3 class="font-bold text-amber-800 dark:text-amber-300 text-lg mb-2">Nonrenewal</h3>
+                        <p class="text-gray-700 dark:text-gray-300">Termination at expiration date by not offering a continuation or replacement.</p>
+                        <p class="text-sm text-gray-500 italic mt-2">Different from cancellation because the policy runs its full term first.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Occurrence vs Claims Made -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-200 dark:text-gray-100 mb-4">Occurrence vs. Claims-Made Policy Forms</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-800 rounded-lg p-4 mb-6">
+                    <p class="font-bold text-blue-800">Key Concept: These determine what "triggers" coverage!</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-5 border-2 border-green-300">
+                        <h3 class="font-bold text-green-800 text-xl mb-3">Occurrence Form</h3>
+                        <div class="bg-green-100 text-green-800 font-bold text-center py-2 rounded mb-4">STANDARD for Most Policies</div>
+                        <p class="text-gray-700 dark:text-gray-300 dark:text-gray-300 mb-3"><strong>Trigger:</strong> When did the damage/accident HAPPEN?</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded text-sm">
+                            <p class="font-semibold">Example:</p>
+                            <p class="text-gray-600 mt-1">Homeowners policy from 2020-2021. In 2025, you discover a leak from 2020 caused $50k in mold damage.</p>
+                            <p class="text-green-600 font-semibold mt-2">✓ The 2020 policy WILL pay - because the damage OCCURRED in 2020.</p>
+                        </div>
+                        <p class="text-sm text-gray-500 mt-3 font-medium">Key Point: Only matters WHEN the damage happened.</p>
+                    </div>
+
+                    <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-5 border-2 border-purple-300">
+                        <h3 class="font-bold text-purple-800 text-xl mb-3">Claims-Made Form</h3>
+                        <div class="bg-purple-100 text-purple-800 font-bold text-center py-2 rounded mb-4">MAINLY for Business Liability</div>
+                        <p class="text-gray-700 dark:text-gray-300 dark:text-gray-300 mb-3"><strong>Trigger:</strong> When was the CLAIM FILED?</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded text-sm">
+                            <p class="font-semibold">Example:</p>
+                            <p class="text-gray-600 mt-1">Insurance from 2020-2021. Sold defective products in 2020. In 2025, someone sues for injuries.</p>
+                            <p class="text-red-600 font-semibold mt-2">✗ The 2020 policy WON'T pay - policy expired before claim was made.</p>
+                        </div>
+                        <p class="text-sm text-gray-500 mt-3 font-medium">Key Point: Policy must be active when claim is FILED.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Study Tools for This Chapter -->
+    <section class="container mx-auto px-4 py-8 max-w-4xl">
+        <div class="bg-gradient-to-r from-purple-600 to-purple-800 rounded-xl shadow-lg p-6 text-white">
+            <h2 class="text-xl font-bold mb-4">Practice Chapter 2</h2>
+            <p class="text-purple-100 mb-6">Reinforce your learning with flashcards and quizzes for this chapter</p>
+            <div class="grid md:grid-cols-2 gap-4">
+                <a href="../../study-tools/flashcards.html?chapter=2" class="bg-white/20 hover:bg-white/30 rounded-lg p-4 transition-colors flex items-center">
+                    <div class="bg-white/20 p-3 rounded-full mr-4">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="font-bold">Chapter 2 Flashcards</h3>
+                        <p class="text-sm text-purple-200">Policy Structure Terms</p>
+                    </div>
+                </a>
+                <a href="../../study-tools/quiz.html?chapter=2" class="bg-white/20 hover:bg-white/30 rounded-lg p-4 transition-colors flex items-center">
+                    <div class="bg-white/20 p-3 rounded-full mr-4">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h3 class="font-bold">Chapter 2 Quiz</h3>
+                        <p class="text-sm text-purple-200">Test Your Knowledge</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Navigation Footer -->
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="../chapter-1/index.html" class="text-gray-300 hover:text-white">← Chapter 1</a>
+                <span class="text-gray-400">Chapter 2 of 3</span>
+                <a href="../chapter-3/index.html" class="text-gray-300 hover:text-white">Chapter 3 →</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Initialize AI Tutor -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            createFloatingAIButton(`Chapter 2: Policy Structure
+
+This chapter covers:
+- Declarations (Dec Page) - first page with basic info
+- Definitions section - clarifies policy terms
+- Insuring Agreement - establishes coverage obligation
+- Additional Coverage/Supplementary Coverage
+- Exclusions - what is NOT covered
+- Endorsements (Riders) - policy amendments
+- Policy Limits and Limitations
+- Policy Conditions (inspections, changes, liberalization)
+- Duties After a Loss
+- Claims and Settlement (Proof of Loss, Arbitration)
+- Loss Settlement Methods (ACV, Replacement Cost, Agreed Value)
+- Cancellation vs Nonrenewal
+- Occurrence vs Claims-Made forms
+- Earned Premium and Underwriting`);
+        });
+    </script>
+</body>
+</html>

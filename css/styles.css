@@ -1,0 +1,777 @@
+/* P&C Insurance Study Guide - Global Styles */
+/* Dark mode is handled via Tailwind's class-based approach */
+/* This file provides additional custom styling */
+
+/* Base Theme Variables */
+:root {
+  --color-primary: #1e40af;
+  --color-secondary: #7c3aed;
+  --color-accent: #059669;
+}
+
+/* Custom scrollbar for dark mode */
+.dark ::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: #1f2937;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #4b5563;
+  border-radius: 5px;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #6b7280;
+}
+
+/* Flashcard Styles */
+.flashcard-container {
+  perspective: 1000px;
+}
+
+.flashcard {
+  position: relative;
+  width: 100%;
+  height: 280px;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.flashcard.flipped {
+  transform: rotateY(180deg);
+}
+
+.flashcard-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.flashcard-front {
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  color: white;
+}
+
+.flashcard-back {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: white;
+  transform: rotateY(180deg);
+}
+
+/* Dark mode flashcard adjustments */
+.dark .flashcard-front {
+  background: linear-gradient(135deg, #1e40af, #1e3a8a);
+}
+
+.dark .flashcard-back {
+  background: linear-gradient(135deg, #047857, #065f46);
+}
+
+/* Quiz Styles */
+.quiz-option {
+  transition: all 0.2s ease;
+  border: 2px solid transparent;
+}
+
+.quiz-option:hover {
+  border-color: #3b82f6;
+  transform: translateX(4px);
+}
+
+.quiz-option.selected {
+  border-color: #3b82f6;
+  background-color: rgba(59, 130, 246, 0.1);
+}
+
+.quiz-option.correct {
+  border-color: #10b981;
+  background-color: rgba(16, 185, 129, 0.1);
+}
+
+.quiz-option.incorrect {
+  border-color: #ef4444;
+  background-color: rgba(239, 68, 68, 0.1);
+}
+
+.dark .quiz-option:hover {
+  border-color: #60a5fa;
+}
+
+.dark .quiz-option.selected {
+  border-color: #60a5fa;
+  background-color: rgba(96, 165, 250, 0.2);
+}
+
+/* Progress Bar */
+.progress-bar {
+  height: 8px;
+  background-color: #e5e7eb;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+  transition: width 0.5s ease;
+}
+
+.dark .progress-bar {
+  background-color: #374151;
+}
+
+/* Card hover effects */
+.study-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.study-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.15);
+}
+
+.dark .study-card:hover {
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.4);
+}
+
+/* Smooth page transitions */
+.page-content {
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Definition cards */
+.definition-card {
+  transition: border-color 0.2s ease;
+}
+
+.definition-card:hover {
+  border-left-width: 6px;
+}
+
+/* Table styles for dark mode */
+.dark table thead {
+  background-color: #374151;
+}
+
+.dark table tbody tr:nth-child(even) {
+  background-color: rgba(55, 65, 81, 0.5);
+}
+
+.dark table tbody tr:hover {
+  background-color: rgba(55, 65, 81, 0.8);
+}
+
+/* Button styles */
+.btn-primary {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.3);
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 12px -2px rgba(59, 130, 246, 0.4);
+}
+
+.btn-secondary {
+  background: linear-gradient(135deg, #6b7280, #4b5563);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.btn-success {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.btn-danger {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+/* Confidence buttons for flashcards */
+.confidence-btn {
+  padding: 0.5rem 1.25rem;
+  border-radius: 0.375rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  border: 2px solid transparent;
+}
+
+.confidence-btn.easy {
+  background-color: rgba(16, 185, 129, 0.1);
+  color: #059669;
+  border-color: #10b981;
+}
+
+.confidence-btn.easy:hover {
+  background-color: #10b981;
+  color: white;
+}
+
+.confidence-btn.medium {
+  background-color: rgba(245, 158, 11, 0.1);
+  color: #d97706;
+  border-color: #f59e0b;
+}
+
+.confidence-btn.medium:hover {
+  background-color: #f59e0b;
+  color: white;
+}
+
+.confidence-btn.hard {
+  background-color: rgba(239, 68, 68, 0.1);
+  color: #dc2626;
+  border-color: #ef4444;
+}
+
+.confidence-btn.hard:hover {
+  background-color: #ef4444;
+  color: white;
+}
+
+/* Dark mode confidence buttons */
+.dark .confidence-btn.easy {
+  background-color: rgba(16, 185, 129, 0.2);
+  color: #34d399;
+}
+
+.dark .confidence-btn.medium {
+  background-color: rgba(245, 158, 11, 0.2);
+  color: #fbbf24;
+}
+
+.dark .confidence-btn.hard {
+  background-color: rgba(239, 68, 68, 0.2);
+  color: #f87171;
+}
+
+/* Stats cards */
+.stat-card {
+  background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(255,255,255,0.7));
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+.dark .stat-card {
+  background: linear-gradient(135deg, rgba(55,65,81,0.9), rgba(55,65,81,0.7));
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Quiz result styles */
+.result-excellent {
+  background: linear-gradient(135deg, #10b981, #059669);
+}
+
+.result-good {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+}
+
+.result-fair {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+}
+
+.result-needs-work {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+}
+
+/* Tooltip styles */
+.tooltip {
+  position: relative;
+}
+
+.tooltip::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0.5rem 0.75rem;
+  background: #1f2937;
+  color: white;
+  font-size: 0.75rem;
+  border-radius: 0.375rem;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease;
+  z-index: 50;
+}
+
+.tooltip:hover::after {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .flashcard {
+    height: 220px;
+  }
+
+  .flashcard-face {
+    padding: 1.5rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* ==================== */
+/* AI Chat Styles       */
+/* ==================== */
+
+/* Floating AI Button */
+.floating-ai-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  background: linear-gradient(135deg, #8b5cf6, #6366f1);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(139, 92, 246, 0.4);
+  transition: all 0.3s ease;
+}
+
+.floating-ai-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(139, 92, 246, 0.5);
+}
+
+.floating-ai-btn svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* AI Modal Overlay */
+.ai-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  animation: fadeIn 0.2s ease;
+}
+
+.ai-modal-overlay.closing {
+  animation: fadeOut 0.2s ease;
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+/* AI Modal */
+.ai-modal {
+  background: white;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 500px;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  animation: slideUp 0.3s ease;
+}
+
+.dark .ai-modal {
+  background: #1f2937;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* AI Modal Header */
+.ai-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  border-bottom: 1px solid #e5e7eb;
+  background: linear-gradient(135deg, #8b5cf6, #6366f1);
+  border-radius: 16px 16px 0 0;
+}
+
+.dark .ai-modal-header {
+  border-color: #374151;
+}
+
+.ai-modal-header h3 {
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.ai-close-btn {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: white;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.ai-close-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* AI Chat Container */
+.ai-chat-container {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 200px;
+  max-height: 400px;
+}
+
+/* AI Messages */
+.ai-message {
+  padding: 12px 16px;
+  border-radius: 12px;
+  max-width: 85%;
+  animation: fadeIn 0.3s ease;
+}
+
+.ai-message p {
+  margin: 0;
+  line-height: 1.5;
+  font-size: 0.95rem;
+}
+
+.ai-message.ai-system {
+  background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+  color: #0369a1;
+  align-self: flex-start;
+}
+
+.dark .ai-message.ai-system {
+  background: linear-gradient(135deg, #1e3a5f, #1e3a8a);
+  color: #7dd3fc;
+}
+
+.ai-message.ai-user {
+  background: linear-gradient(135deg, #8b5cf6, #6366f1);
+  color: white;
+  align-self: flex-end;
+}
+
+.ai-message.ai-assistant {
+  background: #f3f4f6;
+  color: #374151;
+  align-self: flex-start;
+}
+
+.dark .ai-message.ai-assistant {
+  background: #374151;
+  color: #e5e7eb;
+}
+
+.ai-message .ai-error {
+  color: #ef4444;
+}
+
+/* AI Loading Animation */
+.ai-loading {
+  display: flex;
+  gap: 4px;
+  padding: 4px 0;
+}
+
+.ai-loading span {
+  width: 8px;
+  height: 8px;
+  background: #8b5cf6;
+  border-radius: 50%;
+  animation: bounce 1.4s infinite ease-in-out both;
+}
+
+.ai-loading span:nth-child(1) { animation-delay: -0.32s; }
+.ai-loading span:nth-child(2) { animation-delay: -0.16s; }
+
+@keyframes bounce {
+  0%, 80%, 100% { transform: scale(0); }
+  40% { transform: scale(1); }
+}
+
+/* Quick Prompts */
+.ai-quick-prompts {
+  padding: 8px 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.dark .ai-quick-prompts {
+  border-color: #374151;
+}
+
+.ai-quick-btn {
+  padding: 6px 12px;
+  background: #f3f4f6;
+  border: 1px solid #e5e7eb;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  color: #6b7280;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.ai-quick-btn:hover {
+  background: #e5e7eb;
+  color: #374151;
+}
+
+.dark .ai-quick-btn {
+  background: #374151;
+  border-color: #4b5563;
+  color: #9ca3af;
+}
+
+.dark .ai-quick-btn:hover {
+  background: #4b5563;
+  color: #e5e7eb;
+}
+
+/* AI Input Container */
+.ai-input-container {
+  display: flex;
+  gap: 8px;
+  padding: 16px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.dark .ai-input-container {
+  border-color: #374151;
+}
+
+.ai-input-container input {
+  flex: 1;
+  padding: 12px 16px;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.ai-input-container input:focus {
+  border-color: #8b5cf6;
+}
+
+.dark .ai-input-container input {
+  background: #374151;
+  border-color: #4b5563;
+  color: #e5e7eb;
+}
+
+.dark .ai-input-container input:focus {
+  border-color: #8b5cf6;
+}
+
+.ai-send-btn {
+  padding: 12px;
+  background: linear-gradient(135deg, #8b5cf6, #6366f1);
+  border: none;
+  border-radius: 12px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.ai-send-btn:hover {
+  transform: scale(1.05);
+}
+
+.ai-send-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Ask AI Button (inline) */
+.ask-ai-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: linear-gradient(135deg, #8b5cf6, #6366f1);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.ask-ai-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+}
+
+.ask-ai-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Scenario Generator */
+.scenario-box {
+  background: linear-gradient(135deg, #fef3c7, #fde68a);
+  border: 2px solid #f59e0b;
+  border-radius: 12px;
+  padding: 20px;
+  margin-top: 16px;
+}
+
+.dark .scenario-box {
+  background: linear-gradient(135deg, #78350f, #92400e);
+  border-color: #d97706;
+}
+
+.scenario-box h4 {
+  color: #92400e;
+  margin-bottom: 12px;
+}
+
+.dark .scenario-box h4 {
+  color: #fcd34d;
+}
+
+.scenario-box p {
+  color: #78350f;
+  line-height: 1.6;
+}
+
+.dark .scenario-box p {
+  color: #fef3c7;
+}
+
+/* Weak Area Analysis */
+.weak-area-analysis {
+  background: linear-gradient(135deg, #fef2f2, #fee2e2);
+  border: 2px solid #ef4444;
+  border-radius: 12px;
+  padding: 20px;
+  margin-top: 16px;
+}
+
+.dark .weak-area-analysis {
+  background: linear-gradient(135deg, #450a0a, #7f1d1d);
+  border-color: #dc2626;
+}
+
+.weak-area-analysis h4 {
+  color: #dc2626;
+  margin-bottom: 12px;
+}
+
+.dark .weak-area-analysis h4 {
+  color: #fca5a5;
+}
+
+.weak-area-analysis p {
+  color: #7f1d1d;
+  line-height: 1.6;
+}
+
+.dark .weak-area-analysis p {
+  color: #fecaca;
+}
+
+/* Responsive AI adjustments */
+@media (max-width: 640px) {
+  .floating-ai-btn span {
+    display: none;
+  }
+
+  .floating-ai-btn {
+    padding: 14px;
+    border-radius: 50%;
+  }
+
+  .ai-modal {
+    width: 95%;
+    max-height: 90vh;
+  }
+
+  .ai-quick-prompts {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: 12px;
+  }
+
+  .ai-quick-btn {
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+}

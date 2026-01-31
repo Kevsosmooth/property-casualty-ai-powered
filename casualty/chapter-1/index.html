@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 1: Fundamentals & Key Terms | P&C Study Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <link rel="stylesheet" href="../../css/styles.css">
+    <script src="../../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+        }
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <!-- Settings Button -->
+    <button onclick="showAPIKeySetup()" class="fixed top-4 right-20 z-50 bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings">
+        <svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+        </svg>
+    </button>
+
+    <!-- Theme Toggle -->
+    <button onclick="toggleTheme()" class="fixed top-4 right-4 z-50 bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+        <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/>
+        </svg>
+        <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+        </svg>
+    </button>
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <a href="../../index.html" class="text-blue-200 hover:text-white text-sm mb-2 inline-block">← Back to Home</a>
+            <h1 class="text-3xl font-bold">Chapter 1: Fundamentals & Key Terms</h1>
+            <p class="text-blue-200 mt-1">Personal Lines - Core Definitions & Concepts</p>
+        </div>
+    </header>
+
+    <!-- Table of Contents -->
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-wrap gap-2 text-sm">
+                <a href="#iso" class="text-blue-600 dark:text-blue-400 hover:text-blue-800 px-2 py-1 rounded hover:bg-blue-50 dark:hover:bg-gray-700">ISO</a>
+                <a href="#definitions" class="text-blue-600 dark:text-blue-400 hover:text-blue-800 px-2 py-1 rounded hover:bg-blue-50 dark:hover:bg-gray-700">Definitions</a>
+                <a href="#risk" class="text-blue-600 dark:text-blue-400 hover:text-blue-800 px-2 py-1 rounded hover:bg-blue-50 dark:hover:bg-gray-700">Risk Types</a>
+                <a href="#perils" class="text-blue-600 dark:text-blue-400 hover:text-blue-800 px-2 py-1 rounded hover:bg-blue-50 dark:hover:bg-gray-700">Perils & Hazards</a>
+                <a href="#indemnity" class="text-blue-600 dark:text-blue-400 hover:text-blue-800 px-2 py-1 rounded hover:bg-blue-50 dark:hover:bg-gray-700">Indemnity</a>
+                <a href="#crimes" class="text-blue-600 dark:text-blue-400 hover:text-blue-800 px-2 py-1 rounded hover:bg-blue-50 dark:hover:bg-gray-700">Legal Terms</a>
+                <a href="#medpay" class="text-blue-600 dark:text-blue-400 hover:text-blue-800 px-2 py-1 rounded hover:bg-blue-50 dark:hover:bg-gray-700">MedPay vs Liability</a>
+                <a href="#liability-types" class="text-blue-600 dark:text-blue-400 hover:text-blue-800 px-2 py-1 rounded hover:bg-blue-50 dark:hover:bg-gray-700">Liability Types</a>
+                <a href="#policy-terms" class="text-blue-600 dark:text-blue-400 hover:text-blue-800 px-2 py-1 rounded hover:bg-blue-50 dark:hover:bg-gray-700">Policy Terms</a>
+                <a href="#warranty" class="text-blue-600 dark:text-blue-400 hover:text-blue-800 px-2 py-1 rounded hover:bg-blue-50 dark:hover:bg-gray-700">Warranty vs Representation</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 py-8 max-w-4xl">
+
+        <!-- ISO Section -->
+        <section id="iso" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4 flex items-center">
+                    <span class="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-sm px-3 py-1 rounded-full mr-3">Key Organization</span>
+                    ISO - Insurance Services Office
+                </h2>
+                <div class="bg-blue-50 dark:bg-blue-900/30 p-4 rounded-lg">
+                    <p class="text-gray-700 dark:text-gray-300">Creates standardized property and casualty insurance policies which are approved by each state, then used as the base policy form for insurers. Policies are then modified to comply with each state's specific laws and regulations.</p>
+                </div>
+                <div class="mt-4 bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-400 p-4">
+                    <p class="font-semibold text-amber-800 dark:text-amber-300">Example:</p>
+                    <p class="text-gray-700 dark:text-gray-300">ISO creates a standard homeowners policy form (HO-3). State A approves it but requires additional flood disclosure. State B approves it with different liability minimums. Each insurer then uses these state-approved forms as their starting point.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Core Definitions -->
+        <section id="definitions" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">Core Definitions</h2>
+
+                <div class="space-y-4">
+                    <div class="border-l-4 border-blue-500 pl-4 py-2">
+                        <p class="font-semibold text-blue-800 dark:text-blue-300">Depreciation</p>
+                        <p class="text-gray-700 dark:text-gray-300">The decrease in an asset's value over time due to wear and tear, age, or obsolescence.</p>
+                        <p class="text-sm text-gray-500 dark:text-gray-400 mt-1 italic">Example: A 5-year-old roof originally worth $15,000 may have depreciated to $10,000 due to weather exposure and normal aging.</p>
+                    </div>
+
+                    <div class="border-l-4 border-purple-500 pl-4 py-2">
+                        <p class="font-semibold text-purple-800 dark:text-purple-300">Exposure</p>
+                        <p class="text-gray-700 dark:text-gray-300">The degree to which someone or something is vulnerable to potential loss. Think of it as "how much risk are you exposed to?"</p>
+                        <p class="text-sm text-gray-500 dark:text-gray-400 mt-1 italic">Example: A home in Florida has high exposure to hurricane damage. A business with 50 delivery trucks has more auto liability exposure than one with 5 trucks.</p>
+                    </div>
+
+                    <div class="border-l-4 border-green-500 pl-4 py-2">
+                        <p class="font-semibold text-green-800 dark:text-green-300">Implied Warranty</p>
+                        <p class="text-gray-700 dark:text-gray-300">An unwritten, automatic legal guarantee that a product will work as intended and meet a reasonable buyer's expectations.</p>
+                        <p class="text-sm text-gray-500 dark:text-gray-400 mt-1 italic">Example: When you buy a toaster, there's an implied warranty it will safely toast bread - even if the seller never explicitly promised this.</p>
+                    </div>
+
+                    <div class="border-l-4 border-red-500 pl-4 py-2">
+                        <p class="font-semibold text-red-800 dark:text-red-300">Insurance Policy</p>
+                        <p class="text-gray-700 dark:text-gray-300">A legal contract between the policyowner and an insurance company. The insurer agrees to pay for covered losses in exchange for premium payments.</p>
+                    </div>
+
+                    <div class="border-l-4 border-amber-500 pl-4 py-2">
+                        <p class="font-semibold text-amber-800 dark:text-amber-300">Insurer (Principal)</p>
+                        <p class="text-gray-700 dark:text-gray-300">The insurance company that issues the policy and promises to pay claims.</p>
+                        <p class="text-sm text-gray-500 dark:text-gray-400 mt-1 italic">Examples: State Farm, Progressive, Allstate, Geico are all insurers.</p>
+                    </div>
+
+                    <div class="border-l-4 border-teal-500 pl-4 py-2">
+                        <p class="font-semibold text-teal-800 dark:text-teal-300">Obsolescence</p>
+                        <p class="text-gray-700 dark:text-gray-300">Loss of value because something has become outdated or no longer useful, even if it still works.</p>
+                        <p class="text-sm text-gray-500 dark:text-gray-400 mt-1 italic">Example: A building with outdated electrical systems or a factory with machinery that's no longer efficient has suffered obsolescence.</p>
+                    </div>
+
+                    <div class="border-l-4 border-indigo-500 pl-4 py-2">
+                        <p class="font-semibold text-indigo-800 dark:text-indigo-300">Premium</p>
+                        <p class="text-gray-700 dark:text-gray-300">The amount of money you pay to the insurance company in exchange for coverage. Can be paid monthly, quarterly, or annually.</p>
+                    </div>
+
+                    <div class="border-l-4 border-pink-500 pl-4 py-2">
+                        <p class="font-semibold text-pink-800 dark:text-pink-300">Tort</p>
+                        <p class="text-gray-700 dark:text-gray-300">A civil wrong (not a crime) where someone's actions cause harm to another person, leading to legal liability for damages.</p>
+                        <p class="text-sm text-gray-500 dark:text-gray-400 mt-1 italic">Example: Negligently causing a car accident is a tort. The injured party can sue you for damages in civil court.</p>
+                    </div>
+
+                    <div class="border-l-4 border-cyan-500 pl-4 py-2">
+                        <p class="font-semibold text-cyan-800 dark:text-cyan-300">Insurable Interest</p>
+                        <p class="text-gray-700 dark:text-gray-300">You must have a legitimate stake in what you're insuring - a financial, family, or business connection. You can't insure something you have no interest in.</p>
+                        <div class="bg-red-100 dark:bg-red-900/30 p-2 rounded mt-2 text-sm">
+                            <p class="font-semibold text-red-800 dark:text-red-300">Key Rule: Must exist at the TIME OF LOSS for property insurance!</p>
+                        </div>
+                        <p class="text-sm text-gray-500 dark:text-gray-400 mt-1 italic">Example: You have insurable interest in your own car, your spouse's life, or your business partner's health. You CANNOT insure a stranger's property because you'd have no financial stake if it was damaged.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Risk Types -->
+        <section id="risk" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">Types of Risk</h2>
+
+                <div class="bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-800 rounded-lg p-4 mb-4">
+                    <p class="font-bold text-red-800 dark:text-red-300 text-lg">Exam Tip: Only PURE RISK is insurable!</p>
+                    <p class="text-gray-700 dark:text-gray-300">Speculative risk (where you could gain money) cannot be insured because it would encourage risky behavior.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-5 border border-green-200 dark:border-green-800">
+                        <h3 class="font-bold text-green-800 dark:text-green-300 text-lg mb-3">Pure Risk (INSURABLE)</h3>
+                        <p class="text-gray-600 dark:text-gray-400 mb-3">Only two possible outcomes: <strong>Loss</strong> or <strong>No Loss</strong></p>
+                        <ul class="space-y-2 text-sm">
+                            <li class="flex items-start">
+                                <span class="text-green-500 mr-2">✓</span>
+                                <span class="text-gray-700 dark:text-gray-300"><strong>Natural Disasters:</strong> Flood, earthquake, tornado damaging your home</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-green-500 mr-2">✓</span>
+                                <span class="text-gray-700 dark:text-gray-300"><strong>Accidents:</strong> Car collision causing repairs or injury</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-green-500 mr-2">✓</span>
+                                <span class="text-gray-700 dark:text-gray-300"><strong>Theft/Vandalism:</strong> Property stolen or damaged</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-green-500 mr-2">✓</span>
+                                <span class="text-gray-700 dark:text-gray-300"><strong>Premature Death:</strong> Financial hardship from unexpected death</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-5 border border-red-200 dark:border-red-800">
+                        <h3 class="font-bold text-red-800 dark:text-red-300 text-lg mb-3">Speculative Risk (NOT INSURABLE)</h3>
+                        <p class="text-gray-600 dark:text-gray-400 mb-3">Three outcomes: <strong>Loss</strong>, <strong>Gain</strong>, or <strong>Break-Even</strong></p>
+                        <ul class="space-y-2 text-sm">
+                            <li class="flex items-start">
+                                <span class="text-red-500 mr-2">✗</span>
+                                <span class="text-gray-700 dark:text-gray-300"><strong>Investing:</strong> Buying stocks, real estate, commodities</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-red-500 mr-2">✗</span>
+                                <span class="text-gray-700 dark:text-gray-300"><strong>Business Ventures:</strong> Launching products that could fail or succeed</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-red-500 mr-2">✗</span>
+                                <span class="text-gray-700 dark:text-gray-300"><strong>Gambling:</strong> Sports betting, lottery, casinos</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-red-500 mr-2">✗</span>
+                                <span class="text-gray-700 dark:text-gray-300"><strong>Career Choices:</strong> Starting a business with higher risk/reward</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Perils & Hazards -->
+        <section id="perils" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">Perils vs. Hazards</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/30 border-l-4 border-blue-500 p-4 mb-6">
+                    <p class="font-bold text-blue-800 dark:text-blue-300">Remember the difference:</p>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>Peril</strong> = The actual CAUSE of loss (fire, theft, windstorm)</p>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>Hazard</strong> = A CONDITION that makes the loss more likely to happen</p>
+                </div>
+
+                <!-- Peril -->
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-5 mb-6">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg mb-2">Peril = The CAUSE of Loss</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mb-3">What you are insured against - the event that triggers coverage.</p>
+                    <div class="grid md:grid-cols-2 gap-4 text-sm">
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-semibold text-gray-800 dark:text-gray-200">Life Insurance</p>
+                            <p class="text-gray-600 dark:text-gray-400">Peril: Premature death</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-semibold text-gray-800 dark:text-gray-200">Health Insurance</p>
+                            <p class="text-gray-600 dark:text-gray-400">Peril: Sickness or injury</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-semibold text-gray-800 dark:text-gray-200">Property Insurance</p>
+                            <p class="text-gray-600 dark:text-gray-400">Perils: Fire, theft, windstorm, lightning</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-semibold text-gray-800 dark:text-gray-200">Casualty Insurance</p>
+                            <p class="text-gray-600 dark:text-gray-400">Perils: Events causing property damage or liability</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hazards -->
+                <div class="bg-amber-50 dark:bg-amber-900/20 rounded-lg p-5">
+                    <h3 class="font-bold text-amber-800 dark:text-amber-300 text-lg mb-2">Hazards = CONDITIONS that Increase Risk</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">Situations or factors that make a loss MORE LIKELY to occur.</p>
+
+                    <div class="space-y-4">
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded border-l-4 border-amber-400">
+                            <p class="font-semibold text-amber-800 dark:text-amber-300">Physical Hazards (Tangible - you can see/touch them)</p>
+                            <p class="text-gray-600 dark:text-gray-400">Physical conditions that increase risk</p>
+                            <p class="text-sm text-gray-500 dark:text-gray-400 italic mt-1">Examples: Slippery wet floors, faulty electrical wiring, cracked sidewalks, icy roads, flammable materials stored improperly, broken locks</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded border-l-4 border-red-400">
+                            <p class="font-semibold text-red-800 dark:text-red-300">Moral Hazards (Dishonesty - INTENTIONAL bad behavior)</p>
+                            <p class="text-gray-600 dark:text-gray-400">Character issues where someone deliberately causes or exaggerates a loss</p>
+                            <p class="text-sm text-gray-500 dark:text-gray-400 italic mt-1">Examples: Lying on insurance application, committing arson to collect insurance money, exaggerating damage on claims, staging fake accidents</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded border-l-4 border-purple-400">
+                            <p class="font-semibold text-purple-800 dark:text-purple-300">Morale Hazards (Carelessness - NOT intentional)</p>
+                            <p class="text-gray-600 dark:text-gray-400">Indifference or negligence because you're insured - "Why be careful? Insurance will pay!"</p>
+                            <p class="text-sm text-gray-500 dark:text-gray-400 italic mt-1">Examples: Leaving doors unlocked, not maintaining smoke detectors, texting while driving, skipping regular maintenance on your car</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-100 dark:bg-gray-600 rounded p-3 mt-4 text-sm">
+                        <p class="font-semibold text-gray-800 dark:text-gray-200">Memory Trick:</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>Moral</strong> = "I'm going to cheat" (intentional fraud)</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>Morale</strong> = "I don't care" (careless attitude)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Indemnity & Subrogation -->
+        <section id="indemnity" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">Indemnity & Subrogation</h2>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-5 border border-green-200 dark:border-green-800">
+                        <h3 class="font-bold text-green-800 dark:text-green-300 text-lg mb-2">Indemnity</h3>
+                        <p class="text-gray-700 dark:text-gray-300 mb-3">The principle that insurance should restore you to your pre-loss financial position - <strong>no more, no less</strong>.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded text-sm">
+                            <p class="font-semibold text-gray-800 dark:text-gray-200">Why This Matters:</p>
+                            <ul class="list-disc list-inside text-gray-600 dark:text-gray-400 mt-1 space-y-1">
+                                <li>Prevents people from profiting off insurance claims</li>
+                                <li>Removes incentive to cause intentional losses</li>
+                                <li>Restores you to where you were, not better off</li>
+                            </ul>
+                        </div>
+                        <div class="bg-amber-100 dark:bg-amber-900/30 p-3 rounded mt-3 text-sm">
+                            <p class="font-semibold text-amber-800 dark:text-amber-300">Example:</p>
+                            <p class="text-gray-700 dark:text-gray-300">Your $20,000 car is totaled. Insurance pays you $20,000 (its actual value) - not $25,000 or $30,000. You're made whole, not enriched.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-5 border border-blue-200 dark:border-blue-800">
+                        <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg mb-2">Subrogation</h3>
+                        <p class="text-gray-700 dark:text-gray-300 mb-3">After your insurer pays your claim, they "step into your shoes" and gain the right to pursue the responsible third party for reimbursement.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded text-sm">
+                            <p class="font-semibold text-gray-800 dark:text-gray-200">How It Works:</p>
+                            <ol class="list-decimal list-inside text-gray-600 dark:text-gray-400 mt-1 space-y-1">
+                                <li>Another driver hits you (their fault)</li>
+                                <li>Your insurer (Progressive) pays for your damage</li>
+                                <li>Progressive "subrogate" - goes after the at-fault driver's insurance</li>
+                                <li>Progressive recovers what they paid you</li>
+                            </ol>
+                        </div>
+                        <div class="bg-amber-100 dark:bg-amber-900/30 p-3 rounded mt-3 text-sm">
+                            <p class="font-semibold text-amber-800 dark:text-amber-300">Why It Exists:</p>
+                            <p class="text-gray-700 dark:text-gray-300">Prevents the at-fault party from escaping financial responsibility just because you had good insurance. Also keeps your premiums lower.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Legal Terms -->
+        <section id="crimes" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">Key Legal Terms</h2>
+
+                <div class="space-y-4">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg">
+                        <h3 class="font-bold text-blue-800 dark:text-blue-300">Accident</h3>
+                        <p class="text-gray-700 dark:text-gray-300">A <strong>sudden, unexpected, unplanned</strong> event that is NOT in the insured's control and results in injury or damage.</p>
+                        <p class="text-sm text-gray-500 dark:text-gray-400 italic mt-1">Example: You slip on ice and break your leg. It was sudden, unplanned, and you didn't intend for it to happen.</p>
+                    </div>
+
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg">
+                        <h3 class="font-bold text-purple-800 dark:text-purple-300">Occurrence</h3>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>Broader than accident</strong> - includes gradual or continuous exposure to conditions that eventually cause harm. The injury/damage wasn't necessarily sudden.</p>
+                        <p class="text-sm text-gray-500 dark:text-gray-400 italic mt-1">Example: A factory worker develops lung disease after years of chemical exposure. Not sudden, but it's still an "occurrence" for insurance purposes because the exposure happened during the policy period.</p>
+                    </div>
+
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg">
+                        <h3 class="font-bold text-red-800 dark:text-red-300">Negligence</h3>
+                        <p class="text-gray-700 dark:text-gray-300">Failure to exercise the level of care that a <strong>reasonable, prudent person</strong> would use in the same situation. It's not intentional - just careless.</p>
+                        <p class="text-sm text-gray-500 dark:text-gray-400 italic mt-1">Example: A store owner doesn't clean up a spill for hours. A customer slips and falls. The owner was negligent because a reasonable person would have cleaned it up or put up a warning sign.</p>
+                    </div>
+                </div>
+
+                <!-- Crime Definitions -->
+                <h3 class="text-xl font-bold text-gray-800 dark:text-gray-100 mt-8 mb-4">Crime-Related Definitions (Know the Differences!)</h3>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm">
+                        <thead class="bg-gray-100 dark:bg-gray-700">
+                            <tr>
+                                <th class="p-3 text-left font-semibold text-gray-800 dark:text-gray-200">Term</th>
+                                <th class="p-3 text-left font-semibold text-gray-800 dark:text-gray-200">Definition</th>
+                                <th class="p-3 text-left font-semibold text-gray-800 dark:text-gray-200">Key Requirement for Insurance</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-gray-700 dark:text-gray-300">
+                            <tr class="border-b dark:border-gray-600">
+                                <td class="p-3 font-semibold text-blue-800 dark:text-blue-300">Burglary</td>
+                                <td class="p-3">Unlawful entry using <strong>force</strong> into or out of a premises with intent to commit a crime</td>
+                                <td class="p-3 text-red-600 dark:text-red-400 font-medium">Visible signs of FORCED ENTRY required!</td>
+                            </tr>
+                            <tr class="border-b dark:border-gray-600 bg-gray-50 dark:bg-gray-700/50">
+                                <td class="p-3 font-semibold text-purple-800 dark:text-purple-300">Robbery</td>
+                                <td class="p-3">Taking property directly from a <strong>person</strong> using force or threat of harm</td>
+                                <td class="p-3">Violence or threat against a PERSON (not just property)</td>
+                            </tr>
+                            <tr class="border-b dark:border-gray-600">
+                                <td class="p-3 font-semibold text-green-800 dark:text-green-300">Theft</td>
+                                <td class="p-3">Broad term for any act of stealing - encompasses both burglary and robbery</td>
+                                <td class="p-3">Broadest category - covers all forms of stealing</td>
+                            </tr>
+                            <tr class="bg-red-50 dark:bg-red-900/30">
+                                <td class="p-3 font-semibold text-red-800 dark:text-red-300">Mysterious Disappearance</td>
+                                <td class="p-3">Property vanishes with no knowledge of where, when, or how it was lost</td>
+                                <td class="p-3 text-red-600 dark:text-red-400 font-bold">NOT COVERED by insurance!</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 p-4 rounded-lg mt-4">
+                    <p class="font-semibold text-amber-800 dark:text-amber-300">Why Mysterious Disappearance Isn't Covered:</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm">If you can't explain what happened to your property, there's no way to verify a loss actually occurred. You might have just misplaced it, sold it, or given it away.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- MedPay vs Liability -->
+        <section id="medpay" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">Medical Payments vs. Liability Coverage</h2>
+
+                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                    <!-- MedPay -->
+                    <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-5 border-2 border-green-300 dark:border-green-700">
+                        <h3 class="font-bold text-green-800 dark:text-green-300 text-xl mb-3">Medical Payments (MedPay)</h3>
+                        <div class="bg-green-100 dark:bg-green-800 text-green-800 dark:text-green-200 font-bold text-center py-2 rounded mb-4">NO-FAULT COVERAGE</div>
+                        <ul class="space-y-2 text-sm">
+                            <li class="flex items-start">
+                                <span class="text-green-500 mr-2">✓</span>
+                                <span class="text-gray-700 dark:text-gray-300">Pays regardless of who caused the injury</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-green-500 mr-2">✓</span>
+                                <span class="text-gray-700 dark:text-gray-300">No lawsuit or fault determination needed</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-green-500 mr-2">✓</span>
+                                <span class="text-gray-700 dark:text-gray-300">Fast payment - just submit medical bills</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-green-500 mr-2">✓</span>
+                                <span class="text-gray-700 dark:text-gray-300">Lower limits: Usually $1,000 - $5,000</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-green-500 mr-2">✓</span>
+                                <span class="text-gray-700 dark:text-gray-300">Goodwill gesture - helps prevent lawsuits</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Liability -->
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-5 border-2 border-blue-300 dark:border-blue-700">
+                        <h3 class="font-bold text-blue-800 dark:text-blue-300 text-xl mb-3">Liability Coverage</h3>
+                        <div class="bg-blue-100 dark:bg-blue-800 text-blue-800 dark:text-blue-200 font-bold text-center py-2 rounded mb-4">FAULT-BASED COVERAGE</div>
+                        <ul class="space-y-2 text-sm">
+                            <li class="flex items-start">
+                                <span class="text-blue-500 mr-2">✓</span>
+                                <span class="text-gray-700 dark:text-gray-300">Only pays if YOU are found legally responsible</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-blue-500 mr-2">✓</span>
+                                <span class="text-gray-700 dark:text-gray-300">Usually requires a claim or lawsuit against you</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-blue-500 mr-2">✓</span>
+                                <span class="text-gray-700 dark:text-gray-300">Takes longer - must prove negligence first</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-blue-500 mr-2">✓</span>
+                                <span class="text-gray-700 dark:text-gray-300">Higher limits: $100,000 - $1,000,000+</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-blue-500 mr-2">✓</span>
+                                <span class="text-gray-700 dark:text-gray-300">Includes legal defense costs</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Example -->
+                <div class="bg-amber-50 dark:bg-amber-900/30 rounded-lg p-5">
+                    <h4 class="font-bold text-amber-800 dark:text-amber-300 mb-4">Real-World Example: Customer Trips in Your Store</h4>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded">
+                            <p class="font-semibold text-green-700 dark:text-green-400 mb-2">MedPay Response:</p>
+                            <ul class="text-sm text-gray-600 dark:text-gray-400 space-y-1">
+                                <li>• Immediately pays $2,000 ER bill</li>
+                                <li>• No questions about fault</li>
+                                <li>• No investigation needed</li>
+                                <li>• Customer doesn't have to prove anything</li>
+                                <li>• Purpose: Keep them happy, avoid lawsuit</li>
+                            </ul>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded">
+                            <p class="font-semibold text-blue-700 dark:text-blue-400 mb-2">Liability Response:</p>
+                            <ul class="text-sm text-gray-600 dark:text-gray-400 space-y-1">
+                                <li>• Only pays IF they sue AND prove negligence</li>
+                                <li>• Must show: "The rug was dangerous and you knew"</li>
+                                <li>• Covers $50,000+ for pain, suffering, lost wages</li>
+                                <li>• Pays your lawyer to defend you</li>
+                                <li>• Purpose: Protect from major lawsuits</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-100 dark:bg-gray-700 rounded-lg p-4 mt-4 text-center">
+                    <p class="font-bold text-gray-800 dark:text-gray-200">Easy Memory Trick:</p>
+                    <p class="text-lg"><span class="text-green-600 dark:text-green-400">MedPay = "Here's money for your medical bills, no questions asked"</span></p>
+                    <p class="text-lg"><span class="text-blue-600 dark:text-blue-400">Liability = "Prove I was negligent, then I'll pay for damages"</span></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Liability Types -->
+        <section id="liability-types" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">Types of Liability</h2>
+
+                <div class="space-y-4">
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                        <h3 class="font-bold text-red-800 dark:text-red-300">Absolute Liability (a.k.a. Strict Liability)</h3>
+                        <p class="text-gray-700 dark:text-gray-300">You're held legally responsible <strong>even WITHOUT negligence or intent to harm</strong>. Applies to ultra-hazardous activities where the activity itself is so dangerous that responsibility is automatic.</p>
+                        <p class="text-sm text-gray-500 dark:text-gray-400 italic mt-2">Example: A construction company uses dynamite to blast rock. Even with perfect safety precautions, if the blast damages a neighboring home, they're automatically liable. The activity itself creates automatic responsibility.</p>
+                    </div>
+
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border-l-4 border-purple-500">
+                        <h3 class="font-bold text-purple-800 dark:text-purple-300">Vicarious Liability</h3>
+                        <p class="text-gray-700 dark:text-gray-300">Legal responsibility that shifts to someone in a supervisory or controlling position for the actions of another.</p>
+                        <p class="text-sm text-gray-500 dark:text-gray-400 italic mt-2">Examples: Parents may be vicariously liable for their minor child's actions. Employers are vicariously liable for employees' actions while on the job ("respondeat superior").</p>
+                    </div>
+
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-l-4 border-blue-500">
+                        <h3 class="font-bold text-blue-800 dark:text-blue-300">Bodily Injury (BI) Liability</h3>
+                        <p class="text-gray-700 dark:text-gray-300">Liability for physical harm to another person's body, including injury, sickness, disease, or death.</p>
+                        <p class="text-sm text-gray-500 dark:text-gray-400 italic mt-2">Example: You cause a car accident and the other driver breaks their arm. Your BI liability coverage pays for their medical bills, pain and suffering, and lost wages.</p>
+                    </div>
+
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <h3 class="font-bold text-green-800 dark:text-green-300">Property Damage (PD) Liability</h3>
+                        <p class="text-gray-700 dark:text-gray-300">Liability for physical damage to another person's tangible property.</p>
+                        <p class="text-sm text-gray-500 dark:text-gray-400 italic mt-2">Example: You drive into someone's fence and garage. Your PD liability coverage pays to repair or replace their damaged property.</p>
+                    </div>
+
+                    <div class="bg-pink-50 dark:bg-pink-900/20 p-4 rounded-lg border-l-4 border-pink-500">
+                        <h3 class="font-bold text-pink-800 dark:text-pink-300">Personal Injury Liability</h3>
+                        <p class="text-gray-700 dark:text-gray-300">Harm to a person's <strong>reputation, rights, or emotions</strong> - NOT physical bodily damage. Think of it as injury to someone's dignity or standing.</p>
+                        <p class="text-sm text-gray-500 dark:text-gray-400 italic mt-2">Examples: False arrest, invasion of privacy, wrongful eviction, defamation (libel/slander), malicious prosecution. These ruin someone's life without physically touching them.</p>
+                    </div>
+                </div>
+
+                <div class="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg mt-6">
+                    <h4 class="font-bold text-gray-800 dark:text-gray-200 mb-2">Limits of Liability</h4>
+                    <p class="text-gray-700 dark:text-gray-300">The maximum dollar amount an insurer will pay under the policy. Coverage stops at the limit regardless of actual damages.</p>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 italic mt-1">Example: With a $100,000 BI limit, if you're liable for $150,000 in injuries, insurance pays $100,000 and you're personally responsible for the remaining $50,000.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Policy Terms -->
+        <section id="policy-terms" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">Policy Terms & Concepts</h2>
+
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
+                        <h4 class="font-bold text-gray-800 dark:text-gray-200">Deposit Premium</h4>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">An estimated premium paid upfront, later adjusted based on actual exposure. Common in workers' compensation where payroll fluctuates.</p>
+                    </div>
+
+                    <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
+                        <h4 class="font-bold text-gray-800 dark:text-gray-200">Deposit Premium Audit</h4>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">At policy end (up to 3 years back), insurer audits your books to verify actual exposure and adjust the premium accordingly.</p>
+                    </div>
+
+                    <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
+                        <h4 class="font-bold text-gray-800 dark:text-gray-200">Certificate of Insurance (COI)</h4>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">A summary document proving insurance exists. Shows coverage types and amounts. <strong>NOT the actual policy contract!</strong></p>
+                        <p class="text-xs text-red-600 dark:text-red-400 mt-1">Warning: A COI doesn't guarantee coverage for specific situations - always check the actual policy!</p>
+                    </div>
+
+                    <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
+                        <h4 class="font-bold text-gray-800 dark:text-gray-200">Deductible</h4>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Amount YOU pay out of pocket before insurance kicks in. Higher deductible = lower premium (you're taking on more risk).</p>
+                    </div>
+
+                    <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
+                        <h4 class="font-bold text-gray-800 dark:text-gray-200">Binder</h4>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Temporary proof of insurance that provides immediate coverage while the actual policy is being prepared.</p>
+                        <p class="text-xs text-gray-500 dark:text-gray-500 italic mt-1">Example: Buying a house today? Get a binder for homeowners insurance so you can close while waiting for the full policy.</p>
+                    </div>
+
+                    <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
+                        <h4 class="font-bold text-gray-800 dark:text-gray-200">Insured Contract</h4>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Certain contracts where you agree to take responsibility for another party's liability (like leases or maintenance agreements).</p>
+                    </div>
+                </div>
+
+                <div class="mt-6 bg-blue-50 dark:bg-blue-900/30 rounded-lg p-5">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300">Law of Large Numbers</h3>
+                    <p class="text-gray-700 dark:text-gray-300">The statistical principle that the larger the sample size, the more accurately you can predict outcomes. Insurers use this to set premiums.</p>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 italic mt-2">Example: Insuring 1,000,000 drivers allows much more accurate accident predictions than insuring only 100 drivers. The larger pool of data reveals reliable patterns.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- IMPROVED: Warranty vs Representation vs Concealment -->
+        <section id="warranty" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">Warranty vs. Representation vs. Concealment</h2>
+
+                <div class="bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-800 rounded-lg p-4 mb-6">
+                    <p class="font-bold text-red-800 dark:text-red-300">Why This Matters:</p>
+                    <p class="text-gray-700 dark:text-gray-300">These are three different types of statements/actions by the insured. The type determines how easy it is for the insurer to void your policy if something is wrong!</p>
+                </div>
+
+                <div class="space-y-6">
+                    <!-- Warranty -->
+                    <div class="bg-red-50 dark:bg-red-900/20 p-5 rounded-lg border-l-4 border-red-500">
+                        <h3 class="font-bold text-red-800 dark:text-red-300 text-lg mb-2">Warranty = STRICTEST Standard</h3>
+                        <p class="text-gray-700 dark:text-gray-300 mb-3">A warranty is a <strong>guarantee</strong> that something is absolutely true or that you will do (or not do) something. It's a PROMISE built into the contract.</p>
+
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded mb-3">
+                            <p class="font-semibold text-red-800 dark:text-red-300">If You Breach a Warranty:</p>
+                            <ul class="text-gray-700 dark:text-gray-300 text-sm mt-2 space-y-1">
+                                <li>• Policy is <strong>automatically voidable</strong> - no questions asked</li>
+                                <li>• Doesn't matter if the breach caused the loss</li>
+                                <li>• Doesn't matter if it was unintentional</li>
+                                <li>• Doesn't matter if it was minor</li>
+                                <li>• Insurer does NOT need to prove it was "material"</li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-amber-100 dark:bg-amber-900/30 p-3 rounded text-sm">
+                            <p class="font-semibold text-amber-800 dark:text-amber-300">Example:</p>
+                            <p class="text-gray-700 dark:text-gray-300">Your marine insurance has a warranty that the ship will never sail north of a certain latitude. You sail 1 mile north once during calm weather and return safely. Three months later, the ship sinks in a completely unrelated storm in safe waters. The insurer can STILL deny the claim because you breached the warranty - even though the breach had nothing to do with the loss!</p>
+                        </div>
+                    </div>
+
+                    <!-- Representation -->
+                    <div class="bg-amber-50 dark:bg-amber-900/20 p-5 rounded-lg border-l-4 border-amber-500">
+                        <h3 class="font-bold text-amber-800 dark:text-amber-300 text-lg mb-2">Representation = More Forgiving Standard</h3>
+                        <p class="text-gray-700 dark:text-gray-300 mb-3">A representation is a <strong>statement of fact</strong> you make when applying for insurance. It's information you provide that the insurer relies on to decide coverage and pricing.</p>
+
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded mb-3">
+                            <p class="font-semibold text-amber-800 dark:text-amber-300">To Void for Misrepresentation, Insurer Must Prove TWO Things:</p>
+                            <ol class="text-gray-700 dark:text-gray-300 text-sm mt-2 space-y-2">
+                                <li><strong>1. The statement was FALSE</strong> - You said something that wasn't true</li>
+                                <li><strong>2. It was MATERIAL</strong> - Would have changed the insurer's decision to insure you or the premium they charged</li>
+                            </ol>
+                        </div>
+
+                        <div class="bg-amber-100 dark:bg-amber-900/30 p-3 rounded text-sm">
+                            <p class="font-semibold text-amber-800 dark:text-amber-300">Example:</p>
+                            <p class="text-gray-700 dark:text-gray-300">You say you've never had a DUI when applying for auto insurance, but you actually had one 5 years ago. This is a misrepresentation. It's likely MATERIAL because the insurer would have charged higher rates or denied coverage. The policy could be voided.</p>
+                            <p class="text-gray-700 dark:text-gray-300 mt-2">But if you said your car was blue when it's actually green? Not material - the insurer wouldn't have done anything different. Can't void the policy for this.</p>
+                        </div>
+
+                        <div class="bg-red-100 dark:bg-red-900/30 p-3 rounded text-sm mt-3">
+                            <p class="font-semibold text-red-800 dark:text-red-300">Fraud (Intentional Misrepresentation):</p>
+                            <p class="text-gray-700 dark:text-gray-300">If you KNOWINGLY lie on your application with intent to deceive, that's fraud. Fraud is always grounds to void the policy and may result in criminal charges.</p>
+                        </div>
+                    </div>
+
+                    <!-- Concealment -->
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-5 rounded-lg border-l-4 border-purple-500">
+                        <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg mb-2">Concealment = Hiding Important Information</h3>
+                        <p class="text-gray-700 dark:text-gray-300 mb-3">Concealment is <strong>intentionally failing to disclose</strong> material information that the insurer would want to know. It's a lie by omission - you didn't say something false, you just didn't reveal something important.</p>
+
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded mb-3">
+                            <p class="font-semibold text-purple-800 dark:text-purple-300">Effect of Concealment:</p>
+                            <ul class="text-gray-700 dark:text-gray-300 text-sm mt-2 space-y-1">
+                                <li>• If the hidden information is MATERIAL - policy can be voided</li>
+                                <li>• Must be intentional (you knew and deliberately hid it)</li>
+                                <li>• Can be discovered later during claims investigation</li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-amber-100 dark:bg-amber-900/30 p-3 rounded text-sm">
+                            <p class="font-semibold text-amber-800 dark:text-amber-300">Example:</p>
+                            <p class="text-gray-700 dark:text-gray-300">When applying for homeowners insurance, you don't mention that you run a daycare business from your home. You weren't asked directly, but you knew this would affect coverage. This is concealment. If there's later a claim related to the daycare, the insurer can deny it and potentially void the entire policy.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Comparison Table -->
+                <div class="mt-6 overflow-x-auto">
+                    <table class="w-full text-sm">
+                        <thead class="bg-gray-100 dark:bg-gray-700">
+                            <tr>
+                                <th class="p-3 text-left font-semibold text-gray-800 dark:text-gray-200">Type</th>
+                                <th class="p-3 text-left font-semibold text-gray-800 dark:text-gray-200">What Is It?</th>
+                                <th class="p-3 text-left font-semibold text-gray-800 dark:text-gray-200">To Void Policy</th>
+                                <th class="p-3 text-left font-semibold text-gray-800 dark:text-gray-200">Strictness</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-gray-700 dark:text-gray-300">
+                            <tr class="border-b dark:border-gray-600">
+                                <td class="p-3 font-semibold text-red-800 dark:text-red-300">Warranty</td>
+                                <td class="p-3">A guarantee/promise in the contract</td>
+                                <td class="p-3">ANY breach - automatic</td>
+                                <td class="p-3 text-red-600 dark:text-red-400 font-bold">STRICTEST</td>
+                            </tr>
+                            <tr class="border-b dark:border-gray-600 bg-gray-50 dark:bg-gray-700/50">
+                                <td class="p-3 font-semibold text-amber-800 dark:text-amber-300">Representation</td>
+                                <td class="p-3">Statement of fact on application</td>
+                                <td class="p-3">Must be false AND material</td>
+                                <td class="p-3 text-amber-600 dark:text-amber-400 font-bold">MODERATE</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 font-semibold text-purple-800 dark:text-purple-300">Concealment</td>
+                                <td class="p-3">Intentionally hiding info</td>
+                                <td class="p-3">Must be intentional AND material</td>
+                                <td class="p-3 text-purple-600 dark:text-purple-400 font-bold">MODERATE</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="bg-gray-100 dark:bg-gray-700 rounded-lg p-4 mt-4 text-center">
+                    <p class="font-bold text-gray-800 dark:text-gray-200">Memory Trick:</p>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>Warranty</strong> = "I PROMISE this is true" (strictest - any breach kills the contract)</p>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>Representation</strong> = "I'm TELLING you this is true" (must be false + important)</p>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>Concealment</strong> = "I'm NOT telling you something" (must be intentional + important)</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Study Tools for This Chapter -->
+    <section class="container mx-auto px-4 py-8 max-w-4xl">
+        <div class="bg-gradient-to-r from-blue-600 to-blue-800 rounded-xl shadow-lg p-6 text-white">
+            <h2 class="text-xl font-bold mb-4">Practice Chapter 1</h2>
+            <p class="text-blue-100 mb-6">Reinforce your learning with flashcards and quizzes for this chapter</p>
+            <div class="grid md:grid-cols-2 gap-4">
+                <a href="../../study-tools/flashcards.html?chapter=1" class="bg-white/20 hover:bg-white/30 rounded-lg p-4 transition-colors flex items-center">
+                    <div class="bg-white/20 p-3 rounded-full mr-4">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <p class="font-semibold">Chapter 1 Flashcards</p>
+                        <p class="text-sm text-blue-100">32 cards - Key Terms & Definitions</p>
+                    </div>
+                </a>
+                <a href="../../study-tools/quiz.html?chapter=1" class="bg-white/20 hover:bg-white/30 rounded-lg p-4 transition-colors flex items-center">
+                    <div class="bg-white/20 p-3 rounded-full mr-4">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <p class="font-semibold">Chapter 1 Quiz</p>
+                        <p class="text-sm text-blue-100">15 questions - Test Your Knowledge</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Navigation Footer -->
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="../../index.html" class="text-gray-300 hover:text-white">← Home</a>
+                <span class="text-gray-400">Chapter 1 of 3</span>
+                <a href="../chapter-2/index.html" class="text-gray-300 hover:text-white">Chapter 2 →</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Initialize AI Tutor -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            createFloatingAIButton(`Chapter 1: Fundamentals & Key Terms
+
+This chapter covers:
+- ISO (Insurance Services Office) and standardized policies
+- Pure vs Speculative Risk
+- Perils and Hazards (Physical, Moral, Morale)
+- Indemnity, Subrogation, and Insurable Interest
+- Accidents vs Occurrences
+- Burglary, Robbery, Theft definitions
+- MedPay vs Liability Coverage
+- Negligence and Liability types (Absolute, Vicarious)
+- Bodily Injury, Property Damage, Personal Injury
+- Warranty vs Representation vs Concealment
+- Deductibles and Binders
+- Law of Large Numbers`);
+        });
+    </script>
+</body>
+</html>

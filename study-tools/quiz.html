@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice Quiz | P&C Insurance Study Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config = { darkMode: 'class' }</script>
+    <link rel="stylesheet" href="../css/styles.css">
+    <script src="../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+        }
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <!-- Settings Button -->
+    <button onclick="showAPIKeySetup()" class="fixed top-4 right-20 z-50 bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings">
+        <svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+        </svg>
+    </button>
+
+    <!-- Theme Toggle -->
+    <button onclick="toggleTheme()" class="fixed top-4 right-4 z-50 bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+        <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/>
+        </svg>
+        <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+        </svg>
+    </button>
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-green-600 to-teal-600 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <a href="../index.html" class="text-green-200 hover:text-white text-sm mb-2 inline-block">← Back to Home</a>
+            <h1 class="text-3xl font-bold">Practice Quiz</h1>
+            <p class="text-green-200 mt-1">Test your knowledge with exam-style questions</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-8 max-w-3xl">
+        <!-- Quiz Setup (shown before quiz starts) -->
+        <div id="quizSetup" class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+            <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">Start a Quiz</h2>
+
+            <div class="space-y-4 mb-6">
+                <div>
+                    <label class="block text-gray-700 dark:text-gray-300 font-semibold mb-2">Select Chapter:</label>
+                    <select id="quizChapter" class="w-full p-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-200">
+                        <option value="all">All Chapters (Mixed)</option>
+                        <option value="1">Chapter 1: Fundamentals & Key Terms</option>
+                        <option value="2">Chapter 2: Policy Structure</option>
+                        <option value="3">Chapter 3: Commercial General Liability</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-gray-700 dark:text-gray-300 font-semibold mb-2">Number of Questions:</label>
+                    <select id="questionCount" class="w-full p-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-200">
+                        <option value="10">10 Questions (Quick)</option>
+                        <option value="15" selected>15 Questions (Standard)</option>
+                        <option value="25">25 Questions (Extended)</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Previous Results -->
+            <div id="previousResults" class="mb-6 hidden">
+                <h3 class="font-semibold text-gray-700 dark:text-gray-300 mb-3">Recent Quiz Results:</h3>
+                <div id="resultsList" class="space-y-2"></div>
+            </div>
+
+            <button onclick="startQuiz()" class="w-full py-3 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-lg transition-colors">
+                Start Quiz
+            </button>
+        </div>
+
+        <!-- Quiz Container (hidden until quiz starts) -->
+        <div id="quizContainer" class="hidden">
+            <!-- Progress -->
+            <div class="mb-6">
+                <div class="flex justify-between text-sm text-gray-600 dark:text-gray-400 mb-1">
+                    <span>Question <span id="currentQ">1</span> of <span id="totalQ">15</span></span>
+                    <span id="timer" class="font-mono">--:--</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-bar-fill" id="quizProgress" style="width: 0%"></div>
+                </div>
+            </div>
+
+            <!-- Question Card -->
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 mb-6">
+                <p class="text-sm text-gray-500 dark:text-gray-400 mb-2" id="questionChapter">Chapter 1</p>
+                <h2 class="text-xl font-bold text-gray-800 dark:text-gray-100 mb-6" id="questionText">
+                    Question text will appear here
+                </h2>
+
+                <div id="optionsContainer" class="space-y-3">
+                    <!-- Options will be inserted here -->
+                </div>
+
+                <!-- Explanation (shown after answer) -->
+                <div id="explanation" class="hidden mt-6 p-4 rounded-lg">
+                    <p class="font-semibold mb-2" id="explanationTitle">Correct!</p>
+                    <p class="text-gray-700 dark:text-gray-300" id="explanationText"></p>
+                    <!-- Ask AI Button -->
+                    <div class="mt-4">
+                        <button onclick="askAIAboutQuestion()" class="ask-ai-btn">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/>
+                            </svg>
+                            Ask AI for More Details
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigation -->
+            <div class="flex justify-between">
+                <button onclick="prevQuestion()" id="prevBtn" class="px-6 py-3 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors disabled:opacity-50" disabled>
+                    ← Previous
+                </button>
+                <button onclick="nextQuestion()" id="nextBtn" class="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                    Next →
+                </button>
+            </div>
+        </div>
+
+        <!-- Results Screen -->
+        <div id="resultsScreen" class="hidden">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden">
+                <div id="resultHeader" class="p-8 text-white text-center">
+                    <h2 class="text-3xl font-bold mb-2">Quiz Complete!</h2>
+                    <p class="text-6xl font-bold my-4" id="scorePercent">0%</p>
+                    <p class="text-xl" id="scoreText">0 out of 0 correct</p>
+                </div>
+
+                <div class="p-6">
+                    <div class="grid grid-cols-2 gap-4 mb-6">
+                        <div class="text-center p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                            <p class="text-2xl font-bold text-green-600 dark:text-green-400" id="correctCount">0</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Correct</p>
+                        </div>
+                        <div class="text-center p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                            <p class="text-2xl font-bold text-red-600 dark:text-red-400" id="incorrectCount">0</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Incorrect</p>
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">Time: <span id="finalTime">--:--</span></p>
+                    </div>
+
+                    <!-- Review Incorrect -->
+                    <div id="reviewSection" class="mb-6 hidden">
+                        <h3 class="font-semibold text-gray-700 dark:text-gray-300 mb-3">Review Incorrect Answers:</h3>
+                        <div id="reviewList" class="space-y-4 max-h-64 overflow-y-auto"></div>
+                        <!-- Analyze Weak Areas Button -->
+                        <button onclick="analyzeMyWeakAreas()" class="w-full mt-4 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-semibold rounded-lg hover:from-purple-700 hover:to-indigo-700 transition-all flex items-center justify-center gap-2">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                            </svg>
+                            Analyze My Weak Areas with AI
+                        </button>
+                        <div id="weakAreaAnalysis" class="hidden"></div>
+                    </div>
+
+                    <div class="flex gap-4">
+                        <button onclick="startQuiz()" class="flex-1 py-3 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-lg transition-colors">
+                            Try Again
+                        </button>
+                        <button onclick="showSetup()" class="flex-1 py-3 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 font-semibold rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors">
+                            New Quiz
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Quiz Questions Database
+        const quizQuestions = {
+            1: [
+                {
+                    question: "Which type of risk is insurable?",
+                    options: ["Speculative risk", "Pure risk", "Investment risk", "Gambling risk"],
+                    correct: 1,
+                    explanation: "Only PURE RISK is insurable because it has only two outcomes: loss or no loss. Speculative risk involves potential for gain and is not insurable."
+                },
+                {
+                    question: "A condition that increases the probability of loss occurring is called a:",
+                    options: ["Peril", "Hazard", "Risk", "Exposure"],
+                    correct: 1,
+                    explanation: "A HAZARD is a condition that increases the probability of loss. A PERIL is the actual cause of loss."
+                },
+                {
+                    question: "An insured intentionally burns down their building to collect insurance money. This is an example of:",
+                    options: ["Physical hazard", "Morale hazard", "Moral hazard", "Legal hazard"],
+                    correct: 2,
+                    explanation: "MORAL HAZARD involves intentional dishonesty or bad behavior to cause/exaggerate a loss, like arson for insurance money."
+                },
+                {
+                    question: "The principle that prevents an insured from profiting from a loss is called:",
+                    options: ["Subrogation", "Indemnity", "Insurable interest", "Contribution"],
+                    correct: 1,
+                    explanation: "INDEMNITY restores the insured to their pre-loss financial position - no more, no less. It prevents profiting from insurance."
+                },
+                {
+                    question: "After paying a claim, the insurer's right to pursue the at-fault third party is called:",
+                    options: ["Indemnity", "Contribution", "Subrogation", "Salvage"],
+                    correct: 2,
+                    explanation: "SUBROGATION is the insurer's right to 'step into the insured's shoes' and pursue the responsible party after paying a claim."
+                },
+                {
+                    question: "For property insurance, insurable interest must exist:",
+                    options: ["At policy inception", "At time of loss", "Throughout the policy period", "At policy renewal"],
+                    correct: 1,
+                    explanation: "For PROPERTY insurance, insurable interest must exist at the TIME OF LOSS, not just when the policy is purchased."
+                },
+                {
+                    question: "Which crime REQUIRES visible signs of forced entry for insurance coverage?",
+                    options: ["Robbery", "Theft", "Burglary", "Mysterious disappearance"],
+                    correct: 2,
+                    explanation: "BURGLARY requires visible signs of forced entry. Robbery involves taking from a person with force/threat. Mysterious disappearance is NOT covered."
+                },
+                {
+                    question: "Medical Payments coverage is considered:",
+                    options: ["Fault-based", "No-fault", "Liability-based", "Negligence-based"],
+                    correct: 1,
+                    explanation: "MedPay is NO-FAULT coverage - it pays regardless of who caused the injury. Fast payment, no investigation needed."
+                },
+                {
+                    question: "Leaving your doors unlocked because 'insurance will pay anyway' is an example of:",
+                    options: ["Moral hazard", "Morale hazard", "Physical hazard", "Legal hazard"],
+                    correct: 1,
+                    explanation: "MORALE HAZARD is carelessness (not intentional) because you're insured. 'I have insurance, why be careful?' attitude."
+                },
+                {
+                    question: "A breach of warranty in an insurance contract:",
+                    options: ["Requires proving material impact", "Only matters if it caused the loss", "Can void the policy automatically", "Must be intentional"],
+                    correct: 2,
+                    explanation: "WARRANTY is the strictest standard. ANY breach can void the policy automatically, even if unintentional, minor, or unrelated to the loss."
+                },
+                {
+                    question: "Which liability coverage protects against harm to someone's reputation, not their body?",
+                    options: ["Bodily injury liability", "Property damage liability", "Personal injury liability", "Medical payments"],
+                    correct: 2,
+                    explanation: "PERSONAL INJURY liability covers harm to reputation, rights, or emotions (not physical). Examples: defamation, false arrest, invasion of privacy."
+                },
+                {
+                    question: "An occurrence differs from an accident in that an occurrence:",
+                    options: ["Must be sudden", "Can include gradual exposure over time", "Must involve negligence", "Only applies to property damage"],
+                    correct: 1,
+                    explanation: "OCCURRENCE is broader than accident - it includes gradual/continuous exposure to conditions causing harm over time, not just sudden events."
+                },
+                {
+                    question: "Property vanishes with no knowledge of where, when, or how. This is called:",
+                    options: ["Burglary", "Theft", "Robbery", "Mysterious disappearance"],
+                    correct: 3,
+                    explanation: "MYSTERIOUS DISAPPEARANCE is when property vanishes without explanation. Important: It is NOT covered by insurance."
+                },
+                {
+                    question: "When you tell the insurer your car is blue but it's actually green, and this doesn't affect coverage, this is:",
+                    options: ["Material misrepresentation", "Immaterial misrepresentation", "Concealment", "Warranty breach"],
+                    correct: 1,
+                    explanation: "This is IMMATERIAL misrepresentation - false, but wouldn't have changed the insurer's decision. Policy cannot be voided for immaterial statements."
+                },
+                {
+                    question: "Employers are responsible for employees' actions on the job due to:",
+                    options: ["Absolute liability", "Strict liability", "Vicarious liability", "Joint liability"],
+                    correct: 2,
+                    explanation: "VICARIOUS LIABILITY means responsibility shifts to supervisory persons (employers) for another's actions (employees) while on the job."
+                }
+            ],
+            2: [
+                {
+                    question: "The first page of an insurance policy containing basic information is called the:",
+                    options: ["Insuring agreement", "Declarations page", "Definitions section", "Endorsement"],
+                    correct: 1,
+                    explanation: "The DECLARATIONS (Dec) page is usually the first page, containing insured's name, address, coverage amounts, premiums, and policy period."
+                },
+                {
+                    question: "Additional coverage in a policy provides extra benefits:",
+                    options: ["For additional premium", "At no additional premium", "Only during renewals", "For high-risk insureds only"],
+                    correct: 1,
+                    explanation: "ADDITIONAL COVERAGE provides extra benefits at NO additional premium - things like debris removal, lawyer fees, temporary repairs."
+                },
+                {
+                    question: "Written amendments that change the original policy terms are called:",
+                    options: ["Declarations", "Definitions", "Endorsements", "Exclusions"],
+                    correct: 2,
+                    explanation: "ENDORSEMENTS (or riders) are written addendums that change the original policy terms. Must be attached and signed by executive officer."
+                },
+                {
+                    question: "If you pay $12,000 annually upfront, after 3 months the insurer has 'earned':",
+                    options: ["$0", "$1,000", "$3,000", "$12,000"],
+                    correct: 2,
+                    explanation: "EARNED PREMIUM is the portion belonging to insurer for elapsed time. 3 months = 3/12 = 1/4 of $12,000 = $3,000 earned."
+                },
+                {
+                    question: "The liberalization clause means:",
+                    options: ["You can cancel anytime", "Improved coverage is automatic and free", "Premiums may increase", "Coverage is more flexible"],
+                    correct: 1,
+                    explanation: "LIBERALIZATION means if the insurer improves coverage terms, you get the benefit AUTOMATICALLY without requesting it - free of charge."
+                },
+                {
+                    question: "A sworn statement describing the loss, date, and amount claimed is called:",
+                    options: ["Appraisal", "Proof of loss", "Declaration", "Claim form"],
+                    correct: 1,
+                    explanation: "PROOF OF LOSS is a sworn statement from insured describing what happened, date of occurrence, and amount being claimed."
+                },
+                {
+                    question: "Arbitration that results in a final decision with no right to appeal is:",
+                    options: ["Non-binding", "Binding", "Advisory", "Mandatory"],
+                    correct: 1,
+                    explanation: "BINDING arbitration means the decision is final - no appeal allowed. NON-BINDING means you can still go to court if unsatisfied."
+                },
+                {
+                    question: "Actual Cash Value (ACV) is calculated as:",
+                    options: ["Original price minus depreciation", "Replacement cost minus depreciation", "Market value plus taxes", "Agreed value at inception"],
+                    correct: 1,
+                    explanation: "ACV = Replacement Cost - Depreciation. It's what the item is worth TODAY, accounting for wear and tear, not what you originally paid."
+                },
+                {
+                    question: "Termination of a policy BEFORE its expiration date is called:",
+                    options: ["Nonrenewal", "Cancellation", "Lapse", "Surrender"],
+                    correct: 1,
+                    explanation: "CANCELLATION is termination before expiration. NONRENEWAL is termination at expiration by not offering continuation."
+                },
+                {
+                    question: "The process of reviewing applications to determine eligibility is called:",
+                    options: ["Claims adjustment", "Underwriting", "Appraisal", "Rating"],
+                    correct: 1,
+                    explanation: "UNDERWRITING is the risk selection process - reviewing applications to determine eligibility for coverage and appropriate premium."
+                },
+                {
+                    question: "Anyone other than the insured and insurer is considered a:",
+                    options: ["Beneficiary", "Third party", "Additional insured", "Named insured"],
+                    correct: 1,
+                    explanation: "A THIRD PARTY is anyone other than the two main parties (insured and insurer). Example: the person you hit in an accident."
+                },
+                {
+                    question: "After a loss, the insured's first duty is to:",
+                    options: ["File a lawsuit", "Protect property from further damage", "Hire an attorney", "Dispute the coverage"],
+                    correct: 1,
+                    explanation: "First duty after loss: PROTECT PROPERTY from further damage. Then inventory items, cooperate with insurer, and file proof of loss."
+                },
+                {
+                    question: "Replacement cost coverage pays:",
+                    options: ["The depreciated value", "The original purchase price", "Cost to replace with new item of like kind", "Fair market value"],
+                    correct: 2,
+                    explanation: "REPLACEMENT COST pays to replace with a NEW item of like kind and quality - NO depreciation deducted. Better for the insured than ACV."
+                },
+                {
+                    question: "Words in bold, italics, or quotations in a policy usually:",
+                    options: ["Are optional coverage", "Have specific definitions", "Are excluded perils", "Require additional premium"],
+                    correct: 1,
+                    explanation: "The DEFINITIONS section clarifies terms. Words in bold, italics, or quotes typically have specific meanings defined in this section."
+                },
+                {
+                    question: "The section establishing the insurer's obligation to provide coverage is the:",
+                    options: ["Declarations", "Insuring agreement", "Conditions", "Exclusions"],
+                    correct: 1,
+                    explanation: "The INSURING AGREEMENT establishes the insurer's obligation to provide coverage. Lists parties, dates, coverage description, and perils."
+                }
+            ],
+            3: [
+                {
+                    question: "CGL coverage triggered by when the damage HAPPENED (not when claimed) is:",
+                    options: ["Claims-made form", "Occurrence form", "Aggregate form", "Per-occurrence form"],
+                    correct: 1,
+                    explanation: "OCCURRENCE FORM is triggered by when damage happened. Even if you claim years later, the policy active during the incident responds."
+                },
+                {
+                    question: "CGL coverage triggered by when the claim is FILED is:",
+                    options: ["Occurrence form", "Claims-made form", "Basic form", "Broad form"],
+                    correct: 1,
+                    explanation: "CLAIMS-MADE form requires the policy to be active when the claim is filed, not just when the incident occurred."
+                },
+                {
+                    question: "The earliest date a claims-made policy will cover is the:",
+                    options: ["Policy inception date", "Retroactive date", "Filing date", "Occurrence date"],
+                    correct: 1,
+                    explanation: "The RETROACTIVE DATE is the earliest date claims-made will cover. Claims for incidents before this date are NOT covered."
+                },
+                {
+                    question: "Coverage purchased after canceling a claims-made policy to cover future claims for past incidents is called:",
+                    options: ["Prior acts coverage", "Tail coverage", "Nose coverage", "Gap coverage"],
+                    correct: 1,
+                    explanation: "TAIL COVERAGE (extended reporting period) covers claims filed after cancellation for incidents that occurred during the policy period."
+                },
+                {
+                    question: "Premises and operations hazard covers all EXCEPT:",
+                    options: ["Customer slipping in your store", "Contractor work at client site", "Products after they leave your control", "Employee injury at premises"],
+                    correct: 2,
+                    explanation: "Premises & Operations covers your premises and active operations. Products after leaving your control = Products & Completed Operations coverage."
+                },
+                {
+                    question: "The maximum TOTAL amount payable during the entire policy period is the:",
+                    options: ["Per-occurrence limit", "Aggregate limit", "Policy limit", "Sublimit"],
+                    correct: 1,
+                    explanation: "AGGREGATE LIMIT is the maximum total for ALL claims combined during the policy period. Per-occurrence is the limit for each incident."
+                },
+                {
+                    question: "A mechanic holding your car for repairs is acting as a:",
+                    options: ["Lessor", "Bailor", "Bailee", "Trustee"],
+                    correct: 2,
+                    explanation: "A BAILEE is someone trusted with another's property but has NO ownership. The mechanic has possession and responsibility, but you still own it."
+                },
+                {
+                    question: "Independent contractors are covered under CGL only with a(n):",
+                    options: ["Standard policy", "Endorsement", "Binder", "Certificate"],
+                    correct: 1,
+                    explanation: "Independent contractors are NOT automatically covered. You need an ENDORSEMENT added to your CGL for IC coverage."
+                },
+                {
+                    question: "CGL covers liability you assumed in a lease agreement because:",
+                    options: ["All contracts are covered", "It's a specifically listed covered contract", "The landlord requires it", "Leases override exclusions"],
+                    correct: 1,
+                    explanation: "Lease of premises is one of the 6 SPECIFICALLY COVERED CONTRACTS in CGL. Even though you agreed in the lease, CGL covers."
+                },
+                {
+                    question: "A defective toaster you sold catches fire in a customer's home months later. This falls under:",
+                    options: ["Premises coverage", "Operations coverage", "Products and completed operations", "Personal injury"],
+                    correct: 2,
+                    explanation: "PRODUCTS & COMPLETED OPERATIONS covers harm AFTER the product left your control or job was completed - like the toaster fire."
+                },
+                {
+                    question: "OCP coverage protects against claims caused by:",
+                    options: ["Your employees", "Your products", "Contractors or subcontractors working for you", "Your customers"],
+                    correct: 2,
+                    explanation: "OCP (Owners & Contractors Protective) provides coverage for claims caused by negligence of CONTRACTORS or SUBCONTRACTORS working for you."
+                },
+                {
+                    question: "CGL will NOT cover municipality indemnification if:",
+                    options: ["The event is outdoors", "You're doing work FOR the municipality", "It's a large city", "The permit requires it"],
+                    correct: 1,
+                    explanation: "CGL covers municipality indemnification for permits/events, but NOT if you're hired to do WORK FOR the municipality."
+                },
+                {
+                    question: "Tail coverage typically costs:",
+                    options: ["The same as regular premium", "About half the regular premium", "1.5 to 2 times the last premium", "Nothing extra"],
+                    correct: 2,
+                    explanation: "TAIL COVERAGE costs approximately 1.5x to 2x the price of your last annual premium because it extends protection indefinitely."
+                },
+                {
+                    question: "What makes a policy respond to a claim is called the coverage:",
+                    options: ["Condition", "Trigger", "Provision", "Activation"],
+                    correct: 1,
+                    explanation: "COVERAGE TRIGGER is what makes a policy respond. Occurrence form trigger = when damage happened. Claims-made trigger = when claim filed."
+                },
+                {
+                    question: "CGL covers liability you'd have anyway by law EXCEPT when indemnifying:",
+                    options: ["Landlords", "Municipalities", "Railroads, architects, engineers", "Vendors"],
+                    correct: 2,
+                    explanation: "CGL covers liability you'd have anyway (basic tort law), but specifically excludes indemnifying railroads, architects, engineers, and surveyors."
+                }
+            ]
+        };
+
+        // State
+        let currentQuiz = [];
+        let currentIndex = 0;
+        let answers = [];
+        let startTime = null;
+        let timerInterval = null;
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            // Check for chapter URL parameter
+            const urlParams = new URLSearchParams(window.location.search);
+            const chapterParam = urlParams.get('chapter');
+            if (chapterParam && ['1', '2', '3'].includes(chapterParam)) {
+                document.getElementById('quizChapter').value = chapterParam;
+            }
+            loadPreviousResults();
+        });
+
+        // Load previous results from cookies
+        function loadPreviousResults() {
+            const results = getCookie('quizResults');
+            if (results) {
+                try {
+                    const parsed = JSON.parse(results);
+                    if (parsed.length > 0) {
+                        document.getElementById('previousResults').classList.remove('hidden');
+                        const list = document.getElementById('resultsList');
+                        list.innerHTML = parsed.slice(0, 5).map(r => `
+                            <div class="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                                <span class="text-gray-700 dark:text-gray-300">${r.chapter}</span>
+                                <span class="font-bold ${r.score >= 80 ? 'text-green-600' : r.score >= 60 ? 'text-amber-600' : 'text-red-600'}">${r.score}%</span>
+                            </div>
+                        `).join('');
+                    }
+                } catch (e) {}
+            }
+        }
+
+        // Start Quiz
+        function startQuiz() {
+            const chapter = document.getElementById('quizChapter').value;
+            const count = parseInt(document.getElementById('questionCount').value);
+
+            // Get questions
+            let pool = [];
+            if (chapter === 'all') {
+                Object.values(quizQuestions).forEach(q => pool = pool.concat(q));
+            } else {
+                pool = [...quizQuestions[chapter]];
+            }
+
+            // Shuffle and select
+            pool.sort(() => Math.random() - 0.5);
+            currentQuiz = pool.slice(0, Math.min(count, pool.length));
+
+            // Add chapter info
+            currentQuiz.forEach((q, i) => {
+                q.chapter = chapter === 'all' ? 'Mixed' : `Chapter ${chapter}`;
+            });
+
+            // Reset state
+            currentIndex = 0;
+            answers = new Array(currentQuiz.length).fill(null);
+            startTime = Date.now();
+
+            // Start timer
+            if (timerInterval) clearInterval(timerInterval);
+            timerInterval = setInterval(updateTimer, 1000);
+
+            // Show quiz
+            document.getElementById('quizSetup').classList.add('hidden');
+            document.getElementById('resultsScreen').classList.add('hidden');
+            document.getElementById('quizContainer').classList.remove('hidden');
+
+            document.getElementById('totalQ').textContent = currentQuiz.length;
+            showQuestion();
+        }
+
+        // Show Question
+        function showQuestion() {
+            const q = currentQuiz[currentIndex];
+            document.getElementById('currentQ').textContent = currentIndex + 1;
+            document.getElementById('questionChapter').textContent = q.chapter;
+            document.getElementById('questionText').textContent = q.question;
+
+            // Progress
+            const progress = ((currentIndex + 1) / currentQuiz.length) * 100;
+            document.getElementById('quizProgress').style.width = progress + '%';
+
+            // Options
+            const container = document.getElementById('optionsContainer');
+            container.innerHTML = q.options.map((opt, i) => `
+                <div class="quiz-option p-4 rounded-lg bg-gray-50 dark:bg-gray-700 cursor-pointer ${answers[currentIndex] === i ? 'selected' : ''}"
+                     onclick="selectOption(${i})" id="option${i}">
+                    <span class="font-semibold mr-3">${String.fromCharCode(65 + i)}.</span>
+                    <span class="text-gray-700 dark:text-gray-300">${opt}</span>
+                </div>
+            `).join('');
+
+            // Show explanation if already answered
+            if (answers[currentIndex] !== null) {
+                showExplanation();
+            } else {
+                document.getElementById('explanation').classList.add('hidden');
+            }
+
+            // Navigation buttons
+            document.getElementById('prevBtn').disabled = currentIndex === 0;
+            document.getElementById('nextBtn').textContent = currentIndex === currentQuiz.length - 1 ? 'Finish' : 'Next →';
+        }
+
+        // Select Option
+        function selectOption(index) {
+            if (answers[currentIndex] !== null) return; // Already answered
+
+            answers[currentIndex] = index;
+
+            // Update UI
+            document.querySelectorAll('.quiz-option').forEach((el, i) => {
+                el.classList.remove('selected');
+                if (i === index) el.classList.add('selected');
+            });
+
+            showExplanation();
+        }
+
+        // Show Explanation
+        function showExplanation() {
+            const q = currentQuiz[currentIndex];
+            const userAnswer = answers[currentIndex];
+            const isCorrect = userAnswer === q.correct;
+
+            // Color the options
+            document.querySelectorAll('.quiz-option').forEach((el, i) => {
+                if (i === q.correct) {
+                    el.classList.add('correct');
+                } else if (i === userAnswer && !isCorrect) {
+                    el.classList.add('incorrect');
+                }
+            });
+
+            // Show explanation
+            const expDiv = document.getElementById('explanation');
+            expDiv.classList.remove('hidden');
+            expDiv.className = `mt-6 p-4 rounded-lg ${isCorrect ? 'bg-green-50 dark:bg-green-900/30' : 'bg-red-50 dark:bg-red-900/30'}`;
+            document.getElementById('explanationTitle').textContent = isCorrect ? 'Correct!' : 'Incorrect';
+            document.getElementById('explanationTitle').className = `font-semibold mb-2 ${isCorrect ? 'text-green-700 dark:text-green-400' : 'text-red-700 dark:text-red-400'}`;
+            document.getElementById('explanationText').textContent = q.explanation;
+        }
+
+        // Navigation
+        function nextQuestion() {
+            if (answers[currentIndex] === null) {
+                alert('Please select an answer before continuing.');
+                return;
+            }
+
+            if (currentIndex < currentQuiz.length - 1) {
+                currentIndex++;
+                showQuestion();
+            } else {
+                finishQuiz();
+            }
+        }
+
+        function prevQuestion() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                showQuestion();
+            }
+        }
+
+        // Timer
+        function updateTimer() {
+            const elapsed = Math.floor((Date.now() - startTime) / 1000);
+            const mins = Math.floor(elapsed / 60).toString().padStart(2, '0');
+            const secs = (elapsed % 60).toString().padStart(2, '0');
+            document.getElementById('timer').textContent = `${mins}:${secs}`;
+        }
+
+        // Finish Quiz
+        function finishQuiz() {
+            clearInterval(timerInterval);
+
+            const correct = answers.filter((a, i) => a === currentQuiz[i].correct).length;
+            const total = currentQuiz.length;
+            const percent = Math.round((correct / total) * 100);
+
+            // Save result
+            saveResult(percent);
+
+            // Update UI
+            document.getElementById('quizContainer').classList.add('hidden');
+            document.getElementById('resultsScreen').classList.remove('hidden');
+
+            document.getElementById('scorePercent').textContent = percent + '%';
+            document.getElementById('scoreText').textContent = `${correct} out of ${total} correct`;
+            document.getElementById('correctCount').textContent = correct;
+            document.getElementById('incorrectCount').textContent = total - correct;
+            document.getElementById('finalTime').textContent = document.getElementById('timer').textContent;
+
+            // Header color based on score
+            const header = document.getElementById('resultHeader');
+            if (percent >= 90) header.className = 'p-8 text-white text-center result-excellent';
+            else if (percent >= 70) header.className = 'p-8 text-white text-center result-good';
+            else if (percent >= 50) header.className = 'p-8 text-white text-center result-fair';
+            else header.className = 'p-8 text-white text-center result-needs-work';
+
+            // Review section
+            const incorrect = currentQuiz.filter((q, i) => answers[i] !== q.correct);
+            if (incorrect.length > 0) {
+                document.getElementById('reviewSection').classList.remove('hidden');
+                document.getElementById('reviewList').innerHTML = incorrect.map((q, idx) => `
+                    <div class="p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                        <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">${q.question}</p>
+                        <p class="text-green-600 dark:text-green-400 text-sm">Correct: ${q.options[q.correct]}</p>
+                    </div>
+                `).join('');
+            } else {
+                document.getElementById('reviewSection').classList.add('hidden');
+            }
+        }
+
+        // Save Result
+        function saveResult(score) {
+            const chapter = document.getElementById('quizChapter').value;
+            const chapterName = chapter === 'all' ? 'All Chapters' : `Chapter ${chapter}`;
+
+            let results = [];
+            const saved = getCookie('quizResults');
+            if (saved) {
+                try { results = JSON.parse(saved); } catch (e) {}
+            }
+
+            results.unshift({
+                chapter: chapterName,
+                score: score,
+                date: new Date().toLocaleDateString()
+            });
+
+            results = results.slice(0, 10); // Keep last 10
+            setCookie('quizResults', JSON.stringify(results), 365);
+        }
+
+        // Show Setup
+        function showSetup() {
+            document.getElementById('resultsScreen').classList.add('hidden');
+            document.getElementById('quizContainer').classList.add('hidden');
+            document.getElementById('quizSetup').classList.remove('hidden');
+            loadPreviousResults();
+        }
+
+        // Cookie helpers
+        function setCookie(name, value, days) {
+            const expires = new Date(Date.now() + days * 864e5).toUTCString();
+            document.cookie = name + '=' + encodeURIComponent(value) + '; expires=' + expires + '; path=/';
+        }
+
+        function getCookie(name) {
+            return document.cookie.split('; ').reduce((r, v) => {
+                const parts = v.split('=');
+                return parts[0] === name ? decodeURIComponent(parts[1]) : r;
+            }, '');
+        }
+
+        // Ask AI about current question
+        function askAIAboutQuestion() {
+            const q = currentQuiz[currentIndex];
+            const userAnswer = answers[currentIndex];
+            const isCorrect = userAnswer === q.correct;
+
+            const context = `Quiz Question: ${q.question}
+
+Options:
+A. ${q.options[0]}
+B. ${q.options[1]}
+C. ${q.options[2]}
+D. ${q.options[3]}
+
+Correct Answer: ${String.fromCharCode(65 + q.correct)}. ${q.options[q.correct]}
+Student's Answer: ${String.fromCharCode(65 + userAnswer)}. ${q.options[userAnswer]}
+Result: ${isCorrect ? 'CORRECT' : 'INCORRECT'}
+
+Standard Explanation: ${q.explanation}`;
+
+            const prompts = isCorrect
+                ? ['Why is this the correct answer?', 'What related concepts should I know?', 'Give me a similar practice question']
+                : ['Why was my answer wrong?', 'How can I remember this better?', 'Explain the difference between these options'];
+
+            showAIChatModal(context, 'Quiz Question Help', prompts);
+        }
+
+        // Analyze weak areas
+        async function analyzeMyWeakAreas() {
+            const incorrect = currentQuiz
+                .map((q, i) => ({ ...q, userAnswerIndex: answers[i] }))
+                .filter((q, i) => answers[i] !== q.correct)
+                .map(q => ({
+                    question: q.question,
+                    userAnswer: q.options[q.userAnswerIndex],
+                    correctAnswer: q.options[q.correct],
+                    explanation: q.explanation
+                }));
+
+            const analysisDiv = document.getElementById('weakAreaAnalysis');
+            analysisDiv.classList.remove('hidden');
+            analysisDiv.innerHTML = `
+                <div class="weak-area-analysis">
+                    <h4 class="font-bold flex items-center gap-2">
+                        <svg class="w-5 h-5 animate-spin" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        Analyzing your answers...
+                    </h4>
+                </div>
+            `;
+
+            try {
+                const analysis = await analyzeWeakAreas(incorrect);
+                analysisDiv.innerHTML = `
+                    <div class="weak-area-analysis">
+                        <h4 class="font-bold flex items-center gap-2 mb-3">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                            </svg>
+                            AI Analysis of Your Weak Areas
+                        </h4>
+                        <p>${formatAIResponse(analysis)}</p>
+                    </div>
+                `;
+            } catch (error) {
+                analysisDiv.innerHTML = `
+                    <div class="weak-area-analysis">
+                        <h4 class="font-bold text-red-600">Error analyzing results</h4>
+                        <p>Please try again later.</p>
+                    </div>
+                `;
+            }
+        }
+
+        // Format AI response (duplicate from ai-helper.js for inline use)
+        function formatAIResponse(text) {
+            return text
+                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                .replace(/`(.*?)`/g, '<code>$1</code>')
+                .replace(/\n/g, '<br>');
+        }
+    </script>
+</body>
+</html>
