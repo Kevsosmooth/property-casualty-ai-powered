@@ -33,36 +33,37 @@
     <script src="js/ai-helper.js"></script>
 </head>
 <body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors duration-300">
-    <!-- Settings Button -->
-    <button onclick="showAPIKeySetup()" class="fixed top-4 right-20 z-50 bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings">
-        <svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
-        </svg>
-    </button>
-
-    <!-- Theme Toggle -->
-    <button onclick="toggleTheme()" class="fixed top-4 right-4 z-50 bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
-        <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
-            <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/>
-        </svg>
-        <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20">
-            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
-        </svg>
-    </button>
+    <!-- Settings & Theme Toggle Buttons -->
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="showAPIKeySetup()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings">
+            <svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+        </button>
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/>
+            </svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+            </svg>
+        </button>
+    </div>
 
     <!-- Header -->
     <header class="bg-gradient-to-r from-primary to-secondary text-white py-8 shadow-lg">
         <div class="container mx-auto px-4">
             <h1 class="text-4xl font-bold text-center">Property & Casualty Insurance</h1>
-            <p class="text-center mt-2 text-blue-100">Personal Lines Study Guide</p>
-            <p class="text-center mt-1 text-sm text-blue-200">Study Notes - January 2026</p>
+            <p class="text-center mt-2 text-blue-100">Casualty Insurance Study Guide</p>
+            <p class="text-center mt-1 text-sm text-blue-200">New Jersey Licensing Exam Prep</p>
+            <p class="text-center mt-2 text-xs text-blue-300 bg-blue-900/30 inline-block px-4 py-1 rounded-full">Prepared for NJ exam - content may be similar in other states</p>
         </div>
     </header>
 
     <!-- Navigation Cards -->
     <main class="container mx-auto px-4 py-12">
-        <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <div class="grid md:grid-cols-3 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
 
             <!-- Chapter 1 Card -->
             <a href="casualty/chapter-1/index.html" class="group">
@@ -71,7 +72,7 @@
                         <div class="flex items-center mb-4">
                             <span class="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-sm font-semibold px-3 py-1 rounded-full">Chapter 1</span>
                         </div>
-                        <h2 class="text-xl font-bold text-gray-800 dark:text-gray-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Fundamentals & Key Terms</h2>
+                        <h2 class="text-xl font-bold text-gray-800 dark:text-gray-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Insurance Terms and Related Concepts</h2>
                         <p class="text-gray-600 dark:text-gray-400 mt-3 text-sm">ISO, Risk Types, Perils, Hazards, Indemnity, Liability Coverage, and Core Definitions</p>
                         <div class="mt-4 flex flex-wrap gap-2">
                             <span class="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs px-2 py-1 rounded">Pure vs Speculative Risk</span>
@@ -92,7 +93,7 @@
                         <div class="flex items-center mb-4">
                             <span class="bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 text-sm font-semibold px-3 py-1 rounded-full">Chapter 2</span>
                         </div>
-                        <h2 class="text-xl font-bold text-gray-800 dark:text-gray-100 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">Policy Structure</h2>
+                        <h2 class="text-xl font-bold text-gray-800 dark:text-gray-100 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">Policy Provisions</h2>
                         <p class="text-gray-600 dark:text-gray-400 mt-3 text-sm">Declarations, Definitions, Insuring Agreements, Conditions, Endorsements, and Claims</p>
                         <div class="mt-4 flex flex-wrap gap-2">
                             <span class="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs px-2 py-1 rounded">Policy Components</span>
@@ -113,8 +114,8 @@
                         <div class="flex items-center mb-4">
                             <span class="bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 text-sm font-semibold px-3 py-1 rounded-full">Chapter 3</span>
                         </div>
-                        <h2 class="text-xl font-bold text-gray-800 dark:text-gray-100 group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors">Commercial General Liability</h2>
-                        <p class="text-gray-600 dark:text-gray-400 mt-3 text-sm">CGL Forms, Occurrence vs Claims-Made, Covered Contracts, and Coverage Triggers</p>
+                        <h2 class="text-xl font-bold text-gray-800 dark:text-gray-100 group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors">Types of Policies, Bonds, and Related Terms</h2>
+                        <p class="text-gray-600 dark:text-gray-400 mt-3 text-sm">Policy Types, Surety Bonds, CGL, Occurrence vs Claims-Made, and Coverage Concepts</p>
                         <div class="mt-4 flex flex-wrap gap-2">
                             <span class="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs px-2 py-1 rounded">CGL Coverage</span>
                             <span class="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs px-2 py-1 rounded">Retroactive Date</span>
@@ -126,6 +127,50 @@
                     </div>
                 </div>
             </a>
+
+            <!-- Chapter 4 Card (Coming Soon) -->
+            <div class="group opacity-60">
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden border-t-4 border-amber-500 h-full">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <span class="bg-amber-100 dark:bg-amber-900 text-amber-800 dark:text-amber-200 text-sm font-semibold px-3 py-1 rounded-full">Chapter 4</span>
+                            <span class="ml-2 bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-400 text-xs px-2 py-1 rounded-full">Coming Soon</span>
+                        </div>
+                        <h2 class="text-xl font-bold text-gray-800 dark:text-gray-100">NJ Laws, Rules & Regulations</h2>
+                        <p class="text-gray-600 dark:text-gray-400 mt-3 text-sm">New Jersey Laws, Rules, and Regulations Common to All Lines</p>
+                        <div class="mt-4 flex flex-wrap gap-2">
+                            <span class="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs px-2 py-1 rounded">State Requirements</span>
+                            <span class="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs px-2 py-1 rounded">Licensing Rules</span>
+                            <span class="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs px-2 py-1 rounded">Regulations</span>
+                        </div>
+                    </div>
+                    <div class="bg-amber-50 dark:bg-amber-900/30 px-6 py-3 text-amber-600 dark:text-amber-400 text-sm font-medium">
+                        Coming Soon
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chapter 5 Card (Coming Soon) -->
+            <div class="group opacity-60">
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden border-t-4 border-red-500 h-full">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <span class="bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200 text-sm font-semibold px-3 py-1 rounded-full">Chapter 5</span>
+                            <span class="ml-2 bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-400 text-xs px-2 py-1 rounded-full">Coming Soon</span>
+                        </div>
+                        <h2 class="text-xl font-bold text-gray-800 dark:text-gray-100">NJ Casualty-Specific Laws</h2>
+                        <p class="text-gray-600 dark:text-gray-400 mt-3 text-sm">New Jersey Laws, Rules, and Regulations Pertinent to Casualty Only</p>
+                        <div class="mt-4 flex flex-wrap gap-2">
+                            <span class="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs px-2 py-1 rounded">Auto Insurance</span>
+                            <span class="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs px-2 py-1 rounded">Liability Laws</span>
+                            <span class="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs px-2 py-1 rounded">NJ Specifics</span>
+                        </div>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/30 px-6 py-3 text-red-600 dark:text-red-400 text-sm font-medium">
+                        Coming Soon
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- Study Tools Section -->
@@ -208,9 +253,9 @@
                         <label class="block text-purple-200 text-sm mb-2">Select Chapter:</label>
                         <select id="scenarioChapter" class="w-full p-3 rounded-lg bg-white text-gray-800 border-0">
                             <option value="all">All Chapters</option>
-                            <option value="1">Chapter 1: Fundamentals</option>
-                            <option value="2">Chapter 2: Policy Structure</option>
-                            <option value="3">Chapter 3: CGL</option>
+                            <option value="1">Chapter 1: Insurance Terms</option>
+                            <option value="2">Chapter 2: Policy Provisions</option>
+                            <option value="3">Chapter 3: Policies & Bonds</option>
                         </select>
                     </div>
                     <div class="flex items-end">
