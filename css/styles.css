@@ -354,23 +354,42 @@
   }
 }
 
-/* Mobile header button fix - move buttons below header */
+/* Mobile header buttons - smaller, translucent, inside header area */
 @media (max-width: 640px) {
   .header-btn-group {
     position: fixed;
-    bottom: 80px;
-    right: 12px;
-    top: auto !important;
+    top: 8px;
+    right: 8px;
     display: flex;
-    flex-direction: column;
-    gap: 8px;
+    gap: 4px;
     z-index: 50;
   }
 
   .header-btn-group button {
-    position: relative !important;
-    top: auto !important;
-    right: auto !important;
+    padding: 6px !important;
+    background: rgba(255, 255, 255, 0.25) !important;
+    backdrop-filter: blur(8px);
+    box-shadow: none !important;
+  }
+
+  .header-btn-group button:hover {
+    background: rgba(255, 255, 255, 0.4) !important;
+  }
+
+  .header-btn-group button svg {
+    width: 18px !important;
+    height: 18px !important;
+    color: white !important;
+  }
+
+  /* Dark mode svg fix */
+  .dark .header-btn-group button svg {
+    color: white !important;
+  }
+
+  .header-btn-group button svg.dark\\:block,
+  .header-btn-group button svg.dark\\:hidden {
+    color: white !important;
   }
 }
 
