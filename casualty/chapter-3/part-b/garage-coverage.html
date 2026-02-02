@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Garage Coverage Form & Garagekeepers Insurance | P&C Study Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <link rel="stylesheet" href="../../../css/styles.css">
+    <script src="../../../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+        }
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <!-- Settings & Theme Toggle Buttons -->
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="showAPIKeySetup()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings">
+            <svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+        </button>
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/>
+            </svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-gray-700 to-gray-900 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap gap-2 text-sm mb-2">
+                <a href="../../../index.html" class="text-gray-300 hover:text-white">Home</a>
+                <span class="text-gray-400">/</span>
+                <a href="../index.html" class="text-gray-300 hover:text-white">Chapter 3</a>
+                <span class="text-gray-400">/</span>
+                <a href="index.html" class="text-gray-300 hover:text-white">Part B: Auto</a>
+                <span class="text-gray-400">/</span>
+                <span class="text-white">Garage Coverage</span>
+            </div>
+            <h1 class="text-3xl font-bold">Garage Coverage Form & Garagekeepers Insurance</h1>
+            <p class="text-gray-300 mt-1">Specialized Coverage for Auto Dealerships & Service Businesses</p>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-wrap gap-2 text-sm">
+                <a href="index.html" class="text-gray-600 dark:text-gray-400 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">PAP Overview</a>
+                <a href="business-auto.html" class="text-gray-600 dark:text-gray-400 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Business Auto</a>
+                <span class="bg-gray-700 text-white px-3 py-1 rounded font-medium">Garage Coverage</span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 py-8 max-w-4xl">
+
+        <!-- Overview -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">Garage Coverage Form Overview</h2>
+
+                <div class="bg-gray-100 dark:bg-gray-700 rounded-lg p-4 mb-6">
+                    <p class="font-bold text-gray-800 dark:text-gray-200 text-lg">Who Needs This Coverage?</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2">The Garage Coverage Form is designed for businesses that operate in the <strong>automobile industry</strong>:</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-3 mb-6">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-3 rounded flex items-center">
+                        <span class="text-blue-500 mr-2">+</span>
+                        <span class="text-gray-700 dark:text-gray-300 text-sm">Auto dealerships (new & used)</span>
+                    </div>
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-3 rounded flex items-center">
+                        <span class="text-blue-500 mr-2">+</span>
+                        <span class="text-gray-700 dark:text-gray-300 text-sm">Repair shops</span>
+                    </div>
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-3 rounded flex items-center">
+                        <span class="text-blue-500 mr-2">+</span>
+                        <span class="text-gray-700 dark:text-gray-300 text-sm">Service stations</span>
+                    </div>
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-3 rounded flex items-center">
+                        <span class="text-blue-500 mr-2">+</span>
+                        <span class="text-gray-700 dark:text-gray-300 text-sm">Parking garages/lots</span>
+                    </div>
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-3 rounded flex items-center">
+                        <span class="text-blue-500 mr-2">+</span>
+                        <span class="text-gray-700 dark:text-gray-300 text-sm">Body shops</span>
+                    </div>
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-3 rounded flex items-center">
+                        <span class="text-blue-500 mr-2">+</span>
+                        <span class="text-gray-700 dark:text-gray-300 text-sm">Trailer dealers</span>
+                    </div>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 rounded-r-lg">
+                    <p class="font-bold text-amber-800 dark:text-amber-300">Why Special Coverage?</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm mt-1">These businesses have unique exposures: they regularly have customers' vehicles in their care, their employees test-drive vehicles, and they have liability for both their operations AND the vehicles they handle.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Garage Operations -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">What Are "Garage Operations"?</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-800 rounded-lg p-4 mb-6">
+                    <p class="font-bold text-blue-800 dark:text-blue-300">Definition</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2"><strong>Garage operations</strong> means the ownership, maintenance, or use of locations for garage business and that portion of roads/ways that are next to those locations.</p>
+                </div>
+
+                <p class="text-gray-700 dark:text-gray-300 mb-4">This includes all operations necessary or incidental to a garage business:</p>
+
+                <div class="grid md:grid-cols-2 gap-3">
+                    <div class="bg-gray-50 dark:bg-gray-700 p-3 rounded">
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">Selling autos</p>
+                    </div>
+                    <div class="bg-gray-50 dark:bg-gray-700 p-3 rounded">
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">Storing autos</p>
+                    </div>
+                    <div class="bg-gray-50 dark:bg-gray-700 p-3 rounded">
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">Servicing & repairing autos</p>
+                    </div>
+                    <div class="bg-gray-50 dark:bg-gray-700 p-3 rounded">
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">Parking autos</p>
+                    </div>
+                    <div class="bg-gray-50 dark:bg-gray-700 p-3 rounded">
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">Test drives</p>
+                    </div>
+                    <div class="bg-gray-50 dark:bg-gray-700 p-3 rounded">
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">Customer vehicle handling</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Coverages -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">Garage Coverage Form Sections</h2>
+
+                <div class="space-y-4">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-5 border-l-4 border-blue-500">
+                        <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg mb-3">Section I: Covered Autos</h3>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">Uses the same symbol system as the Business Auto Policy (1-9) to designate which autos are covered.</p>
+                    </div>
+
+                    <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-5 border-l-4 border-green-500">
+                        <h3 class="font-bold text-green-800 dark:text-green-300 text-lg mb-3">Section II: Liability Coverage</h3>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm mb-3">Provides liability coverage for:</p>
+                        <ul class="text-gray-600 dark:text-gray-400 text-sm space-y-1">
+                            <li>+ Covered autos</li>
+                            <li>+ Garage operations (premises and business activities)</li>
+                            <li>+ Products - Completed Operations</li>
+                        </ul>
+                        <div class="bg-white dark:bg-gray-700 p-2 rounded mt-3">
+                            <p class="text-xs text-gray-600 dark:text-gray-400"><strong>Key Point:</strong> This is a <strong>combined form</strong> - it covers BOTH auto liability AND premises/operations liability in one policy!</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-5 border-l-4 border-purple-500">
+                        <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg mb-3">Section III: Garagekeepers Coverage</h3>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">Covers damage to <strong>customers' autos</strong> left in the insured's care for service, repair, storage, or parking.</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-xs mt-2">(See detailed section below)</p>
+                    </div>
+
+                    <div class="bg-amber-50 dark:bg-amber-900/20 rounded-lg p-5 border-l-4 border-amber-500">
+                        <h3 class="font-bold text-amber-800 dark:text-amber-300 text-lg mb-3">Section IV: Physical Damage Coverage</h3>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">Covers damage to the insured's own vehicles (inventory, owned autos, etc.).</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Garagekeepers Coverage -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">Garagekeepers Insurance - The Key Coverage</h2>
+
+                <div class="bg-purple-50 dark:bg-purple-900/30 border border-purple-200 dark:border-purple-800 rounded-lg p-4 mb-6">
+                    <p class="font-bold text-purple-800 dark:text-purple-300 text-lg">What Makes This Unique</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2">Garagekeepers insurance covers damage to <strong>customers' vehicles</strong> while in the care, custody, or control of the garage. This is the opposite of physical damage coverage which covers the insured's OWN vehicles.</p>
+                </div>
+
+                <h3 class="font-bold text-gray-800 dark:text-gray-200 mb-4">When Does Garagekeepers Apply?</h3>
+
+                <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 mb-6">
+                    <p class="text-gray-700 dark:text-gray-300">Covers autos left with the insured for:</p>
+                    <div class="grid md:grid-cols-2 gap-2 mt-3">
+                        <span class="bg-white dark:bg-gray-600 p-2 rounded text-sm text-gray-700 dark:text-gray-300">Service</span>
+                        <span class="bg-white dark:bg-gray-600 p-2 rounded text-sm text-gray-700 dark:text-gray-300">Repair</span>
+                        <span class="bg-white dark:bg-gray-600 p-2 rounded text-sm text-gray-700 dark:text-gray-300">Storage</span>
+                        <span class="bg-white dark:bg-gray-600 p-2 rounded text-sm text-gray-700 dark:text-gray-300">Safekeeping</span>
+                        <span class="bg-white dark:bg-gray-600 p-2 rounded text-sm text-gray-700 dark:text-gray-300 md:col-span-2">Parking (for a fee or as part of a sale)</span>
+                    </div>
+                </div>
+
+                <h3 class="font-bold text-gray-800 dark:text-gray-200 mb-4">Types of Garagekeepers Coverage</h3>
+
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 border-2 border-blue-300 dark:border-blue-800">
+                        <h4 class="font-bold text-blue-800 dark:text-blue-300 mb-2">Legal Liability Coverage</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm mb-2">Only pays if the insured is <strong>legally liable</strong> for the damage.</p>
+                        <div class="bg-white dark:bg-gray-700 p-2 rounded">
+                            <p class="text-xs text-gray-600 dark:text-gray-400"><strong>Example:</strong> Mechanic damages a car during repair. Covered - insured was at fault.</p>
+                        </div>
+                        <div class="bg-red-100 dark:bg-red-900/50 p-2 rounded mt-2">
+                            <p class="text-xs text-red-700 dark:text-red-300"><strong>Not Covered:</strong> A hailstorm damages parked cars. The garage wasn't at fault, so no coverage.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 border-2 border-green-300 dark:border-green-800">
+                        <h4 class="font-bold text-green-800 dark:text-green-300 mb-2">Direct Coverage (Primary)</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm mb-2">Pays for covered losses <strong>regardless of fault</strong> - like first-party property insurance.</p>
+                        <div class="bg-white dark:bg-gray-700 p-2 rounded">
+                            <p class="text-xs text-gray-600 dark:text-gray-400"><strong>Example:</strong> A hailstorm damages customer cars in your lot. Covered - even though you weren't at fault.</p>
+                        </div>
+                        <div class="bg-green-100 dark:bg-green-900/50 p-2 rounded mt-2">
+                            <p class="text-xs text-green-700 dark:text-green-300"><strong>Better Protection:</strong> Broader coverage = happier customers.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 rounded-r-lg mt-6">
+                    <p class="font-bold text-amber-800 dark:text-amber-300">Exam Tip: Legal Liability vs Direct</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm mt-1"><strong>Legal Liability</strong> = must be your fault. <strong>Direct</strong> = covered regardless of fault. Direct coverage is more expensive but provides better protection.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Covered Perils -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">Garagekeepers Covered Perils</h2>
+
+                <p class="text-gray-700 dark:text-gray-300 mb-4">Coverage can be written for specific perils or comprehensive. Common covered perils include:</p>
+
+                <div class="grid md:grid-cols-3 gap-3">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-3 rounded text-center">
+                        <p class="font-semibold text-blue-800 dark:text-blue-300">Collision</p>
+                    </div>
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-3 rounded text-center">
+                        <p class="font-semibold text-blue-800 dark:text-blue-300">Comprehensive</p>
+                    </div>
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-3 rounded text-center">
+                        <p class="font-semibold text-blue-800 dark:text-blue-300">Fire</p>
+                    </div>
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-3 rounded text-center">
+                        <p class="font-semibold text-blue-800 dark:text-blue-300">Theft</p>
+                    </div>
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-3 rounded text-center">
+                        <p class="font-semibold text-blue-800 dark:text-blue-300">Vandalism</p>
+                    </div>
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-3 rounded text-center">
+                        <p class="font-semibold text-blue-800 dark:text-blue-300">Specified Perils</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Tips -->
+        <section class="mb-10">
+            <div class="bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-800 rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-red-800 dark:text-red-300 mb-4">Exam Trap Alerts</h2>
+
+                <div class="space-y-4">
+                    <div class="flex items-start">
+                        <span class="text-red-500 mr-3 text-xl">!</span>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>Garagekeepers = Customer vehicles:</strong> This covers CUSTOMERS' cars, not the garage's own inventory.</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="text-red-500 mr-3 text-xl">!</span>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>Legal Liability vs Direct:</strong> Legal liability only pays if it's your fault. Direct pays regardless of fault.</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="text-red-500 mr-3 text-xl">!</span>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>Combined form:</strong> Garage Coverage Form combines auto liability AND premises/operations liability.</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="text-red-500 mr-3 text-xl">!</span>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>Who needs it:</strong> Auto dealers, repair shops, parking garages, service stations, body shops.</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="text-red-500 mr-3 text-xl">!</span>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>Care, custody, control:</strong> Garagekeepers applies when customer vehicles are in your possession.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Summary -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-800 rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">Quick Summary</h2>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm">
+                        <thead>
+                            <tr class="bg-gray-200 dark:bg-gray-600">
+                                <th class="text-left p-3 font-bold text-gray-800 dark:text-gray-200">Coverage</th>
+                                <th class="text-left p-3 font-bold text-gray-800 dark:text-gray-200">What It Covers</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b dark:border-gray-600">
+                                <td class="p-3 font-semibold text-blue-700 dark:text-blue-300">Garage Liability</td>
+                                <td class="p-3 text-gray-700 dark:text-gray-300">BI/PD from garage operations AND covered autos</td>
+                            </tr>
+                            <tr class="border-b dark:border-gray-600">
+                                <td class="p-3 font-semibold text-purple-700 dark:text-purple-300">Garagekeepers</td>
+                                <td class="p-3 text-gray-700 dark:text-gray-300">Damage to CUSTOMERS' autos in your care</td>
+                            </tr>
+                            <tr class="border-b dark:border-gray-600">
+                                <td class="p-3 font-semibold text-green-700 dark:text-green-300">Physical Damage</td>
+                                <td class="p-3 text-gray-700 dark:text-gray-300">Damage to YOUR OWN autos (inventory, owned vehicles)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Navigation Footer -->
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="business-auto.html" class="text-gray-300 hover:text-white">← Business Auto</a>
+                <span class="text-gray-400">Garage Coverage</span>
+                <a href="../part-a/index.html" class="text-gray-300 hover:text-white">Part A: CGL →</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            createFloatingAIButton(`Garage Coverage Form & Garagekeepers Insurance
+
+Who Needs This:
+- Auto dealerships
+- Repair shops
+- Service stations
+- Parking garages
+- Body shops
+
+Garage Operations = selling, storing, servicing, repairing, parking autos
+
+Coverage Sections:
+1. Covered Autos (uses BAP symbols 1-9)
+2. Liability (auto + premises/operations combined)
+3. Garagekeepers (customers' vehicles)
+4. Physical Damage (your own vehicles)
+
+GARAGEKEEPERS COVERAGE:
+Covers damage to CUSTOMERS' autos in your care
+
+Two Types:
+- Legal Liability: Only pays if you're at fault
+- Direct Coverage: Pays regardless of fault
+
+Covered Perils:
+- Collision, Comprehensive
+- Fire, Theft, Vandalism
+
+Key Points:
+- Garagekeepers = customer cars
+- Physical Damage = your cars
+- Combined form = auto + premises liability`);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 3 Part D: Policy Limits, Conditions & Common Policy Conditions | P&C Study Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <link rel="stylesheet" href="../../../css/styles.css">
+    <script src="../../../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+        }
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <!-- Settings & Theme Toggle Buttons -->
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="showAPIKeySetup()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings">
+            <svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+        </button>
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/>
+            </svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-green-600 to-green-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap gap-2 text-sm mb-2">
+                <a href="../../../index.html" class="text-green-200 hover:text-white">Home</a>
+                <span class="text-green-300">/</span>
+                <a href="../index.html" class="text-green-200 hover:text-white">Chapter 3</a>
+                <span class="text-green-300">/</span>
+                <span class="text-white">Part D</span>
+            </div>
+            <h1 class="text-3xl font-bold">Chapter 3 Part D: Policy Limits, Conditions & Common Policy Conditions</h1>
+            <p class="text-green-200 mt-1">Limits, Insured Duties, Other Insurance & Common Conditions</p>
+        </div>
+    </header>
+
+    <!-- Part Navigation -->
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-wrap gap-2 text-sm mb-2">
+                <a href="index.html" class="text-green-600 dark:text-green-400 hover:text-green-800 px-3 py-1 rounded hover:bg-green-50 dark:hover:bg-gray-700">Coverage A</a>
+                <a href="coverage-b-c.html" class="text-green-600 dark:text-green-400 hover:text-green-800 px-3 py-1 rounded hover:bg-green-50 dark:hover:bg-gray-700">Coverage B & C</a>
+                <a href="supplementary.html" class="text-green-600 dark:text-green-400 hover:text-green-800 px-3 py-1 rounded hover:bg-green-50 dark:hover:bg-gray-700">Supplementary & Insureds</a>
+                <span class="bg-green-600 text-white px-3 py-1 rounded font-medium">Limits & Conditions</span>
+                <a href="definitions.html" class="text-green-600 dark:text-green-400 hover:text-green-800 px-3 py-1 rounded hover:bg-green-50 dark:hover:bg-gray-700">Definitions</a>
+            </div>
+            <div class="flex flex-wrap gap-2 text-xs border-t dark:border-gray-700 pt-2">
+                <span class="text-gray-500 dark:text-gray-400">Chapter 3:</span>
+                <span class="bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-300 px-2 py-0.5 rounded">Part A: CGL</span>
+                <a href="../part-b/index.html" class="text-blue-600 dark:text-blue-400 hover:underline px-2 py-0.5">Part B: PAP & Business Auto</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Table of Contents -->
+    <div class="container mx-auto px-4 py-4 max-w-4xl">
+        <div class="bg-gray-100 dark:bg-gray-800 rounded-lg p-4">
+            <h3 class="font-bold text-gray-800 dark:text-gray-200 mb-2">On This Page</h3>
+            <div class="flex flex-wrap gap-2 text-sm">
+                <a href="#limits" class="text-green-600 dark:text-green-400 hover:underline">Policy Limits</a>
+                <span class="text-gray-400">|</span>
+                <a href="#duties" class="text-green-600 dark:text-green-400 hover:underline">Insured Duties</a>
+                <span class="text-gray-400">|</span>
+                <a href="#other-insurance" class="text-green-600 dark:text-green-400 hover:underline">Other Insurance</a>
+                <span class="text-gray-400">|</span>
+                <a href="#conditions" class="text-green-600 dark:text-green-400 hover:underline">Policy Conditions</a>
+                <span class="text-gray-400">|</span>
+                <a href="#common-conditions" class="text-green-600 dark:text-green-400 hover:underline">Common Policy Conditions</a>
+            </div>
+        </div>
+    </div>
+
+    <main class="container mx-auto px-4 py-8 max-w-4xl">
+
+        <!-- Policy Limits -->
+        <section id="limits" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">Policy Limits</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-800 rounded-lg p-4 mb-6">
+                    <p class="font-bold text-blue-800 dark:text-blue-300 text-lg">General Liability = Per Occurrence + Aggregate</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2">General liability policies include both per occurrence and aggregate limits.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                    <!-- Per Occurrence -->
+                    <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-5 border-l-4 border-purple-500">
+                        <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg mb-3">Per Occurrence Limit</h3>
+                        <p class="text-gray-700 dark:text-gray-300 mb-3">Maximum payable per accident, regardless of the number of claimants involved.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded text-sm">
+                            <p class="text-gray-600 dark:text-gray-400">The per occurrence limit is the <strong>same</strong> for both:</p>
+                            <ul class="mt-2 space-y-1">
+                                <li>Premises/Operations coverage</li>
+                                <li>Products/Completed Operations coverage</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Aggregate -->
+                    <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-5 border-l-4 border-green-500">
+                        <h3 class="font-bold text-green-800 dark:text-green-300 text-lg mb-3">General Aggregate Limit</h3>
+                        <p class="text-gray-700 dark:text-gray-300 mb-3">The <strong>most</strong> the insurer will pay for <strong>all losses</strong> that occur during a policy period.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded text-sm">
+                            <p class="text-gray-600 dark:text-gray-400">Applies to Coverage A, B, and C combined.</p>
+                            <p class="text-amber-600 dark:text-amber-400 mt-2 font-semibold">Note: A separate aggregate limit applies to Products/Completed Operations coverage.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Fire Damage Legal Liability -->
+                <div class="bg-amber-50 dark:bg-amber-900/20 rounded-lg p-5 border-l-4 border-amber-500 mb-6">
+                    <h3 class="font-bold text-amber-800 dark:text-amber-300 text-lg mb-3">Fire Damage Legal Liability</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mb-3">A specific amount of coverage is included in the general liability policy for fire damage legal liability, which may be increased.</p>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                        <p class="font-semibold text-amber-700 dark:text-amber-300">What It Covers:</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">Fire damage to property the insured <strong>leases or temporarily occupies</strong> caused by the insured's negligence.</p>
+                    </div>
+                </div>
+
+                <!-- Bankruptcy -->
+                <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-5 border-l-4 border-red-500">
+                    <h3 class="font-bold text-red-800 dark:text-red-300 text-lg mb-3">Bankruptcy Provision</h3>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>Bankruptcy of the insured will NOT relieve the insurer of its obligation under the policy.</strong></p>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 mt-2">Even if you go bankrupt, the insurer still has to pay valid claims.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Insured Duties -->
+        <section id="duties" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">Insured Duties After Occurrence, Offense, Claim, or Suit</h2>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border border-amber-200 dark:border-amber-800 rounded-lg p-4 mb-6">
+                    <p class="font-bold text-amber-800 dark:text-amber-300">Critical: Failure to fulfill these duties may void coverage!</p>
+                </div>
+
+                <div class="space-y-4">
+                    <div class="flex items-start">
+                        <span class="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center mr-4 flex-shrink-0 font-bold">1</span>
+                        <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg flex-1">
+                            <p class="font-semibold text-blue-800 dark:text-blue-300">Notify Insurer Promptly</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm mt-1">Notify the insurer <strong>as soon as possible</strong> of an occurrence or possible claim that can arise.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start">
+                        <span class="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center mr-4 flex-shrink-0 font-bold">2</span>
+                        <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg flex-1">
+                            <p class="font-semibold text-blue-800 dark:text-blue-300">Record Details Immediately</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm mt-1">Immediately record the specifics of any claim or suit brought, and notify the insurer.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start">
+                        <span class="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center mr-4 flex-shrink-0 font-bold">3</span>
+                        <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg flex-1">
+                            <p class="font-semibold text-blue-800 dark:text-blue-300">Forward Legal Documents</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm mt-1">Send the insurer any demands, notice, or summons relating to a suit or claim.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start">
+                        <span class="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center mr-4 flex-shrink-0 font-bold">4</span>
+                        <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg flex-1">
+                            <p class="font-semibold text-blue-800 dark:text-blue-300">Authorize & Assist</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm mt-1">Authorize the insurer to obtain any records or other pertinent information and assist the insurer in its investigation.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start">
+                        <span class="bg-red-600 text-white rounded-full w-8 h-8 flex items-center justify-center mr-4 flex-shrink-0 font-bold">5</span>
+                        <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg flex-1">
+                            <p class="font-semibold text-red-800 dark:text-red-300">Do NOT Make Voluntary Payments</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm mt-1">Do not make any voluntary payments, assume any obligation, or incur any expenses without the insurer's consent, or it will be at the insured's own cost.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Legal Action & Other Insurance -->
+        <section id="other-insurance" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">Legal Action & Other Insurance</h2>
+
+                <!-- Legal Action -->
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-5 border-l-4 border-purple-500 mb-6">
+                    <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg mb-3">Legal Action Against Insurer</h3>
+                    <ul class="text-gray-700 dark:text-gray-300 space-y-2">
+                        <li>No party has a right to join the insurer as a party in any suit asking for damages against the insured.</li>
+                        <li>No party may sue the insurer until <strong>all policy provisions have been met</strong>.</li>
+                    </ul>
+                </div>
+
+                <!-- Other Insurance -->
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-5 border-l-4 border-blue-500">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg mb-3">Other Insurance</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">If other valid and collectible insurance is available for a loss covered under Coverage A or B, the general liability policy will pay as follows:</p>
+
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded">
+                            <h4 class="font-bold text-green-700 dark:text-green-300 mb-2">Primary Basis</h4>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm">If other insurance is primary, the policy will share depending on how the other insurance shares liability.</p>
+                            <ul class="text-gray-600 dark:text-gray-400 text-sm mt-2 space-y-1">
+                                <li>Equal shares, OR</li>
+                                <li>Pro rata up to the policy limit</li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded">
+                            <h4 class="font-bold text-amber-700 dark:text-amber-300 mb-2">Excess Basis</h4>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm">The policy pays as excess for:</p>
+                            <ul class="text-gray-600 dark:text-gray-400 text-sm mt-2 space-y-1">
+                                <li>Certain types of insurance contracts (regardless of their other insurance clause)</li>
+                                <li>Any other primary insurance where the insured is an <strong>additional insured</strong></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Policy Conditions -->
+        <section id="conditions" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">Policy Conditions</h2>
+
+                <div class="space-y-4">
+                    <!-- Premium Audits -->
+                    <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 border-l-4 border-green-500">
+                        <h4 class="font-bold text-green-800 dark:text-green-300">Premium Audits</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm mt-2">The insurer is allowed to audit the insured's books of records at the policy term to make sure adequate premium has been collected for the exposure.</p>
+                    </div>
+
+                    <!-- Representations -->
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 border-l-4 border-blue-500">
+                        <h4 class="font-bold text-blue-800 dark:text-blue-300">Representations</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm mt-2">By accepting the policy, the insured agrees that the statements shown in the declarations are <strong>true and complete</strong> and that the policy was issued based on the representations made by the insured.</p>
+                    </div>
+
+                    <!-- Separation of Insureds -->
+                    <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 border-l-4 border-purple-500">
+                        <h4 class="font-bold text-purple-800 dark:text-purple-300">Separation of Insureds</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm mt-2">The insurance will apply as if the insured named in the suit were the only named insured, and <strong>separately</strong> to each insured against whom a claim or suit is brought.</p>
+                        <div class="bg-amber-100 dark:bg-amber-900/50 p-2 rounded mt-2">
+                            <p class="text-xs text-amber-700 dark:text-amber-300 font-semibold">Important: This clause does NOT increase the limit of insurance shown in declarations.</p>
+                        </div>
+                    </div>
+
+                    <!-- Subrogation -->
+                    <div class="bg-amber-50 dark:bg-amber-900/20 rounded-lg p-4 border-l-4 border-amber-500">
+                        <h4 class="font-bold text-amber-800 dark:text-amber-300">Transfer of Rights of Recovery (Subrogation)</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm mt-2">The insured must transfer to the insurer any rights they possess to recover damages from a negligent third party.</p>
+                        <p class="text-red-600 dark:text-red-400 text-sm mt-2 font-semibold">The insured may NOT do anything to impede these rights after the loss.</p>
+                    </div>
+
+                    <!-- Nonrenewal -->
+                    <div class="bg-teal-50 dark:bg-teal-900/20 rounded-lg p-4 border-l-4 border-teal-500">
+                        <div class="flex items-center justify-between mb-2">
+                            <h4 class="font-bold text-teal-800 dark:text-teal-300">Nonrenewal Notice</h4>
+                            <span class="bg-teal-600 text-white px-2 py-1 rounded text-sm font-bold">Usually 30 Days</span>
+                        </div>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">The minimum number of days notice the insurer will provide to the insured if the insurer decides not to renew the coverage is usually 30 days (may differ by state).</p>
+                    </div>
+
+                    <!-- Claims-Made Information -->
+                    <div class="bg-indigo-50 dark:bg-indigo-900/20 rounded-lg p-4 border-l-4 border-indigo-500">
+                        <h4 class="font-bold text-indigo-800 dark:text-indigo-300">Insured's Right to Claim & Occurrence Information</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm mt-2">The insurer will provide the first named insured information relating to claims and occurrences, as well as many proceedings for general liability claims-made coverage parts issued in the <strong>previous 3 years</strong>.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Common Policy Conditions -->
+        <section id="common-conditions" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">Common Policy Conditions (Interline Form)</h2>
+
+                <div class="bg-gray-100 dark:bg-gray-700 rounded-lg p-4 mb-6">
+                    <p class="font-bold text-gray-800 dark:text-gray-200">What Are Common Policy Conditions?</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2">Universal rules that apply to <strong>all coverages</strong> in a Commercial Package Policy. These exist for efficiency - without them, every coverage form would repeat the same boilerplate conditions.</p>
+                    <div class="bg-white dark:bg-gray-600 p-3 rounded mt-3">
+                        <p class="text-sm text-gray-600 dark:text-gray-400"><strong>Example:</strong> A business buys a Commercial Package Policy with commercial property, general liability, and inland marine coverage. The Common Policy Conditions apply to ALL three.</p>
+                    </div>
+                </div>
+
+                <div class="bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-800 rounded-lg p-4 mb-6">
+                    <p class="font-bold text-blue-800 dark:text-blue-300 text-lg">Memory Trick: C-C-E-I-P-T (like "receipt")</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2">Cancellation, Changes, Examination, Inspections, Premiums, Transfer</p>
+                </div>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm">
+                        <thead>
+                            <tr class="bg-gray-100 dark:bg-gray-700">
+                                <th class="text-left p-3 font-bold text-gray-800 dark:text-gray-200">Condition</th>
+                                <th class="text-left p-3 font-bold text-gray-800 dark:text-gray-200">Key Points to Remember</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b dark:border-gray-600">
+                                <td class="p-3 font-semibold text-purple-700 dark:text-purple-300">Cancellation</td>
+                                <td class="p-3 text-gray-700 dark:text-gray-300">
+                                    <ul class="space-y-1">
+                                        <li>First named insured can cancel anytime with written notice</li>
+                                        <li>Insurer needs allowable reason + proper notice per state regs</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            <tr class="border-b dark:border-gray-600">
+                                <td class="p-3 font-semibold text-blue-700 dark:text-blue-300">Changes</td>
+                                <td class="p-3 text-gray-700 dark:text-gray-300">
+                                    <ul class="space-y-1">
+                                        <li>Only by endorsement from insurer</li>
+                                        <li>Only first named insured can request changes</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            <tr class="border-b dark:border-gray-600">
+                                <td class="p-3 font-semibold text-green-700 dark:text-green-300">Examination of Books & Records</td>
+                                <td class="p-3 text-gray-700 dark:text-gray-300">
+                                    <span class="bg-red-100 dark:bg-red-900 text-red-700 dark:text-red-300 px-2 py-1 rounded font-bold">Insurer can audit for up to 3 years (36 months) after policy ends</span>
+                                </td>
+                            </tr>
+                            <tr class="border-b dark:border-gray-600">
+                                <td class="p-3 font-semibold text-amber-700 dark:text-amber-300">Inspections & Surveys</td>
+                                <td class="p-3 text-gray-700 dark:text-gray-300">
+                                    <ul class="space-y-1">
+                                        <li>Insurer has the <strong>right but not obligation</strong> to inspect</li>
+                                        <li>Inspection does NOT mean they're guaranteeing safety or code compliance</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            <tr class="border-b dark:border-gray-600">
+                                <td class="p-3 font-semibold text-teal-700 dark:text-teal-300">Premiums</td>
+                                <td class="p-3 text-gray-700 dark:text-gray-300">
+                                    <ul class="space-y-1">
+                                        <li>First named insured pays</li>
+                                        <li>First named insured gets refunds</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 font-semibold text-indigo-700 dark:text-indigo-300">Transfer of Rights & Duties</td>
+                                <td class="p-3 text-gray-700 dark:text-gray-300">
+                                    <ul class="space-y-1">
+                                        <li>Need insurer's written consent to transfer</li>
+                                        <li><strong>Exception:</strong> Automatic transfer to legal representative if insured dies</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Tips -->
+        <section class="mb-10">
+            <div class="bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-800 rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-red-800 dark:text-red-300 mb-4">Exam Trap Alerts</h2>
+
+                <div class="space-y-4">
+                    <div class="flex items-start">
+                        <span class="text-red-500 mr-3 text-xl">!</span>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>3 years / 36 months:</strong> Memorize this number for books and records examination!</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="text-red-500 mr-3 text-xl">!</span>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>First named insured:</strong> Keeps coming up - they're the main point of contact for everything (changes, cancellation, premiums, refunds).</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="text-red-500 mr-3 text-xl">!</span>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>Inspections does NOT = warranty of safety:</strong> Insurers protect themselves here. An inspection doesn't mean they're certifying your premises is safe.</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="text-red-500 mr-3 text-xl">!</span>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>Transfer requires consent EXCEPT death:</strong> That's automatic to legal representative.</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="text-red-500 mr-3 text-xl">!</span>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>Separation of insureds:</strong> Does NOT increase policy limits - it just applies coverage separately to each insured.</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="text-red-500 mr-3 text-xl">!</span>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>Bankruptcy:</strong> Insurer must still pay - bankruptcy doesn't relieve them of obligations.</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="text-red-500 mr-3 text-xl">!</span>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>Insurance follows the person, not the property:</strong> Unless the insurer agrees otherwise or you die.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Navigation Footer -->
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="supplementary.html" class="text-gray-300 hover:text-white">← Supplementary & Insureds</a>
+                <span class="text-gray-400">CGL - Limits & Conditions</span>
+                <a href="definitions.html" class="text-gray-300 hover:text-white">Definitions →</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Initialize AI Tutor -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            createFloatingAIButton(`Chapter 3 Part D: Policy Limits, Conditions & Common Policy Conditions
+
+Policy Limits:
+- Per Occurrence: max per accident (same for premises/ops and products/completed ops)
+- General Aggregate: max for all losses during policy period (Coverage A, B, C)
+- Separate aggregate for Products/Completed Operations
+- Fire Damage Legal Liability: for leased/occupied property
+- Bankruptcy doesn't relieve insurer of obligations
+
+Insured Duties:
+1. Notify insurer promptly
+2. Record details immediately
+3. Forward legal documents
+4. Authorize & assist investigation
+5. Do NOT make voluntary payments
+
+Common Policy Conditions (C-C-E-I-P-T):
+- Cancellation: first named insured can cancel anytime
+- Changes: only by endorsement, only first named insured
+- Examination: 3 years/36 months after policy ends
+- Inspections: right but not obligation, not a safety guarantee
+- Premiums: first named insured pays and gets refunds
+- Transfer: needs consent except death (automatic)`);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 3 Part B: Coverage B & C - Personal/Advertising Injury & Medical Payments | P&C Study Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <link rel="stylesheet" href="../../../css/styles.css">
+    <script src="../../../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+        }
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <!-- Settings & Theme Toggle Buttons -->
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="showAPIKeySetup()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings">
+            <svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+        </button>
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/>
+            </svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-green-600 to-green-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap gap-2 text-sm mb-2">
+                <a href="../../../index.html" class="text-green-200 hover:text-white">Home</a>
+                <span class="text-green-300">/</span>
+                <a href="../index.html" class="text-green-200 hover:text-white">Chapter 3</a>
+                <span class="text-green-300">/</span>
+                <span class="text-white">Part B</span>
+            </div>
+            <h1 class="text-3xl font-bold">Chapter 3 Part B: Coverage B & C</h1>
+            <p class="text-green-200 mt-1">Personal & Advertising Injury + Medical Payments</p>
+        </div>
+    </header>
+
+    <!-- Part Navigation -->
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-wrap gap-2 text-sm mb-2">
+                <a href="index.html" class="text-green-600 dark:text-green-400 hover:text-green-800 px-3 py-1 rounded hover:bg-green-50 dark:hover:bg-gray-700">Coverage A</a>
+                <span class="bg-green-600 text-white px-3 py-1 rounded font-medium">Coverage B & C</span>
+                <a href="supplementary.html" class="text-green-600 dark:text-green-400 hover:text-green-800 px-3 py-1 rounded hover:bg-green-50 dark:hover:bg-gray-700">Supplementary & Insureds</a>
+                <a href="conditions.html" class="text-green-600 dark:text-green-400 hover:text-green-800 px-3 py-1 rounded hover:bg-green-50 dark:hover:bg-gray-700">Limits & Conditions</a>
+                <a href="definitions.html" class="text-green-600 dark:text-green-400 hover:text-green-800 px-3 py-1 rounded hover:bg-green-50 dark:hover:bg-gray-700">Definitions</a>
+            </div>
+            <div class="flex flex-wrap gap-2 text-xs border-t dark:border-gray-700 pt-2">
+                <span class="text-gray-500 dark:text-gray-400">Chapter 3:</span>
+                <span class="bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-300 px-2 py-0.5 rounded">Part A: CGL</span>
+                <a href="../part-b/index.html" class="text-blue-600 dark:text-blue-400 hover:underline px-2 py-0.5">Part B: PAP & Business Auto</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Table of Contents -->
+    <div class="container mx-auto px-4 py-4 max-w-4xl">
+        <div class="bg-gray-100 dark:bg-gray-800 rounded-lg p-4">
+            <h3 class="font-bold text-gray-800 dark:text-gray-200 mb-2">On This Page</h3>
+            <div class="flex flex-wrap gap-2 text-sm">
+                <a href="#coverage-b" class="text-green-600 dark:text-green-400 hover:underline">Coverage B Overview</a>
+                <span class="text-gray-400">|</span>
+                <a href="#personal-injury" class="text-green-600 dark:text-green-400 hover:underline">Personal Injury</a>
+                <span class="text-gray-400">|</span>
+                <a href="#advertising-injury" class="text-green-600 dark:text-green-400 hover:underline">Advertising Injury</a>
+                <span class="text-gray-400">|</span>
+                <a href="#coverage-c" class="text-green-600 dark:text-green-400 hover:underline">Coverage C</a>
+                <span class="text-gray-400">|</span>
+                <a href="#summary" class="text-green-600 dark:text-green-400 hover:underline">Summary</a>
+            </div>
+        </div>
+    </div>
+
+    <main class="container mx-auto px-4 py-8 max-w-4xl">
+
+        <!-- Coverage B Overview -->
+        <section id="coverage-b" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">Coverage B: Personal & Advertising Injury Liability</h2>
+
+                <div class="bg-purple-50 dark:bg-purple-900/30 border border-purple-200 dark:border-purple-800 rounded-lg p-4 mb-6">
+                    <p class="font-bold text-purple-800 dark:text-purple-300 text-lg">What Coverage B Protects Against</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2">Coverage B covers specific acts that result in a <strong>non-physical injury</strong> to a third party due to offenses defined as personal and advertising injuries.</p>
+                </div>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-5 border-l-4 border-blue-500 mb-6">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg mb-3">Insuring Agreement</h3>
+                    <p class="text-gray-700 dark:text-gray-300">Similar to bodily injury and property damage insuring agreement, but third party injuries must be as a result of <strong>personal and advertising injury</strong>.</p>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                        <p class="font-semibold text-blue-700 dark:text-blue-300">Requirements:</p>
+                        <ul class="text-gray-600 dark:text-gray-400 text-sm mt-2 space-y-1">
+                            <li>The offense must be committed within the <strong>coverage territory</strong></li>
+                            <li>The offense must occur during the <strong>policy period</strong> described in the declarations</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Personal Injury -->
+        <section id="personal-injury" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">Personal Injury (PI)</h2>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 rounded-r-lg mb-6">
+                    <p class="font-bold text-amber-800 dark:text-amber-300">Key Concept</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2">Personal Injury covers injuries caused to third parties that result from <strong>mental anguish</strong> or specific wrongful acts - NOT physical bodily injury.</p>
+                </div>
+
+                <h3 class="font-bold text-gray-800 dark:text-gray-200 text-lg mb-4">Covered Personal Injury Offenses</h3>
+
+                <div class="grid md:grid-cols-2 gap-4">
+                    <!-- False Arrest -->
+                    <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-4 border-l-4 border-red-500">
+                        <h4 class="font-bold text-red-800 dark:text-red-300">False Arrest or Imprisonment</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm mt-2">Wrongfully detaining or restraining someone.</p>
+                        <div class="bg-white dark:bg-gray-700 p-2 rounded mt-2">
+                            <p class="text-xs text-gray-600 dark:text-gray-400"><strong>Example:</strong> Customer gets accused of shoplifting but later it's found they weren't. This is unlawful detention.</p>
+                        </div>
+                    </div>
+
+                    <!-- Wrongful Eviction -->
+                    <div class="bg-orange-50 dark:bg-orange-900/20 rounded-lg p-4 border-l-4 border-orange-500">
+                        <h4 class="font-bold text-orange-800 dark:text-orange-300">Wrongful Eviction or Detention</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm mt-2">Illegally removing someone from property.</p>
+                        <div class="bg-white dark:bg-gray-700 p-2 rounded mt-2">
+                            <p class="text-xs text-gray-600 dark:text-gray-400"><strong>Example:</strong> Landlord illegally locks tenant out without proper notice.</p>
+                        </div>
+                    </div>
+
+                    <!-- Invasion of Privacy -->
+                    <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 border-l-4 border-purple-500">
+                        <h4 class="font-bold text-purple-800 dark:text-purple-300">Invasion of Privacy</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm mt-2">Unauthorized intrusion into personal matters.</p>
+                        <div class="bg-white dark:bg-gray-700 p-2 rounded mt-2">
+                            <p class="text-xs text-gray-600 dark:text-gray-400"><strong>Example:</strong> Landlord enters tenant's home without permission or proper notice in the lease.</p>
+                        </div>
+                    </div>
+
+                    <!-- Malicious Prosecution -->
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 border-l-4 border-blue-500">
+                        <h4 class="font-bold text-blue-800 dark:text-blue-300">Malicious Prosecution</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm mt-2">Bringing false criminal charges against someone.</p>
+                        <div class="bg-white dark:bg-gray-700 p-2 rounded mt-2">
+                            <p class="text-xs text-gray-600 dark:text-gray-400"><strong>Example:</strong> Filing baseless criminal charges against a competitor to harm their reputation.</p>
+                        </div>
+                    </div>
+
+                    <!-- Defamation -->
+                    <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 border-l-4 border-green-500">
+                        <h4 class="font-bold text-green-800 dark:text-green-300">Defamation of Character</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm mt-2">Making false statements that damage reputation.</p>
+                        <div class="bg-white dark:bg-gray-700 p-2 rounded mt-2">
+                            <p class="text-xs text-gray-600 dark:text-gray-400"><strong>Includes:</strong> Slander (oral) and Libel (written)</p>
+                        </div>
+                    </div>
+
+                    <!-- Slander/Libel -->
+                    <div class="bg-teal-50 dark:bg-teal-900/20 rounded-lg p-4 border-l-4 border-teal-500">
+                        <h4 class="font-bold text-teal-800 dark:text-teal-300">Slander or Libel</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm mt-2">False statements harming reputation.</p>
+                        <div class="bg-white dark:bg-gray-700 p-2 rounded mt-2">
+                            <p class="text-xs text-gray-600 dark:text-gray-400"><strong>Slander:</strong> Oral publication | <strong>Libel:</strong> Written publication</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Advertising Injury -->
+        <section id="advertising-injury" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">Advertising Injury (AI)</h2>
+
+                <div class="bg-indigo-50 dark:bg-indigo-900/30 border border-indigo-200 dark:border-indigo-800 rounded-lg p-4 mb-6">
+                    <p class="font-bold text-indigo-800 dark:text-indigo-300 text-lg">What is Advertising Injury?</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2">Advertising Injury covers injuries that occur if, in the course of advertising, the insured inadvertently commits certain offenses against another party.</p>
+                </div>
+
+                <h3 class="font-bold text-gray-800 dark:text-gray-200 text-lg mb-4">Covered Advertising Injury Offenses</h3>
+
+                <div class="space-y-4">
+                    <div class="bg-indigo-50 dark:bg-indigo-900/20 rounded-lg p-4 border-l-4 border-indigo-500">
+                        <h4 class="font-bold text-indigo-800 dark:text-indigo-300">Libel, Slander, or Defamation</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm mt-2">Making false statements in advertising that harm another's reputation.</p>
+                    </div>
+
+                    <div class="bg-pink-50 dark:bg-pink-900/20 rounded-lg p-4 border-l-4 border-pink-500">
+                        <h4 class="font-bold text-pink-800 dark:text-pink-300">Privacy Violations</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm mt-2">Oral or written publication that violates or invades the privacy of another through advertising.</p>
+                    </div>
+
+                    <div class="bg-cyan-50 dark:bg-cyan-900/20 rounded-lg p-4 border-l-4 border-cyan-500">
+                        <h4 class="font-bold text-cyan-800 dark:text-cyan-300">Use of Another's Advertising Idea</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm mt-2">Misappropriating someone else's advertising concepts or campaigns.</p>
+                    </div>
+
+                    <div class="bg-amber-50 dark:bg-amber-900/20 rounded-lg p-4 border-l-4 border-amber-500">
+                        <h4 class="font-bold text-amber-800 dark:text-amber-300">Copyright, Trade Secret, or Slogan Infringement</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm mt-2">Using protected material in an insured advertisement without authorization.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Coverage C -->
+        <section id="coverage-c" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">Coverage C: Medical Payments</h2>
+
+                <div class="bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-800 rounded-lg p-4 mb-6">
+                    <p class="font-bold text-green-800 dark:text-green-300 text-lg">Good Will Coverage</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2">Coverage C is considered <strong>"good will" coverage</strong> because payment will be made <strong>without regard to the fault or negligence</strong> of the insured. It helps maintain customer relationships.</p>
+                </div>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-5 border-l-4 border-blue-500 mb-6">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg mb-3">What Coverage C Pays For</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mb-3">Provides necessary expenses for injuries to third parties:</p>
+                    <div class="grid md:grid-cols-2 gap-3">
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded flex items-center">
+                            <span class="text-green-500 mr-2">+</span>
+                            <span class="text-gray-700 dark:text-gray-300 text-sm">Medical expenses</span>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded flex items-center">
+                            <span class="text-green-500 mr-2">+</span>
+                            <span class="text-gray-700 dark:text-gray-300 text-sm">Surgical expenses</span>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded flex items-center">
+                            <span class="text-green-500 mr-2">+</span>
+                            <span class="text-gray-700 dark:text-gray-300 text-sm">Ambulance costs</span>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded flex items-center">
+                            <span class="text-green-500 mr-2">+</span>
+                            <span class="text-gray-700 dark:text-gray-300 text-sm">Hospital expenses</span>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded flex items-center">
+                            <span class="text-green-500 mr-2">+</span>
+                            <span class="text-gray-700 dark:text-gray-300 text-sm">Professional nursing</span>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded flex items-center">
+                            <span class="text-green-500 mr-2">+</span>
+                            <span class="text-gray-700 dark:text-gray-300 text-sm">Funeral expenses</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 rounded-r-lg mb-6">
+                    <p class="font-bold text-amber-800 dark:text-amber-300">Critical Time Requirement</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2">Medical expenses must be <strong>incurred and reported within 1 year (12 months)</strong> of the date of the accident to be covered.</p>
+                </div>
+
+                <h3 class="font-bold text-gray-800 dark:text-gray-200 text-lg mb-4">Coverage Requirements</h3>
+
+                <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-5">
+                    <p class="text-gray-700 dark:text-gray-300 mb-3">Bodily injury must meet ALL of the following:</p>
+                    <div class="space-y-3">
+                        <div class="flex items-start">
+                            <span class="bg-green-500 text-white rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0 text-sm">1</span>
+                            <p class="text-gray-700 dark:text-gray-300">Be due to an <strong>accident</strong></p>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="bg-green-500 text-white rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0 text-sm">2</span>
+                            <div>
+                                <p class="text-gray-700 dark:text-gray-300">Occur on <strong>premises owned or rented</strong> by the insured, OR</p>
+                                <p class="text-gray-700 dark:text-gray-300">Be due to the <strong>operations of the insured</strong></p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="bg-green-500 text-white rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0 text-sm">3</span>
+                            <p class="text-gray-700 dark:text-gray-300">Take place during the <strong>policy period</strong></p>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="bg-green-500 text-white rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0 text-sm">4</span>
+                            <p class="text-gray-700 dark:text-gray-300">Occur within the <strong>coverage territory</strong></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Summary Comparison -->
+        <section id="summary" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">Summary: Coverage A, B, and C</h2>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm">
+                        <thead>
+                            <tr class="bg-gray-100 dark:bg-gray-700">
+                                <th class="text-left p-3 font-bold text-gray-800 dark:text-gray-200">Coverage</th>
+                                <th class="text-left p-3 font-bold text-gray-800 dark:text-gray-200">Protects Against</th>
+                                <th class="text-left p-3 font-bold text-gray-800 dark:text-gray-200">Key Points</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b dark:border-gray-700">
+                                <td class="p-3">
+                                    <span class="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-300 px-2 py-1 rounded font-bold">A</span>
+                                    <p class="text-gray-600 dark:text-gray-400 mt-1">Bodily Injury (BI) & Property Damage (PD)</p>
+                                </td>
+                                <td class="p-3 text-gray-700 dark:text-gray-300">
+                                    <strong>BI:</strong> Injury, sickness, disease, death to third parties<br>
+                                    <strong>PD:</strong> Damage to or loss of use of others' property
+                                </td>
+                                <td class="p-3 text-gray-600 dark:text-gray-400">Physical injuries from business activities</td>
+                            </tr>
+                            <tr class="border-b dark:border-gray-700">
+                                <td class="p-3">
+                                    <span class="bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-300 px-2 py-1 rounded font-bold">B</span>
+                                    <p class="text-gray-600 dark:text-gray-400 mt-1">Personal Injury (PI) & Advertising Injury (AI)</p>
+                                </td>
+                                <td class="p-3 text-gray-700 dark:text-gray-300">
+                                    <strong>PI:</strong> Mental anguish, false arrest, wrongful eviction, malicious prosecution, defamation, slander/libel, invasion of privacy<br>
+                                    <strong>AI:</strong> Libel, slander, defamation, privacy violation, using another's advertising idea
+                                </td>
+                                <td class="p-3 text-gray-600 dark:text-gray-400">Non-physical injuries from specific offenses</td>
+                            </tr>
+                            <tr>
+                                <td class="p-3">
+                                    <span class="bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-300 px-2 py-1 rounded font-bold">C</span>
+                                    <p class="text-gray-600 dark:text-gray-400 mt-1">Medical Payments</p>
+                                </td>
+                                <td class="p-3 text-gray-700 dark:text-gray-300">
+                                    Medical, surgical, ambulance, hospital, nursing, funeral expenses for third parties
+                                </td>
+                                <td class="p-3 text-gray-600 dark:text-gray-400">
+                                    <strong>Good will coverage</strong> - paid WITHOUT regard to fault<br>
+                                    Must report within <strong>12 months</strong>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="mt-6 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/30 dark:to-purple-900/30 rounded-lg p-5">
+                    <h3 class="font-bold text-gray-800 dark:text-gray-200 mb-3">Quick Memory Aid</h3>
+                    <div class="grid md:grid-cols-3 gap-4 text-center">
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg shadow">
+                            <p class="text-2xl font-bold text-blue-600 dark:text-blue-400">A</p>
+                            <p class="font-semibold text-gray-800 dark:text-gray-200">Physical Harm</p>
+                            <p class="text-xs text-gray-600 dark:text-gray-400">Body + Property</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg shadow">
+                            <p class="text-2xl font-bold text-purple-600 dark:text-purple-400">B</p>
+                            <p class="font-semibold text-gray-800 dark:text-gray-200">Mental Harm</p>
+                            <p class="text-xs text-gray-600 dark:text-gray-400">Reputation + Feelings</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg shadow">
+                            <p class="text-2xl font-bold text-green-600 dark:text-green-400">C</p>
+                            <p class="font-semibold text-gray-800 dark:text-gray-200">Medical Bills</p>
+                            <p class="text-xs text-gray-600 dark:text-gray-400">No-Fault Good Will</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Tips -->
+        <section class="mb-10">
+            <div class="bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-800 rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-red-800 dark:text-red-300 mb-4">Exam Trap Alerts</h2>
+
+                <div class="space-y-4">
+                    <div class="flex items-start">
+                        <span class="text-red-500 mr-3 text-xl">!</span>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>Coverage C - 12 months:</strong> Medical expenses must be incurred AND reported within 1 year of the accident. This is different from other time limits in the policy.</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="text-red-500 mr-3 text-xl">!</span>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>Coverage C is "no-fault":</strong> Unlike Coverage A and B, Coverage C pays regardless of whether the insured was negligent.</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="text-red-500 mr-3 text-xl">!</span>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>Personal vs Advertising Injury:</strong> Both are in Coverage B but have different covered offenses. Personal = detention/privacy. Advertising = ads/marketing.</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="text-red-500 mr-3 text-xl">!</span>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>Slander vs Libel:</strong> Slander = oral (spoken). Libel = written. Both are covered under PI and AI.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Navigation Footer -->
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="index.html" class="text-gray-300 hover:text-white">← Coverage A</a>
+                <span class="text-gray-400">CGL - Coverage B & C</span>
+                <a href="supplementary.html" class="text-gray-300 hover:text-white">Supplementary & Insureds →</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Initialize AI Tutor -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            createFloatingAIButton(`Chapter 3 Part B: Coverage B & C
+
+Coverage B - Personal & Advertising Injury:
+- Non-physical injuries to third parties
+- Personal Injury: false arrest, wrongful eviction, malicious prosecution, defamation, slander/libel, invasion of privacy
+- Advertising Injury: libel, slander, privacy violation, using another's ad idea, copyright/trade secret infringement
+
+Coverage C - Medical Payments:
+- "Good will" coverage - paid WITHOUT regard to fault
+- Covers: medical, surgical, ambulance, hospital, nursing, funeral expenses
+- Must be incurred and reported within 12 months
+- Injury must occur on insured premises or due to operations`);
+        });
+    </script>
+</body>
+</html>

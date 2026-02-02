@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PAP Part D: Coverage for Damage to Your Auto | P&C Study Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <link rel="stylesheet" href="../../../css/styles.css">
+    <script src="../../../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+        }
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <!-- Settings & Theme Toggle Buttons -->
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="showAPIKeySetup()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings">
+            <svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+        </button>
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/>
+            </svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-purple-600 to-purple-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap gap-2 text-sm mb-2">
+                <a href="../../../index.html" class="text-purple-200 hover:text-white">Home</a>
+                <span class="text-purple-300">/</span>
+                <a href="../index.html" class="text-purple-200 hover:text-white">Chapter 3</a>
+                <span class="text-purple-300">/</span>
+                <a href="index.html" class="text-purple-200 hover:text-white">Part B: PAP</a>
+                <span class="text-purple-300">/</span>
+                <span class="text-white">Part D: Physical Damage</span>
+            </div>
+            <h1 class="text-3xl font-bold">PAP Part D: Coverage for Damage to Your Auto</h1>
+            <p class="text-purple-200 mt-1">Collision & Other-Than-Collision (Comprehensive) Coverage</p>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-wrap gap-2 text-sm">
+                <a href="index.html" class="text-purple-600 dark:text-purple-400 hover:text-purple-800 px-3 py-1 rounded hover:bg-purple-50 dark:hover:bg-gray-700">Overview</a>
+                <a href="pap-liability.html" class="text-purple-600 dark:text-purple-400 hover:text-purple-800 px-3 py-1 rounded hover:bg-purple-50 dark:hover:bg-gray-700">Part A: Liability</a>
+                <a href="pap-medical.html" class="text-purple-600 dark:text-purple-400 hover:text-purple-800 px-3 py-1 rounded hover:bg-purple-50 dark:hover:bg-gray-700">Part B: Medical</a>
+                <a href="pap-um.html" class="text-purple-600 dark:text-purple-400 hover:text-purple-800 px-3 py-1 rounded hover:bg-purple-50 dark:hover:bg-gray-700">Part C: UM/UIM</a>
+                <span class="bg-purple-600 text-white px-3 py-1 rounded font-medium">Part D: Physical</span>
+                <a href="pap-duties.html" class="text-purple-600 dark:text-purple-400 hover:text-purple-800 px-3 py-1 rounded hover:bg-purple-50 dark:hover:bg-gray-700">Parts E & F</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 py-8 max-w-4xl">
+
+        <!-- Overview -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">What Is Part D Coverage?</h2>
+
+                <div class="bg-purple-50 dark:bg-purple-900/30 border border-purple-200 dark:border-purple-800 rounded-lg p-4 mb-6">
+                    <p class="font-bold text-purple-800 dark:text-purple-300 text-lg">Coverage for YOUR Vehicle</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2">Part D pays to repair or replace YOUR covered auto when it's damaged. This is "first-party" property coverage - it protects your own vehicle.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    <!-- Collision -->
+                    <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-5 border-2 border-red-300 dark:border-red-800">
+                        <h3 class="font-bold text-red-800 dark:text-red-300 text-lg mb-3">Collision Coverage</h3>
+                        <p class="text-gray-700 dark:text-gray-300 mb-3">Covers damage from the <strong>upset or impact</strong> of your covered auto with:</p>
+                        <ul class="text-gray-600 dark:text-gray-400 space-y-1 text-sm">
+                            <li>+ Another vehicle</li>
+                            <li>+ An object (tree, guardrail, building)</li>
+                            <li>+ The ground (rollover)</li>
+                        </ul>
+                        <div class="bg-white dark:bg-gray-700 p-2 rounded mt-3">
+                            <p class="text-xs text-gray-600 dark:text-gray-400"><strong>Example:</strong> You rear-end someone. You slide off the road and hit a mailbox.</p>
+                        </div>
+                    </div>
+
+                    <!-- Other-Than-Collision -->
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-5 border-2 border-blue-300 dark:border-blue-800">
+                        <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg mb-3">Other-Than-Collision (Comprehensive)</h3>
+                        <p class="text-gray-700 dark:text-gray-300 mb-3">Covers losses from things <strong>other than collision</strong>:</p>
+                        <div class="grid grid-cols-2 gap-1 text-xs">
+                            <span class="bg-white dark:bg-gray-700 p-1 rounded">Fire</span>
+                            <span class="bg-white dark:bg-gray-700 p-1 rounded">Theft/Larceny</span>
+                            <span class="bg-white dark:bg-gray-700 p-1 rounded">Windstorm/Hail</span>
+                            <span class="bg-white dark:bg-gray-700 p-1 rounded">Flood/Water</span>
+                            <span class="bg-white dark:bg-gray-700 p-1 rounded">Vandalism</span>
+                            <span class="bg-white dark:bg-gray-700 p-1 rounded">Riot</span>
+                            <span class="bg-white dark:bg-gray-700 p-1 rounded">Falling Objects</span>
+                            <span class="bg-white dark:bg-gray-700 p-1 rounded">Missiles</span>
+                            <span class="bg-white dark:bg-gray-700 p-1 rounded">Earthquake</span>
+                            <span class="bg-white dark:bg-gray-700 p-1 rounded">Explosion</span>
+                            <span class="bg-white dark:bg-gray-700 p-1 rounded">Birds/Animals</span>
+                            <span class="bg-white dark:bg-gray-700 p-1 rounded">Glass Breakage</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 rounded-r-lg mt-6">
+                    <p class="font-bold text-amber-800 dark:text-amber-300">Collision vs Comprehensive - Easy Way to Remember:</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm mt-1"><strong>Collision</strong> = You HIT something. <strong>Comprehensive</strong> = Something HAPPENS to your car (that isn't a collision).</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Special Collision Situations -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">Tricky Scenarios: Collision or Comprehensive?</h2>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border border-amber-200 dark:border-amber-800 rounded-lg p-4 mb-6">
+                    <p class="font-bold text-amber-800 dark:text-amber-300">Exam Favorite!</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2">Some losses could go either way. The policy specifies certain perils are <strong>Other-Than-Collision</strong> even though they might seem like collisions.</p>
+                </div>
+
+                <div class="space-y-3">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg flex items-center justify-between">
+                        <div>
+                            <p class="font-semibold text-gray-800 dark:text-gray-200">Hit a Deer</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm">Contact with a bird or animal</p>
+                        </div>
+                        <span class="bg-blue-600 text-white px-3 py-1 rounded text-sm font-bold">OTHER-THAN-COLLISION</span>
+                    </div>
+
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg flex items-center justify-between">
+                        <div>
+                            <p class="font-semibold text-gray-800 dark:text-gray-200">Tree Branch Falls on Car</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm">Falling object</p>
+                        </div>
+                        <span class="bg-blue-600 text-white px-3 py-1 rounded text-sm font-bold">OTHER-THAN-COLLISION</span>
+                    </div>
+
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg flex items-center justify-between">
+                        <div>
+                            <p class="font-semibold text-gray-800 dark:text-gray-200">Windshield Cracked by Rock</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm">Missile or falling object / glass breakage</p>
+                        </div>
+                        <span class="bg-blue-600 text-white px-3 py-1 rounded text-sm font-bold">OTHER-THAN-COLLISION</span>
+                    </div>
+
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg flex items-center justify-between">
+                        <div>
+                            <p class="font-semibold text-gray-800 dark:text-gray-200">Hit a Telephone Pole</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm">Impact with an object</p>
+                        </div>
+                        <span class="bg-red-600 text-white px-3 py-1 rounded text-sm font-bold">COLLISION</span>
+                    </div>
+
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg flex items-center justify-between">
+                        <div>
+                            <p class="font-semibold text-gray-800 dark:text-gray-200">Car Flips Over</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm">Upset of vehicle</p>
+                        </div>
+                        <span class="bg-red-600 text-white px-3 py-1 rounded text-sm font-bold">COLLISION</span>
+                    </div>
+
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg flex items-center justify-between">
+                        <div>
+                            <p class="font-semibold text-gray-800 dark:text-gray-200">Slide Into a Ditch</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm">Impact with ground/object</p>
+                        </div>
+                        <span class="bg-red-600 text-white px-3 py-1 rounded text-sm font-bold">COLLISION</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Transportation Expenses -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">Transportation Expenses</h2>
+
+                <div class="bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-800 rounded-lg p-4 mb-6">
+                    <p class="font-bold text-green-800 dark:text-green-300">Rental Car Reimbursement</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2">Part D includes coverage for transportation expenses when your covered auto is out of commission due to a covered loss.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-5 border-l-4 border-blue-500">
+                        <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg mb-3">For Collision/Other-Than-Collision Loss</h3>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm mb-2">Pays for transportation expenses incurred by the insured, including:</p>
+                        <ul class="text-gray-600 dark:text-gray-400 text-sm space-y-1">
+                            <li>+ Rental car costs</li>
+                            <li>+ Public transportation</li>
+                            <li>+ Taxi fares</li>
+                        </ul>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm"><span class="font-bold text-blue-700 dark:text-blue-300">Daily Max:</span> <span class="text-gray-700 dark:text-gray-300">$20/day</span></p>
+                            <p class="text-sm"><span class="font-bold text-blue-700 dark:text-blue-300">Total Max:</span> <span class="text-gray-700 dark:text-gray-300">$600</span></p>
+                        </div>
+                    </div>
+
+                    <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-5 border-l-4 border-purple-500">
+                        <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg mb-3">For Theft (Total Theft)</h3>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm mb-2">If your entire vehicle is stolen:</p>
+                        <ul class="text-gray-600 dark:text-gray-400 text-sm space-y-1">
+                            <li>+ Coverage begins <strong>48 hours after the theft</strong></li>
+                            <li>+ Ends when vehicle is returned OR loss is paid</li>
+                        </ul>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm"><span class="font-bold text-purple-700 dark:text-purple-300">Daily Max:</span> <span class="text-gray-700 dark:text-gray-300">$20/day</span></p>
+                            <p class="text-sm"><span class="font-bold text-purple-700 dark:text-purple-300">Total Max:</span> <span class="text-gray-700 dark:text-gray-300">$600</span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-red-50 dark:bg-red-900/30 border-l-4 border-red-500 p-4 rounded-r-lg mt-4">
+                    <p class="font-bold text-red-800 dark:text-red-300">48-Hour Waiting Period for Theft</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm mt-1">Transportation expenses for theft don't start until 48 hours after you report the theft. This prevents claims when cars are just "misplaced."</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exclusions -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">Part D Exclusions</h2>
+
+                <div class="bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-800 rounded-lg p-4 mb-6">
+                    <p class="font-bold text-red-800 dark:text-red-300">Coverage Does NOT Apply To:</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-3">
+                    <div class="bg-gray-50 dark:bg-gray-700 p-3 rounded-lg">
+                        <p class="font-semibold text-red-700 dark:text-red-300 text-sm">Public/Livery Conveyance</p>
+                        <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">Using your car as a taxi, Uber, etc.</p>
+                    </div>
+
+                    <div class="bg-gray-50 dark:bg-gray-700 p-3 rounded-lg">
+                        <p class="font-semibold text-red-700 dark:text-red-300 text-sm">Damage Due to War</p>
+                        <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">War, civil war, insurrection, rebellion, revolution</p>
+                    </div>
+
+                    <div class="bg-gray-50 dark:bg-gray-700 p-3 rounded-lg">
+                        <p class="font-semibold text-red-700 dark:text-red-300 text-sm">Nuclear Hazard</p>
+                        <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">Nuclear reaction, radiation, or radioactive contamination</p>
+                    </div>
+
+                    <div class="bg-gray-50 dark:bg-gray-700 p-3 rounded-lg">
+                        <p class="font-semibold text-red-700 dark:text-red-300 text-sm">Racing</p>
+                        <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">Racing facility - racing, speed contests, driver training</p>
+                    </div>
+
+                    <div class="bg-gray-50 dark:bg-gray-700 p-3 rounded-lg">
+                        <p class="font-semibold text-red-700 dark:text-red-300 text-sm">Wear and Tear</p>
+                        <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">Normal depreciation, mechanical/electrical breakdown</p>
+                    </div>
+
+                    <div class="bg-gray-50 dark:bg-gray-700 p-3 rounded-lg">
+                        <p class="font-semibold text-red-700 dark:text-red-300 text-sm">Tires</p>
+                        <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">Damage to tires UNLESS caused by same event that damages the vehicle</p>
+                    </div>
+
+                    <div class="bg-gray-50 dark:bg-gray-700 p-3 rounded-lg">
+                        <p class="font-semibold text-red-700 dark:text-red-300 text-sm">Electronic Equipment</p>
+                        <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">Designed primarily for reproducing sound (aftermarket stereos)</p>
+                    </div>
+
+                    <div class="bg-gray-50 dark:bg-gray-700 p-3 rounded-lg">
+                        <p class="font-semibold text-red-700 dark:text-red-300 text-sm">Custom Furnishings</p>
+                        <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">Special carpeting, insulation, furniture in vans/trucks</p>
+                    </div>
+
+                    <div class="bg-gray-50 dark:bg-gray-700 p-3 rounded-lg md:col-span-2">
+                        <p class="font-semibold text-red-700 dark:text-red-300 text-sm">Radar/Laser Detectors & CB Radios</p>
+                        <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">Devices for detection of speed measuring equipment, CB radios, scanning equipment</p>
+                    </div>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 rounded-r-lg mt-4">
+                    <p class="font-bold text-amber-800 dark:text-amber-300">Tire Exception</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm mt-1">Flat tire from a pothole? Not covered. Tires damaged in the same accident that damages the car? Covered.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Loss Payment -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">How Losses Are Paid</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-800 rounded-lg p-4 mb-6">
+                    <p class="font-bold text-blue-800 dark:text-blue-300">Insurer's Payment Options</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2">The insurer may pay for the loss in money, OR repair or replace the damaged or stolen property.</p>
+                </div>
+
+                <div class="space-y-4">
+                    <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 border-l-4 border-green-500">
+                        <h4 class="font-bold text-green-800 dark:text-green-300">Actual Cash Value (ACV)</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm mt-2">Payment is based on the <strong>Actual Cash Value</strong> of the stolen or damaged property at the time of loss.</p>
+                        <div class="bg-white dark:bg-gray-700 p-2 rounded mt-2">
+                            <p class="text-sm text-gray-600 dark:text-gray-400"><strong>ACV = Replacement Cost - Depreciation</strong></p>
+                        </div>
+                    </div>
+
+                    <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 border-l-4 border-purple-500">
+                        <h4 class="font-bold text-purple-800 dark:text-purple-300">Maximum Payment</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm mt-2">The most the insurer will pay is the <strong>lesser of</strong>:</p>
+                        <ul class="text-gray-600 dark:text-gray-400 text-sm mt-2 space-y-1">
+                            <li>1. The actual cash value (ACV) of the stolen/damaged property</li>
+                            <li>2. The amount necessary to repair or replace the property with like kind and quality</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-amber-50 dark:bg-amber-900/20 rounded-lg p-4 border-l-4 border-amber-500">
+                        <h4 class="font-bold text-amber-800 dark:text-amber-300">Deductible</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm mt-2">Any deductible shown in the declarations will be subtracted from the loss payment.</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">You typically have separate deductibles for Collision and Other-Than-Collision.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Appraisal -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">Appraisal Process</h2>
+
+                <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-4">
+                    <p class="font-semibold text-gray-800 dark:text-gray-200 mb-3">If You and the Insurer Disagree on the Amount of Loss:</p>
+                    <div class="space-y-3">
+                        <div class="flex items-start">
+                            <span class="bg-purple-500 text-white rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0 text-sm">1</span>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm">Each party selects a competent appraiser</p>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="bg-purple-500 text-white rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0 text-sm">2</span>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm">The two appraisers select an umpire</p>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="bg-purple-500 text-white rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0 text-sm">3</span>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm">The appraisers each state the amount of loss separately</p>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="bg-purple-500 text-white rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0 text-sm">4</span>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm">If they can't agree, they submit their differences to the umpire</p>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="bg-purple-500 text-white rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0 text-sm">5</span>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm">Agreement by any two of the three sets the amount</p>
+                        </div>
+                    </div>
+                    <div class="bg-amber-100 dark:bg-amber-900/50 p-2 rounded mt-3">
+                        <p class="text-sm text-amber-700 dark:text-amber-300 font-semibold">Each party pays their own appraiser and shares the umpire cost equally.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Tips -->
+        <section class="mb-10">
+            <div class="bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-800 rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-red-800 dark:text-red-300 mb-4">Exam Trap Alerts</h2>
+
+                <div class="space-y-4">
+                    <div class="flex items-start">
+                        <span class="text-red-500 mr-3 text-xl">!</span>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>Deer = Other-Than-Collision:</strong> Contact with any animal is NOT collision!</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="text-red-500 mr-3 text-xl">!</span>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>$20/day, $600 max:</strong> Transportation expense limits. Know these numbers!</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="text-red-500 mr-3 text-xl">!</span>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>48 hours for theft:</strong> Transportation expenses for stolen vehicles don't start until 48 hours after reporting.</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="text-red-500 mr-3 text-xl">!</span>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>Tires:</strong> Only covered if damaged in the same incident that damages the car.</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="text-red-500 mr-3 text-xl">!</span>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>ACV:</strong> Payment is Actual Cash Value (replacement minus depreciation), not replacement cost.</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="text-red-500 mr-3 text-xl">!</span>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>Appraisal:</strong> Two appraisers + one umpire. Any two agreeing sets the amount.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Navigation Footer -->
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="pap-um.html" class="text-gray-300 hover:text-white">← Part C: UM/UIM</a>
+                <span class="text-gray-400">Part D: Physical Damage</span>
+                <a href="pap-duties.html" class="text-gray-300 hover:text-white">Parts E & F: Duties →</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            createFloatingAIButton(`PAP Part D: Coverage for Damage to Your Auto
+
+Two Types of Coverage:
+1. COLLISION = upset or impact with another vehicle/object
+2. OTHER-THAN-COLLISION (Comprehensive) = everything else
+
+Other-Than-Collision Includes:
+- Fire, theft, windstorm, hail, flood
+- Vandalism, riot, falling objects
+- Contact with birds/animals (deer!)
+- Glass breakage, earthquake, explosion
+
+Transportation Expenses:
+- $20/day, $600 maximum
+- For theft: starts 48 hours after reporting
+
+Key Exclusions:
+- War, nuclear hazard
+- Wear and tear, mechanical breakdown
+- Tires (unless damaged in same accident)
+- Aftermarket electronics, radar detectors
+- Racing
+
+Loss Payment:
+- Actual Cash Value (ACV) = Replacement - Depreciation
+- Deductible applies
+
+Appraisal:
+- Each party picks an appraiser
+- Two appraisers pick an umpire
+- Any 2 of 3 agreeing sets the amount`);
+        });
+    </script>
+</body>
+</html>
