@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PAP Part A: Liability Coverage | P&C Study Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <link rel="stylesheet" href="../../../css/styles.css">
+    <script src="../../../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+        }
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <!-- Settings & Theme Toggle Buttons -->
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="showAPIKeySetup()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings">
+            <svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+        </button>
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/>
+            </svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-red-600 to-red-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap gap-2 text-sm mb-2">
+                <a href="../../../index.html" class="text-red-200 hover:text-white">Home</a>
+                <span class="text-red-300">/</span>
+                <a href="../index.html" class="text-red-200 hover:text-white">Chapter 3</a>
+                <span class="text-red-300">/</span>
+                <a href="index.html" class="text-red-200 hover:text-white">Part B: PAP</a>
+                <span class="text-red-300">/</span>
+                <span class="text-white">Part A: Liability</span>
+            </div>
+            <h1 class="text-3xl font-bold">PAP Part A: Liability Coverage</h1>
+            <p class="text-red-200 mt-1">Protection When YOU Cause an Accident</p>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-wrap gap-2 text-sm">
+                <a href="index.html" class="text-red-600 dark:text-red-400 hover:text-red-800 px-3 py-1 rounded hover:bg-red-50 dark:hover:bg-gray-700">Overview</a>
+                <span class="bg-red-600 text-white px-3 py-1 rounded font-medium">Part A: Liability</span>
+                <a href="pap-medical.html" class="text-red-600 dark:text-red-400 hover:text-red-800 px-3 py-1 rounded hover:bg-red-50 dark:hover:bg-gray-700">Part B: Medical</a>
+                <a href="pap-um.html" class="text-red-600 dark:text-red-400 hover:text-red-800 px-3 py-1 rounded hover:bg-red-50 dark:hover:bg-gray-700">Part C: UM/UIM</a>
+                <a href="pap-physical.html" class="text-red-600 dark:text-red-400 hover:text-red-800 px-3 py-1 rounded hover:bg-red-50 dark:hover:bg-gray-700">Part D: Physical</a>
+                <a href="pap-duties.html" class="text-red-600 dark:text-red-400 hover:text-red-800 px-3 py-1 rounded hover:bg-red-50 dark:hover:bg-gray-700">Parts E & F</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-4xl lg:max-w-6xl">
+
+        <!-- What Liability Covers -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">What Does Liability Coverage Pay For?</h2>
+
+                <div class="bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-800 rounded-lg p-4 mb-6">
+                    <p class="font-bold text-red-800 dark:text-red-300 text-lg">Liability = When YOU Are At Fault</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2">This coverage protects you when your car is involved in an accident and YOU are legally responsible for hurting someone or damaging their property.</p>
+                </div>
+
+                <h3 class="font-bold text-gray-800 dark:text-gray-200 mb-3">The Policy Will Pay For:</h3>
+
+                <div class="space-y-4">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500">
+                        <h4 class="font-bold text-blue-800 dark:text-blue-300">1. Bodily Injury & Property Damage</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-2">Pays for injuries to others and damage to their property due to an accident for which you are <strong>legally responsible</strong>.</p>
+                        <div class="bg-white dark:bg-gray-700 p-2 lg:p-3 rounded mt-2">
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-300"><strong>Example:</strong> You run a red light and hit another car. You pay for their medical bills and car repairs.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-green-500">
+                        <h4 class="font-bold text-green-800 dark:text-green-300">2. Defense Costs</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-2">Pays for your legal defense as long as the policy covers the particular loss.</p>
+                        <div class="bg-amber-100 dark:bg-amber-900/50 p-2 lg:p-3 rounded mt-2">
+                            <p class="text-xs lg:text-sm text-amber-700 dark:text-amber-300 font-semibold">Important: Defense costs are paid IN ADDITION to the policy limits!</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-purple-500">
+                        <h4 class="font-bold text-purple-800 dark:text-purple-300">3. Settlement Costs</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-2">Costs for settling or defending you as the insurer deems appropriate.</p>
+                        <div class="bg-red-100 dark:bg-red-900/50 p-2 lg:p-3 rounded mt-2">
+                            <p class="text-xs lg:text-sm text-red-700 dark:text-red-300 font-semibold">These costs END when the limits of insurance are exhausted.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Who Is Insured -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">Who Is an Insured Under Part A?</h2>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border border-amber-200 dark:border-amber-800 rounded-lg p-4 lg:p-5 mb-6">
+                    <p class="font-bold text-amber-800 dark:text-amber-300">Key Concept:</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2">Any person qualifies as an insured while using a covered auto, as defined in Part A - Liability Coverage. <strong>Click each category</strong> to see detailed examples!</p>
+                </div>
+
+                <!-- Accordion for Who Is Insured -->
+                <div class="space-y-2" id="insured-accordion">
+                    <!-- 1. You or Family Member -->
+                    <div class="insured-item border border-gray-200 dark:border-gray-600 rounded-lg overflow-hidden">
+                        <button onclick="toggleInsured(this)" class="w-full flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors text-left">
+                            <div class="flex items-center">
+                                <span class="bg-red-500 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3 flex-shrink-0 font-bold text-sm">1</span>
+                                <span class="font-semibold text-gray-800 dark:text-gray-200">You or Any Family Member</span>
+                            </div>
+                            <svg class="w-5 h-5 text-gray-500 transition-transform accordion-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="insured-content hidden p-4 bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-600">
+                            <p class="text-gray-700 dark:text-gray-300 mb-3">For the ownership, maintenance, or use of <strong>any auto or trailer</strong>.</p>
+                            <div class="bg-blue-50 dark:bg-blue-900/30 p-3 rounded">
+                                <p class="text-sm font-semibold text-blue-800 dark:text-blue-300">What does this mean?</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">You and your family members are covered while driving ANY car - yours, a rental, a friend's car, any car at all.</p>
+                            </div>
+                            <div class="bg-green-50 dark:bg-green-900/30 p-3 rounded mt-2">
+                                <p class="text-sm font-semibold text-green-700 dark:text-green-300">Example:</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">Your teenage son (who lives with you) borrows a friend's car and crashes. Your PAP covers him because he's a "family member" driving "any auto."</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2. Permissive User -->
+                    <div class="insured-item border border-gray-200 dark:border-gray-600 rounded-lg overflow-hidden">
+                        <button onclick="toggleInsured(this)" class="w-full flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors text-left">
+                            <div class="flex items-center">
+                                <span class="bg-red-500 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3 flex-shrink-0 font-bold text-sm">2</span>
+                                <span class="font-semibold text-gray-800 dark:text-gray-200">Any Person Using Your Covered Auto with Permission</span>
+                            </div>
+                            <svg class="w-5 h-5 text-gray-500 transition-transform accordion-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="insured-content hidden p-4 bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-600">
+                            <p class="text-gray-700 dark:text-gray-300 mb-3">Anyone you give permission to drive YOUR car is covered under YOUR policy.</p>
+                            <div class="bg-green-50 dark:bg-green-900/30 p-3 rounded">
+                                <p class="text-sm font-semibold text-green-700 dark:text-green-300">Example - COVERED:</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-300 mt-1"><strong>The Setup:</strong> Your friend asks to borrow your car to run to the store. You say "sure, go ahead."</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-300 mt-2"><strong>What Happens:</strong> Your friend crashes your car and injures someone.</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-300 mt-2"><strong>Who Pays?</strong> YOUR PAP covers your friend because they had your permission to use your covered auto.</p>
+                            </div>
+                            <div class="bg-red-50 dark:bg-red-900/30 p-3 rounded mt-2">
+                                <p class="text-sm font-semibold text-red-700 dark:text-red-300">Example - NOT COVERED:</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-300 mt-1"><strong>The Setup:</strong> Your neighbor's kid takes your car keys without asking and goes for a joyride.</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-300 mt-2"><strong>What Happens:</strong> They crash your car.</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-300 mt-2"><strong>Who Pays?</strong> YOUR PAP does NOT cover them - they didn't have permission!</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3. Person/Org for YOUR covered auto -->
+                    <div class="insured-item border border-gray-200 dark:border-gray-600 rounded-lg overflow-hidden">
+                        <button onclick="toggleInsured(this)" class="w-full flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors text-left">
+                            <div class="flex items-center">
+                                <span class="bg-red-500 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3 flex-shrink-0 font-bold text-sm">3</span>
+                                <span class="font-semibold text-gray-800 dark:text-gray-200">Any Person or Organization (for YOUR covered auto)</span>
+                            </div>
+                            <svg class="w-5 h-5 text-gray-500 transition-transform accordion-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="insured-content hidden p-4 bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-600">
+                            <p class="text-gray-700 dark:text-gray-300 mb-3">This covers someone who gets sued because of what YOU did while driving YOUR car.</p>
+                            <div class="bg-blue-50 dark:bg-blue-900/30 p-3 rounded mb-3">
+                                <p class="text-sm font-semibold text-blue-800 dark:text-blue-300">What does this mean in plain English?</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">If someone gets dragged into a lawsuit because of YOUR accident in YOUR car, your policy helps protect them too.</p>
+                            </div>
+                            <div class="bg-green-50 dark:bg-green-900/30 p-3 rounded">
+                                <p class="text-sm font-semibold text-green-700 dark:text-green-300">Example - COVERED:</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-300 mt-1"><strong>The Setup:</strong> You have a PAP on your Honda Civic. You work for ABC Company.</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-300 mt-2"><strong>What Happens:</strong> While driving YOUR Honda Civic to deliver documents for work, you crash and injure someone. The injured person sues both you AND ABC Company, claiming "He was on company business!"</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-300 mt-2"><strong>Who Pays?</strong> YOUR PAP covers ABC Company. Why? They're being sued because of YOUR actions in YOUR covered auto.</p>
+                            </div>
+                            <div class="bg-amber-50 dark:bg-amber-900/30 p-3 rounded mt-2">
+                                <p class="text-sm font-semibold text-amber-700 dark:text-amber-300">Key Point:</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">This only applies when you're driving YOUR OWN covered auto. For borrowed cars, see #4 below.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 4. Person/Org for OTHER autos -->
+                    <div class="insured-item border border-gray-200 dark:border-gray-600 rounded-lg overflow-hidden">
+                        <button onclick="toggleInsured(this)" class="w-full flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors text-left">
+                            <div class="flex items-center">
+                                <span class="bg-red-500 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3 flex-shrink-0 font-bold text-sm">4</span>
+                                <span class="font-semibold text-gray-800 dark:text-gray-200">Any Person or Organization (for OTHER autos - not yours)</span>
+                            </div>
+                            <svg class="w-5 h-5 text-gray-500 transition-transform accordion-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="insured-content hidden p-4 bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-600">
+                            <p class="text-gray-700 dark:text-gray-300 mb-3">This is similar to #3, but for when you're driving <strong>someone else's car</strong> (not your covered auto).</p>
+
+                            <div class="bg-purple-50 dark:bg-purple-900/30 p-3 rounded mb-3">
+                                <p class="text-sm font-semibold text-purple-800 dark:text-purple-300">Let's break this down step by step:</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-300 mt-2">This covers a person or organization who gets sued because of what YOU did - but in a car that ISN'T yours.</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-300 mt-2"><strong>The catch:</strong> The person/organization being covered can't OWN or HIRE that other auto.</p>
+                            </div>
+
+                            <div class="bg-green-50 dark:bg-green-900/30 p-3 rounded">
+                                <p class="text-sm font-semibold text-green-700 dark:text-green-300">Example - COVERED:</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-300 mt-1"><strong>The Setup:</strong> You have your own PAP (your own car insurance policy on your own car at home). Today, you borrow your neighbor's car to run a work errand for your employer.</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-300 mt-2"><strong>What Happens:</strong> You crash your neighbor's car and injure someone. The injured person sues your employer, saying "He was on a work errand, so the company is responsible!"</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-300 mt-2"><strong>Who Pays?</strong> YOUR PAP (your personal policy) will help cover your employer's legal defense. Why? Because your employer is getting sued for YOUR actions, and your employer doesn't own or hire your neighbor's car.</p>
+                                <p class="text-sm text-blue-600 dark:text-blue-300 mt-2"><strong>Key Point:</strong> Your neighbor's car has nothing to do with your employer - they just got dragged into a lawsuit because of YOU. So YOUR insurance helps protect them.</p>
+                            </div>
+
+                            <div class="bg-red-50 dark:bg-red-900/30 p-3 rounded mt-2">
+                                <p class="text-sm font-semibold text-red-700 dark:text-red-300">Example - NOT COVERED:</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-300 mt-1"><strong>The Setup:</strong> Same situation - you have your own PAP. But this time, you're driving a company car (a vehicle your employer owns or leases).</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-300 mt-2"><strong>What Happens:</strong> You crash the company car. Someone sues your employer.</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-300 mt-2"><strong>Who Pays?</strong> YOUR PAP will NOT cover your employer. Why? Because your employer OWNS or HIRED that vehicle - they should have their own Business Auto Policy covering it.</p>
+                                <p class="text-sm text-red-600 dark:text-red-300 mt-2"><strong>Key Point:</strong> Your personal insurance isn't meant to cover vehicles that belong to businesses. If a company owns/hires a vehicle, THEY need to insure it.</p>
+                            </div>
+
+                            <div class="bg-amber-50 dark:bg-amber-900/30 p-3 rounded mt-3">
+                                <p class="text-sm font-semibold text-amber-700 dark:text-amber-300">Why does this rule exist?</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">Your personal policy extends protection to innocent third parties who get sued because of YOUR actions. But if that third party owns or controls the vehicle, they're not "innocent" - they should have insured that vehicle themselves!</p>
+                            </div>
+
+                            <div class="bg-blue-50 dark:bg-blue-900/30 p-3 rounded mt-3">
+                                <p class="text-sm font-semibold text-blue-800 dark:text-blue-300">Remember:</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">This coverage only kicks in if YOU have a PAP. It's YOUR policy extending protection to others who get sued because of YOUR driving in someone else's car.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Supplementary Payments -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">Supplementary Payments</h2>
+
+                <div class="bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-800 rounded-lg p-4 lg:p-5 mb-6">
+                    <p class="font-bold text-green-800 dark:text-green-300">Bonus Coverage!</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2">These are paid <strong>IN ADDITION</strong> to your liability limit. They don't reduce your coverage.</p>
+                </div>
+
+                <div class="space-y-3">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 flex items-center justify-between">
+                        <div>
+                            <p class="font-semibold text-blue-800 dark:text-blue-300">Bail Bonds</p>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm lg:text-base">Cost of bail bonds required because of a covered loss</p>
+                        </div>
+                        <span class="bg-blue-600 text-white px-3 py-1 rounded font-bold">Up to $250</span>
+                    </div>
+
+                    <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 lg:p-5">
+                        <p class="font-semibold text-purple-800 dark:text-purple-300">Appeal Bonds & Release Attachments</p>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm lg:text-base">Premiums on appeal bonds and bonds to release attachments in covered suits</p>
+                    </div>
+
+                    <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 lg:p-5">
+                        <p class="font-semibold text-green-800 dark:text-green-300">Interest on Judgment</p>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm lg:text-base">Interest that accrues after the judgment has been entered</p>
+                    </div>
+
+                    <div class="bg-amber-50 dark:bg-amber-900/20 rounded-lg p-4 lg:p-5 flex items-center justify-between">
+                        <div>
+                            <p class="font-semibold text-amber-800 dark:text-amber-300">Lost Earnings</p>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm lg:text-base">For assisting in legal proceedings (attending hearings, trials)</p>
+                        </div>
+                        <span class="bg-amber-600 text-white px-3 py-1 rounded font-bold">Up to $200/day</span>
+                    </div>
+
+                    <div class="bg-teal-50 dark:bg-teal-900/20 rounded-lg p-4 lg:p-5">
+                        <p class="font-semibold text-teal-800 dark:text-teal-300">Other Reasonable Expenses</p>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm lg:text-base">Other reasonable expenses incurred at the request of the insurer</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exclusions -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">Liability Exclusions - What's NOT Covered</h2>
+
+                <div class="bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-800 rounded-lg p-4 mb-6">
+                    <p class="font-bold text-red-800 dark:text-red-300">Know These for the Exam!</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2">The liability coverage will NOT pay for these situations. <strong>Click each one</strong> to see examples!</p>
+                </div>
+
+                <!-- Accordion Exclusions -->
+                <div class="space-y-2" id="exclusions-accordion">
+                    <!-- 1. Intentional Injury -->
+                    <div class="exclusion-item border border-gray-200 dark:border-gray-600 rounded-lg overflow-hidden">
+                        <button onclick="toggleExclusion(this)" class="w-full flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors text-left">
+                            <div class="flex items-center">
+                                <span class="text-red-500 mr-3">✕</span>
+                                <span class="font-semibold text-gray-800 dark:text-gray-200">Intentional Injury or Damage</span>
+                            </div>
+                            <svg class="w-5 h-5 text-gray-500 transition-transform accordion-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="exclusion-content hidden p-4 bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-600">
+                            <p class="text-gray-700 dark:text-gray-300 mb-3">Damage or injury that you cause <strong>on purpose</strong> is never covered.</p>
+                            <div class="bg-red-50 dark:bg-red-900/30 p-3 rounded">
+                                <p class="text-sm font-semibold text-red-700 dark:text-red-300">Example - NOT COVERED:</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">You get in an argument with someone in a parking lot and deliberately ram your car into theirs. Your PAP will NOT cover the damage because you did it intentionally.</p>
+                            </div>
+                            <div class="bg-green-50 dark:bg-green-900/30 p-3 rounded mt-2">
+                                <p class="text-sm font-semibold text-green-700 dark:text-green-300">Compare - COVERED:</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">You accidentally back into someone's car in a parking lot. This IS covered because it was an accident, not intentional.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2. Property Owned or Transported -->
+                    <div class="exclusion-item border border-gray-200 dark:border-gray-600 rounded-lg overflow-hidden">
+                        <button onclick="toggleExclusion(this)" class="w-full flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors text-left">
+                            <div class="flex items-center">
+                                <span class="text-red-500 mr-3">✕</span>
+                                <span class="font-semibold text-gray-800 dark:text-gray-200">Property Owned or Transported</span>
+                            </div>
+                            <svg class="w-5 h-5 text-gray-500 transition-transform accordion-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="exclusion-content hidden p-4 bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-600">
+                            <p class="text-gray-700 dark:text-gray-300 mb-3">Liability coverage doesn't pay for damage to property YOU own or property YOU'RE carrying in your car.</p>
+                            <p class="text-sm text-amber-700 dark:text-amber-300 mb-3"><strong>Why?</strong> Liability = damage to OTHER people's stuff. Your own stuff needs property coverage, not liability.</p>
+                            <div class="bg-red-50 dark:bg-red-900/30 p-3 rounded">
+                                <p class="text-sm font-semibold text-red-700 dark:text-red-300">Example - NOT COVERED:</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">You're transporting your new $2,000 laptop in your car. You get in an accident and the laptop is destroyed. Your liability coverage will NOT pay for your laptop - it's YOUR property being transported.</p>
+                            </div>
+                            <div class="bg-red-50 dark:bg-red-900/30 p-3 rounded mt-2">
+                                <p class="text-sm font-semibold text-red-700 dark:text-red-300">Another Example - NOT COVERED:</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">You crash into your own fence at home. Liability won't cover it because YOU own the fence.</p>
+                            </div>
+                            <div class="bg-green-50 dark:bg-green-900/30 p-3 rounded mt-2">
+                                <p class="text-sm font-semibold text-green-700 dark:text-green-300">Compare - COVERED:</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">You crash into your NEIGHBOR'S fence. That IS covered by liability because it's someone else's property.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3. Rented/Used Property -->
+                    <div class="exclusion-item border border-gray-200 dark:border-gray-600 rounded-lg overflow-hidden">
+                        <button onclick="toggleExclusion(this)" class="w-full flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors text-left">
+                            <div class="flex items-center">
+                                <span class="text-red-500 mr-3">✕</span>
+                                <span class="font-semibold text-gray-800 dark:text-gray-200">Rented/Used Property</span>
+                            </div>
+                            <svg class="w-5 h-5 text-gray-500 transition-transform accordion-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="exclusion-content hidden p-4 bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-600">
+                            <p class="text-gray-700 dark:text-gray-300 mb-3">Property you're renting, using, or have in your care/custody is excluded - <strong>EXCEPT</strong> a home or private garage.</p>
+                            <div class="bg-red-50 dark:bg-red-900/30 p-3 rounded">
+                                <p class="text-sm font-semibold text-red-700 dark:text-red-300">Example - NOT COVERED:</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">You borrow your friend's trailer to haul stuff. While driving, you damage the trailer. Your liability won't cover it because the trailer was "in your care."</p>
+                            </div>
+                            <div class="bg-green-50 dark:bg-green-900/30 p-3 rounded mt-2">
+                                <p class="text-sm font-semibold text-green-700 dark:text-green-300">Exception - COVERED:</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">You crash your car into your rented apartment building's wall. This IS covered because there's an exception for residence premises and private garages.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 4. Employee Injuries -->
+                    <div class="exclusion-item border border-gray-200 dark:border-gray-600 rounded-lg overflow-hidden">
+                        <button onclick="toggleExclusion(this)" class="w-full flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors text-left">
+                            <div class="flex items-center">
+                                <span class="text-red-500 mr-3">✕</span>
+                                <span class="font-semibold text-gray-800 dark:text-gray-200">Employee Injuries (Workers Comp Territory)</span>
+                            </div>
+                            <svg class="w-5 h-5 text-gray-500 transition-transform accordion-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="exclusion-content hidden p-4 bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-600">
+                            <p class="text-gray-700 dark:text-gray-300 mb-3">Injuries to your employee during the course of employment aren't covered - that's what Workers Compensation is for!</p>
+                            <div class="bg-red-50 dark:bg-red-900/30 p-3 rounded">
+                                <p class="text-sm font-semibold text-red-700 dark:text-red-300">Example - NOT COVERED:</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">You own a small business. Your employee is riding with you to a job site when you crash. Your PAP won't cover their injuries because they're your employee during work hours - Workers Comp applies instead.</p>
+                            </div>
+                            <div class="bg-green-50 dark:bg-green-900/30 p-3 rounded mt-2">
+                                <p class="text-sm font-semibold text-green-700 dark:text-green-300">Exception - Domestic Employees:</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">If you have a nanny or housekeeper and your state doesn't require Workers Comp for domestic employees, your PAP WOULD cover their injuries.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 5. Public/Livery Conveyance -->
+                    <div class="exclusion-item border border-gray-200 dark:border-gray-600 rounded-lg overflow-hidden">
+                        <button onclick="toggleExclusion(this)" class="w-full flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors text-left">
+                            <div class="flex items-center">
+                                <span class="text-red-500 mr-3">✕</span>
+                                <span class="font-semibold text-gray-800 dark:text-gray-200">Public/Livery Conveyance (Taxi Service)</span>
+                            </div>
+                            <svg class="w-5 h-5 text-gray-500 transition-transform accordion-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="exclusion-content hidden p-4 bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-600">
+                            <p class="text-gray-700 dark:text-gray-300 mb-3">Using your car as a taxi or to transport passengers for a fee is excluded.</p>
+                            <div class="bg-red-50 dark:bg-red-900/30 p-3 rounded">
+                                <p class="text-sm font-semibold text-red-700 dark:text-red-300">Example - NOT COVERED:</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">You start an informal taxi service, charging neighbors $10 for rides to the airport. If you crash, your PAP won't cover it because you're operating a livery service.</p>
+                            </div>
+                            <div class="bg-green-50 dark:bg-green-900/30 p-3 rounded mt-2">
+                                <p class="text-sm font-semibold text-green-700 dark:text-green-300">Exceptions - COVERED:</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-300 mt-1"><strong>Carpools:</strong> Sharing gas money with coworkers for a regular carpool IS covered.<br><strong>Charity:</strong> Driving elderly neighbors to church (volunteer) IS covered.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 6. Transportation Network (Uber/Lyft) -->
+                    <div class="exclusion-item border border-gray-200 dark:border-gray-600 rounded-lg overflow-hidden">
+                        <button onclick="toggleExclusion(this)" class="w-full flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors text-left">
+                            <div class="flex items-center">
+                                <span class="text-red-500 mr-3">✕</span>
+                                <span class="font-semibold text-gray-800 dark:text-gray-200">Transportation Network Platform (Uber/Lyft)</span>
+                            </div>
+                            <svg class="w-5 h-5 text-gray-500 transition-transform accordion-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="exclusion-content hidden p-4 bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-600">
+                            <p class="text-gray-700 dark:text-gray-300 mb-3">When you're logged into the Uber/Lyft app as a driver, you're NOT covered - <strong>even if you don't have a passenger yet!</strong></p>
+                            <div class="bg-red-50 dark:bg-red-900/30 p-3 rounded">
+                                <p class="text-sm font-semibold text-red-700 dark:text-red-300">Example - NOT COVERED:</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">You're logged into the Uber app waiting for a ride request. While waiting, you get in an accident. Your personal PAP won't cover it - you need rideshare insurance!</p>
+                            </div>
+                            <div class="bg-amber-50 dark:bg-amber-900/30 p-3 rounded mt-2">
+                                <p class="text-sm font-semibold text-amber-700 dark:text-amber-300">Key Point:</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">It doesn't matter if you have passengers or not. The moment you're "available for hire" on the app, your personal PAP is OFF.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 7. Auto Business -->
+                    <div class="exclusion-item border border-gray-200 dark:border-gray-600 rounded-lg overflow-hidden">
+                        <button onclick="toggleExclusion(this)" class="w-full flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors text-left">
+                            <div class="flex items-center">
+                                <span class="text-red-500 mr-3">✕</span>
+                                <span class="font-semibold text-gray-800 dark:text-gray-200">Auto Business</span>
+                            </div>
+                            <svg class="w-5 h-5 text-gray-500 transition-transform accordion-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="exclusion-content hidden p-4 bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-600">
+                            <p class="text-gray-700 dark:text-gray-300 mb-3">If you work in the auto business (selling, repairing, servicing, storing, or parking vehicles), your PAP won't cover you while working on CUSTOMER vehicles.</p>
+                            <div class="bg-red-50 dark:bg-red-900/30 p-3 rounded">
+                                <p class="text-sm font-semibold text-red-700 dark:text-red-300">Example - NOT COVERED:</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">You work at a car dealership. While test-driving a customer's trade-in, you crash it. Your personal PAP won't cover this - the dealership needs Garage Coverage.</p>
+                            </div>
+                            <div class="bg-green-50 dark:bg-green-900/30 p-3 rounded mt-2">
+                                <p class="text-sm font-semibold text-green-700 dark:text-green-300">Exception - YOUR Own Car:</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">If you drive YOUR personal covered auto to work at the dealership and crash it, that IS still covered by your PAP.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 8. Commercial Vehicles in Business -->
+                    <div class="exclusion-item border border-gray-200 dark:border-gray-600 rounded-lg overflow-hidden">
+                        <button onclick="toggleExclusion(this)" class="w-full flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors text-left">
+                            <div class="flex items-center">
+                                <span class="text-red-500 mr-3">✕</span>
+                                <span class="font-semibold text-gray-800 dark:text-gray-200">Commercial Vehicles in Business</span>
+                            </div>
+                            <svg class="w-5 h-5 text-gray-500 transition-transform accordion-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="exclusion-content hidden p-4 bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-600">
+                            <p class="text-gray-700 dark:text-gray-300 mb-3">Using commercial-type vehicles (big trucks, buses) for business purposes requires commercial insurance, not a PAP.</p>
+                            <div class="bg-red-50 dark:bg-red-900/30 p-3 rounded">
+                                <p class="text-sm font-semibold text-red-700 dark:text-red-300">Example - NOT COVERED:</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">You own a food truck. While driving it to an event, you crash. Your personal PAP won't cover the food truck - you need a Business Auto Policy.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 9. Without Permission -->
+                    <div class="exclusion-item border border-gray-200 dark:border-gray-600 rounded-lg overflow-hidden">
+                        <button onclick="toggleExclusion(this)" class="w-full flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors text-left">
+                            <div class="flex items-center">
+                                <span class="text-red-500 mr-3">✕</span>
+                                <span class="font-semibold text-gray-800 dark:text-gray-200">Without Permission</span>
+                            </div>
+                            <svg class="w-5 h-5 text-gray-500 transition-transform accordion-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="exclusion-content hidden p-4 bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-600">
+                            <p class="text-gray-700 dark:text-gray-300 mb-3">If someone takes your car without your permission, they're NOT covered under your policy.</p>
+                            <div class="bg-red-50 dark:bg-red-900/30 p-3 rounded">
+                                <p class="text-sm font-semibold text-red-700 dark:text-red-300">Example - NOT COVERED:</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">Your neighbor's teenager "borrows" your car without asking and crashes it. The teenager is NOT covered by your PAP because they didn't have permission.</p>
+                            </div>
+                            <div class="bg-green-50 dark:bg-green-900/30 p-3 rounded mt-2">
+                                <p class="text-sm font-semibold text-green-700 dark:text-green-300">Compare - With Permission:</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">You let your neighbor borrow your car for errands. They crash. They ARE covered because they had your permission.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 10. Nuclear Energy -->
+                    <div class="exclusion-item border border-gray-200 dark:border-gray-600 rounded-lg overflow-hidden">
+                        <button onclick="toggleExclusion(this)" class="w-full flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors text-left">
+                            <div class="flex items-center">
+                                <span class="text-red-500 mr-3">✕</span>
+                                <span class="font-semibold text-gray-800 dark:text-gray-200">Nuclear Energy Policy</span>
+                            </div>
+                            <svg class="w-5 h-5 text-gray-500 transition-transform accordion-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="exclusion-content hidden p-4 bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-600">
+                            <p class="text-gray-700 dark:text-gray-300 mb-3">Anyone covered under a nuclear energy liability policy is excluded from PAP coverage.</p>
+                            <div class="bg-amber-50 dark:bg-amber-900/30 p-3 rounded">
+                                <p class="text-sm font-semibold text-amber-700 dark:text-amber-300">Why This Exists:</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">Nuclear facilities have their own special liability insurance. If a nuclear plant worker causes an accident, the nuclear policy covers it - not their personal auto policy. This prevents duplicate coverage.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vehicle-Specific Exclusions -->
+                <div class="mt-6 bg-amber-50 dark:bg-amber-900/30 rounded-lg p-4 lg:p-5">
+                    <p class="font-bold text-amber-800 dark:text-amber-300 mb-3">Ownership, Maintenance, or Use Exclusions:</p>
+                    <p class="text-sm text-gray-600 dark:text-gray-300 mb-3">These vehicle types are NOT covered under your PAP:</p>
+                    <div class="grid md:grid-cols-2 gap-2 text-sm">
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <span class="font-semibold">Fewer than 4 wheels</span>
+                            <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Motorcycles, scooters need separate policies</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <span class="font-semibold">Off-road vehicles</span>
+                            <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">ATVs, dirt bikes, dune buggies</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <span class="font-semibold">Other owned vehicles</span>
+                            <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Vehicles you own but didn't add to policy</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <span class="font-semibold">Family member's vehicle</span>
+                            <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Unless you're the named insured maintaining it</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <span class="font-semibold">Racing/speed contests</span>
+                            <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Any racing facility or driver training</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <span class="font-semibold">Aircraft</span>
+                            <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Vehicles designed for flight</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <script>
+        // Accordion for "Who Is Insured" section
+        function toggleInsured(button) {
+            const item = button.closest('.insured-item');
+            const content = item.querySelector('.insured-content');
+            const arrow = button.querySelector('.accordion-arrow');
+            const isOpen = !content.classList.contains('hidden');
+
+            // Close all other insured items first
+            document.querySelectorAll('.insured-item').forEach(otherItem => {
+                if (otherItem !== item) {
+                    otherItem.querySelector('.insured-content').classList.add('hidden');
+                    otherItem.querySelector('.accordion-arrow').classList.remove('rotate-180');
+                }
+            });
+
+            // Toggle current one
+            if (isOpen) {
+                content.classList.add('hidden');
+                arrow.classList.remove('rotate-180');
+            } else {
+                content.classList.remove('hidden');
+                arrow.classList.add('rotate-180');
+            }
+        }
+
+        // Accordion for "Exclusions" section
+        function toggleExclusion(button) {
+            const item = button.closest('.exclusion-item');
+            const content = item.querySelector('.exclusion-content');
+            const arrow = button.querySelector('.accordion-arrow');
+            const isOpen = !content.classList.contains('hidden');
+
+            // Close all other exclusions first
+            document.querySelectorAll('.exclusion-item').forEach(otherItem => {
+                if (otherItem !== item) {
+                    otherItem.querySelector('.exclusion-content').classList.add('hidden');
+                    otherItem.querySelector('.accordion-arrow').classList.remove('rotate-180');
+                }
+            });
+
+            // Toggle current one
+            if (isOpen) {
+                content.classList.add('hidden');
+                arrow.classList.remove('rotate-180');
+            } else {
+                content.classList.remove('hidden');
+                arrow.classList.add('rotate-180');
+            }
+        }
+        </script>
+
+        <!-- Limits of Liability -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">Limits of Liability - Split vs Combined</h2>
+
+                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                    <!-- Split Limits -->
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-5 border-2 border-blue-300 dark:border-blue-800">
+                        <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg mb-3">Split Limit Coverage</h3>
+                        <p class="text-gray-700 dark:text-gray-300 mb-3">Uses <strong>3 dollar amounts</strong>, always expressed in this order:</p>
+
+                        <div class="space-y-3">
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                                <p class="font-semibold text-blue-700 dark:text-blue-300">1st Number: BI Per Person</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">Max for bodily injury for EACH person</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                                <p class="font-semibold text-blue-700 dark:text-blue-300">2nd Number: BI Per Accident</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">Max for ALL bodily injuries in one accident</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                                <p class="font-semibold text-blue-700 dark:text-blue-300">3rd Number: PD Per Accident</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">Max for property damage per accident</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-blue-100 dark:bg-blue-800/50 p-3 rounded mt-4">
+                            <p class="font-semibold text-blue-800 dark:text-blue-200">Example: 25/50/25</p>
+                            <ul class="text-sm text-gray-700 dark:text-gray-300 mt-2 space-y-1">
+                                <li>$25,000 BI per person</li>
+                                <li>$50,000 BI per accident (all people)</li>
+                                <li>$25,000 property damage per accident</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Combined Single Limit -->
+                    <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-5 border-2 border-green-300 dark:border-green-800">
+                        <h3 class="font-bold text-green-800 dark:text-green-300 text-lg mb-3">Combined Single Limit (CSL)</h3>
+                        <p class="text-gray-700 dark:text-gray-300 mb-3">Uses <strong>1 dollar amount</strong> for everything:</p>
+
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded">
+                            <p class="font-semibold text-green-700 dark:text-green-300">One Number Covers It All</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">Maximum coverage for ALL losses - regardless of number of people or amount of property damage</p>
+                        </div>
+
+                        <div class="bg-green-100 dark:bg-green-800/50 p-3 rounded mt-4">
+                            <p class="font-semibold text-green-800 dark:text-green-200">Example: $100,000 CSL</p>
+                            <p class="text-sm text-gray-700 dark:text-gray-300 mt-2">$100,000 total available for all BI and PD combined in one accident</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 rounded-r-lg">
+                    <p class="font-bold text-amber-800 dark:text-amber-300">Financial Responsibility</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm mt-2">When the policy is used to satisfy any financial responsibility requirements, the policy will comply with the law to the extent required.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Out-of-State Coverage -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">Out-of-State Coverage</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-800 rounded-lg p-4 mb-6">
+                    <p class="font-bold text-blue-800 dark:text-blue-300">What Happens If You Have an Accident in Another State?</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2">If your covered auto is involved in an accident in any state or Canadian province OTHER than where your car is principally garaged:</p>
+                </div>
+
+                <div class="space-y-4">
+                    <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-semibold text-gray-800 dark:text-gray-200">If the Other State Has Higher Limits:</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">Your policy will provide the higher limits required by that state's financial responsibility law.</p>
+                    </div>
+
+                    <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-semibold text-gray-800 dark:text-gray-200">If the State Requires Certain Coverage for Non-Residents:</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">Your policy will provide at least the required minimum amounts and types of coverage.</p>
+                    </div>
+                </div>
+
+                <div class="bg-red-50 dark:bg-red-900/30 border-l-4 border-red-500 p-4 rounded-r-lg mt-4">
+                    <p class="font-bold text-red-800 dark:text-red-300">No Duplicate Payments</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm mt-1">No one is entitled to duplicate payments for the same loss.</p>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 rounded-r-lg mt-4">
+                    <p class="font-bold text-amber-800 dark:text-amber-300">Key Point:</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm mt-1">Your limits don't change when you travel state to state. BUT if you have an accident, the limits adjust UP to meet the minimum limits of the state where the accident occurred (if those are higher).</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Other Insurance -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">Other Insurance Clause</h2>
+
+                <div class="space-y-4">
+                    <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-semibold text-gray-800 dark:text-gray-200">If Other Insurance Exists:</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">If there is other insurance available to pay for a covered loss, the insurer will only pay its <strong>share</strong> of the loss.</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm mt-2">The insurer's share = the proportion that its limit bears to the total of all available limits.</p>
+                    </div>
+
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border-l-4 border-purple-500">
+                        <p class="font-semibold text-purple-800 dark:text-purple-300">For Nonowned Vehicles:</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">The insurance will be considered <strong>EXCESS</strong> over any other collectible insurance.</p>
+                        <div class="bg-white dark:bg-gray-700 p-2 rounded mt-2">
+                            <p class="text-xs text-gray-600 dark:text-gray-400"><strong>Example:</strong> You borrow a friend's car. Their insurance pays first; your insurance only kicks in if their limits are exhausted.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Tips -->
+        <section class="mb-10">
+            <div class="bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl font-bold text-red-800 dark:text-red-300 mb-4">Exam Trap Alerts</h2>
+
+                <div class="space-y-4">
+                    <div class="flex items-start">
+                        <span class="text-red-500 mr-3 text-xl">!</span>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>Split limits order:</strong> Always BI per person / BI per accident / PD. Never changes!</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="text-red-500 mr-3 text-xl">!</span>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>$250 bail bonds, $200/day lost earnings:</strong> Memorize these supplementary payment limits.</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="text-red-500 mr-3 text-xl">!</span>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>Defense costs:</strong> Paid IN ADDITION to policy limits (they don't reduce your coverage).</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="text-red-500 mr-3 text-xl">!</span>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>Rideshare exclusion:</strong> Uber/Lyft drivers are NOT covered while logged in - even without passengers!</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="text-red-500 mr-3 text-xl">!</span>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>Nonowned vehicle:</strong> Your insurance is EXCESS (pays after the car owner's insurance).</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="text-red-500 mr-3 text-xl">!</span>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>Carpool exception:</strong> Using car for carpool is NOT excluded (only commercial livery is excluded).</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Navigation Footer -->
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="index.html" class="text-gray-300 hover:text-white">← PAP Overview</a>
+                <span class="text-gray-400">Part A: Liability</span>
+                <a href="pap-medical.html" class="text-gray-300 hover:text-white">Part B: Medical →</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            createFloatingAIButton(`PAP Part A: Liability Coverage
+
+What Liability Pays For:
+- BI and PD when YOU are legally responsible
+- Defense costs (in addition to limits)
+- Settlement costs (ends when limits exhausted)
+
+Who Is Insured:
+- You or any family member (any auto/trailer)
+- Anyone using your covered auto with permission
+- Anyone legally responsible for insured's acts
+
+Supplementary Payments:
+- Bail bonds: up to $250
+- Lost earnings: up to $200/day
+- Appeal bonds, interest on judgment
+
+Split Limits (3 numbers): BI per person / BI per accident / PD
+Example: 25/50/25
+
+Combined Single Limit: One amount for everything
+
+Key Exclusions:
+- Intentional damage
+- Livery/rideshare (when logged in)
+- Racing, off-road vehicles, aircraft
+- Without permission
+
+Other Insurance: Excess for nonowned vehicles`);
+        });
+    </script>
+</body>
+</html>

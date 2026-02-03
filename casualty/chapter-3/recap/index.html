@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 3 Recap: Types of Policies, Bonds, and Related Terms | P&C Study Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <link rel="stylesheet" href="../../../css/styles.css">
+    <script src="../../../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+        }
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <!-- Settings & Theme Toggle Buttons -->
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="showAPIKeySetup()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings">
+            <svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+        </button>
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/>
+            </svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-green-600 to-emerald-700 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap gap-2 text-sm mb-2">
+                <a href="../../../index.html" class="text-green-200 hover:text-white">Home</a>
+                <span class="text-green-300">/</span>
+                <a href="../index.html" class="text-green-200 hover:text-white">Chapter 3</a>
+                <span class="text-green-300">/</span>
+                <span class="text-white">Chapter Recap</span>
+            </div>
+            <h1 class="text-3xl font-bold">Chapter 3 Recap</h1>
+            <p class="text-green-200 mt-1">Quick Reference: Types of Policies, Bonds, and Related Terms</p>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-wrap gap-2 text-sm">
+                <a href="#cgl" class="text-green-600 dark:text-green-300 hover:bg-green-50 dark:hover:bg-gray-700 px-3 py-1 rounded">CGL</a>
+                <a href="#auto" class="text-blue-600 dark:text-blue-300 hover:bg-blue-50 dark:hover:bg-gray-700 px-3 py-1 rounded">Auto</a>
+                <a href="#wc" class="text-orange-600 dark:text-orange-300 hover:bg-orange-50 dark:hover:bg-gray-700 px-3 py-1 rounded">Workers Comp</a>
+                <a href="#crime" class="text-amber-600 dark:text-amber-300 hover:bg-amber-50 dark:hover:bg-gray-700 px-3 py-1 rounded">Crime</a>
+                <a href="#bonds" class="text-purple-600 dark:text-purple-300 hover:bg-purple-50 dark:hover:bg-gray-700 px-3 py-1 rounded">Bonds</a>
+                <a href="#professional" class="text-teal-600 dark:text-teal-300 hover:bg-teal-50 dark:hover:bg-gray-700 px-3 py-1 rounded">Professional</a>
+                <a href="#umbrella" class="text-indigo-600 dark:text-indigo-300 hover:bg-indigo-50 dark:hover:bg-gray-700 px-3 py-1 rounded">Umbrella</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-4xl lg:max-w-6xl">
+
+        <!-- Intro -->
+        <section class="mb-8">
+            <div class="bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-800 rounded-xl p-6">
+                <h2 class="text-xl font-bold text-green-800 dark:text-green-300 mb-2">Chapter 3 Summary</h2>
+                <p class="text-gray-700 dark:text-gray-300">This chapter explained various types of <strong>casualty or liability insurance policies</strong>. Use this recap page for quick review before your exam!</p>
+            </div>
+        </section>
+
+        <!-- CGL Section -->
+        <section id="cgl" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="bg-green-500 text-white rounded-full w-10 h-10 flex items-center justify-center font-bold">1</div>
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100">Commercial General Liability (CGL)</h2>
+                </div>
+
+                <!-- Exposures -->
+                <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 mb-4 border-l-4 border-green-500">
+                    <h3 class="font-bold text-green-800 dark:text-green-300 mb-2">Exposures</h3>
+                    <div class="grid md:grid-cols-2 gap-3">
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-semibold text-green-700 dark:text-green-300">Premises and Operations</p>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm">Ownership, maintenance, or use of insured's premises; includes business operations; subject to exclusions and limits</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-semibold text-green-700 dark:text-green-300">Product and Completed Operations</p>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm">Injuries/damage occurring after insured completes job and leaves site OR relinquishes control of product</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Coverage Form -->
+                <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 mb-4">
+                    <h3 class="font-bold text-gray-800 dark:text-gray-200 mb-3">CGL Coverage Form</h3>
+                    <div class="space-y-2">
+                        <div class="bg-white dark:bg-gray-600 p-3 rounded flex items-start gap-2">
+                            <span class="bg-green-500 text-white text-xs font-bold px-2 py-1 rounded">A</span>
+                            <div>
+                                <p class="font-semibold text-gray-800 dark:text-gray-200">Bodily Injury and Property Damage</p>
+                                <p class="text-gray-600 dark:text-gray-300 text-sm">Covers BI and PD of a third party</p>
+                            </div>
+                        </div>
+                        <div class="bg-white dark:bg-gray-600 p-3 rounded flex items-start gap-2">
+                            <span class="bg-green-500 text-white text-xs font-bold px-2 py-1 rounded">B</span>
+                            <div>
+                                <p class="font-semibold text-gray-800 dark:text-gray-200">Personal and Advertising Injury</p>
+                                <p class="text-gray-600 dark:text-gray-300 text-sm">Covers non-physical injury (libel and slander)</p>
+                            </div>
+                        </div>
+                        <div class="bg-white dark:bg-gray-600 p-3 rounded flex items-start gap-2">
+                            <span class="bg-green-500 text-white text-xs font-bold px-2 py-1 rounded">C</span>
+                            <div>
+                                <p class="font-semibold text-gray-800 dark:text-gray-200">Medical Payments</p>
+                                <p class="text-gray-600 dark:text-gray-300 text-sm">Medical, surgical, ambulance, hospital, nursing, funeral expenses of third party</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Limits -->
+                <div class="grid md:grid-cols-2 gap-3 mb-4">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-3 rounded">
+                        <p class="font-bold text-blue-800 dark:text-blue-300">Per Occurrence</p>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm">Maximum amount payable per occurrence or accident</p>
+                    </div>
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-3 rounded">
+                        <p class="font-bold text-blue-800 dark:text-blue-300">Aggregate Limit</p>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm">Most the insurer will pay for losses in policy period</p>
+                    </div>
+                </div>
+
+                <!-- Who Is Insured -->
+                <div class="bg-amber-50 dark:bg-amber-900/20 rounded-lg p-4 border-l-4 border-amber-500">
+                    <h3 class="font-bold text-amber-800 dark:text-amber-300 mb-2">Who Is Insured</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-2 text-sm">
+                        <div class="bg-white dark:bg-gray-700 p-2 rounded text-center">Individual (sole proprietor)</div>
+                        <div class="bg-white dark:bg-gray-700 p-2 rounded text-center">Partnership/Joint Venture</div>
+                        <div class="bg-white dark:bg-gray-700 p-2 rounded text-center">LLC or Trust</div>
+                        <div class="bg-white dark:bg-gray-700 p-2 rounded text-center">Other Organization</div>
+                    </div>
+                </div>
+
+                <div class="mt-4 text-right">
+                    <a href="../part-1/index.html" class="text-green-600 dark:text-green-400 hover:underline text-sm">Full CGL Coverage Details →</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Auto Section -->
+        <section id="auto" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="bg-blue-500 text-white rounded-full w-10 h-10 flex items-center justify-center font-bold">2</div>
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100">Personal Auto Policy (PAP) & Business Auto</h2>
+                </div>
+
+                <!-- Policy Parts -->
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 mb-4 border-l-4 border-blue-500">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 mb-3">PAP Policy Parts</h3>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-2">
+                        <div class="bg-white dark:bg-gray-700 p-2 rounded">
+                            <span class="font-bold text-blue-600 dark:text-blue-300">Part A:</span> Liability
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-2 rounded">
+                            <span class="font-bold text-blue-600 dark:text-blue-300">Part B:</span> Medical Payments
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-2 rounded">
+                            <span class="font-bold text-blue-600 dark:text-blue-300">Part C:</span> Uninsured Motorist
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-2 rounded">
+                            <span class="font-bold text-blue-600 dark:text-blue-300">Part D:</span> Damage to Your Auto
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-2 rounded">
+                            <span class="font-bold text-blue-600 dark:text-blue-300">Part E:</span> Duties After Accident
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-2 rounded">
+                            <span class="font-bold text-blue-600 dark:text-blue-300">Part F:</span> General Provisions
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Types of Auto -->
+                <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 mb-4">
+                    <h3 class="font-bold text-gray-800 dark:text-gray-200 mb-3">Types of Auto</h3>
+                    <div class="grid md:grid-cols-2 gap-3">
+                        <div class="bg-white dark:bg-gray-600 p-3 rounded">
+                            <p class="font-semibold text-blue-700 dark:text-blue-300">Owned</p>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm">Vehicle titled to insured or acquired during policy period</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-600 p-3 rounded">
+                            <p class="font-semibold text-blue-700 dark:text-blue-300">Nonowned</p>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm">Private vehicles operated/in custody of named insured, not titled to insured</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-600 p-3 rounded">
+                            <p class="font-semibold text-blue-700 dark:text-blue-300">Hired</p>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm">Leased, rented, or borrowed</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-600 p-3 rounded">
+                            <p class="font-semibold text-blue-700 dark:text-blue-300">Temporary Substitute</p>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm">Used while insured vehicle is out of service (breakdown, repair, loss)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Part Coverage Details -->
+                <details class="bg-gray-50 dark:bg-gray-700 rounded-lg mb-3 overflow-hidden">
+                    <summary class="p-4 cursor-pointer font-bold text-blue-800 dark:text-blue-300 hover:bg-gray-100 dark:hover:bg-gray-600">
+                        Part A: Liability Coverage Details
+                    </summary>
+                    <div class="p-4 border-t border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-800">
+                        <p class="text-gray-700 dark:text-gray-300 mb-3">Pays for BI and PD, defense costs, and costs from settlement/defense</p>
+                        <div class="grid md:grid-cols-2 gap-3 mb-3">
+                            <div class="bg-blue-50 dark:bg-blue-900/30 p-3 rounded">
+                                <p class="font-bold text-blue-700 dark:text-blue-300">Split Limit</p>
+                                <p class="text-gray-600 dark:text-gray-300 text-sm">BI per person / BI per accident / PD</p>
+                            </div>
+                            <div class="bg-blue-50 dark:bg-blue-900/30 p-3 rounded">
+                                <p class="font-bold text-blue-700 dark:text-blue-300">Combined Single Limit</p>
+                                <p class="text-gray-600 dark:text-gray-300 text-sm">One dollar amount for all losses</p>
+                            </div>
+                        </div>
+                        <p class="font-semibold text-red-700 dark:text-red-300 mb-2">Common Exclusions:</p>
+                        <ul class="text-gray-600 dark:text-gray-300 text-sm space-y-1">
+                            <li>+ Intentional injury or damage</li>
+                            <li>+ Use without permission</li>
+                            <li>+ Commercial-type vehicle in business</li>
+                            <li>+ Property being transported</li>
+                        </ul>
+                    </div>
+                </details>
+
+                <details class="bg-gray-50 dark:bg-gray-700 rounded-lg mb-3 overflow-hidden">
+                    <summary class="p-4 cursor-pointer font-bold text-blue-800 dark:text-blue-300 hover:bg-gray-100 dark:hover:bg-gray-600">
+                        Part B: Medical Payments Details
+                    </summary>
+                    <div class="p-4 border-t border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-800">
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm space-y-2">
+                            <li>+ Pays necessary medical and funeral expenses from accident</li>
+                            <li>+ Must be rendered within <strong>3 years</strong> of accident</li>
+                            <li>+ Payments from liability or UM reduce medical payments coverage</li>
+                        </ul>
+                    </div>
+                </details>
+
+                <details class="bg-gray-50 dark:bg-gray-700 rounded-lg mb-3 overflow-hidden">
+                    <summary class="p-4 cursor-pointer font-bold text-blue-800 dark:text-blue-300 hover:bg-gray-100 dark:hover:bg-gray-600">
+                        Part C: UM/UIM Coverage Details
+                    </summary>
+                    <div class="p-4 border-t border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-800">
+                        <div class="grid md:grid-cols-2 gap-3">
+                            <div class="bg-blue-50 dark:bg-blue-900/30 p-3 rounded">
+                                <p class="font-bold text-blue-700 dark:text-blue-300">Uninsured Motorist (UM)</p>
+                                <p class="text-gray-600 dark:text-gray-300 text-sm">For BI caused by driver without required liability coverage</p>
+                            </div>
+                            <div class="bg-blue-50 dark:bg-blue-900/30 p-3 rounded">
+                                <p class="font-bold text-blue-700 dark:text-blue-300">Underinsured Motorist (UIM)</p>
+                                <p class="text-gray-600 dark:text-gray-300 text-sm">For BI caused by driver with insufficient coverage</p>
+                            </div>
+                        </div>
+                        <div class="bg-amber-50 dark:bg-amber-900/30 p-3 rounded mt-3">
+                            <p class="font-bold text-amber-700 dark:text-amber-300">UIM Formula:</p>
+                            <p class="text-gray-700 dark:text-gray-300">UIM Coverage = Insured's UIM Limits - At-Fault Driver's BI Limits</p>
+                        </div>
+                    </div>
+                </details>
+
+                <details class="bg-gray-50 dark:bg-gray-700 rounded-lg mb-3 overflow-hidden">
+                    <summary class="p-4 cursor-pointer font-bold text-blue-800 dark:text-blue-300 hover:bg-gray-100 dark:hover:bg-gray-600">
+                        Part D: Physical Damage Details
+                    </summary>
+                    <div class="p-4 border-t border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-800">
+                        <p class="text-gray-700 dark:text-gray-300 mb-3">Includes collision and other-than-collision coverages. Pays for direct and accidental loss.</p>
+                        <p class="font-semibold text-blue-700 dark:text-blue-300 mb-2">Transportation Expenses Waiting Periods:</p>
+                        <div class="grid md:grid-cols-2 gap-3">
+                            <div class="bg-blue-50 dark:bg-blue-900/30 p-3 rounded">
+                                <p class="font-bold text-blue-700 dark:text-blue-300">24 Hours</p>
+                                <p class="text-gray-600 dark:text-gray-300 text-sm">For losses OTHER than theft</p>
+                            </div>
+                            <div class="bg-blue-50 dark:bg-blue-900/30 p-3 rounded">
+                                <p class="font-bold text-blue-700 dark:text-blue-300">48 Hours</p>
+                                <p class="text-gray-600 dark:text-gray-300 text-sm">For theft losses</p>
+                            </div>
+                        </div>
+                    </div>
+                </details>
+
+                <details class="bg-gray-50 dark:bg-gray-700 rounded-lg mb-3 overflow-hidden">
+                    <summary class="p-4 cursor-pointer font-bold text-blue-800 dark:text-blue-300 hover:bg-gray-100 dark:hover:bg-gray-600">
+                        Part E: Duties After Accident
+                    </summary>
+                    <div class="p-4 border-t border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-800">
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm space-y-1">
+                            <li>+ Prompt notification of loss</li>
+                            <li>+ Cooperation with insurer</li>
+                            <li>+ Forwarding legal papers</li>
+                            <li>+ Submitting to examinations under oath</li>
+                            <li>+ Allowing access to medical records</li>
+                            <li>+ Notification of hit-and-run or theft</li>
+                            <li>+ Protection of property from further loss</li>
+                            <li>+ Allowing inspection and appraisal of damaged property</li>
+                        </ul>
+                    </div>
+                </details>
+
+                <details class="bg-gray-50 dark:bg-gray-700 rounded-lg mb-3 overflow-hidden">
+                    <summary class="p-4 cursor-pointer font-bold text-blue-800 dark:text-blue-300 hover:bg-gray-100 dark:hover:bg-gray-600">
+                        Part F: General Provisions
+                    </summary>
+                    <div class="p-4 border-t border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-800">
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm space-y-1">
+                            <li>+ <strong>Bankruptcy:</strong> Does not relieve insurer of obligation</li>
+                            <li>+ <strong>Policy Changes:</strong> Terms may not be waived except by endorsement</li>
+                            <li>+ <strong>Fraud:</strong> No coverage for fraudulent statements</li>
+                            <li>+ <strong>Legal Action:</strong> Cannot sue until policy provisions complied with</li>
+                            <li>+ <strong>Subrogation:</strong> Insurer's right to recover payments</li>
+                            <li>+ <strong>Territory:</strong> US, US territories, Puerto Rico, Canada</li>
+                            <li>+ <strong>Assignment:</strong> Cannot transfer without written consent</li>
+                            <li>+ <strong>Two or More Policies:</strong> Highest limit applies if same loss covered</li>
+                        </ul>
+                    </div>
+                </details>
+
+                <!-- Common Endorsements -->
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 mb-4 border-l-4 border-purple-500">
+                    <h3 class="font-bold text-purple-800 dark:text-purple-300 mb-2">Common PAP Endorsements</h3>
+                    <ul class="text-gray-700 dark:text-gray-300 text-sm space-y-1">
+                        <li>+ <strong>Towing and Labor:</strong> Basic limit of $25</li>
+                        <li>+ <strong>Extended Nonowned Coverage:</strong> Coverage for nonowned autos, fee-carrying vehicles</li>
+                        <li>+ <strong>Miscellaneous Vehicles:</strong> Motorcycles, motor homes, golf carts</li>
+                        <li>+ <strong>Joint Ownership:</strong> For individuals who own a vehicle together</li>
+                    </ul>
+                </div>
+
+                <!-- Business Auto & Garage -->
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="bg-indigo-50 dark:bg-indigo-900/20 rounded-lg p-4 border-l-4 border-indigo-500">
+                        <h3 class="font-bold text-indigo-800 dark:text-indigo-300 mb-2">Commercial Auto Coverage Form</h3>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm mb-2">Covers commercial auto (excludes truckers, garages, motor carriers)</p>
+                        <ul class="text-gray-600 dark:text-gray-300 text-xs space-y-1">
+                            <li>Section I: Covered Autos (designation symbols)</li>
+                            <li>Section II: Liability Coverage</li>
+                            <li>Section III: Physical Damage Coverage</li>
+                            <li>Section IV: Conditions</li>
+                            <li>Section V: Definitions</li>
+                        </ul>
+                    </div>
+                    <div class="bg-teal-50 dark:bg-teal-900/20 rounded-lg p-4 border-l-4 border-teal-500">
+                        <h3 class="font-bold text-teal-800 dark:text-teal-300 mb-2">Garage Coverage Form</h3>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm mb-2">For businesses with autos of others in care, custody, control</p>
+                        <p class="text-gray-600 dark:text-gray-300 text-xs"><strong>Garagekeepers Coverage:</strong> Comprehensive, Specified Cause of Loss, Collision</p>
+                    </div>
+                </div>
+
+                <div class="mt-4 text-right">
+                    <a href="../part-2/index.html" class="text-blue-600 dark:text-blue-400 hover:underline text-sm">Full Auto Coverage Details →</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Workers Compensation Section -->
+        <section id="wc" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="bg-orange-500 text-white rounded-full w-10 h-10 flex items-center justify-center font-bold">3</div>
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100">Workers Compensation</h2>
+                </div>
+
+                <!-- Standard Policy Concepts -->
+                <div class="bg-orange-50 dark:bg-orange-900/20 rounded-lg p-4 mb-4 border-l-4 border-orange-500">
+                    <h3 class="font-bold text-orange-800 dark:text-orange-300 mb-2">Standard Policy Concepts</h3>
+                    <ul class="text-gray-700 dark:text-gray-300 text-sm space-y-1">
+                        <li>+ <strong>Who is insured:</strong> Employer/insured named</li>
+                        <li>+ <strong>Locations:</strong> All locations listed on information page</li>
+                        <li>+ <strong>Work-related:</strong> Injury or occupational disease during employment</li>
+                        <li>+ <strong>Non-work-related:</strong> Ordinary injury/disease of general public (NOT covered)</li>
+                    </ul>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-4">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 border-l-4 border-blue-500">
+                        <h3 class="font-bold text-blue-800 dark:text-blue-300 mb-2">Other States' Insurance</h3>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm space-y-1">
+                            <li>+ Allows coverage in states other than where policy written</li>
+                            <li>+ State must be included for coverage to apply</li>
+                            <li>+ Available on automatic/temporary basis</li>
+                        </ul>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 border-l-4 border-purple-500">
+                        <h3 class="font-bold text-purple-800 dark:text-purple-300 mb-2">Employer's Liability</h3>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm space-y-1">
+                            <li>+ Federal Employer's Liability Act (FELA)</li>
+                            <li>+ Covered under Section II - Liability</li>
+                            <li>+ Actions must begin within <strong>3 years</strong></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Exclusive Remedy -->
+                <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-4 mb-4 border-l-4 border-red-500">
+                    <h3 class="font-bold text-red-800 dark:text-red-200 mb-2">Exclusive Remedy</h3>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm">Employees cannot seek damages outside of Workers Compensation law unless as a result of claims not covered.</p>
+                </div>
+
+                <!-- Premium Determination -->
+                <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-4">
+                    <h3 class="font-bold text-gray-800 dark:text-gray-200 mb-2">Premium Determination</h3>
+                    <ul class="text-gray-700 dark:text-gray-300 text-sm space-y-1">
+                        <li>+ Established by applying rating bureau classification to each <strong>$100 of payroll</strong></li>
+                        <li>+ <strong>Experience Modification Factor:</strong> Based on employer's losses, payroll, and premiums</li>
+                        <li>+ <strong>Premium Discounts:</strong> When standard premium greater than <strong>$5,000</strong></li>
+                        <li>+ <strong>Participating Policies:</strong> Eligible dividends based on underwriting requirements</li>
+                        <li>+ <strong>Retrospective Rating:</strong> Based on insured's actual loss experience during policy term</li>
+                    </ul>
+                </div>
+
+                <div class="mt-4 text-right">
+                    <a href="../part-3/index.html" class="text-orange-600 dark:text-orange-400 hover:underline text-sm">Full Workers Comp Details →</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Crime Section -->
+        <section id="crime" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="bg-amber-500 text-white rounded-full w-10 h-10 flex items-center justify-center font-bold">4</div>
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100">Crime Coverage</h2>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/20 rounded-lg p-4 mb-4 border-l-4 border-amber-500">
+                    <h3 class="font-bold text-amber-800 dark:text-amber-300 mb-2">Program Breakdown</h3>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div>
+                            <p class="font-semibold text-amber-700 dark:text-amber-300 mb-1">Entities:</p>
+                            <ul class="text-gray-700 dark:text-gray-300 text-sm">
+                                <li>+ Commercial</li>
+                                <li>+ Government</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-amber-700 dark:text-amber-300 mb-1">Coverage Triggers:</p>
+                            <ul class="text-gray-700 dark:text-gray-300 text-sm">
+                                <li>+ <strong>Discovery Form:</strong> Occurrence at any time, discovered during policy/extended period</li>
+                                <li>+ <strong>Loss-Sustained Form:</strong> Loss discovered during policy period and extended reporting period</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-4 text-right">
+                    <a href="../part-4/index.html" class="text-amber-600 dark:text-amber-400 hover:underline text-sm">Full Crime Coverage Details →</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bonds Section -->
+        <section id="bonds" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="bg-purple-500 text-white rounded-full w-10 h-10 flex items-center justify-center font-bold">5</div>
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100">Bonds (Surety & Fidelity)</h2>
+                </div>
+
+                <!-- Three Parties -->
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 mb-4 border-l-4 border-purple-500">
+                    <h3 class="font-bold text-purple-800 dark:text-purple-300 mb-3">The Three Parties</h3>
+                    <div class="grid md:grid-cols-3 gap-3">
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-bold text-blue-700 dark:text-blue-300">Principal (Obligor)</p>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm">Promises to fulfill obligation; purchases bond; goes through underwriting</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-bold text-green-700 dark:text-green-300">Obligee (Insured)</p>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm">Person to whom promise is made; bond paid to if principal defaults</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-bold text-purple-700 dark:text-purple-300">Guarantor (Surety)</p>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm">Bonding company providing financial backing; pays if principal defaults</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-4">
+                    <!-- Surety -->
+                    <div class="bg-indigo-50 dark:bg-indigo-900/20 rounded-lg p-4 border-l-4 border-indigo-500">
+                        <h3 class="font-bold text-indigo-800 dark:text-indigo-300 mb-2">Surety Bonds</h3>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm space-y-1">
+                            <li>+ Guarantees performance of another</li>
+                            <li>+ 3-party contract: principal, obligee, surety</li>
+                            <li>+ <strong>Penalty:</strong> Set limit for which surety is liable</li>
+                        </ul>
+                    </div>
+
+                    <!-- Fidelity -->
+                    <div class="bg-teal-50 dark:bg-teal-900/20 rounded-lg p-4 border-l-4 border-teal-500">
+                        <h3 class="font-bold text-teal-800 dark:text-teal-300 mb-2">Fidelity Bonds</h3>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm mb-2">Guarantees honesty and trust (not performance)</p>
+                        <ul class="text-gray-600 dark:text-gray-300 text-xs space-y-1">
+                            <li>+ Individual (1 employee)</li>
+                            <li>+ Named Schedule (several named employees)</li>
+                            <li>+ Position Schedule (anyone in scheduled position)</li>
+                            <li>+ Commercial Blanket (all employees, per loss)</li>
+                            <li>+ Blanket Position (all employees, per employee)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="mt-4 text-right">
+                    <a href="../part-5/index.html" class="text-purple-600 dark:text-purple-400 hover:underline text-sm">Full Surety Bond Details →</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Professional Liability Section -->
+        <section id="professional" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="bg-teal-500 text-white rounded-full w-10 h-10 flex items-center justify-center font-bold">6</div>
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100">Professional Liability</h2>
+                </div>
+
+                <div class="bg-teal-50 dark:bg-teal-900/20 rounded-lg p-4 mb-4 border-l-4 border-teal-500">
+                    <h3 class="font-bold text-teal-800 dark:text-teal-300 mb-2">Purpose and Characteristics</h3>
+                    <ul class="text-gray-700 dark:text-gray-300 text-sm space-y-1">
+                        <li>+ Protects against legal liability from professional services</li>
+                        <li>+ Usually written on <strong>claims-made basis</strong></li>
+                    </ul>
+                </div>
+
+                <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 border-l-4 border-green-500">
+                    <h3 class="font-bold text-green-800 dark:text-green-300 mb-2">Errors and Omissions (E&O)</h3>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm mb-2">Protects insurance agents and brokers from financial loss due to lawsuits:</p>
+                    <ul class="text-gray-700 dark:text-gray-300 text-sm space-y-1">
+                        <li>+ Incorrect advice</li>
+                        <li>+ Not placing correct coverage</li>
+                        <li>+ Not informing insured of important issues</li>
+                    </ul>
+                    <p class="text-gray-600 dark:text-gray-400 text-xs mt-2">Written on claims-made basis</p>
+                </div>
+
+                <div class="mt-4 text-right">
+                    <a href="../part-6/index.html" class="text-teal-600 dark:text-teal-400 hover:underline text-sm">Full Professional Liability Details →</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Umbrella Section -->
+        <section id="umbrella" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="bg-indigo-500 text-white rounded-full w-10 h-10 flex items-center justify-center font-bold">7</div>
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100">Umbrella and Excess Liability</h2>
+                </div>
+
+                <!-- Types of Policies -->
+                <div class="bg-indigo-50 dark:bg-indigo-900/20 rounded-lg p-4 mb-4 border-l-4 border-indigo-500">
+                    <h3 class="font-bold text-indigo-800 dark:text-indigo-300 mb-3">Types of Policies</h3>
+                    <div class="grid md:grid-cols-3 gap-3">
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-bold text-gray-700 dark:text-gray-300">Underlying Policy</p>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm">Primary liability policy</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-bold text-indigo-700 dark:text-indigo-300">Umbrella (Stand-Alone)</p>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm">Coverage can be greater OR less than underlying</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-bold text-purple-700 dark:text-purple-300">Excess (Follow Form)</p>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm">Mirrors underlying policy, increases limits</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4">
+                    <!-- Personal -->
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 border-l-4 border-blue-500">
+                        <h3 class="font-bold text-blue-800 dark:text-blue-300 mb-2">Personal Umbrella</h3>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm space-y-1">
+                            <li>+ Also called "catastrophe insurance"</li>
+                            <li>+ Protects from large claims/lawsuits</li>
+                            <li>+ Minimum <strong>$1,000,000</strong> additional coverage</li>
+                            <li>+ <strong>SIR:</strong> Retained limits insured pays before umbrella responds</li>
+                            <li>+ Must maintain underlying insurance</li>
+                            <li>+ Insurer not liable beyond what it would pay if underlying was in effect</li>
+                        </ul>
+                    </div>
+
+                    <!-- Commercial -->
+                    <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 border-l-4 border-purple-500">
+                        <h3 class="font-bold text-purple-800 dark:text-purple-300 mb-2">Commercial Umbrella</h3>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm space-y-1">
+                            <li>+ Provides higher limits over other liability coverage</li>
+                            <li>+ Minimum limit of liability required on underlying</li>
+                            <li>+ Insured pays SIR prior to umbrella paying for certain losses</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="mt-4 text-right">
+                    <a href="../part-7/index.html" class="text-indigo-600 dark:text-indigo-400 hover:underline text-sm">Full Umbrella/Excess Details →</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Reference Numbers -->
+        <section class="mb-10">
+            <div class="bg-gray-100 dark:bg-gray-700 rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">Quick Reference: Key Numbers</h2>
+
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                    <div class="bg-white dark:bg-gray-600 p-3 rounded text-center">
+                        <p class="text-2xl font-bold text-green-600 dark:text-green-300">3 years</p>
+                        <p class="text-xs text-gray-600 dark:text-gray-300">Medical expenses timeframe (PAP)</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-600 p-3 rounded text-center">
+                        <p class="text-2xl font-bold text-blue-600 dark:text-blue-300">24/48 hrs</p>
+                        <p class="text-xs text-gray-600 dark:text-gray-300">Transportation expense waiting periods</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-600 p-3 rounded text-center">
+                        <p class="text-2xl font-bold text-orange-600 dark:text-orange-300">$100</p>
+                        <p class="text-xs text-gray-600 dark:text-gray-300">WC premium per payroll unit</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-600 p-3 rounded text-center">
+                        <p class="text-2xl font-bold text-purple-600 dark:text-purple-300">$5,000</p>
+                        <p class="text-xs text-gray-600 dark:text-gray-300">WC premium discount threshold</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-600 p-3 rounded text-center">
+                        <p class="text-2xl font-bold text-indigo-600 dark:text-indigo-300">$1M</p>
+                        <p class="text-xs text-gray-600 dark:text-gray-300">Min personal umbrella coverage</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-600 p-3 rounded text-center">
+                        <p class="text-2xl font-bold text-teal-600 dark:text-teal-300">3 years</p>
+                        <p class="text-xs text-gray-600 dark:text-gray-300">FELA action time limit</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-600 p-3 rounded text-center">
+                        <p class="text-2xl font-bold text-amber-600 dark:text-amber-300">$25</p>
+                        <p class="text-xs text-gray-600 dark:text-gray-300">Basic towing & labor limit</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-600 p-3 rounded text-center">
+                        <p class="text-2xl font-bold text-red-600 dark:text-red-300">3</p>
+                        <p class="text-xs text-gray-600 dark:text-gray-300">Parties in a surety bond</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Study Tools -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-green-600 to-emerald-700 rounded-xl shadow-lg p-6 text-white">
+                <h2 class="text-xl font-bold mb-4">Ready to Test Your Knowledge?</h2>
+                <p class="text-green-100 mb-6">Use flashcards and quizzes to reinforce what you've learned in Chapter 3.</p>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <a href="../../../study-tools/flashcards.html?chapter=3" class="bg-white/20 hover:bg-white/30 rounded-lg p-4 transition-colors flex items-center">
+                        <div class="bg-white/20 p-3 rounded-full mr-4">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="font-bold">Chapter 3 Flashcards</h3>
+                            <p class="text-sm text-green-200">Review key terms</p>
+                        </div>
+                    </a>
+                    <a href="../../../study-tools/quiz.html?chapter=3" class="bg-white/20 hover:bg-white/30 rounded-lg p-4 transition-colors flex items-center">
+                        <div class="bg-white/20 p-3 rounded-full mr-4">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="font-bold">Chapter 3 Quiz</h3>
+                            <p class="text-sm text-green-200">Test yourself</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Navigation Footer -->
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="../part-7/index.html" class="text-gray-300 hover:text-white">← Part 7: Umbrella & Excess</a>
+                <span class="text-gray-400">Chapter 3 Recap</span>
+                <a href="../index.html" class="text-gray-300 hover:text-white">Chapter 3 Overview →</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Initialize AI Tutor -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            createFloatingAIButton(`Chapter 3 Recap - Types of Policies, Bonds, and Related Terms
+
+This is a summary page covering all major topics in Chapter 3:
+
+1. COMMERCIAL GENERAL LIABILITY (CGL)
+- Exposures: Premises/Operations, Products/Completed Operations
+- Coverage A: BI & PD, Coverage B: Personal/Advertising Injury, Coverage C: Medical Payments
+- Limits: Per Occurrence and Aggregate
+
+2. PERSONAL & BUSINESS AUTO
+- Parts A-F: Liability, Medical, UM/UIM, Physical Damage, Duties, General Provisions
+- Types: Owned, Nonowned, Hired, Temporary Substitute
+- Key numbers: 3 years for medical, 24/48 hour waiting periods
+
+3. WORKERS COMPENSATION
+- Exclusive Remedy doctrine
+- Other States Insurance
+- Premium based on $100 of payroll
+- $5,000 threshold for discounts
+
+4. CRIME COVERAGE
+- Discovery Form vs Loss-Sustained Form triggers
+- Commercial and Government entities
+
+5. BONDS (SURETY & FIDELITY)
+- 3 parties: Principal, Obligee, Surety
+- Surety: Guarantees performance
+- Fidelity: Guarantees honesty
+
+6. PROFESSIONAL LIABILITY
+- Claims-made basis
+- E&O for agents: incorrect advice, not placing coverage, not informing
+
+7. UMBRELLA & EXCESS
+- Umbrella: Can be greater/less than underlying
+- Excess: Mirrors underlying (follow form)
+- SIR: Self-insured retention
+- Minimum $1M personal umbrella`);
+        });
+    </script>
+</body>
+</html>

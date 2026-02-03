@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 3 Part 3: Workers Compensation | P&C Study Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <link rel="stylesheet" href="../../../css/styles.css">
+    <script src="../../../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+        }
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <!-- Settings & Theme Toggle Buttons -->
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="showAPIKeySetup()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings">
+            <svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+        </button>
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/>
+            </svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-orange-600 to-amber-700 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap gap-2 text-sm mb-2">
+                <a href="../../../index.html" class="text-orange-200 hover:text-white">Home</a>
+                <span class="text-orange-300">/</span>
+                <a href="../index.html" class="text-orange-200 hover:text-white">Chapter 3</a>
+                <span class="text-orange-300">/</span>
+                <span class="text-white">Part 3: Workers Compensation</span>
+            </div>
+            <h1 class="text-3xl font-bold">Chapter 3 Part 3: Workers Compensation</h1>
+            <p class="text-orange-200 mt-1">The No-Fault System That Protects Workers and Employers</p>
+        </div>
+    </header>
+
+    <!-- Part Navigation -->
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-wrap gap-2 text-sm">
+                <a href="../part-0/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-200 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 0: Intro</a>
+                <a href="../part-1/index.html" class="text-green-600 dark:text-green-300 hover:text-green-800 dark:hover:text-green-200 px-3 py-1 rounded hover:bg-green-50 dark:hover:bg-gray-700">Part 1: CGL</a>
+                <a href="../part-2/index.html" class="text-blue-600 dark:text-blue-300 hover:text-blue-800 dark:hover:text-blue-200 px-3 py-1 rounded hover:bg-blue-50 dark:hover:bg-gray-700">Part 2: PAP</a>
+                <span class="bg-orange-600 text-white px-3 py-1 rounded font-medium">Part 3: Workers Comp</span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-4xl lg:max-w-6xl">
+
+        <!-- The Big Picture -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">The Big Picture: What Is Workers Compensation?</h2>
+
+                <div class="bg-orange-50 dark:bg-orange-900/30 border border-orange-200 dark:border-orange-800 rounded-lg p-4 lg:p-5 mb-6">
+                    <p class="font-bold text-orange-800 dark:text-orange-300 text-lg">Workers Compensation = Insurance for Work-Related Injuries</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2">If an employee gets hurt on the job, Workers Compensation (WC) pays for medical bills, lost wages, and rehabilitation - <strong>regardless of who was at fault</strong>.</p>
+                </div>
+
+                <!-- The Great Bargain -->
+                <div class="bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-800 rounded-lg p-5 lg:p-6 mb-6">
+                    <h3 class="font-bold text-xl mb-3 text-gray-800 dark:text-gray-200">The Great Bargain: The Exclusive Remedy Rule</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">This is THE most important concept in Workers Compensation. Think of it as a historic trade deal between workers and employers:</p>
+
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="bg-white dark:bg-gray-700 rounded-lg p-4 border border-blue-300 dark:border-blue-700">
+                            <h4 class="font-bold text-lg mb-2 text-blue-800 dark:text-blue-300">Employers Give Up:</h4>
+                            <ul class="text-gray-700 dark:text-gray-300 space-y-1 text-sm lg:text-base">
+                                <li>+ Their right to use "common law defenses"</li>
+                                <li>+ Arguments like "It wasn't my fault!"</li>
+                                <li>+ Claims that employee was careless</li>
+                            </ul>
+                            <p class="mt-3 font-semibold text-amber-700 dark:text-amber-400">They pay benefits NO MATTER WHAT</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 rounded-lg p-4 border border-purple-300 dark:border-purple-700">
+                            <h4 class="font-bold text-lg mb-2 text-purple-800 dark:text-purple-300">Employees Give Up:</h4>
+                            <ul class="text-gray-700 dark:text-gray-300 space-y-1 text-sm lg:text-base">
+                                <li>+ Their right to sue the employer</li>
+                                <li>+ Claims for pain and suffering</li>
+                                <li>+ Punitive damages</li>
+                            </ul>
+                            <p class="mt-3 font-semibold text-amber-700 dark:text-amber-400">They get FASTER, GUARANTEED benefits</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-700 rounded-lg p-4 mt-4 border border-blue-300 dark:border-blue-700">
+                        <p class="font-bold text-lg text-gray-800 dark:text-gray-200">The Result: A Win-Win System</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-2">Workers get benefits quickly without proving fault. Employers get predictable costs and protection from lawsuits. The WC system is the <strong>EXCLUSIVE remedy</strong> for workplace injuries.</p>
+                    </div>
+                </div>
+
+                <div class="bg-red-50 dark:bg-red-900/30 border-l-4 border-red-500 p-4 lg:p-5 rounded-r-lg">
+                    <p class="font-bold text-red-800 dark:text-red-200">Exam Alert: "Exclusive Remedy"</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2">This phrase means WC is the <strong>ONLY</strong> way employees can recover benefits for work injuries. They can't sue the employer in court (with rare exceptions). Know this cold!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Policy Structure -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">Workers Compensation Policy Structure</h2>
+
+                <div class="bg-gray-100 dark:bg-gray-700 rounded-lg p-4 lg:p-5 mb-6">
+                    <p class="text-gray-700 dark:text-gray-300">The WC policy has TWO distinct parts that work together:</p>
+                </div>
+
+                <div class="space-y-4">
+                    <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 rounded-lg p-5 hover:shadow-lg transition-shadow">
+                        <div class="flex items-center gap-4">
+                            <span class="text-4xl font-bold text-amber-800 dark:text-amber-300">1</span>
+                            <div>
+                                <h3 class="font-bold text-xl text-gray-800 dark:text-gray-200">Part One: Workers Compensation Insurance</h3>
+                                <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Pays benefits to injured employees as required by state law</p>
+                                <p class="text-gray-600 dark:text-gray-400 text-xs lg:text-sm mt-1">This is the "guaranteed benefits" part of the bargain</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-purple-50 dark:bg-purple-900/30 border-l-4 border-purple-500 rounded-lg p-5 hover:shadow-lg transition-shadow">
+                        <div class="flex items-center gap-4">
+                            <span class="text-4xl font-bold text-purple-800 dark:text-purple-300">2</span>
+                            <div>
+                                <h3 class="font-bold text-xl text-gray-800 dark:text-gray-200">Part Two: Employers Liability Insurance</h3>
+                                <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Covers situations where WC doesn't apply - lawsuits outside the WC system</p>
+                                <p class="text-gray-600 dark:text-gray-400 text-xs lg:text-sm mt-1">This is the "backup coverage" when exclusive remedy doesn't apply</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Part One: The Four Benefits -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">Part One: The Four Types of WC Benefits</h2>
+
+                <div class="bg-orange-50 dark:bg-orange-900/30 border border-orange-200 dark:border-orange-800 rounded-lg p-4 lg:p-5 mb-6">
+                    <p class="font-bold text-orange-800 dark:text-orange-300">All benefits are paid according to STATE LAW</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2">Each state has its own Workers Compensation Act that dictates what benefits are paid, how much, and for how long. The policy promises to pay "as required by law."</p>
+                </div>
+
+                <!-- Benefit 1: Medical -->
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-5 lg:p-6 border-l-4 border-blue-500 mb-4">
+                    <div class="flex items-start gap-3">
+                        <div class="bg-blue-500 text-white rounded-full w-10 h-10 flex items-center justify-center flex-shrink-0 text-lg font-bold">1</div>
+                        <div class="flex-1">
+                            <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg mb-2">Medical Benefits</h3>
+                            <p class="text-gray-700 dark:text-gray-300 mb-3">Covers ALL reasonable medical expenses related to the work injury:</p>
+                            <div class="grid md:grid-cols-3 gap-3">
+                                <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                                    <p class="font-semibold text-blue-700 dark:text-blue-300">Hospital Care</p>
+                                    <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-300">Inpatient & outpatient</p>
+                                </div>
+                                <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                                    <p class="font-semibold text-blue-700 dark:text-blue-300">Doctor Visits</p>
+                                    <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-300">Specialists, surgeries</p>
+                                </div>
+                                <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                                    <p class="font-semibold text-blue-700 dark:text-blue-300">Prescriptions</p>
+                                    <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-300">Medications, supplies</p>
+                                </div>
+                            </div>
+                            <div class="bg-green-100 dark:bg-green-900/50 p-3 rounded mt-3">
+                                <p class="font-bold text-green-800 dark:text-green-300">No Deductible! No Copay!</p>
+                                <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300">Medical benefits are paid in full - the employee pays nothing out of pocket.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Benefit 2: Disability -->
+                <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-5 lg:p-6 border-l-4 border-red-500 mb-4">
+                    <div class="flex items-start gap-3">
+                        <div class="bg-red-500 text-white rounded-full w-10 h-10 flex items-center justify-center flex-shrink-0 text-lg font-bold">2</div>
+                        <div class="flex-1">
+                            <h3 class="font-bold text-red-800 dark:text-red-200 text-lg mb-2">Disability Benefits (Lost Wages)</h3>
+                            <p class="text-gray-700 dark:text-gray-300 mb-4">Replaces a portion of lost income when the employee can't work. There are FOUR types based on two factors:</p>
+
+                            <div class="bg-amber-100 dark:bg-amber-900/50 p-4 rounded mb-4">
+                                <p class="font-bold text-amber-800 dark:text-amber-300 mb-2">Two Questions That Determine the Type:</p>
+                                <ol class="space-y-2 text-gray-700 dark:text-gray-300">
+                                    <li><strong>1. Is it Temporary or Permanent?</strong> Will the worker eventually recover?</li>
+                                    <li><strong>2. Is it Total or Partial?</strong> Can they do ANY work at all?</li>
+                                </ol>
+                            </div>
+
+                            <!-- The 2x2 Grid -->
+                            <h4 class="font-bold text-gray-800 dark:text-gray-200 mb-3">The Four Types of Disability:</h4>
+                            <div class="grid md:grid-cols-2 gap-3">
+                                <div class="bg-white dark:bg-gray-700 p-4 rounded border-2 border-red-300 dark:border-red-700">
+                                    <div class="flex items-center gap-2 mb-2">
+                                        <span class="bg-red-500 text-white px-2 py-1 rounded font-bold text-sm">TT</span>
+                                        <h5 class="font-bold text-red-700 dark:text-red-300">Temporary Total</h5>
+                                    </div>
+                                    <p class="text-sm lg:text-base text-gray-600 dark:text-gray-300">Can't work NOW, but will recover fully</p>
+                                    <div class="bg-gray-100 dark:bg-gray-600 p-2 rounded mt-2 text-xs lg:text-sm">
+                                        <strong>Example:</strong> Broken leg - out of work for 8 weeks, then back to normal
+                                    </div>
+                                </div>
+
+                                <div class="bg-white dark:bg-gray-700 p-4 rounded border-2 border-orange-300 dark:border-orange-700">
+                                    <div class="flex items-center gap-2 mb-2">
+                                        <span class="bg-orange-500 text-white px-2 py-1 rounded font-bold text-sm">TP</span>
+                                        <h5 class="font-bold text-orange-700 dark:text-orange-300">Temporary Partial</h5>
+                                    </div>
+                                    <p class="text-sm lg:text-base text-gray-600 dark:text-gray-300">Can do SOME work now, will fully recover</p>
+                                    <div class="bg-gray-100 dark:bg-gray-600 p-2 rounded mt-2 text-xs lg:text-sm">
+                                        <strong>Example:</strong> Back injury - can work part-time/light duty during recovery
+                                    </div>
+                                </div>
+
+                                <div class="bg-white dark:bg-gray-700 p-4 rounded border-2 border-purple-300 dark:border-purple-700">
+                                    <div class="flex items-center gap-2 mb-2">
+                                        <span class="bg-purple-500 text-white px-2 py-1 rounded font-bold text-sm">PT</span>
+                                        <h5 class="font-bold text-purple-700 dark:text-purple-300">Permanent Total</h5>
+                                    </div>
+                                    <p class="text-sm lg:text-base text-gray-600 dark:text-gray-300">Can NEVER work again - total disability for life</p>
+                                    <div class="bg-gray-100 dark:bg-gray-600 p-2 rounded mt-2 text-xs lg:text-sm">
+                                        <strong>Example:</strong> Severe spinal injury causing permanent paralysis
+                                    </div>
+                                </div>
+
+                                <div class="bg-white dark:bg-gray-700 p-4 rounded border-2 border-blue-300 dark:border-blue-700">
+                                    <div class="flex items-center gap-2 mb-2">
+                                        <span class="bg-blue-500 text-white px-2 py-1 rounded font-bold text-sm">PP</span>
+                                        <h5 class="font-bold text-blue-700 dark:text-blue-300">Permanent Partial</h5>
+                                    </div>
+                                    <p class="text-sm lg:text-base text-gray-600 dark:text-gray-300">Some LASTING impairment but can still do work</p>
+                                    <div class="bg-gray-100 dark:bg-gray-600 p-2 rounded mt-2 text-xs lg:text-sm">
+                                        <strong>Example:</strong> Lost finger - permanent but can return to most work
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bg-green-100 dark:bg-green-900/50 p-3 rounded mt-4">
+                                <p class="font-bold text-green-800 dark:text-green-300">Memory Trick: Think 2x2</p>
+                                <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300">Temporary or Permanent (first word) × Total or Partial (second word) = Four combinations!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Benefit 3: Rehabilitation -->
+                <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-5 lg:p-6 border-l-4 border-green-500 mb-4">
+                    <div class="flex items-start gap-3">
+                        <div class="bg-green-500 text-white rounded-full w-10 h-10 flex items-center justify-center flex-shrink-0 text-lg font-bold">3</div>
+                        <div class="flex-1">
+                            <h3 class="font-bold text-green-800 dark:text-green-300 text-lg mb-2">Rehabilitation Benefits</h3>
+                            <p class="text-gray-700 dark:text-gray-300 mb-3">Helps injured workers return to employment:</p>
+                            <div class="grid md:grid-cols-2 gap-3">
+                                <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                                    <p class="font-semibold text-green-700 dark:text-green-300">Physical Therapy</p>
+                                    <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-300">Restore physical function and strength</p>
+                                </div>
+                                <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                                    <p class="font-semibold text-green-700 dark:text-green-300">Vocational Training</p>
+                                    <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-300">Learn new skills for different work</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm mt-3">The goal: Get the worker back to productive employment as soon as medically possible.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Benefit 4: Death -->
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-5 lg:p-6 border-l-4 border-purple-500">
+                    <div class="flex items-start gap-3">
+                        <div class="bg-purple-500 text-white rounded-full w-10 h-10 flex items-center justify-center flex-shrink-0 text-lg font-bold">4</div>
+                        <div class="flex-1">
+                            <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg mb-2">Death Benefits</h3>
+                            <p class="text-gray-700 dark:text-gray-300 mb-3">If a work-related injury or illness causes death, benefits are paid to:</p>
+                            <div class="grid md:grid-cols-3 gap-3">
+                                <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                                    <p class="font-semibold text-purple-700 dark:text-purple-300">Surviving Spouse</p>
+                                    <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-300">Income replacement</p>
+                                </div>
+                                <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                                    <p class="font-semibold text-purple-700 dark:text-purple-300">Dependent Children</p>
+                                    <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-300">Support until age limit</p>
+                                </div>
+                                <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                                    <p class="font-semibold text-purple-700 dark:text-purple-300">Burial Expenses</p>
+                                    <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-300">Funeral costs</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm mt-3">Benefits continue for a period specified by state law (often until remarriage or children reach adulthood).</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Part Two: Employers Liability -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">Part Two: Employers Liability Insurance</h2>
+
+                <div class="bg-purple-50 dark:bg-purple-900/30 border border-purple-200 dark:border-purple-800 rounded-lg p-4 lg:p-5 mb-6">
+                    <p class="font-bold text-purple-800 dark:text-purple-300 text-lg">When the Exclusive Remedy Doesn't Apply</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2">Part Two covers legal liability situations that fall OUTSIDE the WC system. Think of it as backup liability coverage when employees or others can sue the employer directly.</p>
+                </div>
+
+                <h3 class="font-bold text-gray-800 dark:text-gray-200 text-lg mb-4">What Part Two Covers:</h3>
+
+                <div class="space-y-4 mb-6">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500">
+                        <h4 class="font-bold text-blue-800 dark:text-blue-300">1. Third-Party-Over Suits</h4>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 mb-3">This is the most common Employers Liability claim. Here's how it works:</p>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded">
+                            <p class="font-semibold text-blue-700 dark:text-blue-300 mb-2">The Scenario:</p>
+                            <ol class="text-gray-700 dark:text-gray-300 space-y-2 text-sm lg:text-base">
+                                <li><strong>Step 1:</strong> Your employee gets injured by a defective machine made by ABC Company</li>
+                                <li><strong>Step 2:</strong> Employee collects WC benefits from you (can't sue you - exclusive remedy!)</li>
+                                <li><strong>Step 3:</strong> Employee SUES ABC Company (the manufacturer) for damages</li>
+                                <li><strong>Step 4:</strong> ABC Company says "It's not our fault - it's YOUR fault for not training the employee properly!" and sues YOU</li>
+                            </ol>
+                            <div class="bg-blue-100 dark:bg-blue-900/50 p-3 rounded mt-3">
+                                <p class="font-bold text-blue-800 dark:text-blue-300">Part Two Covers:</p>
+                                <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Your legal defense costs and any damages you owe to ABC Company in this "third-party-over" lawsuit.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-green-500">
+                        <h4 class="font-bold text-green-800 dark:text-green-300">2. Dual Capacity Situations</h4>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2">When the employer has TWO different relationships with the employee:</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-300"><strong>Example:</strong> A hospital employs a nurse (employer-employee relationship). The nurse is also a PATIENT at that hospital and is injured by medical malpractice. The nurse might sue the hospital as a patient, not as an employee.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-amber-50 dark:bg-amber-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-amber-500">
+                        <h4 class="font-bold text-amber-800 dark:text-amber-300">3. Loss of Consortium Claims</h4>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2">When a spouse sues for loss of companionship due to the employee's work injury:</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-300">The injured employee gets WC benefits, but in some states, the spouse can separately sue the employer for damages like loss of companionship, affection, or services.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Coverage Limits -->
+                <div class="bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-800 rounded-lg p-4 lg:p-5">
+                    <h3 class="font-bold text-red-800 dark:text-red-200 text-lg mb-3">Part Two Coverage Limits (Default)</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mb-3">Unlike Part One (which pays "as required by law" with no dollar limit), Part Two has SPECIFIC limits:</p>
+
+                    <div class="grid md:grid-cols-3 gap-3">
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded text-center">
+                            <p class="text-3xl font-bold text-red-600 dark:text-red-300">$100,000</p>
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-300 mt-1">Per Accident</p>
+                            <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">(Bodily injury by accident)</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded text-center">
+                            <p class="text-3xl font-bold text-red-600 dark:text-red-300">$100,000</p>
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-300 mt-1">Per Employee</p>
+                            <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">(Disease per employee)</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded text-center">
+                            <p class="text-3xl font-bold text-red-600 dark:text-red-300">$500,000</p>
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-300 mt-1">Policy Limit</p>
+                            <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">(Disease - policy aggregate)</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-amber-100 dark:bg-amber-900/50 p-3 rounded mt-4">
+                        <p class="font-bold text-amber-800 dark:text-amber-300">Memory Trick: "100-100-500"</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Think: Two $100k limits (accident & disease per person), then one BIG $500k aggregate for all disease claims.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Other States Coverage -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">Other States Coverage</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-800 rounded-lg p-4 lg:p-5 mb-6">
+                    <p class="font-bold text-blue-800 dark:text-blue-300">What If Your Employee Works in Another State?</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2">Companies often have employees who work in multiple states. The WC policy needs to cover injuries in all those states, even if each state has different WC laws!</p>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 lg:p-5 mb-6">
+                    <h3 class="font-bold text-gray-800 dark:text-gray-200 mb-3">Item 3.A - Other States Insurance</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mb-3">The policy includes an "Other States" endorsement with three boxes:</p>
+
+                    <div class="space-y-3">
+                        <div class="bg-white dark:bg-gray-600 p-3 rounded flex items-start gap-3">
+                            <span class="bg-blue-500 text-white rounded px-2 py-1 font-bold text-sm flex-shrink-0">3A</span>
+                            <div>
+                                <p class="font-semibold text-gray-800 dark:text-gray-200">States Listed</p>
+                                <p class="text-sm lg:text-base text-gray-600 dark:text-gray-300">Specific states you know you'll operate in - list them here</p>
+                            </div>
+                        </div>
+                        <div class="bg-white dark:bg-gray-600 p-3 rounded flex items-start gap-3">
+                            <span class="bg-green-500 text-white rounded px-2 py-1 font-bold text-sm flex-shrink-0">3B</span>
+                            <div>
+                                <p class="font-semibold text-gray-800 dark:text-gray-200">All States (Except Those Listed)</p>
+                                <p class="text-sm lg:text-base text-gray-600 dark:text-gray-300">Covers ALL states except the ones you specify (monopolistic states, home state, etc.)</p>
+                            </div>
+                        </div>
+                        <div class="bg-white dark:bg-gray-600 p-3 rounded flex items-start gap-3">
+                            <span class="bg-purple-500 text-white rounded px-2 py-1 font-bold text-sm flex-shrink-0">3C</span>
+                            <div>
+                                <p class="font-semibold text-gray-800 dark:text-gray-200">All States</p>
+                                <p class="text-sm lg:text-base text-gray-600 dark:text-gray-300">Broadest option - covers operations in any state (except monopolistic fund states)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-green-100 dark:bg-green-900/50 p-4 rounded">
+                    <p class="font-bold text-green-800 dark:text-green-300">Why This Matters:</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">If your employee gets hurt in a state NOT listed in Item 3.A, the claim might not be covered! Make sure you list all states where you operate.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Who Is Covered -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">Who Is Covered?</h2>
+
+                <div class="space-y-4">
+                    <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-green-500">
+                        <h3 class="font-bold text-green-800 dark:text-green-300 text-lg mb-2">Employees</h3>
+                        <p class="text-gray-700 dark:text-gray-300">All employees working for the named insured are covered, including:</p>
+                        <ul class="text-gray-600 dark:text-gray-300 mt-2 space-y-1">
+                            <li>+ Full-time employees</li>
+                            <li>+ Part-time employees</li>
+                            <li>+ Temporary workers</li>
+                            <li>+ Seasonal employees</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500">
+                        <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg mb-2">Officers and Partners</h3>
+                        <p class="text-gray-700 dark:text-gray-300">Corporate officers, LLC members, and partners are typically covered, but they may have the option to:</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-2">
+                            <p class="font-semibold text-blue-700 dark:text-blue-300">Opt Out of Coverage</p>
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-300">Executive officers can sometimes exclude themselves from WC coverage (reduces premium). State laws vary!</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-red-500">
+                        <h3 class="font-bold text-red-800 dark:text-red-200 text-lg mb-2">NOT Covered: Independent Contractors</h3>
+                        <p class="text-gray-700 dark:text-gray-300">Independent contractors are generally NOT covered by the employer's WC policy. They should carry their own coverage.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-2">
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-300"><strong>Why?</strong> They're not employees! The employer doesn't control how they do their work, so the employer isn't responsible for their injuries.</p>
+                        </div>
+                        <div class="bg-amber-100 dark:bg-amber-900/50 p-3 rounded mt-3">
+                            <p class="font-bold text-amber-800 dark:text-amber-300">Audit Risk!</p>
+                            <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300">If someone you call an "independent contractor" is really an employee, the state may reclassify them during a WC audit - resulting in back premiums!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Exclusions -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">What's NOT Covered? Key Exclusions</h2>
+
+                <div class="bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-800 rounded-lg p-4 lg:p-5 mb-6">
+                    <p class="font-bold text-red-800 dark:text-red-200">Know These Exclusions for the Exam!</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2">These are situations where WC does NOT provide coverage:</p>
+                </div>
+
+                <div class="space-y-4">
+                    <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 lg:p-5 border-l-4 border-gray-500">
+                        <h4 class="font-bold text-gray-800 dark:text-gray-200">1. Intentional Injury by Employer</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-2">If the employer <strong>deliberately</strong> hurts an employee, WC doesn't cover it. This isn't an "accident."</p>
+                        <div class="bg-white dark:bg-gray-600 p-2 rounded mt-2 text-xs lg:text-sm text-gray-600 dark:text-gray-300">
+                            <strong>Example:</strong> Owner punches an employee during an argument = NOT covered
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 lg:p-5 border-l-4 border-gray-500">
+                        <h4 class="font-bold text-gray-800 dark:text-gray-200">2. Employment Practices Liability</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-2">WC doesn't cover "people problems" like:</p>
+                        <ul class="text-gray-600 dark:text-gray-300 text-sm lg:text-base mt-2 space-y-1">
+                            <li>+ Wrongful termination</li>
+                            <li>+ Discrimination (race, gender, age, etc.)</li>
+                            <li>+ Sexual harassment</li>
+                            <li>+ Retaliation</li>
+                        </ul>
+                        <div class="bg-amber-100 dark:bg-amber-900/50 p-2 rounded mt-2 text-xs lg:text-sm">
+                            <strong>Note:</strong> These need a separate Employment Practices Liability Insurance (EPLI) policy!
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 lg:p-5 border-l-4 border-gray-500">
+                        <h4 class="font-bold text-gray-800 dark:text-gray-200">3. Punitive Damages</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-2">WC pays compensatory benefits (medical, disability, death), but NOT punitive damages designed to punish the employer.</p>
+                    </div>
+
+                    <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 lg:p-5 border-l-4 border-gray-500">
+                        <h4 class="font-bold text-gray-800 dark:text-gray-200">4. FELA, Jones Act, LHWCA</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-2">Employees covered by federal workers compensation laws are excluded:</p>
+                        <ul class="text-gray-600 dark:text-gray-300 text-sm lg:text-base mt-2 space-y-1">
+                            <li>+ <strong>FELA:</strong> Railroad workers (Federal Employers Liability Act)</li>
+                            <li>+ <strong>Jones Act:</strong> Maritime/seamen</li>
+                            <li>+ <strong>LHWCA:</strong> Longshore and Harbor Workers Compensation Act</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Monopolistic State Funds -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">Monopolistic State Funds</h2>
+
+                <div class="bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-800 rounded-lg p-4 lg:p-5 mb-6">
+                    <p class="font-bold text-red-800 dark:text-red-200">Exam Alert: Know These States!</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2">In some states, employers MUST buy Workers Compensation from the state fund - private insurers cannot write WC coverage in these states.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                    <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-5 border-2 border-purple-300 dark:border-purple-700">
+                        <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg mb-3">The Four Monopolistic States</h3>
+                        <div class="space-y-2">
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                                <p class="font-bold text-purple-700 dark:text-purple-300">Ohio</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                                <p class="font-bold text-purple-700 dark:text-purple-300">North Dakota</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                                <p class="font-bold text-purple-700 dark:text-purple-300">Washington</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                                <p class="font-bold text-purple-700 dark:text-purple-300">Wyoming</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-5 border-2 border-blue-300 dark:border-blue-700">
+                        <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg mb-3">What This Means</h3>
+                        <ul class="text-gray-700 dark:text-gray-300 space-y-2">
+                            <li>+ In these states, WC Part One MUST be purchased from the state fund</li>
+                            <li>+ Private insurers CANNOT sell WC Part One coverage</li>
+                            <li>+ However, private insurers CAN sell <strong>Part Two (Employers Liability)</strong> separately</li>
+                        </ul>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-300"><strong>Example:</strong> A company in Ohio must buy Part One from the Ohio Bureau of Workers Compensation, but can buy Part Two from a private insurer.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-green-100 dark:bg-green-900/50 p-4 rounded">
+                    <p class="font-bold text-green-800 dark:text-green-300 mb-2">Memory Trick: "ON WaWy"</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Think: "Turn ON WaWy" → <strong>O</strong>hio, <strong>N</strong>orth Dakota, <strong>Wa</strong>shington, <strong>Wy</strong>oming</p>
+                    <p class="text-gray-600 dark:text-gray-300 text-xs mt-2">Or remember: "O-N-W-W" - all four states have these letters!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Numbers to Memorize -->
+        <section class="mb-10">
+            <div class="bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-800 rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-red-800 dark:text-red-200 mb-4">Key Numbers to Memorize</h2>
+
+                <div class="grid md:grid-cols-3 gap-4">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg text-center">
+                        <p class="text-3xl font-bold text-orange-600 dark:text-orange-300">$100,000</p>
+                        <p class="text-sm lg:text-base text-gray-600 dark:text-gray-300">Part Two: Bodily Injury by Accident (per accident)</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg text-center">
+                        <p class="text-3xl font-bold text-orange-600 dark:text-orange-300">$100,000</p>
+                        <p class="text-sm lg:text-base text-gray-600 dark:text-gray-300">Part Two: Bodily Injury by Disease (per employee)</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg text-center">
+                        <p class="text-3xl font-bold text-orange-600 dark:text-orange-300">$500,000</p>
+                        <p class="text-sm lg:text-base text-gray-600 dark:text-gray-300">Part Two: Bodily Injury by Disease (policy limit)</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg text-center">
+                        <p class="text-3xl font-bold text-purple-600 dark:text-purple-300">4 States</p>
+                        <p class="text-sm lg:text-base text-gray-600 dark:text-gray-300">Monopolistic state funds (OH, ND, WA, WY)</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg text-center">
+                        <p class="text-3xl font-bold text-blue-600 dark:text-blue-300">4 Types</p>
+                        <p class="text-sm lg:text-base text-gray-600 dark:text-gray-300">Disability benefits (TT, TP, PT, PP)</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg text-center">
+                        <p class="text-3xl font-bold text-green-600 dark:text-green-300">2 Parts</p>
+                        <p class="text-sm lg:text-base text-gray-600 dark:text-gray-300">Part 1: WC Insurance | Part 2: Employers Liability</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Tips -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 border-2 border-orange-300 dark:border-orange-700">
+                <h2 class="text-2xl font-bold mb-4 text-gray-800 dark:text-gray-100">Exam Tips: Workers Compensation</h2>
+
+                <div class="space-y-4">
+                    <div class="bg-orange-50 dark:bg-orange-900/20 rounded-lg p-4 border-l-4 border-orange-500">
+                        <p class="font-bold mb-2 text-orange-800 dark:text-orange-300">1. Exclusive Remedy is KEY</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Understand that WC is the ONLY way employees can recover for work injuries (except in rare cases). They give up the right to sue in exchange for guaranteed benefits.</p>
+                    </div>
+
+                    <div class="bg-orange-50 dark:bg-orange-900/20 rounded-lg p-4 border-l-4 border-orange-500">
+                        <p class="font-bold mb-2 text-orange-800 dark:text-orange-300">2. Know the Two Parts</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Part One = WC benefits as required by law (no limit). Part Two = Employers Liability with specific dollar limits (100-100-500).</p>
+                    </div>
+
+                    <div class="bg-orange-50 dark:bg-orange-900/20 rounded-lg p-4 border-l-4 border-orange-500">
+                        <p class="font-bold mb-2 text-orange-800 dark:text-orange-300">3. Four Disability Types</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Memorize TT, TP, PT, PP. Think 2×2 grid: Temporary/Permanent × Total/Partial.</p>
+                    </div>
+
+                    <div class="bg-orange-50 dark:bg-orange-900/20 rounded-lg p-4 border-l-4 border-orange-500">
+                        <p class="font-bold mb-2 text-orange-800 dark:text-orange-300">4. Monopolistic States</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Remember "ON WaWy" - Ohio, North Dakota, Washington, Wyoming require state fund for Part One.</p>
+                    </div>
+
+                    <div class="bg-orange-50 dark:bg-orange-900/20 rounded-lg p-4 border-l-4 border-orange-500">
+                        <p class="font-bold mb-2 text-orange-800 dark:text-orange-300">5. Third-Party-Over Suits</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">This is the most common Employers Liability claim. Know the scenario: Employee sues manufacturer, manufacturer sues employer.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Navigation Footer -->
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="../part-2/index.html" class="text-gray-300 hover:text-white">← Part 2: PAP</a>
+                <span class="text-gray-400">Part 3: Workers Compensation</span>
+                <a href="../index.html" class="text-gray-300 hover:text-white">Chapter 3 Overview →</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Initialize AI Tutor -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            createFloatingAIButton(`Chapter 3 Part 3: Workers Compensation Insurance
+
+Overview:
+- WC provides benefits to employees for work-related injuries
+- Governed by state Workers Compensation Acts
+- No-fault system: benefits paid regardless of who caused the injury
+
+The Exclusive Remedy Rule:
+- THE GREAT BARGAIN between workers and employers
+- Employees give up right to sue employer for negligence
+- In exchange: get benefits regardless of fault
+- Employer's only liability is through WC system (with rare exceptions)
+
+Part One: Workers Compensation Insurance
+Benefits paid as required by state law:
+1. Medical Benefits - all medical expenses, no deductible
+2. Disability Benefits:
+   - Temporary Total (TT): can't work now, will recover
+   - Temporary Partial (TP): can do some work, will recover
+   - Permanent Total (PT): can never work again
+   - Permanent Partial (PP): lasting impairment but can work
+3. Rehabilitation Benefits - physical therapy, vocational training
+4. Death Benefits - for surviving spouse and dependents
+
+Part Two: Employers Liability Insurance
+- Covers situations outside WC system
+- Third-party-over suits (most common)
+- Dual capacity situations
+- Loss of consortium claims
+Default Limits:
+- $100,000 per accident (bodily injury by accident)
+- $100,000 per employee (disease)
+- $500,000 policy limit (disease aggregate)
+
+Other States Coverage:
+- Item 3.A: specific states listed
+- Item 3.B: all states except those listed
+- Item 3.C: all states
+
+Who Is Covered:
+- All employees (full-time, part-time, temporary)
+- Officers (can sometimes opt out)
+- NOT independent contractors
+
+Key Exclusions:
+- Intentional injury by employer
+- Employment practices (discrimination, harassment)
+- Punitive damages
+- FELA, Jones Act, LHWCA workers
+
+Monopolistic State Funds:
+- Ohio, North Dakota, Washington, Wyoming
+- Must buy Part One from state fund
+- Private insurers cannot write WC Part One in these states
+- Memory: "ON WaWy"`);
+        });
+    </script>
+</body>
+</html>
