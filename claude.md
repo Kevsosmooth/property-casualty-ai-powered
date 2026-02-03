@@ -1,209 +1,178 @@
 # Property & Casualty Insurance Study Guide - Claude Code Guidelines
 
 ## Project Overview
-This is an interactive study guide for Property & Casualty Insurance licensing exams. The goal is to make complex insurance concepts **easy to learn, easy to understand, and actually retainable**.
+This is an interactive study guide for Property & Casualty Insurance licensing exams. The goal is to make complex insurance concepts **easy to learn, fun to study, and actually retainable**.
 
 ---
 
-## Content Philosophy
+## Core Principles
 
-### Break Down Complex Terms
-- **Never assume the reader knows legal/insurance jargon**
-- When terms seem intimidating, break them down with:
-  - Plain English explanations ("What does this mean in plain English?")
-  - Real-world examples
-  - Step-by-step breakdowns ("The Setup", "What Happens", "Who Pays?")
-- Use analogies and relatable scenarios
+### 1. Make Learning Fun & Engaging
+- Use visual diagrams, flowcharts, and comparison tables
+- Include memory tricks and mnemonics
+- Break up walls of text with colorful boxes
+- Add "Exam Trap" callouts for common mistakes
 
-### Make It Memorable (But Not Flashy)
-- Use memory tricks and mnemonics (e.g., "ON WaWy" for monopolistic states)
-- Subtle color-coded sections for visual organization
-- "Exam Alert" callouts to highlight common mistakes
-- Key numbers in highlighted boxes (but soft colors)
+### 2. Crystal Clear Readability
+- **Large, readable text** - users may wear glasses
+- **Wide layouts on desktop** - use the full screen
+- **High contrast in dark mode** - no dim gray text
+- **Generous spacing** - don't cram content
 
-### Examples Are Essential
-- Every complex concept needs at least one example
-- Use "COVERED" vs "NOT COVERED" example pairs when explaining exclusions
-- Make examples relatable (everyday situations)
-- Examples must be crystal clear - reader should have NO doubt
+### 3. Examples Are Everything
+- Every concept needs at least one real-world example
+- Use "COVERED vs NOT COVERED" pairs for exclusions
+- Format examples with: "The Setup", "What Happens", "Who Pays?"
+- Examples must leave ZERO doubt
 
 ---
 
-## IMPORTANT: Visual Style Rules
+## CRITICAL: Layout & Readability Rules
+
+### Wide Desktop Layouts (REQUIRED)
+```html
+<!-- CORRECT - Uses full width on desktop -->
+<main class="container mx-auto px-4 lg:px-8 py-8 max-w-5xl lg:max-w-7xl">
+
+<!-- WRONG - Too narrow, wastes screen space -->
+<main class="container mx-auto px-4 py-8 max-w-4xl">
+```
+
+**Container widths:**
+- `max-w-5xl lg:max-w-7xl` for main content (PREFERRED)
+- `lg:px-8` for more breathing room on desktop
+- Never use `max-w-4xl` alone without `lg:` expansion
+
+### Text Sizes (Accessibility First)
+```html
+<!-- Body text - readable base size -->
+<p class="text-base lg:text-lg text-gray-700 dark:text-gray-300">
+
+<!-- Example/tip text - NEVER stay small on desktop -->
+<p class="text-sm lg:text-base text-gray-600 dark:text-gray-400">
+
+<!-- Labels/captions -->
+<p class="text-xs lg:text-sm text-gray-500 dark:text-gray-400">
+```
+
+**Rules:**
+- Base body text: `text-base lg:text-lg`
+- Small text: `text-sm lg:text-base` (scales up on desktop)
+- Never use `text-xs` without `lg:text-sm`
+- Bold important terms: `<strong>` for emphasis
+
+### Grid Layouts for Visual Content
+```html
+<!-- 2-3 columns for comparisons -->
+<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
+
+<!-- Side-by-side on large screens -->
+<div class="grid lg:grid-cols-2 gap-6">
+```
+
+---
+
+## Visual Style Rules
 
 ### NO Emojis
-- **Never use emojis anywhere in the content**
-- Use text labels, icons (SVG), or numbered circles instead
+- **Never use emojis anywhere**
+- Use text labels, SVG icons, or numbered circles instead
 
-### NO Gradient Backgrounds on Content
-- **Never use `bg-gradient-to-r` or similar gradients on content boxes**
-- Gradients are ONLY allowed on page headers (top of page)
+### NO Gradients in Content
+- Gradients ONLY allowed in page headers
 - All content boxes use solid, soft colors
 
-### Easy on the Eyes - Soft Colors Only
-- This is a study guide - people read for hours
-- **Use muted/soft color variants** (e.g., `bg-green-50` not `bg-green-500`)
-- Avoid bright, saturated colors in content areas
-- Dark mode should be comfortable for long reading sessions
-
-### Preferred Box Styling
+### Soft Colors for Long Study Sessions
 ```html
-<!-- Good - Soft background with left border -->
-<div class="bg-green-50 dark:bg-green-900/30 border-l-4 border-green-500 p-4 rounded-r-lg">
+<!-- GOOD - Soft background with left border -->
+<div class="bg-green-50 dark:bg-green-900/30 border-l-4 border-green-500 p-4 lg:p-5 rounded-r-lg">
 
-<!-- Good - Light background with full border -->
-<div class="bg-amber-50 dark:bg-amber-900/30 border border-amber-200 dark:border-amber-800 rounded-lg p-4">
+<!-- GOOD - Light background with full border -->
+<div class="bg-amber-50 dark:bg-amber-900/30 border border-amber-200 dark:border-amber-800 rounded-lg p-4 lg:p-5">
 
-<!-- BAD - Bright gradient (never use in content) -->
-<div class="bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+<!-- BAD - Too bright, hurts eyes -->
+<div class="bg-green-500 text-white">
 ```
+
+### Dark Mode (MUST be readable)
+- Body text: `dark:text-gray-300` (NOT gray-400/500)
+- Colored text: Use light variants (`dark:text-blue-300` not `dark:text-blue-400`)
+- Backgrounds: `dark:bg-gray-900` body, `dark:bg-gray-800` cards
+- Borders: `dark:border-gray-700` or colored `dark:border-[color]-800`
 
 ---
 
-## Styling & Layout Preferences
+## Color Scheme by Chapter
 
-### Responsive Design
-- **Container width**: `max-w-4xl lg:max-w-6xl` (wider on desktop)
-- **Horizontal padding**: `px-4 lg:px-8`
-- **Section padding**: `p-6 lg:p-8` for main sections
+| Chapter | Theme Color | Header Gradient | Accent |
+|---------|-------------|-----------------|--------|
+| Ch 1: Terms | Blue | `from-blue-600 to-blue-800` | `border-blue-500` |
+| Ch 2: Provisions | Purple | `from-purple-600 to-purple-800` | `border-purple-500` |
+| Ch 3: Policies | Green | `from-green-600 to-green-800` | `border-green-500` |
+| Ch 4: NJ Laws | Purple | `from-purple-600 to-purple-800` | `border-purple-500` |
+| Ch 5: NJ Casualty | Red | `from-red-600 to-red-800` | `border-red-500` |
 
-### Text Sizes
-- Regular body text: default
-- Small text in tips/examples: `text-sm lg:text-base`
-- Extra small text: `text-xs lg:text-sm`
-- **Never use small text that stays small on desktop - always scale up with `lg:` breakpoint**
-
-### Dark Mode Support
-- All pages must support dark mode
-- Text colors: use `dark:text-gray-300` (NOT `dark:text-gray-400` which is too dim)
-- Colored text in dark: use brighter variants (e.g., `dark:text-blue-300` not `dark:text-blue-400`)
-- Background: `dark:bg-gray-900` for body, `dark:bg-gray-800` for cards
-
-### Color Coding by Topic (Soft Colors)
-Use these for **borders and light backgrounds only**:
-- **CGL/General Liability**: Green (`border-green-500`, `bg-green-50`)
-- **PAP/Personal Auto**: Blue (`border-blue-500`, `bg-blue-50`)
-- **Liability Coverage**: Red (`border-red-500`, `bg-red-50`)
-- **Workers Compensation**: Amber (`border-amber-500`, `bg-amber-50`)
-- **Medical Payments**: Green
-- **Physical Damage**: Purple
-
-### Box Styling (Soft Colors)
-- Tips/Examples: `bg-[color]-50 dark:bg-[color]-900/30 border-l-4 border-[color]-500`
-- Important notes: `bg-amber-50 dark:bg-amber-900/30 border border-amber-200`
-- Exam warnings: `bg-red-50 dark:bg-red-900/30 border-l-4 border-red-500`
-- Key concepts: Soft background with border (NO gradients)
-
-### Cards & Sections
-- Main content cards: `bg-white dark:bg-gray-800 rounded-xl shadow-md`
-- Inner boxes: `rounded-lg` with soft colored backgrounds
-- Numbered items: Use subtle number circles, not bright colored blocks
+### Topic Color Coding (within pages)
+- **Liability/Danger**: Red borders/backgrounds
+- **Coverage/Benefits**: Green borders/backgrounds
+- **Information/Neutral**: Blue borders/backgrounds
+- **Warnings/Important**: Amber borders/backgrounds
+- **Definitions/Terms**: Purple borders/backgrounds
 
 ---
 
-## Page Structure
+## Visual Elements (REQUIRED for learning)
 
-### Header (Only Place for Gradients)
-- Header can use gradient: `bg-gradient-to-r from-[color]-600 to-[color]-800`
-- Breadcrumb navigation
-- Title and subtitle
-
-### Navigation
-- Sticky nav bar at top
-- Links to related parts/sections
-- Current section highlighted with solid background (not gradient)
-
-### Content Sections
-- Clear headings with `text-2xl font-bold`
-- Visual separation between topics
-- Tables for data (auto symbols, limits, etc.)
-- Grid layouts for comparison (2-3 columns on desktop)
-- Use accordions/drawers for long lists with examples
-
-### Footer
-- Previous/Next navigation
-- Current location indicator
-
-### AI Tutor Button
-- Floating button with context-aware help
-- Summary of page content for AI context
-
----
-
-## Formatting Patterns
-
-### Tables
+### Comparison Tables
 ```html
-<table class="w-full text-sm lg:text-base">
-    <thead>
-        <tr class="bg-gray-100 dark:bg-gray-700">
-            <th class="text-left p-3 font-bold">...</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr class="border-b dark:border-gray-600">
-            <td class="p-3">...</td>
-        </tr>
-    </tbody>
-</table>
-```
-
-### Numbered Lists (Subtle Style)
-```html
-<div class="flex items-start">
-    <span class="bg-gray-200 dark:bg-gray-600 text-gray-700 dark:text-gray-200 rounded-full w-7 h-7 flex items-center justify-center mr-3 flex-shrink-0 font-semibold text-sm">1</span>
-    <div>Content here...</div>
+<div class="overflow-x-auto">
+    <table class="w-full text-sm lg:text-base">
+        <thead>
+            <tr class="bg-purple-600 text-white">
+                <th class="p-3 lg:p-4 text-left rounded-tl-lg">Column 1</th>
+                <th class="p-3 lg:p-4 text-left rounded-tr-lg">Column 2</th>
+            </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+            <tr class="bg-gray-50 dark:bg-gray-700">
+                <td class="p-3 lg:p-4">Content</td>
+            </tr>
+        </tbody>
+    </table>
 </div>
 ```
 
-### Breakdowns/Explanations
+### Key Numbers Box (for memorization)
 ```html
-<div class="bg-blue-50 dark:bg-blue-900/30 border-l-4 border-blue-500 p-4 rounded-r-lg">
-    <p class="text-sm lg:text-base font-semibold text-blue-800 dark:text-blue-200">What does this mean in plain English?</p>
-    <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300 mt-1">...</p>
+<div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-3 lg:gap-4">
+    <div class="bg-white dark:bg-gray-800 p-3 lg:p-4 rounded-lg text-center border">
+        <p class="text-2xl lg:text-3xl font-bold text-red-600 dark:text-red-400">30</p>
+        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Days to notify</p>
+    </div>
 </div>
 ```
 
-### Covered vs Not Covered Examples
+### Visual Flow Diagrams
 ```html
-<div class="bg-green-50 dark:bg-green-900/30 p-3 rounded">
-    <p class="text-sm font-semibold text-green-700 dark:text-green-300">Example - COVERED:</p>
-    <p class="text-sm text-gray-600 dark:text-gray-300 mt-1"><strong>The Setup:</strong> ...</p>
-    <p class="text-sm text-gray-600 dark:text-gray-300 mt-1"><strong>What Happens:</strong> ...</p>
-    <p class="text-sm text-gray-600 dark:text-gray-300 mt-1"><strong>Who Pays?</strong> ...</p>
-</div>
-<div class="bg-red-50 dark:bg-red-900/30 p-3 rounded mt-2">
-    <p class="text-sm font-semibold text-red-700 dark:text-red-300">Example - NOT COVERED:</p>
-    <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">...</p>
+<div class="flex items-center gap-4 flex-wrap">
+    <div class="bg-blue-100 dark:bg-blue-900/40 p-4 rounded-lg text-center">
+        <p class="font-bold">Step 1</p>
+    </div>
+    <div class="text-2xl text-gray-400">→</div>
+    <div class="bg-green-100 dark:bg-green-900/40 p-4 rounded-lg text-center">
+        <p class="font-bold">Step 2</p>
+    </div>
 </div>
 ```
 
-### Accordion/Collapsible Drawers
-Use accordions when you have a list of items that each need detailed examples. This saves space and keeps the page clean. **Only ONE accordion can be open at a time.**
-
-**When to use:**
-- Exclusion lists with examples for each
-- "Who Is Insured" sections with examples
-- Definition lists where each term needs explanation
-- Any list where expanding details would make the page too long
-
-**Structure:**
+### Exam Trap Alerts
 ```html
-<!-- Container -->
-<div class="space-y-2" id="my-accordion">
-    <!-- Each accordion item -->
-    <div class="accordion-item border border-gray-200 dark:border-gray-600 rounded-lg overflow-hidden">
-        <button onclick="toggleAccordion(this)" class="w-full flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors text-left">
-            <div class="flex items-center">
-                <span class="bg-gray-200 dark:bg-gray-600 text-gray-700 dark:text-gray-200 rounded-full w-7 h-7 flex items-center justify-center mr-3 flex-shrink-0 font-semibold text-sm">1</span>
-                <span class="font-semibold text-gray-800 dark:text-gray-200">Item Title</span>
-            </div>
-            <svg class="w-5 h-5 text-gray-500 transition-transform accordion-arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-            </svg>
-        </button>
-        <div class="accordion-content hidden p-4 bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-600">
-            <!-- Content with examples -->
+<div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-xl p-5 lg:p-6">
+    <h3 class="text-xl lg:text-2xl font-bold text-red-800 dark:text-red-300 mb-4">Exam Trap Alerts</h3>
+    <div class="space-y-3">
+        <div class="flex items-start">
+            <span class="text-red-500 mr-3 text-xl">!</span>
+            <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Important trap here</p>
         </div>
     </div>
 </div>
@@ -211,53 +180,132 @@ Use accordions when you have a list of items that each need detailed examples. T
 
 ---
 
+## Page Structure
+
+### Required Components
+1. **Header** - Gradient with breadcrumbs, title, subtitle
+2. **Sticky Navigation** - Part/section links
+3. **Main Content** - Wide container with visual sections
+4. **Quick Reference** - Summary table/cards at bottom
+5. **Exam Tips** - Common traps and memorization help
+6. **Footer Navigation** - Prev/Next links
+7. **AI Tutor Button** - Floating help with context
+
+### Content Section Pattern
+```html
+<section class="mb-8 lg:mb-10">
+    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+        <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">Section Title</h2>
+        <!-- Content with visual boxes, tables, diagrams -->
+    </div>
+</section>
+```
+
+---
+
 ## Folder Structure
+
 ```
 /casualty/
-  /chapter-3/
-    index.html (chapter landing with part selection cards)
-    /part-0/ (Introduction & Key Terms)
-    /part-1/ (CGL)
-    /part-2/ (PAP & Business Auto)
-      index.html
-      pap-liability.html
-      pap-medical.html
-      pap-um.html
-      pap-physical.html
-      pap-duties.html
-      business-auto.html
-      garage-coverage.html
-    /part-3/ (Workers Compensation)
-    /part-4/ (Professional Liability - future)
+  index.html              (Casualty landing page)
+  /chapter-1/             (Insurance Terms)
+  /chapter-2/             (Policy Provisions)
+  /chapter-3/             (Types of Policies)
+    index.html
+    /part-0/ to /part-7/
+    /recap/
+  /chapter-4/             (NJ Laws - All Lines)
+    index.html            (Introduction + definitions)
+    /part-1/              (Types of Insurers, Producers, Transactions)
+    /part-2/              (State Regulation, Commissioner)
+    /part-3/              (Licensing)
+    /part-4/ to /part-10/
+    /recap/
+  /chapter-5/             (NJ Casualty-Specific)
+/property/                (Future - Property Insurance)
+/study-tools/
+  flashcards.html
+  quiz.html
+```
+
+---
+
+## Quality Checklist
+
+### Layout & Readability
+- [ ] Wide container: `max-w-5xl lg:max-w-7xl`
+- [ ] Desktop padding: `px-4 lg:px-8`
+- [ ] Body text: `text-base lg:text-lg`
+- [ ] Small text scales up: `text-sm lg:text-base`
+- [ ] Grid layouts for comparisons
+
+### Visual Learning
+- [ ] Key numbers in highlighted boxes
+- [ ] Comparison tables with headers
+- [ ] Flow diagrams for processes
+- [ ] Color-coded sections by topic
+- [ ] Memory tricks included
+
+### Accessibility
+- [ ] Dark mode tested and readable
+- [ ] High contrast text colors
+- [ ] No tiny text that stays tiny
+- [ ] Generous padding/spacing
+
+### Content Quality
+- [ ] NO emojis anywhere
+- [ ] NO gradients in content areas
+- [ ] Every term has an example
+- [ ] "Exam Trap" section included
+- [ ] Quick reference summary
+
+### Navigation
+- [ ] Breadcrumb trail
+- [ ] Sticky part navigation
+- [ ] Prev/Next footer links
+- [ ] AI tutor button with context
+
+---
+
+## Common Patterns
+
+### Definitions with Examples
+```html
+<div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500">
+    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg lg:text-xl">Term Name</h3>
+    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">Definition here.</p>
+    <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded mt-3">
+        <p class="font-semibold text-gray-700 dark:text-gray-300">Example:</p>
+        <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base mt-1">Real-world example...</p>
+    </div>
+</div>
+```
+
+### Covered vs Not Covered
+```html
+<div class="grid md:grid-cols-2 gap-4">
+    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border border-green-200 dark:border-green-800">
+        <p class="font-bold text-green-800 dark:text-green-300">COVERED</p>
+        <p class="text-gray-700 dark:text-gray-300 mt-2">Scenario description...</p>
+    </div>
+    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border border-red-200 dark:border-red-800">
+        <p class="font-bold text-red-800 dark:text-red-300">NOT COVERED</p>
+        <p class="text-gray-700 dark:text-gray-300 mt-2">Scenario description...</p>
+    </div>
+</div>
 ```
 
 ---
 
 ## Key Reminders
-1. **NO emojis** - never use them anywhere
-2. **NO gradients in content** - only in page headers
-3. **Soft, muted colors** - easy on the eyes for long study sessions
-4. **Always use larger text on desktop** - the `lg:` breakpoint should increase font sizes
-5. **Dark mode must be readable** - test colors in both modes
-6. **Every confusing term needs a breakdown** - don't assume knowledge
-7. **Examples must be crystal clear** - reader should have NO doubt what's covered/not covered
-8. **Use accordions for long lists** - saves space, keeps it clean
-9. **Exam alerts are gold** - highlight common misconceptions
-10. **Numbers in subtle boxes** - key figures should stand out but not scream
 
----
-
-## Quality Checklist for New Pages
-- [ ] Responsive container (`max-w-4xl lg:max-w-6xl`)
-- [ ] Desktop text scaling (`lg:text-base`, `lg:px-8`, etc.)
-- [ ] Dark mode tested and readable
-- [ ] NO emojis anywhere
-- [ ] NO gradients in content (only header)
-- [ ] Soft, muted colors throughout
-- [ ] Complex terms broken down with examples
-- [ ] Examples are crystal clear (The Setup, What Happens, Who Pays)
-- [ ] Memory tricks included
-- [ ] Exam tips section
-- [ ] Accordions used for long lists
-- [ ] Navigation working (breadcrumbs, prev/next)
-- [ ] AI tutor button with context
+1. **Wide layouts** - Use the full screen on desktop
+2. **Large text** - Users wear glasses, make it readable
+3. **Visual first** - Tables, diagrams, color boxes
+4. **NO emojis** - Ever
+5. **Soft colors** - Easy on eyes for long study sessions
+6. **Dark mode matters** - Test every page
+7. **Examples are essential** - One per concept minimum
+8. **Exam traps** - Highlight what trips people up
+9. **Numbers stand out** - Key figures in boxes
+10. **Make it fun** - Learning should be enjoyable

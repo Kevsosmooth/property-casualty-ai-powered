@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 4 Part 6: Fraud | P&C Study Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <link rel="stylesheet" href="../../../css/styles.css">
+    <script src="../../../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+        }
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <!-- Settings & Theme Toggle Buttons -->
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="showAPIKeySetup()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings">
+            <svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+        </button>
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/>
+            </svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-orange-600 to-red-700 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap gap-2 text-sm mb-2">
+                <a href="../../../index.html" class="text-orange-200 hover:text-white">Home</a>
+                <span class="text-orange-300">/</span>
+                <a href="../index.html" class="text-orange-200 hover:text-white">Chapter 4</a>
+                <span class="text-orange-300">/</span>
+                <span class="text-white">Part 6: Fraud</span>
+            </div>
+            <h1 class="text-3xl font-bold">Chapter 4 Part 6: Fraud</h1>
+            <p class="text-orange-200 mt-1">NJ Insurance Fraud Prevention Act & Penalties</p>
+        </div>
+    </header>
+
+    <!-- Part Navigation -->
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-wrap gap-2 text-sm">
+                <a href="../part-1/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 1</a>
+                <a href="../part-2/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 2</a>
+                <a href="../part-3/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 3</a>
+                <a href="../part-4/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 4</a>
+                <a href="../part-5/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 5</a>
+                <span class="bg-orange-600 text-white px-3 py-1 rounded font-medium">Part 6: Fraud</span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-4xl lg:max-w-6xl">
+
+        <!-- Overview -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">New Jersey Insurance Fraud Prevention Act</h2>
+
+                <div class="bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-800 rounded-lg p-4 mb-6">
+                    <p class="text-gray-700 dark:text-gray-300">Insurance fraud is a <strong>serious crime</strong> in New Jersey. The Insurance Fraud Prevention Act defines specific violations and establishes penalties including fines, criminal prosecution, and license revocation.</p>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 rounded-r-lg">
+                    <p class="font-bold text-amber-800 dark:text-amber-300">Exam Alert!</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2">Know the <strong>penalty amounts</strong>: $5,000 first, $10,000 second, $15,000 subsequent. Plus the $1,000 surcharge!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Fraud Violations -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">Fraud Violations Under the Act</h2>
+
+                <p class="text-gray-700 dark:text-gray-300 mb-6">The following are considered violations of the New Jersey Insurance Fraud Prevention Act:</p>
+
+                <!-- Fraud Types -->
+                <div class="space-y-4">
+                    <!-- 1. False Statements -->
+                    <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-5 border-l-4 border-red-500">
+                        <div class="flex items-start">
+                            <div class="bg-red-600 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold mr-3 flex-shrink-0">1</div>
+                            <div>
+                                <h3 class="font-bold text-red-800 dark:text-red-300 text-lg">False or Misleading Statements</h3>
+                                <p class="text-gray-700 dark:text-gray-300 mt-2">Knowingly presenting any <strong>written or oral false or misleading statement</strong> as part of, in support of, or in opposition to a claim for payment or other benefit.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2. Concealment -->
+                    <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-5 border-l-4 border-red-500">
+                        <div class="flex items-start">
+                            <div class="bg-red-600 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold mr-3 flex-shrink-0">2</div>
+                            <div>
+                                <h3 class="font-bold text-red-800 dark:text-red-300 text-lg">Concealing Events</h3>
+                                <p class="text-gray-700 dark:text-gray-300 mt-2"><strong>Concealing or knowingly failing to disclose</strong> the occurrence of an event that affects any person's initial or continued right to insurance benefits, or the amount entitled.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3. False Residency (Motor Vehicle) -->
+                    <div class="bg-orange-50 dark:bg-orange-900/20 rounded-lg p-5 border-l-4 border-orange-500">
+                        <div class="flex items-start">
+                            <div class="bg-orange-600 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold mr-3 flex-shrink-0">3</div>
+                            <div>
+                                <h3 class="font-bold text-orange-800 dark:text-orange-300 text-lg">False Residency Claim (Motor Vehicle)</h3>
+                                <p class="text-gray-700 dark:text-gray-300 mt-2">Preparing or making a statement for a <strong>motor vehicle insurance policy</strong> stating the person's principal residence is in NJ when, in fact, it is in <strong>another state</strong>.</p>
+                                <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3 text-sm">
+                                    <p class="text-gray-600 dark:text-gray-400 italic">Example: Living in NY but claiming NJ residence for lower rates = FRAUD</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 4. False Application Info -->
+                    <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-5 border-l-4 border-red-500">
+                        <div class="flex items-start">
+                            <div class="bg-red-600 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold mr-3 flex-shrink-0">4</div>
+                            <div>
+                                <h3 class="font-bold text-red-800 dark:text-red-300 text-lg">False Application Information</h3>
+                                <p class="text-gray-700 dark:text-gray-300 mt-2">Preparing or making a statement for any insurance policy knowing it contains <strong>false or misleading information</strong> concerning any material fact.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 5. Concealing Evidence -->
+                    <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-5 border-l-4 border-red-500">
+                        <div class="flex items-start">
+                            <div class="bg-red-600 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold mr-3 flex-shrink-0">5</div>
+                            <div>
+                                <h3 class="font-bold text-red-800 dark:text-red-300 text-lg">Concealing Evidence</h3>
+                                <p class="text-gray-700 dark:text-gray-300 mt-2"><strong>Concealing or knowingly failing to disclose</strong> any evidence, written or oral, that may be relevant to finding whether a violation has or has not occurred.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 6. Assisting/Conspiring -->
+                    <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-5 border-l-4 border-purple-500">
+                        <div class="flex items-start">
+                            <div class="bg-purple-600 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold mr-3 flex-shrink-0">6</div>
+                            <div>
+                                <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg">Assisting or Conspiring</h3>
+                                <p class="text-gray-700 dark:text-gray-300 mt-2"><strong>Knowingly assisting, conspiring with, or urging</strong> any person to violate any provisions of the act.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 7. Benefiting from Fraud -->
+                    <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-5 border-l-4 border-purple-500">
+                        <div class="flex items-start">
+                            <div class="bg-purple-600 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold mr-3 flex-shrink-0">7</div>
+                            <div>
+                                <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg">Benefiting from Fraud</h3>
+                                <p class="text-gray-700 dark:text-gray-300 mt-2"><strong>Knowingly benefiting, directly or indirectly</strong>, from the proceeds derived from a violation due to assistance, conspiracy, or urging of any person.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 8. Hospital Facilities -->
+                    <div class="bg-amber-50 dark:bg-amber-900/20 rounded-lg p-5 border-l-4 border-amber-500">
+                        <div class="flex items-start">
+                            <div class="bg-amber-600 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold mr-3 flex-shrink-0">8</div>
+                            <div>
+                                <h3 class="font-bold text-amber-800 dark:text-amber-300 text-lg">Hospital Facilities for Fraud</h3>
+                                <p class="text-gray-700 dark:text-gray-300 mt-2">For an owner, administrator, or employee of any hospital, <strong>knowingly allowing the use of hospital facilities</strong> in furtherance of a scheme or conspiracy to violate the act.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 9-11. Solicitation -->
+                    <div class="bg-rose-50 dark:bg-rose-900/20 rounded-lg p-5 border-l-4 border-rose-500">
+                        <div class="flex items-start">
+                            <div class="bg-rose-600 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold mr-3 flex-shrink-0">9</div>
+                            <div>
+                                <h3 class="font-bold text-rose-800 dark:text-rose-300 text-lg">Illegal Solicitation</h3>
+                                <p class="text-gray-700 dark:text-gray-300 mt-2 mb-3">Directly or indirectly soliciting:</p>
+                                <ul class="space-y-2 text-gray-700 dark:text-gray-300 text-sm">
+                                    <li class="flex items-start">
+                                        <span class="text-rose-500 mr-2">•</span>
+                                        <span>A person to hire themselves or others to manage, adjust, or prosecute claims for damages for <strong>pecuniary gain</strong></span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="text-rose-500 mr-2">•</span>
+                                        <span>Others to bring causes of action for <strong>personal injuries or death</strong> for pecuniary gain</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="text-rose-500 mr-2">•</span>
+                                        <span>Others to make claims for <strong>personal injury protection (PIP) benefits</strong></span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Commissioner's Actions -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">Commissioner's Actions</h2>
+
+                <p class="text-gray-700 dark:text-gray-300 mb-6">When the Commissioner determines that a person has violated the NJ Insurance Fraud Prevention Act, the Commissioner may:</p>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    <!-- Primary Actions -->
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-5 border-2 border-blue-400 dark:border-blue-600">
+                        <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg mb-4">Primary Options:</h3>
+                        <div class="space-y-3">
+                            <div class="bg-white dark:bg-gray-700 p-4 rounded flex items-center">
+                                <svg class="w-8 h-8 text-blue-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                </svg>
+                                <div>
+                                    <p class="font-semibold text-gray-700 dark:text-gray-200">Civil Action (Lawsuit)</p>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">Bring a lawsuit against the offender</p>
+                                </div>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-4 rounded flex items-center">
+                                <svg class="w-8 h-8 text-blue-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                                </svg>
+                                <div>
+                                    <p class="font-semibold text-gray-700 dark:text-gray-200">Civil Administrative Penalty</p>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">Assess fines and order restitution</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Alternative Actions -->
+                    <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-5 border-2 border-purple-400 dark:border-purple-600">
+                        <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg mb-4">In Lieu Of, May Request:</h3>
+                        <div class="space-y-3">
+                            <div class="bg-white dark:bg-gray-700 p-4 rounded flex items-center">
+                                <svg class="w-8 h-8 text-purple-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 1.944A11.954 11.954 0 012.166 5C2.056 5.649 2 6.319 2 7c0 5.225 3.34 9.67 8 11.317C14.66 16.67 18 12.225 18 7c0-.682-.057-1.35-.166-2.001A11.954 11.954 0 0110 1.944zM11 14a1 1 0 11-2 0 1 1 0 012 0zm0-7a1 1 0 10-2 0v3a1 1 0 102 0V7z" clip-rule="evenodd"/>
+                                </svg>
+                                <div>
+                                    <p class="font-semibold text-gray-700 dark:text-gray-200">Attorney General</p>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">Request criminal action under criminal statutes</p>
+                                </div>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-4 rounded flex items-center">
+                                <svg class="w-8 h-8 text-purple-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 2a1 1 0 00-1 1v1a1 1 0 002 0V3a1 1 0 00-1-1zM4 4h3a3 3 0 006 0h3a2 2 0 012 2v9a2 2 0 01-2 2H4a2 2 0 01-2-2V6a2 2 0 012-2zm2.5 7a1.5 1.5 0 100-3 1.5 1.5 0 000 3zm2.45 4a2.5 2.5 0 10-4.9 0h4.9zM12 9a1 1 0 100 2h3a1 1 0 100-2h-3zm-1 4a1 1 0 011-1h2a1 1 0 110 2h-2a1 1 0 01-1-1z" clip-rule="evenodd"/>
+                                </svg>
+                                <div>
+                                    <p class="font-semibold text-gray-700 dark:text-gray-200">Licensing Authorities</p>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">Refer for license suspension or revocation</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Penalties -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">Penalties for Fraud Violations</h2>
+
+                <!-- Penalty Amounts -->
+                <div class="bg-gradient-to-r from-red-50 to-orange-50 dark:from-red-900/20 dark:to-orange-900/20 rounded-lg p-6 border-2 border-red-300 dark:border-red-700 mb-6">
+                    <h3 class="font-bold text-red-800 dark:text-red-200 text-xl mb-6 text-center">Penalty Amounts</h3>
+
+                    <div class="grid md:grid-cols-3 gap-4">
+                        <!-- First Violation -->
+                        <div class="bg-white dark:bg-gray-700 rounded-lg p-6 text-center shadow-lg">
+                            <div class="bg-yellow-500 text-white rounded-full w-12 h-12 flex items-center justify-center font-bold mx-auto mb-3">1st</div>
+                            <p class="text-4xl font-bold text-yellow-600 dark:text-yellow-400">$5,000</p>
+                            <p class="text-gray-600 dark:text-gray-400 mt-2">First Violation</p>
+                        </div>
+
+                        <!-- Second Violation -->
+                        <div class="bg-white dark:bg-gray-700 rounded-lg p-6 text-center shadow-lg">
+                            <div class="bg-orange-500 text-white rounded-full w-12 h-12 flex items-center justify-center font-bold mx-auto mb-3">2nd</div>
+                            <p class="text-4xl font-bold text-orange-600 dark:text-orange-400">$10,000</p>
+                            <p class="text-gray-600 dark:text-gray-400 mt-2">Second Violation</p>
+                        </div>
+
+                        <!-- Subsequent Violations -->
+                        <div class="bg-white dark:bg-gray-700 rounded-lg p-6 text-center shadow-lg">
+                            <div class="bg-red-600 text-white rounded-full w-12 h-12 flex items-center justify-center font-bold mx-auto mb-3">3+</div>
+                            <p class="text-4xl font-bold text-red-600 dark:text-red-400">$15,000</p>
+                            <p class="text-gray-600 dark:text-gray-400 mt-2">Each Subsequent</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Surcharge -->
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-6 border-2 border-purple-400 dark:border-purple-600 mb-6">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-purple-600 text-white rounded-full px-6 py-3 font-bold text-2xl mr-4">$1,000</div>
+                        <div>
+                            <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg">Additional Surcharge</h3>
+                            <p class="text-gray-700 dark:text-gray-300">In addition to any other penalty!</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 dark:text-gray-300">Individuals guilty of committing insurance fraud are ALSO subject to a <strong>$1,000 surcharge</strong>.</p>
+                </div>
+
+                <!-- Settlement Surcharge -->
+                <div class="bg-indigo-50 dark:bg-indigo-900/20 rounded-lg p-6 border-l-4 border-indigo-500">
+                    <h3 class="font-bold text-indigo-800 dark:text-indigo-300 text-lg mb-3">Settlement Surcharge - 5%</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">If a legal proceeding is resolved through a <strong>monetary settlement</strong>, the guilty party must pay:</p>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded text-center">
+                        <p class="text-3xl font-bold text-indigo-600 dark:text-indigo-400">5%</p>
+                        <p class="text-gray-600 dark:text-gray-400">of total settlement payment</p>
+                    </div>
+                    <p class="text-gray-700 dark:text-gray-300 mt-4 text-sm italic">All surcharges must be made payable to the <strong>Treasurer of the State of New Jersey</strong>.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Conflict of Interest Law -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">New Jersey Conflict of Interest Law & Legislative Code of Ethics</h2>
+
+                <div class="bg-teal-50 dark:bg-teal-900/30 border-l-4 border-teal-500 p-4 rounded-r-lg mb-6">
+                    <p class="text-gray-700 dark:text-gray-300">The NJ Conflict of Interest Law and Legislative Code of Ethics implement standards of conduct for <strong>legislators and all state employees</strong> in the following areas:</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-teal-50 dark:bg-teal-900/20 rounded-lg p-4 border border-teal-300 dark:border-teal-700">
+                        <div class="flex items-center mb-2">
+                            <svg class="w-6 h-6 text-teal-600 dark:text-teal-400 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M5 5a3 3 0 015-2.236A3 3 0 0114.83 6H16a2 2 0 110 4h-5V9a1 1 0 10-2 0v1H4a2 2 0 110-4h1.17C5.06 5.687 5 5.35 5 5zm4 1V5a1 1 0 10-1 1h1zm3 0a1 1 0 10-1-1v1h1z" clip-rule="evenodd"/>
+                                <path d="M9 11H3v5a2 2 0 002 2h4v-7zM11 18h4a2 2 0 002-2v-5h-6v7z"/>
+                            </svg>
+                            <p class="font-semibold text-teal-800 dark:text-teal-300">Restrictions on Gifts</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-teal-50 dark:bg-teal-900/20 rounded-lg p-4 border border-teal-300 dark:border-teal-700">
+                        <div class="flex items-center mb-2">
+                            <svg class="w-6 h-6 text-teal-600 dark:text-teal-400 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M13.477 14.89A6 6 0 015.11 6.524l8.367 8.368zm1.414-1.414L6.524 5.11a6 6 0 018.367 8.367zM18 10a8 8 0 11-16 0 8 8 0 0116 0z" clip-rule="evenodd"/>
+                            </svg>
+                            <p class="font-semibold text-teal-800 dark:text-teal-300">Prohibited Representations</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-teal-50 dark:bg-teal-900/20 rounded-lg p-4 border border-teal-300 dark:border-teal-700">
+                        <div class="flex items-center mb-2">
+                            <svg class="w-6 h-6 text-teal-600 dark:text-teal-400 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 2a1 1 0 00-1 1v1a1 1 0 002 0V3a1 1 0 00-1-1zM4 4h3a3 3 0 006 0h3a2 2 0 012 2v9a2 2 0 01-2 2H4a2 2 0 01-2-2V6a2 2 0 012-2zm2.5 7a1.5 1.5 0 100-3 1.5 1.5 0 000 3zm2.45 4a2.5 2.5 0 10-4.9 0h4.9zM12 9a1 1 0 100 2h3a1 1 0 100-2h-3zm-1 4a1 1 0 011-1h2a1 1 0 110 2h-2a1 1 0 01-1-1z" clip-rule="evenodd"/>
+                            </svg>
+                            <p class="font-semibold text-teal-800 dark:text-teal-300">Personal Interest in Legislation</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-teal-50 dark:bg-teal-900/20 rounded-lg p-4 border border-teal-300 dark:border-teal-700">
+                        <div class="flex items-center mb-2">
+                            <svg class="w-6 h-6 text-teal-600 dark:text-teal-400 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"/>
+                                <path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clip-rule="evenodd"/>
+                            </svg>
+                            <p class="font-semibold text-teal-800 dark:text-teal-300">State Contracts</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-teal-50 dark:bg-teal-900/20 rounded-lg p-4 border border-teal-300 dark:border-teal-700">
+                        <div class="flex items-center mb-2">
+                            <svg class="w-6 h-6 text-teal-600 dark:text-teal-400 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"/>
+                            </svg>
+                            <p class="font-semibold text-teal-800 dark:text-teal-300">Disclosure of Confidential Information</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Reference: Key Numbers -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-orange-50 to-red-50 dark:from-orange-900/30 dark:to-red-900/30 border-2 border-orange-300 dark:border-orange-700 rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-orange-800 dark:text-orange-200 mb-4">Quick Reference: Fraud Penalties</h2>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg text-center">
+                        <p class="text-3xl font-bold text-yellow-600 dark:text-yellow-400">$5,000</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">1st violation</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg text-center">
+                        <p class="text-3xl font-bold text-orange-600 dark:text-orange-400">$10,000</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">2nd violation</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg text-center">
+                        <p class="text-3xl font-bold text-red-600 dark:text-red-400">$15,000</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Subsequent violations</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg text-center">
+                        <p class="text-3xl font-bold text-purple-600 dark:text-purple-400">$1,000</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Additional surcharge</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg text-center col-span-full md:col-span-2">
+                        <p class="text-3xl font-bold text-indigo-600 dark:text-indigo-400">5%</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Settlement surcharge (of total settlement)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Tips -->
+        <section class="mb-10">
+            <div class="bg-amber-50 dark:bg-amber-900/30 border border-amber-200 dark:border-amber-800 rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-amber-800 dark:text-amber-200 mb-4">Exam Tips</h2>
+
+                <div class="space-y-3">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-amber-700 dark:text-amber-300">Tip #1: Penalty Progression</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm mt-1">Remember: $5K → $10K → $15K. Each doubles then adds $5K!</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-amber-700 dark:text-amber-300">Tip #2: The Two Surcharges</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm mt-1">$1,000 flat surcharge + 5% of settlements. Both go to State Treasurer.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-amber-700 dark:text-amber-300">Tip #3: Motor Vehicle Fraud</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm mt-1">Claiming NJ residency when you live elsewhere to get lower rates = specific fraud violation!</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-amber-700 dark:text-amber-300">Tip #4: Commissioner's Options</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm mt-1">Can bring civil action OR assess penalty, or refer to Attorney General for criminal charges.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Navigation Footer -->
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="../part-5/index.html" class="text-gray-300 hover:text-white">← Part 5: Licensee Responsibilities</a>
+                <span class="text-gray-400">Part 6: Fraud</span>
+                <a href="../index.html" class="text-gray-300 hover:text-white">Back to Chapter 4 →</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Initialize AI Tutor -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            createFloatingAIButton(`Chapter 4 Part 6: Fraud - NJ Insurance Fraud Prevention Act
+
+FRAUD VIOLATIONS:
+1. False/misleading statements - knowingly presenting false written or oral statements for claims
+2. Concealing events - hiding events that affect benefit eligibility or amounts
+3. False residency (motor vehicle) - claiming NJ residence when living in another state
+4. False application info - making statements with false material information
+5. Concealing evidence - hiding evidence relevant to violations
+6. Assisting/conspiring - knowingly helping others commit fraud
+7. Benefiting from fraud - profiting from fraudulent proceeds
+8. Hospital facilities - allowing hospital use for fraud schemes
+9-11. Illegal solicitation - soliciting for claims/lawsuits for pecuniary gain or PIP benefits
+
+COMMISSIONER'S ACTIONS:
+Primary options:
+- Bring civil action (lawsuit)
+- Assess civil administrative penalty and order restitution
+
+Alternative (in lieu of):
+- Request Attorney General to bring criminal action
+- Refer to licensing authorities for suspension/revocation
+
+FRAUD PENALTIES:
+- First violation: Up to $5,000
+- Second violation: Up to $10,000
+- Each subsequent: Up to $15,000
+
+ADDITIONAL SURCHARGES:
+- $1,000 surcharge on ALL guilty parties
+- 5% of total settlement payment if resolved via settlement
+- All surcharges payable to Treasurer of State of New Jersey
+
+CONFLICT OF INTEREST LAW & LEGISLATIVE CODE OF ETHICS:
+Applies to legislators and state employees in areas of:
+- Restrictions on gifts
+- Prohibited representations
+- Personal interest in legislation
+- State contracts
+- Disclosure of confidential information
+
+KEY NUMBERS:
+- $5,000: 1st violation
+- $10,000: 2nd violation
+- $15,000: Subsequent violations
+- $1,000: Additional surcharge
+- 5%: Settlement surcharge`);
+        });
+    </script>
+</body>
+</html>
