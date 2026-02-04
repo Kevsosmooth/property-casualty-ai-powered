@@ -58,6 +58,7 @@
                         <option value="1">Chapter 1: Fundamentals & Key Terms</option>
                         <option value="2">Chapter 2: Policy Structure</option>
                         <option value="3">Chapter 3: Commercial General Liability</option>
+                        <option value="4">Chapter 4: NJ Laws, Rules & Regulations</option>
                     </select>
                 </div>
 
@@ -186,285 +187,24 @@
     </main>
 
     <script>
-        // Quiz Questions Database
-        const quizQuestions = {
-            1: [
-                {
-                    question: "Which type of risk is insurable?",
-                    options: ["Speculative risk", "Pure risk", "Investment risk", "Gambling risk"],
-                    correct: 1,
-                    explanation: "Only PURE RISK is insurable because it has only two outcomes: loss or no loss. Speculative risk involves potential for gain and is not insurable."
-                },
-                {
-                    question: "A condition that increases the probability of loss occurring is called a:",
-                    options: ["Peril", "Hazard", "Risk", "Exposure"],
-                    correct: 1,
-                    explanation: "A HAZARD is a condition that increases the probability of loss. A PERIL is the actual cause of loss."
-                },
-                {
-                    question: "An insured intentionally burns down their building to collect insurance money. This is an example of:",
-                    options: ["Physical hazard", "Morale hazard", "Moral hazard", "Legal hazard"],
-                    correct: 2,
-                    explanation: "MORAL HAZARD involves intentional dishonesty or bad behavior to cause/exaggerate a loss, like arson for insurance money."
-                },
-                {
-                    question: "The principle that prevents an insured from profiting from a loss is called:",
-                    options: ["Subrogation", "Indemnity", "Insurable interest", "Contribution"],
-                    correct: 1,
-                    explanation: "INDEMNITY restores the insured to their pre-loss financial position - no more, no less. It prevents profiting from insurance."
-                },
-                {
-                    question: "After paying a claim, the insurer's right to pursue the at-fault third party is called:",
-                    options: ["Indemnity", "Contribution", "Subrogation", "Salvage"],
-                    correct: 2,
-                    explanation: "SUBROGATION is the insurer's right to 'step into the insured's shoes' and pursue the responsible party after paying a claim."
-                },
-                {
-                    question: "For property insurance, insurable interest must exist:",
-                    options: ["At policy inception", "At time of loss", "Throughout the policy period", "At policy renewal"],
-                    correct: 1,
-                    explanation: "For PROPERTY insurance, insurable interest must exist at the TIME OF LOSS, not just when the policy is purchased."
-                },
-                {
-                    question: "Which crime REQUIRES visible signs of forced entry for insurance coverage?",
-                    options: ["Robbery", "Theft", "Burglary", "Mysterious disappearance"],
-                    correct: 2,
-                    explanation: "BURGLARY requires visible signs of forced entry. Robbery involves taking from a person with force/threat. Mysterious disappearance is NOT covered."
-                },
-                {
-                    question: "Medical Payments coverage is considered:",
-                    options: ["Fault-based", "No-fault", "Liability-based", "Negligence-based"],
-                    correct: 1,
-                    explanation: "MedPay is NO-FAULT coverage - it pays regardless of who caused the injury. Fast payment, no investigation needed."
-                },
-                {
-                    question: "Leaving your doors unlocked because 'insurance will pay anyway' is an example of:",
-                    options: ["Moral hazard", "Morale hazard", "Physical hazard", "Legal hazard"],
-                    correct: 1,
-                    explanation: "MORALE HAZARD is carelessness (not intentional) because you're insured. 'I have insurance, why be careful?' attitude."
-                },
-                {
-                    question: "A breach of warranty in an insurance contract:",
-                    options: ["Requires proving material impact", "Only matters if it caused the loss", "Can void the policy automatically", "Must be intentional"],
-                    correct: 2,
-                    explanation: "WARRANTY is the strictest standard. ANY breach can void the policy automatically, even if unintentional, minor, or unrelated to the loss."
-                },
-                {
-                    question: "Which liability coverage protects against harm to someone's reputation, not their body?",
-                    options: ["Bodily injury liability", "Property damage liability", "Personal injury liability", "Medical payments"],
-                    correct: 2,
-                    explanation: "PERSONAL INJURY liability covers harm to reputation, rights, or emotions (not physical). Examples: defamation, false arrest, invasion of privacy."
-                },
-                {
-                    question: "An occurrence differs from an accident in that an occurrence:",
-                    options: ["Must be sudden", "Can include gradual exposure over time", "Must involve negligence", "Only applies to property damage"],
-                    correct: 1,
-                    explanation: "OCCURRENCE is broader than accident - it includes gradual/continuous exposure to conditions causing harm over time, not just sudden events."
-                },
-                {
-                    question: "Property vanishes with no knowledge of where, when, or how. This is called:",
-                    options: ["Burglary", "Theft", "Robbery", "Mysterious disappearance"],
-                    correct: 3,
-                    explanation: "MYSTERIOUS DISAPPEARANCE is when property vanishes without explanation. Important: It is NOT covered by insurance."
-                },
-                {
-                    question: "When you tell the insurer your car is blue but it's actually green, and this doesn't affect coverage, this is:",
-                    options: ["Material misrepresentation", "Immaterial misrepresentation", "Concealment", "Warranty breach"],
-                    correct: 1,
-                    explanation: "This is IMMATERIAL misrepresentation - false, but wouldn't have changed the insurer's decision. Policy cannot be voided for immaterial statements."
-                },
-                {
-                    question: "Employers are responsible for employees' actions on the job due to:",
-                    options: ["Absolute liability", "Strict liability", "Vicarious liability", "Joint liability"],
-                    correct: 2,
-                    explanation: "VICARIOUS LIABILITY means responsibility shifts to supervisory persons (employers) for another's actions (employees) while on the job."
-                }
-            ],
-            2: [
-                {
-                    question: "The first page of an insurance policy containing basic information is called the:",
-                    options: ["Insuring agreement", "Declarations page", "Definitions section", "Endorsement"],
-                    correct: 1,
-                    explanation: "The DECLARATIONS (Dec) page is usually the first page, containing insured's name, address, coverage amounts, premiums, and policy period."
-                },
-                {
-                    question: "Additional coverage in a policy provides extra benefits:",
-                    options: ["For additional premium", "At no additional premium", "Only during renewals", "For high-risk insureds only"],
-                    correct: 1,
-                    explanation: "ADDITIONAL COVERAGE provides extra benefits at NO additional premium - things like debris removal, lawyer fees, temporary repairs."
-                },
-                {
-                    question: "Written amendments that change the original policy terms are called:",
-                    options: ["Declarations", "Definitions", "Endorsements", "Exclusions"],
-                    correct: 2,
-                    explanation: "ENDORSEMENTS (or riders) are written addendums that change the original policy terms. Must be attached and signed by executive officer."
-                },
-                {
-                    question: "If you pay $12,000 annually upfront, after 3 months the insurer has 'earned':",
-                    options: ["$0", "$1,000", "$3,000", "$12,000"],
-                    correct: 2,
-                    explanation: "EARNED PREMIUM is the portion belonging to insurer for elapsed time. 3 months = 3/12 = 1/4 of $12,000 = $3,000 earned."
-                },
-                {
-                    question: "The liberalization clause means:",
-                    options: ["You can cancel anytime", "Improved coverage is automatic and free", "Premiums may increase", "Coverage is more flexible"],
-                    correct: 1,
-                    explanation: "LIBERALIZATION means if the insurer improves coverage terms, you get the benefit AUTOMATICALLY without requesting it - free of charge."
-                },
-                {
-                    question: "A sworn statement describing the loss, date, and amount claimed is called:",
-                    options: ["Appraisal", "Proof of loss", "Declaration", "Claim form"],
-                    correct: 1,
-                    explanation: "PROOF OF LOSS is a sworn statement from insured describing what happened, date of occurrence, and amount being claimed."
-                },
-                {
-                    question: "Arbitration that results in a final decision with no right to appeal is:",
-                    options: ["Non-binding", "Binding", "Advisory", "Mandatory"],
-                    correct: 1,
-                    explanation: "BINDING arbitration means the decision is final - no appeal allowed. NON-BINDING means you can still go to court if unsatisfied."
-                },
-                {
-                    question: "Actual Cash Value (ACV) is calculated as:",
-                    options: ["Original price minus depreciation", "Replacement cost minus depreciation", "Market value plus taxes", "Agreed value at inception"],
-                    correct: 1,
-                    explanation: "ACV = Replacement Cost - Depreciation. It's what the item is worth TODAY, accounting for wear and tear, not what you originally paid."
-                },
-                {
-                    question: "Termination of a policy BEFORE its expiration date is called:",
-                    options: ["Nonrenewal", "Cancellation", "Lapse", "Surrender"],
-                    correct: 1,
-                    explanation: "CANCELLATION is termination before expiration. NONRENEWAL is termination at expiration by not offering continuation."
-                },
-                {
-                    question: "The process of reviewing applications to determine eligibility is called:",
-                    options: ["Claims adjustment", "Underwriting", "Appraisal", "Rating"],
-                    correct: 1,
-                    explanation: "UNDERWRITING is the risk selection process - reviewing applications to determine eligibility for coverage and appropriate premium."
-                },
-                {
-                    question: "Anyone other than the insured and insurer is considered a:",
-                    options: ["Beneficiary", "Third party", "Additional insured", "Named insured"],
-                    correct: 1,
-                    explanation: "A THIRD PARTY is anyone other than the two main parties (insured and insurer). Example: the person you hit in an accident."
-                },
-                {
-                    question: "After a loss, the insured's first duty is to:",
-                    options: ["File a lawsuit", "Protect property from further damage", "Hire an attorney", "Dispute the coverage"],
-                    correct: 1,
-                    explanation: "First duty after loss: PROTECT PROPERTY from further damage. Then inventory items, cooperate with insurer, and file proof of loss."
-                },
-                {
-                    question: "Replacement cost coverage pays:",
-                    options: ["The depreciated value", "The original purchase price", "Cost to replace with new item of like kind", "Fair market value"],
-                    correct: 2,
-                    explanation: "REPLACEMENT COST pays to replace with a NEW item of like kind and quality - NO depreciation deducted. Better for the insured than ACV."
-                },
-                {
-                    question: "Words in bold, italics, or quotations in a policy usually:",
-                    options: ["Are optional coverage", "Have specific definitions", "Are excluded perils", "Require additional premium"],
-                    correct: 1,
-                    explanation: "The DEFINITIONS section clarifies terms. Words in bold, italics, or quotes typically have specific meanings defined in this section."
-                },
-                {
-                    question: "The section establishing the insurer's obligation to provide coverage is the:",
-                    options: ["Declarations", "Insuring agreement", "Conditions", "Exclusions"],
-                    correct: 1,
-                    explanation: "The INSURING AGREEMENT establishes the insurer's obligation to provide coverage. Lists parties, dates, coverage description, and perils."
-                }
-            ],
-            3: [
-                {
-                    question: "CGL coverage triggered by when the damage HAPPENED (not when claimed) is:",
-                    options: ["Claims-made form", "Occurrence form", "Aggregate form", "Per-occurrence form"],
-                    correct: 1,
-                    explanation: "OCCURRENCE FORM is triggered by when damage happened. Even if you claim years later, the policy active during the incident responds."
-                },
-                {
-                    question: "CGL coverage triggered by when the claim is FILED is:",
-                    options: ["Occurrence form", "Claims-made form", "Basic form", "Broad form"],
-                    correct: 1,
-                    explanation: "CLAIMS-MADE form requires the policy to be active when the claim is filed, not just when the incident occurred."
-                },
-                {
-                    question: "The earliest date a claims-made policy will cover is the:",
-                    options: ["Policy inception date", "Retroactive date", "Filing date", "Occurrence date"],
-                    correct: 1,
-                    explanation: "The RETROACTIVE DATE is the earliest date claims-made will cover. Claims for incidents before this date are NOT covered."
-                },
-                {
-                    question: "Coverage purchased after canceling a claims-made policy to cover future claims for past incidents is called:",
-                    options: ["Prior acts coverage", "Tail coverage", "Nose coverage", "Gap coverage"],
-                    correct: 1,
-                    explanation: "TAIL COVERAGE (extended reporting period) covers claims filed after cancellation for incidents that occurred during the policy period."
-                },
-                {
-                    question: "Premises and operations hazard covers all EXCEPT:",
-                    options: ["Customer slipping in your store", "Contractor work at client site", "Products after they leave your control", "Employee injury at premises"],
-                    correct: 2,
-                    explanation: "Premises & Operations covers your premises and active operations. Products after leaving your control = Products & Completed Operations coverage."
-                },
-                {
-                    question: "The maximum TOTAL amount payable during the entire policy period is the:",
-                    options: ["Per-occurrence limit", "Aggregate limit", "Policy limit", "Sublimit"],
-                    correct: 1,
-                    explanation: "AGGREGATE LIMIT is the maximum total for ALL claims combined during the policy period. Per-occurrence is the limit for each incident."
-                },
-                {
-                    question: "A mechanic holding your car for repairs is acting as a:",
-                    options: ["Lessor", "Bailor", "Bailee", "Trustee"],
-                    correct: 2,
-                    explanation: "A BAILEE is someone trusted with another's property but has NO ownership. The mechanic has possession and responsibility, but you still own it."
-                },
-                {
-                    question: "Independent contractors are covered under CGL only with a(n):",
-                    options: ["Standard policy", "Endorsement", "Binder", "Certificate"],
-                    correct: 1,
-                    explanation: "Independent contractors are NOT automatically covered. You need an ENDORSEMENT added to your CGL for IC coverage."
-                },
-                {
-                    question: "CGL covers liability you assumed in a lease agreement because:",
-                    options: ["All contracts are covered", "It's a specifically listed covered contract", "The landlord requires it", "Leases override exclusions"],
-                    correct: 1,
-                    explanation: "Lease of premises is one of the 6 SPECIFICALLY COVERED CONTRACTS in CGL. Even though you agreed in the lease, CGL covers."
-                },
-                {
-                    question: "A defective toaster you sold catches fire in a customer's home months later. This falls under:",
-                    options: ["Premises coverage", "Operations coverage", "Products and completed operations", "Personal injury"],
-                    correct: 2,
-                    explanation: "PRODUCTS & COMPLETED OPERATIONS covers harm AFTER the product left your control or job was completed - like the toaster fire."
-                },
-                {
-                    question: "OCP coverage protects against claims caused by:",
-                    options: ["Your employees", "Your products", "Contractors or subcontractors working for you", "Your customers"],
-                    correct: 2,
-                    explanation: "OCP (Owners & Contractors Protective) provides coverage for claims caused by negligence of CONTRACTORS or SUBCONTRACTORS working for you."
-                },
-                {
-                    question: "CGL will NOT cover municipality indemnification if:",
-                    options: ["The event is outdoors", "You're doing work FOR the municipality", "It's a large city", "The permit requires it"],
-                    correct: 1,
-                    explanation: "CGL covers municipality indemnification for permits/events, but NOT if you're hired to do WORK FOR the municipality."
-                },
-                {
-                    question: "Tail coverage typically costs:",
-                    options: ["The same as regular premium", "About half the regular premium", "1.5 to 2 times the last premium", "Nothing extra"],
-                    correct: 2,
-                    explanation: "TAIL COVERAGE costs approximately 1.5x to 2x the price of your last annual premium because it extends protection indefinitely."
-                },
-                {
-                    question: "What makes a policy respond to a claim is called the coverage:",
-                    options: ["Condition", "Trigger", "Provision", "Activation"],
-                    correct: 1,
-                    explanation: "COVERAGE TRIGGER is what makes a policy respond. Occurrence form trigger = when damage happened. Claims-made trigger = when claim filed."
-                },
-                {
-                    question: "CGL covers liability you'd have anyway by law EXCEPT when indemnifying:",
-                    options: ["Landlords", "Municipalities", "Railroads, architects, engineers", "Vendors"],
-                    correct: 2,
-                    explanation: "CGL covers liability you'd have anyway (basic tort law), but specifically excludes indemnifying railroads, architects, engineers, and surveyors."
-                }
-            ]
-        };
+        // Quiz Questions - loaded from external JSON file
+        let quizQuestions = {};
+
+        // Load questions from JSON file
+        async function loadQuestions() {
+            try {
+                const response = await fetch('questions.json');
+                quizQuestions = await response.json();
+                console.log('Questions loaded:', Object.keys(quizQuestions).map(k => `Ch${k}: ${quizQuestions[k].length}`).join(', '));
+            } catch (error) {
+                console.error('Failed to load questions:', error);
+                // Fallback to empty - quiz won't work without questions
+                alert('Failed to load quiz questions. Please refresh the page.');
+            }
+        }
+
+        // Initialize questions on page load
+        loadQuestions();
 
         // State
         let currentQuiz = [];
@@ -478,7 +218,7 @@
             // Check for chapter URL parameter
             const urlParams = new URLSearchParams(window.location.search);
             const chapterParam = urlParams.get('chapter');
-            if (chapterParam && ['1', '2', '3'].includes(chapterParam)) {
+            if (chapterParam && ['1', '2', '3', '4'].includes(chapterParam)) {
                 document.getElementById('quizChapter').value = chapterParam;
             }
             loadPreviousResults();        });
