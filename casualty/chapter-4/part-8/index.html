@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 4 Part 8: By the Numbers | P&C Study Guide</title>
+    <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <link rel="stylesheet" href="../../../css/styles.css">
+    <script src="../../../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+        }
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <!-- Settings & Theme Toggle Buttons -->
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="showAPIKeySetup()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings">
+            <svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+        </button>
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/>
+            </svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-purple-600 to-indigo-700 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap gap-2 text-sm mb-2">
+                <a href="../../../index.html" class="text-purple-200 hover:text-white">Home</a>
+                <span class="text-purple-300">/</span>
+                <a href="../index.html" class="text-purple-200 hover:text-white">Chapter 4</a>
+                <span class="text-purple-300">/</span>
+                <span class="text-white">Part 8: By the Numbers</span>
+            </div>
+            <h1 class="text-3xl font-bold">Chapter 4 Part 8: By the Numbers</h1>
+            <p class="text-purple-200 mt-1">Summary Chart - Key Numbers to Memorize for the Exam</p>
+        </div>
+    </header>
+
+    <!-- Part Navigation -->
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-wrap gap-2 text-sm">
+                <a href="../part-1/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 1</a>
+                <a href="../part-2/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 2</a>
+                <a href="../part-3/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 3</a>
+                <a href="../part-4/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 4</a>
+                <a href="../part-5/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 5</a>
+                <a href="../part-6/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 6</a>
+                <a href="../part-7/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 7</a>
+                <span class="bg-purple-600 text-white px-3 py-1 rounded font-medium">Part 8: By the Numbers</span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-4xl lg:max-w-6xl">
+
+        <!-- Overview -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">By the Numbers - Summary Chart</h2>
+
+                <div class="bg-purple-50 dark:bg-purple-900/30 border border-purple-200 dark:border-purple-800 rounded-lg p-4 mb-6">
+                    <p class="text-gray-700 dark:text-gray-300">In order to perform your best on the <strong>state regulations portion of the exam</strong>, make sure you memorize these numbers and their definitions.</p>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 rounded-r-lg">
+                    <p class="font-bold text-amber-800 dark:text-amber-300">Exam Strategy:</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2">Print this page or save it to your phone. Review these numbers daily until you know them by heart!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Licensing and Appointment Requirements -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-6 flex items-center">
+                    <span class="bg-blue-600 text-white rounded-full w-10 h-10 flex items-center justify-center mr-3">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 2a1 1 0 00-1 1v1a1 1 0 002 0V3a1 1 0 00-1-1zM4 4h3a3 3 0 006 0h3a2 2 0 012 2v9a2 2 0 01-2 2H4a2 2 0 01-2-2V6a2 2 0 012-2zm2.5 7a1.5 1.5 0 100-3 1.5 1.5 0 000 3zm2.45 4a2.5 2.5 0 10-4.9 0h4.9zM12 9a1 1 0 100 2h3a1 1 0 100-2h-3zm-1 4a1 1 0 011-1h2a1 1 0 110 2h-2a1 1 0 01-1-1z" clip-rule="evenodd"/>
+                        </svg>
+                    </span>
+                    Licensing and Appointment Requirements
+                </h2>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full border-collapse">
+                        <thead>
+                            <tr class="bg-blue-100 dark:bg-blue-900/50">
+                                <th class="border border-blue-200 dark:border-blue-700 px-4 py-3 text-left text-blue-800 dark:text-blue-200 font-bold">Number</th>
+                                <th class="border border-blue-200 dark:border-blue-700 px-4 py-3 text-left text-blue-800 dark:text-blue-200 font-bold">Definition</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="bg-white dark:bg-gray-800 hover:bg-blue-50 dark:hover:bg-blue-900/20">
+                                <td class="border border-gray-200 dark:border-gray-700 px-4 py-3">
+                                    <span class="font-bold text-2xl text-blue-600 dark:text-blue-400">18</span>
+                                </td>
+                                <td class="border border-gray-200 dark:border-gray-700 px-4 py-3 text-gray-700 dark:text-gray-300">Age to apply for license</td>
+                            </tr>
+                            <tr class="bg-gray-50 dark:bg-gray-700 hover:bg-blue-50 dark:hover:bg-blue-900/20">
+                                <td class="border border-gray-200 dark:border-gray-700 px-4 py-3">
+                                    <span class="font-bold text-2xl text-blue-600 dark:text-blue-400">20 hours</span>
+                                </td>
+                                <td class="border border-gray-200 dark:border-gray-700 px-4 py-3 text-gray-700 dark:text-gray-300">Prelicensing education required for each line of authority</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800 hover:bg-blue-50 dark:hover:bg-blue-900/20">
+                                <td class="border border-gray-200 dark:border-gray-700 px-4 py-3">
+                                    <span class="font-bold text-2xl text-blue-600 dark:text-blue-400">60 days</span>
+                                </td>
+                                <td class="border border-gray-200 dark:border-gray-700 px-4 py-3 text-gray-700 dark:text-gray-300">Temporary work authority valid</td>
+                            </tr>
+                            <tr class="bg-gray-50 dark:bg-gray-700 hover:bg-blue-50 dark:hover:bg-blue-900/20">
+                                <td class="border border-gray-200 dark:border-gray-700 px-4 py-3">
+                                    <span class="font-bold text-2xl text-blue-600 dark:text-blue-400">1 year</span>
+                                </td>
+                                <td class="border border-gray-200 dark:border-gray-700 px-4 py-3 text-gray-700 dark:text-gray-300">To apply for license after passing licensing examination</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800 hover:bg-blue-50 dark:hover:bg-blue-900/20">
+                                <td class="border border-gray-200 dark:border-gray-700 px-4 py-3">
+                                    <span class="font-bold text-2xl text-blue-600 dark:text-blue-400">180 days</span>
+                                </td>
+                                <td class="border border-gray-200 dark:border-gray-700 px-4 py-3 text-gray-700 dark:text-gray-300">Temporary license valid</td>
+                            </tr>
+                            <tr class="bg-gray-50 dark:bg-gray-700 hover:bg-blue-50 dark:hover:bg-blue-900/20">
+                                <td class="border border-gray-200 dark:border-gray-700 px-4 py-3">
+                                    <span class="font-bold text-2xl text-blue-600 dark:text-blue-400">2 years</span>
+                                </td>
+                                <td class="border border-gray-200 dark:border-gray-700 px-4 py-3 text-gray-700 dark:text-gray-300">Producer licensing period</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800 hover:bg-blue-50 dark:hover:bg-blue-900/20">
+                                <td class="border border-gray-200 dark:border-gray-700 px-4 py-3">
+                                    <span class="font-bold text-2xl text-blue-600 dark:text-blue-400">24 hours</span>
+                                </td>
+                                <td class="border border-gray-200 dark:border-gray-700 px-4 py-3 text-gray-700 dark:text-gray-300">CE hours required every 2 years</td>
+                            </tr>
+                            <tr class="bg-gray-50 dark:bg-gray-700 hover:bg-blue-50 dark:hover:bg-blue-900/20">
+                                <td class="border border-gray-200 dark:border-gray-700 px-4 py-3">
+                                    <span class="font-bold text-2xl text-blue-600 dark:text-blue-400">3 hours</span>
+                                </td>
+                                <td class="border border-gray-200 dark:border-gray-700 px-4 py-3 text-gray-700 dark:text-gray-300">CE hours required in professional ethics</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800 hover:bg-blue-50 dark:hover:bg-blue-900/20">
+                                <td class="border border-gray-200 dark:border-gray-700 px-4 py-3">
+                                    <span class="font-bold text-2xl text-blue-600 dark:text-blue-400">10 days</span>
+                                </td>
+                                <td class="border border-gray-200 dark:border-gray-700 px-4 py-3 text-gray-700 dark:text-gray-300">Before license expiration, producer must submit renewal application</td>
+                            </tr>
+                            <tr class="bg-gray-50 dark:bg-gray-700 hover:bg-blue-50 dark:hover:bg-blue-900/20">
+                                <td class="border border-gray-200 dark:border-gray-700 px-4 py-3">
+                                    <span class="font-bold text-2xl text-blue-600 dark:text-blue-400">1 year</span>
+                                </td>
+                                <td class="border border-gray-200 dark:border-gray-700 px-4 py-3 text-gray-700 dark:text-gray-300">To renew lapsed license without taking written exam</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800 hover:bg-blue-50 dark:hover:bg-blue-900/20">
+                                <td class="border border-gray-200 dark:border-gray-700 px-4 py-3">
+                                    <span class="font-bold text-2xl text-blue-600 dark:text-blue-400">90 days</span>
+                                </td>
+                                <td class="border border-gray-200 dark:border-gray-700 px-4 py-3 text-gray-700 dark:text-gray-300">For nonresident licensee to notify Department of intent to qualify as resident</td>
+                            </tr>
+                            <tr class="bg-gray-50 dark:bg-gray-700 hover:bg-blue-50 dark:hover:bg-blue-900/20">
+                                <td class="border border-gray-200 dark:border-gray-700 px-4 py-3">
+                                    <span class="font-bold text-2xl text-blue-600 dark:text-blue-400">5 years</span>
+                                </td>
+                                <td class="border border-gray-200 dark:border-gray-700 px-4 py-3 text-gray-700 dark:text-gray-300">Before producer with revoked license can reapply for a new license</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Miscellaneous Producer Regulations -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-6 flex items-center">
+                    <span class="bg-green-600 text-white rounded-full w-10 h-10 flex items-center justify-center mr-3">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"/>
+                            <path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clip-rule="evenodd"/>
+                        </svg>
+                    </span>
+                    Miscellaneous Producer Regulations
+                </h2>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full border-collapse">
+                        <thead>
+                            <tr class="bg-green-100 dark:bg-green-900/50">
+                                <th class="border border-green-200 dark:border-green-700 px-4 py-3 text-left text-green-800 dark:text-green-200 font-bold">Number</th>
+                                <th class="border border-green-200 dark:border-green-700 px-4 py-3 text-left text-green-800 dark:text-green-200 font-bold">Definition</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="bg-white dark:bg-gray-800 hover:bg-green-50 dark:hover:bg-green-900/20">
+                                <td class="border border-gray-200 dark:border-gray-700 px-4 py-3">
+                                    <span class="font-bold text-2xl text-green-600 dark:text-green-400">30 days</span>
+                                </td>
+                                <td class="border border-gray-200 dark:border-gray-700 px-4 py-3 text-gray-700 dark:text-gray-300">To report change of mailing address or of business address or name</td>
+                            </tr>
+                            <tr class="bg-gray-50 dark:bg-gray-700 hover:bg-green-50 dark:hover:bg-green-900/20">
+                                <td class="border border-gray-200 dark:border-gray-700 px-4 py-3">
+                                    <span class="font-bold text-2xl text-green-600 dark:text-green-400">15 days</span>
+                                </td>
+                                <td class="border border-gray-200 dark:border-gray-700 px-4 py-3 text-gray-700 dark:text-gray-300">For insurers to notify Commissioner of canceled agency contract</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800 hover:bg-green-50 dark:hover:bg-green-900/20">
+                                <td class="border border-gray-200 dark:border-gray-700 px-4 py-3">
+                                    <span class="font-bold text-2xl text-green-600 dark:text-green-400">30 days</span>
+                                </td>
+                                <td class="border border-gray-200 dark:border-gray-700 px-4 py-3 text-gray-700 dark:text-gray-300">To report the opening or closing of a branch office</td>
+                            </tr>
+                            <tr class="bg-gray-50 dark:bg-gray-700 hover:bg-green-50 dark:hover:bg-green-900/20">
+                                <td class="border border-gray-200 dark:border-gray-700 px-4 py-3">
+                                    <span class="font-bold text-2xl text-green-600 dark:text-green-400">5 business days</span>
+                                </td>
+                                <td class="border border-gray-200 dark:border-gray-700 px-4 py-3 text-gray-700 dark:text-gray-300">For premiums to be remitted to the insurer or to the insured</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800 hover:bg-green-50 dark:hover:bg-green-900/20">
+                                <td class="border border-gray-200 dark:border-gray-700 px-4 py-3">
+                                    <span class="font-bold text-2xl text-green-600 dark:text-green-400">5 business days</span>
+                                </td>
+                                <td class="border border-gray-200 dark:border-gray-700 px-4 py-3 text-gray-700 dark:text-gray-300">Producer must report claims to the insurer after receipt of notice of claim</td>
+                            </tr>
+                            <tr class="bg-gray-50 dark:bg-gray-700 hover:bg-green-50 dark:hover:bg-green-900/20">
+                                <td class="border border-gray-200 dark:border-gray-700 px-4 py-3">
+                                    <span class="font-bold text-2xl text-green-600 dark:text-green-400">10 calendar days</span>
+                                </td>
+                                <td class="border border-gray-200 dark:border-gray-700 px-4 py-3 text-gray-700 dark:text-gray-300">Producer must deliver policies to the insured after receiving them</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800 hover:bg-green-50 dark:hover:bg-green-900/20">
+                                <td class="border border-gray-200 dark:border-gray-700 px-4 py-3">
+                                    <span class="font-bold text-2xl text-green-600 dark:text-green-400">15 calendar days</span>
+                                </td>
+                                <td class="border border-gray-200 dark:border-gray-700 px-4 py-3 text-gray-700 dark:text-gray-300">Producer must reply in writing to inquiries from the Commissioner</td>
+                            </tr>
+                            <tr class="bg-gray-50 dark:bg-gray-700 hover:bg-green-50 dark:hover:bg-green-900/20">
+                                <td class="border border-gray-200 dark:border-gray-700 px-4 py-3">
+                                    <span class="font-bold text-2xl text-green-600 dark:text-green-400">5 years</span>
+                                </td>
+                                <td class="border border-gray-200 dark:border-gray-700 px-4 py-3 text-gray-700 dark:text-gray-300">Keep records of financial transactions after termination of coverage</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Important Dollar Amounts -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-6 flex items-center">
+                    <span class="bg-red-600 text-white rounded-full w-10 h-10 flex items-center justify-center mr-3">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M8.433 7.418c.155-.103.346-.196.567-.267v1.698a2.305 2.305 0 01-.567-.267C8.07 8.34 8 8.114 8 8c0-.114.07-.34.433-.582zM11 12.849v-1.698c.22.071.412.164.567.267.364.243.433.468.433.582 0 .114-.07.34-.433.582a2.305 2.305 0 01-.567.267z"/>
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-13a1 1 0 10-2 0v.092a4.535 4.535 0 00-1.676.662C6.602 6.234 6 7.009 6 8c0 .99.602 1.765 1.324 2.246.48.32 1.054.545 1.676.662v1.941c-.391-.127-.68-.317-.843-.504a1 1 0 10-1.51 1.31c.562.649 1.413 1.076 2.353 1.253V15a1 1 0 102 0v-.092a4.535 4.535 0 001.676-.662C13.398 13.766 14 12.991 14 12c0-.99-.602-1.765-1.324-2.246A4.535 4.535 0 0011 9.092V7.151c.391.127.68.317.843.504a1 1 0 101.511-1.31c-.563-.649-1.413-1.076-2.354-1.253V5z" clip-rule="evenodd"/>
+                        </svg>
+                    </span>
+                    Important Dollar Amounts
+                </h2>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full border-collapse">
+                        <thead>
+                            <tr class="bg-red-100 dark:bg-red-900/50">
+                                <th class="border border-red-200 dark:border-red-700 px-4 py-3 text-left text-red-800 dark:text-red-200 font-bold">Amount</th>
+                                <th class="border border-red-200 dark:border-red-700 px-4 py-3 text-left text-red-800 dark:text-red-200 font-bold">Definition</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="bg-white dark:bg-gray-800 hover:bg-red-50 dark:hover:bg-red-900/20">
+                                <td class="border border-gray-200 dark:border-gray-700 px-4 py-3">
+                                    <span class="font-bold text-2xl text-red-600 dark:text-red-400">$1,000</span>
+                                </td>
+                                <td class="border border-gray-200 dark:border-gray-700 px-4 py-3 text-gray-700 dark:text-gray-300">Fine per violation for <strong>unintentional violations</strong> of fair methods of competition or fair trade practice law</td>
+                            </tr>
+                            <tr class="bg-gray-50 dark:bg-gray-700 hover:bg-red-50 dark:hover:bg-red-900/20">
+                                <td class="border border-gray-200 dark:border-gray-700 px-4 py-3">
+                                    <span class="font-bold text-2xl text-red-600 dark:text-red-400">$5,000</span>
+                                </td>
+                                <td class="border border-gray-200 dark:border-gray-700 px-4 py-3 text-gray-700 dark:text-gray-300">Fine per violation for <strong>willful violations</strong> of fair methods of competition or fair trade practice laws</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800 hover:bg-red-50 dark:hover:bg-red-900/20">
+                                <td class="border border-gray-200 dark:border-gray-700 px-4 py-3">
+                                    <span class="font-bold text-2xl text-red-600 dark:text-red-400">$5,000</span>
+                                </td>
+                                <td class="border border-gray-200 dark:border-gray-700 px-4 py-3 text-gray-700 dark:text-gray-300">Fine for each violation of <strong>cease and desist orders</strong></td>
+                            </tr>
+                            <tr class="bg-gray-50 dark:bg-gray-700 hover:bg-red-50 dark:hover:bg-red-900/20">
+                                <td class="border border-gray-200 dark:border-gray-700 px-4 py-3">
+                                    <span class="font-bold text-2xl text-red-600 dark:text-red-400">$5,000</span>
+                                </td>
+                                <td class="border border-gray-200 dark:border-gray-700 px-4 py-3 text-gray-700 dark:text-gray-300">Fine for <strong>first violation</strong> of an insurance law</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800 hover:bg-red-50 dark:hover:bg-red-900/20">
+                                <td class="border border-gray-200 dark:border-gray-700 px-4 py-3">
+                                    <span class="font-bold text-2xl text-red-600 dark:text-red-400">$10,000</span>
+                                </td>
+                                <td class="border border-gray-200 dark:border-gray-700 px-4 py-3 text-gray-700 dark:text-gray-300">Fine for <strong>subsequent violations</strong> of an insurance law</td>
+                            </tr>
+                            <tr class="bg-gray-50 dark:bg-gray-700 hover:bg-red-50 dark:hover:bg-red-900/20">
+                                <td class="border border-gray-200 dark:border-gray-700 px-4 py-3">
+                                    <span class="font-bold text-2xl text-red-600 dark:text-red-400">$15,000</span>
+                                </td>
+                                <td class="border border-gray-200 dark:border-gray-700 px-4 py-3 text-gray-700 dark:text-gray-300"><strong>Maximum fine</strong> for violation of the New Jersey Insurance Fraud Prevention Act</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Visual Quick Reference -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-purple-50 to-indigo-50 dark:from-purple-900/30 dark:to-indigo-900/30 border-2 border-purple-300 dark:border-purple-700 rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-purple-800 dark:text-purple-200 mb-6">Visual Quick Reference</h2>
+
+                <!-- Time-based Numbers -->
+                <div class="mb-8">
+                    <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-4">Time-Based Requirements</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3">
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg text-center shadow">
+                            <p class="text-3xl font-bold text-blue-600 dark:text-blue-400">5</p>
+                            <p class="text-xs text-gray-600 dark:text-gray-300 mt-1">business days</p>
+                            <p class="text-xs text-gray-500 dark:text-gray-400">Claims/Premiums</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg text-center shadow">
+                            <p class="text-3xl font-bold text-green-600 dark:text-green-400">10</p>
+                            <p class="text-xs text-gray-600 dark:text-gray-300 mt-1">calendar days</p>
+                            <p class="text-xs text-gray-500 dark:text-gray-400">Deliver policy</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg text-center shadow">
+                            <p class="text-3xl font-bold text-purple-600 dark:text-purple-400">15</p>
+                            <p class="text-xs text-gray-600 dark:text-gray-300 mt-1">calendar days</p>
+                            <p class="text-xs text-gray-500 dark:text-gray-400">Reply to Comm.</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg text-center shadow">
+                            <p class="text-3xl font-bold text-teal-600 dark:text-teal-400">30</p>
+                            <p class="text-xs text-gray-600 dark:text-gray-300 mt-1">days</p>
+                            <p class="text-xs text-gray-500 dark:text-gray-400">Address change</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg text-center shadow">
+                            <p class="text-3xl font-bold text-orange-600 dark:text-orange-400">60</p>
+                            <p class="text-xs text-gray-600 dark:text-gray-300 mt-1">days</p>
+                            <p class="text-xs text-gray-500 dark:text-gray-400">Temp work auth</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg text-center shadow">
+                            <p class="text-3xl font-bold text-pink-600 dark:text-pink-400">90</p>
+                            <p class="text-xs text-gray-600 dark:text-gray-300 mt-1">days</p>
+                            <p class="text-xs text-gray-500 dark:text-gray-400">NR→Resident</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg text-center shadow">
+                            <p class="text-3xl font-bold text-indigo-600 dark:text-indigo-400">180</p>
+                            <p class="text-xs text-gray-600 dark:text-gray-300 mt-1">days</p>
+                            <p class="text-xs text-gray-500 dark:text-gray-400">Temp license</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg text-center shadow">
+                            <p class="text-3xl font-bold text-cyan-600 dark:text-cyan-400">1</p>
+                            <p class="text-xs text-gray-600 dark:text-gray-300 mt-1">year</p>
+                            <p class="text-xs text-gray-500 dark:text-gray-400">Apply/Renew</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg text-center shadow">
+                            <p class="text-3xl font-bold text-amber-600 dark:text-amber-400">2</p>
+                            <p class="text-xs text-gray-600 dark:text-gray-300 mt-1">years</p>
+                            <p class="text-xs text-gray-500 dark:text-gray-400">License period</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg text-center shadow">
+                            <p class="text-3xl font-bold text-rose-600 dark:text-rose-400">5</p>
+                            <p class="text-xs text-gray-600 dark:text-gray-300 mt-1">years</p>
+                            <p class="text-xs text-gray-500 dark:text-gray-400">Records/Revoke</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dollar Amounts -->
+                <div>
+                    <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-4">Penalty Amounts</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg text-center shadow">
+                            <p class="text-3xl font-bold text-yellow-600 dark:text-yellow-400">$1K</p>
+                            <p class="text-xs text-gray-600 dark:text-gray-300 mt-1">Unintentional violation</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg text-center shadow">
+                            <p class="text-3xl font-bold text-orange-600 dark:text-orange-400">$5K</p>
+                            <p class="text-xs text-gray-600 dark:text-gray-300 mt-1">Willful / 1st / C&D</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg text-center shadow">
+                            <p class="text-3xl font-bold text-red-600 dark:text-red-400">$10K</p>
+                            <p class="text-xs text-gray-600 dark:text-gray-300 mt-1">Subsequent violations</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg text-center shadow">
+                            <p class="text-3xl font-bold text-red-700 dark:text-red-300">$15K</p>
+                            <p class="text-xs text-gray-600 dark:text-gray-300 mt-1">Max Fraud Act</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Tips -->
+        <section class="mb-10">
+            <div class="bg-amber-50 dark:bg-amber-900/30 border border-amber-200 dark:border-amber-800 rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-amber-800 dark:text-amber-200 mb-4">Exam Tips</h2>
+
+                <div class="space-y-3">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-amber-700 dark:text-amber-300">Tip #1: Business vs Calendar Days</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm mt-1">Only 5 BUSINESS days for claims/premiums. Everything else is CALENDAR days!</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-amber-700 dark:text-amber-300">Tip #2: The "5" Pattern</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm mt-1">5 business days (claims/premiums), 5 years (records/reapply after revocation), $5,000 (willful/1st violation)</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-amber-700 dark:text-amber-300">Tip #3: License Timeline</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm mt-1">18 to apply → 20 hours education → 60 days temp work → 180 days temp license → 2 year license</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-amber-700 dark:text-amber-300">Tip #4: Penalty Progression</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm mt-1">$1K (unintentional) → $5K (willful/1st) → $10K (subsequent) → $15K (fraud max)</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-amber-700 dark:text-amber-300">Tip #5: CE Requirements</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm mt-1">24 hours every 2 years, including 3 hours of ethics. Think "24/2/3"!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Navigation Footer -->
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="../part-7/index.html" class="text-gray-300 hover:text-white">← Part 7: Conflict of Interest</a>
+                <span class="text-gray-400">Part 8: By the Numbers</span>
+                <a href="../index.html" class="text-gray-300 hover:text-white">Back to Chapter 4 →</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Initialize AI Tutor -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            createFloatingAIButton(`Chapter 4 Part 8: By the Numbers - Summary Chart
+
+LICENSING AND APPOINTMENT REQUIREMENTS:
+- 18: Age to apply for license
+- 20 hours: Prelicensing education per line of authority
+- 60 days: Temporary work authority valid
+- 1 year: To apply after passing exam / To renew lapsed license
+- 180 days: Temporary license valid
+- 2 years: Producer licensing period
+- 24 hours: CE required every 2 years
+- 3 hours: CE in professional ethics
+- 10 days: Before expiration, submit renewal
+- 90 days: Nonresident to notify intent for resident
+- 5 years: Before revoked producer can reapply
+
+MISCELLANEOUS PRODUCER REGULATIONS:
+- 30 days: Report address/name change
+- 15 days: Insurers notify Commissioner of canceled agency contract
+- 30 days: Report branch office opening/closing
+- 5 business days: Remit premiums / Report claims
+- 10 calendar days: Deliver policies to insured
+- 15 calendar days: Reply to Commissioner inquiries
+- 5 years: Keep financial records after termination
+
+IMPORTANT DOLLAR AMOUNTS:
+- $1,000: Unintentional violation fine
+- $5,000: Willful violation / Cease & desist violation / First violation
+- $10,000: Subsequent violations
+- $15,000: Maximum fine for NJ Insurance Fraud Prevention Act
+
+KEY PATTERNS:
+- 5 business days = claims/premiums
+- 5 years = records retention, reapply after revocation
+- $5,000 = willful/first violation
+- 24 hours CE every 2 years, 3 hours ethics`);
+        });
+    </script>
+</body>
+</html>
