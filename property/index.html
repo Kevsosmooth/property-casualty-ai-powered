@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Property Insurance | P&C Study Guide</title>
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <link rel="stylesheet" href="../css/styles.css">
+    <script src="../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+        }
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <!-- Settings & Theme Toggle Buttons -->
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="showAPIKeySetup()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings">
+            <svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+        </button>
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/>
+            </svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-8 shadow-lg">
+        <div class="container mx-auto px-4">
+            <a href="../index.html" class="text-blue-200 hover:text-white text-sm mb-2 inline-block">← Back to Home</a>
+            <h1 class="text-4xl font-bold">Property Insurance</h1>
+            <p class="text-blue-200 mt-2">Protecting Buildings, Personal Property & Assets</p>
+            <p class="text-sm text-blue-300 mt-1">New Jersey Licensing Exam Preparation</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-12 max-w-6xl">
+
+        <!-- What is Property Insurance -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">What is Property Insurance?</h2>
+                <p class="text-gray-700 dark:text-gray-300 mb-4">Property insurance protects against <strong>physical loss or damage</strong> to buildings, personal property, and other assets. It covers:</p>
+                <div class="grid md:grid-cols-3 gap-4">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 border-l-4 border-blue-500 p-4 rounded-r-lg">
+                        <p class="font-bold text-blue-800 dark:text-blue-300">Buildings</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Homes, commercial structures, other structures</p>
+                    </div>
+                    <div class="bg-blue-50 dark:bg-blue-900/20 border-l-4 border-blue-500 p-4 rounded-r-lg">
+                        <p class="font-bold text-blue-800 dark:text-blue-300">Personal Property</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Contents, belongings, inventory</p>
+                    </div>
+                    <div class="bg-blue-50 dark:bg-blue-900/20 border-l-4 border-blue-500 p-4 rounded-r-lg">
+                        <p class="font-bold text-blue-800 dark:text-blue-300">Loss of Use</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Extra expenses, lost income during repairs</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chapters Grid -->
+        <section class="mb-10">
+            <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-6">Study Chapters</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                <!-- Chapter 1 -->
+                <a href="chapter-1/index.html" class="group">
+                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border-t-4 border-blue-500 h-full">
+                        <div class="p-6">
+                            <div class="flex items-center mb-4">
+                                <span class="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 text-sm font-semibold px-3 py-1 rounded-full">Chapter 1</span>
+                                <span class="ml-2 bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 text-xs px-2 py-1 rounded-full">New!</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800 dark:text-gray-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">Insurance Terms & Concepts</h3>
+                            <p class="text-gray-600 dark:text-gray-400 mt-3 text-sm">Risk, Perils, Hazards, Indemnity, Insurable Interest, Loss Valuation</p>
+                            <div class="mt-4 flex flex-wrap gap-2">
+                                <span class="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs px-2 py-1 rounded">ACV vs Replacement</span>
+                                <span class="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs px-2 py-1 rounded">Pure vs Speculative</span>
+                            </div>
+                        </div>
+                        <div class="bg-blue-50 dark:bg-blue-900/30 px-6 py-3 text-blue-600 dark:text-blue-400 text-sm font-medium group-hover:bg-blue-100 dark:group-hover:bg-blue-900/50 transition-colors">
+                            Start Chapter →
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Chapter 2 - Coming Soon -->
+                <div class="group opacity-60">
+                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden border-t-4 border-purple-500 h-full">
+                        <div class="p-6">
+                            <div class="flex items-center mb-4">
+                                <span class="bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 text-sm font-semibold px-3 py-1 rounded-full">Chapter 2</span>
+                                <span class="ml-2 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 text-xs px-2 py-1 rounded-full">Coming Soon</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800 dark:text-gray-100">Policy Provisions</h3>
+                            <p class="text-gray-600 dark:text-gray-400 mt-3 text-sm">Declarations, Insuring Agreement, Conditions, Exclusions</p>
+                            <div class="mt-4 flex flex-wrap gap-2">
+                                <span class="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs px-2 py-1 rounded">Policy Parts</span>
+                                <span class="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs px-2 py-1 rounded">Endorsements</span>
+                            </div>
+                        </div>
+                        <div class="bg-purple-50 dark:bg-purple-900/30 px-6 py-3 text-purple-600 dark:text-purple-400 text-sm font-medium">
+                            Coming Soon
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chapter 3 - Coming Soon -->
+                <div class="group opacity-60">
+                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden border-t-4 border-green-500 h-full">
+                        <div class="p-6">
+                            <div class="flex items-center mb-4">
+                                <span class="bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 text-sm font-semibold px-3 py-1 rounded-full">Chapter 3</span>
+                                <span class="ml-2 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 text-xs px-2 py-1 rounded-full">Coming Soon</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-800 dark:text-gray-100">Types of Property Policies</h3>
+                            <p class="text-gray-600 dark:text-gray-400 mt-3 text-sm">Homeowners, Dwelling, Commercial Property, Inland Marine</p>
+                            <div class="mt-4 flex flex-wrap gap-2">
+                                <span class="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs px-2 py-1 rounded">HO Forms</span>
+                                <span class="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs px-2 py-1 rounded">BOP</span>
+                            </div>
+                        </div>
+                        <div class="bg-green-50 dark:bg-green-900/30 px-6 py-3 text-green-600 dark:text-green-400 text-sm font-medium">
+                            Coming Soon
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Key Coverage Types -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">Key Coverage Types</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 border border-blue-200 dark:border-blue-800">
+                        <h3 class="font-bold text-blue-800 dark:text-blue-300">Homeowners</h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">HO-2, HO-3, HO-5, HO-6, HO-8 forms</p>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 border border-green-200 dark:border-green-800">
+                        <h3 class="font-bold text-green-800 dark:text-green-300">Dwelling</h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">DP-1, DP-2, DP-3 for rental properties</p>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 border border-purple-200 dark:border-purple-800">
+                        <h3 class="font-bold text-purple-800 dark:text-purple-300">Commercial</h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">BPP, Building, Business Income</p>
+                    </div>
+                    <div class="bg-amber-50 dark:bg-amber-900/20 rounded-lg p-4 border border-amber-200 dark:border-amber-800">
+                        <h3 class="font-bold text-amber-800 dark:text-amber-300">Inland Marine</h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Floaters, Equipment, Valuables</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Study Tools -->
+        <section>
+            <div class="bg-gradient-to-r from-blue-600 to-blue-800 rounded-xl shadow-lg p-6 text-white">
+                <h2 class="text-xl font-bold mb-4">Study Tools</h2>
+                <p class="text-blue-100 mb-6">Practice with flashcards and quizzes covering all Property chapters</p>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <a href="../study-tools/flashcards.html" class="bg-white/20 hover:bg-white/30 rounded-lg p-4 transition-colors flex items-center">
+                        <div class="bg-white/20 p-3 rounded-full mr-4">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="font-bold">Flashcards</h3>
+                            <p class="text-sm text-blue-200">Interactive flip cards</p>
+                        </div>
+                    </a>
+                    <a href="../study-tools/quiz.html" class="bg-white/20 hover:bg-white/30 rounded-lg p-4 transition-colors flex items-center">
+                        <div class="bg-white/20 p-3 rounded-full mr-4">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="font-bold">Practice Quiz</h3>
+                            <p class="text-sm text-blue-200">Exam-style questions</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Navigation Footer -->
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="../index.html" class="text-gray-300 hover:text-white">← Home</a>
+                <span class="text-gray-400">Property Insurance</span>
+                <a href="../casualty/index.html" class="text-gray-300 hover:text-white">Casualty →</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Initialize AI Tutor -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            createFloatingAIButton(`Property Insurance Overview
+
+Property insurance protects against physical loss or damage to:
+- Buildings (homes, commercial structures)
+- Personal Property (contents, belongings)
+- Loss of Use (extra expenses, lost income)
+
+Key Coverage Types:
+- Homeowners (HO-2, HO-3, HO-5, HO-6, HO-8)
+- Dwelling (DP-1, DP-2, DP-3)
+- Commercial Property (BPP, Buildings, Business Income)
+- Inland Marine (Floaters, Equipment)
+
+Chapter 1 Covers:
+- Insurance fundamentals (risk, perils, hazards)
+- Insurable interest, indemnity, subrogation
+- Loss valuation (ACV, Replacement Cost, Market Value, Stated Value)
+- Property and liability terms`);
+        });
+    </script>
+</body>
+</html>

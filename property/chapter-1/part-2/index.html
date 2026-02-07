@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 2: Property and Liability Terms | Property Insurance</title>
+    <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <link rel="stylesheet" href="../../../css/styles.css">
+    <script src="../../../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+        }
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <!-- Settings & Theme Toggle Buttons -->
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="showAPIKeySetup()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings">
+            <svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+        </button>
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/>
+            </svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-purple-600 to-purple-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <a href="../index.html" class="text-purple-200 hover:text-white text-sm mb-2 inline-block">← Back to Chapter 1</a>
+            <h1 class="text-3xl font-bold">Part 2: Property and Liability Terms</h1>
+            <p class="text-purple-200 mt-1">Essential Terminology for Property Insurance</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 lg:px-8 py-8 max-w-4xl lg:max-w-6xl">
+
+        <!-- 1. Accident vs Occurrence -->
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-6 flex items-center">
+                <span class="bg-purple-500 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3 text-sm">1</span>
+                Accident vs. Occurrence
+            </h2>
+
+            <div class="grid md:grid-cols-2 gap-6 mb-6">
+                <div class="bg-blue-50 dark:bg-blue-900/30 rounded-lg p-5 border-2 border-blue-500">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg mb-3">Accident</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">A <strong>sudden, unplanned, and unexpected</strong> event, not under the control of the insured, resulting in injury or damage that is neither expected nor intended.</p>
+                    <div class="bg-white dark:bg-gray-800 rounded p-3">
+                        <p class="text-sm text-gray-600 dark:text-gray-400"><strong>Examples:</strong></p>
+                        <ul class="text-sm text-gray-600 dark:text-gray-400 mt-1 space-y-1">
+                            <li>• Car collision</li>
+                            <li>• Lightning strike</li>
+                            <li>• Tree falling on house</li>
+                            <li>• Slip and fall</li>
+                        </ul>
+                    </div>
+                    <div class="mt-3 bg-blue-100 dark:bg-blue-900/40 rounded p-2 text-center">
+                        <p class="text-sm font-bold text-blue-800 dark:text-blue-300">Key: Sudden & Specific</p>
+                    </div>
+                </div>
+
+                <div class="bg-green-50 dark:bg-green-900/30 rounded-lg p-5 border-2 border-green-500">
+                    <h3 class="font-bold text-green-800 dark:text-green-300 text-lg mb-3">Occurrence</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">A <strong>broader definition</strong> that includes losses caused by continuous or repeated exposure to conditions, not intended or expected.</p>
+                    <div class="bg-white dark:bg-gray-800 rounded p-3">
+                        <p class="text-sm text-gray-600 dark:text-gray-400"><strong>Examples:</strong></p>
+                        <ul class="text-sm text-gray-600 dark:text-gray-400 mt-1 space-y-1">
+                            <li>• Gradual water damage from a slow leak</li>
+                            <li>• Mold growth over time</li>
+                            <li>• Repeated exposure to chemicals</li>
+                            <li>• Foundation settling</li>
+                        </ul>
+                    </div>
+                    <div class="mt-3 bg-green-100 dark:bg-green-900/40 rounded p-2 text-center">
+                        <p class="text-sm font-bold text-green-800 dark:text-green-300">Key: Gradual & Continuous</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-amber-50 dark:bg-amber-900/20 border-l-4 border-amber-500 p-4 rounded-r-lg">
+                <p class="font-bold text-amber-800 dark:text-amber-300">Exam Tip</p>
+                <p class="text-gray-700 dark:text-gray-300 mt-1"><strong>Occurrence is BROADER than accident.</strong> All accidents are occurrences, but not all occurrences are accidents.</p>
+            </div>
+        </div>
+
+        <!-- 2. Direct and Indirect Loss -->
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-6 flex items-center">
+                <span class="bg-purple-500 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3 text-sm">2</span>
+                Direct and Indirect Loss
+            </h2>
+
+            <div class="bg-purple-50 dark:bg-purple-900/30 rounded-lg p-4 mb-6">
+                <p class="text-gray-700 dark:text-gray-300">Property insurance can cover two types of losses. Understanding the difference is crucial for the exam!</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6 mb-6">
+                <div class="bg-blue-50 dark:bg-blue-900/30 rounded-lg p-5 border-t-4 border-blue-500">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg mb-3">Direct Loss</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4"><strong>Physical damage</strong> to buildings and/or personal property directly caused by a peril.</p>
+                    <div class="bg-white dark:bg-gray-800 rounded p-3 mb-3">
+                        <p class="text-sm text-gray-600 dark:text-gray-400"><strong>Examples:</strong></p>
+                        <ul class="text-sm text-gray-600 dark:text-gray-400 mt-1 space-y-1">
+                            <li>• Fire burns your house</li>
+                            <li>• Hail damages your roof</li>
+                            <li>• Thief steals your TV</li>
+                            <li>• Wind breaks your windows</li>
+                        </ul>
+                    </div>
+                    <div class="bg-blue-100 dark:bg-blue-900/40 rounded p-3">
+                        <p class="text-sm text-blue-800 dark:text-blue-300"><strong>Covered by:</strong> Standard property insurance</p>
+                    </div>
+                </div>
+
+                <div class="bg-orange-50 dark:bg-orange-900/30 rounded-lg p-5 border-t-4 border-orange-500">
+                    <h3 class="font-bold text-orange-800 dark:text-orange-300 text-lg mb-3">Indirect Loss (Consequential)</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">Losses that <strong>result from</strong> a direct loss - usually related to time needed to repair/replace property.</p>
+                    <div class="bg-white dark:bg-gray-800 rounded p-3 mb-3">
+                        <p class="text-sm text-gray-600 dark:text-gray-400"><strong>Examples:</strong></p>
+                        <ul class="text-sm text-gray-600 dark:text-gray-400 mt-1 space-y-1">
+                            <li>• Hotel costs while home is repaired</li>
+                            <li>• Lost business income during closure</li>
+                            <li>• Extra expenses to keep business running</li>
+                            <li>• Lost rent from damaged rental property</li>
+                        </ul>
+                    </div>
+                    <div class="bg-orange-100 dark:bg-orange-900/40 rounded p-3">
+                        <p class="text-sm text-orange-800 dark:text-orange-300"><strong>Covered by:</strong> Additional coverage must be added</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Proximate Cause Example -->
+            <div class="bg-green-50 dark:bg-green-900/30 rounded-lg p-5 mb-4">
+                <h3 class="font-bold text-green-800 dark:text-green-300 mb-3">Proximate Cause Concept</h3>
+                <p class="text-gray-700 dark:text-gray-300 mb-3">Direct loss includes damage where the insured peril was the <strong>proximate cause</strong> (immediate or actual cause).</p>
+                <div class="bg-white dark:bg-gray-800 rounded p-4">
+                    <p class="text-gray-700 dark:text-gray-300 text-sm"><strong>Example:</strong> Your building catches fire. The fire department uses water to put out the fire, and your walls and floors suffer water damage.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm mt-2"><strong>Result:</strong> Although water damage is not an insured peril, the damage IS paid under the fire coverage because <em>fire was the proximate cause</em>.</p>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-4">
+                <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-4">
+                    <h4 class="font-bold text-gray-800 dark:text-gray-200">For Homeowners</h4>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm mt-1"><strong>Indirect Loss Example:</strong> Extra living expenses - costs to stay in a hotel and eat out while your home is being repaired after a fire.</p>
+                </div>
+                <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-4">
+                    <h4 class="font-bold text-gray-800 dark:text-gray-200">For Businesses</h4>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm mt-1"><strong>Indirect Loss Example:</strong> Loss of profits - money the business would have made if they hadn't had to close during repairs.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. Named Peril vs Open Peril -->
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-6 flex items-center">
+                <span class="bg-purple-500 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3 text-sm">3</span>
+                Named Peril vs. Open (Special) Peril
+            </h2>
+
+            <div class="bg-purple-50 dark:bg-purple-900/30 rounded-lg p-4 mb-6">
+                <p class="text-gray-700 dark:text-gray-300">A <strong>peril</strong> is a specific cause of loss. Property policies differ in how they define what perils are covered.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6 mb-6">
+                <div class="bg-red-50 dark:bg-red-900/30 rounded-lg p-5 border-2 border-red-500">
+                    <h3 class="font-bold text-red-800 dark:text-red-300 text-lg mb-3">Named Peril Policy</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">Lists <strong>specific covered perils</strong>. If a peril isn't listed, it's NOT covered.</p>
+                    <div class="bg-white dark:bg-gray-800 rounded p-3 mb-3">
+                        <p class="text-sm text-gray-600 dark:text-gray-400"><strong>Common Named Perils:</strong></p>
+                        <ul class="text-sm text-gray-600 dark:text-gray-400 mt-1 space-y-1">
+                            <li>• Fire and lightning</li>
+                            <li>• Windstorm and hail</li>
+                            <li>• Explosion</li>
+                            <li>• Theft</li>
+                            <li>• Vandalism</li>
+                        </ul>
+                    </div>
+                    <div class="bg-red-100 dark:bg-red-900/40 rounded p-2">
+                        <p class="text-sm text-red-800 dark:text-red-300 text-center"><strong>If it's NOT listed = NOT covered</strong></p>
+                    </div>
+                </div>
+
+                <div class="bg-green-50 dark:bg-green-900/30 rounded-lg p-5 border-2 border-green-500">
+                    <h3 class="font-bold text-green-800 dark:text-green-300 text-lg mb-3">Open (Special) Peril Policy</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">Covers <strong>any risk of loss</strong> that is NOT specifically excluded. Much broader coverage!</p>
+                    <div class="bg-white dark:bg-gray-800 rounded p-3 mb-3">
+                        <p class="text-sm text-gray-600 dark:text-gray-400"><strong>Common Exclusions:</strong></p>
+                        <ul class="text-sm text-gray-600 dark:text-gray-400 mt-1 space-y-1">
+                            <li>• Flood</li>
+                            <li>• Earthquake</li>
+                            <li>• War</li>
+                            <li>• Nuclear hazard</li>
+                            <li>• Intentional loss</li>
+                        </ul>
+                    </div>
+                    <div class="bg-green-100 dark:bg-green-900/40 rounded p-2">
+                        <p class="text-sm text-green-800 dark:text-green-300 text-center"><strong>If it's NOT excluded = covered</strong></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-amber-50 dark:bg-amber-900/20 border-l-4 border-amber-500 p-4 rounded-r-lg">
+                <p class="font-bold text-amber-800 dark:text-amber-300">Know This!</p>
+                <p class="text-gray-700 dark:text-gray-300 mt-1">The term "Open Peril" replaced "All Risks" because no policy truly covers ALL risks - there are always exclusions.</p>
+            </div>
+        </div>
+
+        <!-- 4. Negligence -->
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-6 flex items-center">
+                <span class="bg-purple-500 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3 text-sm">4</span>
+                Negligence
+            </h2>
+
+            <div class="bg-red-50 dark:bg-red-900/30 rounded-lg p-5 mb-6">
+                <p class="text-lg text-gray-700 dark:text-gray-300"><strong>Negligence</strong> is the failure to use the care that a <strong>reasonable, prudent person</strong> would have used under the same or similar circumstances.</p>
+            </div>
+
+            <div class="bg-white dark:bg-gray-700 rounded-lg p-5 mb-6">
+                <h3 class="font-bold text-gray-800 dark:text-gray-200 mb-3">The "Reasonable Person" Standard</h3>
+                <p class="text-gray-600 dark:text-gray-400">Courts ask: "What would a normal, careful person do in this situation?"</p>
+                <div class="mt-4 grid md:grid-cols-2 gap-4">
+                    <div class="bg-green-100 dark:bg-green-900/30 rounded p-3">
+                        <p class="text-green-800 dark:text-green-300 font-bold text-sm">Reasonable:</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm">Salting icy sidewalk in winter</p>
+                    </div>
+                    <div class="bg-red-100 dark:bg-red-900/30 rounded p-3">
+                        <p class="text-red-800 dark:text-red-300 font-bold text-sm">Negligent:</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm">Ignoring icy sidewalk all winter</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-blue-50 dark:bg-blue-900/30 rounded-lg p-5">
+                <h3 class="font-bold text-blue-800 dark:text-blue-300 mb-3">Real-World Example:</h3>
+                <div class="bg-white dark:bg-gray-800 rounded p-4">
+                    <p class="text-gray-700 dark:text-gray-300 text-sm">A store owner knows the floor near the entrance gets slippery when it rains. A customer slips and breaks their arm.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm mt-2"><strong>Was the owner negligent?</strong> A reasonable store owner would put out "wet floor" signs and mats. If the owner did nothing, they failed to act as a reasonable person would - that's negligence!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. Vacancy and Unoccupancy -->
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-6 flex items-center">
+                <span class="bg-purple-500 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3 text-sm">5</span>
+                Vacancy vs. Unoccupancy
+            </h2>
+
+            <div class="bg-purple-50 dark:bg-purple-900/30 rounded-lg p-4 mb-6">
+                <p class="text-gray-700 dark:text-gray-300">These terms matter because many policies restrict or exclude coverage for vacant or unoccupied buildings (usually after <strong>60 days</strong>).</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6 mb-6">
+                <div class="bg-red-50 dark:bg-red-900/30 rounded-lg p-5 border-2 border-red-500">
+                    <h3 class="font-bold text-red-800 dark:text-red-300 text-lg mb-3">Vacant</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4"><strong>No people AND no property</strong> in the building for the required period (usually 60 days).</p>
+                    <div class="bg-white dark:bg-gray-800 rounded p-3 mb-3">
+                        <p class="text-sm text-gray-600 dark:text-gray-400"><strong>Example:</strong></p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">You sell your house and move out, taking all your furniture. The house sits empty for 2 months before the new owners move in.</p>
+                    </div>
+                    <div class="bg-red-100 dark:bg-red-900/40 rounded p-2 text-center">
+                        <p class="text-sm text-red-800 dark:text-red-300"><strong>Empty building = VACANT</strong></p>
+                    </div>
+                </div>
+
+                <div class="bg-yellow-50 dark:bg-yellow-900/30 rounded-lg p-5 border-2 border-yellow-500">
+                    <h3 class="font-bold text-yellow-800 dark:text-yellow-300 text-lg mb-3">Unoccupied (Nonoccupied)</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4"><strong>No people</strong> in the building, but <strong>property IS stored</strong> there.</p>
+                    <div class="bg-white dark:bg-gray-800 rounded p-3 mb-3">
+                        <p class="text-sm text-gray-600 dark:text-gray-400"><strong>Example:</strong></p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">You go on a 2-week vacation. No one is home, but all your furniture, clothes, and belongings are still there.</p>
+                    </div>
+                    <div class="bg-yellow-100 dark:bg-yellow-900/40 rounded p-2 text-center">
+                        <p class="text-sm text-yellow-800 dark:text-yellow-300"><strong>Stuff inside, no people = UNOCCUPIED</strong></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-amber-50 dark:bg-amber-900/20 border-l-4 border-amber-500 p-4 rounded-r-lg">
+                <p class="font-bold text-amber-800 dark:text-amber-300">Memory Trick</p>
+                <p class="text-gray-700 dark:text-gray-300 mt-1"><strong>Vacant = Vacated completely</strong> (people AND stuff gone) | <strong>Unoccupied = Un-peopled</strong> (just no people, stuff still there)</p>
+            </div>
+        </div>
+
+        <!-- 6. Blanket vs Specific Coverage -->
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-6 flex items-center">
+                <span class="bg-purple-500 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3 text-sm">6</span>
+                Blanket vs. Specific Coverage
+            </h2>
+
+            <div class="grid md:grid-cols-2 gap-6 mb-6">
+                <div class="bg-blue-50 dark:bg-blue-900/30 rounded-lg p-5 border-2 border-blue-500">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg mb-3">Blanket Insurance</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">A <strong>single policy</strong> that provides coverage for:</p>
+                    <ul class="text-gray-600 dark:text-gray-400 text-sm space-y-2 mb-4">
+                        <li>• Multiple classes of property at <strong>one location</strong>, OR</li>
+                        <li>• One or more classes of property at <strong>multiple locations</strong></li>
+                    </ul>
+                    <div class="bg-white dark:bg-gray-800 rounded p-3">
+                        <p class="text-sm text-gray-600 dark:text-gray-400"><strong>Example:</strong> A business has 3 warehouses in different cities. One blanket policy covers all inventory in all 3 locations for a total of $1 million - no single item has a specific amount assigned.</p>
+                    </div>
+                </div>
+
+                <div class="bg-green-50 dark:bg-green-900/30 rounded-lg p-5 border-2 border-green-500">
+                    <h3 class="font-bold text-green-800 dark:text-green-300 text-lg mb-3">Specific Insurance</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">Covers a <strong>specific kind or unit</strong> of property for a <strong>specific amount</strong> of insurance.</p>
+                    <div class="bg-white dark:bg-gray-800 rounded p-3">
+                        <p class="text-sm text-gray-600 dark:text-gray-400"><strong>Example:</strong> Your homeowners policy might list:</p>
+                        <ul class="text-sm text-gray-600 dark:text-gray-400 mt-1 space-y-1">
+                            <li>• Dwelling: $300,000</li>
+                            <li>• Other Structures: $30,000</li>
+                            <li>• Personal Property: $150,000</li>
+                            <li>• Each item has its own specific limit</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-4">
+                <p class="text-gray-700 dark:text-gray-300"><strong>Key Difference:</strong> Blanket insurance provides flexibility - if one location has a large loss, the full policy limit can apply. Specific insurance limits payouts to the amount assigned to each item/location.</p>
+            </div>
+        </div>
+
+        <!-- Quick Reference Summary -->
+        <div class="bg-gradient-to-r from-purple-600 to-purple-800 rounded-xl shadow-md p-6 mb-8 text-white">
+            <h2 class="text-2xl font-bold mb-6">Quick Reference Summary</h2>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div class="bg-white/20 rounded-lg p-4">
+                    <p class="font-bold">Accident</p>
+                    <p class="text-sm text-purple-100">Sudden, unplanned event</p>
+                </div>
+                <div class="bg-white/20 rounded-lg p-4">
+                    <p class="font-bold">Occurrence</p>
+                    <p class="text-sm text-purple-100">Broader - includes continuous exposure</p>
+                </div>
+                <div class="bg-white/20 rounded-lg p-4">
+                    <p class="font-bold">Direct Loss</p>
+                    <p class="text-sm text-purple-100">Physical damage to property</p>
+                </div>
+                <div class="bg-white/20 rounded-lg p-4">
+                    <p class="font-bold">Indirect Loss</p>
+                    <p class="text-sm text-purple-100">Consequential (extra expenses, lost income)</p>
+                </div>
+                <div class="bg-white/20 rounded-lg p-4">
+                    <p class="font-bold">Proximate Cause</p>
+                    <p class="text-sm text-purple-100">The immediate/actual cause of loss</p>
+                </div>
+                <div class="bg-white/20 rounded-lg p-4">
+                    <p class="font-bold">Named Peril</p>
+                    <p class="text-sm text-purple-100">Only listed perils covered</p>
+                </div>
+                <div class="bg-white/20 rounded-lg p-4">
+                    <p class="font-bold">Open Peril</p>
+                    <p class="text-sm text-purple-100">Everything covered unless excluded</p>
+                </div>
+                <div class="bg-white/20 rounded-lg p-4">
+                    <p class="font-bold">Negligence</p>
+                    <p class="text-sm text-purple-100">Failure to use reasonable care</p>
+                </div>
+                <div class="bg-white/20 rounded-lg p-4">
+                    <p class="font-bold">Vacant</p>
+                    <p class="text-sm text-purple-100">No people AND no property</p>
+                </div>
+                <div class="bg-white/20 rounded-lg p-4">
+                    <p class="font-bold">Unoccupied</p>
+                    <p class="text-sm text-purple-100">No people, but property stored</p>
+                </div>
+                <div class="bg-white/20 rounded-lg p-4">
+                    <p class="font-bold">Blanket Insurance</p>
+                    <p class="text-sm text-purple-100">One amount covers multiple items/locations</p>
+                </div>
+                <div class="bg-white/20 rounded-lg p-4">
+                    <p class="font-bold">Specific Insurance</p>
+                    <p class="text-sm text-purple-100">Specific amount for specific property</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Navigation Footer -->
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="../part-1/index.html" class="text-gray-300 hover:text-white">← Part 1: General Principles</a>
+                <span class="text-gray-400">Part 2 of 3</span>
+                <a href="../part-3/index.html" class="text-gray-300 hover:text-white">Part 3: Loss Valuation →</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Initialize AI Tutor -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            createFloatingAIButton(`Part 2: Property and Liability Terms
+
+Key Concepts:
+
+1. ACCIDENT vs OCCURRENCE
+   - Accident = Sudden, unplanned, unexpected event
+   - Occurrence = Broader, includes continuous/repeated exposure
+   - All accidents are occurrences, not all occurrences are accidents
+
+2. DIRECT vs INDIRECT LOSS
+   - Direct = Physical damage to property
+   - Indirect (Consequential) = Results from direct loss (extra living expenses, lost profits)
+   - Proximate Cause = The immediate cause that triggers coverage
+
+3. NAMED PERIL vs OPEN PERIL
+   - Named Peril = Only listed perils covered
+   - Open (Special) Peril = Everything covered unless excluded
+
+4. NEGLIGENCE = Failure to use reasonable care
+
+5. VACANT vs UNOCCUPIED
+   - Vacant = No people AND no property (60+ days)
+   - Unoccupied = No people, but property still there
+
+6. BLANKET vs SPECIFIC COVERAGE
+   - Blanket = One policy covers multiple items/locations
+   - Specific = Specific amount for specific property`);
+        });
+    </script>
+</body>
+</html>

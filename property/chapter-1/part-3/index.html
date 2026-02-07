@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 3: Loss Valuation | Property Insurance</title>
+    <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <link rel="stylesheet" href="../../../css/styles.css">
+    <script src="../../../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+        }
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <!-- Settings & Theme Toggle Buttons -->
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="showAPIKeySetup()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings">
+            <svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+        </button>
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/>
+            </svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-green-600 to-green-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <a href="../index.html" class="text-green-200 hover:text-white text-sm mb-2 inline-block">← Back to Chapter 1</a>
+            <h1 class="text-3xl font-bold">Part 3: Loss Valuation</h1>
+            <p class="text-green-200 mt-1">How Insurance Determines What Your Loss is Worth</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 lg:px-8 py-8 max-w-4xl lg:max-w-6xl">
+
+        <!-- Introduction -->
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">Why Loss Valuation Matters</h2>
+
+            <div class="bg-green-50 dark:bg-green-900/30 rounded-lg p-5 mb-6">
+                <p class="text-gray-700 dark:text-gray-300">When you purchase property insurance, you choose <strong>how a loss will be valued</strong> at the time of a claim. This decision affects:</p>
+                <ul class="text-gray-600 dark:text-gray-400 mt-3 space-y-2">
+                    <li>• The <strong>premium</strong> you pay</li>
+                    <li>• The <strong>amount of insurance</strong> you need</li>
+                    <li>• How much you'll <strong>receive when you file a claim</strong></li>
+                </ul>
+            </div>
+
+            <div class="bg-amber-50 dark:bg-amber-900/20 border-l-4 border-amber-500 p-4 rounded-r-lg">
+                <p class="font-bold text-amber-800 dark:text-amber-300">Key Concept</p>
+                <p class="text-gray-700 dark:text-gray-300 mt-1">The valuation method you choose can mean the difference between getting enough money to fully replace your property OR getting significantly less.</p>
+            </div>
+        </div>
+
+        <!-- 1. Actual Cash Value -->
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-6 flex items-center">
+                <span class="bg-green-500 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3 text-sm">1</span>
+                Actual Cash Value (ACV)
+            </h2>
+
+            <div class="bg-blue-50 dark:bg-blue-900/30 rounded-lg p-5 mb-6">
+                <p class="text-gray-700 dark:text-gray-300">ACV recognizes that property <strong>loses value as it ages</strong> due to wear and tear and obsolescence. It reinforces the <strong>principle of indemnity</strong>.</p>
+            </div>
+
+            <!-- ACV Formula -->
+            <div class="text-center mb-6">
+                <div class="inline-block bg-green-100 dark:bg-green-900/40 rounded-xl p-6 border-2 border-green-500">
+                    <p class="text-sm text-green-800 dark:text-green-300 mb-2">THE ACV FORMULA</p>
+                    <p class="text-2xl font-bold text-green-800 dark:text-green-300">Replacement Cost − Depreciation = ACV</p>
+                </div>
+            </div>
+
+            <!-- ACV Example -->
+            <div class="bg-white dark:bg-gray-700 rounded-lg p-5 mb-6">
+                <h3 class="font-bold text-gray-800 dark:text-gray-200 mb-4">Real-World Example: Your 10-Year-Old Roof</h3>
+
+                <div class="grid md:grid-cols-3 gap-4 mb-4">
+                    <div class="bg-blue-50 dark:bg-blue-900/30 rounded-lg p-4 text-center">
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Cost to Replace Today</p>
+                        <p class="text-2xl font-bold text-blue-800 dark:text-blue-300">$20,000</p>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/30 rounded-lg p-4 text-center">
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Minus Depreciation (10 yrs)</p>
+                        <p class="text-2xl font-bold text-red-800 dark:text-red-300">- $8,000</p>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/30 rounded-lg p-4 text-center">
+                        <p class="text-sm text-gray-600 dark:text-gray-400">ACV Payout</p>
+                        <p class="text-2xl font-bold text-green-800 dark:text-green-300">= $12,000</p>
+                    </div>
+                </div>
+
+                <div class="bg-amber-100 dark:bg-amber-900/30 rounded p-3">
+                    <p class="text-amber-800 dark:text-amber-300 text-sm"><strong>The Problem:</strong> You receive $12,000, but a new roof costs $20,000. You're $8,000 short!</p>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-4">
+                <div class="bg-green-50 dark:bg-green-900/30 rounded-lg p-4">
+                    <h4 class="font-bold text-green-800 dark:text-green-300">ACV Pros</h4>
+                    <ul class="text-gray-600 dark:text-gray-400 text-sm mt-2 space-y-1">
+                        <li>• Lower premiums</li>
+                        <li>• Follows indemnity principle</li>
+                        <li>• Prevents profit from loss</li>
+                    </ul>
+                </div>
+                <div class="bg-red-50 dark:bg-red-900/30 rounded-lg p-4">
+                    <h4 class="font-bold text-red-800 dark:text-red-300">ACV Cons</h4>
+                    <ul class="text-gray-600 dark:text-gray-400 text-sm mt-2 space-y-1">
+                        <li>• May not cover full replacement</li>
+                        <li>• Out-of-pocket costs likely</li>
+                        <li>• Older items = bigger gap</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. Replacement Cost -->
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-6 flex items-center">
+                <span class="bg-green-500 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3 text-sm">2</span>
+                Replacement Cost
+            </h2>
+
+            <div class="bg-purple-50 dark:bg-purple-900/30 rounded-lg p-5 mb-6">
+                <p class="text-gray-700 dark:text-gray-300"><strong>Replacement Cost</strong> is the cost to replace damaged property with <strong>like kind and quality at today's price</strong>, with <strong>NO deduction for depreciation</strong>.</p>
+            </div>
+
+            <!-- RC Example -->
+            <div class="bg-white dark:bg-gray-700 rounded-lg p-5 mb-6">
+                <h3 class="font-bold text-gray-800 dark:text-gray-200 mb-4">Same Example: Your 10-Year-Old Roof</h3>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-4">
+                    <div class="bg-purple-50 dark:bg-purple-900/30 rounded-lg p-4 text-center">
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Cost to Replace Today</p>
+                        <p class="text-2xl font-bold text-purple-800 dark:text-purple-300">$20,000</p>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/30 rounded-lg p-4 text-center">
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Replacement Cost Payout</p>
+                        <p class="text-2xl font-bold text-green-800 dark:text-green-300">= $20,000</p>
+                    </div>
+                </div>
+
+                <div class="bg-green-100 dark:bg-green-900/30 rounded p-3">
+                    <p class="text-green-800 dark:text-green-300 text-sm"><strong>The Benefit:</strong> You receive the full $20,000 to replace your roof! No out-of-pocket expense.</p>
+                </div>
+            </div>
+
+            <div class="bg-amber-50 dark:bg-amber-900/20 border-l-4 border-amber-500 p-4 rounded-r-lg mb-6">
+                <p class="font-bold text-amber-800 dark:text-amber-300">Important Exam Point!</p>
+                <p class="text-gray-700 dark:text-gray-300 mt-1">Replacement cost is <strong>contrary to the basic concept of indemnity</strong> because it may provide the insured with a settlement <strong>in excess of the property's actual cash value</strong>.</p>
+            </div>
+
+            <!-- Side by Side Comparison -->
+            <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-5">
+                <h3 class="font-bold text-gray-800 dark:text-gray-200 mb-4">ACV vs. Replacement Cost: Side-by-Side</h3>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm">
+                        <thead>
+                            <tr class="border-b dark:border-gray-600">
+                                <th class="text-left py-2 px-3 text-gray-800 dark:text-gray-200">Feature</th>
+                                <th class="text-center py-2 px-3 text-blue-800 dark:text-blue-300">ACV</th>
+                                <th class="text-center py-2 px-3 text-purple-800 dark:text-purple-300">Replacement Cost</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b dark:border-gray-600">
+                                <td class="py-2 px-3 text-gray-600 dark:text-gray-400">Depreciation Deducted?</td>
+                                <td class="text-center py-2 px-3 text-blue-600 dark:text-blue-400">Yes</td>
+                                <td class="text-center py-2 px-3 text-purple-600 dark:text-purple-400">No</td>
+                            </tr>
+                            <tr class="border-b dark:border-gray-600">
+                                <td class="py-2 px-3 text-gray-600 dark:text-gray-400">Premium Cost</td>
+                                <td class="text-center py-2 px-3 text-blue-600 dark:text-blue-400">Lower</td>
+                                <td class="text-center py-2 px-3 text-purple-600 dark:text-purple-400">Higher</td>
+                            </tr>
+                            <tr class="border-b dark:border-gray-600">
+                                <td class="py-2 px-3 text-gray-600 dark:text-gray-400">Follows Indemnity?</td>
+                                <td class="text-center py-2 px-3 text-blue-600 dark:text-blue-400">Yes</td>
+                                <td class="text-center py-2 px-3 text-purple-600 dark:text-purple-400">No (exceeds it)</td>
+                            </tr>
+                            <tr>
+                                <td class="py-2 px-3 text-gray-600 dark:text-gray-400">Out-of-Pocket Risk</td>
+                                <td class="text-center py-2 px-3 text-blue-600 dark:text-blue-400">Higher</td>
+                                <td class="text-center py-2 px-3 text-purple-600 dark:text-purple-400">Lower/None</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. Market Value -->
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-6 flex items-center">
+                <span class="bg-green-500 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3 text-sm">3</span>
+                Market Value
+            </h2>
+
+            <div class="bg-orange-50 dark:bg-orange-900/30 rounded-lg p-5 mb-6">
+                <p class="text-gray-700 dark:text-gray-300"><strong>Market Value</strong> is the amount a <strong>willing buyer would pay to a willing seller</strong> for the property prior to the loss.</p>
+            </div>
+
+            <div class="bg-white dark:bg-gray-700 rounded-lg p-5 mb-6">
+                <h3 class="font-bold text-gray-800 dark:text-gray-200 mb-3">What Makes Market Value Different?</h3>
+                <p class="text-gray-600 dark:text-gray-400">Market value considers factors beyond just the cost of rebuilding:</p>
+                <ul class="text-gray-600 dark:text-gray-400 mt-3 space-y-2">
+                    <li>• <strong>Land value</strong> and location</li>
+                    <li>• Neighborhood desirability</li>
+                    <li>• Supply and demand</li>
+                    <li>• NOT just the cost of rebuilding the structure</li>
+                </ul>
+            </div>
+
+            <div class="bg-blue-50 dark:bg-blue-900/30 rounded-lg p-5 mb-6">
+                <h3 class="font-bold text-blue-800 dark:text-blue-300 mb-3">Real-World Example:</h3>
+                <div class="bg-white dark:bg-gray-800 rounded p-4">
+                    <p class="text-gray-700 dark:text-gray-300 text-sm">A house in San Francisco might have:</p>
+                    <ul class="text-gray-600 dark:text-gray-400 text-sm mt-2 space-y-2">
+                        <li>• <strong>Replacement cost:</strong> $400,000 (cost to rebuild the structure)</li>
+                        <li>• <strong>Market value:</strong> $1,500,000 (because the land in SF is extremely valuable)</li>
+                    </ul>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm mt-3">Insurance typically uses replacement cost or ACV, NOT market value, because the land won't be destroyed in a fire!</p>
+                </div>
+            </div>
+
+            <div class="bg-amber-50 dark:bg-amber-900/20 border-l-4 border-amber-500 p-4 rounded-r-lg">
+                <p class="font-bold text-amber-800 dark:text-amber-300">Exam Note</p>
+                <p class="text-gray-700 dark:text-gray-300 mt-1">Market value is a <strong>seldom-used method</strong> for property insurance valuation.</p>
+            </div>
+        </div>
+
+        <!-- 4. Stated Value -->
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-6 flex items-center">
+                <span class="bg-green-500 text-white rounded-full w-8 h-8 flex items-center justify-center mr-3 text-sm">4</span>
+                Stated Value (Stated Amount)
+            </h2>
+
+            <div class="bg-teal-50 dark:bg-teal-900/30 rounded-lg p-5 mb-6">
+                <p class="text-gray-700 dark:text-gray-300">A <strong>stated amount</strong> is an amount of insurance scheduled in the policy that is <strong>NOT subject to any coinsurance requirements</strong> in the event of a covered loss.</p>
+            </div>
+
+            <div class="bg-white dark:bg-gray-700 rounded-lg p-5 mb-6">
+                <h3 class="font-bold text-gray-800 dark:text-gray-200 mb-3">Key Features:</h3>
+                <ul class="text-gray-600 dark:text-gray-400 space-y-3">
+                    <li class="flex items-start">
+                        <span class="text-teal-500 mr-2">✓</span>
+                        <span>The scheduled amount is the <strong>maximum</strong> the insurer will pay</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-teal-500 mr-2">✓</span>
+                        <span><strong>No coinsurance penalty</strong> applies (we'll cover coinsurance in a later chapter)</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-teal-500 mr-2">✓</span>
+                        <span>Often used for valuable items that are difficult to value (art, antiques, collectibles)</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="bg-teal-50 dark:bg-teal-900/30 rounded-lg p-5">
+                <h3 class="font-bold text-teal-800 dark:text-teal-300 mb-3">Real-World Example:</h3>
+                <div class="bg-white dark:bg-gray-800 rounded p-4">
+                    <p class="text-gray-700 dark:text-gray-300 text-sm">You own a valuable antique grandfather clock worth approximately $15,000. You schedule it on your policy for a <strong>stated amount of $15,000</strong>.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm mt-2">If the clock is destroyed:</p>
+                    <ul class="text-gray-600 dark:text-gray-400 text-sm mt-2 space-y-1">
+                        <li>• The insurer pays up to <strong>$15,000</strong> (the stated amount)</li>
+                        <li>• No coinsurance penalty applies</li>
+                        <li>• No depreciation calculation needed</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Valuation Comparison Chart -->
+        <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 mb-8">
+            <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-6">Valuation Methods at a Glance</h2>
+
+            <div class="overflow-x-auto">
+                <table class="w-full text-sm">
+                    <thead>
+                        <tr class="bg-gray-100 dark:bg-gray-700">
+                            <th class="text-left py-3 px-4 text-gray-800 dark:text-gray-200 font-bold">Method</th>
+                            <th class="text-left py-3 px-4 text-gray-800 dark:text-gray-200 font-bold">Formula/Concept</th>
+                            <th class="text-left py-3 px-4 text-gray-800 dark:text-gray-200 font-bold">Best For</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-b dark:border-gray-700">
+                            <td class="py-3 px-4 font-bold text-blue-600 dark:text-blue-400">ACV</td>
+                            <td class="py-3 px-4 text-gray-600 dark:text-gray-400">Replacement − Depreciation</td>
+                            <td class="py-3 px-4 text-gray-600 dark:text-gray-400">Lower premiums, older property</td>
+                        </tr>
+                        <tr class="border-b dark:border-gray-700">
+                            <td class="py-3 px-4 font-bold text-purple-600 dark:text-purple-400">Replacement Cost</td>
+                            <td class="py-3 px-4 text-gray-600 dark:text-gray-400">Full cost to replace today</td>
+                            <td class="py-3 px-4 text-gray-600 dark:text-gray-400">Maximum protection, newer property</td>
+                        </tr>
+                        <tr class="border-b dark:border-gray-700">
+                            <td class="py-3 px-4 font-bold text-orange-600 dark:text-orange-400">Market Value</td>
+                            <td class="py-3 px-4 text-gray-600 dark:text-gray-400">What buyer would pay seller</td>
+                            <td class="py-3 px-4 text-gray-600 dark:text-gray-400">Rarely used (includes land value)</td>
+                        </tr>
+                        <tr>
+                            <td class="py-3 px-4 font-bold text-teal-600 dark:text-teal-400">Stated Amount</td>
+                            <td class="py-3 px-4 text-gray-600 dark:text-gray-400">Agreed amount, no coinsurance</td>
+                            <td class="py-3 px-4 text-gray-600 dark:text-gray-400">Valuables, antiques, art</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Quick Reference Summary -->
+        <div class="bg-gradient-to-r from-green-600 to-green-800 rounded-xl shadow-md p-6 mb-8 text-white">
+            <h2 class="text-2xl font-bold mb-6">Quick Reference Summary</h2>
+
+            <div class="grid md:grid-cols-2 gap-4">
+                <div class="bg-white/20 rounded-lg p-4">
+                    <p class="font-bold">Actual Cash Value (ACV)</p>
+                    <p class="text-sm text-green-100 mt-1">Replacement Cost − Depreciation</p>
+                    <p class="text-xs text-green-200 mt-1">Follows indemnity principle</p>
+                </div>
+                <div class="bg-white/20 rounded-lg p-4">
+                    <p class="font-bold">Replacement Cost</p>
+                    <p class="text-sm text-green-100 mt-1">Full cost to replace today, no depreciation</p>
+                    <p class="text-xs text-green-200 mt-1">Contrary to indemnity principle</p>
+                </div>
+                <div class="bg-white/20 rounded-lg p-4">
+                    <p class="font-bold">Market Value</p>
+                    <p class="text-sm text-green-100 mt-1">What buyer would pay seller</p>
+                    <p class="text-xs text-green-200 mt-1">Seldom used, includes land value</p>
+                </div>
+                <div class="bg-white/20 rounded-lg p-4">
+                    <p class="font-bold">Stated Value</p>
+                    <p class="text-sm text-green-100 mt-1">Scheduled amount, no coinsurance</p>
+                    <p class="text-xs text-green-200 mt-1">Maximum insurer will pay</p>
+                </div>
+            </div>
+
+            <div class="mt-6 bg-white/10 rounded-lg p-4">
+                <p class="font-bold">Key Formulas to Remember:</p>
+                <p class="text-green-100 mt-2"><strong>ACV = Replacement Cost − Depreciation</strong></p>
+            </div>
+        </div>
+
+        <!-- Chapter Complete -->
+        <div class="bg-blue-50 dark:bg-blue-900/30 rounded-xl shadow-md p-6 text-center">
+            <h2 class="text-2xl font-bold text-blue-800 dark:text-blue-300 mb-4">Chapter 1 Complete!</h2>
+            <p class="text-gray-700 dark:text-gray-300 mb-6">You've learned the foundation concepts for Property Insurance. Ready to continue?</p>
+            <a href="../../chapter-2/index.html" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition-colors">
+                Continue to Chapter 2 →
+            </a>
+        </div>
+
+    </div>
+
+    <!-- Navigation Footer -->
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="../part-2/index.html" class="text-gray-300 hover:text-white">← Part 2: Property Terms</a>
+                <span class="text-gray-400">Part 3 of 3</span>
+                <a href="../index.html" class="text-gray-300 hover:text-white">Chapter 1 Home →</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Initialize AI Tutor -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            createFloatingAIButton(`Part 3: Loss Valuation
+
+How insurance determines what your loss is worth:
+
+1. ACTUAL CASH VALUE (ACV)
+   Formula: Replacement Cost − Depreciation = ACV
+   - Recognizes property loses value as it ages
+   - Follows the principle of indemnity
+   - Lower premiums, but may not cover full replacement
+
+2. REPLACEMENT COST
+   - Cost to replace with like kind and quality at today's prices
+   - NO deduction for depreciation
+   - Contrary to indemnity principle (may exceed ACV)
+   - Higher premiums, but full protection
+
+3. MARKET VALUE
+   - What a willing buyer would pay a willing seller
+   - Includes land value and location
+   - SELDOM USED for insurance valuation
+
+4. STATED VALUE (STATED AMOUNT)
+   - Pre-agreed amount scheduled in policy
+   - NOT subject to coinsurance
+   - Maximum insurer will pay
+   - Used for valuables, antiques, art
+
+Key Formula: ACV = Replacement Cost − Depreciation`);
+        });
+    </script>
+</body>
+</html>
