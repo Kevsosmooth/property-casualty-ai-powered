@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 5: Sources of Insurability Information | Chapter 2 | Property Insurance</title>
+    <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <link rel="stylesheet" href="../../../css/styles.css">
+    <script src="../../../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+        }
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <!-- Settings & Theme Toggle Buttons -->
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="showAPIKeySetup()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings">
+            <svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+        </button>
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/>
+            </svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-purple-600 to-purple-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center text-purple-200 text-sm mb-2">
+                <a href="../../index.html" class="hover:text-white">Property</a>
+                <span class="mx-2">→</span>
+                <a href="../index.html" class="hover:text-white">Chapter 2</a>
+                <span class="mx-2">→</span>
+                <span class="text-white">Part 5</span>
+            </div>
+            <h1 class="text-3xl font-bold">Part 5: Sources of Insurability Information</h1>
+            <p class="text-purple-200 mt-1">How Underwriters Gather Information to Evaluate Risk</p>
+        </div>
+    </header>
+
+    <!-- Sticky Navigation -->
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-wrap gap-2 text-sm">
+                <a href="#overview" class="text-purple-600 dark:text-purple-400 hover:text-purple-800 px-2 py-1 rounded hover:bg-purple-50 dark:hover:bg-gray-700">Overview</a>
+                <a href="#sources" class="text-purple-600 dark:text-purple-400 hover:text-purple-800 px-2 py-1 rounded hover:bg-purple-50 dark:hover:bg-gray-700">5 Sources</a>
+                <a href="#application" class="text-purple-600 dark:text-purple-400 hover:text-purple-800 px-2 py-1 rounded hover:bg-purple-50 dark:hover:bg-gray-700">Application</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-5xl lg:max-w-7xl">
+
+        <!-- Overview Section -->
+        <section id="overview" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">Sources of Insurability Information</h2>
+
+                <div class="bg-purple-50 dark:bg-purple-900/30 rounded-xl p-5 lg:p-6 mb-6 border border-purple-200 dark:border-purple-800">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">A part of the <strong>underwriting process</strong> is to determine the insurability of the applicant. Insurers have several resources for gathering information to make this decision.</p>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/20 border-l-4 border-amber-500 p-4 lg:p-5 rounded-r-lg">
+                    <p class="font-bold text-amber-800 dark:text-amber-300 text-lg">Important!</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2">Most information sources must be <strong>agreed to by the insured in writing</strong> before the insurer can use them. The insured typically signs consent forms when applying.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5 Sources Section -->
+        <section id="sources" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">The 5 Sources of Underwriting Information</h2>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-5 border-2 border-blue-300 dark:border-blue-700 text-center">
+                        <div class="bg-blue-500 text-white w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3 text-xl font-bold">1</div>
+                        <h3 class="font-bold text-blue-800 dark:text-blue-300">Application Form</h3>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/20 rounded-xl p-5 border-2 border-green-300 dark:border-green-700 text-center">
+                        <div class="bg-green-500 text-white w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3 text-xl font-bold">2</div>
+                        <h3 class="font-bold text-green-800 dark:text-green-300">Motor Vehicle Records</h3>
+                    </div>
+                    <div class="bg-amber-50 dark:bg-amber-900/20 rounded-xl p-5 border-2 border-amber-300 dark:border-amber-700 text-center">
+                        <div class="bg-amber-500 text-white w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3 text-xl font-bold">3</div>
+                        <h3 class="font-bold text-amber-800 dark:text-amber-300">Interviews</h3>
+                        <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">Neighbors, friends, employers</p>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 rounded-xl p-5 border-2 border-purple-300 dark:border-purple-700 text-center">
+                        <div class="bg-purple-500 text-white w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3 text-xl font-bold">4</div>
+                        <h3 class="font-bold text-purple-800 dark:text-purple-300">Property Inspection</h3>
+                    </div>
+                    <div class="bg-teal-50 dark:bg-teal-900/20 rounded-xl p-5 border-2 border-teal-300 dark:border-teal-700 text-center">
+                        <div class="bg-teal-500 text-white w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3 text-xl font-bold">5</div>
+                        <h3 class="font-bold text-teal-800 dark:text-teal-300">Insurance History</h3>
+                        <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">(CLUE Report)</p>
+                    </div>
+                </div>
+
+                <!-- Detailed Explanations -->
+                <div class="space-y-6">
+                    <!-- 1. Application Form -->
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-5 lg:p-6 border-l-4 border-blue-500">
+                        <div class="flex items-center mb-3">
+                            <div class="bg-blue-500 text-white w-10 h-10 rounded-full flex items-center justify-center mr-3 font-bold">1</div>
+                            <h3 class="font-bold text-blue-800 dark:text-blue-300 text-xl">Application Form</h3>
+                        </div>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-4">A printed form that includes questions about the prospective insured and desired coverage. This is the <strong>primary source</strong> of information!</p>
+
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                            <p class="font-semibold text-gray-700 dark:text-gray-300 mb-2">Typical Application Questions:</p>
+                            <div class="grid md:grid-cols-2 gap-2 text-sm text-gray-600 dark:text-gray-400">
+                                <p>- Property address and description</p>
+                                <p>- Year built, construction type</p>
+                                <p>- Coverage amounts desired</p>
+                                <p>- Prior claims history</p>
+                                <p>- Current insurance carrier</p>
+                                <p>- Safety features (alarms, sprinklers)</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2. Motor Vehicle Records -->
+                    <div class="bg-green-50 dark:bg-green-900/20 rounded-xl p-5 lg:p-6 border-l-4 border-green-500">
+                        <div class="flex items-center mb-3">
+                            <div class="bg-green-500 text-white w-10 h-10 rounded-full flex items-center justify-center mr-3 font-bold">2</div>
+                            <h3 class="font-bold text-green-800 dark:text-green-300 text-xl">Motor Vehicle Records (MVR)</h3>
+                        </div>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-4">Official driving records obtained from the state DMV. Essential for auto insurance underwriting!</p>
+
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                            <p class="font-semibold text-gray-700 dark:text-gray-300 mb-2">MVR Shows:</p>
+                            <div class="grid md:grid-cols-2 gap-2 text-sm text-gray-600 dark:text-gray-400">
+                                <p>- Traffic violations</p>
+                                <p>- Accidents on record</p>
+                                <p>- DUI/DWI convictions</p>
+                                <p>- License suspensions</p>
+                                <p>- Points on license</p>
+                                <p>- License class and restrictions</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-green-100 dark:bg-green-900/40 p-3 rounded-lg mt-4">
+                            <p class="text-sm text-gray-700 dark:text-gray-300"><strong>Example:</strong> An applicant claims a clean driving record, but the MVR reveals 3 speeding tickets and an at-fault accident in the past 3 years. The underwriter adjusts the premium accordingly.</p>
+                        </div>
+                    </div>
+
+                    <!-- 3. Interviews -->
+                    <div class="bg-amber-50 dark:bg-amber-900/20 rounded-xl p-5 lg:p-6 border-l-4 border-amber-500">
+                        <div class="flex items-center mb-3">
+                            <div class="bg-amber-500 text-white w-10 h-10 rounded-full flex items-center justify-center mr-3 font-bold">3</div>
+                            <h3 class="font-bold text-amber-800 dark:text-amber-300 text-xl">Interviews with Third Parties</h3>
+                        </div>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-4">Conversations with neighbors, friends, and employers to gather additional information about the applicant.</p>
+
+                        <div class="grid md:grid-cols-3 gap-3">
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                                <p class="font-bold text-amber-800 dark:text-amber-300">Neighbors</p>
+                                <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">Property condition, lifestyle</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                                <p class="font-bold text-amber-800 dark:text-amber-300">Friends</p>
+                                <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">Character, habits</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                                <p class="font-bold text-amber-800 dark:text-amber-300">Employers</p>
+                                <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">Employment verification, stability</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-amber-100 dark:bg-amber-900/40 p-3 rounded-lg mt-4">
+                            <p class="text-sm text-gray-700 dark:text-gray-300"><strong>Note:</strong> This is part of an "Investigative Consumer Report" and requires special disclosure to the applicant under FCRA (covered in Part 6).</p>
+                        </div>
+                    </div>
+
+                    <!-- 4. Property Inspection -->
+                    <div class="bg-purple-50 dark:bg-purple-900/20 rounded-xl p-5 lg:p-6 border-l-4 border-purple-500">
+                        <div class="flex items-center mb-3">
+                            <div class="bg-purple-500 text-white w-10 h-10 rounded-full flex items-center justify-center mr-3 font-bold">4</div>
+                            <h3 class="font-bold text-purple-800 dark:text-purple-300 text-xl">Inspection of Property</h3>
+                        </div>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-4">Physical examination of the property being insured to verify its condition and identify hazards.</p>
+
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                            <p class="font-semibold text-gray-700 dark:text-gray-300 mb-2">Inspector Looks For:</p>
+                            <div class="grid md:grid-cols-2 gap-2 text-sm text-gray-600 dark:text-gray-400">
+                                <p>- Roof condition and age</p>
+                                <p>- Electrical system condition</p>
+                                <p>- Plumbing and HVAC</p>
+                                <p>- Fire hazards</p>
+                                <p>- Safety devices present</p>
+                                <p>- General maintenance</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-purple-100 dark:bg-purple-900/40 p-3 rounded-lg mt-4">
+                            <p class="text-sm text-gray-700 dark:text-gray-300"><strong>Example:</strong> An inspector visits a home and discovers the roof is 25 years old with missing shingles. The underwriter may require the roof be replaced before issuing the policy, or exclude roof damage from coverage.</p>
+                        </div>
+                    </div>
+
+                    <!-- 5. Insurance History -->
+                    <div class="bg-teal-50 dark:bg-teal-900/20 rounded-xl p-5 lg:p-6 border-l-4 border-teal-500">
+                        <div class="flex items-center mb-3">
+                            <div class="bg-teal-500 text-white w-10 h-10 rounded-full flex items-center justify-center mr-3 font-bold">5</div>
+                            <h3 class="font-bold text-teal-800 dark:text-teal-300 text-xl">Inspection of Insurance History</h3>
+                        </div>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-4">Review of the applicant's past insurance claims and coverage history, often through the <strong>CLUE Report</strong>.</p>
+
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                            <p class="font-semibold text-gray-700 dark:text-gray-300 mb-2">CLUE (Comprehensive Loss Underwriting Exchange):</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">A database that tracks claims history for both people AND properties. Shows claims for the past 5-7 years.</p>
+                        </div>
+
+                        <div class="grid md:grid-cols-2 gap-4 mt-4">
+                            <div class="bg-teal-100 dark:bg-teal-900/40 p-3 rounded-lg">
+                                <p class="font-bold text-teal-800 dark:text-teal-300 text-sm">What CLUE Shows:</p>
+                                <ul class="text-xs text-gray-600 dark:text-gray-400 mt-1 space-y-1">
+                                    <li>- Previous claims filed</li>
+                                    <li>- Amounts paid</li>
+                                    <li>- Types of losses</li>
+                                    <li>- Claim dates</li>
+                                </ul>
+                            </div>
+                            <div class="bg-teal-100 dark:bg-teal-900/40 p-3 rounded-lg">
+                                <p class="font-bold text-teal-800 dark:text-teal-300 text-sm">Why It Matters:</p>
+                                <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">Past claims predict future claims. Multiple claims = higher risk = higher premium or denial.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Policy Application Section -->
+        <section id="application" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">The Policy Application</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-5 lg:p-6 border-l-4 border-blue-500 mb-6">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">The application is the <strong>most important</strong> source of underwriting information. It provides everything the underwriter needs to accept, reject, or rate a policy.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-white dark:bg-gray-700 rounded-lg p-5 border border-gray-200 dark:border-gray-600">
+                        <h4 class="font-bold text-gray-800 dark:text-gray-200 mb-4">What the Application Provides:</h4>
+                        <ul class="space-y-2 text-gray-600 dark:text-gray-400">
+                            <li class="flex items-start">
+                                <span class="text-blue-500 mr-2">-</span>
+                                <span>Information about the <strong>prospective insured</strong></span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-blue-500 mr-2">-</span>
+                                <span>Desired <strong>coverage types</strong> and limits</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-blue-500 mr-2">-</span>
+                                <span>Information for <strong>accepting or rejecting</strong> the risk</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-blue-500 mr-2">-</span>
+                                <span>Data for <strong>rating</strong> (pricing) the policy</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-700 rounded-lg p-5 border border-gray-200 dark:border-gray-600">
+                        <h4 class="font-bold text-gray-800 dark:text-gray-200 mb-4">Important Facts:</h4>
+                        <ul class="space-y-2 text-gray-600 dark:text-gray-400">
+                            <li class="flex items-start">
+                                <span class="text-blue-500 mr-2">-</span>
+                                <span>Some policies make the application <strong>part of the policy</strong></span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-blue-500 mr-2">-</span>
+                                <span><strong>Misrepresentations</strong> in the application can <strong>void the policy</strong></span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-blue-500 mr-2">-</span>
+                                <span>Answers are considered <strong>representations</strong> (believed to be true)</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 p-4 rounded-lg mt-6">
+                    <p class="font-bold text-red-800 dark:text-red-300">Warning: Misrepresentations Can Void the Policy!</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2">If an applicant lies or provides false information on the application, and that information is material (would affect the underwriting decision), the insurer can void the policy - even after a claim!</p>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg mt-3">
+                        <p class="text-sm text-gray-600 dark:text-gray-400"><strong>Example:</strong> An applicant says they have no prior claims. After a fire, the insurer discovers 5 previous claims. The policy can be voided for material misrepresentation, and the claim denied.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Trap Alerts -->
+        <section class="mb-10">
+            <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-xl p-5 lg:p-6">
+                <h3 class="text-xl lg:text-2xl font-bold text-red-800 dark:text-red-300 mb-4">Exam Trap Alerts</h3>
+                <div class="space-y-4">
+                    <div class="flex items-start">
+                        <span class="text-red-500 mr-3 text-xl font-bold">!</span>
+                        <div>
+                            <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Written consent required:</strong> Most sources of information require the insured's written consent before the insurer can access them.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="text-red-500 mr-3 text-xl font-bold">!</span>
+                        <div>
+                            <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Application = Part of Policy:</strong> Some policies incorporate the application as part of the contract. This means your answers are binding!</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="text-red-500 mr-3 text-xl font-bold">!</span>
+                        <div>
+                            <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>CLUE tracks properties too:</strong> The CLUE report tracks claims history for BOTH people AND properties. A house with many claims will affect the new buyer's insurance!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Reference Summary -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-purple-600 to-purple-800 rounded-xl shadow-lg p-6 lg:p-8 text-white">
+                <h3 class="text-xl lg:text-2xl font-bold mb-6">Quick Reference: Part 5 Summary</h3>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-white/10 rounded-lg p-4">
+                        <h4 class="font-bold mb-2">5 Information Sources</h4>
+                        <ol class="text-purple-100 text-sm space-y-1">
+                            <li>1. Application Form</li>
+                            <li>2. Motor Vehicle Records</li>
+                            <li>3. Interviews (neighbors, employers)</li>
+                            <li>4. Property Inspection</li>
+                            <li>5. Insurance History (CLUE)</li>
+                        </ol>
+                    </div>
+                    <div class="bg-white/10 rounded-lg p-4">
+                        <h4 class="font-bold mb-2">Application</h4>
+                        <ul class="text-purple-100 text-sm space-y-1">
+                            <li>- Primary source of info</li>
+                            <li>- May be part of policy</li>
+                            <li>- Misrepresentation can void policy</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white/10 rounded-lg p-4">
+                        <h4 class="font-bold mb-2">Key Points</h4>
+                        <ul class="text-purple-100 text-sm space-y-1">
+                            <li>- Written consent usually required</li>
+                            <li>- CLUE tracks people AND properties</li>
+                            <li>- Past claims predict future claims</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Navigation Footer -->
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="../part-4/index.html" class="text-gray-300 hover:text-white">← Part 4: Provisions & Clauses</a>
+                <span class="text-gray-400">Part 5 of 6</span>
+                <a href="../part-6/index.html" class="text-gray-300 hover:text-white">Part 6: FCRA →</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Initialize AI Tutor -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            createFloatingAIButton(`Part 5: Sources of Insurability Information
+
+Part of underwriting process to determine insurability.
+Most sources require WRITTEN CONSENT from insured.
+
+5 SOURCES OF INFORMATION:
+1. Application Form - primary source, questions about applicant & desired coverage
+2. Motor Vehicle Records (MVR) - driving history from DMV
+3. Interviews - with neighbors, friends, employers
+4. Property Inspection - physical examination of property
+5. Insurance History (CLUE Report) - past claims for people AND properties
+
+THE APPLICATION:
+- Most important source
+- Provides info for accepting/rejecting and rating
+- Some policies make application PART OF THE POLICY
+- Misrepresentations can VOID the policy
+
+CLUE REPORT:
+- Comprehensive Loss Underwriting Exchange
+- Tracks claims history 5-7 years
+- Tracks BOTH people AND properties
+- Past claims predict future claims`);
+        });
+    </script>
+</body>
+</html>

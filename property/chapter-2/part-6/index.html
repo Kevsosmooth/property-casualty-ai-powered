@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 6: Fair Credit Reporting Act | Chapter 2 | Property Insurance</title>
+    <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <link rel="stylesheet" href="../../../css/styles.css">
+    <script src="../../../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+        }
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <!-- Settings & Theme Toggle Buttons -->
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="showAPIKeySetup()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings">
+            <svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+        </button>
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/>
+            </svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-purple-600 to-purple-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center text-purple-200 text-sm mb-2">
+                <a href="../../index.html" class="hover:text-white">Property</a>
+                <span class="mx-2">→</span>
+                <a href="../index.html" class="hover:text-white">Chapter 2</a>
+                <span class="mx-2">→</span>
+                <span class="text-white">Part 6</span>
+            </div>
+            <h1 class="text-3xl font-bold">Part 6: Fair Credit Reporting Act (FCRA)</h1>
+            <p class="text-purple-200 mt-1">Consumer Reports, Investigative Reports & Your Rights</p>
+        </div>
+    </header>
+
+    <!-- Sticky Navigation -->
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-wrap gap-2 text-sm">
+                <a href="#fcra" class="text-purple-600 dark:text-purple-400 hover:text-purple-800 px-2 py-1 rounded hover:bg-purple-50 dark:hover:bg-gray-700">FCRA Overview</a>
+                <a href="#reports" class="text-purple-600 dark:text-purple-400 hover:text-purple-800 px-2 py-1 rounded hover:bg-purple-50 dark:hover:bg-gray-700">Types of Reports</a>
+                <a href="#legitimate-purpose" class="text-purple-600 dark:text-purple-400 hover:text-purple-800 px-2 py-1 rounded hover:bg-purple-50 dark:hover:bg-gray-700">Legitimate Purpose</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-5xl lg:max-w-7xl">
+
+        <!-- FCRA Overview Section -->
+        <section id="fcra" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">The Fair Credit Reporting Act (FCRA)</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-5 lg:p-6 mb-6 border-l-4 border-blue-500">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">A federal law that established procedures that <strong>consumer-reporting agencies must follow</strong> to ensure that records are:</p>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mt-4">
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                            <p class="font-bold text-blue-800 dark:text-blue-300">Confidential</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                            <p class="font-bold text-blue-800 dark:text-blue-300">Accurate</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                            <p class="font-bold text-blue-800 dark:text-blue-300">Relevant</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                            <p class="font-bold text-blue-800 dark:text-blue-300">Properly Used</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-green-50 dark:bg-green-900/20 rounded-xl p-5 lg:p-6 border-l-4 border-green-500 mb-6">
+                    <h3 class="font-bold text-green-800 dark:text-green-300 text-xl mb-3">Consumer Protection</h3>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">The FCRA also protects consumers against the circulation of <strong>inaccurate or obsolete</strong> personal or financial information.</p>
+                </div>
+
+                <div class="bg-white dark:bg-gray-700 p-5 rounded-lg border border-gray-200 dark:border-gray-600">
+                    <h4 class="font-bold text-gray-800 dark:text-gray-200 mb-4">Why FCRA Matters for Insurance:</h4>
+                    <p class="text-gray-600 dark:text-gray-400">When underwriters evaluate a risk, they check the individual against many factors. Sometimes they request <strong>additional information from outside sources</strong> - and these reports are regulated by the FCRA.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Types of Reports Section -->
+        <section id="reports" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">Two Types of Reports</h2>
+
+                <div class="bg-purple-50 dark:bg-purple-900/30 rounded-xl p-5 lg:p-6 mb-6 border border-purple-200 dark:border-purple-800">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Reports from outside sources generally fall into <strong>2 categories</strong>. Understanding the difference is important for the exam!</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    <!-- Consumer Report -->
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-5 lg:p-6 border-2 border-blue-300 dark:border-blue-700">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-blue-500 text-white w-12 h-12 rounded-full flex items-center justify-center mr-4 text-xl font-bold">1</div>
+                            <h3 class="font-bold text-blue-800 dark:text-blue-300 text-xl">Consumer Report</h3>
+                        </div>
+                        <p class="text-gray-700 dark:text-gray-300 mb-4">Information compiled from <strong>records and databases</strong> about a person.</p>
+
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg mb-4">
+                            <p class="font-semibold text-gray-700 dark:text-gray-300 mb-2">Includes:</p>
+                            <ul class="text-gray-600 dark:text-gray-400 text-sm space-y-1">
+                                <li>- Credit history and scores</li>
+                                <li>- Payment history</li>
+                                <li>- Public records (bankruptcies, liens)</li>
+                                <li>- Collection accounts</li>
+                                <li>- Account information</li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-blue-100 dark:bg-blue-900/40 p-3 rounded-lg">
+                            <p class="text-sm text-gray-700 dark:text-gray-300"><strong>Source:</strong> Credit bureaus, databases, financial records</p>
+                        </div>
+                    </div>
+
+                    <!-- Investigative Consumer Report -->
+                    <div class="bg-amber-50 dark:bg-amber-900/20 rounded-xl p-5 lg:p-6 border-2 border-amber-300 dark:border-amber-700">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-amber-500 text-white w-12 h-12 rounded-full flex items-center justify-center mr-4 text-xl font-bold">2</div>
+                            <h3 class="font-bold text-amber-800 dark:text-amber-300 text-xl">Investigative Consumer Report</h3>
+                        </div>
+                        <p class="text-gray-700 dark:text-gray-300 mb-4">Information obtained through <strong>personal interviews</strong> with people who know you.</p>
+
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg mb-4">
+                            <p class="font-semibold text-gray-700 dark:text-gray-300 mb-2">Includes:</p>
+                            <ul class="text-gray-600 dark:text-gray-400 text-sm space-y-1">
+                                <li>- Character information</li>
+                                <li>- General reputation</li>
+                                <li>- Personal characteristics</li>
+                                <li>- Lifestyle and habits</li>
+                                <li>- Mode of living</li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-amber-100 dark:bg-amber-900/40 p-3 rounded-lg">
+                            <p class="text-sm text-gray-700 dark:text-gray-300"><strong>Source:</strong> Interviews with neighbors, friends, employers, associates</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Comparison Table -->
+                <div class="overflow-x-auto mt-8">
+                    <table class="w-full text-sm lg:text-base">
+                        <thead>
+                            <tr class="bg-purple-600 text-white">
+                                <th class="p-3 lg:p-4 text-left rounded-tl-lg">Feature</th>
+                                <th class="p-3 lg:p-4 text-left">Consumer Report</th>
+                                <th class="p-3 lg:p-4 text-left rounded-tr-lg">Investigative Consumer Report</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                            <tr class="bg-blue-50 dark:bg-blue-900/20">
+                                <td class="p-3 lg:p-4 font-bold text-gray-800 dark:text-gray-200">Source</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Databases, records</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Personal interviews</td>
+                            </tr>
+                            <tr class="bg-green-50 dark:bg-green-900/20">
+                                <td class="p-3 lg:p-4 font-bold text-gray-800 dark:text-gray-200">Type of Info</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Financial, credit history</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Character, reputation, lifestyle</td>
+                            </tr>
+                            <tr class="bg-amber-50 dark:bg-amber-900/20">
+                                <td class="p-3 lg:p-4 font-bold text-gray-800 dark:text-gray-200">Who Provides</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Credit bureaus</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Neighbors, employers, friends</td>
+                            </tr>
+                            <tr class="bg-purple-50 dark:bg-purple-900/20">
+                                <td class="p-3 lg:p-4 font-bold text-gray-800 dark:text-gray-200">Disclosure</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Standard disclosure</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Special disclosure required</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Legitimate Purpose Section -->
+        <section id="legitimate-purpose" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">Legitimate Business Purpose</h2>
+
+                <div class="bg-green-50 dark:bg-green-900/20 rounded-xl p-5 lg:p-6 border-l-4 border-green-500 mb-6">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Both Consumer Reports and Investigative Consumer Reports can <strong>only be used by someone with a legitimate business purpose</strong>. Not just anyone can request these reports!</p>
+                </div>
+
+                <div class="bg-white dark:bg-gray-700 rounded-lg p-5 border border-gray-200 dark:border-gray-600">
+                    <h4 class="font-bold text-gray-800 dark:text-gray-200 mb-4">Legitimate Business Purposes Include:</h4>
+                    <div class="grid md:grid-cols-3 gap-4">
+                        <div class="bg-blue-50 dark:bg-blue-900/30 p-4 rounded-lg text-center">
+                            <div class="bg-blue-500 text-white w-10 h-10 rounded-full flex items-center justify-center mx-auto mb-2">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                                </svg>
+                            </div>
+                            <p class="font-bold text-blue-800 dark:text-blue-300">Insurance Underwriting</p>
+                            <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">Evaluating risk for coverage</p>
+                        </div>
+                        <div class="bg-green-50 dark:bg-green-900/30 p-4 rounded-lg text-center">
+                            <div class="bg-green-500 text-white w-10 h-10 rounded-full flex items-center justify-center mx-auto mb-2">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                                </svg>
+                            </div>
+                            <p class="font-bold text-green-800 dark:text-green-300">Employment Screening</p>
+                            <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">Background checks for jobs</p>
+                        </div>
+                        <div class="bg-purple-50 dark:bg-purple-900/30 p-4 rounded-lg text-center">
+                            <div class="bg-purple-500 text-white w-10 h-10 rounded-full flex items-center justify-center mx-auto mb-2">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
+                                </svg>
+                            </div>
+                            <p class="font-bold text-purple-800 dark:text-purple-300">Credit Transactions</p>
+                            <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">Loans, credit cards, etc.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-800 p-4 rounded-lg mt-6">
+                    <p class="font-bold text-red-800 dark:text-red-300">NOT a Legitimate Purpose:</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2">Personal curiosity, snooping on neighbors, checking on a romantic interest, or any purpose not related to a legitimate business transaction.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Consumer Rights Section -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">Your Rights Under FCRA</h2>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-5 border-l-4 border-green-500">
+                        <h4 class="font-bold text-green-800 dark:text-green-300 mb-3">Right to Know</h4>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm">You have the right to know what's in your consumer report and who has accessed it.</p>
+                    </div>
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-5 border-l-4 border-blue-500">
+                        <h4 class="font-bold text-blue-800 dark:text-blue-300 mb-3">Right to Dispute</h4>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm">You can dispute inaccurate information and have it investigated.</p>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-5 border-l-4 border-purple-500">
+                        <h4 class="font-bold text-purple-800 dark:text-purple-300 mb-3">Right to Disclosure</h4>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm">You must be told if information in your report was used against you (adverse action).</p>
+                    </div>
+                    <div class="bg-amber-50 dark:bg-amber-900/20 rounded-lg p-5 border-l-4 border-amber-500">
+                        <h4 class="font-bold text-amber-800 dark:text-amber-300 mb-3">Right to Accuracy</h4>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm">Consumer reporting agencies must correct or delete inaccurate, incomplete, or unverifiable information.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Trap Alerts -->
+        <section class="mb-10">
+            <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-xl p-5 lg:p-6">
+                <h3 class="text-xl lg:text-2xl font-bold text-red-800 dark:text-red-300 mb-4">Exam Trap Alerts</h3>
+                <div class="space-y-4">
+                    <div class="flex items-start">
+                        <span class="text-red-500 mr-3 text-xl font-bold">!</span>
+                        <div>
+                            <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Two types of reports:</strong> Consumer Report (from databases) vs Investigative Consumer Report (from interviews). Don't confuse them!</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="text-red-500 mr-3 text-xl font-bold">!</span>
+                        <div>
+                            <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Legitimate purpose required:</strong> Reports can ONLY be used for legitimate business purposes like insurance underwriting, employment, or credit transactions.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="text-red-500 mr-3 text-xl font-bold">!</span>
+                        <div>
+                            <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>FCRA is federal law:</strong> It applies nationwide and protects consumers from inaccurate or obsolete information being circulated.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="text-red-500 mr-3 text-xl font-bold">!</span>
+                        <div>
+                            <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Insurance underwriting is legitimate:</strong> Insurers CAN use consumer reports for underwriting - this is a specifically permitted purpose.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Reference Summary -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-purple-600 to-purple-800 rounded-xl shadow-lg p-6 lg:p-8 text-white">
+                <h3 class="text-xl lg:text-2xl font-bold mb-6">Quick Reference: Part 6 Summary</h3>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-white/10 rounded-lg p-4">
+                        <h4 class="font-bold mb-2">FCRA Purpose</h4>
+                        <p class="text-purple-100 text-sm">Ensure records are confidential, accurate, relevant, and properly used</p>
+                    </div>
+                    <div class="bg-white/10 rounded-lg p-4">
+                        <h4 class="font-bold mb-2">Consumer Report</h4>
+                        <p class="text-purple-100 text-sm">From databases - credit history, financial records</p>
+                    </div>
+                    <div class="bg-white/10 rounded-lg p-4">
+                        <h4 class="font-bold mb-2">Investigative Report</h4>
+                        <p class="text-purple-100 text-sm">From interviews - character, reputation, lifestyle</p>
+                    </div>
+                    <div class="bg-white/10 rounded-lg p-4">
+                        <h4 class="font-bold mb-2">Legitimate Purposes</h4>
+                        <ul class="text-purple-100 text-sm space-y-1">
+                            <li>- Insurance underwriting</li>
+                            <li>- Employment screening</li>
+                            <li>- Credit transactions</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white/10 rounded-lg p-4">
+                        <h4 class="font-bold mb-2">Consumer Rights</h4>
+                        <ul class="text-purple-100 text-sm space-y-1">
+                            <li>- Right to know</li>
+                            <li>- Right to dispute</li>
+                            <li>- Right to disclosure</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white/10 rounded-lg p-4">
+                        <h4 class="font-bold mb-2">Key Point</h4>
+                        <p class="text-purple-100 text-sm">Protects against inaccurate or obsolete information</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Navigation Footer -->
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="../part-5/index.html" class="text-gray-300 hover:text-white">← Part 5: Insurability Sources</a>
+                <span class="text-gray-400">Part 6 of 6</span>
+                <a href="../recap/index.html" class="text-gray-300 hover:text-white">Chapter Recap →</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Initialize AI Tutor -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            createFloatingAIButton(`Part 6: Fair Credit Reporting Act (FCRA)
+
+FCRA PURPOSE:
+Federal law ensuring consumer-reporting agencies follow procedures for records that are:
+- Confidential
+- Accurate
+- Relevant
+- Properly used
+
+Protects consumers against inaccurate or obsolete information.
+
+TWO TYPES OF REPORTS:
+
+1. CONSUMER REPORT
+- Source: Databases, records
+- Contains: Credit history, payment history, public records
+- Examples: Credit scores, bankruptcies, collection accounts
+
+2. INVESTIGATIVE CONSUMER REPORT
+- Source: Personal interviews
+- Contains: Character, reputation, lifestyle, personal characteristics
+- Gathered from: Neighbors, friends, employers
+
+LEGITIMATE BUSINESS PURPOSES:
+Both reports can ONLY be used for:
+- Insurance underwriting
+- Employment screening
+- Credit transactions
+
+CONSUMER RIGHTS:
+- Right to know what's in your report
+- Right to dispute inaccurate information
+- Right to disclosure if used adversely
+- Right to have errors corrected`);
+        });
+    </script>
+</body>
+</html>

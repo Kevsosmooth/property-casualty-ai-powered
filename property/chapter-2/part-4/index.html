@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 4: Provisions and Clauses | Chapter 2 | Property Insurance</title>
+    <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <link rel="stylesheet" href="../../../css/styles.css">
+    <script src="../../../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+        }
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <!-- Settings & Theme Toggle Buttons -->
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="showAPIKeySetup()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings">
+            <svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+        </button>
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/>
+            </svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-purple-600 to-purple-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center text-purple-200 text-sm mb-2">
+                <a href="../../index.html" class="hover:text-white">Property</a>
+                <span class="mx-2">→</span>
+                <a href="../index.html" class="hover:text-white">Chapter 2</a>
+                <span class="mx-2">→</span>
+                <span class="text-white">Part 4</span>
+            </div>
+            <h1 class="text-3xl font-bold">Part 4: Provisions and Clauses</h1>
+            <p class="text-purple-200 mt-1">Assignment, Appraisal, Other Insurance, Claims & Mortgagee Rights</p>
+        </div>
+    </header>
+
+    <!-- Sticky Navigation -->
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-wrap gap-2 text-sm">
+                <a href="#assignment" class="text-purple-600 dark:text-purple-400 hover:text-purple-800 px-2 py-1 rounded hover:bg-purple-50 dark:hover:bg-gray-700">Assignment</a>
+                <a href="#appraisal" class="text-purple-600 dark:text-purple-400 hover:text-purple-800 px-2 py-1 rounded hover:bg-purple-50 dark:hover:bg-gray-700">Appraisal</a>
+                <a href="#other-insurance" class="text-purple-600 dark:text-purple-400 hover:text-purple-800 px-2 py-1 rounded hover:bg-purple-50 dark:hover:bg-gray-700">Other Insurance</a>
+                <a href="#notice-claim" class="text-purple-600 dark:text-purple-400 hover:text-purple-800 px-2 py-1 rounded hover:bg-purple-50 dark:hover:bg-gray-700">Notice of Claim</a>
+                <a href="#proof-loss" class="text-purple-600 dark:text-purple-400 hover:text-purple-800 px-2 py-1 rounded hover:bg-purple-50 dark:hover:bg-gray-700">Proof of Loss</a>
+                <a href="#cancellation" class="text-purple-600 dark:text-purple-400 hover:text-purple-800 px-2 py-1 rounded hover:bg-purple-50 dark:hover:bg-gray-700">Cancellation</a>
+                <a href="#mortgagee" class="text-purple-600 dark:text-purple-400 hover:text-purple-800 px-2 py-1 rounded hover:bg-purple-50 dark:hover:bg-gray-700">Mortgagee Rights</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-5xl lg:max-w-7xl">
+
+        <!-- Section 1: Assignment -->
+        <section id="assignment" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <div class="flex items-center mb-4">
+                    <div class="bg-blue-500 text-white w-12 h-12 rounded-full flex items-center justify-center mr-4 text-xl font-bold">1</div>
+                    <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100">Assignment</h2>
+                </div>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-5 lg:p-6 border-l-4 border-blue-500 mb-6">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Assignment</strong> is the transfer of a legal right or interest in an insurance policy to another party.</p>
+                </div>
+
+                <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-xl p-5 mb-6">
+                    <p class="font-bold text-red-800 dark:text-red-300 text-lg">Key Rule:</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">In property and casualty insurance, assignments are valid <strong>ONLY with the prior written consent of the insurer</strong>!</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-white dark:bg-gray-700 rounded-lg p-5 border border-gray-200 dark:border-gray-600">
+                        <h4 class="font-bold text-gray-800 dark:text-gray-200 mb-3">Why Consent is Required:</h4>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm">Insurance is a <strong>personal contract</strong>. The insurer agreed to cover YOU based on YOUR risk factors. A different person might be a completely different risk!</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 rounded-lg p-5 border border-gray-200 dark:border-gray-600">
+                        <h4 class="font-bold text-gray-800 dark:text-gray-200 mb-3">Example:</h4>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm">You sell your house to someone with a history of arson claims. You can't just transfer your homeowners policy to them without the insurer's consent - they'd want to evaluate the new owner's risk!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Appraisal -->
+        <section id="appraisal" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <div class="flex items-center mb-4">
+                    <div class="bg-green-500 text-white w-12 h-12 rounded-full flex items-center justify-center mr-4 text-xl font-bold">2</div>
+                    <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100">Appraisal</h2>
+                </div>
+
+                <div class="bg-green-50 dark:bg-green-900/20 rounded-xl p-5 lg:p-6 border-l-4 border-green-500 mb-6">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">If there is a <strong>disagreement about the VALUE</strong> of a property loss, either party can make a <strong>written demand for an appraisal</strong>.</p>
+                </div>
+
+                <!-- Appraisal Process Visual -->
+                <div class="bg-white dark:bg-gray-700 rounded-xl p-6 border border-gray-200 dark:border-gray-600 mb-6">
+                    <h4 class="font-bold text-gray-800 dark:text-gray-200 mb-4 text-center">The Appraisal Process</h4>
+                    <div class="flex flex-col md:flex-row items-center justify-center gap-4">
+                        <div class="bg-blue-100 dark:bg-blue-900/40 p-4 rounded-lg text-center min-w-[150px]">
+                            <p class="font-bold text-blue-800 dark:text-blue-300">Step 1</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Written demand for appraisal</p>
+                        </div>
+                        <div class="text-2xl text-gray-400">→</div>
+                        <div class="bg-green-100 dark:bg-green-900/40 p-4 rounded-lg text-center min-w-[150px]">
+                            <p class="font-bold text-green-800 dark:text-green-300">Step 2</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Each party selects an appraiser</p>
+                        </div>
+                        <div class="text-2xl text-gray-400">→</div>
+                        <div class="bg-amber-100 dark:bg-amber-900/40 p-4 rounded-lg text-center min-w-[150px]">
+                            <p class="font-bold text-amber-800 dark:text-amber-300">Step 3</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">If no agreement, appraisers select an umpire</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/20 border border-amber-300 dark:border-amber-700 p-4 rounded-lg">
+                    <p class="font-bold text-amber-800 dark:text-amber-300">Important Distinction:</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-1">Appraisal is for disputes about <strong>HOW MUCH</strong> the damage is worth - NOT for disputes about <strong>WHETHER</strong> something is covered. Coverage disputes go to arbitration or court!</p>
+                </div>
+
+                <div class="bg-white dark:bg-gray-700 p-4 rounded-lg mt-4 border border-gray-200 dark:border-gray-600">
+                    <p class="font-semibold text-gray-700 dark:text-gray-300">Example:</p>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base mt-1">A fire damages your kitchen. You think the damage is $75,000. The insurer says it's only $45,000. Neither of you will budge. Either party can demand an appraisal to have independent experts determine the fair value.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Other Insurance -->
+        <section id="other-insurance" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <div class="flex items-center mb-4">
+                    <div class="bg-purple-500 text-white w-12 h-12 rounded-full flex items-center justify-center mr-4 text-xl font-bold">3</div>
+                    <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100">Other Insurance</h2>
+                </div>
+
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-xl p-5 lg:p-6 border-l-4 border-purple-500 mb-6">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">A provision that defines <strong>how the policy will respond if there is other valid insurance</strong> written on the same risk. This prevents the insured from collecting more than the actual loss!</p>
+                </div>
+
+                <!-- Pro Rata Explanation -->
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-5 lg:p-6 border-l-4 border-blue-500 mb-6">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-xl mb-3">Pro Rata Provision</h3>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-4">A provision that provides for <strong>sharing the loss</strong> with other insurance in the same proportion as their limits bear to the total coverage.</p>
+
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg mb-4">
+                        <p class="font-semibold text-gray-700 dark:text-gray-300 mb-2">Pro Rata Formula:</p>
+                        <div class="bg-gray-100 dark:bg-gray-800 p-3 rounded text-center">
+                            <p class="font-mono text-lg text-gray-800 dark:text-gray-200">Policy Pays = (Policy Limit ÷ Total All Limits) × Loss</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pro Rata Example with Math -->
+                <div class="bg-white dark:bg-gray-700 rounded-xl p-6 border border-gray-200 dark:border-gray-600">
+                    <h4 class="font-bold text-gray-800 dark:text-gray-200 mb-4">Pro Rata Example</h4>
+
+                    <div class="grid md:grid-cols-3 gap-4 mb-4">
+                        <div class="bg-blue-50 dark:bg-blue-900/30 p-4 rounded-lg text-center">
+                            <p class="font-bold text-blue-800 dark:text-blue-300">Policy A</p>
+                            <p class="text-2xl font-bold text-blue-600 dark:text-blue-400">$100,000</p>
+                        </div>
+                        <div class="bg-green-50 dark:bg-green-900/30 p-4 rounded-lg text-center">
+                            <p class="font-bold text-green-800 dark:text-green-300">Policy B</p>
+                            <p class="text-2xl font-bold text-green-600 dark:text-green-400">$200,000</p>
+                        </div>
+                        <div class="bg-red-50 dark:bg-red-900/30 p-4 rounded-lg text-center">
+                            <p class="font-bold text-red-800 dark:text-red-300">Loss Amount</p>
+                            <p class="text-2xl font-bold text-red-600 dark:text-red-400">$90,000</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg">
+                        <p class="font-semibold text-gray-700 dark:text-gray-300 mb-2">Calculation:</p>
+                        <div class="space-y-2 text-sm lg:text-base">
+                            <p class="text-gray-600 dark:text-gray-400">Total Coverage: $100,000 + $200,000 = <strong>$300,000</strong></p>
+                            <p class="text-gray-600 dark:text-gray-400">Policy A pays: ($100,000 ÷ $300,000) × $90,000 = <strong class="text-blue-600 dark:text-blue-400">$30,000</strong> (1/3)</p>
+                            <p class="text-gray-600 dark:text-gray-400">Policy B pays: ($200,000 ÷ $300,000) × $90,000 = <strong class="text-green-600 dark:text-green-400">$60,000</strong> (2/3)</p>
+                            <p class="text-gray-700 dark:text-gray-300 font-bold mt-2">Total Paid: $30,000 + $60,000 = $90,000 (exactly the loss - no profit!)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/20 border border-amber-300 dark:border-amber-700 p-4 rounded-lg mt-6">
+                    <p class="font-bold text-amber-800 dark:text-amber-300">Why This Exists:</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-1">To preserve the <strong>principle of indemnity</strong> - the insured cannot collect the full amount from EACH policy. You can only recover your actual loss, not make a profit!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Notice of Claim -->
+        <section id="notice-claim" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <div class="flex items-center mb-4">
+                    <div class="bg-amber-500 text-white w-12 h-12 rounded-full flex items-center justify-center mr-4 text-xl font-bold">4</div>
+                    <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100">Notice of Claim</h2>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/20 rounded-xl p-5 lg:p-6 border-l-4 border-amber-500 mb-6">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">A form or statement from the insured to the insurer, <strong>informing them that events leading to a possible claim have occurred</strong>.</p>
+                </div>
+
+                <div class="bg-white dark:bg-gray-700 rounded-lg p-5 border border-gray-200 dark:border-gray-600">
+                    <h4 class="font-bold text-gray-800 dark:text-gray-200 mb-4">Notice of Claim Must Include:</h4>
+                    <div class="grid md:grid-cols-3 gap-4">
+                        <div class="bg-amber-50 dark:bg-amber-900/30 p-4 rounded-lg text-center">
+                            <p class="font-bold text-amber-800 dark:text-amber-300 text-lg">HOW</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">How the loss occurred</p>
+                        </div>
+                        <div class="bg-amber-50 dark:bg-amber-900/30 p-4 rounded-lg text-center">
+                            <p class="font-bold text-amber-800 dark:text-amber-300 text-lg">WHEN</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">When the loss took place</p>
+                        </div>
+                        <div class="bg-amber-50 dark:bg-amber-900/30 p-4 rounded-lg text-center">
+                            <p class="font-bold text-amber-800 dark:text-amber-300 text-lg">WHERE</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Where the loss happened</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg mt-4 border border-blue-200 dark:border-blue-800">
+                    <p class="font-semibold text-blue-800 dark:text-blue-300">Example:</p>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base mt-1">"On January 15, 2025, at approximately 3:00 PM, a pipe burst in the upstairs bathroom of my home at 123 Main Street, causing water damage to the bathroom, hallway, and living room below."</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Proof of Loss -->
+        <section id="proof-loss" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <div class="flex items-center mb-4">
+                    <div class="bg-red-500 text-white w-12 h-12 rounded-full flex items-center justify-center mr-4 text-xl font-bold">5</div>
+                    <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100">Proof of Loss</h2>
+                </div>
+
+                <div class="bg-red-50 dark:bg-red-900/20 rounded-xl p-5 lg:p-6 border-l-4 border-red-500 mb-6">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">A <strong>sworn statement</strong> that must usually be furnished by the insured to the insurer before any loss can be paid. Used in the settlement of <strong>first-party losses</strong>.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                    <div class="bg-white dark:bg-gray-700 rounded-lg p-5 border border-gray-200 dark:border-gray-600">
+                        <h4 class="font-bold text-gray-800 dark:text-gray-200 mb-3">Proof of Loss Includes:</h4>
+                        <ul class="text-gray-600 dark:text-gray-400 space-y-2">
+                            <li class="flex items-start">
+                                <span class="text-red-500 mr-2">-</span>
+                                <span><strong>Date</strong> of occurrence</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-red-500 mr-2">-</span>
+                                <span><strong>Description</strong> of what happened</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-red-500 mr-2">-</span>
+                                <span><strong>Amount of indemnity</strong> claimed</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 rounded-lg p-5 border border-gray-200 dark:border-gray-600">
+                        <h4 class="font-bold text-gray-800 dark:text-gray-200 mb-3">Key Points:</h4>
+                        <ul class="text-gray-600 dark:text-gray-400 space-y-2">
+                            <li class="flex items-start">
+                                <span class="text-red-500 mr-2">-</span>
+                                <span>Must be <strong>in writing</strong></span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-red-500 mr-2">-</span>
+                                <span>Must be <strong>sworn</strong> (often notarized)</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-red-500 mr-2">-</span>
+                                <span>Required near <strong>END</strong> of claims process</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Notice vs Proof Comparison -->
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm lg:text-base">
+                        <thead>
+                            <tr class="bg-purple-600 text-white">
+                                <th class="p-3 lg:p-4 text-left rounded-tl-lg">Feature</th>
+                                <th class="p-3 lg:p-4 text-left">Notice of Claim</th>
+                                <th class="p-3 lg:p-4 text-left rounded-tr-lg">Proof of Loss</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                            <tr class="bg-amber-50 dark:bg-amber-900/20">
+                                <td class="p-3 lg:p-4 font-bold text-gray-800 dark:text-gray-200">When</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Beginning of claim</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">End of claim process</td>
+                            </tr>
+                            <tr class="bg-blue-50 dark:bg-blue-900/20">
+                                <td class="p-3 lg:p-4 font-bold text-gray-800 dark:text-gray-200">Format</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Oral OR written</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Must be written</td>
+                            </tr>
+                            <tr class="bg-green-50 dark:bg-green-900/20">
+                                <td class="p-3 lg:p-4 font-bold text-gray-800 dark:text-gray-200">Sworn?</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">No</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Yes (sworn statement)</td>
+                            </tr>
+                            <tr class="bg-purple-50 dark:bg-purple-900/20">
+                                <td class="p-3 lg:p-4 font-bold text-gray-800 dark:text-gray-200">Purpose</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Notify insurer of loss</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Document claim for payment</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: Cancellation and Nonrenewal -->
+        <section id="cancellation" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <div class="flex items-center mb-4">
+                    <div class="bg-indigo-500 text-white w-12 h-12 rounded-full flex items-center justify-center mr-4 text-xl font-bold">6</div>
+                    <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100">Cancellation and Nonrenewal</h2>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    <!-- Cancellation -->
+                    <div class="bg-red-50 dark:bg-red-900/20 rounded-xl p-5 lg:p-6 border-l-4 border-red-500">
+                        <h3 class="font-bold text-red-800 dark:text-red-300 text-xl mb-3">Cancellation</h3>
+                        <p class="text-gray-700 dark:text-gray-300 mb-4">Termination of an in-force policy <strong>BEFORE the expiration date</strong>.</p>
+
+                        <div class="space-y-3">
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                                <p class="font-bold text-gray-700 dark:text-gray-300">Voluntary</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">Insured requests to cancel</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                                <p class="font-bold text-gray-700 dark:text-gray-300">Involuntary</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">Insurer cancels (non-payment, fraud, etc.)</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                                <p class="font-bold text-gray-700 dark:text-gray-300">Mutual</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">Both parties agree to end it</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Nonrenewal -->
+                    <div class="bg-amber-50 dark:bg-amber-900/20 rounded-xl p-5 lg:p-6 border-l-4 border-amber-500">
+                        <h3 class="font-bold text-amber-800 dark:text-amber-300 text-xl mb-3">Nonrenewal</h3>
+                        <p class="text-gray-700 dark:text-gray-300 mb-4">Termination <strong>AT the expiration date</strong> by not offering a continuation or replacement.</p>
+
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                            <p class="font-semibold text-gray-700 dark:text-gray-300">Key Difference:</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm mt-2">The policy runs its <strong>full term</strong> first. The insurer simply doesn't offer to renew when it expires.</p>
+                        </div>
+
+                        <div class="bg-amber-100 dark:bg-amber-900/40 p-3 rounded-lg mt-4">
+                            <p class="text-sm text-gray-700 dark:text-gray-300"><strong>Example:</strong> Your policy expires December 31. On December 1, the insurer sends notice they won't renew. Your policy is still valid until Dec 31 - it's not cancelled early.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 7: Mortgagee Rights -->
+        <section id="mortgagee" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <div class="flex items-center mb-4">
+                    <div class="bg-teal-500 text-white w-12 h-12 rounded-full flex items-center justify-center mr-4 text-xl font-bold">7</div>
+                    <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100">Mortgagee Rights</h2>
+                </div>
+
+                <div class="bg-teal-50 dark:bg-teal-900/20 rounded-xl p-5 lg:p-6 border-l-4 border-teal-500 mb-6">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">A <strong>mortgagee clause</strong> is attached to protect the interest of the mortgagee (lender/bank) in the mortgaged property.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                    <div class="bg-white dark:bg-gray-700 rounded-lg p-5 border border-gray-200 dark:border-gray-600">
+                        <h4 class="font-bold text-gray-800 dark:text-gray-200 mb-4">What is a Mortgagee?</h4>
+                        <p class="text-gray-600 dark:text-gray-400 mb-3">The <strong>lender</strong> (bank) that holds the mortgage on the property. They have a financial interest in the property because they lent you money to buy it!</p>
+                        <div class="bg-teal-50 dark:bg-teal-900/30 p-3 rounded-lg">
+                            <p class="text-sm text-gray-700 dark:text-gray-300"><strong>Mortgagor</strong> = You (the borrower)</p>
+                            <p class="text-sm text-gray-700 dark:text-gray-300"><strong>Mortgagee</strong> = Bank (the lender)</p>
+                        </div>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 rounded-lg p-5 border border-gray-200 dark:border-gray-600">
+                        <h4 class="font-bold text-gray-800 dark:text-gray-200 mb-4">Loss Payment:</h4>
+                        <p class="text-gray-600 dark:text-gray-400">When a mortgagee is named, loss reimbursement is paid to the <strong>mortgagee as interest appears</strong>. The check often goes to both you AND the bank.</p>
+                    </div>
+                </div>
+
+                <div class="bg-green-50 dark:bg-green-900/20 rounded-xl p-5 lg:p-6 border border-green-200 dark:border-green-800 mb-6">
+                    <h4 class="font-bold text-green-800 dark:text-green-300 mb-4">Special Protection for Mortgagee:</h4>
+                    <div class="space-y-3">
+                        <div class="flex items-start">
+                            <span class="text-green-500 mr-3 font-bold">1.</span>
+                            <div>
+                                <p class="text-gray-700 dark:text-gray-300"><strong>Protected from insured's negligence</strong></p>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">The mortgagee's rights of recovery will NOT be defeated by any negligence of the insured.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="text-green-500 mr-3 font-bold">2.</span>
+                            <div>
+                                <p class="text-gray-700 dark:text-gray-300"><strong>Right to sue</strong></p>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">The mortgagee can bring a suit in their own name to recover damages.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white dark:bg-gray-700 p-4 rounded-lg border border-gray-200 dark:border-gray-600">
+                    <p class="font-semibold text-gray-700 dark:text-gray-300">Example:</p>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base mt-1">You have a mortgage with First National Bank. A fire destroys your home. Even if the insurer discovers you were negligent (left candles burning), the bank still gets paid because the mortgagee clause protects them from your negligence!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Trap Alerts -->
+        <section class="mb-10">
+            <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-xl p-5 lg:p-6">
+                <h3 class="text-xl lg:text-2xl font-bold text-red-800 dark:text-red-300 mb-4">Exam Trap Alerts</h3>
+                <div class="space-y-4">
+                    <div class="flex items-start">
+                        <span class="text-red-500 mr-3 text-xl font-bold">!</span>
+                        <div>
+                            <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Assignment needs consent:</strong> You can't just transfer a P&C policy to someone else - you need the insurer's WRITTEN consent first!</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="text-red-500 mr-3 text-xl font-bold">!</span>
+                        <div>
+                            <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Appraisal vs Arbitration:</strong> Appraisal is for VALUE disputes. Coverage disputes go to arbitration or court!</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="text-red-500 mr-3 text-xl font-bold">!</span>
+                        <div>
+                            <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Notice can be oral, Proof must be written:</strong> Initial claim notice can be a phone call, but Proof of Loss MUST be in writing and sworn!</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="text-red-500 mr-3 text-xl font-bold">!</span>
+                        <div>
+                            <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Cancellation vs Nonrenewal:</strong> Cancellation = ends BEFORE expiration. Nonrenewal = ends AT expiration (full term runs).</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Reference Summary -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-purple-600 to-purple-800 rounded-xl shadow-lg p-6 lg:p-8 text-white">
+                <h3 class="text-xl lg:text-2xl font-bold mb-6">Quick Reference: Part 4 Summary</h3>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-white/10 rounded-lg p-4">
+                        <h4 class="font-bold mb-2">Assignment</h4>
+                        <p class="text-purple-100 text-sm">Transfer of policy interest - needs insurer's written consent</p>
+                    </div>
+                    <div class="bg-white/10 rounded-lg p-4">
+                        <h4 class="font-bold mb-2">Appraisal</h4>
+                        <p class="text-purple-100 text-sm">For VALUE disputes - each party picks appraiser, they pick umpire</p>
+                    </div>
+                    <div class="bg-white/10 rounded-lg p-4">
+                        <h4 class="font-bold mb-2">Other Insurance / Pro Rata</h4>
+                        <p class="text-purple-100 text-sm">Policies share loss proportionally - preserves indemnity</p>
+                    </div>
+                    <div class="bg-white/10 rounded-lg p-4">
+                        <h4 class="font-bold mb-2">Notice of Claim</h4>
+                        <p class="text-purple-100 text-sm">How, When, Where - can be oral or written</p>
+                    </div>
+                    <div class="bg-white/10 rounded-lg p-4">
+                        <h4 class="font-bold mb-2">Proof of Loss</h4>
+                        <p class="text-purple-100 text-sm">Sworn, written statement - end of claims process</p>
+                    </div>
+                    <div class="bg-white/10 rounded-lg p-4">
+                        <h4 class="font-bold mb-2">Mortgagee Rights</h4>
+                        <p class="text-purple-100 text-sm">Bank protected even if insured is negligent</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Navigation Footer -->
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="../part-3/index.html" class="text-gray-300 hover:text-white">← Part 3: Insured & Insurer</a>
+                <span class="text-gray-400">Part 4 of 6</span>
+                <a href="../part-5/index.html" class="text-gray-300 hover:text-white">Part 5: Insurability Sources →</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Initialize AI Tutor -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            createFloatingAIButton(`Part 4: Provisions and Clauses
+
+1. ASSIGNMENT
+- Transfer of policy interest to another party
+- Requires insurer's WRITTEN CONSENT in P&C
+
+2. APPRAISAL
+- For VALUE disputes (not coverage disputes)
+- Either party makes written demand
+- Each party selects appraiser → appraisers select umpire if needed
+
+3. OTHER INSURANCE / PRO RATA
+- Defines how policies share loss
+- Pro Rata: Each pays proportion based on limits
+- Formula: (Policy Limit ÷ Total All Limits) × Loss
+- Preserves principle of indemnity
+
+4. NOTICE OF CLAIM
+- Informs insurer of possible claim
+- Includes: HOW, WHEN, WHERE
+- Can be oral or written
+
+5. PROOF OF LOSS
+- Sworn statement required for payment
+- Must be in WRITING
+- Required near END of claims process
+- Includes: date, description, amount claimed
+
+6. CANCELLATION vs NONRENEWAL
+- Cancellation = ends BEFORE expiration
+- Nonrenewal = ends AT expiration (full term runs)
+
+7. MORTGAGEE RIGHTS
+- Protects bank/lender's interest
+- Bank protected even if insured is negligent
+- Can sue in own name`);
+        });
+    </script>
+</body>
+</html>
