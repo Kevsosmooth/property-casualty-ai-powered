@@ -7,7 +7,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script>tailwind.config = { darkMode: 'class' }</script>
     <link rel="stylesheet" href="../css/styles.css">
-    <script src="../js/ai-helper.js"></script>    <script>
+    <script src="../js/ai-helper.js"></script>
+    <script>
         if (localStorage.getItem('theme') === 'light') {
             document.documentElement.classList.remove('dark');
         }
@@ -51,14 +52,31 @@
             <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">Start a Quiz</h2>
 
             <div class="space-y-4 mb-6">
+                <!-- Subject Selection -->
+                <div>
+                    <label class="block text-gray-700 dark:text-gray-300 font-semibold mb-2">Select Subject:</label>
+                    <select id="quizSubject" onchange="updateChapterOptions()" class="w-full p-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-200">
+                        <option value="all">All Subjects (Property & Casualty)</option>
+                        <option value="casualty">Casualty Insurance Only</option>
+                        <option value="property">Property Insurance Only</option>
+                    </select>
+                </div>
+
+                <!-- Chapter Selection -->
                 <div>
                     <label class="block text-gray-700 dark:text-gray-300 font-semibold mb-2">Select Chapter:</label>
                     <select id="quizChapter" class="w-full p-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-200">
                         <option value="all">All Chapters (Mixed)</option>
-                        <option value="1">Chapter 1: Fundamentals & Key Terms</option>
-                        <option value="2">Chapter 2: Policy Structure</option>
-                        <option value="3">Chapter 3: Commercial General Liability</option>
-                        <option value="4">Chapter 4: NJ Laws, Rules & Regulations</option>
+                        <optgroup label="Casualty Insurance" id="casualtyChapters">
+                            <option value="casualty-1">Ch 1: Fundamentals & Key Terms</option>
+                            <option value="casualty-2">Ch 2: Policy Structure</option>
+                            <option value="casualty-3">Ch 3: Commercial General Liability</option>
+                            <option value="casualty-4">Ch 4: NJ Laws, Rules & Regulations</option>
+                        </optgroup>
+                        <optgroup label="Property Insurance" id="propertyChapters">
+                            <option value="property-1">Ch 1: Insurance Terms & Concepts</option>
+                            <option value="property-2">Ch 2: Policy Provisions & Contract Law</option>
+                        </optgroup>
                     </select>
                 </div>
 
@@ -187,24 +205,64 @@
     </main>
 
     <script>
-        // Quiz Questions - loaded from external JSON file
-        let quizQuestions = {};
+        // Quiz Questions - loaded from external JSON files
+        let casualtyQuestions = {};
+        let propertyQuestions = {};
 
-        // Load questions from JSON file
+        // Chapter name mappings
+        const chapterNames = {
+            'casualty-1': 'Casualty Ch 1: Fundamentals',
+            'casualty-2': 'Casualty Ch 2: Policy Structure',
+            'casualty-3': 'Casualty Ch 3: CGL',
+            'casualty-4': 'Casualty Ch 4: NJ Laws',
+            'property-1': 'Property Ch 1: Terms & Concepts',
+            'property-2': 'Property Ch 2: Provisions & Contract Law'
+        };
+
+        // Load questions from JSON files
         async function loadQuestions() {
             try {
-                const response = await fetch('questions.json');
-                quizQuestions = await response.json();
-                console.log('Questions loaded:', Object.keys(quizQuestions).map(k => `Ch${k}: ${quizQuestions[k].length}`).join(', '));
+                const [casualtyRes, propertyRes] = await Promise.all([
+                    fetch('questions.json'),
+                    fetch('property-questions.json')
+                ]);
+
+                casualtyQuestions = await casualtyRes.json();
+                propertyQuestions = await propertyRes.json();
+
+                console.log('Casualty questions loaded:', Object.keys(casualtyQuestions).map(k => `Ch${k}: ${casualtyQuestions[k].length}`).join(', '));
+                console.log('Property questions loaded:', Object.keys(propertyQuestions).map(k => `Ch${k}: ${propertyQuestions[k].length}`).join(', '));
             } catch (error) {
                 console.error('Failed to load questions:', error);
-                // Fallback to empty - quiz won't work without questions
                 alert('Failed to load quiz questions. Please refresh the page.');
             }
         }
 
         // Initialize questions on page load
         loadQuestions();
+
+        // Update chapter options based on subject selection
+        function updateChapterOptions() {
+            const subject = document.getElementById('quizSubject').value;
+            const chapterSelect = document.getElementById('quizChapter');
+            const casualtyGroup = document.getElementById('casualtyChapters');
+            const propertyGroup = document.getElementById('propertyChapters');
+
+            // Reset to "all"
+            chapterSelect.value = 'all';
+
+            // Show/hide optgroups based on subject
+            if (subject === 'casualty') {
+                casualtyGroup.style.display = '';
+                propertyGroup.style.display = 'none';
+            } else if (subject === 'property') {
+                casualtyGroup.style.display = 'none';
+                propertyGroup.style.display = '';
+            } else {
+                casualtyGroup.style.display = '';
+                propertyGroup.style.display = '';
+            }
+        }
 
         // State
         let currentQuiz = [];
@@ -215,13 +273,22 @@
 
         // Initialize
         document.addEventListener('DOMContentLoaded', () => {
-            // Check for chapter URL parameter
+            // Check for URL parameters
             const urlParams = new URLSearchParams(window.location.search);
+            const subjectParam = urlParams.get('subject');
             const chapterParam = urlParams.get('chapter');
-            if (chapterParam && ['1', '2', '3', '4'].includes(chapterParam)) {
+
+            if (subjectParam && ['casualty', 'property', 'all'].includes(subjectParam)) {
+                document.getElementById('quizSubject').value = subjectParam;
+                updateChapterOptions();
+            }
+
+            if (chapterParam) {
                 document.getElementById('quizChapter').value = chapterParam;
             }
-            loadPreviousResults();        });
+
+            loadPreviousResults();
+        });
 
         // Load previous results from cookies
         function loadPreviousResults() {
@@ -243,26 +310,61 @@
             }
         }
 
+        // Get questions based on selection
+        function getQuestionPool() {
+            const subject = document.getElementById('quizSubject').value;
+            const chapter = document.getElementById('quizChapter').value;
+            let pool = [];
+
+            if (chapter === 'all') {
+                // All chapters based on subject filter
+                if (subject === 'all' || subject === 'casualty') {
+                    Object.entries(casualtyQuestions).forEach(([ch, questions]) => {
+                        questions.forEach(q => {
+                            pool.push({ ...q, chapterKey: `casualty-${ch}` });
+                        });
+                    });
+                }
+                if (subject === 'all' || subject === 'property') {
+                    Object.entries(propertyQuestions).forEach(([ch, questions]) => {
+                        questions.forEach(q => {
+                            pool.push({ ...q, chapterKey: `property-${ch}` });
+                        });
+                    });
+                }
+            } else {
+                // Specific chapter
+                const [subj, ch] = chapter.split('-');
+                const questions = subj === 'casualty' ? casualtyQuestions[ch] : propertyQuestions[ch];
+                if (questions) {
+                    questions.forEach(q => {
+                        pool.push({ ...q, chapterKey: chapter });
+                    });
+                }
+            }
+
+            return pool;
+        }
+
         // Start Quiz
         function startQuiz() {
-            const chapter = document.getElementById('quizChapter').value;
             const count = parseInt(document.getElementById('questionCount').value);
 
             // Get questions
-            let pool = [];
-            if (chapter === 'all') {
-                Object.values(quizQuestions).forEach(q => pool = pool.concat(q));
-            } else {
-                pool = [...quizQuestions[chapter]];
+            let pool = getQuestionPool();
+
+            if (pool.length === 0) {
+                alert('No questions available for this selection. Please choose a different chapter.');
+                return;
             }
 
             // Shuffle and select
             pool.sort(() => Math.random() - 0.5);
             currentQuiz = pool.slice(0, Math.min(count, pool.length));
 
-            // Add chapter info
-            currentQuiz.forEach((q, i) => {
-                q.chapter = chapter === 'all' ? 'Mixed' : `Chapter ${chapter}`;
+            // Add chapter display name
+            currentQuiz.forEach(q => {
+                q.chapter = chapterNames[q.chapterKey] || q.chapterKey;
             });
 
             // Reset state
@@ -419,6 +521,7 @@
                 document.getElementById('reviewSection').classList.remove('hidden');
                 document.getElementById('reviewList').innerHTML = incorrect.map((q, idx) => `
                     <div class="p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                        <p class="text-xs text-gray-500 dark:text-gray-400 mb-1">${q.chapter}</p>
                         <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">${q.question}</p>
                         <p class="text-green-600 dark:text-green-400 text-sm">Correct: ${q.options[q.correct]}</p>
                     </div>
@@ -430,8 +533,15 @@
 
         // Save Result
         function saveResult(score) {
+            const subject = document.getElementById('quizSubject').value;
             const chapter = document.getElementById('quizChapter').value;
-            const chapterName = chapter === 'all' ? 'All Chapters' : `Chapter ${chapter}`;
+            let chapterName = 'All Chapters';
+
+            if (chapter !== 'all') {
+                chapterName = chapterNames[chapter] || chapter;
+            } else if (subject !== 'all') {
+                chapterName = subject === 'casualty' ? 'All Casualty' : 'All Property';
+            }
 
             let results = [];
             const saved = getCookie('quizResults');
@@ -476,7 +586,7 @@
             const userAnswer = answers[currentIndex];
             const isCorrect = userAnswer === q.correct;
 
-            const context = `Quiz Question: ${q.question}
+            const context = `Quiz Question (${q.chapter}): ${q.question}
 
 Options:
 A. ${q.options[0]}
@@ -503,6 +613,7 @@ Standard Explanation: ${q.explanation}`;
                 .map((q, i) => ({ ...q, userAnswerIndex: answers[i] }))
                 .filter((q, i) => answers[i] !== q.correct)
                 .map(q => ({
+                    chapter: q.chapter,
                     question: q.question,
                     userAnswer: q.options[q.userAnswerIndex],
                     correctAnswer: q.options[q.correct],
@@ -546,7 +657,7 @@ Standard Explanation: ${q.explanation}`;
             }
         }
 
-        // Format AI response (duplicate from ai-helper.js for inline use)
+        // Format AI response
         function formatAIResponse(text) {
             return text
                 .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')

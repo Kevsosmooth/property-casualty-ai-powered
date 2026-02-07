@@ -7,7 +7,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script>tailwind.config = { darkMode: 'class' }</script>
     <link rel="stylesheet" href="../css/styles.css">
-    <script src="../js/ai-helper.js"></script>    <script>
+    <script src="../js/ai-helper.js"></script>
+    <script>
         if (localStorage.getItem('theme') === 'light') {
             document.documentElement.classList.remove('dark');
         }
@@ -46,14 +47,30 @@
     </header>
 
     <main class="container mx-auto px-4 py-8 max-w-3xl">
+        <!-- Subject Selection -->
+        <div class="mb-4">
+            <label class="block text-gray-700 dark:text-gray-300 font-semibold mb-2">Select Subject:</label>
+            <select id="subjectSelect" onchange="updateChapterOptions()" class="w-full p-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200">
+                <option value="all">All Subjects (Property & Casualty)</option>
+                <option value="casualty">Casualty Insurance Only</option>
+                <option value="property">Property Insurance Only</option>
+            </select>
+        </div>
+
         <!-- Chapter Selection -->
         <div class="mb-6">
             <label class="block text-gray-700 dark:text-gray-300 font-semibold mb-2">Select Chapter:</label>
             <select id="chapterSelect" onchange="loadChapter()" class="w-full p-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200">
                 <option value="all">All Chapters</option>
-                <option value="1">Chapter 1: Fundamentals & Key Terms</option>
-                <option value="2">Chapter 2: Policy Structure</option>
-                <option value="3">Chapter 3: Commercial General Liability</option>
+                <optgroup label="Casualty Insurance" id="casualtyChapters">
+                    <option value="casualty-1">Ch 1: Fundamentals & Key Terms</option>
+                    <option value="casualty-2">Ch 2: Policy Structure</option>
+                    <option value="casualty-3">Ch 3: Commercial General Liability</option>
+                </optgroup>
+                <optgroup label="Property Insurance" id="propertyChapters">
+                    <option value="property-1">Ch 1: Insurance Terms & Concepts</option>
+                    <option value="property-2">Ch 2: Policy Provisions & Contract Law</option>
+                </optgroup>
             </select>
         </div>
 
@@ -163,105 +180,156 @@
     </main>
 
     <script>
-        // Flashcard Data
-        const flashcardData = {
-            1: [
-                { term: "ISO (Insurance Services Office)", definition: "Organization that creates standardized P&C insurance policies which are approved by each state, then used as base forms by insurers." },
-                { term: "Pure Risk", definition: "Risk with only two outcomes: LOSS or NO LOSS. Only type of risk that is insurable. Examples: natural disasters, accidents, theft." },
-                { term: "Speculative Risk", definition: "Risk with three outcomes: loss, gain, or break-even. NOT insurable. Examples: gambling, investing, business ventures." },
-                { term: "Peril", definition: "The CAUSE of loss - the actual event that triggers coverage. Examples: fire, theft, windstorm, premature death." },
-                { term: "Hazard", definition: "A CONDITION that increases the probability of loss occurring. Makes perils more likely to happen." },
-                { term: "Physical Hazard", definition: "Tangible conditions you can see/touch that increase risk. Examples: slippery floors, faulty wiring, icy roads." },
-                { term: "Moral Hazard", definition: "INTENTIONAL dishonesty or bad behavior to cause/exaggerate loss. Examples: arson for insurance money, lying on applications, staged accidents." },
-                { term: "Morale Hazard", definition: "CARELESSNESS (not intentional) because you're insured. 'Why be careful? Insurance will pay!' Examples: leaving doors unlocked, skipping maintenance." },
-                { term: "Indemnity", definition: "Insurance principle that restores you to pre-loss position - NO MORE, NO LESS. Prevents profiting from insurance claims." },
-                { term: "Subrogation", definition: "After insurer pays your claim, they 'step into your shoes' to pursue the at-fault third party for reimbursement." },
-                { term: "Insurable Interest", definition: "Legitimate stake in what you're insuring (financial, family, business). Must exist at TIME OF LOSS for property insurance." },
-                { term: "Depreciation", definition: "Decrease in asset value over time due to wear and tear, age, or obsolescence." },
-                { term: "Negligence", definition: "Failure to use care that a REASONABLE, PRUDENT person would in the same situation. Not intentional, just careless." },
-                { term: "Accident", definition: "SUDDEN, unexpected, unplanned event NOT in insured's control resulting in injury or damage." },
-                { term: "Occurrence", definition: "BROADER than accident - includes gradual/continuous exposure to conditions causing harm over time." },
-                { term: "Burglary", definition: "Unlawful entry using FORCE into/out of premises with intent to commit crime. REQUIRES visible signs of forced entry for insurance." },
-                { term: "Robbery", definition: "Taking property directly from a PERSON using force or threat of harm. Violence against a person is key." },
-                { term: "Theft", definition: "BROADEST term for stealing - encompasses both burglary and robbery." },
-                { term: "Mysterious Disappearance", definition: "Property vanishes with no knowledge of where, when, or how. NOT COVERED by insurance - can't verify loss occurred." },
-                { term: "MedPay (Medical Payments)", definition: "NO-FAULT coverage - pays regardless of who's responsible. Fast, automatic, smaller limits ($1K-$5K). Goodwill gesture." },
-                { term: "Liability Coverage", definition: "FAULT-BASED - only pays if YOU are legally responsible. Requires proving negligence. Higher limits ($100K-$1M+). Includes legal defense." },
-                { term: "Absolute/Strict Liability", definition: "Liable even WITHOUT negligence or intent. Applies to ultra-hazardous activities (explosives, wild animals)." },
-                { term: "Vicarious Liability", definition: "Responsibility shifts to supervisory person for another's actions. Examples: parents for children, employers for employees." },
-                { term: "Bodily Injury (BI) Liability", definition: "Liability for physical harm to another person's body - injury, sickness, disease, or death." },
-                { term: "Property Damage (PD) Liability", definition: "Liability for physical damage to another person's tangible property." },
-                { term: "Personal Injury Liability", definition: "Harm to reputation, rights, or emotions - NOT physical. Examples: false arrest, defamation, invasion of privacy." },
-                { term: "Warranty (Insurance)", definition: "STRICTEST standard - a PROMISE/guarantee in the contract. ANY breach = automatic void, even if unrelated to loss." },
-                { term: "Representation", definition: "Statement of fact on application. To void: must prove it was FALSE AND MATERIAL (would have changed insurer's decision)." },
-                { term: "Concealment", definition: "INTENTIONALLY failing to disclose material information. Lie by omission. Must be intentional AND material to void." },
-                { term: "Deductible", definition: "Amount YOU pay before insurance kicks in. Higher deductible = lower premium (you take more risk)." },
-                { term: "Binder", definition: "TEMPORARY proof of insurance providing immediate coverage while actual policy is being prepared." },
-                { term: "Law of Large Numbers", definition: "Larger sample size = more accurate predictions. Insurers use large data pools to predict losses and set premiums." }
-            ],
-            2: [
-                { term: "Declarations (Dec Page)", definition: "Usually FIRST PAGE - contains insured's name, address, coverage amounts, premiums, policy period, description of insured property." },
-                { term: "Definitions Section", definition: "Clarifies terms used in policy. Words in bold, italics, or quotes have specific meanings defined here." },
-                { term: "Insuring Agreement", definition: "Establishes insurer's OBLIGATION to provide coverage. Lists parties, dates, coverage description, and perils covered." },
-                { term: "Additional Coverage", definition: "Extra coverage for specific expenses at NO additional premium. Examples: lawyer fees, temporary repairs, debris removal." },
-                { term: "Exclusions", definition: "What is NOT covered - perils excluded and people not insured. Examples: earthquakes, floods, intentional acts, war." },
-                { term: "Endorsements (Riders)", definition: "Written addendums that CHANGE original policy terms. Must be in writing, attached to policy, signed by executive officer." },
-                { term: "Policy Limits", definition: "MAXIMUM amount insurer will pay. Coverage stops at limit regardless of actual damages." },
-                { term: "Earned Premium", definition: "Portion of premium that belongs to insurer for elapsed time. Pay $12K/year = $1K earned after 1 month." },
-                { term: "Liberalization Clause", definition: "If insurer improves coverage, you get the benefit AUTOMATICALLY without requesting it - free of charge." },
-                { term: "Appraisal", definition: "Professional assessment to determine extent of damage. Used when insured and insurer disagree on value." },
-                { term: "Proof of Loss", definition: "SWORN statement from insured describing what happened, date, and amount claimed. Required for claim processing." },
-                { term: "Arbitration", definition: "Third party helps decide claim dispute. Can be BINDING (final, no appeal) or NON-BINDING (can still go to court)." },
-                { term: "Actual Cash Value (ACV)", definition: "Replacement cost MINUS depreciation. What the item is worth TODAY, not what you paid." },
-                { term: "Replacement Cost", definition: "Cost to replace with NEW item of like kind and quality - NO depreciation deducted. Better for insured." },
-                { term: "Agreed Value", definition: "Pre-determined value agreed by both parties at policy inception. No dispute at claim time." },
-                { term: "Cancellation", definition: "Termination BEFORE expiration date. Can be voluntary (insured), involuntary (insurer), or mutual." },
-                { term: "Nonrenewal", definition: "Termination AT expiration by not offering continuation. Policy runs full term first, then ends." },
-                { term: "Underwriting", definition: "Risk selection - reviewing applications to determine eligibility for coverage and appropriate premium." },
-                { term: "Third Party", definition: "Anyone OTHER than the two main parties (insured and insurer). Example: person you hit in accident." },
-                { term: "Duties After Loss", definition: "Insured must: protect property from further damage, inventory damaged items, cooperate, report theft to police, submit proof of loss." }
-            ],
-            3: [
-                { term: "Commercial General Liability (CGL)", definition: "Business liability policy covering bodily injury, property damage, and personal injury claims. Comes in Occurrence or Claims-Made forms." },
-                { term: "Occurrence Form", definition: "Coverage triggered by WHEN DAMAGE HAPPENED. Doesn't matter when claim is filed - goes back to policy active during incident." },
-                { term: "Claims-Made Form", definition: "Coverage triggered by WHEN CLAIM IS FILED. Policy must be active when claim is made, not just when incident occurred." },
-                { term: "Retroactive Date", definition: "Earliest date claims-made policy covers. Starts as inception date. Claims for incidents before this date = NOT covered." },
-                { term: "Tail Coverage", definition: "Extended reporting period after canceling claims-made policy. Covers claims filed later for incidents during coverage. Costs 1.5-2x last premium." },
-                { term: "Premises & Operations Hazard", definition: "Covers ownership, maintenance, use of YOUR premises and business operations. Excludes products/completed operations." },
-                { term: "Products & Completed Operations", definition: "Covers harm AFTER job is done or product left your control. Examples: defective product injures customer later." },
-                { term: "Aggregate Limit", definition: "MAXIMUM total payable during entire policy period. All claims combined can't exceed this amount." },
-                { term: "Bailee", definition: "Someone trusted with another's property but has NO ownership. Example: mechanic holding your car for repairs." },
-                { term: "SIR (Self-Insured Retention)", definition: "Deductible you must pay before umbrella policy kicks in when underlying coverage won't cover the loss." },
-                { term: "Independent Contractor Coverage", definition: "ICs are only covered under your General Liability with an ENDORSEMENT - not automatic." },
-                { term: "OCP (Owners & Contractors Protective)", definition: "Endorsement providing coverage for claims caused by negligence of contractors or subcontractors working for you." },
-                { term: "CGL Covered Contract #1: Lease of Premises", definition: "When you rent space - lease makes you liable for customer injuries. CGL COVERS even though you agreed in lease." },
-                { term: "CGL Covered Contract #2: Sidetrack Agreements", definition: "Railroad track agreements for your business. If you're liable for accidents on your spur, CGL covers." },
-                { term: "CGL Covered Contract #3: Easement Agreements", definition: "Using others' property via easement. If agreement makes you liable for damage, CGL covers. EXCEPT within 50ft of railroad construction." },
-                { term: "CGL Covered Contract #4: Municipality Indemnification", definition: "Agreements with city (permits, events). CGL covers IF not doing work FOR the municipality." },
-                { term: "CGL Covered Contract #5: Elevator Maintenance", definition: "If you service elevators and contract makes you liable for malfunctions, CGL covers." },
-                { term: "CGL Covered Contract #6: Liability You'd Have Anyway", definition: "If you'd be liable even without the contract (basic tort law), CGL covers. Exception: can't indemnify railroads, architects, engineers." },
-                { term: "Coverage Trigger", definition: "What makes a policy RESPOND to a claim. Occurrence = when damage happened. Claims-Made = when claim filed." },
-                { term: "Actual Cash Value (ACV)", definition: "Valuation method: Replacement Cost - Depreciation = value at time of loss, not original price." }
-            ]
-        };
+        // Flashcard Data - loaded from JSON files
+        let casualtyFlashcards = {};
+        let propertyFlashcards = {};
+
+        // Load flashcards from JSON files
+        async function loadFlashcardData() {
+            try {
+                const propertyRes = await fetch('property-flashcards.json');
+                propertyFlashcards = await propertyRes.json();
+                console.log('Property flashcards loaded:', Object.keys(propertyFlashcards).map(k => `Ch${k}: ${propertyFlashcards[k].length}`).join(', '));
+            } catch (error) {
+                console.error('Failed to load property flashcards:', error);
+                propertyFlashcards = {};
+            }
+
+            // Casualty flashcards are inline (existing)
+            casualtyFlashcards = {
+                1: [
+                    { term: "ISO (Insurance Services Office)", definition: "Organization that creates standardized P&C insurance policies which are approved by each state, then used as base forms by insurers." },
+                    { term: "Pure Risk", definition: "Risk with only two outcomes: LOSS or NO LOSS. Only type of risk that is insurable. Examples: natural disasters, accidents, theft." },
+                    { term: "Speculative Risk", definition: "Risk with three outcomes: loss, gain, or break-even. NOT insurable. Examples: gambling, investing, business ventures." },
+                    { term: "Peril", definition: "The CAUSE of loss - the actual event that triggers coverage. Examples: fire, theft, windstorm, premature death." },
+                    { term: "Hazard", definition: "A CONDITION that increases the probability of loss occurring. Makes perils more likely to happen." },
+                    { term: "Physical Hazard", definition: "Tangible conditions you can see/touch that increase risk. Examples: slippery floors, faulty wiring, icy roads." },
+                    { term: "Moral Hazard", definition: "INTENTIONAL dishonesty or bad behavior to cause/exaggerate loss. Examples: arson for insurance money, lying on applications, staged accidents." },
+                    { term: "Morale Hazard", definition: "CARELESSNESS (not intentional) because you're insured. 'Why be careful? Insurance will pay!' Examples: leaving doors unlocked, skipping maintenance." },
+                    { term: "Indemnity", definition: "Insurance principle that restores you to pre-loss position - NO MORE, NO LESS. Prevents profiting from insurance claims." },
+                    { term: "Subrogation", definition: "After insurer pays your claim, they 'step into your shoes' to pursue the at-fault third party for reimbursement." },
+                    { term: "Insurable Interest", definition: "Legitimate stake in what you're insuring (financial, family, business). Must exist at TIME OF LOSS for property insurance." },
+                    { term: "Depreciation", definition: "Decrease in asset value over time due to wear and tear, age, or obsolescence." },
+                    { term: "Negligence", definition: "Failure to use care that a REASONABLE, PRUDENT person would in the same situation. Not intentional, just careless." },
+                    { term: "Accident", definition: "SUDDEN, unexpected, unplanned event NOT in insured's control resulting in injury or damage." },
+                    { term: "Occurrence", definition: "BROADER than accident - includes gradual/continuous exposure to conditions causing harm over time." },
+                    { term: "Burglary", definition: "Unlawful entry using FORCE into/out of premises with intent to commit crime. REQUIRES visible signs of forced entry for insurance." },
+                    { term: "Robbery", definition: "Taking property directly from a PERSON using force or threat of harm. Violence against a person is key." },
+                    { term: "Theft", definition: "BROADEST term for stealing - encompasses both burglary and robbery." },
+                    { term: "Mysterious Disappearance", definition: "Property vanishes with no knowledge of where, when, or how. NOT COVERED by insurance - can't verify loss occurred." },
+                    { term: "MedPay (Medical Payments)", definition: "NO-FAULT coverage - pays regardless of who's responsible. Fast, automatic, smaller limits ($1K-$5K). Goodwill gesture." },
+                    { term: "Liability Coverage", definition: "FAULT-BASED - only pays if YOU are legally responsible. Requires proving negligence. Higher limits ($100K-$1M+). Includes legal defense." },
+                    { term: "Absolute/Strict Liability", definition: "Liable even WITHOUT negligence or intent. Applies to ultra-hazardous activities (explosives, wild animals)." },
+                    { term: "Vicarious Liability", definition: "Responsibility shifts to supervisory person for another's actions. Examples: parents for children, employers for employees." },
+                    { term: "Bodily Injury (BI) Liability", definition: "Liability for physical harm to another person's body - injury, sickness, disease, or death." },
+                    { term: "Property Damage (PD) Liability", definition: "Liability for physical damage to another person's tangible property." },
+                    { term: "Personal Injury Liability", definition: "Harm to reputation, rights, or emotions - NOT physical. Examples: false arrest, defamation, invasion of privacy." },
+                    { term: "Warranty (Insurance)", definition: "STRICTEST standard - a PROMISE/guarantee in the contract. ANY breach = automatic void, even if unrelated to loss." },
+                    { term: "Representation", definition: "Statement of fact on application. To void: must prove it was FALSE AND MATERIAL (would have changed insurer's decision)." },
+                    { term: "Concealment", definition: "INTENTIONALLY failing to disclose material information. Lie by omission. Must be intentional AND material to void." },
+                    { term: "Deductible", definition: "Amount YOU pay before insurance kicks in. Higher deductible = lower premium (you take more risk)." },
+                    { term: "Binder", definition: "TEMPORARY proof of insurance providing immediate coverage while actual policy is being prepared." },
+                    { term: "Law of Large Numbers", definition: "Larger sample size = more accurate predictions. Insurers use large data pools to predict losses and set premiums." }
+                ],
+                2: [
+                    { term: "Declarations (Dec Page)", definition: "Usually FIRST PAGE - contains insured's name, address, coverage amounts, premiums, policy period, description of insured property." },
+                    { term: "Definitions Section", definition: "Clarifies terms used in policy. Words in bold, italics, or quotes have specific meanings defined here." },
+                    { term: "Insuring Agreement", definition: "Establishes insurer's OBLIGATION to provide coverage. Lists parties, dates, coverage description, and perils covered." },
+                    { term: "Additional Coverage", definition: "Extra coverage for specific expenses at NO additional premium. Examples: lawyer fees, temporary repairs, debris removal." },
+                    { term: "Exclusions", definition: "What is NOT covered - perils excluded and people not insured. Examples: earthquakes, floods, intentional acts, war." },
+                    { term: "Endorsements (Riders)", definition: "Written addendums that CHANGE original policy terms. Must be in writing, attached to policy, signed by executive officer." },
+                    { term: "Policy Limits", definition: "MAXIMUM amount insurer will pay. Coverage stops at limit regardless of actual damages." },
+                    { term: "Earned Premium", definition: "Portion of premium that belongs to insurer for elapsed time. Pay $12K/year = $1K earned after 1 month." },
+                    { term: "Liberalization Clause", definition: "If insurer improves coverage, you get the benefit AUTOMATICALLY without requesting it - free of charge." },
+                    { term: "Appraisal", definition: "Professional assessment to determine extent of damage. Used when insured and insurer disagree on value." },
+                    { term: "Proof of Loss", definition: "SWORN statement from insured describing what happened, date, and amount claimed. Required for claim processing." },
+                    { term: "Arbitration", definition: "Third party helps decide claim dispute. Can be BINDING (final, no appeal) or NON-BINDING (can still go to court)." },
+                    { term: "Actual Cash Value (ACV)", definition: "Replacement cost MINUS depreciation. What the item is worth TODAY, not what you paid." },
+                    { term: "Replacement Cost", definition: "Cost to replace with NEW item of like kind and quality - NO depreciation deducted. Better for insured." },
+                    { term: "Agreed Value", definition: "Pre-determined value agreed by both parties at policy inception. No dispute at claim time." },
+                    { term: "Cancellation", definition: "Termination BEFORE expiration date. Can be voluntary (insured), involuntary (insurer), or mutual." },
+                    { term: "Nonrenewal", definition: "Termination AT expiration by not offering continuation. Policy runs full term first, then ends." },
+                    { term: "Underwriting", definition: "Risk selection - reviewing applications to determine eligibility for coverage and appropriate premium." },
+                    { term: "Third Party", definition: "Anyone OTHER than the two main parties (insured and insurer). Example: person you hit in accident." },
+                    { term: "Duties After Loss", definition: "Insured must: protect property from further damage, inventory damaged items, cooperate, report theft to police, submit proof of loss." }
+                ],
+                3: [
+                    { term: "Commercial General Liability (CGL)", definition: "Business liability policy covering bodily injury, property damage, and personal injury claims. Comes in Occurrence or Claims-Made forms." },
+                    { term: "Occurrence Form", definition: "Coverage triggered by WHEN DAMAGE HAPPENED. Doesn't matter when claim is filed - goes back to policy active during incident." },
+                    { term: "Claims-Made Form", definition: "Coverage triggered by WHEN CLAIM IS FILED. Policy must be active when claim is made, not just when incident occurred." },
+                    { term: "Retroactive Date", definition: "Earliest date claims-made policy covers. Starts as inception date. Claims for incidents before this date = NOT covered." },
+                    { term: "Tail Coverage", definition: "Extended reporting period after canceling claims-made policy. Covers claims filed later for incidents during coverage. Costs 1.5-2x last premium." },
+                    { term: "Premises & Operations Hazard", definition: "Covers ownership, maintenance, use of YOUR premises and business operations. Excludes products/completed operations." },
+                    { term: "Products & Completed Operations", definition: "Covers harm AFTER job is done or product left your control. Examples: defective product injures customer later." },
+                    { term: "Aggregate Limit", definition: "MAXIMUM total payable during entire policy period. All claims combined can't exceed this amount." },
+                    { term: "Bailee", definition: "Someone trusted with another's property but has NO ownership. Example: mechanic holding your car for repairs." },
+                    { term: "SIR (Self-Insured Retention)", definition: "Deductible you must pay before umbrella policy kicks in when underlying coverage won't cover the loss." },
+                    { term: "Independent Contractor Coverage", definition: "ICs are only covered under your General Liability with an ENDORSEMENT - not automatic." },
+                    { term: "OCP (Owners & Contractors Protective)", definition: "Endorsement providing coverage for claims caused by negligence of contractors or subcontractors working for you." },
+                    { term: "CGL Covered Contract #1: Lease of Premises", definition: "When you rent space - lease makes you liable for customer injuries. CGL COVERS even though you agreed in lease." },
+                    { term: "CGL Covered Contract #2: Sidetrack Agreements", definition: "Railroad track agreements for your business. If you're liable for accidents on your spur, CGL covers." },
+                    { term: "CGL Covered Contract #3: Easement Agreements", definition: "Using others' property via easement. If agreement makes you liable for damage, CGL covers. EXCEPT within 50ft of railroad construction." },
+                    { term: "CGL Covered Contract #4: Municipality Indemnification", definition: "Agreements with city (permits, events). CGL covers IF not doing work FOR the municipality." },
+                    { term: "CGL Covered Contract #5: Elevator Maintenance", definition: "If you service elevators and contract makes you liable for malfunctions, CGL covers." },
+                    { term: "CGL Covered Contract #6: Liability You'd Have Anyway", definition: "If you'd be liable even without the contract (basic tort law), CGL covers. Exception: can't indemnify railroads, architects, engineers." },
+                    { term: "Coverage Trigger", definition: "What makes a policy RESPOND to a claim. Occurrence = when damage happened. Claims-Made = when claim filed." },
+                    { term: "Actual Cash Value (ACV)", definition: "Valuation method: Replacement Cost - Depreciation = value at time of loss, not original price." }
+                ]
+            };
+
+            loadChapter();
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            loadProgress();
+            loadFlashcardData();
+
+            // Check for URL parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            const subjectParam = urlParams.get('subject');
+            const chapterParam = urlParams.get('chapter');
+
+            if (subjectParam && ['casualty', 'property', 'all'].includes(subjectParam)) {
+                document.getElementById('subjectSelect').value = subjectParam;
+                updateChapterOptions();
+            }
+
+            if (chapterParam) {
+                document.getElementById('chapterSelect').value = chapterParam;
+            }
+        });
+
+        // Update chapter options based on subject selection
+        function updateChapterOptions() {
+            const subject = document.getElementById('subjectSelect').value;
+            const chapterSelect = document.getElementById('chapterSelect');
+            const casualtyGroup = document.getElementById('casualtyChapters');
+            const propertyGroup = document.getElementById('propertyChapters');
+
+            // Reset to "all"
+            chapterSelect.value = 'all';
+
+            // Show/hide optgroups based on subject
+            if (subject === 'casualty') {
+                casualtyGroup.style.display = '';
+                propertyGroup.style.display = 'none';
+            } else if (subject === 'property') {
+                casualtyGroup.style.display = 'none';
+                propertyGroup.style.display = '';
+            } else {
+                casualtyGroup.style.display = '';
+                propertyGroup.style.display = '';
+            }
+
+            loadChapter();
+        }
 
         // State
         let currentCards = [];
         let currentIndex = 0;
         let isFlipped = false;
         let cardProgress = {};
-
-        // Initialize
-        document.addEventListener('DOMContentLoaded', () => {
-            loadProgress();
-            // Check for chapter URL parameter
-            const urlParams = new URLSearchParams(window.location.search);
-            const chapterParam = urlParams.get('chapter');
-            if (chapterParam && ['1', '2', '3'].includes(chapterParam)) {
-                document.getElementById('chapterSelect').value = chapterParam;
-            }
-            loadChapter();
-        });
 
         // Load progress from cookies
         function loadProgress() {
@@ -294,17 +362,45 @@
             }, '');
         }
 
-        // Load chapter cards
-        function loadChapter() {
+        // Get flashcards based on selection
+        function getFlashcardPool() {
+            const subject = document.getElementById('subjectSelect').value;
             const chapter = document.getElementById('chapterSelect').value;
-            currentCards = [];
+            let pool = [];
 
             if (chapter === 'all') {
-                Object.values(flashcardData).forEach(cards => {
-                    currentCards = currentCards.concat(cards);
-                });
+                // All chapters based on subject filter
+                if (subject === 'all' || subject === 'casualty') {
+                    Object.values(casualtyFlashcards).forEach(cards => {
+                        pool = pool.concat(cards);
+                    });
+                }
+                if (subject === 'all' || subject === 'property') {
+                    Object.values(propertyFlashcards).forEach(cards => {
+                        pool = pool.concat(cards);
+                    });
+                }
             } else {
-                currentCards = [...flashcardData[chapter]];
+                // Specific chapter
+                const [subj, ch] = chapter.split('-');
+                const cards = subj === 'casualty' ? casualtyFlashcards[ch] : propertyFlashcards[ch];
+                if (cards) {
+                    pool = [...cards];
+                }
+            }
+
+            return pool;
+        }
+
+        // Load chapter cards
+        function loadChapter() {
+            currentCards = getFlashcardPool();
+
+            if (currentCards.length === 0) {
+                document.getElementById('cardFront').textContent = 'No flashcards available';
+                document.getElementById('cardBack').textContent = 'Select a different chapter';
+                document.getElementById('cardNumber').textContent = 'Card 0 of 0';
+                return;
             }
 
             // Sort by difficulty if enabled
@@ -433,9 +529,6 @@ This is a P&C (Property & Casualty) insurance exam study flashcard.`;
                 'What are common mistakes?'
             ]);
         }
-
-        // Initialize Read Aloud button
-        document.addEventListener('DOMContentLoaded', () => {        });
     </script>
 </body>
 </html>
