@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 5 Part 5: Surplus Lines | P&C Study Guide</title>
+    <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <link rel="stylesheet" href="../../../css/styles.css">
+    <script src="../../../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+        }
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <!-- Settings & Theme Toggle Buttons -->
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="showAPIKeySetup()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings">
+            <svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+        </button>
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/>
+            </svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-emerald-600 to-green-700 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap gap-2 text-sm mb-2">
+                <a href="../../../index.html" class="text-emerald-200 hover:text-white">Home</a>
+                <span class="text-emerald-300">/</span>
+                <a href="../index.html" class="text-emerald-200 hover:text-white">Chapter 5</a>
+                <span class="text-emerald-300">/</span>
+                <span class="text-white">Part 5: Surplus Lines</span>
+            </div>
+            <h1 class="text-3xl font-bold">Chapter 5 Part 5: Surplus Lines</h1>
+            <p class="text-emerald-200 mt-1">Diligent Effort Requirements and Exportable List</p>
+        </div>
+    </header>
+
+    <!-- Part Navigation -->
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-wrap gap-2 text-sm">
+                <a href="../intro/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Intro</a>
+                <a href="../part-1/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 1: Auto</a>
+                <a href="../part-2/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 2: Workers Comp</a>
+                <a href="../part-3/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 3: Deregulation</a>
+                <a href="../part-4/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 4: Cancellation</a>
+                <span class="bg-emerald-600 text-white px-3 py-1 rounded font-medium">Part 5: Surplus Lines</span>
+                <a href="../part-6/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 6: Certificates</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-4xl lg:max-w-6xl">
+
+        <!-- Overview -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">What Are Surplus Lines?</h2>
+
+                <div class="bg-emerald-50 dark:bg-emerald-900/30 border border-emerald-200 dark:border-emerald-800 rounded-lg p-4 mb-6">
+                    <p class="text-gray-700 dark:text-gray-300"><strong>Surplus lines insurance</strong> is coverage provided by insurers that are <strong>not licensed (admitted)</strong> in the state. It's used when coverage cannot be obtained from the regular (admitted) market.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-5 border-l-4 border-blue-500">
+                        <h3 class="font-bold text-blue-800 dark:text-blue-300 mb-3">Admitted Insurers</h3>
+                        <ul class="text-sm text-gray-600 dark:text-gray-300 space-y-2">
+                            <li class="flex items-start">
+                                <span class="text-blue-500 mr-2">•</span>
+                                <span>Licensed by the state</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-blue-500 mr-2">•</span>
+                                <span>Regulated by state insurance department</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-blue-500 mr-2">•</span>
+                                <span>Covered by state guaranty fund</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-blue-500 mr-2">•</span>
+                                <span>Rates and forms approved by state</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-5 border-l-4 border-purple-500">
+                        <h3 class="font-bold text-purple-800 dark:text-purple-300 mb-3">Surplus Lines (Non-Admitted)</h3>
+                        <ul class="text-sm text-gray-600 dark:text-gray-300 space-y-2">
+                            <li class="flex items-start">
+                                <span class="text-purple-500 mr-2">•</span>
+                                <span>NOT licensed in the state</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-purple-500 mr-2">•</span>
+                                <span>Less state regulation</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-purple-500 mr-2">•</span>
+                                <span>NOT covered by state guaranty fund</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-purple-500 mr-2">•</span>
+                                <span>More flexibility in rates and coverage</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- When to Use -->
+                <div class="bg-amber-50 dark:bg-amber-900/20 rounded-lg p-4 border-l-4 border-amber-500">
+                    <p class="font-semibold text-amber-800 dark:text-amber-300 mb-2">When Are Surplus Lines Used?</p>
+                    <ul class="text-sm text-gray-600 dark:text-gray-300 space-y-1">
+                        <li>• Unusual or unique risks that admitted insurers won't write</li>
+                        <li>• High-risk businesses (nightclubs, fireworks manufacturers, etc.)</li>
+                        <li>• Hard-to-place coverage (cyber liability, special events, etc.)</li>
+                        <li>• Risks that have been declined by the regular market</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Diligent Effort Requirement -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">Diligent Effort Requirement</h2>
+
+                <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-lg p-5 mb-6">
+                    <h3 class="font-bold text-red-800 dark:text-red-300 text-lg mb-3">Before Placing with Surplus Lines...</h3>
+                    <p class="text-gray-700 dark:text-gray-300">The surplus lines broker <strong>MUST</strong> have made a <strong>diligent effort</strong> to place the risk with an admitted insurer first.</p>
+                </div>
+
+                <!-- What is Diligent Effort -->
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-5 border-l-4 border-blue-500 mb-6">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg mb-3">What is "Diligent Effort"?</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">A process by which a licensed producer places coverage with a surplus lines insurer <strong>only after</strong> the risk has been declined by:</p>
+
+                    <div class="bg-white dark:bg-gray-700 rounded-lg p-6 text-center mb-4">
+                        <p class="text-5xl font-bold text-blue-600 dark:text-blue-400">3</p>
+                        <p class="text-lg font-semibold text-gray-700 dark:text-gray-300">Authorized (Admitted) Insurers</p>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-semibold text-gray-700 dark:text-gray-200 mb-2">Each of the 3 insurers must:</p>
+                        <ul class="text-sm text-gray-600 dark:text-gray-300 space-y-2">
+                            <li class="flex items-start">
+                                <span class="bg-blue-600 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center mr-2 flex-shrink-0">1</span>
+                                <span>Be <strong>authorized</strong> to write the kind of insurance requested</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="bg-blue-600 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center mr-2 flex-shrink-0">2</span>
+                                <span>Be an insurer that the producer has a <strong>good faith reason to believe</strong> might consider writing the type of coverage or class of insurance involved</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Example -->
+                <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500 mb-6">
+                    <p class="font-semibold text-green-800 dark:text-green-300 mb-2">Example: Diligent Effort in Action</p>
+                    <p class="text-gray-600 dark:text-gray-300 text-sm mb-3">A nightclub owner needs liability insurance. The producer must:</p>
+                    <ol class="text-sm text-gray-600 dark:text-gray-300 space-y-2">
+                        <li class="flex items-start">
+                            <span class="bg-green-600 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center mr-2 flex-shrink-0">1</span>
+                            <span>Approach Insurer A (writes commercial liability) - <strong>DECLINED</strong></span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="bg-green-600 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center mr-2 flex-shrink-0">2</span>
+                            <span>Approach Insurer B (writes entertainment venues) - <strong>DECLINED</strong></span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="bg-green-600 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center mr-2 flex-shrink-0">3</span>
+                            <span>Approach Insurer C (writes hospitality) - <strong>DECLINED</strong></span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="bg-purple-600 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center mr-2 flex-shrink-0">✓</span>
+                            <span>NOW can place with surplus lines insurer (Lloyd's of London, etc.)</span>
+                        </li>
+                    </ol>
+                </div>
+
+                <!-- What Doesn't Count -->
+                <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                    <p class="font-semibold text-red-800 dark:text-red-300 mb-2">What Doesn't Count as Diligent Effort:</p>
+                    <ul class="text-sm text-gray-600 dark:text-gray-300 space-y-1">
+                        <li>• Asking 3 insurers who don't write that type of coverage</li>
+                        <li>• Asking insurers you know will decline without reviewing</li>
+                        <li>• Getting 3 quotes that are too expensive (price alone isn't declination)</li>
+                        <li>• Skipping straight to surplus lines because it's easier</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exportable List -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">The Exportable List</h2>
+
+                <div class="bg-purple-50 dark:bg-purple-900/30 border border-purple-200 dark:border-purple-800 rounded-lg p-4 mb-6">
+                    <p class="text-gray-700 dark:text-gray-300">The <strong>Exportable List</strong> is an exception to the diligent effort requirement. For risks on this list, you can go directly to surplus lines without getting 3 declinations.</p>
+                </div>
+
+                <!-- How It Works -->
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-5 mb-6">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg mb-3">How the Exportable List Works:</h3>
+                    <div class="space-y-3">
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg flex items-start">
+                            <span class="bg-blue-600 text-white text-xs w-6 h-6 rounded-full flex items-center justify-center mr-3 flex-shrink-0">1</span>
+                            <div>
+                                <p class="font-semibold text-gray-700 dark:text-gray-200">Commissioner Declares</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-300">The Commissioner may declare certain lines or classes of insurance eligible for export</p>
+                            </div>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg flex items-start">
+                            <span class="bg-blue-600 text-white text-xs w-6 h-6 rounded-full flex items-center justify-center mr-3 flex-shrink-0">2</span>
+                            <div>
+                                <p class="font-semibold text-gray-700 dark:text-gray-200">After a Hearing</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-300">It must be determined that there is <strong>no reasonable or adequate market</strong> among authorized insurers in the state</p>
+                            </div>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg flex items-start">
+                            <span class="bg-blue-600 text-white text-xs w-6 h-6 rounded-full flex items-center justify-center mr-3 flex-shrink-0">3</span>
+                            <div>
+                                <p class="font-semibold text-gray-700 dark:text-gray-200">Annual Compilation</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-300">The list is compiled <strong>annually</strong> - it can change each year</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Example Types -->
+                <div class="bg-teal-50 dark:bg-teal-900/20 rounded-lg p-5 mb-6">
+                    <h3 class="font-bold text-teal-800 dark:text-teal-300 text-lg mb-3">Types of Coverage Often on Exportable Lists:</h3>
+                    <div class="grid md:grid-cols-3 gap-3">
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                            <p class="font-semibold text-gray-700 dark:text-gray-300">Excess & Umbrella</p>
+                            <p class="text-xs text-gray-500 dark:text-gray-400">High-limit coverage</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                            <p class="font-semibold text-gray-700 dark:text-gray-300">Unique Risks</p>
+                            <p class="text-xs text-gray-500 dark:text-gray-400">One-of-a-kind exposures</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                            <p class="font-semibold text-gray-700 dark:text-gray-300">Hard-to-Place</p>
+                            <p class="text-xs text-gray-500 dark:text-gray-400">Limited market availability</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                            <p class="font-semibold text-gray-700 dark:text-gray-300">Special Events</p>
+                            <p class="text-xs text-gray-500 dark:text-gray-400">Concerts, festivals</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                            <p class="font-semibold text-gray-700 dark:text-gray-300">Product Recall</p>
+                            <p class="text-xs text-gray-500 dark:text-gray-400">Manufacturer coverage</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                            <p class="font-semibold text-gray-700 dark:text-gray-300">Cyber Liability</p>
+                            <p class="text-xs text-gray-500 dark:text-gray-400">Data breach coverage</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Key Point -->
+                <div class="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg border-l-4 border-amber-500">
+                    <p class="font-semibold text-amber-800 dark:text-amber-300">Exam Tip!</p>
+                    <p class="text-gray-600 dark:text-gray-300 text-sm mt-1">If a risk is on the <strong>exportable list</strong>, you can skip the 3-declination requirement. If it's NOT on the list, you must show diligent effort (3 declinations) before placing with surplus lines.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Surplus Lines Broker Requirements -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">Surplus Lines Broker Responsibilities</h2>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-indigo-50 dark:bg-indigo-900/20 rounded-lg p-5">
+                        <h3 class="font-bold text-indigo-800 dark:text-indigo-300 mb-3">Must Do:</h3>
+                        <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-2">
+                            <li class="flex items-start">
+                                <span class="text-indigo-500 mr-2">✓</span>
+                                <span>Be licensed as a surplus lines broker</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-indigo-500 mr-2">✓</span>
+                                <span>Document diligent effort (keep records of declinations)</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-indigo-500 mr-2">✓</span>
+                                <span>Use only eligible surplus lines insurers</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-indigo-500 mr-2">✓</span>
+                                <span>Collect and remit surplus lines tax</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-indigo-500 mr-2">✓</span>
+                                <span>Disclose that coverage is NOT from admitted insurer</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-5">
+                        <h3 class="font-bold text-red-800 dark:text-red-300 mb-3">Cannot Do:</h3>
+                        <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-2">
+                            <li class="flex items-start">
+                                <span class="text-red-500 mr-2">✗</span>
+                                <span>Place with surplus lines without diligent effort</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-red-500 mr-2">✗</span>
+                                <span>Use unauthorized/ineligible insurers</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-red-500 mr-2">✗</span>
+                                <span>Misrepresent the nature of coverage</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-red-500 mr-2">✗</span>
+                                <span>Fail to inform insured about guaranty fund</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Reference -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-emerald-50 to-green-50 dark:from-emerald-900/30 dark:to-green-900/30 rounded-xl shadow-md p-6 border border-emerald-200 dark:border-emerald-800">
+                <h2 class="text-2xl font-bold text-emerald-800 dark:text-emerald-200 mb-4">Quick Reference: Surplus Lines</h2>
+
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-3 mb-6">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg text-center">
+                        <p class="text-3xl font-bold text-emerald-600 dark:text-emerald-400">3</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Declinations Required</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg text-center">
+                        <p class="text-3xl font-bold text-blue-600 dark:text-blue-400">Annual</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Exportable List Updated</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg text-center">
+                        <p class="text-3xl font-bold text-purple-600 dark:text-purple-400">0</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Guaranty Fund Protection</p>
+                    </div>
+                </div>
+
+                <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                    <h4 class="font-bold text-gray-800 dark:text-gray-200 mb-2">Remember:</h4>
+                    <ul class="text-sm text-gray-600 dark:text-gray-300 space-y-1">
+                        <li>• <strong>Diligent Effort</strong> = 3 declinations from authorized insurers</li>
+                        <li>• Each insurer must be <strong>authorized</strong> to write the type of coverage</li>
+                        <li>• Producer must have <strong>good faith reason</strong> to believe they might write it</li>
+                        <li>• <strong>Exportable List</strong> = Skip the 3-declination requirement</li>
+                        <li>• Surplus lines = NOT protected by state guaranty fund</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Navigation Footer -->
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="../part-4/index.html" class="text-gray-300 hover:text-white">&larr; Part 4: Cancellation</a>
+                <span class="text-gray-400">Part 5: Surplus Lines</span>
+                <a href="../part-6/index.html" class="text-gray-300 hover:text-white">Part 6: Certificates &rarr;</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Initialize AI Tutor -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            createFloatingAIButton(`Chapter 5 Part 5: Surplus Lines
+
+WHAT ARE SURPLUS LINES?
+- Coverage from NON-ADMITTED (unlicensed) insurers
+- Used when admitted market won't write the risk
+- NOT protected by state guaranty fund
+
+DILIGENT EFFORT REQUIREMENT:
+Before placing with surplus lines, must get:
+- 3 DECLINATIONS from authorized (admitted) insurers
+- Each insurer must be authorized to write that type of coverage
+- Producer must have good faith reason to believe they might write it
+
+WHAT COUNTS AS DILIGENT EFFORT:
+✓ 3 insurers authorized to write the coverage
+✓ 3 insurers who might reasonably consider the risk
+✓ Actual declinations documented
+
+WHAT DOESN'T COUNT:
+✗ Insurers who don't write that type of coverage
+✗ Insurers you know will decline
+✗ Just getting expensive quotes (price isn't declination)
+
+EXPORTABLE LIST:
+- Commissioner-declared list of lines eligible for export
+- After hearing: determined no adequate admitted market
+- Compiled ANNUALLY
+- If on list: Skip 3-declination requirement
+- If NOT on list: Must show diligent effort
+
+SURPLUS LINES BROKER MUST:
+- Be licensed as surplus lines broker
+- Document diligent effort
+- Use only eligible surplus lines insurers
+- Collect and remit surplus lines tax
+- Disclose no guaranty fund protection`);
+        });
+    </script>
+</body>
+</html>
