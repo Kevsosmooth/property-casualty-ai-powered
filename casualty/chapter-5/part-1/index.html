@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 5 Part 1: Auto Insurance | P&C Study Guide</title>
+    <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <link rel="stylesheet" href="../../../css/styles.css">
+    <script src="../../../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+        }
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <!-- Settings & Theme Toggle Buttons -->
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="showAPIKeySetup()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings">
+            <svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+        </button>
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/>
+            </svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap gap-2 text-sm mb-2">
+                <a href="../../../index.html" class="text-blue-200 hover:text-white">Home</a>
+                <span class="text-blue-300">/</span>
+                <a href="../index.html" class="text-blue-200 hover:text-white">Chapter 5</a>
+                <span class="text-blue-300">/</span>
+                <span class="text-white">Part 1: Auto Insurance</span>
+            </div>
+            <h1 class="text-3xl font-bold">Chapter 5 Part 1: Auto Insurance</h1>
+            <p class="text-blue-200 mt-1">NJ Mandatory Coverage, Policy Options, and State Programs</p>
+        </div>
+    </header>
+
+    <!-- Part Navigation -->
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-wrap gap-2 text-sm">
+                <a href="../intro/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Intro</a>
+                <span class="bg-blue-600 text-white px-3 py-1 rounded font-medium">Part 1: Auto</span>
+                <a href="../part-2/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 2: Workers Comp</a>
+                <span class="text-gray-400 px-3 py-1">Part 3</span>
+                <span class="text-gray-400 px-3 py-1">Part 4</span>
+                <span class="text-gray-400 px-3 py-1">Part 5</span>
+                <span class="text-gray-400 px-3 py-1">Part 6</span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-4xl lg:max-w-6xl">
+
+        <!-- Overview -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">Auto Insurance in New Jersey</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-800 rounded-lg p-4 mb-6">
+                    <p class="text-gray-700 dark:text-gray-300"><strong>Auto insurance is mandatory in New Jersey.</strong> However, the type of insurance may vary depending on the option selected by the insured. The Automobile Insurance Cost Reduction Act mandated that both a <strong>Basic Policy</strong> and a <strong>Standard Policy</strong> be available to all drivers.</p>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 rounded-r-lg">
+                    <p class="font-bold text-amber-800 dark:text-amber-300">Exam Alert!</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2">Know the difference between Standard (25/50/25) and Basic ($5,000 PD only) policies. This is one of the most tested NJ-specific topics!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 1. Requirements -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">1. Requirements - Bodily Injury & Property Damage</h2>
+
+                <!-- Standard Policy -->
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-5 border-l-4 border-blue-500 mb-6">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-xl mb-4">Standard Automobile Liability Policy</h3>
+
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">Must include at least the following coverage limits:</p>
+
+                    <div class="grid md:grid-cols-3 gap-4 mb-4">
+                        <div class="bg-white dark:bg-gray-700 rounded-lg p-4 text-center">
+                            <p class="text-3xl font-bold text-blue-600 dark:text-blue-400">$25,000</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-300">Per person BI</p>
+                            <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Injury/death to ONE person</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 rounded-lg p-4 text-center">
+                            <p class="text-3xl font-bold text-blue-600 dark:text-blue-400">$50,000</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-300">Per accident BI</p>
+                            <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Injury/death to ALL persons</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 rounded-lg p-4 text-center">
+                            <p class="text-3xl font-bold text-blue-600 dark:text-blue-400">$25,000</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-300">Property Damage</p>
+                            <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Excludes first $500</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-semibold text-gray-700 dark:text-gray-200 mb-2">Higher Limits Available:</p>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm">Up to <strong>$250,000</strong> per person, <strong>$500,000</strong> per accident, and <strong>$100,000</strong> property damage.</p>
+                    </div>
+
+                    <!-- Example -->
+                    <div class="mt-4 bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <p class="font-semibold text-green-800 dark:text-green-300 mb-2">Example: 25/50/25 in Action</p>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm">You cause an accident injuring 3 people with claims of $30K, $20K, and $15K ($65K total). Your policy pays:</p>
+                        <ul class="text-sm text-gray-600 dark:text-gray-400 mt-2 space-y-1">
+                            <li>• Person 1: $25,000 (capped at per-person limit, not full $30K)</li>
+                            <li>• Person 2: $20,000 (under limit)</li>
+                            <li>• Remaining: $5,000 to Person 3 (hit the $50K per-accident cap)</li>
+                            <li>• <strong>You owe $10,000 out of pocket</strong> for Person 3's remaining claim</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Basic Policy -->
+                <div class="bg-orange-50 dark:bg-orange-900/20 rounded-lg p-5 border-l-4 border-orange-500 mb-6">
+                    <h3 class="font-bold text-orange-800 dark:text-orange-300 text-xl mb-4">Basic Automobile Policy</h3>
+
+                    <div class="grid md:grid-cols-2 gap-4 mb-4">
+                        <div class="bg-white dark:bg-gray-700 rounded-lg p-4">
+                            <p class="font-bold text-red-600 dark:text-red-400 text-lg">NO Bodily Injury Liability</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">Optional: $10,000 for all persons may be purchased</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 rounded-lg p-4">
+                            <p class="font-bold text-orange-600 dark:text-orange-400 text-lg">$5,000 Property Damage</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">Per accident liability</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-semibold text-gray-700 dark:text-gray-200 mb-2">Who Should Consider Basic?</p>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm">Those with <strong>few family responsibilities</strong> and <strong>few real assets</strong>. Good for younger drivers just starting work who need basic, minimum protection when they can least afford more comprehensive coverage.</p>
+                    </div>
+
+                    <!-- Example -->
+                    <div class="mt-4 bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                        <p class="font-semibold text-red-800 dark:text-red-300 mb-2">Warning: Basic Policy Risk</p>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm">You cause an accident - someone breaks their leg ($50K medical bills). With Basic policy:</p>
+                        <ul class="text-sm text-gray-600 dark:text-gray-400 mt-2 space-y-1">
+                            <li>• BI Coverage: $0 (or $10K if you bought optional)</li>
+                            <li>• <strong>You're personally liable for $40K-$50K!</strong></li>
+                            <li>• They can sue you and take your assets</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Producer Liability Exemption -->
+                <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 border-l-4 border-green-500">
+                    <p class="font-semibold text-green-800 dark:text-green-300">Producer Protection:</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm mt-1">New Jersey law <strong>exempts producers from liability</strong> on account of selling insurance with the minimum required coverage. You can't be sued for selling someone a Basic policy if that's what they chose.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Uninsured/Underinsured -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">Uninsured and Underinsured Motorists (UM/UIM)</h2>
+
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-5 border-l-4 border-purple-500 mb-6">
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">NJ motorists are <strong>required</strong> to purchase UM/UIM coverage. Limits may not be less than the insured's liability limits (25/50/25).</p>
+
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg mb-4">
+                        <p class="font-semibold text-gray-700 dark:text-gray-200 mb-2">Higher Limits Available:</p>
+                        <ul class="text-sm text-gray-600 dark:text-gray-300 space-y-1">
+                            <li>• Up to <strong>$250,000</strong> each person / <strong>$500,000</strong> each accident for BI</li>
+                            <li>• Up to <strong>$100,000</strong> each accident for PD (or $500,000 single limit)</li>
+                            <li>• Subject to $500 exclusion for property damage per accident</li>
+                        </ul>
+                    </div>
+
+                    <!-- No Stacking -->
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-400">
+                        <p class="font-semibold text-red-800 dark:text-red-300">NO STACKING Allowed!</p>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm mt-1">In NJ, UM/UIM coverage may NOT be increased by stacking limits of multiple vehicles on the same policy or other policies available to the insured.</p>
+                        <div class="mt-2 bg-white dark:bg-gray-700 p-2 rounded text-xs">
+                            <span class="italic text-gray-500 dark:text-gray-400">Example: You have 3 cars insured with $50K UM each. You can't combine them to get $150K coverage. You get $50K max.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Example -->
+                <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg">
+                    <p class="font-semibold text-blue-800 dark:text-blue-300 mb-2">Example: When UM/UIM Kicks In</p>
+                    <div class="grid md:grid-cols-2 gap-4 text-sm">
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-medium text-gray-700 dark:text-gray-200">Uninsured (UM):</p>
+                            <p class="text-gray-600 dark:text-gray-400">Driver with no insurance hits you. Your UM coverage pays your medical bills.</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-medium text-gray-700 dark:text-gray-200">Underinsured (UIM):</p>
+                            <p class="text-gray-600 dark:text-gray-400">Driver has $25K coverage, your injuries are $75K. Their insurance pays $25K, your UIM pays remaining $50K.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Evidence of Insurance -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">Evidence of Insurance & ID Cards</h2>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-5">
+                        <h3 class="font-bold text-gray-800 dark:text-gray-200 mb-3">Insurance ID Cards</h3>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm">When you purchase auto insurance, you receive:</p>
+                        <ul class="text-sm text-gray-600 dark:text-gray-300 mt-2 space-y-1">
+                            <li>• Your insurance policy</li>
+                            <li>• Identification card for you</li>
+                            <li>• Cards for licensed household members</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-teal-50 dark:bg-teal-900/20 rounded-lg p-5">
+                        <h3 class="font-bold text-teal-800 dark:text-teal-300 mb-3">Non-Driver ID Cards</h3>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm mb-2">NJ residents <strong>17 years or older</strong> who cannot or choose not to drive may apply for:</p>
+                        <ul class="text-sm text-gray-600 dark:text-gray-300 space-y-2">
+                            <li class="flex items-start">
+                                <span class="text-teal-500 mr-2">•</span>
+                                <span><strong>Non-driver photo ID</strong> - For identification only, NOT a license to drive</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-teal-500 mr-2">•</span>
+                                <span><strong>Non-driver handicapped ID</strong> - For ID only, cannot be used to drive or park in handicapped spaces</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. PIP -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">2. Personal Injury Protection (PIP) - No-Fault Coverage</h2>
+
+                <div class="bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-800 rounded-lg p-4 mb-6">
+                    <p class="text-gray-700 dark:text-gray-300"><strong>PIP is "no-fault" coverage</strong> because benefits are paid regardless of who caused the accident. It covers the insured and family members who sustain bodily injury in an auto accident.</p>
+                </div>
+
+                <!-- PIP Benefits -->
+                <h3 class="font-bold text-gray-800 dark:text-gray-200 text-lg mb-4">PIP Benefits Include:</h3>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 border-l-4 border-blue-500">
+                        <p class="font-bold text-blue-800 dark:text-blue-300 text-xl">$250,000</p>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm">Medical expenses per person, per accident</p>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 border-l-4 border-green-500">
+                        <p class="font-bold text-green-800 dark:text-green-300">Lost Income Benefits</p>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm">Max <strong>$100/week</strong>, lifetime max <strong>$5,200</strong></p>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 border-l-4 border-purple-500">
+                        <p class="font-bold text-purple-800 dark:text-purple-300">Essential Services</p>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm">Max <strong>$12/day</strong>, lifetime max <strong>$4,380</strong></p>
+                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Services for care/maintenance of family</p>
+                    </div>
+                    <div class="bg-gray-100 dark:bg-gray-700 rounded-lg p-4 border-l-4 border-gray-500">
+                        <p class="font-bold text-gray-700 dark:text-gray-300">Death Benefits</p>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm">Funeral/burial/cremation up to <strong>$1,000</strong></p>
+                    </div>
+                </div>
+
+                <!-- $75K Threshold -->
+                <div class="bg-amber-50 dark:bg-amber-900/20 rounded-lg p-4 border-l-4 border-amber-500 mb-6">
+                    <p class="font-bold text-amber-800 dark:text-amber-300">$75,000 Threshold</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm mt-1">If PIP benefits exceed <strong>$75,000</strong> for any one person in any one accident, the excess is paid by the insurer in consultation with the <strong>Unsatisfied Claims and Judgment Fund Board</strong>.</p>
+                </div>
+
+                <!-- PIP Deductibles -->
+                <div class="bg-indigo-50 dark:bg-indigo-900/20 rounded-lg p-5 mb-6">
+                    <h4 class="font-bold text-indigo-800 dark:text-indigo-300 mb-3">Medical Expense Deductible Options</h4>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm mb-3">NJ must offer several deductible options for collision and comprehensive:</p>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="bg-white dark:bg-gray-700 px-4 py-2 rounded-lg font-semibold text-indigo-600 dark:text-indigo-400">$500</span>
+                        <span class="bg-white dark:bg-gray-700 px-4 py-2 rounded-lg font-semibold text-indigo-600 dark:text-indigo-400">$1,000</span>
+                        <span class="bg-white dark:bg-gray-700 px-4 py-2 rounded-lg font-semibold text-indigo-600 dark:text-indigo-400">$2,000</span>
+                        <span class="bg-white dark:bg-gray-700 px-4 py-2 rounded-lg font-semibold text-indigo-600 dark:text-indigo-400">$2,500</span>
+                    </div>
+                </div>
+
+                <!-- Primacy & Rules -->
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-cyan-50 dark:bg-cyan-900/20 rounded-lg p-4">
+                        <h4 class="font-bold text-cyan-800 dark:text-cyan-300 mb-2">Primacy of Coverage</h4>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm">The named insured's PIP is primary for the named insured and resident relatives who aren't named insureds on their own policy.</p>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm mt-2 font-semibold">No person may recover PIP benefits under more than 1 auto policy for injuries in any accident.</p>
+                    </div>
+                    <div class="bg-rose-50 dark:bg-rose-900/20 rounded-lg p-4">
+                        <h4 class="font-bold text-rose-800 dark:text-rose-300 mb-2">60-Day Rule</h4>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm">Insurer may require written notice ASAP after an accident. After <strong>60 days</strong>, any unpaid PIP coverages are considered <strong>overdue</strong>.</p>
+                    </div>
+                </div>
+
+                <!-- PIP Exclusions -->
+                <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-5 border-2 border-red-300 dark:border-red-700">
+                    <h4 class="font-bold text-red-800 dark:text-red-300 mb-3">PIP Exclusions - When Benefits May Be Denied</h4>
+                    <div class="space-y-3">
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="text-gray-700 dark:text-gray-300 text-sm"><strong>Criminal Activity:</strong> Injury while committing a high misdemeanor or felony, or fleeing from police</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="text-gray-700 dark:text-gray-300 text-sm"><strong>Intentional Injury:</strong> Acting with specific intent to cause injury to yourself</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="text-gray-700 dark:text-gray-300 text-sm"><strong>Uninsured Owner:</strong> Owner of a NJ-registered vehicle operating without PIP coverage</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="text-gray-700 dark:text-gray-300 text-sm"><strong>No Permission:</strong> Occupying/operating a vehicle without the owner's permission</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tort Options -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">Tort Options - Lawsuit Rights</h2>
+
+                <p class="text-gray-700 dark:text-gray-300 mb-6">The named insured must elect one of two tort options to maintain PIP coverage:</p>
+
+                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                    <!-- Limitation Option -->
+                    <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-5 border-2 border-green-400 dark:border-green-600">
+                        <div class="flex items-center mb-3">
+                            <span class="bg-green-600 text-white text-xs font-bold px-2 py-1 rounded mr-2">LOWER PREMIUM</span>
+                            <h3 class="font-bold text-green-800 dark:text-green-300">Limitation on Lawsuit</h3>
+                        </div>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm mb-3">You give up the right to sue for <strong>noneconomic loss</strong> (pain and suffering) in most cases.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded text-sm">
+                            <p class="text-gray-600 dark:text-gray-300 italic">Example: You're injured, have $10K medical bills and suffer pain. You get PIP for medical bills but CAN'T sue for pain and suffering unless injuries are severe.</p>
+                        </div>
+                    </div>
+
+                    <!-- No Limitation Option -->
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-5 border-2 border-blue-400 dark:border-blue-600">
+                        <div class="flex items-center mb-3">
+                            <span class="bg-blue-600 text-white text-xs font-bold px-2 py-1 rounded mr-2">HIGHER PREMIUM</span>
+                            <h3 class="font-bold text-blue-800 dark:text-blue-300">No Limitation on Lawsuit</h3>
+                        </div>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm mb-3">You keep the full right to sue for <strong>noneconomic loss</strong> (pain and suffering).</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded text-sm">
+                            <p class="text-gray-600 dark:text-gray-300 italic">Example: Same injury - you get PIP for medical bills AND can sue the at-fault driver for pain and suffering damages.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Important Rules -->
+                <div class="space-y-3">
+                    <div class="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg">
+                        <p class="text-gray-700 dark:text-gray-300 text-sm"><strong>Election must be in writing</strong> and signed by the named insured. The form must state the percentage difference in premium rates or dollar savings between options.</p>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg">
+                        <p class="text-gray-700 dark:text-gray-300 text-sm"><strong>Applies to household:</strong> The option selected applies to the named insured AND family members residing in the same household who aren't named insureds on their own policy.</p>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                        <p class="text-gray-700 dark:text-gray-300 text-sm"><strong>Default Rule:</strong> If the named insured fails to elect a tort option in writing, the <strong>Limitation on Lawsuit option</strong> is deemed selected.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. PAIP -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">3. NJ Automobile Residual Market - Personal Automobile Insurance Plan (PAIP)</h2>
+
+                <div class="bg-teal-50 dark:bg-teal-900/30 border border-teal-200 dark:border-teal-800 rounded-lg p-4 mb-6">
+                    <h3 class="font-bold text-teal-800 dark:text-teal-300 mb-2">Purpose</h3>
+                    <p class="text-gray-700 dark:text-gray-300">The Commissioner can establish a plan for applicants who are <strong>in good faith entitled to coverage but cannot obtain it through ordinary methods</strong>. Every authorized insurer must participate.</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2">PAIP is administered by the <strong>NJ Automobile Full Insurance Underwriting Association</strong>.</p>
+                </div>
+
+                <div class="bg-white dark:bg-gray-700 p-3 rounded mb-6 border-l-4 border-teal-500">
+                    <p class="text-sm text-gray-600 dark:text-gray-300 italic">Example: A driver with multiple DUIs can't get any regular insurer to cover them. PAIP provides a way for them to get legally required insurance, though at higher rates.</p>
+                </div>
+
+                <!-- Rates -->
+                <div class="bg-orange-50 dark:bg-orange-900/20 rounded-lg p-4 mb-6">
+                    <h4 class="font-bold text-orange-800 dark:text-orange-300 mb-2">Rates</h4>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm">Rates are adjusted upward from territorial base rates for insureds with:</p>
+                    <ul class="text-sm text-gray-600 dark:text-gray-300 mt-2 space-y-1">
+                        <li>• One or more moving violations</li>
+                        <li>• 4 or more points</li>
+                        <li>• An at-fault accident within preceding 3 years</li>
+                    </ul>
+                </div>
+
+                <!-- Servicing Carrier Requirements -->
+                <div class="bg-indigo-50 dark:bg-indigo-900/20 rounded-lg p-4 mb-6">
+                    <h4 class="font-bold text-indigo-800 dark:text-indigo-300 mb-2">Servicing Carrier Eligibility</h4>
+                    <div class="grid md:grid-cols-2 gap-3 text-sm">
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="text-gray-700 dark:text-gray-300">Minimum assets of <strong>$10,000,000</strong></p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="text-gray-700 dark:text-gray-300">In insurance business <strong>at least 5 years</strong></p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="text-gray-700 dark:text-gray-300"><strong>3+ years</strong> insurance-related experience</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="text-gray-700 dark:text-gray-300">Capacity to service <strong>100,000+ policies</strong></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Available Coverages -->
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 mb-6">
+                    <h4 class="font-bold text-blue-800 dark:text-blue-300 mb-2">Available Coverages</h4>
+                    <div class="grid md:grid-cols-2 gap-2 text-sm">
+                        <div class="flex items-center"><span class="text-blue-500 mr-2">✓</span> $500,000 bodily injury</div>
+                        <div class="flex items-center"><span class="text-blue-500 mr-2">✓</span> $100,000 property damage</div>
+                        <div class="flex items-center"><span class="text-blue-500 mr-2">✓</span> Medical payment $500,000 ($250K/person)</div>
+                        <div class="flex items-center"><span class="text-blue-500 mr-2">✓</span> Comprehensive and Collision</div>
+                        <div class="flex items-center"><span class="text-blue-500 mr-2">✓</span> UM/UIM coverage</div>
+                        <div class="flex items-center"><span class="text-blue-500 mr-2">✓</span> Personal Injury Protection</div>
+                    </div>
+                </div>
+
+                <!-- UEZ Program -->
+                <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-5 border-l-4 border-green-500">
+                    <h4 class="font-bold text-green-800 dark:text-green-300 mb-2">Urban Enterprise Zone (UEZ) Program</h4>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm mb-3">Established to <strong>increase insurance availability in urban areas</strong>. The Commissioner offers incentives to encourage qualified insurers to write auto insurance in UEZ areas.</p>
+                    <p class="text-gray-600 dark:text-gray-400 text-xs">Insurers must file plans for increasing access, assist UEZ agents, monitor impact, provide consumer education materials, and set goals for in-force exposures.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. CAIP -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">4. Commercial Automobile Insurance Plan (CAIP)</h2>
+
+                <div class="bg-purple-50 dark:bg-purple-900/30 rounded-lg p-4 mb-6">
+                    <h3 class="font-bold text-purple-800 dark:text-purple-300 mb-2">Two Main Purposes:</h3>
+                    <ol class="list-decimal list-inside text-gray-700 dark:text-gray-300 space-y-2">
+                        <li>Provides coverages for all motor vehicles <strong>other than those subject to PAIP</strong></li>
+                        <li>Establishes procedure for <strong>sharing premiums, losses, and expenses</strong> for eligible risks</li>
+                    </ol>
+                </div>
+
+                <!-- Eligibility -->
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 mb-6">
+                    <h4 class="font-bold text-blue-800 dark:text-blue-300 mb-2">Eligible Applicants Must:</h4>
+                    <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-2">
+                        <li class="flex items-start">
+                            <span class="text-blue-500 mr-2">•</span>
+                            <span>Be <strong>domiciled in New Jersey</strong></span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-blue-500 mr-2">•</span>
+                            <span>Be owner of an automobile registered or to be registered within <strong>60 days</strong></span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-blue-500 mr-2">•</span>
+                            <span>Principal driver must hold a <strong>valid NJ driver's license</strong></span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Key Coverage Info -->
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 border-l-4 border-green-500">
+                        <h4 class="font-bold text-green-800 dark:text-green-300 mb-2">Basic Combined Single Limit</h4>
+                        <p class="text-3xl font-bold text-green-600 dark:text-green-400">$35,000</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">Required from servicing carrier</p>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 border-l-4 border-purple-500">
+                        <h4 class="font-bold text-purple-800 dark:text-purple-300 mb-2">UM/UIM Optional</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">Up to <strong>$500,000 single limit</strong>, subject to $500 PD exclusion</p>
+                    </div>
+                </div>
+
+                <!-- Physical Damage Coverage -->
+                <div class="bg-amber-50 dark:bg-amber-900/20 rounded-lg p-4 mb-6">
+                    <h4 class="font-bold text-amber-800 dark:text-amber-300 mb-2">Physical Damage Coverage Available For:</h4>
+                    <div class="grid md:grid-cols-2 gap-2 text-sm text-gray-700 dark:text-gray-300">
+                        <div>• Private passenger vehicles</div>
+                        <div>• Motorcycles</div>
+                        <div>• Light trucks</div>
+                        <div>• Recreational trailers (not residences)</div>
+                        <div>• Social services vehicles</div>
+                    </div>
+                </div>
+
+                <!-- Not Entitled -->
+                <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-4 border-l-4 border-red-500">
+                    <h4 class="font-bold text-red-800 dark:text-red-300 mb-2">NOT Entitled to Physical Damage Coverage If:</h4>
+                    <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-1">
+                        <li>• Vehicle is <strong>25+ years old</strong> (antique)</li>
+                        <li>• Vehicle value exceeds <strong>$30,000</strong></li>
+                        <li>• Vehicle is a <strong>motorized bicycle or moped</strong></li>
+                        <li>• Registration plate not issued for a specific auto</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Basic Policy -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">5. Basic Auto Insurance Policy</h2>
+
+                <div class="bg-orange-50 dark:bg-orange-900/30 border border-orange-200 dark:border-orange-800 rounded-lg p-4 mb-6">
+                    <p class="text-gray-700 dark:text-gray-300">The Automobile Insurance Cost Reduction Act mandates that a <strong>basic auto insurance policy</strong> be available to all drivers. It offers <strong>less protection but at a lower cost</strong> than the standard policy.</p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-4 mb-6">
+                    <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-4 text-center border-2 border-red-300 dark:border-red-700">
+                        <p class="font-bold text-red-800 dark:text-red-300">Bodily Injury</p>
+                        <p class="text-2xl font-bold text-red-600 dark:text-red-400 mt-2">$0</p>
+                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">($10K optional for all persons)</p>
+                    </div>
+                    <div class="bg-orange-50 dark:bg-orange-900/20 rounded-lg p-4 text-center border-2 border-orange-300 dark:border-orange-700">
+                        <p class="font-bold text-orange-800 dark:text-orange-300">Property Damage</p>
+                        <p class="text-2xl font-bold text-orange-600 dark:text-orange-400 mt-2">$5,000</p>
+                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Per accident</p>
+                    </div>
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 text-center border-2 border-blue-300 dark:border-blue-700">
+                        <p class="font-bold text-blue-800 dark:text-blue-300">PIP</p>
+                        <p class="text-2xl font-bold text-blue-600 dark:text-blue-400 mt-2">$15,000</p>
+                        <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Up to $250K for permanent injury</p>
+                    </div>
+                </div>
+
+                <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg">
+                    <p class="font-semibold text-green-800 dark:text-green-300">Producer Protection Reminder:</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm mt-1">NJ law <strong>exempts producers from liability</strong> for selling insurance with minimum required coverage mandated by NJ law.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. SAIP -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">6. Special Auto Insurance Policy (SAIP)</h2>
+
+                <div class="bg-indigo-50 dark:bg-indigo-900/30 border border-indigo-200 dark:border-indigo-800 rounded-lg p-4 mb-6">
+                    <p class="text-gray-700 dark:text-gray-300">An initiative to help make <strong>limited auto insurance coverage available to drivers who may go uninsured due to limited financial resources</strong>. Only available to those currently enrolled in <strong>Medicaid with hospitalization</strong>.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                    <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-5 border-l-4 border-green-500">
+                        <h3 class="font-bold text-green-800 dark:text-green-300 mb-3">Cost</h3>
+                        <p class="text-4xl font-bold text-green-600 dark:text-green-400">$360</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">Per year (single payment)</p>
+                        <p class="text-xs text-gray-500 dark:text-gray-400">Or $365 if paid in 2 payments</p>
+                    </div>
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-5 border-l-4 border-blue-500">
+                        <h3 class="font-bold text-blue-800 dark:text-blue-300 mb-3">Coverage Provides</h3>
+                        <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-2">
+                            <li class="flex items-start">
+                                <span class="text-blue-500 mr-2">•</span>
+                                <span><strong>$250,000</strong> emergency care after accident</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-blue-500 mr-2">•</span>
+                                <span>Treatment for serious brain and spinal cord injuries</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-blue-500 mr-2">•</span>
+                                <span><strong>$10,000</strong> death benefit</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-4 border-l-4 border-red-500">
+                    <h4 class="font-bold text-red-800 dark:text-red-300 mb-2">SAIP Excludes:</h4>
+                    <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-1">
+                        <li>• Outpatient treatments (covered by Medicaid)</li>
+                        <li>• Damage you cause to other people or property (<strong>NO LIABILITY</strong>)</li>
+                        <li>• Damage to your own car (<strong>NO COLLISION/COMP</strong>)</li>
+                    </ul>
+                </div>
+
+                <div class="mt-4 bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg">
+                    <p class="text-gray-700 dark:text-gray-300 text-sm"><strong>Key Point:</strong> SAIP addresses the chief cost an uninsured driver places on the system - the cost of <strong>emergency care after an accident</strong>.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Reference -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-blue-50 to-cyan-50 dark:from-blue-900/30 dark:to-cyan-900/30 rounded-xl shadow-md p-6 border border-blue-200 dark:border-blue-800">
+                <h2 class="text-2xl font-bold text-blue-800 dark:text-blue-200 mb-4">Quick Reference: Auto Insurance Numbers</h2>
+
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                        <p class="text-xl font-bold text-blue-600 dark:text-blue-400">25/50/25</p>
+                        <p class="text-xs text-gray-600 dark:text-gray-400">Standard limits</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                        <p class="text-xl font-bold text-orange-600 dark:text-orange-400">$5,000</p>
+                        <p class="text-xs text-gray-600 dark:text-gray-400">Basic PD</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                        <p class="text-xl font-bold text-green-600 dark:text-green-400">$250,000</p>
+                        <p class="text-xs text-gray-600 dark:text-gray-400">PIP Medical max</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                        <p class="text-xl font-bold text-purple-600 dark:text-purple-400">$100/wk</p>
+                        <p class="text-xs text-gray-600 dark:text-gray-400">PIP lost income</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                        <p class="text-xl font-bold text-teal-600 dark:text-teal-400">$5,200</p>
+                        <p class="text-xs text-gray-600 dark:text-gray-400">PIP income lifetime</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                        <p class="text-xl font-bold text-cyan-600 dark:text-cyan-400">$12/day</p>
+                        <p class="text-xs text-gray-600 dark:text-gray-400">Essential services</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                        <p class="text-xl font-bold text-rose-600 dark:text-rose-400">$1,000</p>
+                        <p class="text-xs text-gray-600 dark:text-gray-400">Funeral benefit</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                        <p class="text-xl font-bold text-indigo-600 dark:text-indigo-400">$360</p>
+                        <p class="text-xs text-gray-600 dark:text-gray-400">SAIP annual</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Navigation Footer -->
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="../intro/index.html" class="text-gray-300 hover:text-white">← Introduction</a>
+                <span class="text-gray-400">Part 1: Auto Insurance</span>
+                <a href="../part-2/index.html" class="text-gray-300 hover:text-white">Part 2: Workers Comp →</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Initialize AI Tutor -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            createFloatingAIButton(`Chapter 5 Part 1: Auto Insurance
+
+NJ AUTO INSURANCE IS MANDATORY
+
+STANDARD POLICY - 25/50/25:
+- $25,000 per person BI
+- $50,000 per accident BI
+- $25,000 property damage (excludes first $500)
+- Higher limits available up to 250/500/100
+
+BASIC POLICY:
+- NO bodily injury (optional $10K)
+- $5,000 property damage
+- Lower cost, less protection
+- Good for those with few assets
+
+UM/UIM COVERAGE:
+- Required in NJ
+- Limits must match liability limits
+- NO STACKING allowed
+- Up to $250K/$500K BI available
+
+PERSONAL INJURY PROTECTION (PIP):
+- No-fault coverage
+- $250,000 medical max
+- $100/week lost income ($5,200 lifetime)
+- $12/day essential services ($4,380 lifetime)
+- $1,000 funeral benefit
+- 60 days = overdue
+
+TORT OPTIONS:
+- Limitation on lawsuit (lower premium, can't sue for pain/suffering)
+- No limitation (higher premium, full lawsuit rights)
+- Default = Limitation if not elected in writing
+
+PAIP (Personal Auto Plan):
+- For those who can't get regular coverage
+- Administered by NJ Auto Full Insurance Underwriting Association
+- Higher rates for violations/accidents
+
+CAIP (Commercial Auto Plan):
+- $35,000 basic combined single limit
+- For commercial vehicles
+
+SAIP (Special Auto Policy):
+- $360/year for Medicaid recipients
+- $250,000 emergency care
+- $10,000 death benefit
+- NO liability coverage`);
+        });
+    </script>
+</body>
+</html>

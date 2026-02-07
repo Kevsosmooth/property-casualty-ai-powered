@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 5 Part 2: Workers Compensation | P&C Study Guide</title>
+    <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <link rel="stylesheet" href="../../../css/styles.css">
+    <script src="../../../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+        }
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <!-- Settings & Theme Toggle Buttons -->
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="showAPIKeySetup()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings">
+            <svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+        </button>
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/>
+            </svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-amber-600 to-orange-700 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap gap-2 text-sm mb-2">
+                <a href="../../../index.html" class="text-amber-200 hover:text-white">Home</a>
+                <span class="text-amber-300">/</span>
+                <a href="../index.html" class="text-amber-200 hover:text-white">Chapter 5</a>
+                <span class="text-amber-300">/</span>
+                <span class="text-white">Part 2: Workers Compensation</span>
+            </div>
+            <h1 class="text-3xl font-bold">Chapter 5 Part 2: Workers Compensation</h1>
+            <p class="text-amber-200 mt-1">NJ Workers Comp Benefits, Requirements, and Programs</p>
+        </div>
+    </header>
+
+    <!-- Part Navigation -->
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-wrap gap-2 text-sm">
+                <a href="../intro/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Intro</a>
+                <a href="../part-1/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 1: Auto</a>
+                <span class="bg-amber-600 text-white px-3 py-1 rounded font-medium">Part 2: Workers Comp</span>
+                <span class="text-gray-400 px-3 py-1">Part 3</span>
+                <span class="text-gray-400 px-3 py-1">Part 4</span>
+                <span class="text-gray-400 px-3 py-1">Part 5</span>
+                <span class="text-gray-400 px-3 py-1">Part 6</span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-4xl lg:max-w-6xl">
+
+        <!-- Overview -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">Workers Compensation Insurance in New Jersey</h2>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border border-amber-200 dark:border-amber-800 rounded-lg p-4 mb-6">
+                    <p class="text-gray-700 dark:text-gray-300"><strong>Workers Compensation is a no-fault system</strong> that provides benefits to employees who are injured or become ill as a result of their job. In exchange for guaranteed benefits, employees give up the right to sue their employers for workplace injuries.</p>
+                </div>
+
+                <div class="bg-blue-50 dark:bg-blue-900/30 border-l-4 border-blue-500 p-4 rounded-r-lg">
+                    <p class="font-bold text-blue-800 dark:text-blue-300">The Grand Bargain</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2">Workers comp is often called the "grand bargain" - employees get <strong>guaranteed benefits regardless of fault</strong>, and employers get <strong>protection from lawsuits</strong>. Both sides benefit from this trade-off.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 1. Commercial Coverage -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">1. Commercial Workers Compensation Coverage</h2>
+
+                <!-- Purpose -->
+                <div class="bg-teal-50 dark:bg-teal-900/20 rounded-lg p-5 border-l-4 border-teal-500 mb-6">
+                    <h3 class="font-bold text-teal-800 dark:text-teal-300 text-xl mb-3">Purpose of Workers Compensation</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mb-3">Workers Compensation insurance protects:</p>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="bg-white dark:bg-gray-700 rounded-lg p-4">
+                            <p class="font-semibold text-teal-700 dark:text-teal-300">Employees</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">Get medical care and income replacement for work-related injuries/illness - no need to prove employer was at fault</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 rounded-lg p-4">
+                            <p class="font-semibold text-teal-700 dark:text-teal-300">Employers</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">Protected from employee lawsuits for workplace injuries (exclusive remedy doctrine)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Key Definitions -->
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-5 mb-6">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg mb-4">Key Definitions</h3>
+
+                    <div class="space-y-4">
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                            <p class="font-semibold text-gray-800 dark:text-gray-200">Employee</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">Any person employed in the service of an employer under any contract of hire. Includes minors (lawfully/unlawfully employed), aliens, and those performing service without wages if employer agrees in writing.</p>
+                        </div>
+
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                            <p class="font-semibold text-gray-800 dark:text-gray-200">Employer</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">Includes individuals, partnerships, and corporations (public and private). The "employer" is whoever has control over the worker and the work being performed.</p>
+                        </div>
+
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                            <p class="font-semibold text-gray-800 dark:text-gray-200">Injury/Personal Injury</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">Only includes injuries arising from employment accidents. Does NOT include:</p>
+                            <ul class="text-sm text-gray-600 dark:text-gray-400 mt-2 space-y-1">
+                                <li>• Injuries caused by the <strong>employee's intoxication</strong></li>
+                                <li>• Injuries caused by the <strong>employee's intention to injure</strong> themselves or another</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Example -->
+                    <div class="mt-4 bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <p class="font-semibold text-green-800 dark:text-green-300 mb-2">Example: What IS vs. ISN'T Covered</p>
+                        <div class="grid md:grid-cols-2 gap-3 text-sm">
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                                <p class="font-medium text-green-700 dark:text-green-300">Covered:</p>
+                                <p class="text-gray-600 dark:text-gray-400">Maria slips on a wet floor at her office and breaks her wrist. Covered - work-related accident.</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                                <p class="font-medium text-red-700 dark:text-red-300">NOT Covered:</p>
+                                <p class="text-gray-600 dark:text-gray-400">John shows up drunk, falls off a ladder, and breaks his arm. NOT covered - injury caused by intoxication.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Requirements -->
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-5 border-l-4 border-purple-500">
+                    <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg mb-3">Requirements</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mb-3">New Jersey requires most employers to carry workers compensation insurance. Employers can obtain coverage through:</p>
+                    <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-2">
+                        <li class="flex items-start">
+                            <span class="text-purple-500 mr-2">1.</span>
+                            <span><strong>Private insurance carriers</strong> - Most common method</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-purple-500 mr-2">2.</span>
+                            <span><strong>Self-insurance</strong> - Large employers with financial capacity (requires state approval)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-purple-500 mr-2">3.</span>
+                            <span><strong>State fund</strong> - For employers who can't get coverage elsewhere</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Benefits -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">2. Workers Compensation Benefits</h2>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border border-amber-200 dark:border-amber-800 rounded-lg p-4 mb-6">
+                    <p class="text-gray-700 dark:text-gray-300"><strong>Key Formula:</strong> Benefits are generally calculated at <strong>70% of the employee's weekly wage</strong>, subject to minimum and maximum limits.</p>
+                </div>
+
+                <!-- Wage Limits -->
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 border-l-4 border-green-500">
+                        <p class="font-bold text-green-800 dark:text-green-300">Maximum Benefit</p>
+                        <p class="text-2xl font-bold text-green-600 dark:text-green-400">75%</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">of State Average Weekly Wage</p>
+                    </div>
+                    <div class="bg-orange-50 dark:bg-orange-900/20 rounded-lg p-4 border-l-4 border-orange-500">
+                        <p class="font-bold text-orange-800 dark:text-orange-300">Minimum Benefit</p>
+                        <p class="text-2xl font-bold text-orange-600 dark:text-orange-400">20%</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">of State Average Weekly Wage</p>
+                    </div>
+                </div>
+
+                <!-- Disability Types -->
+                <h3 class="font-bold text-gray-800 dark:text-gray-200 text-lg mb-4">Types of Disability Benefits</h3>
+
+                <div class="space-y-4 mb-6">
+                    <!-- Temporary Total -->
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-5 border-l-4 border-blue-500">
+                        <div class="flex items-center gap-3 mb-3">
+                            <span class="bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded">TEMPORARY TOTAL</span>
+                            <span class="text-gray-600 dark:text-gray-400 text-sm">Can't work at all, but expected to recover</span>
+                        </div>
+                        <div class="grid md:grid-cols-3 gap-3">
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded text-center">
+                                <p class="text-xl font-bold text-blue-600 dark:text-blue-400">70%</p>
+                                <p class="text-xs text-gray-600 dark:text-gray-400">of weekly wage</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded text-center">
+                                <p class="text-xl font-bold text-blue-600 dark:text-blue-400">400 wks</p>
+                                <p class="text-xs text-gray-600 dark:text-gray-400">maximum duration</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded text-center">
+                                <p class="text-xl font-bold text-blue-600 dark:text-blue-400">7 days</p>
+                                <p class="text-xs text-gray-600 dark:text-gray-400">waiting period</p>
+                            </div>
+                        </div>
+                        <div class="mt-3 bg-white dark:bg-gray-700 p-3 rounded text-sm">
+                            <p class="text-gray-600 dark:text-gray-300 italic">Example: Tom breaks his leg on the job. He can't work for 8 weeks. He receives 70% of his weekly wage for those 8 weeks (after the 7-day waiting period).</p>
+                        </div>
+                    </div>
+
+                    <!-- Temporary Partial -->
+                    <div class="bg-teal-50 dark:bg-teal-900/20 rounded-lg p-5 border-l-4 border-teal-500">
+                        <div class="flex items-center gap-3 mb-3">
+                            <span class="bg-teal-600 text-white text-xs font-bold px-3 py-1 rounded">TEMPORARY PARTIAL</span>
+                            <span class="text-gray-600 dark:text-gray-400 text-sm">Can work in limited capacity during recovery</span>
+                        </div>
+                        <div class="grid md:grid-cols-2 gap-3">
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded text-center">
+                                <p class="text-xl font-bold text-teal-600 dark:text-teal-400">70%</p>
+                                <p class="text-xs text-gray-600 dark:text-gray-400">of wage difference</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded text-center">
+                                <p class="text-xl font-bold text-teal-600 dark:text-teal-400">400 wks</p>
+                                <p class="text-xs text-gray-600 dark:text-gray-400">maximum duration</p>
+                            </div>
+                        </div>
+                        <div class="mt-3 bg-white dark:bg-gray-700 p-3 rounded text-sm">
+                            <p class="text-gray-600 dark:text-gray-300 italic">Example: Lisa normally earns $1,000/week but after her injury can only do light duty earning $600/week. She gets 70% of the $400 difference = $280/week supplement.</p>
+                        </div>
+                    </div>
+
+                    <!-- Permanent Total -->
+                    <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-5 border-l-4 border-red-500">
+                        <div class="flex items-center gap-3 mb-3">
+                            <span class="bg-red-600 text-white text-xs font-bold px-3 py-1 rounded">PERMANENT TOTAL</span>
+                            <span class="text-gray-600 dark:text-gray-400 text-sm">Permanently unable to work in any capacity</span>
+                        </div>
+                        <div class="grid md:grid-cols-2 gap-3">
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded text-center">
+                                <p class="text-xl font-bold text-red-600 dark:text-red-400">70%</p>
+                                <p class="text-xs text-gray-600 dark:text-gray-400">of weekly wage</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded text-center">
+                                <p class="text-xl font-bold text-red-600 dark:text-red-400">450 wks</p>
+                                <p class="text-xs text-gray-600 dark:text-gray-400">maximum duration</p>
+                            </div>
+                        </div>
+                        <div class="mt-3 bg-white dark:bg-gray-700 p-3 rounded text-sm">
+                            <p class="text-gray-600 dark:text-gray-300 italic">Example: A construction worker suffers a severe spinal injury and is completely paralyzed. He can never work again. He receives 70% of his wages for up to 450 weeks.</p>
+                        </div>
+                    </div>
+
+                    <!-- Permanent Partial -->
+                    <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-5 border-l-4 border-purple-500">
+                        <div class="flex items-center gap-3 mb-3">
+                            <span class="bg-purple-600 text-white text-xs font-bold px-3 py-1 rounded">PERMANENT PARTIAL</span>
+                            <span class="text-gray-600 dark:text-gray-400 text-sm">Permanent impairment but can still work</span>
+                        </div>
+                        <div class="grid md:grid-cols-2 gap-3">
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded text-center">
+                                <p class="text-xl font-bold text-purple-600 dark:text-purple-400">70%</p>
+                                <p class="text-xs text-gray-600 dark:text-gray-400">of weekly wage</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded text-center">
+                                <p class="text-xl font-bold text-purple-600 dark:text-purple-400">$35/wk</p>
+                                <p class="text-xs text-gray-600 dark:text-gray-400">minimum benefit</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm mt-3">Duration based on "schedule of injuries" - specific number of weeks for each body part.</p>
+                        <div class="mt-3 bg-white dark:bg-gray-700 p-3 rounded text-sm">
+                            <p class="text-gray-600 dark:text-gray-300 italic">Example: A factory worker loses a finger. They can return to work, but receive benefits for a set number of weeks based on the scheduled value of that finger.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Death Benefits -->
+                <div class="bg-gray-100 dark:bg-gray-700 rounded-lg p-5 border-l-4 border-gray-500">
+                    <h4 class="font-bold text-gray-800 dark:text-gray-200 mb-3">Death Benefits</h4>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="bg-white dark:bg-gray-600 p-4 rounded-lg">
+                            <p class="font-semibold text-gray-700 dark:text-gray-200">Survivor Benefits</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-300 mt-1"><strong>70%</strong> of deceased worker's weekly wage paid to surviving spouse and/or dependents</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-600 p-4 rounded-lg">
+                            <p class="font-semibold text-gray-700 dark:text-gray-200">Funeral Expenses</p>
+                            <p class="text-2xl font-bold text-gray-600 dark:text-gray-300 mt-1">$2,000</p>
+                            <p class="text-xs text-gray-500 dark:text-gray-400">Maximum</p>
+                        </div>
+                    </div>
+                    <div class="mt-3 bg-white dark:bg-gray-600 p-3 rounded text-sm">
+                        <p class="text-gray-600 dark:text-gray-300 italic">Example: A worker is killed in a workplace accident. Their spouse receives 70% of the worker's weekly wage. The insurer also pays up to $2,000 for funeral costs.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Exempt Employees -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">3. Exempt Employees</h2>
+
+                <div class="bg-orange-50 dark:bg-orange-900/30 border border-orange-200 dark:border-orange-800 rounded-lg p-4 mb-6">
+                    <p class="text-gray-700 dark:text-gray-300">Certain employees are <strong>exempt from mandatory workers compensation coverage</strong>. However, employers CAN still choose to provide coverage for them.</p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-4 mb-6">
+                    <!-- Domestic Workers -->
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-5 border-t-4 border-blue-500">
+                        <h4 class="font-bold text-blue-800 dark:text-blue-300 mb-3">Domestic Workers</h4>
+                        <p class="text-sm text-gray-600 dark:text-gray-300">Housekeepers, nannies, personal assistants working in private homes</p>
+                        <div class="mt-3 bg-white dark:bg-gray-700 p-2 rounded text-xs">
+                            <span class="italic text-gray-500 dark:text-gray-400">Example: You hire a live-in nanny - not required to have WC coverage for them (though you can add through homeowners policy)</span>
+                        </div>
+                    </div>
+
+                    <!-- Casual Workers -->
+                    <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-5 border-t-4 border-green-500">
+                        <h4 class="font-bold text-green-800 dark:text-green-300 mb-3">Casual Workers</h4>
+                        <p class="text-sm text-gray-600 dark:text-gray-300">Workers who work irregularly or on an as-needed basis, not part of regular business</p>
+                        <div class="mt-3 bg-white dark:bg-gray-700 p-2 rounded text-xs">
+                            <span class="italic text-gray-500 dark:text-gray-400">Example: You occasionally hire a neighborhood teen to rake leaves - not required to have WC coverage</span>
+                        </div>
+                    </div>
+
+                    <!-- Agricultural Workers -->
+                    <div class="bg-amber-50 dark:bg-amber-900/20 rounded-lg p-5 border-t-4 border-amber-500">
+                        <h4 class="font-bold text-amber-800 dark:text-amber-300 mb-3">Agricultural Workers</h4>
+                        <p class="text-sm text-gray-600 dark:text-gray-300">Farm workers on small agricultural operations</p>
+                        <div class="mt-3 bg-white dark:bg-gray-700 p-2 rounded text-xs">
+                            <span class="italic text-gray-500 dark:text-gray-400">Example: A small family farm with 2 seasonal workers may be exempt from WC requirements</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                    <p class="font-semibold text-red-800 dark:text-red-300">Exam Alert!</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm mt-1">Remember: <strong>Domestic, Casual, and Agricultural</strong> workers are the three categories typically exempt from mandatory workers comp. But employers can still choose to cover them!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Rating Plans -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">4. Rating Plans</h2>
+
+                <div class="bg-teal-50 dark:bg-teal-900/30 border border-teal-200 dark:border-teal-800 rounded-lg p-4 mb-6">
+                    <p class="text-gray-700 dark:text-gray-300">Rating plans adjust premiums based on the employer's actual loss experience. The better your safety record, the lower your premium.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    <!-- Experience Rating -->
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-5 border-l-4 border-blue-500">
+                        <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg mb-3">Experience Rating</h3>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm mb-3">Compares your <strong>past losses</strong> to expected losses for similar businesses. Premium is adjusted based on whether you're better or worse than average.</p>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg mb-3">
+                            <p class="font-semibold text-gray-700 dark:text-gray-200">How it works:</p>
+                            <ul class="text-sm text-gray-600 dark:text-gray-300 mt-2 space-y-1">
+                                <li>• <strong>Experience Modification Factor (EMR)</strong></li>
+                                <li>• EMR = 1.0 means average</li>
+                                <li>• EMR > 1.0 = worse than average = higher premium</li>
+                                <li>• EMR < 1.0 = better than average = lower premium</li>
+                            </ul>
+                        </div>
+                        <div class="bg-green-50 dark:bg-green-900/20 p-3 rounded text-sm">
+                            <p class="text-gray-600 dark:text-gray-300 italic">Example: A construction company with EMR of 0.85 pays 15% less than the manual rate because they have fewer claims than similar companies.</p>
+                        </div>
+                    </div>
+
+                    <!-- Retrospective Rating -->
+                    <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-5 border-l-4 border-purple-500">
+                        <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg mb-3">Retrospective Rating</h3>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm mb-3">Premium is adjusted <strong>after the policy period</strong> based on actual losses during that period. Pay-as-you-go approach.</p>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg mb-3">
+                            <p class="font-semibold text-gray-700 dark:text-gray-200">Key features:</p>
+                            <ul class="text-sm text-gray-600 dark:text-gray-300 mt-2 space-y-1">
+                                <li>• Usually has a <strong>minimum and maximum premium</strong></li>
+                                <li>• Good for large employers who can control losses</li>
+                                <li>• Final premium calculated after policy expires</li>
+                                <li>• Greater risk but greater reward potential</li>
+                            </ul>
+                        </div>
+                        <div class="bg-green-50 dark:bg-green-900/20 p-3 rounded text-sm">
+                            <p class="text-gray-600 dark:text-gray-300 italic">Example: A large warehouse pays an initial premium, but the final premium is adjusted 6 months after policy expiration based on actual claims during that year.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Assigned Risk Plan -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">5. Assigned Risk Plan (Residual Market)</h2>
+
+                <div class="bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-800 rounded-lg p-4 mb-6">
+                    <p class="text-gray-700 dark:text-gray-300"><strong>The Assigned Risk Plan is the "market of last resort"</strong> for employers who cannot obtain workers compensation insurance through the voluntary market. All insurers writing WC in NJ must participate.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4">
+                        <h4 class="font-bold text-blue-800 dark:text-blue-300 mb-2">Who Uses It?</h4>
+                        <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-2">
+                            <li>• Employers with poor loss history</li>
+                            <li>• High-risk industries</li>
+                            <li>• New businesses without experience</li>
+                            <li>• Small employers that insurers don't want</li>
+                        </ul>
+                    </div>
+                    <div class="bg-amber-50 dark:bg-amber-900/20 rounded-lg p-4">
+                        <h4 class="font-bold text-amber-800 dark:text-amber-300 mb-2">How It Works</h4>
+                        <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-2">
+                            <li>• Employer applies to the pool</li>
+                            <li>• Risk is "assigned" to an insurer</li>
+                            <li>• Premiums are typically higher</li>
+                            <li>• All insurers share the losses proportionally</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                    <p class="font-semibold text-green-800 dark:text-green-300 mb-2">Example: Assigned Risk in Action</p>
+                    <p class="text-gray-600 dark:text-gray-300 text-sm">Joe's Roofing has had 5 serious injury claims in 3 years. No regular insurer will write their workers comp. They apply to the Assigned Risk Plan and are assigned to ABC Insurance Company. Joe pays higher premiums, but at least he can legally operate his business.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. Second Injury Fund -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">6. Second Injury Fund</h2>
+
+                <div class="bg-indigo-50 dark:bg-indigo-900/30 border border-indigo-200 dark:border-indigo-800 rounded-lg p-4 mb-6">
+                    <p class="text-gray-700 dark:text-gray-300"><strong>The Second Injury Fund encourages employers to hire workers with pre-existing disabilities</strong> by limiting the employer's liability if a second injury occurs.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-5">
+                        <h4 class="font-bold text-blue-800 dark:text-blue-300 mb-2">The Problem It Solves</h4>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm">Without this fund, employers would avoid hiring workers with prior injuries because a second injury could result in much larger disability claims (combining the two injuries).</p>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-5">
+                        <h4 class="font-bold text-green-800 dark:text-green-300 mb-2">How It Works</h4>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm">If a worker with a prior disability is injured again, the employer's insurance only pays for the new injury. The Second Injury Fund covers the additional cost of the combined disabilities.</p>
+                    </div>
+                </div>
+
+                <div class="bg-teal-50 dark:bg-teal-900/20 p-4 rounded-lg border-l-4 border-teal-500 mb-4">
+                    <p class="font-semibold text-teal-800 dark:text-teal-300 mb-2">Example: Second Injury Fund in Action</p>
+                    <p class="text-gray-600 dark:text-gray-300 text-sm">Mike lost his left hand in a previous job (50% disability). His new employer hires him knowing about this. Mike then loses his right hand on the new job (another 50% disability). Combined, Mike is now 100% disabled.</p>
+                    <ul class="text-sm text-gray-600 dark:text-gray-400 mt-2 space-y-1">
+                        <li>• Employer's insurance pays for the right hand injury only (50%)</li>
+                        <li>• The Second Injury Fund pays the difference to bring benefits up to 100%</li>
+                        <li>• This encourages the employer to hire Mike despite his prior injury</li>
+                    </ul>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg">
+                    <p class="font-semibold text-amber-800 dark:text-amber-300">Funding</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm mt-1">The Second Injury Fund is typically financed through assessments on insurance carriers, which pass the cost on to employers as part of their premiums.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. CRIB -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">7. Compensation Rating and Inspection Bureau (CRIB)</h2>
+
+                <div class="bg-purple-50 dark:bg-purple-900/30 border border-purple-200 dark:border-purple-800 rounded-lg p-4 mb-6">
+                    <p class="text-gray-700 dark:text-gray-300"><strong>CRIB is New Jersey's workers compensation rating organization.</strong> It's a licensed advisory organization that provides rate information and services to insurers.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-5">
+                        <h4 class="font-bold text-blue-800 dark:text-blue-300 mb-3">CRIB Functions</h4>
+                        <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-2">
+                            <li class="flex items-start">
+                                <span class="text-blue-500 mr-2">•</span>
+                                <span>Develops <strong>classification codes</strong> for different types of work</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-blue-500 mr-2">•</span>
+                                <span>Calculates <strong>loss costs</strong> (pure premium) for each classification</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-blue-500 mr-2">•</span>
+                                <span>Computes <strong>experience modifications</strong> for eligible employers</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-blue-500 mr-2">•</span>
+                                <span>Conducts <strong>workplace inspections</strong> to verify classifications</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-5">
+                        <h4 class="font-bold text-green-800 dark:text-green-300 mb-3">Why It Matters</h4>
+                        <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-2">
+                            <li class="flex items-start">
+                                <span class="text-green-500 mr-2">•</span>
+                                <span>Ensures <strong>consistent classification</strong> across all insurers</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-green-500 mr-2">•</span>
+                                <span>Provides <strong>reliable data</strong> for rate-making</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-green-500 mr-2">•</span>
+                                <span>Helps prevent <strong>fraud and misclassification</strong></span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-green-500 mr-2">•</span>
+                                <span>Maintains <strong>fair competition</strong> among insurers</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="bg-teal-50 dark:bg-teal-900/20 p-4 rounded-lg border-l-4 border-teal-500">
+                    <p class="font-semibold text-teal-800 dark:text-teal-300 mb-2">Example: How CRIB Works</p>
+                    <p class="text-gray-600 dark:text-gray-300 text-sm">XYZ Manufacturing applies for workers comp. The insurer uses CRIB's classification codes to identify the correct code (e.g., "machinery manufacturing"). CRIB has calculated the loss cost for that classification based on industry-wide claims data. The insurer uses this to calculate the premium.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 8. Domestic Employee Coverage -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">8. Domestic Employee Coverage (Homeowners Policy)</h2>
+
+                <div class="bg-rose-50 dark:bg-rose-900/30 border border-rose-200 dark:border-rose-800 rounded-lg p-4 mb-6">
+                    <p class="text-gray-700 dark:text-gray-300">While domestic employees are <strong>exempt from mandatory workers comp</strong>, homeowners can still obtain coverage for them. This is often done through an <strong>endorsement to the homeowners policy</strong>.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-5">
+                        <h4 class="font-bold text-blue-800 dark:text-blue-300 mb-3">Who Are Domestic Employees?</h4>
+                        <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-2">
+                            <li>• Nannies and babysitters</li>
+                            <li>• Housekeepers and maids</li>
+                            <li>• Personal care aides</li>
+                            <li>• Gardeners (regular employees, not contractors)</li>
+                            <li>• Private chefs/cooks</li>
+                        </ul>
+                    </div>
+                    <div class="bg-amber-50 dark:bg-amber-900/20 rounded-lg p-5">
+                        <h4 class="font-bold text-amber-800 dark:text-amber-300 mb-3">Coverage Options</h4>
+                        <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-2">
+                            <li>• <strong>Residence Employee endorsement</strong> to HO policy</li>
+                            <li>• <strong>Separate WC policy</strong> for domestic workers</li>
+                            <li>• Some HO policies include limited coverage automatically</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500 mb-4">
+                    <p class="font-semibold text-green-800 dark:text-green-300 mb-2">Example: Protecting Your Nanny</p>
+                    <p class="text-gray-600 dark:text-gray-300 text-sm">The Johnsons hire a full-time nanny who works in their home. While NJ law doesn't require WC coverage for domestic workers, the Johnsons add a Residence Employee endorsement to their homeowners policy. When the nanny slips on the stairs and breaks her ankle, the endorsement pays her medical bills and lost wages.</p>
+                </div>
+
+                <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                    <p class="font-semibold text-red-800 dark:text-red-300">Why Get Coverage?</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm mt-1">Even though it's not legally required, having coverage protects you from:</p>
+                    <ul class="text-sm text-gray-600 dark:text-gray-400 mt-2 space-y-1">
+                        <li>• Lawsuits from injured employees</li>
+                        <li>• Paying medical bills out-of-pocket</li>
+                        <li>• Liability for lost wages</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Reference -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-900/30 dark:to-orange-900/30 rounded-xl shadow-md p-6 border border-amber-200 dark:border-amber-800">
+                <h2 class="text-2xl font-bold text-amber-800 dark:text-amber-200 mb-4">Quick Reference: Workers Comp Numbers</h2>
+
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                        <p class="text-xl font-bold text-amber-600 dark:text-amber-400">70%</p>
+                        <p class="text-xs text-gray-600 dark:text-gray-400">Benefit rate</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                        <p class="text-xl font-bold text-orange-600 dark:text-orange-400">75%</p>
+                        <p class="text-xs text-gray-600 dark:text-gray-400">Max of state avg wage</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                        <p class="text-xl font-bold text-teal-600 dark:text-teal-400">20%</p>
+                        <p class="text-xs text-gray-600 dark:text-gray-400">Min of state avg wage</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                        <p class="text-xl font-bold text-blue-600 dark:text-blue-400">400 wks</p>
+                        <p class="text-xs text-gray-600 dark:text-gray-400">Temp Total max</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                        <p class="text-xl font-bold text-red-600 dark:text-red-400">450 wks</p>
+                        <p class="text-xs text-gray-600 dark:text-gray-400">Perm Total max</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                        <p class="text-xl font-bold text-purple-600 dark:text-purple-400">$35/wk</p>
+                        <p class="text-xs text-gray-600 dark:text-gray-400">Perm Partial min</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                        <p class="text-xl font-bold text-indigo-600 dark:text-indigo-400">$2,000</p>
+                        <p class="text-xs text-gray-600 dark:text-gray-400">Funeral max</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                        <p class="text-xl font-bold text-rose-600 dark:text-rose-400">7 days</p>
+                        <p class="text-xs text-gray-600 dark:text-gray-400">Waiting period</p>
+                    </div>
+                </div>
+
+                <div class="mt-6 bg-white dark:bg-gray-700 p-4 rounded-lg">
+                    <h4 class="font-bold text-gray-800 dark:text-gray-200 mb-2">Exempt Employees (Remember: DCA)</h4>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-3 py-1 rounded-full font-medium">Domestic</span>
+                        <span class="bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-3 py-1 rounded-full font-medium">Casual</span>
+                        <span class="bg-amber-100 dark:bg-amber-900 text-amber-800 dark:text-amber-200 px-3 py-1 rounded-full font-medium">Agricultural</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Navigation Footer -->
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="../part-1/index.html" class="text-gray-300 hover:text-white">&larr; Part 1: Auto Insurance</a>
+                <span class="text-gray-400">Part 2: Workers Compensation</span>
+                <span class="text-gray-500">Part 3: Coming Soon &rarr;</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Initialize AI Tutor -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            createFloatingAIButton(`Chapter 5 Part 2: Workers Compensation
+
+WORKERS COMP IS NO-FAULT
+- Employees get guaranteed benefits
+- Employers get protection from lawsuits
+- The "Grand Bargain"
+
+BENEFIT FORMULA:
+- 70% of weekly wage
+- Maximum: 75% of state average weekly wage
+- Minimum: 20% of state average weekly wage
+
+DISABILITY TYPES:
+1. Temporary Total - Can't work, will recover
+   - 70% of wages, max 400 weeks, 7-day waiting period
+
+2. Temporary Partial - Can do light duty
+   - 70% of wage difference, max 400 weeks
+
+3. Permanent Total - Never work again
+   - 70% of wages, max 450 weeks
+
+4. Permanent Partial - Permanent but can work
+   - 70% of wages, $35/week minimum
+   - Duration based on schedule of injuries
+
+DEATH BENEFITS:
+- 70% of wages to survivors
+- $2,000 max funeral expenses
+
+EXEMPT EMPLOYEES (DCA):
+- Domestic workers
+- Casual workers
+- Agricultural workers
+(Employers CAN still cover them voluntarily)
+
+RATING PLANS:
+- Experience Rating: Based on past losses vs. expected
+  - EMR = 1.0 is average
+  - EMR < 1.0 = discount
+  - EMR > 1.0 = surcharge
+
+- Retrospective Rating: Adjusted after policy period
+  - Based on actual losses
+
+ASSIGNED RISK PLAN:
+- Market of last resort
+- For employers who can't get regular coverage
+- All WC insurers must participate
+
+SECOND INJURY FUND:
+- Encourages hiring workers with prior disabilities
+- Fund pays difference when second injury occurs
+
+CRIB (Compensation Rating & Inspection Bureau):
+- NJ's WC rating organization
+- Develops classification codes
+- Calculates loss costs
+- Computes experience modifications
+
+DOMESTIC EMPLOYEE COVERAGE:
+- Not required but recommended
+- Can add to homeowners policy
+- Protects from lawsuits`);
+        });
+    </script>
+</body>
+</html>
