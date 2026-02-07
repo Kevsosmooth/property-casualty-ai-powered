@@ -20,10 +20,23 @@ This is an interactive study guide for Property & Casualty Insurance licensing e
 - **Generous spacing** - don't cram content
 
 ### 3. Examples Are Everything
-- Every concept needs at least one real-world example
+- **Every concept needs at least one real-world example** - NO exceptions
 - Use "COVERED vs NOT COVERED" pairs for exclusions
 - Format examples with: "The Setup", "What Happens", "Who Pays?"
 - Examples must leave ZERO doubt
+
+### 4. Regulation/Law Chapters Need EXTRA Examples
+- **Chapters 4 & 5 (NJ Laws)** are dense with legal terms - they REQUIRE more examples than coverage chapters
+- Each prohibited practice needs a "What this looks like in real life" example
+- Abstract legal concepts (misrepresentation, rebating, twisting) MUST have concrete scenarios
+- If a bullet point lists violations, each violation needs its own mini-example
+- Format for prohibited practices:
+  ```
+  Violation Name
+  What it means: [plain English definition]
+  Example: [Specific scenario like "Agent says X to customer, but actually Y"]
+  ```
+- When in doubt, add MORE examples - these chapters are hard to understand without them
 
 ---
 

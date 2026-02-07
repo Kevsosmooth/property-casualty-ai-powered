@@ -379,8 +379,9 @@ async function sendAIMessage() {
     } catch (error) {
         const loadingEl = document.getElementById(loadingId);
         if (loadingEl) {
-            loadingEl.innerHTML = `<p class="ai-error">Sorry, I encountered an error. Please try again.</p>`;
+            loadingEl.innerHTML = `<p class="ai-error">Error: ${error.message || 'Unknown error'}</p>`;
         }
+        console.error('AI Chat Error:', error);
     }
 
     // Scroll to bottom
