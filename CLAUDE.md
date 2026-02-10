@@ -193,6 +193,205 @@ This is an interactive study guide for Property & Casualty Insurance licensing e
 
 ---
 
+## Chapter/Part Structure Template
+
+Every chapter part MUST follow this structure in order. This ensures consistency and optimal learning flow.
+
+### 1. Page Header (Required)
+```html
+<header class="bg-gradient-to-r from-[CHAPTER-COLOR]-600 to-[CHAPTER-COLOR]-800 text-white py-6 shadow-lg">
+    <!-- Breadcrumbs: Home / Chapter X / Part Y -->
+    <!-- Title: Chapter X Part Y: Topic Name -->
+    <!-- Subtitle: Brief description -->
+</header>
+```
+
+### 2. Sticky Part Navigation (Required)
+- Links to all parts in the chapter
+- Current part highlighted
+- Anchor links to sections within the page
+
+### 3. Overview Section (Required)
+- **Purpose**: Orient the reader - what will they learn?
+- **Color**: Use chapter's accent color with soft background
+- **Include**:
+  - Brief intro paragraph explaining the topic
+  - "Why This Matters" or "Exam Alert" callout box
+  - Key question this section answers
+
+```html
+<section class="mb-10">
+    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+        <h2 class="text-2xl font-bold ...">Overview / Introduction</h2>
+
+        <!-- Intro paragraph -->
+        <div class="bg-[color]-50 dark:bg-[color]-900/30 border border-[color]-200 ... p-4 mb-6">
+            <p>What this topic is about...</p>
+        </div>
+
+        <!-- Exam Alert -->
+        <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4">
+            <p class="font-bold text-amber-800 dark:text-amber-300">Exam Alert!</p>
+            <p>Why this is important for the exam...</p>
+        </div>
+    </div>
+</section>
+```
+
+### 4. Main Content Sections (Required)
+Each major concept gets its own numbered section. Structure each section as:
+
+#### Section Layout:
+```
+[Section Number]. [Section Title]
+    ├── Definition/Explanation (in colored box)
+    ├── Visual Aid (table, diagram, grid, or flow chart)
+    ├── Real-World Example (REQUIRED - comprehensive format)
+    └── Key Points/Rules (if applicable)
+```
+
+#### Example Format (MANDATORY for every concept):
+Use the comprehensive "Setup → What Happens → Result" format:
+
+```html
+<div class="bg-[color]-50 dark:bg-[color]-900/20 p-4 rounded-lg border-l-4 border-[color]-500">
+    <p class="font-semibold text-[color]-800 dark:text-[color]-300 mb-2">Real-World Scenario: [Title]</p>
+    <div class="space-y-2 text-sm">
+        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> [Context and characters]</p>
+        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> [The event or situation]</p>
+        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> [Outcome, who pays, legal consequence]</p>
+    </div>
+</div>
+```
+
+#### Color Coding for Content Types:
+| Content Type | Background | Border | Use For |
+|--------------|------------|--------|---------|
+| Definitions | `bg-blue-50` | `border-blue-500` | Terms, concepts |
+| Coverage/Benefits | `bg-green-50` | `border-green-500` | What's covered, positive outcomes |
+| Exclusions/Dangers | `bg-red-50` | `border-red-500` | What's NOT covered, risks |
+| Warnings/Alerts | `bg-amber-50` | `border-amber-500` | Exam tips, common mistakes |
+| Procedures/Rules | `bg-purple-50` | `border-purple-500` | Steps, requirements, regulations |
+| Examples | `bg-gray-50` or `bg-white` | varies | Scenarios, case studies |
+| Comparisons | `bg-indigo-50` | `border-indigo-500` | Side-by-side analysis |
+
+### 5. Comparison Section (When Applicable)
+If the topic involves comparing items (policy types, coverage options, etc.):
+
+```html
+<div class="grid md:grid-cols-2 gap-4">
+    <!-- Option A -->
+    <div class="bg-[color-a]-50 dark:bg-[color-a]-900/20 rounded-lg p-4 border-l-4 border-[color-a]-500">
+        <h4 class="font-bold text-[color-a]-800 dark:text-[color-a]-300 mb-2">[Option A Name]</h4>
+        <!-- Details -->
+        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+            <p class="text-sm"><strong>Example:</strong> [Specific scenario for Option A]</p>
+        </div>
+    </div>
+
+    <!-- Option B -->
+    <div class="bg-[color-b]-50 dark:bg-[color-b]-900/20 rounded-lg p-4 border-l-4 border-[color-b]-500">
+        <h4 class="font-bold text-[color-b]-800 dark:text-[color-b]-300 mb-2">[Option B Name]</h4>
+        <!-- Details -->
+        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+            <p class="text-sm"><strong>Example:</strong> [Specific scenario for Option B]</p>
+        </div>
+    </div>
+</div>
+```
+
+### 6. Key Numbers Section (When Applicable)
+If the topic has important numbers, dates, or limits to memorize:
+
+```html
+<div class="bg-gradient-to-r from-[color]-50 to-[color2]-50 dark:from-[color]-900/30 dark:to-[color2]-900/30 rounded-xl p-6 border ...">
+    <h2 class="text-2xl font-bold ...">Quick Reference: Key Numbers</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+            <p class="text-xl font-bold text-[color]-600 dark:text-[color]-400">$25,000</p>
+            <p class="text-xs text-gray-600 dark:text-gray-400">Per person BI</p>
+        </div>
+        <!-- More number cards -->
+    </div>
+</div>
+```
+
+### 7. Exam Trap Alerts Section (Required)
+Every part MUST have an exam tips section highlighting common mistakes:
+
+```html
+<div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-xl p-5 lg:p-6">
+    <h2 class="text-2xl font-bold text-red-800 dark:text-red-300 mb-4">Exam Trap Alerts</h2>
+    <div class="space-y-3">
+        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+            <p class="font-bold text-red-700 dark:text-red-300 mb-2">1. [Trap Name]</p>
+            <p class="text-gray-700 dark:text-gray-300 text-sm">[Explanation of what confuses people and the correct answer]</p>
+        </div>
+        <!-- More traps -->
+    </div>
+</div>
+```
+
+### 8. Quick Reference Summary (Required)
+End with a visual summary of the entire part:
+
+```html
+<div class="bg-gradient-to-r from-[chapter-color]-600 to-[chapter-color]-800 rounded-xl p-6 text-white">
+    <h2 class="text-2xl font-bold mb-6">Quick Reference Summary</h2>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div class="bg-white/20 rounded-lg p-4">
+            <p class="font-bold">[Term/Concept]</p>
+            <p class="text-sm text-[color]-100">[One-line definition]</p>
+        </div>
+        <!-- More summary cards -->
+    </div>
+</div>
+```
+
+### 9. Footer Navigation (Required)
+```html
+<footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+    <div class="container mx-auto px-4">
+        <div class="flex justify-between items-center">
+            <a href="[prev-part]">← Part X: [Name]</a>
+            <span class="text-gray-400">Part Y of Z</span>
+            <a href="[next-part]">Part Z: [Name] →</a>
+        </div>
+    </div>
+</footer>
+```
+
+### 10. AI Tutor Button (Required)
+Floating button with context-aware help. The AI context should include:
+- Topic name
+- Key concepts covered
+- Important numbers
+- Common confusions
+
+---
+
+## Example Requirements by Chapter Type
+
+### Coverage Chapters (Ch 1-3)
+- Every coverage type needs: Definition → What's Covered → What's Excluded → Example
+- Use COVERED vs NOT COVERED grids for exclusions
+- Include claim scenarios showing payment calculations
+
+### Law/Regulation Chapters (Ch 4-5)
+- Every rule needs: Rule → Plain English Explanation → Violation Example → Consequence
+- Each prohibited practice needs a "What this looks like" scenario
+- Include Commissioner powers with real-world examples
+- License types need comparison scenarios
+
+### All Chapters Must Have:
+1. At least 1 comprehensive example per major concept (Setup → What Happens → Result)
+2. At least 1 comparison grid or table
+3. Key numbers in highlighted boxes
+4. Exam trap alerts section
+5. Quick reference summary
+
+---
+
 ## Page Structure
 
 ### Required Components
