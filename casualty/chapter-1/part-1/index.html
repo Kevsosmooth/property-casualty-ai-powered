@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 1 Part 1: General Insurance Principles | P&C Study Guide</title>
+    <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <link rel="stylesheet" href="../../../css/styles.css">
+    <script src="../../../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+        }
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <!-- Settings & Theme Toggle Buttons -->
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="showAPIKeySetup()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings">
+            <svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+        </button>
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/>
+            </svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap gap-2 text-sm mb-2">
+                <a href="../../../index.html" class="text-blue-200 hover:text-white">Home</a>
+                <span class="text-blue-300">/</span>
+                <a href="../../index.html" class="text-blue-200 hover:text-white">Casualty</a>
+                <span class="text-blue-300">/</span>
+                <a href="../index.html" class="text-blue-200 hover:text-white">Chapter 1</a>
+                <span class="text-blue-300">/</span>
+                <span class="text-white">Part 1</span>
+            </div>
+            <h1 class="text-3xl font-bold">Chapter 1 Part 1: General Insurance Principles</h1>
+            <p class="text-blue-200 mt-1">Risk Transfer, Insurable Interest, Perils, Hazards, Indemnity & Subrogation</p>
+        </div>
+    </header>
+
+    <!-- Part Navigation -->
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-wrap gap-2 text-sm">
+                <a href="../index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Intro</a>
+                <span class="bg-blue-600 text-white px-3 py-1 rounded font-medium">Part 1</span>
+                <a href="../part-2/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 2</a>
+                <a href="../part-3/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 3</a>
+                <a href="../part-4/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 4</a>
+                <a href="../part-5/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 5</a>
+                <a href="../part-6/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 6</a>
+                <a href="../part-7/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 7</a>
+                <a href="../recap/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Recap</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-5xl lg:max-w-7xl">
+
+        <!-- Overview Section -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">What is Insurance?</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-800 rounded-lg p-5 lg:p-6 mb-6">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Insurance is a transfer of risk of loss</strong> from an individual or a business entity to an insurance company, which, in turn, spreads the costs of unexpected losses to many individuals.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mt-4">If there were no insurance mechanism, the cost of a loss would have to be borne solely by the individual who suffered the loss.</p>
+                </div>
+
+                <div class="bg-green-50 dark:bg-green-900/30 border-l-4 border-green-500 p-4 lg:p-5 rounded-r-lg mb-6">
+                    <p class="font-bold text-green-800 dark:text-green-300 text-lg">Key Concept</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">The cost of an insured's loss is <strong>transferred over to the insurer</strong> and <strong>spread among other insureds</strong>. This is the fundamental purpose of insurance.</p>
+                </div>
+
+                <!-- Visual: How Insurance Works -->
+                <div class="bg-gray-50 dark:bg-gray-700 rounded-xl p-5 lg:p-6">
+                    <h3 class="font-bold text-gray-800 dark:text-gray-200 text-lg mb-4">How Insurance Works: Risk Transfer in Action</h3>
+                    <div class="flex flex-col md:flex-row items-center justify-center gap-4">
+                        <div class="bg-red-100 dark:bg-red-900/40 p-4 rounded-lg text-center flex-1 max-w-xs">
+                            <p class="font-bold text-red-800 dark:text-red-300">Without Insurance</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">You alone bear 100% of any loss</p>
+                            <p class="text-2xl font-bold text-red-600 dark:text-red-400 mt-2">$50,000 loss = $50,000 out of YOUR pocket</p>
+                        </div>
+                        <div class="text-3xl text-gray-400 hidden md:block">vs</div>
+                        <div class="bg-green-100 dark:bg-green-900/40 p-4 rounded-lg text-center flex-1 max-w-xs">
+                            <p class="font-bold text-green-800 dark:text-green-300">With Insurance</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">Risk is transferred and spread among many</p>
+                            <p class="text-2xl font-bold text-green-600 dark:text-green-400 mt-2">$50,000 loss = $500 deductible</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 lg:p-5 rounded-r-lg mt-6">
+                    <p class="font-bold text-amber-800 dark:text-amber-300 text-lg">Exam Alert!</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">Remember: Insurance = <strong>Risk TRANSFER</strong>. The exam may try to confuse you with terms like "risk elimination" or "risk removal" - insurance does NOT eliminate risk, it transfers it.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 1. Insurable Interest -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">1. Insurable Interest</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/30 border-l-4 border-blue-500 p-4 lg:p-5 rounded-r-lg mb-6">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">The insured must have an <strong>insurable interest</strong> in the person or property covered by an insurance policy. In property insurance, this means the insured would <strong>incur a financial loss</strong> if the insured property was damaged.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mt-3">An insurable interest may be created by the <strong>ownership, custody or control</strong> of a property. For example, mortgagees and leaseholders may have an insurable interest in their respective properties.</p>
+                </div>
+
+                <!-- 3 Elements of Insurable Risk -->
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-xl p-5 lg:p-6 mb-6">
+                    <h3 class="font-bold text-purple-800 dark:text-purple-300 text-xl mb-4">The 3 Elements of Insurable Risk</h3>
+                    <div class="grid md:grid-cols-3 gap-4">
+                        <div class="bg-white dark:bg-gray-700 rounded-lg p-4 text-center border-2 border-purple-300 dark:border-purple-700">
+                            <div class="bg-purple-600 text-white w-12 h-12 rounded-full flex items-center justify-center font-bold text-xl mx-auto mb-3">$</div>
+                            <p class="font-bold text-purple-800 dark:text-purple-300 text-lg">Financial</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm mt-2">A monetary interest in the property or person</p>
+                            <div class="bg-purple-50 dark:bg-purple-900/30 p-2 rounded mt-3">
+                                <p class="text-xs text-gray-600 dark:text-gray-400"><strong>Example:</strong> You own a car worth $25,000</p>
+                            </div>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 rounded-lg p-4 text-center border-2 border-purple-300 dark:border-purple-700">
+                            <div class="bg-purple-600 text-white w-12 h-12 rounded-full flex items-center justify-center font-bold text-xl mx-auto mb-3">B</div>
+                            <p class="font-bold text-purple-800 dark:text-purple-300 text-lg">Blood</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm mt-2">A family relationship (relative)</p>
+                            <div class="bg-purple-50 dark:bg-purple-900/30 p-2 rounded mt-3">
+                                <p class="text-xs text-gray-600 dark:text-gray-400"><strong>Example:</strong> Life insurance on your spouse</p>
+                            </div>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 rounded-lg p-4 text-center border-2 border-purple-300 dark:border-purple-700">
+                            <div class="bg-purple-600 text-white w-12 h-12 rounded-full flex items-center justify-center font-bold text-xl mx-auto mb-3">B</div>
+                            <p class="font-bold text-purple-800 dark:text-purple-300 text-lg">Business</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm mt-2">A business partner relationship</p>
+                            <div class="bg-purple-50 dark:bg-purple-900/30 p-2 rounded mt-3">
+                                <p class="text-xs text-gray-600 dark:text-gray-400"><strong>Example:</strong> Key person insurance on partner</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-gray-100 dark:bg-gray-600 rounded-lg p-3 mt-4 text-center">
+                        <p class="font-bold text-gray-800 dark:text-gray-200">Memory Trick: "FBB" - Financial, Blood, Business</p>
+                    </div>
+                </div>
+
+                <!-- Critical Rule -->
+                <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-xl p-5 lg:p-6 mb-6">
+                    <h3 class="font-bold text-red-800 dark:text-red-300 text-xl mb-3">Critical Rule for Property & Casualty Insurance</h3>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">In property and casualty insurance, insurable interest must exist <strong>at the time of the loss</strong>.</p>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg mt-4">
+                        <p class="font-semibold text-gray-700 dark:text-gray-200 mb-2">Why This Matters:</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm">If you sell your car on Monday and it gets destroyed on Tuesday, you cannot collect on your old insurance policy - you no longer have an insurable interest because you no longer own the car.</p>
+                    </div>
+                </div>
+
+                <!-- Real-World Example -->
+                <div class="bg-green-50 dark:bg-green-900/20 p-5 lg:p-6 rounded-xl border-l-4 border-green-500">
+                    <p class="font-semibold text-green-800 dark:text-green-300 text-lg mb-3">Real-World Scenario: Insurable Interest</p>
+                    <div class="space-y-3 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Tom owns a home worth $300,000. He has a mortgage with First National Bank for $200,000. He also rents out the basement to a tenant named Sarah who runs a photography business there.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>Who Has Insurable Interest?</strong></p>
+                        <ul class="text-gray-600 dark:text-gray-400 space-y-2 ml-4">
+                            <li><strong>Tom (owner):</strong> YES - He owns the property and would suffer financial loss if it's damaged</li>
+                            <li><strong>First National Bank (mortgagee):</strong> YES - They have a $200,000 financial stake in the property</li>
+                            <li><strong>Sarah (leaseholder):</strong> YES - She has custody/control of the basement and her business depends on it</li>
+                            <li><strong>Tom's neighbor:</strong> NO - No financial, blood, or business relationship to the property</li>
+                        </ul>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Tom, the bank, AND Sarah can all have insurance on this property because they each have insurable interest.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Risk -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">2. Risk</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/30 border-l-4 border-blue-500 p-4 lg:p-5 rounded-r-lg mb-6">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Risk</strong> is the uncertainty or chance of a loss occurring. The two types of risks are <strong>pure</strong> and <strong>speculative</strong>, only one of which is insurable.</p>
+                </div>
+
+                <div class="bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-800 rounded-lg p-4 mb-6">
+                    <p class="font-bold text-red-800 dark:text-red-300 text-lg">Exam Tip: Only PURE RISK is insurable!</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2">Speculative risk (where you could gain money) cannot be insured because it would encourage risky behavior.</p>
+                </div>
+
+                <!-- Pure vs Speculative Risk -->
+                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                    <div class="bg-green-50 dark:bg-green-900/20 rounded-xl p-5 lg:p-6 border-2 border-green-300 dark:border-green-700">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-green-600 text-white w-10 h-10 rounded-full flex items-center justify-center font-bold mr-3">P</div>
+                            <h3 class="font-bold text-green-800 dark:text-green-300 text-xl">Pure Risk (INSURABLE)</h3>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-400 mb-4">Only two possible outcomes: <strong>Loss</strong> or <strong>No Change</strong></p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm mb-3">There is NO opportunity for financial gain. Pure risk is the only type of risk that insurance companies are willing to accept.</p>
+                        <div class="space-y-2">
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded flex items-start">
+                                <span class="text-green-500 mr-2 font-bold">+</span>
+                                <span class="text-gray-700 dark:text-gray-300 text-sm">Fire damages your home</span>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded flex items-start">
+                                <span class="text-green-500 mr-2 font-bold">+</span>
+                                <span class="text-gray-700 dark:text-gray-300 text-sm">Car accident causing injuries</span>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded flex items-start">
+                                <span class="text-green-500 mr-2 font-bold">+</span>
+                                <span class="text-gray-700 dark:text-gray-300 text-sm">Theft of property</span>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded flex items-start">
+                                <span class="text-green-500 mr-2 font-bold">+</span>
+                                <span class="text-gray-700 dark:text-gray-300 text-sm">Premature death</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-red-50 dark:bg-red-900/20 rounded-xl p-5 lg:p-6 border-2 border-red-300 dark:border-red-700">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-red-600 text-white w-10 h-10 rounded-full flex items-center justify-center font-bold mr-3">S</div>
+                            <h3 class="font-bold text-red-800 dark:text-red-300 text-xl">Speculative Risk (NOT INSURABLE)</h3>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-400 mb-4">Three outcomes: <strong>Loss</strong>, <strong>Gain</strong>, or <strong>Break-Even</strong></p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm mb-3">Speculative risk involves the opportunity for either loss or gain. These types of risks are NOT insurable.</p>
+                        <div class="space-y-2">
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded flex items-start">
+                                <span class="text-red-500 mr-2 font-bold">X</span>
+                                <span class="text-gray-700 dark:text-gray-300 text-sm">Investing in stocks</span>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded flex items-start">
+                                <span class="text-red-500 mr-2 font-bold">X</span>
+                                <span class="text-gray-700 dark:text-gray-300 text-sm">Starting a new business</span>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded flex items-start">
+                                <span class="text-red-500 mr-2 font-bold">X</span>
+                                <span class="text-gray-700 dark:text-gray-300 text-sm">Gambling at a casino</span>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded flex items-start">
+                                <span class="text-red-500 mr-2 font-bold">X</span>
+                                <span class="text-gray-700 dark:text-gray-300 text-sm">Real estate speculation</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Real-World Example -->
+                <div class="bg-indigo-50 dark:bg-indigo-900/20 p-5 lg:p-6 rounded-xl border-l-4 border-indigo-500">
+                    <p class="font-semibold text-indigo-800 dark:text-indigo-300 text-lg mb-3">Real-World Scenario: Pure vs Speculative Risk</p>
+                    <div class="space-y-3 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Maria owns a bakery. She faces several different risks in her business.</p>
+                        <div class="grid md:grid-cols-2 gap-4 mt-4">
+                            <div class="bg-green-100 dark:bg-green-900/30 p-4 rounded-lg">
+                                <p class="font-bold text-green-800 dark:text-green-300 mb-2">Pure Risks (Insurable)</p>
+                                <ul class="text-gray-600 dark:text-gray-400 space-y-1 text-sm">
+                                    <li>- Fire destroying her bakery</li>
+                                    <li>- Customer slipping on wet floor</li>
+                                    <li>- Delivery van in accident</li>
+                                    <li>- Theft of equipment</li>
+                                </ul>
+                            </div>
+                            <div class="bg-red-100 dark:bg-red-900/30 p-4 rounded-lg">
+                                <p class="font-bold text-red-800 dark:text-red-300 mb-2">Speculative Risks (NOT Insurable)</p>
+                                <ul class="text-gray-600 dark:text-gray-400 space-y-1 text-sm">
+                                    <li>- Opening a second location</li>
+                                    <li>- Launching a new product line</li>
+                                    <li>- Expanding into catering</li>
+                                    <li>- Investing profits in stocks</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Maria can buy insurance to protect against her pure risks, but she cannot insure her business expansion decisions because those involve potential gain.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Peril -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">3. Peril</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/30 border-l-4 border-blue-500 p-4 lg:p-5 rounded-r-lg mb-6">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Perils</strong> are the <strong>causes of loss</strong> insured against in an insurance policy. A peril is the actual event that causes the damage or loss.</p>
+                </div>
+
+                <!-- Perils by Insurance Type -->
+                <div class="bg-gray-50 dark:bg-gray-700 rounded-xl p-5 lg:p-6 mb-6">
+                    <h3 class="font-bold text-gray-800 dark:text-gray-200 text-lg mb-4">Perils by Insurance Type</h3>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="bg-white dark:bg-gray-600 rounded-lg p-4 border-l-4 border-blue-500">
+                            <h4 class="font-bold text-blue-800 dark:text-blue-300 mb-2">Life Insurance</h4>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm">Peril: Premature death of the insured</p>
+                            <p class="text-gray-500 dark:text-gray-400 text-xs mt-1 italic">Insures against the financial loss caused by death</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-600 rounded-lg p-4 border-l-4 border-green-500">
+                            <h4 class="font-bold text-green-800 dark:text-green-300 mb-2">Health Insurance</h4>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm">Perils: Sickness or accidental injury</p>
+                            <p class="text-gray-500 dark:text-gray-400 text-xs mt-1 italic">Insures against medical expenses and/or loss of income</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-600 rounded-lg p-4 border-l-4 border-amber-500">
+                            <h4 class="font-bold text-amber-800 dark:text-amber-300 mb-2">Property Insurance</h4>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm">Perils: Fire, theft, windstorm, lightning, etc.</p>
+                            <p class="text-gray-500 dark:text-gray-400 text-xs mt-1 italic">Insures against the loss of physical property or its income-producing abilities</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-600 rounded-lg p-4 border-l-4 border-purple-500">
+                            <h4 class="font-bold text-purple-800 dark:text-purple-300 mb-2">Casualty Insurance</h4>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm">Perils: Events causing property damage or liability</p>
+                            <p class="text-gray-500 dark:text-gray-400 text-xs mt-1 italic">Insures against the loss and/or damage of property and resulting liabilities</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Real-World Example -->
+                <div class="bg-amber-50 dark:bg-amber-900/20 p-5 lg:p-6 rounded-xl border-l-4 border-amber-500">
+                    <p class="font-semibold text-amber-800 dark:text-amber-300 text-lg mb-3">Real-World Scenario: Identifying the Peril</p>
+                    <div class="space-y-3 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> During a severe thunderstorm, lightning strikes a tree in John's yard.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> The tree falls onto his roof, causing $15,000 in damage. Rainwater then enters through the hole and ruins $3,000 worth of furniture.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>Identifying the Peril:</strong> The <strong>peril</strong> is lightning (and the resulting windstorm that knocked down the tree). Lightning is what caused the chain of events leading to the loss. The peril is NOT "the tree falling" - that's just a consequence of the peril.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Hazard -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">4. Hazard</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/30 border-l-4 border-blue-500 p-4 lg:p-5 rounded-r-lg mb-6">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Hazards</strong> are conditions or situations that <strong>increase the probability</strong> of an insured loss occurring. Conditions such as slippery floors or congested traffic are hazards and may increase the chance of a loss occurring.</p>
+                </div>
+
+                <!-- Peril vs Hazard Distinction -->
+                <div class="bg-indigo-50 dark:bg-indigo-900/30 border border-indigo-200 dark:border-indigo-800 rounded-lg p-4 mb-6">
+                    <p class="font-bold text-indigo-800 dark:text-indigo-300">Remember the Difference:</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2"><strong>Peril</strong> = The actual CAUSE of loss (fire, theft, windstorm)</p>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>Hazard</strong> = A CONDITION that makes the loss more likely to happen</p>
+                </div>
+
+                <!-- Three Types of Hazards -->
+                <h3 class="font-bold text-gray-800 dark:text-gray-200 text-xl mb-4">Three Types of Hazards</h3>
+
+                <div class="space-y-4 mb-6">
+                    <!-- Physical Hazard -->
+                    <div class="bg-amber-50 dark:bg-amber-900/20 rounded-xl p-5 lg:p-6 border-l-4 border-amber-500">
+                        <h4 class="font-bold text-amber-800 dark:text-amber-300 text-lg mb-2">Physical Hazards</h4>
+                        <p class="text-gray-700 dark:text-gray-300 mb-3">Hazards arising from the <strong>material, structural, or operational features</strong> of the risk, apart from the persons owning or managing it. These are tangible conditions you can see or touch.</p>
+                        <div class="grid md:grid-cols-2 gap-3">
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                                <p class="text-sm text-gray-600 dark:text-gray-400"><strong>Examples:</strong></p>
+                                <ul class="text-xs text-gray-500 dark:text-gray-400 mt-1 space-y-1">
+                                    <li>- Slippery wet floors</li>
+                                    <li>- Faulty electrical wiring</li>
+                                    <li>- Cracked sidewalks</li>
+                                    <li>- Icy roads</li>
+                                </ul>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                                <p class="text-sm text-gray-600 dark:text-gray-400"><strong>More Examples:</strong></p>
+                                <ul class="text-xs text-gray-500 dark:text-gray-400 mt-1 space-y-1">
+                                    <li>- Broken locks on doors</li>
+                                    <li>- Flammable materials stored improperly</li>
+                                    <li>- Worn brake pads on a vehicle</li>
+                                    <li>- Congested traffic</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Moral Hazard -->
+                    <div class="bg-red-50 dark:bg-red-900/20 rounded-xl p-5 lg:p-6 border-l-4 border-red-500">
+                        <h4 class="font-bold text-red-800 dark:text-red-300 text-lg mb-2">Moral Hazards (INTENTIONAL)</h4>
+                        <p class="text-gray-700 dark:text-gray-300 mb-3">Refers to applicants that may <strong>lie on an application</strong> for insurance, or in the past, have <strong>submitted fraudulent claims</strong> against an insurer. This is about dishonesty and intentional bad behavior.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="text-sm text-gray-600 dark:text-gray-400"><strong>Examples:</strong></p>
+                            <ul class="text-xs text-gray-500 dark:text-gray-400 mt-1 space-y-1">
+                                <li>- Lying on insurance application about driving history</li>
+                                <li>- Committing arson to collect insurance money</li>
+                                <li>- Exaggerating damage on claims</li>
+                                <li>- Staging fake accidents</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Morale Hazard -->
+                    <div class="bg-purple-50 dark:bg-purple-900/20 rounded-xl p-5 lg:p-6 border-l-4 border-purple-500">
+                        <h4 class="font-bold text-purple-800 dark:text-purple-300 text-lg mb-2">Morale Hazards (CARELESSNESS)</h4>
+                        <p class="text-gray-700 dark:text-gray-300 mb-3">Refers to an increase in hazard arising from the insured's <strong>indifference to loss because of the existence of insurance</strong>. This is NOT intentional - just careless attitude ("Why be careful? Insurance will pay!").</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="text-sm text-gray-600 dark:text-gray-400"><strong>Examples:</strong></p>
+                            <ul class="text-xs text-gray-500 dark:text-gray-400 mt-1 space-y-1">
+                                <li>- Leaving doors unlocked because "insurance will cover theft"</li>
+                                <li>- Not maintaining smoke detectors</li>
+                                <li>- Texting while driving because "I have good insurance"</li>
+                                <li>- Skipping regular maintenance on your car</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Memory Trick -->
+                <div class="bg-gray-100 dark:bg-gray-700 rounded-xl p-5 lg:p-6">
+                    <h4 class="font-bold text-gray-800 dark:text-gray-200 text-lg mb-3">Memory Trick: Moral vs Morale</h4>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="bg-red-100 dark:bg-red-900/30 p-4 rounded-lg text-center">
+                            <p class="font-bold text-red-800 dark:text-red-300 text-lg">Moral Hazard</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-xl mt-2">"I'm going to CHEAT"</p>
+                            <p class="text-gray-500 dark:text-gray-400 text-sm mt-1">Intentional fraud/dishonesty</p>
+                        </div>
+                        <div class="bg-purple-100 dark:bg-purple-900/30 p-4 rounded-lg text-center">
+                            <p class="font-bold text-purple-800 dark:text-purple-300 text-lg">Morale Hazard</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-xl mt-2">"I don't CARE"</p>
+                            <p class="text-gray-500 dark:text-gray-400 text-sm mt-1">Careless attitude</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Real-World Example -->
+                <div class="bg-teal-50 dark:bg-teal-900/20 p-5 lg:p-6 rounded-xl border-l-4 border-teal-500 mt-6">
+                    <p class="font-semibold text-teal-800 dark:text-teal-300 text-lg mb-3">Real-World Scenario: Identifying Hazard Types</p>
+                    <div class="space-y-3 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> A grocery store has several risk factors that an underwriter would consider.</p>
+                        <div class="grid md:grid-cols-3 gap-3 mt-4">
+                            <div class="bg-amber-100 dark:bg-amber-900/30 p-3 rounded-lg">
+                                <p class="font-bold text-amber-800 dark:text-amber-300 text-sm mb-2">Physical Hazard</p>
+                                <p class="text-gray-600 dark:text-gray-400 text-xs">The floor near the produce section is frequently wet from misting vegetables - creating slip hazard.</p>
+                            </div>
+                            <div class="bg-red-100 dark:bg-red-900/30 p-3 rounded-lg">
+                                <p class="font-bold text-red-800 dark:text-red-300 text-sm mb-2">Moral Hazard</p>
+                                <p class="text-gray-600 dark:text-gray-400 text-xs">The store owner has a history of filing inflated insurance claims for "damaged inventory."</p>
+                            </div>
+                            <div class="bg-purple-100 dark:bg-purple-900/30 p-3 rounded-lg">
+                                <p class="font-bold text-purple-800 dark:text-purple-300 text-sm mb-2">Morale Hazard</p>
+                                <p class="text-gray-600 dark:text-gray-400 text-xs">Employees don't put up wet floor signs because "if someone falls, insurance will handle it."</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Indemnity -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">5. Indemnity</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/30 border-l-4 border-blue-500 p-4 lg:p-5 rounded-r-lg mb-6">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Indemnity</strong> (sometimes referred to as reimbursement) is a provision in an insurance policy that states that in the event of loss, an insured or a beneficiary is permitted to collect <strong>only to the extent of the financial loss</strong>, and is not allowed to gain financially because of the existence of an insurance contract.</p>
+                </div>
+
+                <div class="bg-green-50 dark:bg-green-900/30 border-l-4 border-green-500 p-4 lg:p-5 rounded-r-lg mb-6">
+                    <p class="font-bold text-green-800 dark:text-green-300 text-lg">Key Concept</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">The purpose of insurance is to <strong>restore</strong>, but not let an insured or a beneficiary <strong>profit</strong> from the loss. Insureds cannot recover more than their loss.</p>
+                </div>
+
+                <!-- Examples Side by Side -->
+                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                    <!-- Health Example -->
+                    <div class="bg-teal-50 dark:bg-teal-900/20 rounded-xl p-5 border-l-4 border-teal-500">
+                        <h4 class="font-bold text-teal-800 dark:text-teal-300 text-lg mb-3">Life and Health Example</h4>
+                        <div class="space-y-3 text-sm">
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Brenda has a health insurance policy for $20,000.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> After she was hospitalized, her medical expenses added up to $15,000.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> The insurance policy will reimburse Brenda only for <strong>$15,000</strong> (the amount of the loss), and NOT for $20,000 (the total amount of insurance).</p>
+                        </div>
+                    </div>
+
+                    <!-- Property Example -->
+                    <div class="bg-amber-50 dark:bg-amber-900/20 rounded-xl p-5 border-l-4 border-amber-500">
+                        <h4 class="font-bold text-amber-800 dark:text-amber-300 text-lg mb-3">Property and Casualty Example</h4>
+                        <div class="space-y-3 text-sm">
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Brenda has a homeowners insurance policy for $200,000.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> After her home was destroyed, her expense to rebuild the home added up to $150,000.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> The insurance policy will reimburse Brenda only for <strong>$150,000</strong> (the amount of the loss), and NOT for $200,000 (the total amount of insurance).</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Why Indemnity Matters -->
+                <div class="bg-gray-50 dark:bg-gray-700 rounded-xl p-5 lg:p-6">
+                    <h4 class="font-bold text-gray-800 dark:text-gray-200 text-lg mb-3">Why Indemnity Matters</h4>
+                    <div class="grid md:grid-cols-3 gap-4">
+                        <div class="bg-white dark:bg-gray-600 p-4 rounded-lg text-center">
+                            <p class="font-bold text-gray-700 dark:text-gray-300">Prevents Profit</p>
+                            <p class="text-gray-500 dark:text-gray-400 text-sm mt-2">Stops people from making money off insurance claims</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-600 p-4 rounded-lg text-center">
+                            <p class="font-bold text-gray-700 dark:text-gray-300">Removes Incentive</p>
+                            <p class="text-gray-500 dark:text-gray-400 text-sm mt-2">No reason to cause intentional losses</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-600 p-4 rounded-lg text-center">
+                            <p class="font-bold text-gray-700 dark:text-gray-300">Restores Position</p>
+                            <p class="text-gray-500 dark:text-gray-400 text-sm mt-2">Returns you to pre-loss state, not better</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. Subrogation -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">6. Subrogation</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/30 border-l-4 border-blue-500 p-4 lg:p-5 rounded-r-lg mb-6">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Subrogation</strong> is the insurer's legal right to seek damages from third parties, after it has reimbursed the insured for the loss.</p>
+                </div>
+
+                <div class="bg-purple-50 dark:bg-purple-900/30 border-l-4 border-purple-500 p-4 lg:p-5 rounded-r-lg mb-6">
+                    <p class="font-bold text-purple-800 dark:text-purple-300 text-lg">Based on Indemnity</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">Subrogation is based on the principle of indemnity by <strong>preventing the insured from collecting on the loss twice</strong>: once from the insurer and a second time from the party that caused the damage.</p>
+                </div>
+
+                <!-- How Subrogation Works -->
+                <div class="bg-gray-50 dark:bg-gray-700 rounded-xl p-5 lg:p-6 mb-6">
+                    <h4 class="font-bold text-gray-800 dark:text-gray-200 text-lg mb-4">How Subrogation Works: Step by Step</h4>
+                    <div class="flex flex-col md:flex-row items-center gap-4">
+                        <div class="bg-blue-100 dark:bg-blue-900/40 p-4 rounded-lg text-center flex-1">
+                            <div class="bg-blue-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold mx-auto mb-2">1</div>
+                            <p class="font-bold text-blue-800 dark:text-blue-300 text-sm">Another Party Causes Loss</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-xs mt-1">Someone else damages your property</p>
+                        </div>
+                        <div class="text-2xl text-gray-400 hidden md:block">&rarr;</div>
+                        <div class="bg-green-100 dark:bg-green-900/40 p-4 rounded-lg text-center flex-1">
+                            <div class="bg-green-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold mx-auto mb-2">2</div>
+                            <p class="font-bold text-green-800 dark:text-green-300 text-sm">Your Insurer Pays You</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-xs mt-1">You file claim, insurer reimburses you</p>
+                        </div>
+                        <div class="text-2xl text-gray-400 hidden md:block">&rarr;</div>
+                        <div class="bg-amber-100 dark:bg-amber-900/40 p-4 rounded-lg text-center flex-1">
+                            <div class="bg-amber-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold mx-auto mb-2">3</div>
+                            <p class="font-bold text-amber-800 dark:text-amber-300 text-sm">Insurer "Steps Into Your Shoes"</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-xs mt-1">Gains right to pursue at-fault party</p>
+                        </div>
+                        <div class="text-2xl text-gray-400 hidden md:block">&rarr;</div>
+                        <div class="bg-purple-100 dark:bg-purple-900/40 p-4 rounded-lg text-center flex-1">
+                            <div class="bg-purple-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold mx-auto mb-2">4</div>
+                            <p class="font-bold text-purple-800 dark:text-purple-300 text-sm">Insurer Recovers Money</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-xs mt-1">Collects from at-fault party's insurance</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Real-World Example -->
+                <div class="bg-green-50 dark:bg-green-900/20 p-5 lg:p-6 rounded-xl border-l-4 border-green-500">
+                    <p class="font-semibold text-green-800 dark:text-green-300 text-lg mb-3">Real-World Scenario: Subrogation in Action</p>
+                    <div class="space-y-3 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> You're stopped at a red light when another driver rear-ends your car, causing $8,000 in damage. It's clearly their fault.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> You file a claim with your own insurance company (Progressive). Progressive pays you $8,000 to fix your car (minus your deductible).</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>Subrogation Kicks In:</strong> Progressive now has the legal right to "subrogate" - they go after the at-fault driver's insurance company (State Farm) to recover the $8,000 they paid you.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> If Progressive successfully recovers the money from State Farm, they may also reimburse your deductible. The at-fault party doesn't escape responsibility just because you had good insurance.</p>
+                    </div>
+                </div>
+
+                <!-- Why Subrogation Exists -->
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 lg:p-5 rounded-r-lg mt-6">
+                    <p class="font-bold text-amber-800 dark:text-amber-300 text-lg">Why Subrogation Exists</p>
+                    <ul class="text-gray-700 dark:text-gray-300 mt-2 space-y-2 text-sm lg:text-base">
+                        <li><strong>1. Prevents Double Recovery:</strong> You can't collect from both your insurer AND the at-fault party</li>
+                        <li><strong>2. Holds Wrongdoers Accountable:</strong> At-fault party doesn't escape responsibility</li>
+                        <li><strong>3. Keeps Premiums Lower:</strong> Recovered money helps offset claim costs for everyone</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Trap Alerts -->
+        <section class="mb-10">
+            <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-xl p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-red-800 dark:text-red-300 mb-6">Exam Trap Alerts</h2>
+
+                <div class="space-y-4">
+                    <div class="bg-white dark:bg-gray-700 p-4 lg:p-5 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">Trap #1: Risk Transfer vs Risk Elimination</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Insurance does NOT eliminate risk - it TRANSFERS it. If an answer choice says insurance "eliminates" or "removes" risk, it's wrong.</p>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-700 p-4 lg:p-5 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">Trap #2: Pure Risk vs Speculative Risk</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Only PURE risk is insurable. If there's any chance of GAIN (like investing or gambling), it's speculative and NOT insurable.</p>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-700 p-4 lg:p-5 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">Trap #3: Moral vs Morale Hazard</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Moral = INTENTIONAL dishonesty (fraud). Morale = CARELESSNESS (indifference). The exam loves to switch these!</p>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-700 p-4 lg:p-5 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">Trap #4: When Insurable Interest Must Exist</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">In P&C insurance, insurable interest must exist <strong>at the time of loss</strong>. In life insurance, it only needs to exist at policy inception.</p>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-700 p-4 lg:p-5 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">Trap #5: Peril vs Hazard</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Peril = CAUSE of loss (fire, theft). Hazard = CONDITION that increases likelihood (wet floor, faulty wiring). Don't mix them up!</p>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-700 p-4 lg:p-5 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">Trap #6: Indemnity Limits Payment</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">You can NEVER collect more than your actual loss, even if your policy limit is higher. Insurance restores - it doesn't enrich.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Reference Summary -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-blue-600 to-blue-800 rounded-xl p-6 lg:p-8 text-white">
+                <h2 class="text-2xl lg:text-3xl font-bold mb-6">Quick Reference Summary</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold text-lg">Insurance</p>
+                        <p class="text-sm text-blue-100">Transfer of risk from individual to insurer</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold text-lg">Insurable Interest</p>
+                        <p class="text-sm text-blue-100">Financial, Blood, or Business stake</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold text-lg">Pure Risk</p>
+                        <p class="text-sm text-blue-100">Loss or no change - INSURABLE</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold text-lg">Speculative Risk</p>
+                        <p class="text-sm text-blue-100">Loss, gain, or break-even - NOT insurable</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold text-lg">Peril</p>
+                        <p class="text-sm text-blue-100">Cause of loss (fire, theft)</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold text-lg">Hazard</p>
+                        <p class="text-sm text-blue-100">Condition increasing loss probability</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold text-lg">Physical Hazard</p>
+                        <p class="text-sm text-blue-100">Tangible conditions (wet floor)</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold text-lg">Moral Hazard</p>
+                        <p class="text-sm text-blue-100">Intentional dishonesty/fraud</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold text-lg">Morale Hazard</p>
+                        <p class="text-sm text-blue-100">Carelessness/indifference</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold text-lg">Indemnity</p>
+                        <p class="text-sm text-blue-100">Restore, not profit from loss</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold text-lg">Subrogation</p>
+                        <p class="text-sm text-blue-100">Insurer's right to pursue third party</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold text-lg">P&C Interest Rule</p>
+                        <p class="text-sm text-blue-100">Must exist at TIME OF LOSS</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Navigation Footer -->
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="../index.html" class="text-gray-300 hover:text-white flex items-center">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                    </svg>
+                    Chapter 1 Intro
+                </a>
+                <span class="text-gray-400">Part 1 of 7</span>
+                <a href="../part-2/index.html" class="text-gray-300 hover:text-white flex items-center">
+                    Part 2: P&L Terms
+                    <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AI Tutor Button -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            createFloatingAIButton(`Chapter 1 Part 1: General Insurance Principles
+
+Key Concepts:
+
+INSURANCE = Transfer of risk from individual to insurer, spread among many insureds
+
+INSURABLE INTEREST - 3 Elements (FBB):
+- Financial (monetary interest)
+- Blood (family relationship)
+- Business (partner relationship)
+- P&C: Must exist at TIME OF LOSS
+
+RISK TYPES:
+- Pure Risk = Loss or no change (INSURABLE)
+- Speculative Risk = Loss, gain, or break-even (NOT insurable)
+
+PERIL = Cause of loss (fire, theft, windstorm)
+
+HAZARDS = Conditions increasing loss probability:
+- Physical: Tangible conditions (wet floor, faulty wiring)
+- Moral: Intentional dishonesty/fraud ("I'm going to CHEAT")
+- Morale: Carelessness/indifference ("I don't CARE")
+
+INDEMNITY = Restore to pre-loss position, no profit
+
+SUBROGATION = Insurer's right to pursue third party after paying claim`);
+        });
+    </script>
+</body>
+</html>

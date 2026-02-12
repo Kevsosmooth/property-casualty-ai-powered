@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter 2 Part 1: Policy Structure | P&C Study Guide</title>
+    <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <link rel="stylesheet" href="../../../css/styles.css">
+    <script src="../../../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+        }
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <!-- Settings & Theme Toggle Buttons -->
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="showAPIKeySetup()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings">
+            <svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+        </button>
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/>
+            </svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-purple-600 to-purple-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap gap-2 text-sm mb-2">
+                <a href="../../../index.html" class="text-purple-200 hover:text-white">Home</a>
+                <span class="text-purple-300">/</span>
+                <a href="../../index.html" class="text-purple-200 hover:text-white">Casualty</a>
+                <span class="text-purple-300">/</span>
+                <a href="../index.html" class="text-purple-200 hover:text-white">Chapter 2</a>
+                <span class="text-purple-300">/</span>
+                <span class="text-white">Part 1</span>
+            </div>
+            <h1 class="text-3xl font-bold">Chapter 2 Part 1: Policy Structure</h1>
+            <p class="text-purple-200 mt-1">The 8 Components of Every P&C Insurance Policy</p>
+        </div>
+    </header>
+
+    <!-- Part Navigation -->
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-wrap gap-2 text-sm">
+                <a href="../index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Intro</a>
+                <span class="bg-purple-600 text-white px-3 py-1 rounded font-medium">Part 1</span>
+                <a href="../part-2/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 2</a>
+                <a href="../part-3/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 3</a>
+                <a href="../part-4/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 4</a>
+                <a href="../part-5/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 5</a>
+                <a href="../part-6/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 6</a>
+                <a href="../recap/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Recap</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-5xl lg:max-w-7xl">
+
+        <!-- Overview Section -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">Understanding Policy Structure</h2>
+
+                <div class="bg-purple-50 dark:bg-purple-900/30 border border-purple-200 dark:border-purple-800 rounded-lg p-5 lg:p-6 mb-6">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Every Property & Casualty insurance policy follows a <strong>standard structure</strong> with 8 essential components. Understanding this structure is critical because questions about <strong>what's on the declarations page</strong>, <strong>how endorsements work</strong>, and <strong>the order of policy sections</strong> appear frequently on the exam.</p>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 lg:p-5 rounded-r-lg">
+                    <p class="font-bold text-amber-800 dark:text-amber-300 text-lg">Exam Alert!</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">Memorize the 8 components and their purposes. The exam often asks which component contains specific information (e.g., "Where would you find the insured's address?" Answer: Declarations page).</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- The 8 Components Overview -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">The 8 Components of a P&C Policy</h2>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+                    <div class="bg-blue-100 dark:bg-blue-900/40 p-4 rounded-lg text-center border-2 border-blue-300 dark:border-blue-700">
+                        <div class="bg-blue-600 text-white w-10 h-10 rounded-full flex items-center justify-center font-bold text-lg mx-auto mb-2">1</div>
+                        <p class="font-bold text-blue-800 dark:text-blue-300">Declarations</p>
+                        <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">Basic info page</p>
+                    </div>
+                    <div class="bg-purple-100 dark:bg-purple-900/40 p-4 rounded-lg text-center border-2 border-purple-300 dark:border-purple-700">
+                        <div class="bg-purple-600 text-white w-10 h-10 rounded-full flex items-center justify-center font-bold text-lg mx-auto mb-2">2</div>
+                        <p class="font-bold text-purple-800 dark:text-purple-300">Definitions</p>
+                        <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">Clarifies terms</p>
+                    </div>
+                    <div class="bg-green-100 dark:bg-green-900/40 p-4 rounded-lg text-center border-2 border-green-300 dark:border-green-700">
+                        <div class="bg-green-600 text-white w-10 h-10 rounded-full flex items-center justify-center font-bold text-lg mx-auto mb-2">3</div>
+                        <p class="font-bold text-green-800 dark:text-green-300">Insuring Agreement</p>
+                        <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">Insurer's promise</p>
+                    </div>
+                    <div class="bg-amber-100 dark:bg-amber-900/40 p-4 rounded-lg text-center border-2 border-amber-300 dark:border-amber-700">
+                        <div class="bg-amber-600 text-white w-10 h-10 rounded-full flex items-center justify-center font-bold text-lg mx-auto mb-2">4</div>
+                        <p class="font-bold text-amber-800 dark:text-amber-300">Additional Coverage</p>
+                        <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">Free extras</p>
+                    </div>
+                    <div class="bg-teal-100 dark:bg-teal-900/40 p-4 rounded-lg text-center border-2 border-teal-300 dark:border-teal-700">
+                        <div class="bg-teal-600 text-white w-10 h-10 rounded-full flex items-center justify-center font-bold text-lg mx-auto mb-2">5</div>
+                        <p class="font-bold text-teal-800 dark:text-teal-300">Conditions</p>
+                        <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">Rules both follow</p>
+                    </div>
+                    <div class="bg-indigo-100 dark:bg-indigo-900/40 p-4 rounded-lg text-center border-2 border-indigo-300 dark:border-indigo-700">
+                        <div class="bg-indigo-600 text-white w-10 h-10 rounded-full flex items-center justify-center font-bold text-lg mx-auto mb-2">6</div>
+                        <p class="font-bold text-indigo-800 dark:text-indigo-300">Endorsements</p>
+                        <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">Changes to policy</p>
+                    </div>
+                    <div class="bg-red-100 dark:bg-red-900/40 p-4 rounded-lg text-center border-2 border-red-300 dark:border-red-700">
+                        <div class="bg-red-600 text-white w-10 h-10 rounded-full flex items-center justify-center font-bold text-lg mx-auto mb-2">7</div>
+                        <p class="font-bold text-red-800 dark:text-red-300">Exclusions</p>
+                        <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">What's NOT covered</p>
+                    </div>
+                    <div class="bg-pink-100 dark:bg-pink-900/40 p-4 rounded-lg text-center border-2 border-pink-300 dark:border-pink-700">
+                        <div class="bg-pink-600 text-white w-10 h-10 rounded-full flex items-center justify-center font-bold text-lg mx-auto mb-2">8</div>
+                        <p class="font-bold text-pink-800 dark:text-pink-300">Policy Limits</p>
+                        <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">Maximum payout</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 1. Declarations -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">1. Declarations (Dec Page)</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/30 border-l-4 border-blue-500 p-4 lg:p-5 rounded-r-lg mb-6">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">The <strong>Declarations page</strong> (often called the "Dec Page") is usually the <strong>first page</strong> of the policy. It contains basic underwriting information unique to that specific policyholder.</p>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 rounded-xl p-5 lg:p-6 mb-6">
+                    <h3 class="font-bold text-gray-800 dark:text-gray-200 text-lg mb-4">What's Included on the Declarations Page:</h3>
+                    <div class="grid md:grid-cols-2 gap-3">
+                        <div class="bg-white dark:bg-gray-600 p-3 rounded flex items-start">
+                            <span class="text-blue-500 mr-2 font-bold">+</span>
+                            <span class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Insured's name and mailing address</span>
+                        </div>
+                        <div class="bg-white dark:bg-gray-600 p-3 rounded flex items-start">
+                            <span class="text-blue-500 mr-2 font-bold">+</span>
+                            <span class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Amount of coverage (policy limits)</span>
+                        </div>
+                        <div class="bg-white dark:bg-gray-600 p-3 rounded flex items-start">
+                            <span class="text-blue-500 mr-2 font-bold">+</span>
+                            <span class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Premium amounts</span>
+                        </div>
+                        <div class="bg-white dark:bg-gray-600 p-3 rounded flex items-start">
+                            <span class="text-blue-500 mr-2 font-bold">+</span>
+                            <span class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Description of insured location(s)</span>
+                        </div>
+                        <div class="bg-white dark:bg-gray-600 p-3 rounded flex items-start">
+                            <span class="text-blue-500 mr-2 font-bold">+</span>
+                            <span class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Policy period (effective dates)</span>
+                        </div>
+                        <div class="bg-white dark:bg-gray-600 p-3 rounded flex items-start">
+                            <span class="text-blue-500 mr-2 font-bold">+</span>
+                            <span class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Supplemental representations</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Real-World Example -->
+                <div class="bg-green-50 dark:bg-green-900/20 p-5 lg:p-6 rounded-xl border-l-4 border-green-500">
+                    <p class="font-semibold text-green-800 dark:text-green-300 text-lg mb-3">Real-World Scenario: Reading a Dec Page</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Maria receives her new homeowners insurance policy in the mail. She opens it to find a single page at the front with all her information.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What's on the Dec Page:</strong> Named Insured: Maria Rodriguez | Address: 123 Oak Street, Newark, NJ | Policy Period: June 1, 2025 to June 1, 2026 | Coverage A (Dwelling): $300,000 | Coverage B (Other Structures): $30,000 | Annual Premium: $1,850 | Deductible: $1,000</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Maria can quickly verify all her key policy details on this single page without reading the entire policy. If she needs to file a claim, she knows her deductible is $1,000.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Definitions -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">2. Definitions</h2>
+
+                <div class="bg-purple-50 dark:bg-purple-900/30 border-l-4 border-purple-500 p-4 lg:p-5 rounded-r-lg mb-6">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">The <strong>Definitions</strong> section clarifies terms used throughout the policy. Defined terms are usually shown in <strong>quotation marks</strong> or <strong>bold print</strong> when used in the policy text.</p>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 rounded-xl p-5 lg:p-6 mb-6">
+                    <h3 class="font-bold text-gray-800 dark:text-gray-200 text-lg mb-4">Why Definitions Matter:</h3>
+                    <ul class="text-gray-700 dark:text-gray-300 space-y-2 text-sm lg:text-base">
+                        <li class="flex items-start"><span class="text-purple-500 mr-2 font-bold">+</span>Prevent misunderstandings about coverage</li>
+                        <li class="flex items-start"><span class="text-purple-500 mr-2 font-bold">+</span>Terms may have different meanings than everyday usage</li>
+                        <li class="flex items-start"><span class="text-purple-500 mr-2 font-bold">+</span>Control the scope of coverage</li>
+                        <li class="flex items-start"><span class="text-purple-500 mr-2 font-bold">+</span>Create consistency across all policies from that insurer</li>
+                    </ul>
+                </div>
+
+                <!-- Real-World Example -->
+                <div class="bg-teal-50 dark:bg-teal-900/20 p-5 lg:p-6 rounded-xl border-l-4 border-teal-500">
+                    <p class="font-semibold text-teal-800 dark:text-teal-300 text-lg mb-3">Real-World Scenario: Definition Matters</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Tom's auto policy says it covers "you" and "family members." Tom assumes this includes his 25-year-old son who lives in another state.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> When Tom checks the Definitions section, he sees "family member" is defined as "a person related to you by blood, marriage, or adoption who is a resident of your household."</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Tom's son is NOT covered under his policy because the son doesn't live in Tom's household. The definition limits "family member" to residents only. Tom realizes his son needs his own auto insurance. This is why reading definitions is crucial!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Insuring Agreement -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">3. Insuring Agreement</h2>
+
+                <div class="bg-green-50 dark:bg-green-900/30 border-l-4 border-green-500 p-4 lg:p-5 rounded-r-lg mb-6">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">The <strong>Insuring Agreement</strong> is the <strong>heart of the insurance contract</strong>. It contains the insurer's promise to pay for covered losses. This is where the company states exactly what it will do in exchange for your premium.</p>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border border-amber-200 dark:border-amber-800 rounded-lg p-4 lg:p-5 mb-6">
+                    <h4 class="font-bold text-amber-800 dark:text-amber-300 text-lg mb-2">Key Point</h4>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">The insuring agreement is usually <strong>very broad</strong>. It's the exclusions and conditions that narrow down what's actually covered. Start with "we'll cover everything in this category" then subtract the exclusions.</p>
+                </div>
+
+                <!-- Real-World Example -->
+                <div class="bg-blue-50 dark:bg-blue-900/20 p-5 lg:p-6 rounded-xl border-l-4 border-blue-500">
+                    <p class="font-semibold text-blue-800 dark:text-blue-300 text-lg mb-3">Real-World Scenario: The Insuring Agreement in Action</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Sarah's homeowners policy insuring agreement states: "We will pay for direct physical loss to the property described in Coverage A caused by a Covered Peril."</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> A tree falls on Sarah's house during a windstorm, causing $15,000 in damage. Sarah files a claim.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> The insurer checks: (1) Is this direct physical loss? Yes - the tree physically damaged the structure. (2) Is it to Coverage A property? Yes - the dwelling. (3) Was it caused by a Covered Peril? Yes - windstorm is listed. The insuring agreement is satisfied, so the claim is covered (subject to deductible and limits).</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Additional Coverage -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">4. Additional Coverage</h2>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 lg:p-5 rounded-r-lg mb-6">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Additional Coverage</strong> provides extra benefits beyond the main insuring agreement, often at <strong>no extra premium</strong>. These are "freebies" included in the standard policy with their own separate (usually smaller) limits.</p>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 rounded-xl p-5 lg:p-6 mb-6">
+                    <h3 class="font-bold text-gray-800 dark:text-gray-200 text-lg mb-4">Common Examples of Additional Coverage:</h3>
+                    <div class="grid md:grid-cols-2 gap-3">
+                        <div class="bg-white dark:bg-gray-600 p-3 rounded flex items-start">
+                            <span class="text-amber-500 mr-2 font-bold">+</span>
+                            <span class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Debris removal (removing wreckage after a loss)</span>
+                        </div>
+                        <div class="bg-white dark:bg-gray-600 p-3 rounded flex items-start">
+                            <span class="text-amber-500 mr-2 font-bold">+</span>
+                            <span class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Fire department service charges</span>
+                        </div>
+                        <div class="bg-white dark:bg-gray-600 p-3 rounded flex items-start">
+                            <span class="text-amber-500 mr-2 font-bold">+</span>
+                            <span class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Temporary repairs to protect property</span>
+                        </div>
+                        <div class="bg-white dark:bg-gray-600 p-3 rounded flex items-start">
+                            <span class="text-amber-500 mr-2 font-bold">+</span>
+                            <span class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Additional living expenses (hotel, meals)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Real-World Example -->
+                <div class="bg-indigo-50 dark:bg-indigo-900/20 p-5 lg:p-6 rounded-xl border-l-4 border-indigo-500">
+                    <p class="font-semibold text-indigo-800 dark:text-indigo-300 text-lg mb-3">Real-World Scenario: Additional Coverage Saves the Day</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> A fire destroys part of the Chen family's home. Besides the structural damage, they have a pile of burnt debris on their property, and the fire department billed them $500 for their services.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> The Chens file a claim for the fire damage. They also ask about the debris and fire department bill.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Thanks to Additional Coverage in their homeowners policy, the debris removal ($3,000) and fire department charges ($500) are covered separately - they don't eat into the main dwelling coverage limit. The family didn't pay extra for these coverages; they were automatically included.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Conditions -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">5. Conditions</h2>
+
+                <div class="bg-teal-50 dark:bg-teal-900/30 border-l-4 border-teal-500 p-4 lg:p-5 rounded-r-lg mb-6">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Conditions</strong> are the "rules of engagement" that <strong>both parties must follow</strong>. They outline the duties of the insured and insurer, and what happens if either party doesn't comply.</p>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 rounded-xl p-5 lg:p-6 mb-6">
+                    <h3 class="font-bold text-gray-800 dark:text-gray-200 text-lg mb-4">Common Policy Conditions:</h3>
+                    <div class="grid md:grid-cols-2 gap-3">
+                        <div class="bg-white dark:bg-gray-600 p-3 rounded flex items-start">
+                            <span class="text-teal-500 mr-2 font-bold">+</span>
+                            <span class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Duties after a loss (protect property, notify insurer)</span>
+                        </div>
+                        <div class="bg-white dark:bg-gray-600 p-3 rounded flex items-start">
+                            <span class="text-teal-500 mr-2 font-bold">+</span>
+                            <span class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">How to file a claim</span>
+                        </div>
+                        <div class="bg-white dark:bg-gray-600 p-3 rounded flex items-start">
+                            <span class="text-teal-500 mr-2 font-bold">+</span>
+                            <span class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Cancellation procedures</span>
+                        </div>
+                        <div class="bg-white dark:bg-gray-600 p-3 rounded flex items-start">
+                            <span class="text-teal-500 mr-2 font-bold">+</span>
+                            <span class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Subrogation rights</span>
+                        </div>
+                        <div class="bg-white dark:bg-gray-600 p-3 rounded flex items-start">
+                            <span class="text-teal-500 mr-2 font-bold">+</span>
+                            <span class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Assignment (transferring policy rights)</span>
+                        </div>
+                        <div class="bg-white dark:bg-gray-600 p-3 rounded flex items-start">
+                            <span class="text-teal-500 mr-2 font-bold">+</span>
+                            <span class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Cooperation with investigation</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Real-World Example -->
+                <div class="bg-red-50 dark:bg-red-900/20 p-5 lg:p-6 rounded-xl border-l-4 border-red-500">
+                    <p class="font-semibold text-red-800 dark:text-red-300 text-lg mb-3">Real-World Scenario: Condition Violation = No Coverage</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Mike's car is stolen. His auto policy conditions require him to report the theft to police within 24 hours and notify the insurer promptly.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Mike waits two weeks before filing a police report and doesn't call his insurer until a month later. By then, the car has been stripped for parts.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> The insurer may deny Mike's claim because he violated policy conditions. His delay in reporting made it impossible to recover the vehicle and investigate properly. Conditions aren't suggestions - they're requirements for coverage!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. Endorsements -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">6. Endorsements (Riders)</h2>
+
+                <div class="bg-indigo-50 dark:bg-indigo-900/30 border-l-4 border-indigo-500 p-4 lg:p-5 rounded-r-lg mb-6">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Endorsements</strong> (also called riders) are written amendments that <strong>modify the standard policy</strong>. They can add coverage, remove coverage, or change existing terms. Endorsements must be <strong>written, attached to the policy, and signed by an executive officer</strong>.</p>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border border-amber-200 dark:border-amber-800 rounded-lg p-4 lg:p-5 mb-6">
+                    <h4 class="font-bold text-amber-800 dark:text-amber-300 text-lg mb-2">Key Rule</h4>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">When there's a conflict between the endorsement and the main policy language, <strong>the endorsement takes precedence</strong> (wins). Endorsements are the most specific level of the contract.</p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-4 mb-6">
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border border-green-200 dark:border-green-800">
+                        <p class="font-bold text-green-800 dark:text-green-300 mb-2">Add Coverage</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">Scheduled jewelry rider, flood endorsement, umbrella coverage</p>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border border-red-200 dark:border-red-800">
+                        <p class="font-bold text-red-800 dark:text-red-300 mb-2">Remove Coverage</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">Exclude certain drivers, remove specific property from coverage</p>
+                    </div>
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
+                        <p class="font-bold text-blue-800 dark:text-blue-300 mb-2">Modify Terms</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">Change deductible, adjust limits, alter conditions</p>
+                    </div>
+                </div>
+
+                <!-- Real-World Example -->
+                <div class="bg-purple-50 dark:bg-purple-900/20 p-5 lg:p-6 rounded-xl border-l-4 border-purple-500">
+                    <p class="font-semibold text-purple-800 dark:text-purple-300 text-lg mb-3">Real-World Scenario: Endorsement Adds Protection</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Lisa has a homeowners policy with a $2,500 limit on jewelry theft. She inherits a diamond ring worth $15,000.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Lisa contacts her insurer and adds a "Scheduled Personal Property" endorsement that specifically lists the ring with its appraised value and provides full coverage.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> The ring is now covered for its full $15,000 value. If it's stolen, Lisa gets $15,000, not the standard $2,500 limit. The endorsement modified her policy to add this specific coverage for an additional premium.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. Exclusions -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">7. Exclusions</h2>
+
+                <div class="bg-red-50 dark:bg-red-900/30 border-l-4 border-red-500 p-4 lg:p-5 rounded-r-lg mb-6">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Exclusions</strong> list what the policy does <strong>NOT</strong> cover. They narrow the broad insuring agreement by specifying perils, property, losses, or situations that are excluded from coverage.</p>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 rounded-xl p-5 lg:p-6 mb-6">
+                    <h3 class="font-bold text-gray-800 dark:text-gray-200 text-lg mb-4">Why Exclusions Exist:</h3>
+                    <ul class="text-gray-700 dark:text-gray-300 space-y-2 text-sm lg:text-base">
+                        <li class="flex items-start"><span class="text-red-500 mr-2 font-bold">!</span>Eliminate uninsurable risks (war, nuclear events)</li>
+                        <li class="flex items-start"><span class="text-red-500 mr-2 font-bold">!</span>Remove catastrophic risks requiring special coverage (flood, earthquake)</li>
+                        <li class="flex items-start"><span class="text-red-500 mr-2 font-bold">!</span>Exclude intentional acts (arson, fraud)</li>
+                        <li class="flex items-start"><span class="text-red-500 mr-2 font-bold">!</span>Prevent duplicate coverage (coverage available elsewhere)</li>
+                        <li class="flex items-start"><span class="text-red-500 mr-2 font-bold">!</span>Keep premiums affordable</li>
+                    </ul>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border border-red-200 dark:border-red-800">
+                        <p class="font-bold text-red-800 dark:text-red-300 mb-2">Common Homeowners Exclusions</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm space-y-1">
+                            <li>- Flood damage</li>
+                            <li>- Earthquake</li>
+                            <li>- Intentional loss</li>
+                            <li>- War</li>
+                            <li>- Nuclear hazard</li>
+                            <li>- Ordinance or law</li>
+                        </ul>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border border-red-200 dark:border-red-800">
+                        <p class="font-bold text-red-800 dark:text-red-300 mb-2">Common Auto Exclusions</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm space-y-1">
+                            <li>- Intentional damage</li>
+                            <li>- Business use (unless declared)</li>
+                            <li>- Racing or stunts</li>
+                            <li>- Public livery/rideshare</li>
+                            <li>- Wear and tear</li>
+                            <li>- Damage to rented vehicle</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Real-World Example -->
+                <div class="bg-amber-50 dark:bg-amber-900/20 p-5 lg:p-6 rounded-xl border-l-4 border-amber-500">
+                    <p class="font-semibold text-amber-800 dark:text-amber-300 text-lg mb-3">Real-World Scenario: Exclusion Denies Claim</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> After a hurricane, the Smiths' basement floods with 3 feet of water, causing $50,000 in damage to their finished basement, appliances, and stored belongings.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> The Smiths file a homeowners claim. The adjuster investigates and determines the damage was caused by floodwater (rising surface water from the storm).</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Claim DENIED. Flood is specifically excluded from homeowners policies. The Smiths needed separate flood insurance through the National Flood Insurance Program (NFIP). The exclusion exists because flood risk requires special underwriting and premium calculations.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 8. Policy Limits -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">8. Policy Limits</h2>
+
+                <div class="bg-pink-50 dark:bg-pink-900/30 border-l-4 border-pink-500 p-4 lg:p-5 rounded-r-lg mb-6">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Policy Limits</strong> define the <strong>maximum amount</strong> the insurer will pay for covered losses. Limits can apply per person, per occurrence, per year (aggregate), or in various combinations.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
+                        <p class="font-bold text-blue-800 dark:text-blue-300 mb-2">Per Person Limit</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">Maximum paid for any one person's injury. Example: $100,000 per person bodily injury.</p>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border border-green-200 dark:border-green-800">
+                        <p class="font-bold text-green-800 dark:text-green-300 mb-2">Per Occurrence Limit</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">Maximum paid for all injuries/damage from one event. Example: $300,000 per accident.</p>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border border-purple-200 dark:border-purple-800">
+                        <p class="font-bold text-purple-800 dark:text-purple-300 mb-2">Aggregate Limit</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">Maximum paid during entire policy period. Example: $1,000,000 annual aggregate.</p>
+                    </div>
+                    <div class="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg border border-amber-200 dark:border-amber-800">
+                        <p class="font-bold text-amber-800 dark:text-amber-300 mb-2">Combined Single Limit (CSL)</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">One limit for all injuries/damage combined. Example: $500,000 CSL for BI and PD together.</p>
+                    </div>
+                </div>
+
+                <!-- Real-World Example -->
+                <div class="bg-teal-50 dark:bg-teal-900/20 p-5 lg:p-6 rounded-xl border-l-4 border-teal-500">
+                    <p class="font-semibold text-teal-800 dark:text-teal-300 text-lg mb-3">Real-World Scenario: Understanding Split Limits</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Dave has auto liability with limits of $100,000/$300,000/$50,000. He causes an accident injuring three people.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> The three injured people have damages of: Person A = $150,000, Person B = $80,000, Person C = $70,000. Total: $300,000.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Dave's policy pays: Person A gets $100,000 (capped at per-person limit, $50,000 short). Person B gets $80,000 (full amount - under per-person limit). Person C gets $70,000 (full amount - under per-person limit). Total paid = $250,000 (under the $300,000 per-occurrence limit). Dave is personally liable for the remaining $50,000 Person A didn't receive.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Trap Alerts -->
+        <section class="mb-10">
+            <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-xl p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-red-800 dark:text-red-300 mb-6">Exam Trap Alerts</h2>
+
+                <div class="space-y-4">
+                    <div class="bg-white dark:bg-gray-700 p-4 lg:p-5 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2 text-base lg:text-lg">1. Declarations vs Insuring Agreement</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The DECLARATIONS contains WHO is insured and HOW MUCH coverage. The INSURING AGREEMENT contains the PROMISE to pay. Don't confuse them!</p>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-700 p-4 lg:p-5 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2 text-base lg:text-lg">2. Endorsements Beat Standard Policy</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">When endorsement language conflicts with standard policy language, the ENDORSEMENT wins. It's more specific and recent.</p>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-700 p-4 lg:p-5 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2 text-base lg:text-lg">3. Endorsement Requirements</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Valid endorsements must be: WRITTEN, ATTACHED to the policy, and SIGNED by an executive officer. Verbal changes don't count!</p>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-700 p-4 lg:p-5 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2 text-base lg:text-lg">4. Additional Coverage Has Separate Limits</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Additional coverages usually have their OWN limits, separate from the main coverage. They don't reduce your main limits.</p>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-700 p-4 lg:p-5 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2 text-base lg:text-lg">5. Per Person vs Per Occurrence Limits</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The per-person limit caps payment to ANY ONE person. Even if you're under the occurrence limit, no single person gets more than the per-person limit.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Reference Summary -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-purple-600 to-purple-800 rounded-xl p-6 lg:p-8 text-white">
+                <h2 class="text-2xl lg:text-3xl font-bold mb-6">Quick Reference Summary</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold text-lg">1. Declarations</p>
+                        <p class="text-sm text-purple-100">Who, what, when, where, how much</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold text-lg">2. Definitions</p>
+                        <p class="text-sm text-purple-100">What terms mean in this policy</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold text-lg">3. Insuring Agreement</p>
+                        <p class="text-sm text-purple-100">The promise to pay for losses</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold text-lg">4. Additional Coverage</p>
+                        <p class="text-sm text-purple-100">Extra benefits, often free</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold text-lg">5. Conditions</p>
+                        <p class="text-sm text-purple-100">Rules both parties must follow</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold text-lg">6. Endorsements</p>
+                        <p class="text-sm text-purple-100">Written amendments (win conflicts)</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold text-lg">7. Exclusions</p>
+                        <p class="text-sm text-purple-100">What is NOT covered</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold text-lg">8. Policy Limits</p>
+                        <p class="text-sm text-purple-100">Maximum payout amounts</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Navigation Footer -->
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="../index.html" class="text-gray-300 hover:text-white flex items-center">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                    </svg>
+                    Chapter 2 Intro
+                </a>
+                <span class="text-gray-400">Part 1 of 6</span>
+                <a href="../part-2/index.html" class="text-gray-300 hover:text-white flex items-center">
+                    Part 2: Definition of Insured
+                    <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AI Tutor Button -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            createFloatingAIButton(`Chapter 2 Part 1: Policy Structure
+
+The 8 Components of Every P&C Policy:
+
+1. DECLARATIONS (Dec Page)
+   - First page of policy
+   - Contains: Named insured, address, coverage limits, premium, deductible, policy period, property description
+
+2. DEFINITIONS
+   - Clarifies terms used in policy
+   - Defined terms shown in quotes or bold
+   - May differ from everyday meaning
+
+3. INSURING AGREEMENT
+   - Heart of the contract
+   - Insurer's promise to pay for covered losses
+   - Usually broad - exclusions narrow it down
+
+4. ADDITIONAL COVERAGE
+   - Extra benefits beyond main coverage
+   - Often no extra premium
+   - Examples: debris removal, fire dept charges
+   - Has separate limits
+
+5. CONDITIONS
+   - Rules both parties must follow
+   - Duties after loss, cancellation procedures
+   - Subrogation rights, cooperation requirements
+
+6. ENDORSEMENTS (Riders)
+   - Written amendments to policy
+   - Must be: written, attached, signed by officer
+   - WIN over standard policy language when conflict
+   - Can add/remove/modify coverage
+
+7. EXCLUSIONS
+   - What is NOT covered
+   - Common: flood, earthquake, intentional acts, war
+   - Keeps premiums affordable
+
+8. POLICY LIMITS
+   - Maximum insurer will pay
+   - Types: per person, per occurrence, aggregate, CSL
+   - Per person caps payment to any ONE individual
+
+EXAM TRAPS:
+- Declarations = WHO and HOW MUCH. Insuring Agreement = PROMISE TO PAY
+- Endorsements beat standard policy language
+- Additional coverage has separate limits
+- Per person limit caps individual payments`);
+        });
+    </script>
+</body>
+</html>
