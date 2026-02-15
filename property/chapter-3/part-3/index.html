@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 3: Inland Marine | Chapter 3 | Property Insurance</title>
+    <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <link rel="stylesheet" href="../../../css/styles.css">
+    <script src="../../../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+        }
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <!-- Settings & Theme Toggle Buttons -->
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="showAPIKeySetup()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings">
+            <svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+        </button>
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/>
+            </svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-green-600 to-green-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center text-green-200 text-sm mb-2">
+                <a href="../../index.html" class="hover:text-white">Property</a>
+                <span class="mx-2">→</span>
+                <a href="../index.html" class="hover:text-white">Chapter 3</a>
+                <span class="mx-2">→</span>
+                <span class="text-white">Part 3</span>
+            </div>
+            <h1 class="text-3xl font-bold">Part 3: Inland Marine</h1>
+            <p class="text-green-200 mt-1">Mobile Property & Property in Transit - Nothing to Do with Water!</p>
+        </div>
+    </header>
+
+    <!-- Sticky Navigation -->
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-wrap gap-2 text-sm">
+                <a href="#overview" class="text-green-600 dark:text-green-400 hover:text-green-800 px-2 py-1 rounded hover:bg-green-50 dark:hover:bg-gray-700">Overview</a>
+                <a href="#history" class="text-green-600 dark:text-green-400 hover:text-green-800 px-2 py-1 rounded hover:bg-green-50 dark:hover:bg-gray-700">History</a>
+                <a href="#filed-unfiled" class="text-green-600 dark:text-green-400 hover:text-green-800 px-2 py-1 rounded hover:bg-green-50 dark:hover:bg-gray-700">Filed vs Unfiled</a>
+                <a href="#personal-floaters" class="text-green-600 dark:text-green-400 hover:text-green-800 px-2 py-1 rounded hover:bg-green-50 dark:hover:bg-gray-700">Personal Floaters</a>
+                <a href="#commercial" class="text-green-600 dark:text-green-400 hover:text-green-800 px-2 py-1 rounded hover:bg-green-50 dark:hover:bg-gray-700">Commercial</a>
+                <a href="#comparison" class="text-green-600 dark:text-green-400 hover:text-green-800 px-2 py-1 rounded hover:bg-green-50 dark:hover:bg-gray-700">Comparison</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-5xl lg:max-w-7xl">
+
+        <!-- Section 1: Overview -->
+        <section id="overview" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">1. What is Inland Marine Insurance?</h2>
+
+                <div class="bg-green-50 dark:bg-green-900/30 rounded-xl p-5 lg:p-6 mb-6 border border-green-200 dark:border-green-800">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Despite the name, <strong>Inland Marine insurance has nothing to do with water</strong>. It evolved from ocean marine insurance to cover property that is <strong>mobile</strong>, <strong>in transit over land</strong>, or has special characteristics that make it unsuitable for standard property policies.</p>
+                </div>
+
+                <!-- The Name Explained -->
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 lg:p-5 rounded-r-lg mb-6">
+                    <p class="font-bold text-amber-800 dark:text-amber-300 text-lg mb-2">Why "Marine" if There's No Water?</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Historical Context: Ocean Marine insurance covered goods on ships. When coverage was needed for goods traveling over LAND, insurers extended the concept - calling it "Inland" Marine because it covered the continuation of ocean journeys onto land. The name stuck, even though it now covers things that never go near water.</p>
+                </div>
+
+                <!-- What Makes Something Inland Marine -->
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-5 lg:p-6 mb-6 border border-blue-200 dark:border-blue-800">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg mb-4">Property Must Have One of These Characteristics:</h3>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                            <p class="font-bold text-gray-800 dark:text-gray-200 mb-1">Property in Transit</p>
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400">Being transported from one place to another</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                            <p class="font-bold text-gray-800 dark:text-gray-200 mb-1">Mobile Property</p>
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400">Designed to be moved frequently</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                            <p class="font-bold text-gray-800 dark:text-gray-200 mb-1">Bailee Property</p>
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400">Held by someone other than the owner</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                            <p class="font-bold text-gray-800 dark:text-gray-200 mb-1">Transportation/Communication Tools</p>
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400">Bridges, tunnels, towers, pipelines</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Real World Example -->
+                <div class="bg-green-50 dark:bg-green-900/20 p-5 rounded-lg border-l-4 border-green-500">
+                    <p class="font-semibold text-green-800 dark:text-green-300 mb-2">Real-World Scenario: Standard Property vs Inland Marine</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Sarah is a professional photographer with $50,000 in camera equipment. She works at clients' homes, wedding venues, outdoor locations, and her studio.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Problem:</strong> Her Homeowners policy only covers property AT her home. Once she leaves with her cameras, they're not covered.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Solution:</strong> A Personal Articles Floater (Inland Marine) covers her cameras WORLDWIDE, whether at home, in transit, or at shooting locations. It "floats" with the property wherever it goes.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: History and Evolution -->
+        <section id="history" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">2. History and Evolution</h2>
+
+                <!-- Evolution Timeline -->
+                <div class="mb-6">
+                    <div class="flex items-center gap-4 flex-wrap">
+                        <div class="bg-blue-100 dark:bg-blue-900/40 p-4 rounded-lg text-center flex-1 min-w-[200px]">
+                            <p class="font-bold text-blue-800 dark:text-blue-300">Ocean Marine</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Goods transported by sea</p>
+                        </div>
+                        <div class="text-2xl text-gray-400">→</div>
+                        <div class="bg-green-100 dark:bg-green-900/40 p-4 rounded-lg text-center flex-1 min-w-[200px]">
+                            <p class="font-bold text-green-800 dark:text-green-300">Inland Marine</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Goods transported over land</p>
+                        </div>
+                        <div class="text-2xl text-gray-400">→</div>
+                        <div class="bg-purple-100 dark:bg-purple-900/40 p-4 rounded-lg text-center flex-1 min-w-[200px]">
+                            <p class="font-bold text-purple-800 dark:text-purple-300">Expanded Coverage</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">All mobile/specialty property</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Why It Developed -->
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-xl p-5 lg:p-6 border border-purple-200 dark:border-purple-800">
+                    <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg mb-3">Why Inland Marine Was Necessary</h3>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-4">Standard property policies have a fundamental limitation: they cover property at a <strong>fixed location</strong> only. This doesn't work for:</p>
+                    <ul class="space-y-2 text-gray-700 dark:text-gray-300">
+                        <li class="flex items-start">
+                            <span class="text-purple-500 mr-2">•</span>
+                            <span>Goods being transported by truck or train</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-purple-500 mr-2">•</span>
+                            <span>Equipment that moves from job site to job site</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-purple-500 mr-2">•</span>
+                            <span>Personal valuables you carry with you</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-purple-500 mr-2">•</span>
+                            <span>Property held temporarily by repair shops or cleaners</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Filed vs Unfiled Forms -->
+        <section id="filed-unfiled" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">3. Filed vs Unfiled Forms</h2>
+
+                <!-- Comparison Grid -->
+                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                    <!-- Filed Forms -->
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-5 border-l-4 border-blue-500">
+                        <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg mb-3">Filed Forms</h3>
+                        <p class="text-gray-700 dark:text-gray-300 mb-4">Standard ISO forms filed with state regulators for common exposures.</p>
+
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg mb-3">
+                            <p class="font-semibold text-gray-700 dark:text-gray-300 mb-2">Characteristics:</p>
+                            <ul class="space-y-1 text-sm text-gray-600 dark:text-gray-400">
+                                <li>• Standardized coverage</li>
+                                <li>• Pre-approved by regulators</li>
+                                <li>• Used for typical risks</li>
+                                <li>• Consistent across insurers</li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                            <p class="font-semibold text-gray-700 dark:text-gray-300 mb-2">Examples:</p>
+                            <ul class="space-y-1 text-sm text-gray-600 dark:text-gray-400">
+                                <li>• Personal Articles Floater</li>
+                                <li>• Personal Property Floater</li>
+                                <li>• Standard equipment coverage</li>
+                                <li>• Standard builders risk</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Unfiled Forms -->
+                    <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-5 border-l-4 border-green-500">
+                        <h3 class="font-bold text-green-800 dark:text-green-300 text-lg mb-3">Unfiled Forms</h3>
+                        <p class="text-gray-700 dark:text-gray-300 mb-4">Custom forms created by insurers for unique or unusual exposures.</p>
+
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg mb-3">
+                            <p class="font-semibold text-gray-700 dark:text-gray-300 mb-2">Characteristics:</p>
+                            <ul class="space-y-1 text-sm text-gray-600 dark:text-gray-400">
+                                <li>• Customized coverage</li>
+                                <li>• Greater flexibility</li>
+                                <li>• Tailored to specific risks</li>
+                                <li>• Varies by insurer</li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                            <p class="font-semibold text-gray-700 dark:text-gray-300 mb-2">Examples:</p>
+                            <ul class="space-y-1 text-sm text-gray-600 dark:text-gray-400">
+                                <li>• Unique equipment types</li>
+                                <li>• Specialized business needs</li>
+                                <li>• Unusual transit risks</li>
+                                <li>• Industry-specific coverage</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Nationwide Definition -->
+                <div class="bg-indigo-50 dark:bg-indigo-900/20 rounded-xl p-5 lg:p-6 border border-indigo-200 dark:border-indigo-800">
+                    <h3 class="font-bold text-indigo-800 dark:text-indigo-300 text-lg mb-3">Nationwide Definition of Marine Insurance (NAIC)</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">The National Association of Insurance Commissioners (NAIC) established criteria to determine what can be classified as Inland Marine:</p>
+                    <div class="grid md:grid-cols-2 gap-3">
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-semibold text-sm lg:text-base text-gray-800 dark:text-gray-200">1. Property in domestic transit</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-semibold text-sm lg:text-base text-gray-800 dark:text-gray-200">2. Bailee customer property</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-semibold text-sm lg:text-base text-gray-800 dark:text-gray-200">3. Mobile equipment and property</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-semibold text-sm lg:text-base text-gray-800 dark:text-gray-200">4. Transportation/communication tools</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-semibold text-sm lg:text-base text-gray-800 dark:text-gray-200">5. Jewelry, furs, similar items</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-semibold text-sm lg:text-base text-gray-800 dark:text-gray-200">6. Fine arts</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-semibold text-sm lg:text-base text-gray-800 dark:text-gray-200">7. Valuable papers and records</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Personal Inland Marine (Floaters) -->
+        <section id="personal-floaters" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">4. Personal Inland Marine (Floaters)</h2>
+
+                <div class="bg-green-50 dark:bg-green-900/30 rounded-xl p-5 lg:p-6 mb-6 border border-green-200 dark:border-green-800">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Personal floaters are called "floaters" because the coverage <strong>floats</strong> with the property - it's covered wherever it goes, not tied to a specific location.</p>
+                </div>
+
+                <!-- Personal Articles Floater -->
+                <div class="mb-6">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-5 border-l-4 border-blue-500">
+                        <h3 class="font-bold text-blue-800 dark:text-blue-300 text-xl mb-3">Personal Articles Floater (PAF)</h3>
+                        <p class="text-gray-700 dark:text-gray-300 mb-4">The most common personal inland marine policy - covers scheduled personal property with superior protection.</p>
+
+                        <!-- Key Features Grid -->
+                        <div class="grid md:grid-cols-2 gap-4 mb-4">
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                                <p class="font-bold text-green-700 dark:text-green-300 mb-1">Open Perils Coverage</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">All risks except specific exclusions</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                                <p class="font-bold text-green-700 dark:text-green-300 mb-1">Worldwide Coverage</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">Covered anywhere on Earth</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                                <p class="font-bold text-green-700 dark:text-green-300 mb-1">No Deductible</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">Usually zero deductible</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                                <p class="font-bold text-green-700 dark:text-green-300 mb-1">Agreed Value</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">Pays scheduled amount, no depreciation</p>
+                            </div>
+                        </div>
+
+                        <!-- Common Items -->
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded mb-4">
+                            <p class="font-semibold text-gray-700 dark:text-gray-300 mb-2">Common Items Scheduled:</p>
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-2 text-sm">
+                                <span class="bg-blue-100 dark:bg-blue-900/40 px-2 py-1 rounded text-blue-800 dark:text-blue-300">Jewelry</span>
+                                <span class="bg-blue-100 dark:bg-blue-900/40 px-2 py-1 rounded text-blue-800 dark:text-blue-300">Furs</span>
+                                <span class="bg-blue-100 dark:bg-blue-900/40 px-2 py-1 rounded text-blue-800 dark:text-blue-300">Cameras</span>
+                                <span class="bg-blue-100 dark:bg-blue-900/40 px-2 py-1 rounded text-blue-800 dark:text-blue-300">Musical instruments</span>
+                                <span class="bg-blue-100 dark:bg-blue-900/40 px-2 py-1 rounded text-blue-800 dark:text-blue-300">Fine arts</span>
+                                <span class="bg-blue-100 dark:bg-blue-900/40 px-2 py-1 rounded text-blue-800 dark:text-blue-300">Golf equipment</span>
+                                <span class="bg-blue-100 dark:bg-blue-900/40 px-2 py-1 rounded text-blue-800 dark:text-blue-300">Silverware</span>
+                                <span class="bg-blue-100 dark:bg-blue-900/40 px-2 py-1 rounded text-blue-800 dark:text-blue-300">Stamp/coin collections</span>
+                            </div>
+                        </div>
+
+                        <!-- Example -->
+                        <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-l-4 border-blue-500">
+                            <p class="font-semibold text-blue-800 dark:text-blue-300 mb-2">Real-World Scenario: Why Scheduled Coverage Matters</p>
+                            <div class="space-y-2 text-sm lg:text-base">
+                                <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Jennifer has a $15,000 engagement ring. Her Homeowners policy has a $1,500 sublimit for jewelry theft and would pay actual cash value (depreciated).</p>
+                                <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> While on vacation in Paris, her ring is stolen from her hotel room.</p>
+                                <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> With a Personal Articles Floater, Jennifer receives $15,000 (the scheduled amount) with no deductible, no depreciation, even though the loss occurred in France. Without it, her Homeowners policy would only pay $1,500.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Other Personal Floaters -->
+                <div class="grid md:grid-cols-3 gap-4">
+                    <!-- Personal Property Floater -->
+                    <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 border border-purple-200 dark:border-purple-800">
+                        <h4 class="font-bold text-purple-800 dark:text-purple-300 mb-2">Personal Property Floater</h4>
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300 mb-3">Covers ALL personal property with one blanket limit (not scheduled).</p>
+                        <div class="bg-white dark:bg-gray-700 p-2 rounded">
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400"><strong>Example:</strong> Someone with extensive collections who doesn't want to list each item individually.</p>
+                        </div>
+                    </div>
+
+                    <!-- Personal Effects Floater -->
+                    <div class="bg-amber-50 dark:bg-amber-900/20 rounded-lg p-4 border border-amber-200 dark:border-amber-800">
+                        <h4 class="font-bold text-amber-800 dark:text-amber-300 mb-2">Personal Effects Floater</h4>
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300 mb-3">Designed for travelers - covers luggage and personal effects during tourist travel.</p>
+                        <div class="bg-white dark:bg-gray-700 p-2 rounded">
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400"><strong>Example:</strong> A family taking a European vacation purchases this to cover their luggage, cameras, and travel items.</p>
+                        </div>
+                    </div>
+
+                    <!-- Wedding Present Floater -->
+                    <div class="bg-pink-50 dark:bg-pink-900/20 rounded-lg p-4 border border-pink-200 dark:border-pink-800">
+                        <h4 class="font-bold text-pink-800 dark:text-pink-300 mb-2">Wedding Present Floater</h4>
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300 mb-3">Temporary 90-day coverage for wedding gifts before and immediately after the wedding.</p>
+                        <div class="bg-white dark:bg-gray-700 p-2 rounded">
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400"><strong>Example:</strong> Covers gifts from the shower, during display at reception, and while being transported to the new home.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Commercial Inland Marine -->
+        <section id="commercial" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">5. Commercial Inland Marine Coverage</h2>
+
+                <!-- Contractors Equipment -->
+                <div class="mb-6">
+                    <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-5 border-l-4 border-green-500">
+                        <h3 class="font-bold text-green-800 dark:text-green-300 text-lg mb-3">Contractors Equipment Floater</h3>
+                        <p class="text-gray-700 dark:text-gray-300 mb-4">Covers mobile construction equipment - typically open perils coverage for equipment at job sites and in transit.</p>
+
+                        <div class="grid md:grid-cols-2 gap-4 mb-4">
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                                <p class="font-semibold text-gray-700 dark:text-gray-300 mb-1">What's Covered:</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">Cranes, bulldozers, excavators, forklifts, compressors - heavy equipment that moves from site to site</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                                <p class="font-semibold text-gray-700 dark:text-gray-300 mb-1">Coverage Options:</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">Scheduled (specific items listed) or blanket (all equipment covered)</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                            <p class="font-semibold text-green-800 dark:text-green-300 mb-2">Real-World Scenario: Mobile Equipment Risk</p>
+                            <div class="space-y-2 text-sm lg:text-base">
+                                <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> ABC Construction owns a $200,000 excavator that works at different job sites each week.</p>
+                                <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> While working at a residential site, the excavator hits an underground utility line and flips over, causing major damage.</p>
+                                <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> The Contractors Equipment Floater pays for repairs because it covers equipment at job sites. A standard Commercial Property policy would NOT cover this - it only covers property at the insured's fixed location.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Builders Risk -->
+                <div class="mb-6">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-5 border-l-4 border-blue-500">
+                        <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg mb-3">Builders Risk Coverage</h3>
+                        <p class="text-gray-700 dark:text-gray-300 mb-4">Covers buildings DURING construction - insures the structure, materials, and supplies at the construction site.</p>
+
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded mb-4">
+                            <p class="font-semibold text-gray-700 dark:text-gray-300 mb-2">Key Features:</p>
+                            <ul class="space-y-1 text-sm lg:text-base text-gray-600 dark:text-gray-400">
+                                <li>• Coverage limit increases as building progresses</li>
+                                <li>• Covers materials stored at the site</li>
+                                <li>• Can include property in transit to the site</li>
+                                <li>• Coverage ends when: completed, occupied, sold, or policy expires</li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-l-4 border-blue-500">
+                            <p class="font-semibold text-blue-800 dark:text-blue-300 mb-2">Real-World Scenario: Construction Coverage</p>
+                            <div class="space-y-2 text-sm lg:text-base">
+                                <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> XYZ Developers are building a $2 million office building. Construction is 60% complete when a severe windstorm hits.</p>
+                                <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> The partially built structure suffers $300,000 in damage. Lumber and materials stored at the site are also destroyed ($50,000).</p>
+                                <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Builders Risk policy pays $350,000 to repair the structure and replace materials. Once the building is complete and occupied, a regular Commercial Property policy takes over.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Transit Coverage -->
+                <div class="mb-6">
+                    <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-5 border-l-4 border-purple-500">
+                        <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg mb-3">Motor Truck Cargo & Transit Policies</h3>
+
+                        <div class="grid md:grid-cols-2 gap-4 mb-4">
+                            <div class="bg-white dark:bg-gray-700 p-4 rounded">
+                                <h4 class="font-bold text-purple-700 dark:text-purple-300 mb-2">Motor Truck Cargo</h4>
+                                <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400 mb-2">Covers goods being transported by truck - protects the trucking company (carrier).</p>
+                                <div class="bg-purple-50 dark:bg-purple-900/30 p-2 rounded text-xs lg:text-sm text-gray-700 dark:text-gray-300">
+                                    <strong>Example:</strong> A trucking company hauling furniture cross-country. If the cargo is damaged in an accident, this policy responds.
+                                </div>
+                            </div>
+
+                            <div class="bg-white dark:bg-gray-700 p-4 rounded">
+                                <h4 class="font-bold text-purple-700 dark:text-purple-300 mb-2">Trip vs Annual Transit</h4>
+                                <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400 mb-2"><strong>Trip Transit:</strong> Covers single shipment. <strong>Annual Transit:</strong> Covers all shipments during the year.</p>
+                                <div class="bg-purple-50 dark:bg-purple-900/30 p-2 rounded text-xs lg:text-sm text-gray-700 dark:text-gray-300">
+                                    <strong>Example:</strong> A business shipping products regularly uses Annual Transit. A one-time art shipment uses Trip Transit.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Installation Floater -->
+                        <div class="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded border border-indigo-200 dark:border-indigo-800">
+                            <h4 class="font-bold text-indigo-800 dark:text-indigo-300 mb-2">Installation Floater</h4>
+                            <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300 mb-3">Covers equipment/materials during transit AND installation at customer's location.</p>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                                <p class="font-semibold text-gray-700 dark:text-gray-300 mb-1 text-sm">Real-World Scenario:</p>
+                                <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400"><strong>Setup:</strong> An HVAC company delivers and installs a $25,000 commercial air conditioning unit. <strong>What Happens:</strong> While being lifted to the roof, the unit falls and is destroyed. <strong>Result:</strong> Installation Floater covers the loss during the installation process.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bailee Coverage -->
+                <div class="mb-6">
+                    <div class="bg-amber-50 dark:bg-amber-900/20 rounded-lg p-5 border-l-4 border-amber-500">
+                        <h3 class="font-bold text-amber-800 dark:text-amber-300 text-lg mb-3">Bailee Coverage</h3>
+                        <p class="text-gray-700 dark:text-gray-300 mb-4">Protects businesses that hold customer property - covers damage to customers' goods in your care, custody, or control.</p>
+
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded mb-4">
+                            <p class="font-semibold text-gray-700 dark:text-gray-300 mb-2">Common Bailees:</p>
+                            <div class="grid grid-cols-2 md:grid-cols-3 gap-2 text-sm">
+                                <span class="bg-amber-100 dark:bg-amber-900/40 px-2 py-1 rounded">Dry cleaners</span>
+                                <span class="bg-amber-100 dark:bg-amber-900/40 px-2 py-1 rounded">Repair shops</span>
+                                <span class="bg-amber-100 dark:bg-amber-900/40 px-2 py-1 rounded">Storage facilities</span>
+                                <span class="bg-amber-100 dark:bg-amber-900/40 px-2 py-1 rounded">Parking garages</span>
+                                <span class="bg-amber-100 dark:bg-amber-900/40 px-2 py-1 rounded">Tailors</span>
+                                <span class="bg-amber-100 dark:bg-amber-900/40 px-2 py-1 rounded">Furriers</span>
+                            </div>
+                        </div>
+
+                        <div class="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg border-l-4 border-amber-500">
+                            <p class="font-semibold text-amber-800 dark:text-amber-300 mb-2">Real-World Scenario: Bailee Responsibility</p>
+                            <div class="space-y-2 text-sm lg:text-base">
+                                <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Elite Dry Cleaners has 200 customers' garments in their shop, with an average value of $150 per item.</p>
+                                <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> An overnight fire destroys the shop and all the customers' clothing inside.</p>
+                                <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Bailee Coverage pays for the customers' property ($30,000). Without it, the dry cleaner would be personally liable for all customer losses. Note: The building and business equipment would be covered under a separate Commercial Property policy.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Specialized Dealers -->
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-pink-50 dark:bg-pink-900/20 rounded-lg p-4 border border-pink-200 dark:border-pink-800">
+                        <h4 class="font-bold text-pink-800 dark:text-pink-300 mb-2">Jewelers Block Policy</h4>
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300 mb-3">Comprehensive all-risk coverage for jewelers - covers owned inventory AND customers' property.</p>
+                        <div class="bg-white dark:bg-gray-700 p-2 rounded">
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400"><strong>Example:</strong> Covers jewelry in the store, in transit to trade shows, sent to appraisers, and customer pieces being repaired or sized.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-teal-50 dark:bg-teal-900/20 rounded-lg p-4 border border-teal-200 dark:border-teal-800">
+                        <h4 class="font-bold text-teal-800 dark:text-teal-300 mb-2">Camera & Musical Instrument Dealers</h4>
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300 mb-3">Covers dealer inventory in store and in transit - can include customers' property for repair.</p>
+                        <div class="bg-white dark:bg-gray-700 p-2 rounded">
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400"><strong>Example:</strong> A music store's inventory of guitars, both displayed in the store and being delivered to customers.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Intangible Property -->
+                <div class="grid md:grid-cols-3 gap-4">
+                    <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-4 border border-red-200 dark:border-red-800">
+                        <h4 class="font-bold text-red-800 dark:text-red-300 mb-2">Electronic Data Processing (EDP)</h4>
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300 mb-3">Covers computer hardware, software, data, and business income from EDP breakdown.</p>
+                        <div class="bg-white dark:bg-gray-700 p-2 rounded">
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400"><strong>Example:</strong> Server failure destroys customer database - covers data restoration costs.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-indigo-50 dark:bg-indigo-900/20 rounded-lg p-4 border border-indigo-200 dark:border-indigo-800">
+                        <h4 class="font-bold text-indigo-800 dark:text-indigo-300 mb-2">Accounts Receivable</h4>
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300 mb-3">Covers money owed if records are destroyed - pays amounts that can't be collected plus collection costs.</p>
+                        <div class="bg-white dark:bg-gray-700 p-2 rounded">
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400"><strong>Example:</strong> Fire destroys billing records showing who owes what - policy pays the uncollectable amounts.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-cyan-50 dark:bg-cyan-900/20 rounded-lg p-4 border border-cyan-200 dark:border-cyan-800">
+                        <h4 class="font-bold text-cyan-800 dark:text-cyan-300 mb-2">Valuable Papers & Records</h4>
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300 mb-3">Covers cost to reconstruct important documents - research and restoration costs.</p>
+                        <div class="bg-white dark:bg-gray-700 p-2 rounded">
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400"><strong>Example:</strong> Architectural firm's blueprints destroyed - pays to recreate drawings from survey notes.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: Instrumentalities of Transportation -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">6. Instrumentalities of Transportation and Communication</h2>
+
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-xl p-5 lg:p-6 mb-6 border border-purple-200 dark:border-purple-800">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">These items are so essential to commerce they have special Inland Marine classifications - they're the infrastructure that makes transportation and communication possible.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
+                        <p class="font-bold text-blue-800 dark:text-blue-300">Bridges & Tunnels</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Critical transit infrastructure</p>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border border-green-200 dark:border-green-800">
+                        <p class="font-bold text-green-800 dark:text-green-300">Pipelines</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Oil, gas, water transmission</p>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border border-purple-200 dark:border-purple-800">
+                        <p class="font-bold text-purple-800 dark:text-purple-300">Piers, Wharves, Docks</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Loading/unloading facilities</p>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border border-red-200 dark:border-red-800">
+                        <p class="font-bold text-red-800 dark:text-red-300">Radio & TV Towers</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Communication broadcast infrastructure</p>
+                    </div>
+                    <div class="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg border border-amber-200 dark:border-amber-800">
+                        <p class="font-bold text-amber-800 dark:text-amber-300">Communication Equipment</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Towers, antennas, transmission gear</p>
+                    </div>
+                    <div class="bg-teal-50 dark:bg-teal-900/20 p-4 rounded-lg border border-teal-200 dark:border-teal-800">
+                        <p class="font-bold text-teal-800 dark:text-teal-300">Power Transmission Lines</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Electrical distribution systems</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 7: Comparison Table -->
+        <section id="comparison" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">7. Standard Property vs Inland Marine</h2>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm lg:text-base">
+                        <thead>
+                            <tr class="bg-green-600 text-white">
+                                <th class="p-3 lg:p-4 text-left rounded-tl-lg">Feature</th>
+                                <th class="p-3 lg:p-4 text-left">Standard Property</th>
+                                <th class="p-3 lg:p-4 text-left rounded-tr-lg">Inland Marine</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-semibold">Location</td>
+                                <td class="p-3 lg:p-4">Fixed location only</td>
+                                <td class="p-3 lg:p-4">Mobile/transit - anywhere</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <td class="p-3 lg:p-4 font-semibold">Coverage Type</td>
+                                <td class="p-3 lg:p-4">Named perils or open perils</td>
+                                <td class="p-3 lg:p-4">Usually open perils (all risk)</td>
+                            </tr>
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-semibold">Territory</td>
+                                <td class="p-3 lg:p-4">Policy location only</td>
+                                <td class="p-3 lg:p-4">Worldwide possible</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <td class="p-3 lg:p-4 font-semibold">Valuation</td>
+                                <td class="p-3 lg:p-4">ACV typical</td>
+                                <td class="p-3 lg:p-4">Agreed value common</td>
+                            </tr>
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-semibold">Scheduling</td>
+                                <td class="p-3 lg:p-4">Blanket typical</td>
+                                <td class="p-3 lg:p-4">Often scheduled items</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <td class="p-3 lg:p-4 font-semibold">Deductible</td>
+                                <td class="p-3 lg:p-4">Standard deductible applies</td>
+                                <td class="p-3 lg:p-4">Often $0 for personal items</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Side-by-Side Examples -->
+                <div class="grid md:grid-cols-2 gap-6 mt-6">
+                    <div class="bg-gray-50 dark:bg-gray-700 p-5 rounded-lg">
+                        <h4 class="font-bold text-gray-800 dark:text-gray-200 mb-3">When Standard Property Works</h4>
+                        <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400 mb-3">Your office building, inventory stored in your warehouse, furniture at your retail location - property that stays in one place.</p>
+                        <div class="bg-white dark:bg-gray-600 p-3 rounded">
+                            <p class="text-xs lg:text-sm text-gray-700 dark:text-gray-300"><strong>Example:</strong> A retail store's merchandise stays on shelves at 123 Main Street - Commercial Property policy is perfect.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-green-50 dark:bg-green-900/20 p-5 rounded-lg">
+                        <h4 class="font-bold text-green-800 dark:text-green-300 mb-3">When Inland Marine is Needed</h4>
+                        <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400 mb-3">Construction equipment at job sites, property in transit, customer property you're holding, valuable items you travel with.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="text-xs lg:text-sm text-gray-700 dark:text-gray-300"><strong>Example:</strong> A contractor's bulldozer moves between job sites daily - Contractors Equipment Floater is essential.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Trap Alerts -->
+        <section class="mb-10">
+            <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-xl p-5 lg:p-6">
+                <h2 class="text-2xl lg:text-3xl font-bold text-red-800 dark:text-red-300 mb-6">Exam Trap Alerts</h2>
+                <div class="space-y-4">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2 flex items-start">
+                            <span class="text-red-500 mr-2">1.</span>
+                            "Marine" Does NOT Mean Water
+                        </p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Inland Marine covers land transit and mobile property, NOT boats or ocean shipping. Ocean shipping is "Ocean Marine" - a completely different type of coverage. Don't let the name trick you.</p>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2 flex items-start">
+                            <span class="text-red-500 mr-2">2.</span>
+                            Agreed Value = No Depreciation Debate
+                        </p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Personal Articles Floater pays the scheduled amount with no depreciation. If a $10,000 camera is scheduled, you get $10,000 - not replacement cost minus depreciation. This is different from ACV coverage.</p>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2 flex items-start">
+                            <span class="text-red-500 mr-2">3.</span>
+                            Builders Risk Covers DURING Construction Only
+                        </p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Coverage ends when the building is completed, occupied, sold, or the policy expires - whichever comes first. Completed buildings need regular Commercial Property insurance.</p>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2 flex items-start">
+                            <span class="text-red-500 mr-2">4.</span>
+                            Bailee vs Bailor - Know the Difference
+                        </p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Bailee = the business HOLDING the property (dry cleaner, repair shop). Bailor = the customer who OWNS the property. Bailee Coverage protects the business against liability for customer property damage.</p>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2 flex items-start">
+                            <span class="text-red-500 mr-2">5.</span>
+                            Motor Truck Cargo Covers the CARGO, Not the Truck
+                        </p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The truck itself is covered under Auto insurance. Motor Truck Cargo covers the goods being transported - damage to the shipment, not the vehicle.</p>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2 flex items-start">
+                            <span class="text-red-500 mr-2">6.</span>
+                            Personal Articles Floater = Worldwide Coverage
+                        </p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Unlike most property policies with limited territories, PAF covers your scheduled items anywhere on Earth. Your $20,000 engagement ring is covered in Tokyo, Paris, or Antarctica.</p>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2 flex items-start">
+                            <span class="text-red-500 mr-2">7.</span>
+                            Filed vs Unfiled Forms
+                        </p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Filed = standardized ISO forms approved by regulators. Unfiled = custom forms created by insurers for unique exposures. Both are legal and proper, just used for different situations.</p>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2 flex items-start">
+                            <span class="text-red-500 mr-2">8.</span>
+                            Contractors Equipment ≠ The Contractor's Building
+                        </p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Contractors Equipment Floater covers mobile equipment like bulldozers and cranes - NOT the contractor's office building. The office is covered under standard Commercial Property.</p>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2 flex items-start">
+                            <span class="text-red-500 mr-2">9.</span>
+                            Installation Floater Covers Transit AND Installation
+                        </p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">This covers the property while being transported AND during the installation process. If an HVAC unit is damaged while being lifted onto a roof, it's covered.</p>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2 flex items-start">
+                            <span class="text-red-500 mr-2">10.</span>
+                            NAIC Nationwide Definition Determines Eligibility
+                        </p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Not everything can be classified as Inland Marine. It must meet NAIC criteria: property in transit, mobile property, bailee property, transportation/communication tools, jewelry/furs, fine arts, or valuable papers.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Reference Summary -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-green-600 to-green-800 rounded-xl p-6 lg:p-8 text-white">
+                <h2 class="text-2xl lg:text-3xl font-bold mb-6">Quick Reference Summary</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold text-lg">Inland Marine</p>
+                        <p class="text-sm text-green-100">Covers mobile property, property in transit - nothing to do with water!</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold text-lg">Personal Articles Floater</p>
+                        <p class="text-sm text-green-100">Scheduled items, open perils, worldwide, agreed value, no deductible</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold text-lg">Contractors Equipment</p>
+                        <p class="text-sm text-green-100">Mobile construction equipment at job sites and in transit</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold text-lg">Builders Risk</p>
+                        <p class="text-sm text-green-100">Buildings DURING construction - ends when complete/occupied/sold</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold text-lg">Bailee Coverage</p>
+                        <p class="text-sm text-green-100">Protects businesses holding customer property (cleaners, repair shops)</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold text-lg">Motor Truck Cargo</p>
+                        <p class="text-sm text-green-100">Covers cargo being transported, NOT the truck itself</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold text-lg">Filed Forms</p>
+                        <p class="text-sm text-green-100">Standardized ISO forms for common exposures</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold text-lg">Unfiled Forms</p>
+                        <p class="text-sm text-green-100">Custom insurer forms for unique exposures</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold text-lg">Agreed Value</p>
+                        <p class="text-sm text-green-100">Pays scheduled amount, no depreciation debate</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold text-lg">Installation Floater</p>
+                        <p class="text-sm text-green-100">Covers equipment during transit AND installation</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold text-lg">EDP Coverage</p>
+                        <p class="text-sm text-green-100">Computer hardware, software, data, business income from breakdown</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold text-lg">Instrumentalities</p>
+                        <p class="text-sm text-green-100">Bridges, tunnels, pipelines, towers - essential infrastructure</p>
+                    </div>
+                </div>
+
+                <!-- Key Distinction Box -->
+                <div class="bg-white/30 rounded-lg p-5 mt-6">
+                    <p class="font-bold text-xl mb-2">The Key Distinction</p>
+                    <p class="text-green-100 text-base lg:text-lg">Standard Property = Fixed Location. Inland Marine = Mobile/Transit. If it moves or floats, think Inland Marine!</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Navigation -->
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="../part-2/index.html" class="text-green-400 hover:text-green-300 flex items-center">
+                    <span class="mr-2">←</span> Part 2: Commercial Property
+                </a>
+                <span class="text-gray-400">Part 3 of 4</span>
+                <a href="../part-4/index.html" class="text-green-400 hover:text-green-300 flex items-center">
+                    Part 4: BOP & Farm <span class="ml-2">→</span>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

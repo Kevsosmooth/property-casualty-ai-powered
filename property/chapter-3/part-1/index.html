@@ -1,0 +1,1263 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 1: Dwelling and Contents | Chapter 3 | Property Insurance</title>
+    <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <link rel="stylesheet" href="../../../css/styles.css">
+    <script src="../../../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+        }
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <!-- Settings & Theme Toggle Buttons -->
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="showAPIKeySetup()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings">
+            <svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+        </button>
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/>
+            </svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-green-600 to-green-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center text-green-200 text-sm mb-2">
+                <a href="../../index.html" class="hover:text-white">Property</a>
+                <span class="mx-2">→</span>
+                <a href="../index.html" class="hover:text-white">Chapter 3</a>
+                <span class="mx-2">→</span>
+                <span class="text-white">Part 1</span>
+            </div>
+            <h1 class="text-3xl font-bold">Part 1: Dwelling and Contents</h1>
+            <p class="text-green-200 mt-1">DP-1, DP-2, DP-3 Forms - Personal Lines Property Coverage</p>
+        </div>
+    </header>
+
+    <!-- Sticky Navigation -->
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-wrap gap-2 text-sm">
+                <a href="#overview" class="text-green-600 dark:text-green-400 hover:text-green-800 px-2 py-1 rounded hover:bg-green-50 dark:hover:bg-gray-700">Overview</a>
+                <a href="#eligibility" class="text-green-600 dark:text-green-400 hover:text-green-800 px-2 py-1 rounded hover:bg-green-50 dark:hover:bg-gray-700">Eligibility</a>
+                <a href="#forms" class="text-green-600 dark:text-green-400 hover:text-green-800 px-2 py-1 rounded hover:bg-green-50 dark:hover:bg-gray-700">DP Forms</a>
+                <a href="#coverages" class="text-green-600 dark:text-green-400 hover:text-green-800 px-2 py-1 rounded hover:bg-green-50 dark:hover:bg-gray-700">Coverages A-E</a>
+                <a href="#other-coverages" class="text-green-600 dark:text-green-400 hover:text-green-800 px-2 py-1 rounded hover:bg-green-50 dark:hover:bg-gray-700">Other Coverages</a>
+                <a href="#exclusions" class="text-green-600 dark:text-green-400 hover:text-green-800 px-2 py-1 rounded hover:bg-green-50 dark:hover:bg-gray-700">Exclusions</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-5xl lg:max-w-7xl">
+
+        <!-- Section 1: Overview -->
+        <section id="overview" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">1. What is a Dwelling Property Policy?</h2>
+
+                <div class="bg-green-50 dark:bg-green-900/30 rounded-xl p-5 lg:p-6 mb-6 border border-green-200 dark:border-green-800">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">The <strong>Dwelling Property Policy</strong> was developed by ISO as a property coverage form. It can insure the <strong>dwelling only</strong>, <strong>contents only</strong>, or <strong>both</strong>. This is commonly used to insure <strong>rental dwellings</strong>.</p>
+                </div>
+
+                <!-- ISO Classification -->
+                <div class="bg-blue-50 dark:bg-blue-900/20 border-l-4 border-blue-500 p-4 lg:p-5 rounded-r-lg mb-6">
+                    <p class="font-bold text-blue-800 dark:text-blue-300 text-lg">ISO Classification</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2">ISO classifies dwelling property policies as <strong>DP</strong> with a corresponding form number:</p>
+                    <div class="grid grid-cols-3 gap-4 mt-4">
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                            <p class="text-2xl font-bold text-blue-600 dark:text-blue-400">DP-1</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Basic Form</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                            <p class="text-2xl font-bold text-blue-600 dark:text-blue-400">DP-2</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Broad Form</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                            <p class="text-2xl font-bold text-blue-600 dark:text-blue-400">DP-3</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Special Form</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Key Features -->
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
+                        <h4 class="font-bold text-gray-800 dark:text-gray-200 mb-2">Primary Use</h4>
+                        <p class="text-gray-600 dark:text-gray-400">Commonly used to insure <strong>rental properties</strong> - dwellings owned by landlords and rented to tenants.</p>
+                    </div>
+                    <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
+                        <h4 class="font-bold text-gray-800 dark:text-gray-200 mb-2">Liability Coverage</h4>
+                        <p class="text-gray-600 dark:text-gray-400">Liability is <strong>NOT included</strong> in the basic policy, but <strong>can be added</strong> by endorsement.</p>
+                    </div>
+                </div>
+
+                <!-- Real World Example -->
+                <div class="bg-green-50 dark:bg-green-900/20 p-5 rounded-lg border-l-4 border-green-500 mt-6">
+                    <p class="font-semibold text-green-800 dark:text-green-300 mb-2">Real-World Scenario: When to Use a Dwelling Policy</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Maria owns a two-family home that she rents out to tenants. She lives elsewhere in her own home (covered by a Homeowners policy).</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What She Needs:</strong> Maria needs coverage for the rental property's building and potentially some landlord-owned contents (appliances, etc.).</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Solution:</strong> A Dwelling Policy (DP-3) is perfect - it covers the building without requiring Maria to live there. She can add liability coverage by endorsement.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Eligibility -->
+        <section id="eligibility" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">2. Eligibility Requirements</h2>
+
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-xl p-5 lg:p-6 mb-6 border border-purple-200 dark:border-purple-800">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">A Dwelling Property policy can be purchased to insure properties <strong>solely used for residential purposes</strong> in the following situations:</p>
+                </div>
+
+                <!-- Eligibility Grid -->
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border border-green-200 dark:border-green-800">
+                        <p class="font-bold text-green-800 dark:text-green-300">Up to 5 Roomers/Boarders</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Property can have up to 5 people renting rooms</p>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border border-green-200 dark:border-green-800">
+                        <p class="font-bold text-green-800 dark:text-green-300">Up to 4 Residential Units</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Covers duplexes, triplexes, four-plexes</p>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border border-green-200 dark:border-green-800">
+                        <p class="font-bold text-green-800 dark:text-green-300">Under Construction</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Properties in the course of construction</p>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border border-green-200 dark:border-green-800">
+                        <p class="font-bold text-green-800 dark:text-green-300">Owner or Tenant Occupied</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Or both - flexible occupancy options</p>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border border-green-200 dark:border-green-800">
+                        <p class="font-bold text-green-800 dark:text-green-300">Mobile Homes (DP-1 Only)</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">No more than 1 apartment, at permanent location</p>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border border-green-200 dark:border-green-800">
+                        <p class="font-bold text-green-800 dark:text-green-300">Seasonal Dwellings</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Unoccupied 3+ months during 12-month period</p>
+                    </div>
+                </div>
+
+                <!-- NOT Eligible -->
+                <div class="bg-red-50 dark:bg-red-900/20 border-l-4 border-red-500 p-4 rounded-r-lg mb-6">
+                    <p class="font-bold text-red-800 dark:text-red-300">NOT Eligible</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-1">Properties designed as <strong>farm property</strong> are NOT eligible for Dwelling policies.</p>
+                </div>
+
+                <!-- Business Occupancy Rules -->
+                <div class="bg-amber-50 dark:bg-amber-900/20 rounded-xl p-5 lg:p-6 border border-amber-200 dark:border-amber-800">
+                    <h3 class="font-bold text-amber-800 dark:text-amber-300 text-lg mb-3">Business Occupancy Rules</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">Business occupancies CAN be accommodated if they meet ALL of the following:</p>
+                    <ul class="space-y-2 text-gray-700 dark:text-gray-300">
+                        <li class="flex items-start">
+                            <span class="text-amber-500 mr-2 font-bold">1.</span>
+                            <span>Business is <strong>incidental</strong> (not the primary use)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-amber-500 mr-2 font-bold">2.</span>
+                            <span>Conducted <strong>by the insured</strong> on the dwelling premises</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-amber-500 mr-2 font-bold">3.</span>
+                            <span><strong>No more than 2 persons</strong> working at any time</span>
+                        </li>
+                    </ul>
+
+                    <div class="mt-4 bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-semibold text-gray-700 dark:text-gray-300 mb-2">Permissible Incidental Occupancies:</p>
+                        <div class="grid grid-cols-2 md:grid-cols-3 gap-2 text-sm">
+                            <span class="bg-amber-100 dark:bg-amber-900/40 px-2 py-1 rounded text-amber-800 dark:text-amber-300">Barber shops</span>
+                            <span class="bg-amber-100 dark:bg-amber-900/40 px-2 py-1 rounded text-amber-800 dark:text-amber-300">Beauty shops</span>
+                            <span class="bg-amber-100 dark:bg-amber-900/40 px-2 py-1 rounded text-amber-800 dark:text-amber-300">Tailors</span>
+                            <span class="bg-amber-100 dark:bg-amber-900/40 px-2 py-1 rounded text-amber-800 dark:text-amber-300">Shoe repair (handwork)</span>
+                            <span class="bg-amber-100 dark:bg-amber-900/40 px-2 py-1 rounded text-amber-800 dark:text-amber-300">Professional offices</span>
+                            <span class="bg-amber-100 dark:bg-amber-900/40 px-2 py-1 rounded text-amber-800 dark:text-amber-300">Private schools</span>
+                            <span class="bg-amber-100 dark:bg-amber-900/40 px-2 py-1 rounded text-amber-800 dark:text-amber-300">Music studios</span>
+                            <span class="bg-amber-100 dark:bg-amber-900/40 px-2 py-1 rounded text-amber-800 dark:text-amber-300">Photography studios</span>
+                        </div>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mt-3">Note: Sales of merchandise must NOT be the primary function.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: General Form Structure -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">3. General Form Structure</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-5 lg:p-6 mb-6 border border-blue-200 dark:border-blue-800">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Every ISO form follows a consistent structure. The DP form structure is:</p>
+                </div>
+
+                <!-- Visual Flow -->
+                <div class="flex flex-wrap justify-center gap-2 md:gap-4 mb-6">
+                    <div class="bg-blue-100 dark:bg-blue-900/40 p-3 rounded-lg text-center">
+                        <p class="font-bold text-blue-800 dark:text-blue-300 text-sm">Agreement</p>
+                    </div>
+                    <div class="text-2xl text-gray-400 hidden md:flex items-center">→</div>
+                    <div class="bg-purple-100 dark:bg-purple-900/40 p-3 rounded-lg text-center">
+                        <p class="font-bold text-purple-800 dark:text-purple-300 text-sm">Definitions</p>
+                    </div>
+                    <div class="text-2xl text-gray-400 hidden md:flex items-center">→</div>
+                    <div class="bg-green-100 dark:bg-green-900/40 p-3 rounded-lg text-center">
+                        <p class="font-bold text-green-800 dark:text-green-300 text-sm">Deductible</p>
+                    </div>
+                    <div class="text-2xl text-gray-400 hidden md:flex items-center">→</div>
+                    <div class="bg-amber-100 dark:bg-amber-900/40 p-3 rounded-lg text-center">
+                        <p class="font-bold text-amber-800 dark:text-amber-300 text-sm">Coverages</p>
+                    </div>
+                    <div class="text-2xl text-gray-400 hidden md:flex items-center">→</div>
+                    <div class="bg-red-100 dark:bg-red-900/40 p-3 rounded-lg text-center">
+                        <p class="font-bold text-red-800 dark:text-red-300 text-sm">Perils</p>
+                    </div>
+                    <div class="text-2xl text-gray-400 hidden md:flex items-center">→</div>
+                    <div class="bg-gray-200 dark:bg-gray-600 p-3 rounded-lg text-center">
+                        <p class="font-bold text-gray-800 dark:text-gray-200 text-sm">Exclusions</p>
+                    </div>
+                    <div class="text-2xl text-gray-400 hidden md:flex items-center">→</div>
+                    <div class="bg-teal-100 dark:bg-teal-900/40 p-3 rounded-lg text-center">
+                        <p class="font-bold text-teal-800 dark:text-teal-300 text-sm">Conditions</p>
+                    </div>
+                </div>
+
+                <!-- Structure Details -->
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-gray-800 dark:text-gray-200">Agreement</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Insuring agreement - states the insurer will provide coverage in return for premium and compliance.</p>
+                    </div>
+                    <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-gray-800 dark:text-gray-200">Definitions</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Limited in nature - key terms defined.</p>
+                    </div>
+                    <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-gray-800 dark:text-gray-200">Deductible</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Applies to all covered losses unless noted otherwise.</p>
+                    </div>
+                    <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-gray-800 dark:text-gray-200">Coverages</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Direct and indirect property coverages, plus additional coverages.</p>
+                    </div>
+                    <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-gray-800 dark:text-gray-200">Perils Insured Against</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Vary by form - KEY differentiator in form selection!</p>
+                    </div>
+                    <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-gray-800 dark:text-gray-200">Conditions</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Specify when coverage will apply.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Coverage Forms (DP-1, DP-2, DP-3) -->
+        <section id="forms" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">4. The Three Coverage Forms</h2>
+
+                <!-- Quick Comparison Table -->
+                <div class="overflow-x-auto mb-8">
+                    <table class="w-full text-sm lg:text-base">
+                        <thead>
+                            <tr class="bg-green-600 text-white">
+                                <th class="p-3 lg:p-4 text-left rounded-tl-lg">Form</th>
+                                <th class="p-3 lg:p-4 text-left">Name</th>
+                                <th class="p-3 lg:p-4 text-left">Peril Type</th>
+                                <th class="p-3 lg:p-4 text-left rounded-tr-lg">Coverage Level</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                            <tr class="bg-red-50 dark:bg-red-900/20">
+                                <td class="p-3 lg:p-4 font-bold text-red-800 dark:text-red-300">DP-1</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Basic</td>
+                                <td class="p-3 lg:p-4 text-gray-600 dark:text-gray-400">Named Peril</td>
+                                <td class="p-3 lg:p-4 text-gray-600 dark:text-gray-400">Most Limited</td>
+                            </tr>
+                            <tr class="bg-amber-50 dark:bg-amber-900/20">
+                                <td class="p-3 lg:p-4 font-bold text-amber-800 dark:text-amber-300">DP-2</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Broad</td>
+                                <td class="p-3 lg:p-4 text-gray-600 dark:text-gray-400">Named Peril</td>
+                                <td class="p-3 lg:p-4 text-gray-600 dark:text-gray-400">Expanded</td>
+                            </tr>
+                            <tr class="bg-green-50 dark:bg-green-900/20">
+                                <td class="p-3 lg:p-4 font-bold text-green-800 dark:text-green-300">DP-3</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Special</td>
+                                <td class="p-3 lg:p-4 text-gray-600 dark:text-gray-400">Open Peril (dwelling) / Named (contents)</td>
+                                <td class="p-3 lg:p-4 text-gray-600 dark:text-gray-400">Broadest</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- DP-1 BASIC FORM -->
+                <div class="bg-red-50 dark:bg-red-900/20 rounded-xl p-5 lg:p-6 border-2 border-red-300 dark:border-red-700 mb-6">
+                    <h3 class="text-xl lg:text-2xl font-bold text-red-800 dark:text-red-300 mb-4">DP-1: Basic Form (DP 00 01)</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">The <strong>most limited coverage</strong> of the three forms. Named peril only. <strong>No minimum insurance requirement.</strong></p>
+
+                    <!-- Base Perils -->
+                    <div class="bg-white dark:bg-gray-700 rounded-lg p-4 mb-4">
+                        <h4 class="font-bold text-gray-800 dark:text-gray-200 mb-3">Base Perils (Included):</h4>
+                        <div class="grid grid-cols-3 gap-3">
+                            <div class="bg-red-100 dark:bg-red-900/40 p-3 rounded text-center">
+                                <p class="font-bold text-red-800 dark:text-red-300">Fire</p>
+                            </div>
+                            <div class="bg-red-100 dark:bg-red-900/40 p-3 rounded text-center">
+                                <p class="font-bold text-red-800 dark:text-red-300">Lightning</p>
+                            </div>
+                            <div class="bg-red-100 dark:bg-red-900/40 p-3 rounded text-center">
+                                <p class="font-bold text-red-800 dark:text-red-300">Internal Explosion</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Fire Coverage Detail -->
+                    <div class="bg-white dark:bg-gray-700 rounded-lg p-4 mb-4">
+                        <h4 class="font-bold text-gray-800 dark:text-gray-200 mb-2">Fire Coverage - Hostile vs Friendly Fire</h4>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div class="bg-green-100 dark:bg-green-900/40 p-3 rounded border border-green-300 dark:border-green-700">
+                                <p class="font-bold text-green-800 dark:text-green-300">COVERED: Hostile Fire</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Fire that was NOT intentional or has escaped its intended boundaries.</p>
+                                <p class="text-xs text-gray-500 dark:text-gray-400 mt-2">Example: A fireplace fire spreads to the carpet.</p>
+                            </div>
+                            <div class="bg-red-100 dark:bg-red-900/40 p-3 rounded border border-red-300 dark:border-red-700">
+                                <p class="font-bold text-red-800 dark:text-red-300">NOT COVERED: Friendly Fire</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Fire that remains within its intended boundaries (fireplace, stove).</p>
+                                <p class="text-xs text-gray-500 dark:text-gray-400 mt-2">Example: A log rolling out and scorching the hearth while fire stays in fireplace.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Extended Coverage Perils -->
+                    <div class="bg-white dark:bg-gray-700 rounded-lg p-4 mb-4">
+                        <h4 class="font-bold text-gray-800 dark:text-gray-200 mb-3">Extended Coverage Perils (Optional - Additional Premium):</h4>
+
+                        <!-- WHARVES Mnemonic -->
+                        <div class="bg-indigo-50 dark:bg-indigo-900/20 rounded-lg p-4 mb-4 border-2 border-indigo-300 dark:border-indigo-700">
+                            <p class="font-bold text-indigo-800 dark:text-indigo-300 text-lg mb-3">Memory Trick: WHARVES</p>
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-2">
+                                <div class="bg-white dark:bg-gray-700 p-2 rounded text-center">
+                                    <p class="text-xl font-bold text-indigo-600 dark:text-indigo-400">W</p>
+                                    <p class="text-xs text-gray-600 dark:text-gray-400">Windstorm</p>
+                                </div>
+                                <div class="bg-white dark:bg-gray-700 p-2 rounded text-center">
+                                    <p class="text-xl font-bold text-indigo-600 dark:text-indigo-400">H</p>
+                                    <p class="text-xs text-gray-600 dark:text-gray-400">Hail</p>
+                                </div>
+                                <div class="bg-white dark:bg-gray-700 p-2 rounded text-center">
+                                    <p class="text-xl font-bold text-indigo-600 dark:text-indigo-400">A</p>
+                                    <p class="text-xs text-gray-600 dark:text-gray-400">Aircraft/Vehicles</p>
+                                </div>
+                                <div class="bg-white dark:bg-gray-700 p-2 rounded text-center">
+                                    <p class="text-xl font-bold text-indigo-600 dark:text-indigo-400">R</p>
+                                    <p class="text-xs text-gray-600 dark:text-gray-400">Riot/Civil Commotion</p>
+                                </div>
+                                <div class="bg-white dark:bg-gray-700 p-2 rounded text-center">
+                                    <p class="text-xl font-bold text-indigo-600 dark:text-indigo-400">V</p>
+                                    <p class="text-xs text-gray-600 dark:text-gray-400">Volcanic Eruption</p>
+                                </div>
+                                <div class="bg-white dark:bg-gray-700 p-2 rounded text-center">
+                                    <p class="text-xl font-bold text-indigo-600 dark:text-indigo-400">E</p>
+                                    <p class="text-xs text-gray-600 dark:text-gray-400">Explosion</p>
+                                </div>
+                                <div class="bg-white dark:bg-gray-700 p-2 rounded text-center">
+                                    <p class="text-xl font-bold text-indigo-600 dark:text-indigo-400">S</p>
+                                    <p class="text-xs text-gray-600 dark:text-gray-400">Smoke</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Extended Perils Details -->
+                        <div class="space-y-3 text-sm">
+                            <div class="border-l-4 border-gray-300 pl-3">
+                                <p class="font-semibold text-gray-700 dark:text-gray-300">Windstorm or Hail</p>
+                                <p class="text-gray-600 dark:text-gray-400">Interior damage covered ONLY if exterior damaged first. No coverage for awnings, signs, antennas, rowboats/canoes, trees/shrubs/plants.</p>
+                            </div>
+                            <div class="border-l-4 border-gray-300 pl-3">
+                                <p class="font-semibold text-gray-700 dark:text-gray-300">Vehicles</p>
+                                <p class="text-gray-600 dark:text-gray-400">NOT covered if vehicle owned/operated by insured or resident. No coverage for fences, driveways, walks.</p>
+                            </div>
+                            <div class="border-l-4 border-gray-300 pl-3">
+                                <p class="font-semibold text-gray-700 dark:text-gray-300">Smoke</p>
+                                <p class="text-gray-600 dark:text-gray-400">Must be sudden and accidental. NO coverage for agricultural smudging, industrial operations, or fireplace smoke.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- VMM -->
+                    <div class="bg-amber-50 dark:bg-amber-900/20 border-l-4 border-amber-500 p-4 rounded-r-lg">
+                        <p class="font-bold text-amber-800 dark:text-amber-300">Vandalism & Malicious Mischief (VMM)</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-1">Can ONLY be added if Extended Coverage perils are purchased first.</p>
+                        <ul class="text-sm text-gray-600 dark:text-gray-400 mt-2 space-y-1">
+                            <li>- Glass breakage NOT covered (except glass building blocks)</li>
+                            <li>- Theft damage to building IS covered, but stolen property is NOT</li>
+                            <li>- NO coverage if vacant for more than <strong>60 consecutive days</strong></li>
+                        </ul>
+                    </div>
+
+                    <!-- DP-1 Visual Summary -->
+                    <div class="mt-4 bg-white dark:bg-gray-700 rounded-lg p-4">
+                        <h4 class="font-bold text-gray-800 dark:text-gray-200 mb-3">DP-1 Coverage Structure:</h4>
+                        <div class="flex flex-col md:flex-row gap-2 items-center justify-center">
+                            <div class="bg-red-200 dark:bg-red-900/60 p-3 rounded-lg text-center">
+                                <p class="font-bold text-red-800 dark:text-red-300 text-sm">Base Form</p>
+                                <p class="text-xs text-red-600 dark:text-red-400">Fire, Lightning, Internal Explosion</p>
+                            </div>
+                            <div class="text-2xl text-gray-400">+</div>
+                            <div class="bg-blue-200 dark:bg-blue-900/60 p-3 rounded-lg text-center border-2 border-dashed border-blue-400">
+                                <p class="font-bold text-blue-800 dark:text-blue-300 text-sm">Option 1</p>
+                                <p class="text-xs text-blue-600 dark:text-blue-400">Extended Coverage (WHARVES)</p>
+                            </div>
+                            <div class="text-2xl text-gray-400">+</div>
+                            <div class="bg-amber-200 dark:bg-amber-900/60 p-3 rounded-lg text-center border-2 border-dashed border-amber-400">
+                                <p class="font-bold text-amber-800 dark:text-amber-300 text-sm">Option 2</p>
+                                <p class="text-xs text-amber-600 dark:text-amber-400">VMM (requires Option 1)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DP-2 BROAD FORM -->
+                <div class="bg-amber-50 dark:bg-amber-900/20 rounded-xl p-5 lg:p-6 border-2 border-amber-300 dark:border-amber-700 mb-6">
+                    <h3 class="text-xl lg:text-2xl font-bold text-amber-800 dark:text-amber-300 mb-4">DP-2: Broad Form (DP 00 02)</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">Expands coverage from Basic + Extended + VMM, plus <strong>7 additional broad form perils</strong>.</p>
+
+                    <!-- What's Included -->
+                    <div class="bg-white dark:bg-gray-700 rounded-lg p-4 mb-4">
+                        <h4 class="font-bold text-gray-800 dark:text-gray-200 mb-2">DP-2 = DP-1 + Extended + VMM + Broad Form Perils</h4>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm">Also includes expanded glass breakage coverage for vandalism (not just glass blocks).</p>
+                    </div>
+
+                    <!-- B.B. BICE-GOLF Mnemonic -->
+                    <div class="bg-teal-50 dark:bg-teal-900/20 rounded-lg p-4 mb-4 border-2 border-teal-300 dark:border-teal-700">
+                        <p class="font-bold text-teal-800 dark:text-teal-300 text-lg mb-3">Memory Trick: B.B. BICE-GOLF</p>
+                        <div class="grid grid-cols-2 md:grid-cols-5 gap-2 text-center">
+                            <div class="bg-white dark:bg-gray-700 p-2 rounded">
+                                <p class="font-bold text-teal-600 dark:text-teal-400">B</p>
+                                <p class="text-xs text-gray-600 dark:text-gray-400">Bursting heating</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-2 rounded">
+                                <p class="font-bold text-teal-600 dark:text-teal-400">B</p>
+                                <p class="text-xs text-gray-600 dark:text-gray-400">Burglary damage</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-2 rounded">
+                                <p class="font-bold text-teal-600 dark:text-teal-400">B</p>
+                                <p class="text-xs text-gray-600 dark:text-gray-400">Breaking water heaters</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-2 rounded">
+                                <p class="font-bold text-teal-600 dark:text-teal-400">I</p>
+                                <p class="text-xs text-gray-600 dark:text-gray-400">Ice/snow/sleet weight</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-2 rounded">
+                                <p class="font-bold text-teal-600 dark:text-teal-400">C</p>
+                                <p class="text-xs text-gray-600 dark:text-gray-400">Collapse</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-2 rounded">
+                                <p class="font-bold text-teal-600 dark:text-teal-400">E</p>
+                                <p class="text-xs text-gray-600 dark:text-gray-400">Electrical damage</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-2 rounded">
+                                <p class="font-bold text-teal-600 dark:text-teal-400">G</p>
+                                <p class="text-xs text-gray-600 dark:text-gray-400">Glass breakage</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-2 rounded">
+                                <p class="font-bold text-teal-600 dark:text-teal-400">O</p>
+                                <p class="text-xs text-gray-600 dark:text-gray-400">Objects falling</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-2 rounded">
+                                <p class="font-bold text-teal-600 dark:text-teal-400">L</p>
+                                <p class="text-xs text-gray-600 dark:text-gray-400">Leakage water/steam</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-2 rounded">
+                                <p class="font-bold text-teal-600 dark:text-teal-400">F</p>
+                                <p class="text-xs text-gray-600 dark:text-gray-400">Freezing plumbing</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 7 Additional Perils -->
+                    <div class="bg-white dark:bg-gray-700 rounded-lg p-4 mb-4">
+                        <h4 class="font-bold text-gray-800 dark:text-gray-200 mb-3">7 Additional Broad Form Perils:</h4>
+                        <div class="space-y-3 text-sm">
+                            <div class="border-l-4 border-amber-400 pl-3">
+                                <p class="font-semibold text-gray-700 dark:text-gray-300">1. Damage by Burglars</p>
+                                <p class="text-gray-600 dark:text-gray-400">Covers damage to ANY covered property caused by burglary. NO theft coverage. NO coverage if vacant 60+ days.</p>
+                            </div>
+                            <div class="border-l-4 border-amber-400 pl-3">
+                                <p class="font-semibold text-gray-700 dark:text-gray-300">2. Falling Objects</p>
+                                <p class="text-gray-600 dark:text-gray-400">Interior damage covered only if roof/wall damaged first. NO coverage for awnings, fences, outdoor equipment, antennas.</p>
+                            </div>
+                            <div class="border-l-4 border-amber-400 pl-3">
+                                <p class="font-semibold text-gray-700 dark:text-gray-300">3. Weight of Ice, Snow, or Sleet</p>
+                                <p class="text-gray-600 dark:text-gray-400">NO coverage for piers, wharves, docks, awnings, fences, pools, foundations, patios.</p>
+                            </div>
+                            <div class="border-l-4 border-amber-400 pl-3">
+                                <p class="font-semibold text-gray-700 dark:text-gray-300">4. Accidental Discharge/Overflow of Water or Steam</p>
+                                <p class="text-gray-600 dark:text-gray-400">From plumbing, heating, A/C, sprinkler systems. Includes tear-out costs. NO continuous seepage over weeks/months. NO coverage if vacant 60+ days.</p>
+                            </div>
+                            <div class="border-l-4 border-amber-400 pl-3">
+                                <p class="font-semibold text-gray-700 dark:text-gray-300">5. Sudden Tearing Apart, Cracking, Burning, Bulging</p>
+                                <p class="text-gray-600 dark:text-gray-400">Of heating systems, A/C, sprinklers, water heating appliances. Freezing damage excluded here (see #7).</p>
+                            </div>
+                            <div class="border-l-4 border-amber-400 pl-3">
+                                <p class="font-semibold text-gray-700 dark:text-gray-300">6. Freezing</p>
+                                <p class="text-gray-600 dark:text-gray-400">Of plumbing, heating, A/C, sprinklers. ONLY if insured maintains heat OR shuts off water and drains pipes.</p>
+                            </div>
+                            <div class="border-l-4 border-amber-400 pl-3">
+                                <p class="font-semibold text-gray-700 dark:text-gray-300">7. Artificially Generated Electrical Current</p>
+                                <p class="text-gray-600 dark:text-gray-400">Sudden and accidental damage. NO coverage for tubes, transistors, electronic components.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- DP-2 Other Coverages -->
+                    <div class="bg-white dark:bg-gray-700 rounded-lg p-4">
+                        <h4 class="font-bold text-gray-800 dark:text-gray-200 mb-3">Additional Other Coverages in DP-2:</h4>
+                        <div class="grid md:grid-cols-3 gap-3">
+                            <div class="bg-amber-100 dark:bg-amber-900/40 p-3 rounded">
+                                <p class="font-bold text-amber-800 dark:text-amber-300 text-sm">Lawns, Trees, Shrubs, Plants</p>
+                                <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">$500 max per item, 5% of Coverage A max per loss</p>
+                            </div>
+                            <div class="bg-amber-100 dark:bg-amber-900/40 p-3 rounded">
+                                <p class="font-bold text-amber-800 dark:text-amber-300 text-sm">Glass Breakage</p>
+                                <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">Including storm doors/windows. NO coverage if vacant 60+ days.</p>
+                            </div>
+                            <div class="bg-amber-100 dark:bg-amber-900/40 p-3 rounded">
+                                <p class="font-bold text-amber-800 dark:text-amber-300 text-sm">Collapse</p>
+                                <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">If caused by hidden decay, insects/vermin, weight, defective materials during construction.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DP-3 SPECIAL FORM -->
+                <div class="bg-green-50 dark:bg-green-900/20 rounded-xl p-5 lg:p-6 border-2 border-green-300 dark:border-green-700">
+                    <h3 class="text-xl lg:text-2xl font-bold text-green-800 dark:text-green-300 mb-4">DP-3: Special Form (DP 00 03)</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">The <strong>broadest coverage</strong>. Unlike Basic and Broad, this is an <strong>OPEN PERIL form</strong> for the dwelling and other structures.</p>
+
+                    <!-- Key Distinction -->
+                    <div class="bg-white dark:bg-gray-700 rounded-lg p-4 mb-4">
+                        <h4 class="font-bold text-gray-800 dark:text-gray-200 mb-3">Key Distinction - Open vs Named Peril:</h4>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div class="bg-green-100 dark:bg-green-900/40 p-4 rounded border-2 border-green-300 dark:border-green-700">
+                                <p class="font-bold text-green-800 dark:text-green-300">Dwelling & Other Structures</p>
+                                <p class="text-lg font-bold text-green-600 dark:text-green-400 mt-2">OPEN PERIL</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">All perils covered EXCEPT those specifically excluded.</p>
+                            </div>
+                            <div class="bg-blue-100 dark:bg-blue-900/40 p-4 rounded border-2 border-blue-300 dark:border-blue-700">
+                                <p class="font-bold text-blue-800 dark:text-blue-300">Personal Property (Contents)</p>
+                                <p class="text-lg font-bold text-blue-600 dark:text-blue-400 mt-2">NAMED PERIL</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Covered for Broad Form perils (DP-2 perils).</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- DP-3 vs DP-2 Differences -->
+                    <div class="bg-white dark:bg-gray-700 rounded-lg p-4 mb-4">
+                        <h4 class="font-bold text-gray-800 dark:text-gray-200 mb-3">Key Differences from DP-2:</h4>
+                        <div class="space-y-3">
+                            <div class="flex items-start">
+                                <span class="bg-green-500 text-white rounded-full w-6 h-6 flex items-center justify-center mr-3 text-sm flex-shrink-0">1</span>
+                                <div>
+                                    <p class="font-semibold text-gray-700 dark:text-gray-300">Theft of Building Parts</p>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">Theft of property that is PART of the dwelling or other structure IS covered.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <span class="bg-green-500 text-white rounded-full w-6 h-6 flex items-center justify-center mr-3 text-sm flex-shrink-0">2</span>
+                                <div>
+                                    <p class="font-semibold text-gray-700 dark:text-gray-300">Off-Premises Water Damage</p>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">Accidental discharge/overflow from water/steam pipes that occurs OFF premises is covered.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <span class="bg-green-500 text-white rounded-full w-6 h-6 flex items-center justify-center mr-3 text-sm flex-shrink-0">3</span>
+                                <div>
+                                    <p class="font-semibold text-gray-700 dark:text-gray-300">No Exclusions for Outdoor Items</p>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">Antennas, outdoor equipment, fences, awnings ARE covered for falling objects.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <span class="bg-green-500 text-white rounded-full w-6 h-6 flex items-center justify-center mr-3 text-sm flex-shrink-0">4</span>
+                                <div>
+                                    <p class="font-semibold text-gray-700 dark:text-gray-300">Ice Dam Coverage</p>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">Covers damage to roof caused by freezing/thawing of water under roof shingles (ice dams).</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Real World Example -->
+                    <div class="bg-green-100 dark:bg-green-900/30 p-4 rounded-lg border-l-4 border-green-500">
+                        <p class="font-semibold text-green-800 dark:text-green-300 mb-2">Real-World Scenario: Why DP-3 Matters</p>
+                        <div class="space-y-2 text-sm">
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Tom owns a rental property in New Jersey. During winter, ice builds up under the roof shingles (an ice dam), causing water to leak into the attic.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>With DP-2:</strong> NOT covered - freezing under shingles isn't a named peril.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>With DP-3:</strong> COVERED - as an open peril form, ice dam damage isn't specifically excluded, so it's covered!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Summary Comparison -->
+                <div class="mt-8 bg-gradient-to-r from-green-600 to-green-800 rounded-xl p-6 text-white">
+                    <h3 class="text-xl font-bold mb-4">DP Forms Summary</h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm">
+                            <thead>
+                                <tr class="border-b border-white/30">
+                                    <th class="p-2 text-left">Feature</th>
+                                    <th class="p-2 text-center">DP-1</th>
+                                    <th class="p-2 text-center">DP-2</th>
+                                    <th class="p-2 text-center">DP-3</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-green-100">
+                                <tr class="border-b border-white/20">
+                                    <td class="p-2">Dwelling Peril Type</td>
+                                    <td class="p-2 text-center">Named</td>
+                                    <td class="p-2 text-center">Named</td>
+                                    <td class="p-2 text-center font-bold text-white">Open</td>
+                                </tr>
+                                <tr class="border-b border-white/20">
+                                    <td class="p-2">Contents Peril Type</td>
+                                    <td class="p-2 text-center">Named</td>
+                                    <td class="p-2 text-center">Named</td>
+                                    <td class="p-2 text-center">Named (Broad)</td>
+                                </tr>
+                                <tr class="border-b border-white/20">
+                                    <td class="p-2">Coverage E (ALE)</td>
+                                    <td class="p-2 text-center">By Endorsement</td>
+                                    <td class="p-2 text-center font-bold text-white">Included</td>
+                                    <td class="p-2 text-center font-bold text-white">Included</td>
+                                </tr>
+                                <tr class="border-b border-white/20">
+                                    <td class="p-2">Theft of Building Parts</td>
+                                    <td class="p-2 text-center">No</td>
+                                    <td class="p-2 text-center">No</td>
+                                    <td class="p-2 text-center font-bold text-white">Yes</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-2">Ice Dam Coverage</td>
+                                    <td class="p-2 text-center">No</td>
+                                    <td class="p-2 text-center">No</td>
+                                    <td class="p-2 text-center font-bold text-white">Yes</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Property Coverages A-E -->
+        <section id="coverages" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">5. Property Coverages (A through E)</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-5 lg:p-6 mb-6 border border-blue-200 dark:border-blue-800">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">The dwelling policy has <strong>4 core property coverages</strong> (A-D) in all forms. The Broad and Special forms add a <strong>5th coverage (E)</strong>.</p>
+                    <div class="mt-4 bg-white dark:bg-gray-700 p-3 rounded-lg">
+                        <p class="font-bold text-blue-800 dark:text-blue-300">Standard Deductible: $250</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Applies to all property coverages except Coverage D (Fair Rental Value) and Coverage E (Additional Living Expense).</p>
+                    </div>
+                </div>
+
+                <!-- Coverage Visual -->
+                <div class="grid md:grid-cols-5 gap-3 mb-8">
+                    <div class="bg-blue-100 dark:bg-blue-900/40 p-4 rounded-lg text-center border-2 border-blue-300 dark:border-blue-700">
+                        <p class="text-2xl font-bold text-blue-600 dark:text-blue-400">A</p>
+                        <p class="text-sm font-bold text-blue-800 dark:text-blue-300">Dwelling</p>
+                        <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">Direct</p>
+                    </div>
+                    <div class="bg-purple-100 dark:bg-purple-900/40 p-4 rounded-lg text-center border-2 border-purple-300 dark:border-purple-700">
+                        <p class="text-2xl font-bold text-purple-600 dark:text-purple-400">B</p>
+                        <p class="text-sm font-bold text-purple-800 dark:text-purple-300">Other Structures</p>
+                        <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">Direct</p>
+                    </div>
+                    <div class="bg-green-100 dark:bg-green-900/40 p-4 rounded-lg text-center border-2 border-green-300 dark:border-green-700">
+                        <p class="text-2xl font-bold text-green-600 dark:text-green-400">C</p>
+                        <p class="text-sm font-bold text-green-800 dark:text-green-300">Personal Property</p>
+                        <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">Direct</p>
+                    </div>
+                    <div class="bg-amber-100 dark:bg-amber-900/40 p-4 rounded-lg text-center border-2 border-amber-300 dark:border-amber-700">
+                        <p class="text-2xl font-bold text-amber-600 dark:text-amber-400">D</p>
+                        <p class="text-sm font-bold text-amber-800 dark:text-amber-300">Fair Rental Value</p>
+                        <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">Indirect</p>
+                    </div>
+                    <div class="bg-red-100 dark:bg-red-900/40 p-4 rounded-lg text-center border-2 border-red-300 dark:border-red-700">
+                        <p class="text-2xl font-bold text-red-600 dark:text-red-400">E</p>
+                        <p class="text-sm font-bold text-red-800 dark:text-red-300">Add'l Living Expense</p>
+                        <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">Indirect (DP-2/3 only)</p>
+                    </div>
+                </div>
+
+                <!-- Coverage A -->
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-5 lg:p-6 border-l-4 border-blue-500 mb-6">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-xl mb-4">Coverage A - Dwelling</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">Covers the dwelling used principally for dwelling or residential purposes.</p>
+
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="bg-green-100 dark:bg-green-900/40 p-4 rounded-lg border border-green-300 dark:border-green-700">
+                            <p class="font-bold text-green-800 dark:text-green-300 mb-2">PROPERTY COVERED:</p>
+                            <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-1">
+                                <li>- Dwelling on described premises + attached structures</li>
+                                <li>- Materials/supplies for construction on/near premises</li>
+                                <li>- Building equipment and outdoor equipment to service location</li>
+                            </ul>
+                        </div>
+                        <div class="bg-red-100 dark:bg-red-900/40 p-4 rounded-lg border border-red-300 dark:border-red-700">
+                            <p class="font-bold text-red-800 dark:text-red-300 mb-2">PROPERTY NOT COVERED:</p>
+                            <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-1">
+                                <li>- <strong>Land</strong> (including land where dwelling sits)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Coverage B -->
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-xl p-5 lg:p-6 border-l-4 border-purple-500 mb-6">
+                    <h3 class="font-bold text-purple-800 dark:text-purple-300 text-xl mb-4">Coverage B - Other Structures</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">Covers separate structures at the same location (detached garages, sheds, fences). Also called <strong>appurtenant structures</strong>.</p>
+
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="bg-green-100 dark:bg-green-900/40 p-4 rounded-lg border border-green-300 dark:border-green-700">
+                            <p class="font-bold text-green-800 dark:text-green-300 mb-2">PROPERTY COVERED:</p>
+                            <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-1">
+                                <li>- Structures separated by clear space or connected only by fence/utility line</li>
+                                <li>- Structures rented to non-tenants ONLY as private garage</li>
+                                <li>- Structures used for commercial storage (insured's property only)</li>
+                            </ul>
+                        </div>
+                        <div class="bg-red-100 dark:bg-red-900/40 p-4 rounded-lg border border-red-300 dark:border-red-700">
+                            <p class="font-bold text-red-800 dark:text-red-300 mb-2">PROPERTY NOT COVERED:</p>
+                            <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-1">
+                                <li>- Land</li>
+                                <li>- Structures rented to non-tenants (except as private garage)</li>
+                                <li>- Structures used for business</li>
+                                <li>- Gravemarkers and mausoleums</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Coverage C -->
+                <div class="bg-green-50 dark:bg-green-900/20 rounded-xl p-5 lg:p-6 border-l-4 border-green-500 mb-6">
+                    <h3 class="font-bold text-green-800 dark:text-green-300 text-xl mb-4">Coverage C - Personal Property</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">Covers personal property usual to a residence, located on the described premises.</p>
+
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="bg-green-100 dark:bg-green-900/40 p-4 rounded-lg border border-green-300 dark:border-green-700">
+                            <p class="font-bold text-green-800 dark:text-green-300 mb-2">PROPERTY COVERED:</p>
+                            <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-1">
+                                <li>- Personal property of insured and resident family</li>
+                                <li>- Property of guests/servants (at insured's discretion)</li>
+                                <li>- Model/hobby aircraft (not for people/cargo)</li>
+                                <li>- Motor vehicles to service premises or assist disabled</li>
+                                <li>- Rowboats and canoes</li>
+                                <li>- Blank storage media & prepackaged software</li>
+                                <li>- Property moved to newly acquired residence (30 days)</li>
+                            </ul>
+                        </div>
+                        <div class="bg-red-100 dark:bg-red-900/40 p-4 rounded-lg border border-red-300 dark:border-red-700">
+                            <p class="font-bold text-red-800 dark:text-red-300 mb-2">PROPERTY NOT COVERED:</p>
+                            <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-1">
+                                <li>- Money, securities, accounts, bank notes</li>
+                                <li>- Animals, birds, fish</li>
+                                <li>- Aircraft (except hobby)</li>
+                                <li>- Hovercraft</li>
+                                <li>- Watercraft (except rowboats/canoes)</li>
+                                <li>- Motor vehicles (except as noted)</li>
+                                <li>- Cost to restore electronic data</li>
+                                <li>- Credit/debit cards</li>
+                                <li>- Water or steam</li>
+                                <li>- Gravemarkers and mausoleums</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Coverage D -->
+                <div class="bg-amber-50 dark:bg-amber-900/20 rounded-xl p-5 lg:p-6 border-l-4 border-amber-500 mb-6">
+                    <h3 class="font-bold text-amber-800 dark:text-amber-300 text-xl mb-4">Coverage D - Fair Rental Value (Indirect Coverage)</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">Pays the fair rental value if property becomes uninhabitable due to a covered peril. <strong>This is for LANDLORDS who lose rental income.</strong></p>
+
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg mb-4">
+                        <p class="font-semibold text-gray-700 dark:text-gray-300 mb-2">Real-World Example:</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm">John owns a two-family rental home. A fire damages the downstairs unit, making it uninhabitable. John loses $1,500/month in rent while repairs are made. Coverage D pays this lost rental income (minus discontinued expenses like utilities).</p>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                            <p class="font-bold text-amber-800 dark:text-amber-300 mb-2">Key Points:</p>
+                            <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-1">
+                                <li>- Deducts discontinued expenses (heat, electric)</li>
+                                <li>- Pays until repairs complete (shortest time)</li>
+                                <li>- Pays proportionate share per month</li>
+                                <li>- Policy expiration doesn't end existing claim</li>
+                            </ul>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                            <p class="font-bold text-amber-800 dark:text-amber-300 mb-2">Civil Authority Extension:</p>
+                            <p class="text-sm text-gray-700 dark:text-gray-300">If civil authority prohibits access due to damage at a neighboring property, coverage applies for up to <strong>2 weeks</strong>.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-red-100 dark:bg-red-900/30 p-3 rounded-lg mt-4">
+                        <p class="text-sm text-red-800 dark:text-red-300"><strong>NOT Covered:</strong> Loss/expense from cancellation of a lease.</p>
+                    </div>
+                </div>
+
+                <!-- Coverage E -->
+                <div class="bg-red-50 dark:bg-red-900/20 rounded-xl p-5 lg:p-6 border-l-4 border-red-500">
+                    <h3 class="font-bold text-red-800 dark:text-red-300 text-xl mb-4">Coverage E - Additional Living Expense (Indirect Coverage)</h3>
+
+                    <div class="bg-amber-100 dark:bg-amber-900/40 border border-amber-300 dark:border-amber-700 p-4 rounded-lg mb-4">
+                        <p class="font-bold text-amber-800 dark:text-amber-300">IMPORTANT: DP-2 and DP-3 ONLY!</p>
+                        <p class="text-sm text-gray-700 dark:text-gray-300 mt-1">Coverage E is NOT included in DP-1 Basic Form. It CAN be added by endorsement.</p>
+                    </div>
+
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">Pays for increased living expenses if the insured's home becomes uninhabitable. <strong>This is for OWNER-OCCUPANTS who must live elsewhere.</strong></p>
+
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg mb-4">
+                        <p class="font-semibold text-gray-700 dark:text-gray-300 mb-2">Real-World Example:</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm">Maria lives in her own home. A fire forces her family to stay in a hotel for 3 months while repairs are made. The hotel costs $150/night, meals cost extra, and she has to drive farther to work. Coverage E pays these EXTRA expenses above her normal living costs.</p>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                            <p class="font-bold text-red-800 dark:text-red-300 mb-2">Key Points:</p>
+                            <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-1">
+                                <li>- Maintains family's normal standard of living</li>
+                                <li>- Pays until repairs complete (shortest time)</li>
+                                <li>- Policy expiration doesn't end existing claim</li>
+                            </ul>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                            <p class="font-bold text-red-800 dark:text-red-300 mb-2">Civil Authority Extension:</p>
+                            <p class="text-sm text-gray-700 dark:text-gray-300">Up to <strong>2 weeks</strong> if access prohibited due to neighboring property damage.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Coverage D vs E Comparison -->
+                <div class="mt-6 bg-indigo-50 dark:bg-indigo-900/20 rounded-xl p-5 border border-indigo-200 dark:border-indigo-800">
+                    <h4 class="font-bold text-indigo-800 dark:text-indigo-300 text-lg mb-4">Coverage D vs Coverage E - Know the Difference!</h4>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                            <p class="font-bold text-amber-700 dark:text-amber-300">Coverage D: Fair Rental Value</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">For: <strong>Landlords</strong></p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Pays: Lost rental income</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                            <p class="font-bold text-red-700 dark:text-red-300">Coverage E: Additional Living Expense</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">For: <strong>Owner-Occupants</strong></p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Pays: Extra living costs while displaced</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: Other Coverages -->
+        <section id="other-coverages" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">6. Other Coverages</h2>
+
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-xl p-5 lg:p-6 mb-6 border border-purple-200 dark:border-purple-800">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">All 3 forms include 8 "Other Coverages" - extensions of Coverages A-E included in the premium. Subject to the property deductible unless noted.</p>
+                </div>
+
+                <!-- 8 Other Coverages in ALL Forms -->
+                <div class="bg-gray-50 dark:bg-gray-700 rounded-xl p-5 mb-6">
+                    <h3 class="font-bold text-gray-800 dark:text-gray-200 text-lg mb-4">8 Other Coverages in ALL Forms (DP-1, DP-2, DP-3):</h3>
+
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <!-- 1. Other Structures -->
+                        <div class="bg-white dark:bg-gray-600 p-4 rounded-lg border-l-4 border-blue-500">
+                            <div class="flex justify-between items-start">
+                                <p class="font-bold text-gray-800 dark:text-gray-200">1. Other Structures</p>
+                                <span class="bg-blue-100 dark:bg-blue-900/60 text-blue-800 dark:text-blue-300 text-xs px-2 py-1 rounded">10% of Cov A</span>
+                            </div>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">Apply up to 10% of Coverage A to other structures.</p>
+                            <p class="text-xs text-amber-600 dark:text-amber-400 mt-1">DP-1: NOT additional insurance. DP-2/3: IS additional insurance.</p>
+                        </div>
+
+                        <!-- 2. Debris Removal -->
+                        <div class="bg-white dark:bg-gray-600 p-4 rounded-lg border-l-4 border-green-500">
+                            <p class="font-bold text-gray-800 dark:text-gray-200">2. Debris Removal</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">Reasonable costs to remove debris after covered loss, including volcanic ash/dust.</p>
+                            <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">NOT additional insurance.</p>
+                        </div>
+
+                        <!-- 3. Improvements -->
+                        <div class="bg-white dark:bg-gray-600 p-4 rounded-lg border-l-4 border-purple-500">
+                            <div class="flex justify-between items-start">
+                                <p class="font-bold text-gray-800 dark:text-gray-200">3. Improvements, Alterations, Additions</p>
+                                <span class="bg-purple-100 dark:bg-purple-900/60 text-purple-800 dark:text-purple-300 text-xs px-2 py-1 rounded">10% of Cov C</span>
+                            </div>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">For TENANTS - covers improvements they've made.</p>
+                            <p class="text-xs text-amber-600 dark:text-amber-400 mt-1">DP-1: NOT additional. DP-2/3: IS additional insurance.</p>
+                        </div>
+
+                        <!-- 4. Worldwide Coverage -->
+                        <div class="bg-white dark:bg-gray-600 p-4 rounded-lg border-l-4 border-teal-500">
+                            <div class="flex justify-between items-start">
+                                <p class="font-bold text-gray-800 dark:text-gray-200">4. Worldwide Coverage</p>
+                                <span class="bg-teal-100 dark:bg-teal-900/60 text-teal-800 dark:text-teal-300 text-xs px-2 py-1 rounded">10% of Cov C</span>
+                            </div>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">Personal property losses anywhere in the world.</p>
+                            <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">No rowboats/canoes. Guest property: DP-2/3 only. NOT additional insurance.</p>
+                        </div>
+
+                        <!-- 5. Rental Value/ALE -->
+                        <div class="bg-white dark:bg-gray-600 p-4 rounded-lg border-l-4 border-amber-500">
+                            <div class="flex justify-between items-start">
+                                <p class="font-bold text-gray-800 dark:text-gray-200">5. Rental Value & ALE</p>
+                                <span class="bg-amber-100 dark:bg-amber-900/60 text-amber-800 dark:text-amber-300 text-xs px-2 py-1 rounded">20% of Cov A</span>
+                            </div>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">DP-1: Only fair rental value. DP-2/3: Both coverages.</p>
+                            <p class="text-xs text-amber-600 dark:text-amber-400 mt-1">DP-1: NOT additional. DP-2/3: IS additional insurance.</p>
+                        </div>
+
+                        <!-- 6. Reasonable Repairs -->
+                        <div class="bg-white dark:bg-gray-600 p-4 rounded-lg border-l-4 border-red-500">
+                            <p class="font-bold text-gray-800 dark:text-gray-200">6. Reasonable Repairs</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">Costs to protect property from further damage at time of covered loss.</p>
+                            <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">NOT additional insurance.</p>
+                        </div>
+
+                        <!-- 7. Property Removed -->
+                        <div class="bg-white dark:bg-gray-600 p-4 rounded-lg border-l-4 border-indigo-500">
+                            <div class="flex justify-between items-start">
+                                <p class="font-bold text-gray-800 dark:text-gray-200">7. Property Removed</p>
+                                <span class="bg-indigo-100 dark:bg-indigo-900/60 text-indigo-800 dark:text-indigo-300 text-xs px-2 py-1 rounded">5 or 30 days</span>
+                            </div>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">Property removed from premises when threatened by covered peril.</p>
+                            <p class="text-xs text-amber-600 dark:text-amber-400 mt-1">DP-1: 5 days. DP-2/3: 30 days. Converts to OPEN peril during removal!</p>
+                        </div>
+
+                        <!-- 8. Fire Dept Service Charge -->
+                        <div class="bg-white dark:bg-gray-600 p-4 rounded-lg border-l-4 border-pink-500">
+                            <div class="flex justify-between items-start">
+                                <p class="font-bold text-gray-800 dark:text-gray-200">8. Fire Department Service Charge</p>
+                                <span class="bg-pink-100 dark:bg-pink-900/60 text-pink-800 dark:text-pink-300 text-xs px-2 py-1 rounded">$500</span>
+                            </div>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">Pays fire department response fees (common in rural areas).</p>
+                            <p class="text-xs text-green-600 dark:text-green-400 mt-1">IS additional insurance. NO deductible applies!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Additional Coverages in Broad/Special -->
+                <div class="bg-green-50 dark:bg-green-900/20 rounded-xl p-5 mb-6 border border-green-200 dark:border-green-800">
+                    <h3 class="font-bold text-green-800 dark:text-green-300 text-lg mb-4">Additional Coverages in DP-2 and DP-3 ONLY:</h3>
+
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <!-- Lawns, Trees -->
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                            <div class="flex justify-between items-start">
+                                <p class="font-bold text-gray-800 dark:text-gray-200">Lawns, Trees, Shrubs, Plants</p>
+                            </div>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">Named peril coverage: fire, lightning, explosion, riot, aircraft, non-owned vehicles, VMM (excluding theft).</p>
+                            <div class="mt-2 flex gap-2">
+                                <span class="bg-green-100 dark:bg-green-900/60 text-green-800 dark:text-green-300 text-xs px-2 py-1 rounded">$500 per item max</span>
+                                <span class="bg-green-100 dark:bg-green-900/60 text-green-800 dark:text-green-300 text-xs px-2 py-1 rounded">5% of Cov A per loss</span>
+                            </div>
+                            <p class="text-xs text-green-600 dark:text-green-400 mt-2">IS additional insurance.</p>
+                        </div>
+
+                        <!-- Glass Breakage -->
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                            <p class="font-bold text-gray-800 dark:text-gray-200">Breakage of Glass</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">Glass/safety glazing that is part of building, including storm doors/windows. Also covers damage to other property caused by broken glass.</p>
+                            <p class="text-xs text-red-600 dark:text-red-400 mt-2">NO coverage if vacant 60+ days (except earth movement damage).</p>
+                        </div>
+
+                        <!-- Collapse -->
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                            <p class="font-bold text-gray-800 dark:text-gray-200">Collapse</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">Abrupt falling down where building cannot be used. Covered if caused by:</p>
+                            <ul class="text-xs text-gray-500 dark:text-gray-400 mt-1 space-y-1">
+                                <li>- Broad form perils</li>
+                                <li>- Hidden decay, insect/vermin (if unknown to insured)</li>
+                                <li>- Weight of personal property or rain on roof</li>
+                                <li>- Defective materials during construction</li>
+                            </ul>
+                            <p class="text-xs text-red-600 dark:text-red-400 mt-2">NOT collapse: settling, cracking, bulging, expansion.</p>
+                        </div>
+
+                        <!-- Ordinance or Law -->
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                            <div class="flex justify-between items-start">
+                                <p class="font-bold text-gray-800 dark:text-gray-200">Ordinance or Law</p>
+                                <span class="bg-blue-100 dark:bg-blue-900/60 text-blue-800 dark:text-blue-300 text-xs px-2 py-1 rounded">10% of Cov A (or B)</span>
+                            </div>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">Increased costs to comply with building codes after covered loss. Applies to damaged AND undamaged portions.</p>
+                            <p class="text-xs text-green-600 dark:text-green-400 mt-2">IS additional insurance.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Reference -->
+                <div class="bg-gradient-to-r from-purple-600 to-purple-800 rounded-xl p-5 text-white">
+                    <h3 class="font-bold text-lg mb-4">Quick Reference: Other Coverages Percentages</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                        <div class="bg-white/20 p-3 rounded-lg text-center">
+                            <p class="text-2xl font-bold">10%</p>
+                            <p class="text-xs text-purple-200">Other Structures (of Cov A)</p>
+                        </div>
+                        <div class="bg-white/20 p-3 rounded-lg text-center">
+                            <p class="text-2xl font-bold">10%</p>
+                            <p class="text-xs text-purple-200">Improvements (of Cov C)</p>
+                        </div>
+                        <div class="bg-white/20 p-3 rounded-lg text-center">
+                            <p class="text-2xl font-bold">10%</p>
+                            <p class="text-xs text-purple-200">Worldwide (of Cov C)</p>
+                        </div>
+                        <div class="bg-white/20 p-3 rounded-lg text-center">
+                            <p class="text-2xl font-bold">20%</p>
+                            <p class="text-xs text-purple-200">Rental/ALE (of Cov A)</p>
+                        </div>
+                        <div class="bg-white/20 p-3 rounded-lg text-center">
+                            <p class="text-2xl font-bold">$500</p>
+                            <p class="text-xs text-purple-200">Fire Dept Charge</p>
+                        </div>
+                        <div class="bg-white/20 p-3 rounded-lg text-center">
+                            <p class="text-2xl font-bold">$500</p>
+                            <p class="text-xs text-purple-200">Per Tree/Shrub</p>
+                        </div>
+                        <div class="bg-white/20 p-3 rounded-lg text-center">
+                            <p class="text-2xl font-bold">5%</p>
+                            <p class="text-xs text-purple-200">Trees/Plants per loss</p>
+                        </div>
+                        <div class="bg-white/20 p-3 rounded-lg text-center">
+                            <p class="text-2xl font-bold">10%</p>
+                            <p class="text-xs text-purple-200">Ordinance/Law (of Cov A)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 7: General Exclusions -->
+        <section id="exclusions" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">7. General Exclusions</h2>
+
+                <div class="bg-red-50 dark:bg-red-900/20 rounded-xl p-5 lg:p-6 mb-6 border border-red-200 dark:border-red-800">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Dwelling policy forms contain several general exclusions found in <strong>all 3 forms</strong>.</p>
+                </div>
+
+                <div class="bg-white dark:bg-gray-700 rounded-lg p-5 border-l-4 border-red-500">
+                    <h3 class="font-bold text-red-800 dark:text-red-300 text-lg mb-4">Ordinance or Law Exclusion</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">Coverage does NOT apply to expenses incurred as the result of any ordinance or law that:</p>
+                    <ul class="space-y-2 text-gray-600 dark:text-gray-400">
+                        <li class="flex items-start">
+                            <span class="text-red-500 mr-2">-</span>
+                            <span>Regulates the construction, use, or repair of any property</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-red-500 mr-2">-</span>
+                            <span>Requires the tearing down of any property</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-red-500 mr-2">-</span>
+                            <span>Results in loss of value of the structure</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-red-500 mr-2">-</span>
+                            <span>Requirements to test, monitor, clean up, or remove pollutants</span>
+                        </li>
+                    </ul>
+
+                    <div class="mt-4 bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg">
+                        <p class="text-sm text-amber-800 dark:text-amber-300"><strong>Note:</strong> This general exclusion is narrowed by the Ordinance or Law coverage in the "Other Coverages" section of DP-2 and DP-3, which provides limited coverage (10% of Cov A) for these costs.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Trap Alerts -->
+        <section class="mb-10">
+            <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-xl p-5 lg:p-6">
+                <h3 class="text-xl lg:text-2xl font-bold text-red-800 dark:text-red-300 mb-4">Exam Trap Alerts</h3>
+                <div class="space-y-4">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">1. DP-3 is Open Peril for DWELLING ONLY</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">Personal property (contents) is still covered on a NAMED PERIL basis in DP-3. Only the dwelling and other structures are open peril.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">2. Coverage E (ALE) is NOT in DP-1</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">Additional Living Expense is only included in DP-2 and DP-3. For DP-1, it must be added by endorsement.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">3. The 60-Day Vacancy Rule</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">NO coverage for VMM, water discharge, burglary damage, or glass breakage if property has been vacant for more than 60 consecutive days.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">4. VMM Requires Extended Coverage First (DP-1)</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">In DP-1, you cannot add Vandalism & Malicious Mischief coverage unless you first purchase the Extended Coverage perils.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">5. "Additional Insurance" vs "Not Additional"</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">In DP-1, "Other Coverages" generally reduce your Coverage A/C limits. In DP-2/3, most are "additional insurance" - meaning they don't reduce your limits.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">6. Hostile Fire vs Friendly Fire</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">Only HOSTILE fires are covered. A friendly fire (contained in fireplace/stove) is NOT covered unless it escapes its boundaries.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">7. Coverage D vs Coverage E</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">D = Fair Rental Value (for LANDLORDS losing rent). E = Additional Living Expense (for OWNER-OCCUPANTS displaced from their home).</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Reference Summary -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-green-600 to-green-800 rounded-xl shadow-lg p-6 lg:p-8 text-white">
+                <h3 class="text-xl lg:text-2xl font-bold mb-6">Quick Reference Summary</h3>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-white/10 rounded-lg p-4">
+                        <h4 class="font-bold mb-2">DP-1 Basic</h4>
+                        <ul class="text-green-100 text-sm space-y-1">
+                            <li>- Fire, Lightning, Internal Explosion</li>
+                            <li>- Optional: Extended Coverage (WHARVES)</li>
+                            <li>- Optional: VMM (needs Extended first)</li>
+                            <li>- NO Coverage E unless endorsed</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white/10 rounded-lg p-4">
+                        <h4 class="font-bold mb-2">DP-2 Broad</h4>
+                        <ul class="text-green-100 text-sm space-y-1">
+                            <li>- All DP-1 + Extended + VMM included</li>
+                            <li>- Plus 7 Broad perils (B.B. BICE-GOLF)</li>
+                            <li>- Coverage E included</li>
+                            <li>- Glass breakage, Collapse, Trees/Plants</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white/10 rounded-lg p-4">
+                        <h4 class="font-bold mb-2">DP-3 Special</h4>
+                        <ul class="text-green-100 text-sm space-y-1">
+                            <li>- OPEN PERIL for dwelling/structures</li>
+                            <li>- Named peril for contents</li>
+                            <li>- Theft of building parts covered</li>
+                            <li>- Ice dam coverage</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white/10 rounded-lg p-4">
+                        <h4 class="font-bold mb-2">Coverages</h4>
+                        <ul class="text-green-100 text-sm space-y-1">
+                            <li>- A: Dwelling</li>
+                            <li>- B: Other Structures</li>
+                            <li>- C: Personal Property</li>
+                            <li>- D: Fair Rental Value</li>
+                            <li>- E: Additional Living Expense</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white/10 rounded-lg p-4">
+                        <h4 class="font-bold mb-2">Key Numbers</h4>
+                        <ul class="text-green-100 text-sm space-y-1">
+                            <li>- $250: Standard deductible</li>
+                            <li>- 60 days: Vacancy period</li>
+                            <li>- 5 boarders: Max allowed</li>
+                            <li>- 4 units: Max residential</li>
+                            <li>- 2 workers: Max for incidental business</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white/10 rounded-lg p-4">
+                        <h4 class="font-bold mb-2">Mnemonics</h4>
+                        <ul class="text-green-100 text-sm space-y-1">
+                            <li>- <strong>WHARVES:</strong> Extended Perils</li>
+                            <li>- <strong>B.B. BICE-GOLF:</strong> Broad Perils</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Navigation Footer -->
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="../index.html" class="text-gray-300 hover:text-white">← Chapter 3 Home</a>
+                <span class="text-gray-400">Part 1 of 4</span>
+                <a href="../part-2/index.html" class="text-gray-300 hover:text-white">Part 2: Commercial Property →</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Initialize AI Tutor -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            createFloatingAIButton(`Part 1: Dwelling and Contents (Personal Lines)
+
+DWELLING PROPERTY POLICY (DP):
+- ISO developed for property coverage
+- Commonly used for RENTAL PROPERTIES
+- Liability NOT included (can be added)
+
+THREE FORMS:
+- DP-1 (Basic): Named perils only, most limited
+  - Fire, Lightning, Internal Explosion
+  - Optional: Extended Coverage (WHARVES), VMM
+- DP-2 (Broad): Named perils, expanded
+  - All DP-1 + Extended + VMM + 7 broad perils
+  - Mnemonic: B.B. BICE-GOLF
+- DP-3 (Special): OPEN PERIL for dwelling, Named for contents
+  - Broadest coverage, includes theft of building parts, ice dams
+
+ELIGIBILITY:
+- Up to 5 roomers/boarders
+- Up to 4 residential units
+- Incidental business OK (max 2 workers)
+- NOT farm property
+
+COVERAGES A-E:
+- A: Dwelling (the building)
+- B: Other Structures (detached garage, shed)
+- C: Personal Property (contents)
+- D: Fair Rental Value (for LANDLORDS)
+- E: Additional Living Expense (for OWNER-OCCUPANTS) - DP-2/3 only!
+
+KEY NUMBERS:
+- $250: Standard deductible
+- 60 days: Vacancy period (no VMM, water, glass coverage)
+- 10%: Other structures, improvements, worldwide (of base coverage)
+- 20%: Rental value/ALE (of Coverage A)
+- $500: Fire department charge, per tree/shrub
+
+MNEMONICS:
+- WHARVES: Windstorm, Hail, Aircraft, Riot, Volcanic, Explosion, Smoke
+- B.B. BICE-GOLF: Bursting, Burglary, Breaking, Ice weight, Collapse, Electrical, Glass, Objects, Leakage, Freezing`);
+        });
+    </script>
+</body>
+</html>
