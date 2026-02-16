@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 3a: Inland Marine Basics | Chapter 3 | Property Insurance</title>
+    <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <link rel="stylesheet" href="../../../css/styles.css">
+    <script src="../../../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+        }
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <!-- Settings & Theme Toggle Buttons -->
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="showAPIKeySetup()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings">
+            <svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+        </button>
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/>
+            </svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-green-600 to-green-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center text-green-200 text-sm mb-2">
+                <a href="../../index.html" class="hover:text-white">Property</a>
+                <span class="mx-2">→</span>
+                <a href="../index.html" class="hover:text-white">Chapter 3</a>
+                <span class="mx-2">→</span>
+                <span class="text-white">Part 3a</span>
+            </div>
+            <h1 class="text-3xl font-bold">Part 3a: Inland Marine Basics</h1>
+            <p class="text-green-200 mt-1">What is Inland Marine, NAIC Definition, and Personal Floaters</p>
+        </div>
+    </header>
+
+    <!-- Sticky Navigation -->
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-wrap gap-2 text-sm">
+                <a href="#overview" class="text-green-600 dark:text-green-400 hover:text-green-800 px-2 py-1 rounded hover:bg-green-50 dark:hover:bg-gray-700">Overview</a>
+                <a href="#nationwide" class="text-green-600 dark:text-green-400 hover:text-green-800 px-2 py-1 rounded hover:bg-green-50 dark:hover:bg-gray-700">NAIC Definition</a>
+                <a href="#personal-floaters" class="text-green-600 dark:text-green-400 hover:text-green-800 px-2 py-1 rounded hover:bg-green-50 dark:hover:bg-gray-700">Personal Floaters</a>
+                <a href="#cheat-sheet" class="text-green-600 dark:text-green-400 hover:text-green-800 px-2 py-1 rounded hover:bg-green-50 dark:hover:bg-gray-700">Cheat Sheet</a>
+                <a href="#exam-traps" class="text-green-600 dark:text-green-400 hover:text-green-800 px-2 py-1 rounded hover:bg-green-50 dark:hover:bg-gray-700">Exam Traps</a>
+                <span class="text-gray-400 px-2">|</span>
+                <a href="../part-3b/index.html" class="text-blue-600 dark:text-blue-400 hover:text-blue-800 px-2 py-1 rounded hover:bg-blue-50 dark:hover:bg-gray-700">Part 3b: Commercial IM →</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-5xl lg:max-w-7xl">
+
+        <!-- Start Here: 5 Things You MUST Know -->
+        <div class="bg-gradient-to-r from-green-100 to-teal-100 dark:from-green-900/40 dark:to-teal-800/40 rounded-xl p-6 mb-8 border border-green-300 dark:border-green-700">
+            <h3 class="text-xl font-bold text-green-800 dark:text-green-200 mb-4">Start Here: 5 Things You MUST Know</h3>
+            <div class="grid md:grid-cols-2 gap-3">
+                <div class="flex items-start">
+                    <span class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>"Marine" does NOT mean water</strong> - Inland Marine covers mobile property and goods in transit over LAND</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>NAIC defines 4 classes</strong> - Domestic Shipments, Instrumentalities, Commercial Floaters, Personal Floaters</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>Personal Articles Floater (PAF)</strong> = Scheduled items, agreed value, worldwide, usually NO deductible</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">4</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>Personal Effects Floater</strong> = Travelers ONLY, NOT at home, $100 limit on jewelry/watches/furs</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">5</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>"Floater"</strong> = Coverage that "floats" with property wherever it goes (not fixed location)</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 1: Overview -->
+        <section id="overview" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">1. What is Inland Marine Insurance?</h2>
+
+                <div class="bg-green-50 dark:bg-green-900/30 rounded-xl p-5 lg:p-6 mb-6 border border-green-200 dark:border-green-800">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Despite the name, <strong>Inland Marine insurance has nothing to do with water</strong>. It evolved from ocean marine insurance to cover property that is <strong>mobile</strong>, <strong>in transit over land</strong>, or has special characteristics unsuitable for standard property policies.</p>
+                </div>
+
+                <!-- What Makes Something Inland Marine -->
+                <h3 class="font-bold text-gray-800 dark:text-gray-200 text-lg mb-4">What Makes Property "Inland Marine"?</h3>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-l-4 border-blue-500">
+                        <p class="font-bold text-blue-800 dark:text-blue-300">Property in Transit</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Being transported from place to place</p>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border-l-4 border-purple-500">
+                        <p class="font-bold text-purple-800 dark:text-purple-300">Mobile Property</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Designed to move frequently</p>
+                    </div>
+                    <div class="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg border-l-4 border-amber-500">
+                        <p class="font-bold text-amber-800 dark:text-amber-300">Bailee Property</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Held by someone other than owner</p>
+                    </div>
+                    <div class="bg-teal-50 dark:bg-teal-900/20 p-4 rounded-lg border-l-4 border-teal-500">
+                        <p class="font-bold text-teal-800 dark:text-teal-300">Infrastructure</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Bridges, tunnels, towers, pipelines</p>
+                    </div>
+                </div>
+
+                <!-- Why Standard Property Won't Work -->
+                <div class="bg-amber-50 dark:bg-amber-900/20 border-l-4 border-amber-500 p-4 rounded-r-lg mb-6">
+                    <p class="font-bold text-amber-800 dark:text-amber-300 mb-2">Why Standard Property Policies Don't Work</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm">Standard property policies cover property at a <strong>fixed location</strong>. But what about a photographer's cameras used at weddings, job sites, and travel? Or a contractor's bulldozer that moves between projects? These need coverage that <strong>follows the property</strong> - that's Inland Marine.</p>
+                </div>
+
+                <!-- Real World Example -->
+                <div class="bg-green-50 dark:bg-green-900/20 p-5 rounded-lg border-l-4 border-green-500">
+                    <p class="font-semibold text-green-800 dark:text-green-300 mb-2">Real-World Scenario: Why Inland Marine?</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Sarah is a professional photographer with $50,000 in camera equipment. She works at weddings, outdoor locations, corporate events, and her home studio.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Problem:</strong> Her Homeowners policy only covers property AT her home. Even then, business equipment has limited coverage ($2,500 typical) and theft away from home is restricted.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Solution:</strong> A Personal Articles Floater covers her cameras <strong>WORLDWIDE</strong> - at home, in her car, at a destination wedding in Italy. Coverage "floats" with the property wherever she takes it.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Nationwide Marine Definition -->
+        <section id="nationwide" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">2. Nationwide Marine Definition (NAIC)</h2>
+
+                <div class="bg-indigo-50 dark:bg-indigo-900/30 rounded-xl p-5 lg:p-6 mb-6 border border-indigo-200 dark:border-indigo-800">
+                    <p class="text-gray-700 dark:text-gray-300">The <strong>Nationwide Marine Definition</strong> was established by the NAIC in 1953 (revised 1976) to determine what may properly be classified as Inland Marine insurance. It prevents insurers from using "marine" classification to avoid rate regulations.</p>
+                </div>
+
+                <h3 class="font-bold text-gray-800 dark:text-gray-200 text-lg mb-4">The 4 General Classes of Inland Marine Risks</h3>
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-5 rounded-lg border-l-4 border-purple-500">
+                        <p class="font-bold text-purple-800 dark:text-purple-300 text-lg">1. Domestic Shipments & Transportation</p>
+                        <p class="text-gray-600 dark:text-gray-400 mt-2">Property being shipped within the country - cargo, goods in transit by truck, rail, or air</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm"><strong>Example:</strong> A furniture manufacturer ships 50 sofas from their NJ factory to a retailer in California. Motor Truck Cargo insurance covers the shipment.</p>
+                        </div>
+                    </div>
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-5 rounded-lg border-l-4 border-blue-500">
+                        <p class="font-bold text-blue-800 dark:text-blue-300 text-lg">2. Instrumentalities of Transportation/Communication</p>
+                        <p class="text-gray-600 dark:text-gray-400 mt-2">Infrastructure that enables transportation - bridges, tunnels, piers, wharves, docks, pipelines, radio/TV towers</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm"><strong>Example:</strong> A cell phone company insures its transmission towers across multiple states under Inland Marine coverage.</p>
+                        </div>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/20 p-5 rounded-lg border-l-4 border-green-500">
+                        <p class="font-bold text-green-800 dark:text-green-300 text-lg">3. Commercial Property Floater Risks</p>
+                        <p class="text-gray-600 dark:text-gray-400 mt-2">Business property that moves - contractor equipment, bailee property, salesperson samples</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm"><strong>Example:</strong> A construction company's bulldozers, cranes, and excavators that move between job sites need a Contractors Equipment Floater.</p>
+                        </div>
+                    </div>
+                    <div class="bg-amber-50 dark:bg-amber-900/20 p-5 rounded-lg border-l-4 border-amber-500">
+                        <p class="font-bold text-amber-800 dark:text-amber-300 text-lg">4. Personal Property Floater Risks</p>
+                        <p class="text-gray-600 dark:text-gray-400 mt-2">Individual valuables - jewelry, cameras, musical instruments, fine arts, furs</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm"><strong>Example:</strong> A concert violinist insures her $200,000 Stradivarius with a Personal Articles Floater - covered at home, on tour, everywhere.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Memory Trick -->
+                <div class="bg-purple-50 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-800 rounded-lg p-4">
+                    <p class="font-bold text-purple-800 dark:text-purple-300 mb-2">Memory Trick: "DICP"</p>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>D</strong>omestic Shipments, <strong>I</strong>nstrumentalities, <strong>C</strong>ommercial Floaters, <strong>P</strong>ersonal Floaters</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Personal Floaters -->
+        <section id="personal-floaters" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">3. Personal Floaters</h2>
+
+                <div class="bg-green-50 dark:bg-green-900/30 rounded-xl p-5 lg:p-6 mb-6 border border-green-200 dark:border-green-800">
+                    <p class="text-gray-700 dark:text-gray-300">A <strong>personal floater</strong> covers movable personal property wherever located. Called "floaters" because coverage <strong>floats</strong> with the property - not tied to one location. May be written on <strong>all-risk (open peril)</strong> or <strong>named-peril</strong> basis.</p>
+                </div>
+
+                <!-- Three Types Comparison Table -->
+                <h3 class="font-bold text-gray-800 dark:text-gray-200 text-lg mb-4">The 3 Types of Personal Floaters</h3>
+                <div class="overflow-x-auto mb-6">
+                    <table class="w-full text-sm lg:text-base">
+                        <thead>
+                            <tr class="bg-green-600 text-white">
+                                <th class="p-3 text-left rounded-tl-lg">Floater Type</th>
+                                <th class="p-3 text-left">Coverage Basis</th>
+                                <th class="p-3 text-left">Key Features</th>
+                                <th class="p-3 text-left rounded-tr-lg">Limits</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                            <tr class="bg-blue-50 dark:bg-gray-700">
+                                <td class="p-3 font-bold text-blue-800 dark:text-blue-300">Personal Property Floater</td>
+                                <td class="p-3">All-risk, UNSCHEDULED</td>
+                                <td class="p-3">Blanket limit covers everything worldwide</td>
+                                <td class="p-3">Special limits on certain categories</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <td class="p-3 font-bold text-purple-800 dark:text-purple-300">Personal Articles Floater (PAF)</td>
+                                <td class="p-3">All-risk, SCHEDULED</td>
+                                <td class="p-3">Items listed with agreed values, worldwide, usually NO deductible</td>
+                                <td class="p-3">Pays scheduled amount (agreed value)</td>
+                            </tr>
+                            <tr class="bg-amber-50 dark:bg-gray-700">
+                                <td class="p-3 font-bold text-amber-800 dark:text-amber-300">Personal Effects Floater</td>
+                                <td class="p-3">All-risk, TRAVELERS</td>
+                                <td class="p-3">For items carried/worn during travel, NOT at home</td>
+                                <td class="p-3 font-bold text-red-600 dark:text-red-400">$100 limit jewelry/watches/furs</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Personal Articles Floater Detail -->
+                <div class="bg-blue-50 dark:bg-blue-900/20 p-5 rounded-lg border-l-4 border-blue-500 mb-6">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg mb-3">Personal Articles Floater (PAF) - The Most Common</h3>
+                    <div class="grid md:grid-cols-2 gap-4 mb-4">
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-semibold text-gray-700 dark:text-gray-300 mb-2">Pre-Printed Categories:</p>
+                            <div class="flex flex-wrap gap-2 text-sm">
+                                <span class="bg-blue-100 dark:bg-blue-900/40 px-2 py-1 rounded">Jewelry</span>
+                                <span class="bg-blue-100 dark:bg-blue-900/40 px-2 py-1 rounded">Furs</span>
+                                <span class="bg-blue-100 dark:bg-blue-900/40 px-2 py-1 rounded">Cameras</span>
+                                <span class="bg-blue-100 dark:bg-blue-900/40 px-2 py-1 rounded">Musical Instruments</span>
+                                <span class="bg-blue-100 dark:bg-blue-900/40 px-2 py-1 rounded">Fine Arts</span>
+                                <span class="bg-blue-100 dark:bg-blue-900/40 px-2 py-1 rounded">Silverware</span>
+                                <span class="bg-blue-100 dark:bg-blue-900/40 px-2 py-1 rounded">Golfer's Equipment</span>
+                            </div>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-semibold text-gray-700 dark:text-gray-300 mb-2">Key Benefits:</p>
+                            <ul class="text-sm text-gray-600 dark:text-gray-400 space-y-1">
+                                <li>- Open perils (all-risk) coverage</li>
+                                <li>- Worldwide coverage</li>
+                                <li>- Agreed value (no depreciation)</li>
+                                <li>- Usually NO deductible</li>
+                                <li>- No coinsurance requirement</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="bg-blue-100 dark:bg-blue-900/30 p-3 rounded">
+                        <p class="font-semibold text-blue-800 dark:text-blue-300 mb-2">Real-World Scenario: PAF Saves the Day</p>
+                        <p class="text-sm text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Jennifer has a $15,000 engagement ring scheduled on her PAF at $15,000 agreed value.</p>
+                        <p class="text-sm text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> The ring is stolen while she's on vacation in Paris.</p>
+                        <p class="text-sm text-gray-700 dark:text-gray-300"><strong>The Result:</strong> PAF pays the full $15,000 - no depreciation, no deductible, no questions about "actual cash value." Her HO policy would have only paid $1,500 (standard sublimit for jewelry theft).</p>
+                    </div>
+                </div>
+
+                <!-- Personal Property Floater -->
+                <div class="bg-purple-50 dark:bg-purple-900/20 p-5 rounded-lg border-l-4 border-purple-500 mb-6">
+                    <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg mb-3">Personal Property Floater (Unscheduled)</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mb-3">Provides <strong>blanket coverage</strong> for personal property without listing each item. Good for people with many valuable items who don't want to schedule each one.</p>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                        <p class="font-semibold text-purple-800 dark:text-purple-300 mb-2">Real-World Scenario: Blanket Coverage</p>
+                        <p class="text-sm text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Mark is a collector with hundreds of items - vintage watches, rare books, antique coins.</p>
+                        <p class="text-sm text-gray-700 dark:text-gray-300"><strong>The Solution:</strong> A Personal Property Floater with a $100,000 blanket limit covers everything without listing each item. Special sublimits still apply to certain categories.</p>
+                    </div>
+                </div>
+
+                <!-- Personal Effects Warning -->
+                <div class="bg-red-50 dark:bg-red-900/20 border-2 border-red-300 dark:border-red-700 p-5 rounded-lg">
+                    <h3 class="font-bold text-red-800 dark:text-red-300 text-lg mb-3">Personal Effects Floater - CRITICAL LIMITATIONS!</h3>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div>
+                            <p class="font-semibold text-red-700 dark:text-red-300 mb-2">What It Covers:</p>
+                            <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-1">
+                                <li>- Personal effects while TRAVELING</li>
+                                <li>- Items carried or worn away from home</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-red-700 dark:text-red-300 mb-2">Critical Limitations:</p>
+                            <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-1">
+                                <li>- <strong>NOT covered while at home</strong></li>
+                                <li>- <strong>$100 limit</strong> on jewelry, watches, furs</li>
+                                <li>- NO coverage for vehicles, bicycles</li>
+                                <li>- NO coverage for currency, tickets</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded mt-4">
+                        <p class="font-semibold text-red-800 dark:text-red-300 mb-2">Real-World Scenario: The $100 Trap</p>
+                        <p class="text-sm text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Tom has a Personal Effects Floater and takes his $5,000 Rolex on vacation.</p>
+                        <p class="text-sm text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> The watch is stolen from his hotel room in Miami.</p>
+                        <p class="text-sm text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Personal Effects Floater pays only <strong>$100</strong> (the jewelry/watch limit). Tom should have used a PAF with the watch scheduled!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cheat Sheet -->
+        <section id="cheat-sheet" class="mb-10">
+            <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 border-2 border-dashed border-gray-300 dark:border-gray-600">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100">Cheat Sheet: Personal Floaters</h2>
+                    <span class="text-sm text-gray-500 dark:text-gray-400">Print for quick reference</span>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 text-sm">
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                        <p class="font-bold text-gray-800 dark:text-gray-200">Personal Effects Jewelry Limit</p>
+                        <p class="text-2xl font-bold text-red-600">$100</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                        <p class="font-bold text-gray-800 dark:text-gray-200">NAIC Definition Year</p>
+                        <p class="text-2xl font-bold text-purple-600">1953</p>
+                        <p class="text-xs text-gray-500">(Revised 1976)</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                        <p class="font-bold text-gray-800 dark:text-gray-200">NAIC Classes</p>
+                        <p class="text-2xl font-bold text-green-600">4</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                        <p class="font-bold text-gray-800 dark:text-gray-200">HO Jewelry Theft Limit (typical)</p>
+                        <p class="text-2xl font-bold text-amber-600">$1,500</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                        <p class="font-bold text-gray-800 dark:text-gray-200">PAF Deductible (usually)</p>
+                        <p class="text-2xl font-bold text-blue-600">$0</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                        <p class="font-bold text-gray-800 dark:text-gray-200">PAF Valuation</p>
+                        <p class="text-2xl font-bold text-indigo-600">Agreed</p>
+                    </div>
+                </div>
+
+                <div class="mt-4 grid md:grid-cols-2 gap-4 text-sm">
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                        <p class="font-bold text-gray-800 dark:text-gray-200 mb-2">PAF Coverage Territory:</p>
+                        <p class="text-gray-600 dark:text-gray-400">WORLDWIDE</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                        <p class="font-bold text-gray-800 dark:text-gray-200 mb-2">Personal Effects Coverage Territory:</p>
+                        <p class="text-gray-600 dark:text-gray-400">Away from home ONLY (travel)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Trap Alerts -->
+        <section id="exam-traps" class="mb-10">
+            <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-xl p-5 lg:p-6">
+                <h2 class="text-2xl lg:text-3xl font-bold text-red-800 dark:text-red-300 mb-6">Exam Trap Alerts</h2>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">1. "Marine" = Water?</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">NO! Inland Marine = LAND transit and mobile property. Ocean Marine = water. Don't confuse them!</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">2. PAF = Agreed Value</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">Personal Articles Floater pays the SCHEDULED amount - no depreciation, no ACV calculation.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">3. Personal Effects = $100 Jewelry</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">Only $100 for jewelry/watches/furs. AND it's NOT covered while at home - travel only!</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">4. Scheduled vs Unscheduled</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">PAF = Scheduled (items listed). Personal Property Floater = Unscheduled (blanket).</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">5. "Floater" Meaning</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">Coverage "floats" with property wherever it goes. Not tied to one location like standard property.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">6. NAIC Definition Purpose</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">Determines what CAN be classified as Inland Marine - prevents rate regulation avoidance.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Reference Summary -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-green-600 to-green-800 rounded-xl p-6 lg:p-8 text-white">
+                <h2 class="text-2xl lg:text-3xl font-bold mb-6">Quick Reference Summary</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Inland Marine</p>
+                        <p class="text-sm text-green-100">Mobile property, transit - NOT water!</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">4 NAIC Classes</p>
+                        <p class="text-sm text-green-100">Domestic Shipments, Instrumentalities, Commercial Floaters, Personal Floaters</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">PAF</p>
+                        <p class="text-sm text-green-100">Scheduled, agreed value, worldwide, no deductible</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Personal Property Floater</p>
+                        <p class="text-sm text-green-100">Unscheduled, blanket limit, worldwide</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Personal Effects Floater</p>
+                        <p class="text-sm text-green-100">Travel only, $100 jewelry limit</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Next: Part 3b</p>
+                        <p class="text-sm text-green-100">Commercial IM, Filed vs Unfiled, Transportation</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Navigation -->
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="../part-2/index.html" class="text-green-400 hover:text-green-300 flex items-center">
+                    <span class="mr-2">←</span> Part 2: Commercial Property
+                </a>
+                <span class="text-gray-400">Part 3a of 5</span>
+                <a href="../part-3b/index.html" class="text-green-400 hover:text-green-300 flex items-center">
+                    Part 3b: Commercial IM <span class="ml-2">→</span>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AI Tutor Button -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            createFloatingAIButton(`Part 3a: Inland Marine Basics
+
+KEY CONCEPT:
+"Marine" does NOT mean water! Inland Marine covers mobile property and goods in transit over LAND. It evolved from Ocean Marine insurance.
+
+NATIONWIDE MARINE DEFINITION (NAIC 1953, revised 1976):
+4 Classes of Inland Marine Risks:
+1. Domestic Shipments & Transportation - cargo, goods in transit
+2. Instrumentalities of Transportation/Communication - bridges, tunnels, towers, pipelines
+3. Commercial Property Floater Risks - contractor equipment, bailee property
+4. Personal Property Floater Risks - jewelry, cameras, instruments, fine arts
+
+PERSONAL FLOATERS (3 Types):
+
+1. PERSONAL PROPERTY FLOATER:
+- UNSCHEDULED (blanket coverage)
+- All-risk basis
+- Worldwide coverage
+- Special limits on certain categories
+
+2. PERSONAL ARTICLES FLOATER (PAF) - Most Common:
+- SCHEDULED (items listed with values)
+- All-risk/open perils
+- AGREED VALUE (no depreciation)
+- WORLDWIDE coverage
+- Usually NO DEDUCTIBLE
+- Categories: Jewelry, Furs, Cameras, Musical Instruments, Fine Arts, Silverware, Golfer's Equipment
+
+3. PERSONAL EFFECTS FLOATER:
+- For TRAVELERS only
+- NOT covered while at home
+- $100 LIMIT on jewelry, watches, furs
+- No coverage for vehicles, bicycles, currency, tickets
+
+KEY NUMBERS:
+- $100: Personal Effects jewelry/watch/fur limit
+- $1,500: Typical HO jewelry theft sublimit
+- $0: PAF deductible (usually)
+- 4: NAIC classes of Inland Marine
+- 1953: NAIC Definition established
+
+EXAM TRAPS:
+- "Marine" ≠ water for Inland Marine
+- PAF = Agreed value, not ACV
+- Personal Effects = $100 jewelry limit AND travel only
+- PAF = Scheduled items, Personal Property Floater = Unscheduled`);
+        });
+    </script>
+</body>
+</html>
