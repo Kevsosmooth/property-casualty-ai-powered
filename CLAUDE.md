@@ -509,6 +509,135 @@ Floating button with context-aware help. The AI context should include:
 
 ---
 
+## CRITICAL: Content Organization & Digestibility
+
+### The Golden Rule: One Topic Per Part
+**Never combine two major, unrelated topics in one part.** If a source document covers multiple distinct subjects, SPLIT them into separate parts.
+
+**Examples of topics that should be SPLIT:**
+- Flood Insurance AND Earthquake Insurance → Part 4A (Flood) + Part 4B (Earthquake)
+- Auto Liability AND Physical Damage → Separate parts
+- Life Insurance AND Health Insurance → Separate parts
+- Producer Licensing AND Continuing Education → Separate parts
+
+**How to decide if topics should be split:**
+1. Do they have different rules/requirements? → SPLIT
+2. Do they have different key numbers to memorize? → SPLIT
+3. Could someone study one without the other? → SPLIT
+4. Are they from different regulatory frameworks? → SPLIT
+
+### Page Length Guidelines
+- **Target: 400-600 lines of HTML** per part (excluding boilerplate)
+- **Maximum: 800 lines** - if longer, consider splitting
+- **If a part has 15+ exam traps** - it's probably too dense, split it
+
+### Required: "Start Here" Quick Summary
+Every part MUST begin with a scannable summary box immediately after the overview:
+
+```html
+<div class="bg-gradient-to-r from-[color]-100 to-[color]-200 dark:from-[color]-900/40 dark:to-[color]-800/40 rounded-xl p-6 mb-8 border border-[color]-300 dark:border-[color]-700">
+    <h3 class="text-xl font-bold text-[color]-800 dark:text-[color]-200 mb-4">Start Here: 5 Things You MUST Know</h3>
+    <div class="grid md:grid-cols-2 gap-3">
+        <div class="flex items-start">
+            <span class="bg-[color]-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
+            <p class="text-gray-700 dark:text-gray-300">[Most important fact]</p>
+        </div>
+        <!-- Items 2-5 -->
+    </div>
+</div>
+```
+
+This gives students the "if you only remember 5 things" summary BEFORE diving into details.
+
+### Required: Printable Cheat Sheet Section
+Before the Exam Traps section, include a condensed reference:
+
+```html
+<section id="cheat-sheet" class="mb-10">
+    <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 border-2 border-dashed border-gray-300 dark:border-gray-600">
+        <div class="flex items-center justify-between mb-4">
+            <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100">Cheat Sheet</h2>
+            <span class="text-sm text-gray-500 dark:text-gray-400">Print this page for quick reference</span>
+        </div>
+        <!-- Ultra-condensed key facts, numbers, and rules -->
+        <!-- NO examples here - just the facts -->
+    </div>
+</section>
+```
+
+### Content Density Rules
+
+**Per Section (numbered content section):**
+- Maximum 3-4 key concepts
+- Maximum 5-6 bullet points before a visual break
+- At least 1 visual element (table, diagram, grid, or colored box)
+- At least 1 example
+
+**Visual Breaks Required:**
+- Never have more than 2 paragraphs of text without a visual element
+- Use colored boxes, grids, or tables to break up information
+- White space is your friend - generous margins and padding
+
+### Cognitive Load Management
+
+**Chunking Strategy:**
+1. **Introduce** - One sentence explaining what you're about to learn
+2. **Define** - The core concept in a colored box
+3. **Visualize** - Table, diagram, or comparison grid
+4. **Example** - Real-world scenario
+5. **Reinforce** - Key point callout or exam tip
+6. **Breathe** - Visual spacing before next concept
+
+**Number Memorization:**
+- Group related numbers together (e.g., all coverage limits in one grid)
+- Use consistent color coding (e.g., all dollar amounts in blue, all time periods in purple)
+- Create memorable associations in the text
+
+### When Creating New Parts
+
+**Before writing, ask:**
+1. How many distinct topics does this source material cover?
+2. How many key numbers need memorization?
+3. How many exam traps are there?
+4. Can this be studied in 15-20 minutes?
+
+**If the answer to #4 is "no"** → Split into multiple parts
+
+**Naming Convention for Split Parts:**
+Use letter suffixes (A, B, C) when topics are closely related but need separation:
+- Part 4A: Flood Insurance (NFIP)
+- Part 4B: Earthquake Insurance
+- Part 7A: Personal Auto Liability
+- Part 7B: Personal Auto Physical Damage
+
+Use sequential numbers when topics are independent:
+- Part 4: Flood Insurance
+- Part 5: Earthquake Insurance
+
+**Folder Structure for Split Parts:**
+```
+/chapter-3/
+  /part-4a/          ← Related topic A
+    index.html
+  /part-4b/          ← Related topic B
+    index.html
+```
+
+**Navigation Between Split Parts:**
+- Link directly between 4A ↔ 4B in the navigation
+- Chapter index lists both parts with distinct colors
+- Footer shows: "← Part 4A: Flood | Part 4B: Earthquake →"
+
+**When to Use A/B Split vs Sequential Numbers:**
+| Use A/B Split When... | Use Sequential Numbers When... |
+|----------------------|------------------------------|
+| Topics are often tested together | Topics are independent |
+| Same source material | Different source materials |
+| Students benefit from comparison | No comparison needed |
+| Related regulatory framework | Different frameworks |
+
+---
+
 ## Key Reminders
 
 1. **Wide layouts** - Use the full screen on desktop
@@ -521,3 +650,7 @@ Floating button with context-aware help. The AI context should include:
 8. **Exam traps** - Highlight what trips people up
 9. **Numbers stand out** - Key figures in boxes
 10. **Make it fun** - Learning should be enjoyable
+11. **One topic per part** - Don't overwhelm with unrelated subjects
+12. **Start with summary** - "5 Things You MUST Know" at the top
+13. **Include cheat sheet** - Condensed reference before exam traps
+14. **15-20 minute rule** - If it takes longer to study, split it
