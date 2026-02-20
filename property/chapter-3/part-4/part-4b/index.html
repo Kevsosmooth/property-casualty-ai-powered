@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 4B: Earthquake Insurance | Chapter 3 | Property Insurance</title>
+    <link rel="icon" type="image/svg+xml" href="../../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <link rel="stylesheet" href="../../../../css/styles.css">
+    <script src="../../../../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+        }
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <!-- Settings & Theme Toggle Buttons -->
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="showAPIKeySetup()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings">
+            <svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+        </button>
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/>
+            </svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-orange-600 to-red-700 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center text-orange-200 text-sm mb-2">
+                <a href="../../../index.html" class="hover:text-white">Property</a>
+                <span class="mx-2">→</span>
+                <a href="../../index.html" class="hover:text-white">Chapter 3</a>
+                <span class="mx-2">→</span>
+                <span class="text-white">Part 4B</span>
+            </div>
+            <h1 class="text-3xl font-bold">Part 4B: Earthquake Insurance</h1>
+            <p class="text-orange-200 mt-1">Private Market Coverage for Seismic Activity</p>
+        </div>
+    </header>
+
+    <!-- Sticky Navigation -->
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-wrap gap-2 text-sm">
+                <a href="#start-here" class="text-orange-600 dark:text-orange-400 hover:text-orange-800 px-2 py-1 rounded hover:bg-orange-50 dark:hover:bg-gray-700 font-bold">Start Here</a>
+                <a href="#basics" class="text-orange-600 dark:text-orange-400 hover:text-orange-800 px-2 py-1 rounded hover:bg-orange-50 dark:hover:bg-gray-700">Basics</a>
+                <a href="#deductibles" class="text-orange-600 dark:text-orange-400 hover:text-orange-800 px-2 py-1 rounded hover:bg-orange-50 dark:hover:bg-gray-700">Deductibles</a>
+                <a href="#cea" class="text-orange-600 dark:text-orange-400 hover:text-orange-800 px-2 py-1 rounded hover:bg-orange-50 dark:hover:bg-gray-700">CEA</a>
+                <a href="#fire-following" class="text-orange-600 dark:text-orange-400 hover:text-orange-800 px-2 py-1 rounded hover:bg-orange-50 dark:hover:bg-gray-700">Fire Following</a>
+                <a href="#comparison" class="text-orange-600 dark:text-orange-400 hover:text-orange-800 px-2 py-1 rounded hover:bg-orange-50 dark:hover:bg-gray-700">Flood vs Earthquake</a>
+                <a href="#cheat-sheet" class="text-orange-600 dark:text-orange-400 hover:text-orange-800 px-2 py-1 rounded hover:bg-orange-50 dark:hover:bg-gray-700">Cheat Sheet</a>
+                <a href="#exam-traps" class="text-orange-600 dark:text-orange-400 hover:text-orange-800 px-2 py-1 rounded hover:bg-orange-50 dark:hover:bg-gray-700">Exam Traps</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-5xl lg:max-w-7xl">
+
+        <!-- START HERE: 5 Things You MUST Know -->
+        <section id="start-here" class="mb-10">
+            <div class="bg-gradient-to-r from-orange-100 to-red-100 dark:from-orange-900/40 dark:to-red-900/40 rounded-xl p-6 lg:p-8 border-2 border-orange-300 dark:border-orange-700">
+                <h2 class="text-2xl lg:text-3xl font-bold text-orange-800 dark:text-orange-200 mb-6">Start Here: 5 Things You MUST Know</h2>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="flex items-start bg-white dark:bg-gray-800 p-4 rounded-lg">
+                        <span class="bg-orange-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-lg font-bold mr-4 flex-shrink-0">1</span>
+                        <div>
+                            <p class="font-bold text-gray-800 dark:text-gray-200">PRIVATE Market (Not Federal)</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Unlike flood (NFIP), earthquake is sold by private insurers. No federal program!</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start bg-white dark:bg-gray-800 p-4 rounded-lg">
+                        <span class="bg-orange-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-lg font-bold mr-4 flex-shrink-0">2</span>
+                        <div>
+                            <p class="font-bold text-gray-800 dark:text-gray-200">PERCENTAGE Deductibles (10-25%)</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Not $500 or $1,000. 15% of $400K home = $60,000 deductible!</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start bg-white dark:bg-gray-800 p-4 rounded-lg">
+                        <span class="bg-orange-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-lg font-bold mr-4 flex-shrink-0">3</span>
+                        <div>
+                            <p class="font-bold text-gray-800 dark:text-gray-200">NEVER Mandatory</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Unlike flood in SFHA zones, earthquake coverage is always optional.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start bg-white dark:bg-gray-800 p-4 rounded-lg">
+                        <span class="bg-orange-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-lg font-bold mr-4 flex-shrink-0">4</span>
+                        <div>
+                            <p class="font-bold text-gray-800 dark:text-gray-200">Fire Following = STANDARD Policy Covers</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Earthquake causes fire? Your regular homeowners pays! No earthquake policy needed.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start bg-white dark:bg-gray-800 p-4 rounded-lg md:col-span-2">
+                        <span class="bg-orange-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-lg font-bold mr-4 flex-shrink-0">5</span>
+                        <div>
+                            <p class="font-bold text-gray-800 dark:text-gray-200">Can Be Endorsement OR DIC Policy</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Add to existing policy as endorsement, OR purchase Difference in Conditions (DIC) policy.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 1: Basics -->
+        <section id="basics" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">1. Earthquake Coverage Basics</h2>
+
+                <!-- Definition -->
+                <div class="bg-orange-50 dark:bg-orange-900/20 rounded-xl p-5 lg:p-6 mb-6 border border-orange-200 dark:border-orange-800">
+                    <h3 class="font-bold text-orange-800 dark:text-orange-300 text-lg mb-3">Definition</h3>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">
+                            <strong>Earthquake</strong> = A <strong>trembling or shaking</strong> of the earth that is <strong>volcanic or seismic</strong> in origin, often resulting in severe damage.
+                        </p>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-4 mt-4">
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded border-l-4 border-orange-500">
+                            <p class="font-semibold text-orange-700 dark:text-orange-300">Seismic Origin</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Tectonic plate movement (most common)</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded border-l-4 border-red-500">
+                            <p class="font-semibold text-red-700 dark:text-red-300">Volcanic Origin</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Earthquakes from volcanic activity</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Why Separate -->
+                <div class="bg-red-50 dark:bg-red-900/20 rounded-xl p-5 lg:p-6 mb-6 border border-red-200 dark:border-red-800">
+                    <h3 class="font-bold text-red-800 dark:text-red-300 text-lg mb-3">Why Excluded from Standard Policies?</h3>
+                    <ul class="space-y-2 text-gray-700 dark:text-gray-300 text-base lg:text-lg">
+                        <li>• <strong>Excluded from most standard property forms</strong></li>
+                        <li>• Catastrophic, concentrated losses in specific geographic areas</li>
+                        <li>• Available as <strong>endorsement</strong> to property policy</li>
+                        <li>• May be written in a <strong>Difference in Conditions (DIC) Policy</strong></li>
+                        <li>• <strong>NEVER mandatory</strong> - always optional</li>
+                    </ul>
+                </div>
+
+                <!-- What's Covered -->
+                <div class="bg-green-50 dark:bg-green-900/20 rounded-xl p-5 lg:p-6 mb-6 border border-green-200 dark:border-green-800">
+                    <h3 class="font-bold text-green-800 dark:text-green-300 text-lg mb-3">What Earthquake Insurance Covers</h3>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded">
+                            <p class="font-semibold text-green-700 dark:text-green-300 mb-1">Building Damage</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Structural damage from shaking</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded">
+                            <p class="font-semibold text-green-700 dark:text-green-300 mb-1">Personal Property</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Contents damaged by earthquake</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded">
+                            <p class="font-semibold text-green-700 dark:text-green-300 mb-1">Loss of Use</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Additional living expenses (unlike NFIP!)</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded">
+                            <p class="font-semibold text-green-700 dark:text-green-300 mb-1">Foundation Damage</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Cracks and structural foundation issues</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- What's NOT Covered -->
+                <div class="bg-red-50 dark:bg-red-900/20 rounded-xl p-5 lg:p-6 border border-red-200 dark:border-red-800">
+                    <h3 class="font-bold text-red-800 dark:text-red-300 text-lg mb-3">What's NOT Covered</h3>
+                    <div class="grid md:grid-cols-2 gap-3 text-sm lg:text-base">
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded border-l-2 border-red-400">Flood from earthquake (tsunami, dam break)</div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded border-l-2 border-red-400">Land and land values</div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded border-l-2 border-red-400">Vehicles</div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded border-l-2 border-red-400">External masonry veneer (often excluded)</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Percentage Deductibles -->
+        <section id="deductibles" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">2. Percentage Deductibles</h2>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 rounded-xl p-5 lg:p-6 mb-6 border border-amber-200 dark:border-amber-800">
+                    <h3 class="font-bold text-amber-800 dark:text-amber-300 text-lg mb-3">The BIG Difference</h3>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Unlike standard property policies with dollar deductibles ($500, $1,000), earthquake uses <strong>PERCENTAGE deductibles</strong> ranging from <strong>10% to 25%</strong> of coverage limit.</p>
+                </div>
+
+                <!-- Calculation Examples -->
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-xl p-5 lg:p-6 mb-6 border border-purple-200 dark:border-purple-800">
+                    <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg mb-3">Deductible Calculations</h3>
+                    <div class="space-y-3">
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded flex justify-between items-center">
+                            <span class="text-gray-700 dark:text-gray-300">$300,000 coverage × 15%</span>
+                            <span class="text-2xl font-bold text-purple-600 dark:text-purple-400">= $45,000</span>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded flex justify-between items-center">
+                            <span class="text-gray-700 dark:text-gray-300">$400,000 coverage × 15%</span>
+                            <span class="text-2xl font-bold text-purple-600 dark:text-purple-400">= $60,000</span>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded flex justify-between items-center">
+                            <span class="text-gray-700 dark:text-gray-300">$500,000 coverage × 25%</span>
+                            <span class="text-2xl font-bold text-red-600 dark:text-red-400">= $125,000</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Why So High -->
+                <div class="bg-blue-50 dark:bg-blue-900/20 border-l-4 border-blue-500 p-5 rounded-r-lg mb-6">
+                    <p class="font-bold text-blue-800 dark:text-blue-300 text-lg mb-2">Why Such High Deductibles?</p>
+                    <ul class="space-y-2 text-gray-700 dark:text-gray-300 text-sm lg:text-base">
+                        <li>• <strong>Catastrophic nature</strong> of earthquake losses</li>
+                        <li>• Keeps premiums <strong>affordable</strong></li>
+                        <li>• Encourages <strong>loss prevention</strong> and mitigation</li>
+                        <li>• Shares risk between insurer and insured</li>
+                    </ul>
+                </div>
+
+                <!-- Example -->
+                <div class="bg-gray-50 dark:bg-gray-700 p-5 rounded-lg border-l-4 border-amber-500">
+                    <p class="font-semibold text-amber-800 dark:text-amber-300 mb-2">Real-World Scenario: Percentage Shock</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Nina has a $400,000 home. Her homeowners policy has a $2,000 deductible. She adds earthquake coverage with a 15% deductible.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> An earthquake causes $100,000 in damage.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Nina's earthquake deductible is $60,000 (15% of $400,000)! The policy pays only $40,000. She thought it would be like her homeowners $2,000 deductible - she was SHOCKED to pay $60,000 out of pocket.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: California Earthquake Authority -->
+        <section id="cea" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">3. California Earthquake Authority (CEA)</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-5 lg:p-6 mb-6 border border-blue-200 dark:border-blue-800">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg mb-3">What is CEA?</h3>
+                    <ul class="space-y-2 text-gray-700 dark:text-gray-300 text-base lg:text-lg">
+                        <li>• <strong>Publicly managed, privately funded</strong> organization</li>
+                        <li>• Created after the <strong>1994 Northridge earthquake</strong></li>
+                        <li>• Provides <strong>residential earthquake coverage</strong> in California</li>
+                        <li>• Not a government agency - operates like private insurer</li>
+                    </ul>
+                </div>
+
+                <!-- CEA Coverage -->
+                <div class="bg-green-50 dark:bg-green-900/20 rounded-xl p-5 lg:p-6 mb-6 border border-green-200 dark:border-green-800">
+                    <h3 class="font-bold text-green-800 dark:text-green-300 text-lg mb-3">CEA Coverage Types</h3>
+                    <div class="grid md:grid-cols-3 gap-4">
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded">
+                            <p class="font-semibold text-green-700 dark:text-green-300 mb-1">Dwelling</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Based on replacement cost</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded">
+                            <p class="font-semibold text-green-700 dark:text-green-300 mb-1">Personal Property</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">$5,000 - $200,000</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded">
+                            <p class="font-semibold text-green-700 dark:text-green-300 mb-1">Loss of Use</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">$1,500 - $100,000</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CEA Deductible Options -->
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-xl p-5 lg:p-6 mb-6 border border-purple-200 dark:border-purple-800">
+                    <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg mb-3">CEA Deductible Options</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded text-center">
+                            <p class="text-3xl font-bold text-purple-600 dark:text-purple-400">5%</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Minimum</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded text-center">
+                            <p class="text-3xl font-bold text-purple-600 dark:text-purple-400">10%</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Common</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded text-center">
+                            <p class="text-3xl font-bold text-purple-600 dark:text-purple-400">15%</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Standard</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded text-center">
+                            <p class="text-3xl font-bold text-purple-600 dark:text-purple-400">25%</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Maximum</p>
+                        </div>
+                    </div>
+                    <p class="text-amber-600 dark:text-amber-400 text-sm mt-3">Higher deductible = Lower premium</p>
+                </div>
+
+                <!-- Example -->
+                <div class="bg-gray-50 dark:bg-gray-700 p-5 rounded-lg border-l-4 border-blue-500">
+                    <p class="font-semibold text-blue-800 dark:text-blue-300 mb-2">Real-World Scenario: CEA Choice</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Patricia owns a $600,000 home in Los Angeles. She's choosing between CEA deductibles: 5% ($30,000) or 25% ($150,000).</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> 5% option costs $1,800/year. 25% option costs $600/year - $1,200 annual savings.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Patricia chooses 25% to save money. She saves $1,200/year but accepts risk of paying first $150,000 if a major quake hits.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Fire Following Earthquake -->
+        <section id="fire-following" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">4. Fire Following Earthquake</h2>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 rounded-xl p-5 lg:p-6 mb-6 border border-amber-200 dark:border-amber-800">
+                    <h3 class="font-bold text-amber-800 dark:text-amber-300 text-lg mb-3">Critical Distinction!</h3>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Standard property policies DO cover fire damage</strong> that occurs following an earthquake, even though earthquake itself is excluded!</p>
+                </div>
+
+                <!-- Coverage Split -->
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-5 rounded-lg border border-blue-200 dark:border-blue-800">
+                        <h4 class="font-bold text-blue-800 dark:text-blue-300 mb-3">Standard Property Policy Covers:</h4>
+                        <ul class="space-y-2 text-gray-700 dark:text-gray-300 text-sm lg:text-base">
+                            <li>• Fire damage from earthquake</li>
+                            <li>• Explosion damage</li>
+                            <li>• Smoke damage from fire</li>
+                        </ul>
+                    </div>
+                    <div class="bg-orange-50 dark:bg-orange-900/20 p-5 rounded-lg border border-orange-200 dark:border-orange-800">
+                        <h4 class="font-bold text-orange-800 dark:text-orange-300 mb-3">Earthquake Policy Covers:</h4>
+                        <ul class="space-y-2 text-gray-700 dark:text-gray-300 text-sm lg:text-base">
+                            <li>• Shake damage to structure</li>
+                            <li>• Foundation damage</li>
+                            <li>• Crack damage from tremors</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Examples -->
+                <div class="space-y-4">
+                    <div class="bg-gray-50 dark:bg-gray-700 p-5 rounded-lg border-l-4 border-blue-500">
+                        <p class="font-semibold text-blue-800 dark:text-blue-300 mb-2">Scenario: Fire After Earthquake</p>
+                        <div class="space-y-2 text-sm lg:text-base">
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Marcus has only a homeowners policy (no earthquake coverage). An earthquake cracks his foundation and breaks a gas line.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> The gas line ignites, causing fire that destroys the house.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Homeowners policy pays for fire damage ($400,000). Foundation cracks are NOT covered (earthquake exclusion). But the fire damage IS covered!</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-50 dark:bg-gray-700 p-5 rounded-lg border-l-4 border-green-500">
+                        <p class="font-semibold text-green-800 dark:text-green-300 mb-2">Scenario: Both Policies Apply</p>
+                        <div class="space-y-2 text-sm lg:text-base">
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Elena has homeowners AND earthquake coverage. Earthquake causes $80,000 structural damage and starts a fire causing $200,000 more damage.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> She files claims with both insurers.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Homeowners pays $200,000 (fire). Earthquake policy pays $80,000 minus percentage deductible. Total coverage across both policies!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Flood vs Earthquake Comparison -->
+        <section id="comparison" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">5. Flood vs Earthquake Comparison</h2>
+
+                <div class="overflow-x-auto mb-6">
+                    <table class="w-full text-sm lg:text-base">
+                        <thead>
+                            <tr class="bg-gradient-to-r from-blue-600 to-orange-600 text-white">
+                                <th class="p-3 lg:p-4 text-left rounded-tl-lg">Feature</th>
+                                <th class="p-3 lg:p-4 text-left">Flood (NFIP)</th>
+                                <th class="p-3 lg:p-4 text-left rounded-tr-lg">Earthquake</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Federal Program</td>
+                                <td class="p-3 lg:p-4 text-green-600 dark:text-green-400 font-bold">Yes (FEMA)</td>
+                                <td class="p-3 lg:p-4 text-red-600 dark:text-red-400 font-bold">No (Private)</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Mandatory Purchase</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">In SFHA with federal mortgage</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300 font-bold">NEVER mandatory</td>
+                            </tr>
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Waiting Period</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">30 days (standard)</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Varies by insurer</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Deductible Type</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Dollar amount</td>
+                                <td class="p-3 lg:p-4 text-orange-600 dark:text-orange-400 font-bold">PERCENTAGE (10-25%)</td>
+                            </tr>
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Living Expenses (ALE)</td>
+                                <td class="p-3 lg:p-4 text-red-600 dark:text-red-400 font-bold">NOT covered</td>
+                                <td class="p-3 lg:p-4 text-green-600 dark:text-green-400 font-bold">Usually covered</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Standardized Coverage</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Yes - all WYO identical</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">No - varies by insurer</td>
+                            </tr>
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Rates Set By</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">FEMA</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Each insurer</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Key Takeaway -->
+                <div class="bg-indigo-50 dark:bg-indigo-900/20 rounded-xl p-5 lg:p-6 border border-indigo-200 dark:border-indigo-800">
+                    <h3 class="font-bold text-indigo-800 dark:text-indigo-300 text-lg mb-3">Key Takeaway</h3>
+                    <ul class="space-y-2 text-gray-700 dark:text-gray-300">
+                        <li>• <strong>Flood</strong> = Federal, standardized, can be mandatory</li>
+                        <li>• <strong>Earthquake</strong> = Private, varies by insurer, ALWAYS optional</li>
+                        <li>• <strong>Both</strong> excluded from standard property policies</li>
+                        <li>• <strong>Fire following earthquake</strong> = Standard policy covers it!</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- CHEAT SHEET -->
+        <section id="cheat-sheet" class="mb-10">
+            <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 lg:p-8 border-2 border-dashed border-gray-300 dark:border-gray-600">
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100">Cheat Sheet</h2>
+                    <span class="text-sm text-gray-500 dark:text-gray-400">Print for quick reference</span>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-orange-700 dark:text-orange-300 mb-2">Definition</p>
+                        <p class="text-sm text-gray-700 dark:text-gray-300">Trembling/shaking from volcanic or seismic origin</p>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">Deductibles</p>
+                        <p class="text-sm text-gray-700 dark:text-gray-300">PERCENTAGE: 10-25%</p>
+                        <p class="text-sm text-gray-700 dark:text-gray-300">CEA: 5%, 10%, 15%, 25%</p>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-purple-700 dark:text-purple-300 mb-2">Coverage Options</p>
+                        <p class="text-sm text-gray-700 dark:text-gray-300">Endorsement to policy</p>
+                        <p class="text-sm text-gray-700 dark:text-gray-300">OR DIC Policy</p>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-blue-700 dark:text-blue-300 mb-2">Fire Following</p>
+                        <p class="text-sm text-gray-700 dark:text-gray-300">STANDARD policy covers fire!</p>
+                        <p class="text-sm text-gray-700 dark:text-gray-300">No earthquake policy needed</p>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-green-700 dark:text-green-300 mb-2">CEA (California)</p>
+                        <p class="text-sm text-gray-700 dark:text-gray-300">Created after 1994 Northridge</p>
+                        <p class="text-sm text-gray-700 dark:text-gray-300">Publicly managed, privately funded</p>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-amber-700 dark:text-amber-300 mb-2">Key Facts</p>
+                        <p class="text-sm text-gray-700 dark:text-gray-300">NEVER mandatory</p>
+                        <p class="text-sm text-gray-700 dark:text-gray-300">Private market (not federal)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- EXAM TRAPS -->
+        <section id="exam-traps" class="mb-10">
+            <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-xl p-5 lg:p-6">
+                <h2 class="text-2xl lg:text-3xl font-bold text-red-800 dark:text-red-300 mb-6">Exam Trap Alerts</h2>
+
+                <div class="space-y-4">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">1. Percentage, NOT Dollar Deductible</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">15% of $400,000 = $60,000. Not $500! This shocks many policyholders.</p>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">2. Fire Following = Standard Policy</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">Fire damage from earthquake IS covered by standard property policy. Shake damage is NOT.</p>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">3. NEVER Mandatory</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">Unlike flood (mandatory in SFHA), earthquake is ALWAYS optional.</p>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">4. CEA Minimum = 5%</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">California Earthquake Authority starts at 5%, not 10%. Know all four: 5%, 10%, 15%, 25%.</p>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">5. Private Market, Not Federal</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">Earthquake = private insurers. Flood = federal NFIP. Don't confuse them!</p>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">6. DIC Policy Option</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">Earthquake can be endorsement OR Difference in Conditions policy. Know both options.</p>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">7. Earthquake Covers ALE</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">Unlike NFIP (no ALE), earthquake insurance usually covers additional living expenses.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Reference Summary -->
+        <section id="summary" class="mb-10">
+            <div class="bg-gradient-to-r from-orange-600 to-red-700 rounded-xl p-6 lg:p-8 text-white shadow-lg">
+                <h2 class="text-2xl lg:text-3xl font-bold mb-6">Quick Reference Summary</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Private Market</p>
+                        <p class="text-sm text-orange-100">Not federal like NFIP</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">10-25% Deductible</p>
+                        <p class="text-sm text-orange-100">Percentage, not dollars</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">CEA: 5-25%</p>
+                        <p class="text-sm text-orange-100">California options</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Never Mandatory</p>
+                        <p class="text-sm text-orange-100">Always optional</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Fire Following</p>
+                        <p class="text-sm text-orange-100">Standard policy covers!</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Endorsement or DIC</p>
+                        <p class="text-sm text-orange-100">Two coverage options</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">ALE Covered</p>
+                        <p class="text-sm text-orange-100">Unlike NFIP!</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Varies by Insurer</p>
+                        <p class="text-sm text-orange-100">Not standardized</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Navigation -->
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6 mt-10">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="../part-4a/index.html" class="hover:text-orange-400 transition-colors">← Part 4A: Flood Insurance</a>
+                <span class="text-gray-400">Part 4B of 5</span>
+                <a href="../recap/index.html" class="hover:text-orange-400 transition-colors">Chapter Recap →</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AI Tutor Button -->
+    <button onclick="showAIHelp()" class="ai-tutor-button">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+        </svg>
+    </button>
+
+    <script>
+        const aiContext = {
+            topic: "Earthquake Insurance",
+            keyPoints: [
+                "Earthquake = trembling/shaking from volcanic or seismic origin",
+                "PRIVATE market - not federal like NFIP",
+                "PERCENTAGE deductibles: 10-25%",
+                "CEA deductibles: 5%, 10%, 15%, 25%",
+                "NEVER mandatory (unlike flood in SFHA)",
+                "Available as endorsement OR DIC policy",
+                "Fire following earthquake = STANDARD policy covers!",
+                "Shake/foundation damage = earthquake policy",
+                "ALE usually covered (unlike NFIP)",
+                "CEA created after 1994 Northridge earthquake"
+            ],
+            commonMistakes: [
+                "Using dollar deductible instead of percentage",
+                "Thinking earthquake coverage is mandatory somewhere",
+                "Not knowing fire following is covered by standard policy",
+                "Confusing with NFIP (federal program)",
+                "CEA minimum is 5%, not 10%",
+                "Forgetting DIC policy option"
+            ]
+        };
+    </script>
+</body>
+</html>
