@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 2C: Commercial Package Policies | Chapter 3 | Property Insurance</title>
+    <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <link rel="stylesheet" href="../../../css/styles.css">
+    <script src="../../../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+        }
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <!-- Settings & Theme Toggle Buttons -->
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="showAPIKeySetup()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings">
+            <svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+        </button>
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/>
+            </svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-purple-600 to-purple-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center text-purple-200 text-sm mb-2">
+                <a href="../../index.html" class="hover:text-white">Property</a>
+                <span class="mx-2">→</span>
+                <a href="../index.html" class="hover:text-white">Chapter 3</a>
+                <span class="mx-2">→</span>
+                <span class="text-white">Part 2C</span>
+            </div>
+            <h1 class="text-3xl font-bold">Part 2C: Commercial Package Policies</h1>
+            <p class="text-purple-200 mt-1">Bundle Your Coverage: CPP, Equipment Breakdown, and BOP</p>
+        </div>
+    </header>
+
+    <!-- Sticky Navigation -->
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-wrap gap-2 text-sm">
+                <span class="text-gray-500 dark:text-gray-400 px-2 py-1">Part 2:</span>
+                <a href="../part-2a/index.html" class="text-green-600 dark:text-green-400 hover:bg-green-50 dark:hover:bg-gray-700 px-3 py-1 rounded">2A: Fundamentals</a>
+                <a href="../part-2b/index.html" class="text-green-600 dark:text-green-400 hover:bg-green-50 dark:hover:bg-gray-700 px-3 py-1 rounded">2B: Business Income</a>
+                <a href="#" class="bg-purple-100 dark:bg-purple-900 text-purple-700 dark:text-purple-300 px-3 py-1 rounded font-medium">2C: Package Policies</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-5xl lg:max-w-7xl">
+
+        <!-- Start Here: 5 Things You MUST Know -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-purple-100 to-indigo-100 dark:from-purple-900/40 dark:to-indigo-900/40 rounded-xl p-6 border border-purple-300 dark:border-purple-700">
+                <h2 class="text-xl font-bold text-purple-800 dark:text-purple-200 mb-4">Start Here: 5 Things You MUST Know From This Part</h2>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="flex items-start">
+                        <span class="bg-purple-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
+                        <div>
+                            <p class="font-bold text-gray-800 dark:text-gray-200">CPP = Bundle of 2+ Coverages</p>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm">A Commercial Package Policy bundles at least 2 coverages from different categories into one policy.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-purple-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
+                        <div>
+                            <p class="font-bold text-gray-800 dark:text-gray-200">Equipment Breakdown = SUDDEN Only</p>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm">Only sudden mechanical failures are covered. Slow wear and tear? Not covered.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-purple-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
+                        <div>
+                            <p class="font-bold text-gray-800 dark:text-gray-200">BOP Has NO Coinsurance</p>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm">This is HUGE. Unlike standard commercial policies, BOP won't penalize you for being underinsured.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-purple-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">4</span>
+                        <div>
+                            <p class="font-bold text-gray-800 dark:text-gray-200">BOP = Small Business Only</p>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm">Offices up to 100,000 sq ft, retail up to 25,000 sq ft. Big businesses don't qualify.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-purple-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">5</span>
+                        <div>
+                            <p class="font-bold text-gray-800 dark:text-gray-200">$25,000 Equipment Sublimits</p>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm">Ammonia, hazardous substances, water damage, and expediting all have $25,000 sublimits.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 1: Commercial Package Policy (CPP) -->
+        <section id="cpp" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">1. Commercial Package Policy (CPP)</h2>
+
+                <!-- What is a CPP? -->
+                <div class="bg-purple-50 dark:bg-purple-900/30 rounded-xl p-5 lg:p-6 mb-6 border border-purple-200 dark:border-purple-800">
+                    <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg mb-3">What is a Commercial Package Policy?</h3>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-4">
+                        Think of a CPP like buying a combo meal instead of individual items. You bundle multiple insurance coverages into one policy. This usually costs less and is easier to manage.
+                    </p>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">The Rule: You Must Have At Least 2 Coverages</p>
+                        <p class="text-gray-600 dark:text-gray-300">To qualify as a "package," your policy needs at least two coverages from different categories. You can't just have two property coverages - you need variety.</p>
+                    </div>
+                </div>
+
+                <!-- Why Bundle? -->
+                <div class="bg-green-50 dark:bg-green-900/20 border-l-4 border-green-500 p-5 rounded-r-lg mb-6">
+                    <h3 class="font-bold text-green-800 dark:text-green-300 text-lg mb-3">Why Bundle Your Insurance?</h3>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-bold text-green-700 dark:text-green-400">Save Money</p>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm">Bundling often saves 10-15% compared to buying separate policies.</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-bold text-green-700 dark:text-green-400">One Bill</p>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm">Pay one premium instead of juggling multiple invoices.</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-bold text-green-700 dark:text-green-400">Coordinated Coverage</p>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm">All your coverages work together. Less chance of gaps.</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-bold text-green-700 dark:text-green-400">One Renewal Date</p>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm">Review everything once a year instead of tracking multiple dates.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CPP Structure -->
+                <div class="bg-blue-50 dark:bg-blue-900/20 p-5 rounded-lg border border-blue-200 dark:border-blue-800 mb-6">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg mb-3">What Goes Into a CPP?</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">Every CPP has the same basic structure:</p>
+
+                    <div class="space-y-4">
+                        <!-- Common Policy Declarations -->
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg border-l-4 border-blue-500">
+                            <p class="font-bold text-blue-700 dark:text-blue-300">Common Policy Declarations</p>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm mt-1">The "cover page" with your name, address, policy dates, and what coverages you have.</p>
+                        </div>
+
+                        <!-- Common Policy Conditions -->
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg border-l-4 border-blue-500">
+                            <p class="font-bold text-blue-700 dark:text-blue-300">Common Policy Conditions</p>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm mt-1">Rules that apply to ALL coverages in your policy - cancellation, inspections, audits.</p>
+                        </div>
+
+                        <!-- Coverage Parts -->
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg border-l-4 border-blue-500">
+                            <p class="font-bold text-blue-700 dark:text-blue-300">Coverage Parts (Pick 2+)</p>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm mt-1">The actual coverages: property, liability, crime, auto, etc. You choose what you need.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Available Coverages -->
+                <div class="bg-indigo-50 dark:bg-indigo-900/20 p-5 rounded-lg border border-indigo-200 dark:border-indigo-800 mb-6">
+                    <h3 class="font-bold text-indigo-800 dark:text-indigo-300 text-lg mb-3">What Can You Include in a CPP?</h3>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded text-center">
+                            <p class="font-bold text-indigo-700 dark:text-indigo-400">Commercial Property</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-300">Buildings, equipment, inventory</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded text-center">
+                            <p class="font-bold text-indigo-700 dark:text-indigo-400">General Liability (CGL)</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-300">Customer injuries, lawsuits</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded text-center">
+                            <p class="font-bold text-indigo-700 dark:text-indigo-400">Commercial Auto</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-300">Business vehicles</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded text-center">
+                            <p class="font-bold text-indigo-700 dark:text-indigo-400">Crime</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-300">Theft, employee dishonesty</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded text-center">
+                            <p class="font-bold text-indigo-700 dark:text-indigo-400">Inland Marine</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-300">Equipment in transit</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded text-center">
+                            <p class="font-bold text-indigo-700 dark:text-indigo-400">Equipment Breakdown</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-300">Mechanical failures</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- What's NOT Available in CPP -->
+                <div class="bg-red-50 dark:bg-red-900/20 p-5 rounded-lg border border-red-200 dark:border-red-800 mb-6">
+                    <h3 class="font-bold text-red-800 dark:text-red-300 text-lg mb-3">What Can't Go in a CPP?</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mb-3">Some coverages are too specialized. They need their own separate policies:</p>
+                    <div class="grid md:grid-cols-3 gap-3">
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-bold text-red-700 dark:text-red-400">Workers Compensation</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-300">State-regulated, always separate</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-bold text-red-700 dark:text-red-400">Professional Liability (E&O)</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-300">Errors and omissions insurance</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-bold text-red-700 dark:text-red-400">Directors & Officers (D&O)</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-300">Management liability</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-bold text-red-700 dark:text-red-400">Cyber Liability</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-300">Data breaches, hacking</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-bold text-red-700 dark:text-red-400">Employment Practices (EPLI)</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-300">Discrimination, harassment claims</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-bold text-red-700 dark:text-red-400">Ocean Marine</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-300">Ship cargo, vessels</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Real World Example -->
+                <div class="bg-green-50 dark:bg-green-900/20 p-5 rounded-lg border-l-4 border-green-500">
+                    <p class="font-semibold text-green-800 dark:text-green-300 mb-2">Real-World Scenario: Building a CPP</p>
+                    <div class="space-y-2 text-base lg:text-lg">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Tom owns a plumbing company with 5 service vans, a warehouse full of parts, and 10 employees who visit customer homes.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What He Needs:</strong> Property coverage (warehouse and parts), liability (if a plumber floods a customer's house), and commercial auto (for the vans).</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Solution:</strong> Tom bundles all three into a CPP. He saves 12% compared to buying them separately, gets one bill, and one renewal date. He still buys Workers Comp separately - that can't go in a CPP.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Equipment Breakdown Coverage -->
+        <section id="equipment" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">2. Equipment Breakdown Coverage</h2>
+
+                <!-- What is Equipment Breakdown? -->
+                <div class="bg-amber-50 dark:bg-amber-900/20 border-l-4 border-amber-500 p-4 mb-6 rounded-r-lg">
+                    <p class="font-bold text-amber-800 dark:text-amber-300">Old Name: "Boiler and Machinery Insurance"</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-1">Important: Standard property insurance does NOT cover equipment breakdown. You need this separate coverage!</p>
+                </div>
+
+                <!-- The Big Rule: Sudden vs Gradual -->
+                <div class="bg-blue-50 dark:bg-blue-900/20 p-5 rounded-lg border border-blue-200 dark:border-blue-800 mb-6">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-xl mb-3">The Most Important Rule: Must Be SUDDEN</h3>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-4">
+                        This is the key exam concept. Equipment breakdown only covers <strong>sudden and accidental</strong> failures. If something slowly wears out over time, that's NOT covered.
+                    </p>
+
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="bg-green-100 dark:bg-green-800/30 p-4 rounded-lg border border-green-300 dark:border-green-700">
+                            <p class="font-bold text-green-800 dark:text-green-300 mb-2">COVERED: Sudden Breakdown</p>
+                            <ul class="space-y-2 text-gray-700 dark:text-gray-300">
+                                <li>+ Motor suddenly seizes up and burns out</li>
+                                <li>+ Compressor explodes</li>
+                                <li>+ Electrical arcing shorts a transformer</li>
+                                <li>+ Boiler ruptures from pressure</li>
+                            </ul>
+                        </div>
+                        <div class="bg-red-100 dark:bg-red-800/30 p-4 rounded-lg border border-red-300 dark:border-red-700">
+                            <p class="font-bold text-red-800 dark:text-red-300 mb-2">NOT COVERED: Gradual Deterioration</p>
+                            <ul class="space-y-2 text-gray-700 dark:text-gray-300">
+                                <li>- HVAC slowly loses efficiency over 5 years</li>
+                                <li>- Rust and corrosion</li>
+                                <li>- Normal wear and tear</li>
+                                <li>- Equipment "wearing out"</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- How to Tell: Sudden vs Gradual -->
+                <div class="bg-purple-50 dark:bg-purple-900/20 p-5 rounded-lg border border-purple-200 dark:border-purple-800 mb-6">
+                    <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg mb-3">How to Tell: Sudden or Gradual?</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">Ask yourself: Did the equipment fail in an instant, or did it slowly stop working?</p>
+
+                    <div class="space-y-4">
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                            <p class="font-bold text-purple-700 dark:text-purple-300">Scenario: Air conditioner stops cooling</p>
+                            <div class="mt-2 grid md:grid-cols-2 gap-3">
+                                <div class="bg-red-50 dark:bg-red-900/30 p-3 rounded border-l-4 border-red-500">
+                                    <p class="text-sm font-bold text-red-700 dark:text-red-300">NOT COVERED</p>
+                                    <p class="text-sm text-gray-600 dark:text-gray-300">AC has been getting weaker over the last 3 years. This summer it finally stopped. That's gradual deterioration.</p>
+                                </div>
+                                <div class="bg-green-50 dark:bg-green-900/30 p-3 rounded border-l-4 border-green-500">
+                                    <p class="text-sm font-bold text-green-700 dark:text-green-300">COVERED</p>
+                                    <p class="text-sm text-gray-600 dark:text-gray-300">AC was working fine yesterday. Today the compressor motor suddenly seized and burned out. That's sudden breakdown.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                            <p class="font-bold text-purple-700 dark:text-purple-300">Scenario: Bearing failure</p>
+                            <div class="mt-2 grid md:grid-cols-2 gap-3">
+                                <div class="bg-red-50 dark:bg-red-900/30 p-3 rounded border-l-4 border-red-500">
+                                    <p class="text-sm font-bold text-red-700 dark:text-red-300">NOT COVERED</p>
+                                    <p class="text-sm text-gray-600 dark:text-gray-300">Bearing has been squeaking for months. You ignored it. Now it's failed. Gradual - you should have fixed it.</p>
+                                </div>
+                                <div class="bg-green-50 dark:bg-green-900/30 p-3 rounded border-l-4 border-green-500">
+                                    <p class="text-sm font-bold text-green-700 dark:text-green-300">COVERED</p>
+                                    <p class="text-sm text-gray-600 dark:text-gray-300">Bearing suddenly seizes while running, causing the motor to overheat and burn out. Sudden failure.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Covered Equipment -->
+                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                    <div class="bg-green-50 dark:bg-green-900/20 p-5 rounded-lg border border-green-200 dark:border-green-800">
+                        <h3 class="font-bold text-green-800 dark:text-green-300 text-lg mb-3">What Equipment Is Covered?</h3>
+                        <ul class="space-y-2 text-gray-600 dark:text-gray-300">
+                            <li>+ Boilers and pressure vessels</li>
+                            <li>+ Air conditioning and refrigeration</li>
+                            <li>+ Electrical equipment</li>
+                            <li>+ Production machinery</li>
+                            <li>+ Computers and servers</li>
+                            <li>+ Transformers</li>
+                            <li>+ Pumps and compressors</li>
+                        </ul>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 p-5 rounded-lg border border-red-200 dark:border-red-800">
+                        <h3 class="font-bold text-red-800 dark:text-red-300 text-lg mb-3">What's NOT Covered?</h3>
+                        <ul class="space-y-2 text-gray-600 dark:text-gray-300">
+                            <li>- Wear and tear (gradual)</li>
+                            <li>- Rust and corrosion</li>
+                            <li>- Depletion of supplies</li>
+                            <li>- Testing/startup failures</li>
+                            <li>- Fire (covered by property policy)</li>
+                            <li>- Explosion outside equipment</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- $25,000 Sublimits -->
+                <div class="bg-amber-50 dark:bg-amber-900/20 p-5 rounded-lg border border-amber-200 dark:border-amber-800 mb-6">
+                    <h3 class="font-bold text-amber-800 dark:text-amber-300 text-lg mb-3">Key Number: $25,000 Sublimits</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">These special coverages each have a $25,000 limit per occurrence:</p>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded text-center">
+                            <p class="text-xl font-bold text-amber-600 dark:text-amber-400">$25,000</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-300">Ammonia Contamination</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded text-center">
+                            <p class="text-xl font-bold text-amber-600 dark:text-amber-400">$25,000</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-300">Hazardous Substances</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded text-center">
+                            <p class="text-xl font-bold text-amber-600 dark:text-amber-400">$25,000</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-300">Water Damage</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded text-center">
+                            <p class="text-xl font-bold text-amber-600 dark:text-amber-400">$25,000</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-300">Expediting Expense</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Spoilage Coverage -->
+                <div class="bg-blue-50 dark:bg-blue-900/20 p-5 rounded-lg border border-blue-200 dark:border-blue-800 mb-6">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg mb-3">Spoilage Coverage: Why It Matters</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">
+                        When refrigeration breaks down, perishable goods can be worth more than the equipment itself. Spoilage coverage pays for ruined inventory.
+                    </p>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded">
+                        <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Who Needs Spoilage Coverage?</p>
+                        <div class="grid md:grid-cols-3 gap-2 text-sm text-gray-600 dark:text-gray-300">
+                            <span>+ Restaurants</span>
+                            <span>+ Grocery stores</span>
+                            <span>+ Florists</span>
+                            <span>+ Medical facilities</span>
+                            <span>+ Pharmaceutical companies</span>
+                            <span>+ Food manufacturers</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Suspension of Coverage -->
+                <div class="bg-red-50 dark:bg-red-900/20 border-l-4 border-red-500 p-5 rounded-r-lg mb-6">
+                    <h3 class="font-bold text-red-800 dark:text-red-300 text-lg mb-3">Warning: Coverage Can Be Suspended</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mb-3">
+                        The insurance company can <strong>immediately suspend</strong> your coverage if they find a dangerous condition that could cause an accident.
+                    </p>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">
+                            <strong>Example:</strong> An inspector examines your boiler and sees signs it could fail soon. Your coverage is suspended immediately until you fix it. If the boiler explodes before you make repairs? You're not covered.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Real World Example -->
+                <div class="bg-green-50 dark:bg-green-900/20 p-5 rounded-lg border-l-4 border-green-500">
+                    <p class="font-semibold text-green-800 dark:text-green-300 mb-2">Real-World Scenario: Grocery Store Refrigeration Failure</p>
+                    <div class="space-y-2 text-base lg:text-lg">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> A grocery store's commercial refrigeration system suddenly fails on a hot August day. The compressor motor burned out.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> $40,000 in frozen and refrigerated food spoils before repairs can be made. Repair costs are $8,000. They need to pay $2,500 extra to rush the parts.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>Equipment Breakdown Pays:</strong></p>
+                        <ul class="ml-6 text-gray-700 dark:text-gray-300">
+                            <li>$8,000 for repairs</li>
+                            <li>$40,000 for spoiled food (spoilage coverage)</li>
+                            <li>$2,500 for rush shipping (expediting, under $25K limit)</li>
+                            <li><strong>Total: $50,500</strong></li>
+                        </ul>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>Without This Coverage:</strong> Standard property insurance wouldn't pay any of this. The store would be out $50,500.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Businessowners Policy (BOP) -->
+        <section id="bop" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">3. Businessowners Policy (BOP)</h2>
+
+                <!-- What is a BOP? -->
+                <div class="bg-green-50 dark:bg-green-900/30 rounded-xl p-5 lg:p-6 mb-6 border border-green-200 dark:border-green-800">
+                    <h3 class="font-bold text-green-800 dark:text-green-300 text-lg mb-3">What is a BOP?</h3>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">
+                        A BOP is a package policy designed for <strong>small-to-medium businesses</strong>. It bundles property, liability, and business income coverage in one simplified policy. Think of it as the "homeowners policy" for small businesses.
+                    </p>
+                </div>
+
+                <!-- The BIG Advantage -->
+                <div class="bg-amber-50 dark:bg-amber-900/20 border-2 border-amber-400 dark:border-amber-600 rounded-xl p-5 lg:p-6 mb-6">
+                    <h3 class="font-bold text-amber-800 dark:text-amber-300 text-xl mb-3">The HUGE Advantage: No Coinsurance!</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">
+                        This is the #1 thing to remember about BOP. Standard commercial policies have coinsurance (you must insure for 80% of value or get penalized). <strong>BOP has NO coinsurance requirement.</strong>
+                    </p>
+
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="bg-red-100 dark:bg-red-900/30 p-4 rounded border-l-4 border-red-500">
+                            <p class="font-bold text-red-800 dark:text-red-300 mb-2">Standard Commercial Policy</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm">Building worth $500,000. You insure for $200,000. Fire causes $80,000 damage.</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm mt-2">Coinsurance penalty: ($200K / $400K required) × $80K = <strong>Only $40,000 paid!</strong></p>
+                        </div>
+                        <div class="bg-green-100 dark:bg-green-900/30 p-4 rounded border-l-4 border-green-500">
+                            <p class="font-bold text-green-800 dark:text-green-300 mb-2">BOP - Same Scenario</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm">Same building, same coverage, same fire.</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm mt-2">No coinsurance: <strong>Full $80,000 paid!</strong> (up to policy limit)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Who Qualifies? -->
+                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                    <div class="bg-green-50 dark:bg-green-900/20 p-5 rounded-lg border border-green-200 dark:border-green-800">
+                        <h3 class="font-bold text-green-800 dark:text-green-300 text-lg mb-3">Who CAN Get a BOP?</h3>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm mb-3">Small-to-medium businesses that aren't too risky:</p>
+                        <ul class="space-y-2 text-gray-600 dark:text-gray-300">
+                            <li>+ Office buildings (up to 100,000 sq ft)</li>
+                            <li>+ Retail stores (up to 25,000 sq ft)</li>
+                            <li>+ Apartments (up to 6 stories)</li>
+                            <li>+ Restaurants (bar receipts under 25%)</li>
+                            <li>+ Small professional offices</li>
+                            <li>+ Wholesale/service (up to $3M sales)</li>
+                        </ul>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 p-5 rounded-lg border border-red-200 dark:border-red-800">
+                        <h3 class="font-bold text-red-800 dark:text-red-300 text-lg mb-3">Who CAN'T Get a BOP?</h3>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm mb-3">Too risky or too complex for the simple BOP format:</p>
+                        <ul class="space-y-2 text-gray-600 dark:text-gray-300">
+                            <li>- Auto dealers</li>
+                            <li>- Amusement parks</li>
+                            <li>- Bars/taverns (mostly alcohol sales)</li>
+                            <li>- Banks and financial institutions</li>
+                            <li>- Contractors</li>
+                            <li>- Parking lots/garages</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Key BOP Features -->
+                <div class="bg-purple-50 dark:bg-purple-900/20 p-5 rounded-lg border border-purple-200 dark:border-purple-800 mb-6">
+                    <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg mb-3">Key BOP Features</h3>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                            <p class="font-bold text-purple-700 dark:text-purple-300">Blanket Coverage</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-300">One limit covers both building AND contents together. No need to split the limits.</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                            <p class="font-bold text-purple-700 dark:text-purple-300">Replacement Cost</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-300">Standard valuation is replacement cost, not actual cash value. Better for you!</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                            <p class="font-bold text-purple-700 dark:text-purple-300">12-Month Business Income</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-300">BI coverage included automatically with a 12-month limit.</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                            <p class="font-bold text-purple-700 dark:text-purple-300">60 Days Extended BI</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-300">After you reopen, coverage continues 60 more days as customers return.</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                            <p class="font-bold text-purple-700 dark:text-purple-300">30-Day Civil Authority</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-300">Longer than CPP's 3 weeks! Government blocks access = 30 days coverage.</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                            <p class="font-bold text-purple-700 dark:text-purple-300">NO Coinsurance</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-300">The big one! No penalty for being underinsured.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BOP Additional Coverages with Limits -->
+                <div class="bg-blue-50 dark:bg-blue-900/20 p-5 rounded-lg border border-blue-200 dark:border-blue-800 mb-6">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg mb-3">BOP Built-In Coverages (With Limits)</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">These are automatically included in every BOP:</p>
+                    <div class="grid md:grid-cols-3 lg:grid-cols-4 gap-3">
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-bold text-blue-700 dark:text-blue-300">$25,000</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-300">Valuable Papers</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-bold text-blue-700 dark:text-blue-300">$25,000</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-300">Accounts Receivable</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-bold text-blue-700 dark:text-blue-300">$10,000</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-300">Electronic Data</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-bold text-blue-700 dark:text-blue-300">$10,000</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-300">Employee Dishonesty</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-bold text-blue-700 dark:text-blue-300">$10,000</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-300">Money On-Premises</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-bold text-blue-700 dark:text-blue-300">$5,000</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-300">Money Off-Premises</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-bold text-blue-700 dark:text-blue-300">$10,000</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-300">Pollutant Cleanup</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-bold text-blue-700 dark:text-blue-300">$5,000</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-300">Arson Reward</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BOP vs CPP Comparison -->
+                <div class="bg-indigo-50 dark:bg-indigo-900/20 p-5 rounded-lg border border-indigo-200 dark:border-indigo-800 mb-6">
+                    <h3 class="font-bold text-indigo-800 dark:text-indigo-300 text-lg mb-3">BOP vs CPP: Which Should You Choose?</h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm lg:text-base">
+                            <thead>
+                                <tr class="bg-indigo-600 text-white">
+                                    <th class="p-3 text-left rounded-tl-lg">Feature</th>
+                                    <th class="p-3 text-left">BOP</th>
+                                    <th class="p-3 text-left rounded-tr-lg">CPP</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                                <tr class="bg-white dark:bg-gray-700">
+                                    <td class="p-3 font-medium">Business Size</td>
+                                    <td class="p-3 text-green-700 dark:text-green-400">Small to Medium</td>
+                                    <td class="p-3">Any size</td>
+                                </tr>
+                                <tr class="bg-gray-50 dark:bg-gray-600">
+                                    <td class="p-3 font-medium">Coinsurance</td>
+                                    <td class="p-3 text-green-700 dark:text-green-400 font-bold">None!</td>
+                                    <td class="p-3 text-red-700 dark:text-red-400">Usually 80%</td>
+                                </tr>
+                                <tr class="bg-white dark:bg-gray-700">
+                                    <td class="p-3 font-medium">Civil Authority</td>
+                                    <td class="p-3 text-green-700 dark:text-green-400">30 days</td>
+                                    <td class="p-3">3 weeks (21 days)</td>
+                                </tr>
+                                <tr class="bg-gray-50 dark:bg-gray-600">
+                                    <td class="p-3 font-medium">Customization</td>
+                                    <td class="p-3">Limited</td>
+                                    <td class="p-3 text-green-700 dark:text-green-400">Very flexible</td>
+                                </tr>
+                                <tr class="bg-white dark:bg-gray-700">
+                                    <td class="p-3 font-medium">Valuation</td>
+                                    <td class="p-3 text-green-700 dark:text-green-400">Replacement Cost standard</td>
+                                    <td class="p-3">ACV unless endorsed</td>
+                                </tr>
+                                <tr class="bg-gray-50 dark:bg-gray-600">
+                                    <td class="p-3 font-medium">Best For</td>
+                                    <td class="p-3">Simple, low-risk businesses</td>
+                                    <td class="p-3">Complex, specialized needs</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Real World Example -->
+                <div class="bg-green-50 dark:bg-green-900/20 p-5 rounded-lg border-l-4 border-green-500">
+                    <p class="font-semibold text-green-800 dark:text-green-300 mb-2">Real-World Scenario: Why Jenny Loves Her BOP</p>
+                    <div class="space-y-2 text-base lg:text-lg">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Jenny opens a small bakery in a 2,000 sq ft space. She needs coverage for her leased improvements (ovens, display cases), equipment, inventory, liability if someone slips on frosting, and income if she has to close.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>Why BOP Works:</strong> Instead of buying 4-5 separate policies, Jenny gets everything in one BOP. She automatically gets:</p>
+                        <ul class="ml-6 text-gray-700 dark:text-gray-300">
+                            <li>+ $25,000 for valuable papers (her secret recipes!)</li>
+                            <li>+ $10,000 employee dishonesty coverage</li>
+                            <li>+ 12 months of business income coverage</li>
+                            <li>+ NO coinsurance worries</li>
+                        </ul>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> One policy, one premium, one renewal. If her oven breaks down, she can add equipment breakdown by endorsement. Simple and affordable!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cheat Sheet -->
+        <section id="cheat-sheet" class="mb-10">
+            <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 border-2 border-dashed border-gray-300 dark:border-gray-600">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100">Cheat Sheet: Package Policies</h2>
+                    <span class="text-sm text-gray-500 dark:text-gray-400">Print for quick reference</span>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-4 mb-6">
+                    <!-- CPP -->
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-purple-700 dark:text-purple-300 mb-2">CPP Key Facts</p>
+                        <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-1">
+                            <li>+ Bundle 2+ coverages</li>
+                            <li>+ From different categories</li>
+                            <li>+ Save 10-15% typically</li>
+                            <li>- No Workers Comp</li>
+                            <li>- No Cyber Liability</li>
+                            <li>- No Professional E&O</li>
+                        </ul>
+                    </div>
+
+                    <!-- Equipment Breakdown -->
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-amber-700 dark:text-amber-300 mb-2">Equipment Breakdown</p>
+                        <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-1">
+                            <li><strong>SUDDEN</strong> = Covered</li>
+                            <li><strong>GRADUAL</strong> = Not Covered</li>
+                            <li>$25,000 sublimits each:</li>
+                            <li>- Ammonia contamination</li>
+                            <li>- Hazardous substances</li>
+                            <li>- Water damage</li>
+                            <li>- Expediting expense</li>
+                        </ul>
+                    </div>
+
+                    <!-- BOP -->
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-green-700 dark:text-green-300 mb-2">BOP Key Facts</p>
+                        <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-1">
+                            <li><strong>NO COINSURANCE!</strong></li>
+                            <li>Small/medium business only</li>
+                            <li>Office: up to 100,000 sq ft</li>
+                            <li>Retail: up to 25,000 sq ft</li>
+                            <li>Civil Authority: 30 days</li>
+                            <li>Extended BI: 60 days</li>
+                            <li>BI included: 12 months</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Key Comparison -->
+                <div class="bg-purple-50 dark:bg-purple-900/30 p-4 rounded-lg">
+                    <p class="font-bold text-purple-800 dark:text-purple-300 mb-2">Quick Comparison</p>
+                    <div class="grid md:grid-cols-3 gap-4 text-sm text-gray-700 dark:text-gray-300">
+                        <div><strong>CPP:</strong> Flexible, any size, HAS coinsurance</div>
+                        <div><strong>BOP:</strong> Simple, small only, NO coinsurance</div>
+                        <div><strong>Equipment:</strong> Separate coverage, SUDDEN only</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Trap Alerts -->
+        <section id="exam-traps" class="mb-10">
+            <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-xl p-5 lg:p-6">
+                <h2 class="text-2xl lg:text-3xl font-bold text-red-800 dark:text-red-300 mb-6">Exam Trap Alerts</h2>
+
+                <div class="space-y-4">
+                    <div class="bg-white dark:bg-gray-800 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">1. BOP Has NO Coinsurance</p>
+                        <p class="text-gray-700 dark:text-gray-300">The exam loves to trick you on this. Standard commercial property HAS coinsurance. BOP does NOT. Remember: BOP is simpler and more forgiving.</p>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-800 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">2. CPP Requires TWO Coverages</p>
+                        <p class="text-gray-700 dark:text-gray-300">Not one, not three minimum - exactly at least two. And they must be from different categories. You can't just have two property coverages.</p>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-800 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">3. Equipment Breakdown is SUDDEN Only</p>
+                        <p class="text-gray-700 dark:text-gray-300">If the question says "slowly" or "over time" or "deteriorated" - it's NOT covered. Must be sudden and accidental. Gradual wear = denied.</p>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-800 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">4. Equipment Breakdown is Separate Coverage</p>
+                        <p class="text-gray-700 dark:text-gray-300">Standard property insurance does NOT cover equipment breakdown. It's a separate policy or endorsement. The exam will try to trick you on this!</p>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-800 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">5. BOP Civil Authority is 30 Days (Longer Than CPP!)</p>
+                        <p class="text-gray-700 dark:text-gray-300">CPP = 3 weeks (21 days). BOP = 30 days. The exam might ask which policy provides LONGER civil authority coverage. Answer: BOP.</p>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-800 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">6. $25,000 Sublimit - Know All Four</p>
+                        <p class="text-gray-700 dark:text-gray-300">Equipment breakdown has four $25,000 sublimits: Ammonia contamination, hazardous substances, water damage, and expediting expense. Memorize these.</p>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-800 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">7. Workers Comp Can't Go in a CPP</p>
+                        <p class="text-gray-700 dark:text-gray-300">If the exam asks what coverage can't be included in a CPP, workers compensation is the most common answer. It's always a separate policy.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Numbers Section -->
+        <section id="key-numbers" class="mb-10">
+            <div class="bg-gradient-to-r from-purple-50 to-indigo-50 dark:from-purple-900/30 dark:to-indigo-900/30 rounded-xl p-6 lg:p-8 border border-purple-200 dark:border-purple-800">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">Key Numbers to Memorize</h2>
+
+                <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-3 lg:gap-4">
+                    <div class="bg-white dark:bg-gray-800 p-3 lg:p-4 rounded-lg text-center border border-gray-200 dark:border-gray-700">
+                        <p class="text-2xl lg:text-3xl font-bold text-purple-600 dark:text-purple-400">2+</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-300">Coverages for CPP</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 p-3 lg:p-4 rounded-lg text-center border border-gray-200 dark:border-gray-700">
+                        <p class="text-2xl lg:text-3xl font-bold text-amber-600 dark:text-amber-400">$25,000</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-300">Equip. Sublimits</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 p-3 lg:p-4 rounded-lg text-center border border-gray-200 dark:border-gray-700">
+                        <p class="text-2xl lg:text-3xl font-bold text-green-600 dark:text-green-400">100K</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-300">BOP Office Sq Ft</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 p-3 lg:p-4 rounded-lg text-center border border-gray-200 dark:border-gray-700">
+                        <p class="text-2xl lg:text-3xl font-bold text-green-600 dark:text-green-400">25K</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-300">BOP Retail Sq Ft</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 p-3 lg:p-4 rounded-lg text-center border border-gray-200 dark:border-gray-700">
+                        <p class="text-2xl lg:text-3xl font-bold text-blue-600 dark:text-blue-400">30</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-300">BOP Civil Auth Days</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 p-3 lg:p-4 rounded-lg text-center border border-gray-200 dark:border-gray-700">
+                        <p class="text-2xl lg:text-3xl font-bold text-blue-600 dark:text-blue-400">12</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-300">BOP BI Months</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 p-3 lg:p-4 rounded-lg text-center border border-gray-200 dark:border-gray-700">
+                        <p class="text-2xl lg:text-3xl font-bold text-indigo-600 dark:text-indigo-400">60</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-300">Extended BI Days</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 p-3 lg:p-4 rounded-lg text-center border border-gray-200 dark:border-gray-700">
+                        <p class="text-2xl lg:text-3xl font-bold text-red-600 dark:text-red-400">0%</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-300">BOP Coinsurance!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Reference Summary -->
+        <section id="summary" class="mb-10">
+            <div class="bg-gradient-to-r from-purple-600 to-purple-800 rounded-xl p-6 lg:p-8 text-white">
+                <h2 class="text-2xl lg:text-3xl font-bold mb-6">Quick Reference Summary</h2>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Commercial Package Policy</p>
+                        <p class="text-sm text-purple-100">Bundle 2+ coverages from different categories into one policy</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Equipment Breakdown</p>
+                        <p class="text-sm text-purple-100">SUDDEN mechanical failure only; $25K sublimits</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Spoilage Coverage</p>
+                        <p class="text-sm text-purple-100">Perishable goods ruined by refrigeration breakdown</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">BOP</p>
+                        <p class="text-sm text-purple-100">Small business package; NO coinsurance; replacement cost</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">BOP Eligibility</p>
+                        <p class="text-sm text-purple-100">Office 100K sq ft; Retail 25K sq ft; No bars/contractors</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">CPP Exclusions</p>
+                        <p class="text-sm text-purple-100">No Workers Comp, Cyber, E&O, or D&O in packages</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Navigation -->
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="../part-2b/index.html" class="text-purple-400 hover:text-purple-300 transition-colors">
+                    ← Part 2B: Business Income
+                </a>
+                <span class="text-gray-400">Part 2C of Commercial Property</span>
+                <a href="../part-3a/index.html" class="text-purple-400 hover:text-purple-300 transition-colors">
+                    Part 3A: Inland Marine →
+                </a>
+            </div>
+            <div class="text-center mt-4 pt-4 border-t border-gray-700">
+                <a href="../index.html" class="text-gray-400 hover:text-white transition-colors">Back to Chapter 3 Overview</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AI Tutor Button -->
+    <button id="ai-tutor-btn" onclick="openAITutor()" class="fixed bottom-6 right-6 bg-purple-600 hover:bg-purple-700 text-white p-4 rounded-full shadow-lg hover:scale-110 transition-transform z-40" title="AI Study Assistant">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/>
+        </svg>
+    </button>
+
+    <script>
+        const aiContext = {
+            topic: "Commercial Package Policies (CPP, Equipment Breakdown, BOP)",
+            concepts: [
+                "Commercial Package Policy (CPP) - bundling 2+ coverages",
+                "Equipment Breakdown Coverage - sudden vs gradual failure",
+                "Businessowners Policy (BOP) - small business coverage",
+                "BOP has NO coinsurance",
+                "$25,000 sublimits for equipment breakdown"
+            ],
+            keyNumbers: {
+                "CPP minimum coverages": "2 from different categories",
+                "Equipment Breakdown sublimits": "$25,000 each",
+                "BOP Office eligibility": "Up to 100,000 sq ft",
+                "BOP Retail eligibility": "Up to 25,000 sq ft",
+                "BOP Civil Authority": "30 days",
+                "BOP Business Income": "12 months included",
+                "Extended Business Income": "60 days after reopening",
+                "BOP Coinsurance": "NONE!"
+            },
+            commonConfusions: [
+                "BOP has NO coinsurance, standard commercial policies DO have coinsurance",
+                "Equipment breakdown must be SUDDEN not gradual",
+                "Equipment breakdown is separate from standard property coverage",
+                "CPP requires 2+ coverages from DIFFERENT categories",
+                "Workers Comp, Cyber, and Professional Liability can't go in a CPP"
+            ]
+        };
+
+        function openAITutor() {
+            if (typeof showAITutor === 'function') {
+                showAITutor(aiContext);
+            }
+        }
+    </script>
+</body>
+</html>

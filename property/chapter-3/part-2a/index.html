@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 2A: Commercial Property Fundamentals | Chapter 3 | Property Insurance</title>
+    <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <link rel="stylesheet" href="../../../css/styles.css">
+    <script src="../../../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+        }
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <!-- Settings & Theme Toggle Buttons -->
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="showAPIKeySetup()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings">
+            <svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+        </button>
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/>
+            </svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-green-600 to-green-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center text-green-200 text-sm mb-2">
+                <a href="../../index.html" class="hover:text-white">Property</a>
+                <span class="mx-2">→</span>
+                <a href="../index.html" class="hover:text-white">Chapter 3</a>
+                <span class="mx-2">→</span>
+                <span class="text-white">Part 2A</span>
+            </div>
+            <h1 class="text-3xl font-bold">Part 2A: Commercial Property Fundamentals</h1>
+            <p class="text-green-200 mt-1">The Building Blocks: Conditions, BPP Form, and Causes of Loss</p>
+        </div>
+    </header>
+
+    <!-- Sticky Navigation -->
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-wrap gap-2 text-sm">
+                <span class="text-gray-500 dark:text-gray-400 px-2 py-1">Part 2:</span>
+                <a href="#" class="bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 px-3 py-1 rounded font-medium">2A: Fundamentals</a>
+                <a href="../part-2b/index.html" class="text-green-600 dark:text-green-400 hover:bg-green-50 dark:hover:bg-gray-700 px-3 py-1 rounded">2B: Business Income</a>
+                <a href="../part-2c/index.html" class="text-green-600 dark:text-green-400 hover:bg-green-50 dark:hover:bg-gray-700 px-3 py-1 rounded">2C: Package Policies</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-5xl lg:max-w-7xl">
+
+        <!-- Start Here: 5 Things You MUST Know -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-green-100 to-emerald-100 dark:from-green-900/40 dark:to-emerald-900/40 rounded-xl p-6 border border-green-300 dark:border-green-700">
+                <h2 class="text-xl font-bold text-green-800 dark:text-green-200 mb-4">Start Here: 5 Things You MUST Know From This Part</h2>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="flex items-start">
+                        <span class="bg-green-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
+                        <div>
+                            <p class="font-bold text-gray-800 dark:text-gray-200">60-Day Vacancy = Trouble</p>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm">After 60 days empty, vandalism is NOT covered. Other claims pay only 85%.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-green-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
+                        <div>
+                            <p class="font-bold text-gray-800 dark:text-gray-200">Coinsurance = "Insure Enough or Pay a Penalty"</p>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm">Must insure at least 80% of value. If you don't, your claim payment is reduced.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-green-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
+                        <div>
+                            <p class="font-bold text-gray-800 dark:text-gray-200">Extensions = EXTRA Money</p>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm">Coverage extensions ADD to your policy limit. Additional coverages use your existing limit.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-green-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">4</span>
+                        <div>
+                            <p class="font-bold text-gray-800 dark:text-gray-200">Basic Form = 11 Perils</p>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm">Broad Form = Basic + 3 more. Special Form = covers everything EXCEPT what's excluded.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start md:col-span-2">
+                        <span class="bg-green-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">5</span>
+                        <div>
+                            <p class="font-bold text-gray-800 dark:text-gray-200">Sinkhole = COVERED (if natural)</p>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm">Natural sinkholes are covered. Man-made holes (mines, construction) are NOT.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 1: What is Commercial Property Insurance? -->
+        <section id="overview" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">1. What is Commercial Property Insurance?</h2>
+
+                <div class="bg-green-50 dark:bg-green-900/30 rounded-xl p-5 lg:p-6 mb-6 border border-green-200 dark:border-green-800">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">
+                        <strong>Commercial property insurance</strong> protects businesses when their stuff gets damaged or destroyed.
+                        This includes buildings, equipment, inventory, and furniture.
+                    </p>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mt-3">
+                        Think of it like homeowners insurance, but for businesses. It's more complicated because businesses have more complex needs.
+                    </p>
+                </div>
+
+                <!-- Simple Example -->
+                <div class="bg-blue-50 dark:bg-blue-900/20 p-5 rounded-lg border-l-4 border-blue-500 mb-6">
+                    <p class="font-bold text-blue-800 dark:text-blue-300 text-lg mb-3">Real Example: Why a Business Needs This</p>
+                    <div class="space-y-3">
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                            <p class="font-bold text-gray-700 dark:text-gray-200">The Setup:</p>
+                            <p class="text-gray-600 dark:text-gray-300">Tony owns a restaurant. He has a commercial kitchen, tables and chairs, food inventory, and a cash register system.</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                            <p class="font-bold text-gray-700 dark:text-gray-200">What Happens:</p>
+                            <p class="text-gray-600 dark:text-gray-300">A grease fire destroys the kitchen. $50,000 in equipment is ruined. Tony has to close for 3 months while repairs are made.</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                            <p class="font-bold text-gray-700 dark:text-gray-200">What Insurance Pays:</p>
+                            <ul class="text-gray-600 dark:text-gray-300 mt-1 space-y-1">
+                                <li>- Kitchen repairs and equipment replacement</li>
+                                <li>- Lost income during the 3 months (separate Business Income coverage - see Part 2B)</li>
+                                <li>- Debris removal to clean up the mess</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Personal vs Commercial Lines -->
+                <div class="bg-purple-50 dark:bg-purple-900/20 p-5 rounded-lg border border-purple-200 dark:border-purple-800">
+                    <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg mb-3">Personal Lines vs Commercial Lines - What's the Difference?</h3>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                            <p class="font-bold text-gray-800 dark:text-gray-200 mb-2">Personal Lines (for individuals)</p>
+                            <ul class="text-sm text-gray-600 dark:text-gray-300 space-y-1">
+                                <li>- Homeowners insurance</li>
+                                <li>- Personal auto insurance</li>
+                                <li>- Standardized forms (everyone gets similar coverage)</li>
+                                <li>- Limited choices</li>
+                            </ul>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                            <p class="font-bold text-gray-800 dark:text-gray-200 mb-2">Commercial Lines (for businesses)</p>
+                            <ul class="text-sm text-gray-600 dark:text-gray-300 space-y-1">
+                                <li>- Commercial property, BOP, CPP</li>
+                                <li>- Commercial auto insurance</li>
+                                <li>- Highly customizable (mix and match coverage)</li>
+                                <li>- Many choices and options</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: The 60-Day Vacancy Rule -->
+        <section id="vacancy" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">2. The 60-Day Vacancy Rule</h2>
+
+                <!-- Why It Exists -->
+                <div class="bg-amber-50 dark:bg-amber-900/20 border-2 border-amber-300 dark:border-amber-700 rounded-xl p-5 mb-6">
+                    <h3 class="text-lg font-bold text-amber-800 dark:text-amber-300 mb-3">Why Does This Rule Exist?</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mb-3">
+                        Think about it: An empty building is a target. No one is watching it. Vandals and thieves love empty buildings.
+                    </p>
+                    <p class="text-gray-700 dark:text-gray-300 mb-3">
+                        Also, if a pipe bursts in an empty building, no one notices for weeks. Small problems become huge disasters.
+                    </p>
+                    <p class="text-gray-700 dark:text-gray-300 font-bold">
+                        Insurance companies say: "If you're going to leave a building empty for more than 60 days, that's riskier. We're going to reduce or eliminate coverage for certain things."
+                    </p>
+                </div>
+
+                <!-- The Rule -->
+                <div class="bg-red-50 dark:bg-red-900/20 border-2 border-red-300 dark:border-red-700 rounded-xl p-5 lg:p-6 mb-6">
+                    <h3 class="text-xl font-bold text-red-800 dark:text-red-300 mb-4">After 60 Days Empty, Here's What Happens:</h3>
+
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <!-- Suspended -->
+                        <div class="bg-red-100 dark:bg-red-900/40 p-5 rounded-lg">
+                            <p class="font-bold text-red-700 dark:text-red-300 text-lg mb-3">Coverage STOPPED (You Get $0)</p>
+                            <ul class="space-y-2 text-gray-700 dark:text-gray-300">
+                                <li class="flex items-start">
+                                    <span class="text-red-500 mr-2 font-bold">X</span>
+                                    <span><strong>Vandalism</strong> - Someone breaks windows, spray paints walls</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-red-500 mr-2 font-bold">X</span>
+                                    <span><strong>Sprinkler leakage</strong> - Pipes freeze and burst</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-red-500 mr-2 font-bold">X</span>
+                                    <span><strong>Glass breakage</strong> - Windows get smashed</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-red-500 mr-2 font-bold">X</span>
+                                    <span><strong>Water damage</strong> - Leaks and flooding</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-red-500 mr-2 font-bold">X</span>
+                                    <span><strong>Theft</strong> - Someone steals stuff</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- Reduced -->
+                        <div class="bg-amber-100 dark:bg-amber-900/40 p-5 rounded-lg">
+                            <p class="font-bold text-amber-700 dark:text-amber-300 text-lg mb-3">Coverage REDUCED (You Get 85%)</p>
+                            <p class="text-gray-700 dark:text-gray-300 mb-3">Everything else still covered, but insurer pays only <strong>85%</strong>.</p>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                                <p class="font-bold text-gray-700 dark:text-gray-200 mb-2">Example:</p>
+                                <p class="text-gray-600 dark:text-gray-300 text-sm">
+                                    Fire causes $100,000 damage to your empty building on day 75 (after 60+ days vacant).
+                                </p>
+                                <p class="text-gray-600 dark:text-gray-300 text-sm mt-2">
+                                    Insurer pays: $100,000 x 85% = <strong>$85,000</strong>
+                                </p>
+                                <p class="text-red-600 dark:text-red-300 text-sm mt-1">
+                                    You pay the other $15,000 yourself.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Important Distinction -->
+                <div class="bg-blue-50 dark:bg-blue-900/20 p-5 rounded-lg border-l-4 border-blue-500 mb-6">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg mb-3">Wait - What's the Difference Between Vacant and Unoccupied?</h3>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="bg-red-100 dark:bg-red-800/30 p-4 rounded-lg">
+                            <p class="font-bold text-red-700 dark:text-red-300">VACANT = Empty</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm mt-1">No furniture, no equipment, no people. The building is completely empty.</p>
+                            <p class="text-red-600 dark:text-red-300 text-sm mt-2 font-bold">This triggers the 60-day rule!</p>
+                        </div>
+                        <div class="bg-green-100 dark:bg-green-800/30 p-4 rounded-lg">
+                            <p class="font-bold text-green-700 dark:text-green-300">UNOCCUPIED = Stuff There, No People</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm mt-1">Furniture and equipment inside, but no one is there. Like a warehouse with inventory but no workers.</p>
+                            <p class="text-green-600 dark:text-green-300 text-sm mt-2 font-bold">This does NOT trigger the rule!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Exam Tip -->
+                <div class="bg-green-50 dark:bg-green-900/20 p-5 rounded-lg border-l-4 border-green-500">
+                    <p class="font-bold text-green-800 dark:text-green-300 text-lg mb-2">Key Point for the Exam:</p>
+                    <p class="text-gray-700 dark:text-gray-300">
+                        Buildings <strong>under construction or renovation</strong> are NOT considered vacant - even if no one is working there on weekends.
+                        Construction materials and equipment count as "contents."
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Coinsurance - The "Insure Enough" Rule -->
+        <section id="coinsurance" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">3. Coinsurance - The "Insure Enough" Rule</h2>
+
+                <!-- Why It Exists - Simple Explanation -->
+                <div class="bg-amber-50 dark:bg-amber-900/20 border-2 border-amber-300 dark:border-amber-700 rounded-xl p-5 mb-6">
+                    <h3 class="text-lg font-bold text-amber-800 dark:text-amber-300 mb-3">Why Does Coinsurance Exist?</h3>
+
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">
+                        Imagine you own a $500,000 building. Full insurance costs $5,000/year.
+                        But you think: <em>"Most fires only damage PART of a building. I'll just buy $50,000 of coverage and save money!"</em>
+                    </p>
+
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">
+                        If a $40,000 fire happens, you'd file a claim and get $40,000.
+                        You paid tiny premiums but got full payment. That's not fair to the insurance company!
+                    </p>
+
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="text-gray-700 dark:text-gray-300 font-bold">
+                            Coinsurance is the insurance company's protection against this trick:
+                        </p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2">
+                            "Buy at least 80% coverage, or we'll reduce your claim payment. If you want to under-insure, you'll share the loss with us."
+                        </p>
+                    </div>
+                </div>
+
+                <!-- The Formula -->
+                <div class="bg-blue-50 dark:bg-blue-900/20 p-5 rounded-lg border border-blue-200 dark:border-blue-800 mb-6">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg mb-3">The Coinsurance Formula</h3>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg mb-4">
+                        <p class="text-center text-xl font-mono text-gray-800 dark:text-gray-200">
+                            Payment = (What You Have / What You Need) x Loss
+                        </p>
+                    </div>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm">
+                        <strong>What You Need</strong> = Building Value x 80% (the coinsurance percentage)
+                    </p>
+                </div>
+
+                <!-- Two Examples Side by Side -->
+                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                    <!-- Good Example -->
+                    <div class="bg-green-50 dark:bg-green-900/20 p-5 rounded-lg border-2 border-green-300 dark:border-green-700">
+                        <h3 class="font-bold text-green-800 dark:text-green-300 text-lg mb-4">Example A: You Bought Enough Insurance</h3>
+                        <ul class="space-y-2 text-gray-700 dark:text-gray-300">
+                            <li><strong>Building Value:</strong> $500,000</li>
+                            <li><strong>80% Requirement:</strong> $400,000</li>
+                            <li><strong>Your Coverage:</strong> $400,000 (exactly 80%)</li>
+                            <li><strong>Fire Damage:</strong> $100,000</li>
+                        </ul>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg mt-4">
+                            <p class="font-mono text-center text-gray-700 dark:text-gray-200">
+                                ($400K / $400K) x $100K = <strong class="text-green-600 dark:text-green-400">$100,000</strong>
+                            </p>
+                            <p class="text-center text-green-600 dark:text-green-400 font-bold mt-2">
+                                Full payment! You get the whole $100,000.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Bad Example -->
+                    <div class="bg-red-50 dark:bg-red-900/20 p-5 rounded-lg border-2 border-red-300 dark:border-red-700">
+                        <h3 class="font-bold text-red-800 dark:text-red-300 text-lg mb-4">Example B: You Didn't Buy Enough</h3>
+                        <ul class="space-y-2 text-gray-700 dark:text-gray-300">
+                            <li><strong>Building Value:</strong> $500,000</li>
+                            <li><strong>80% Requirement:</strong> $400,000</li>
+                            <li><strong>Your Coverage:</strong> $300,000 (only 60%)</li>
+                            <li><strong>Fire Damage:</strong> $100,000</li>
+                        </ul>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg mt-4">
+                            <p class="font-mono text-center text-gray-700 dark:text-gray-200">
+                                ($300K / $400K) x $100K = <strong class="text-red-600 dark:text-red-400">$75,000</strong>
+                            </p>
+                            <p class="text-center text-red-600 dark:text-red-400 font-bold mt-2">
+                                Penalty! You only get $75,000. You pay $25,000 yourself.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Important Note -->
+                <div class="bg-purple-50 dark:bg-purple-900/20 p-5 rounded-lg border-l-4 border-purple-500">
+                    <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg mb-2">Important: When Does the Penalty Apply?</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mb-3">
+                        The coinsurance penalty ONLY applies when your loss is <strong>less than</strong> your policy limit.
+                    </p>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="text-gray-700 dark:text-gray-300">
+                            <strong>Example:</strong> You have $300,000 coverage on a $500,000 building (not enough).
+                            Building burns to the ground = <strong>total loss</strong>.
+                        </p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2">
+                            You get $300,000 (your full policy limit). No penalty calculation because you're already hitting the limit.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: What's Covered in the BPP Form -->
+        <section id="bpp" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">4. Building and Personal Property (BPP) Form</h2>
+
+                <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-6">
+                    The BPP form is the main commercial property coverage. It tells you what's covered and what's not.
+                </p>
+
+                <!-- Covered Grid -->
+                <div class="grid md:grid-cols-2 gap-6 mb-8">
+                    <!-- Building Coverage -->
+                    <div class="bg-green-50 dark:bg-green-900/20 p-5 rounded-lg border border-green-200 dark:border-green-800">
+                        <h3 class="font-bold text-green-800 dark:text-green-300 text-lg mb-3">Building Coverage (The Structure)</h3>
+                        <ul class="space-y-2 text-gray-700 dark:text-gray-300">
+                            <li class="flex items-start"><span class="text-green-500 mr-2 font-bold">+</span>The building itself</li>
+                            <li class="flex items-start"><span class="text-green-500 mr-2 font-bold">+</span>Additions you've built</li>
+                            <li class="flex items-start"><span class="text-green-500 mr-2 font-bold">+</span>Permanently installed stuff (HVAC, plumbing)</li>
+                            <li class="flex items-start"><span class="text-green-500 mr-2 font-bold">+</span>Outdoor fixtures (signs, fences)</li>
+                        </ul>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm text-gray-600 dark:text-gray-300"><strong>Think:</strong> Things that would stay if you sold the building.</p>
+                        </div>
+                    </div>
+
+                    <!-- Personal Property Coverage -->
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-5 rounded-lg border border-blue-200 dark:border-blue-800">
+                        <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg mb-3">Personal Property Coverage (Your Stuff)</h3>
+                        <ul class="space-y-2 text-gray-700 dark:text-gray-300">
+                            <li class="flex items-start"><span class="text-blue-500 mr-2 font-bold">+</span>Furniture and fixtures</li>
+                            <li class="flex items-start"><span class="text-blue-500 mr-2 font-bold">+</span>Equipment and machinery</li>
+                            <li class="flex items-start"><span class="text-blue-500 mr-2 font-bold">+</span>Inventory (stock)</li>
+                            <li class="flex items-start"><span class="text-blue-500 mr-2 font-bold">+</span>Tenant improvements you made</li>
+                        </ul>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm text-gray-600 dark:text-gray-300"><strong>Think:</strong> Things you'd take with you if you moved.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- NOT Covered -->
+                <div class="bg-red-50 dark:bg-red-900/20 p-5 rounded-lg border-2 border-red-300 dark:border-red-700 mb-8">
+                    <h3 class="font-bold text-red-800 dark:text-red-300 text-lg mb-4">What's NOT Covered (Memorize These!)</h3>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="space-y-3">
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                                <p class="font-bold text-red-700 dark:text-red-300">Cash and Money</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-300">Only $2,500 for theft. Need Crime coverage for more.</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                                <p class="font-bold text-red-700 dark:text-red-300">Animals</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-300">Guard dogs, pets = NOT covered. Animals for sale (pet store) = covered.</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                                <p class="font-bold text-red-700 dark:text-red-300">Vehicles</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-300">Licensed vehicles need Commercial Auto. Forklifts (not licensed) = covered.</p>
+                            </div>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                                <p class="font-bold text-red-700 dark:text-red-300">Land and Water</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-300">Can't insure land value. Also no growing crops.</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                                <p class="font-bold text-red-700 dark:text-red-300">Underground Stuff</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-300">Pipes, foundations below basement = excluded.</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                                <p class="font-bold text-red-700 dark:text-red-300">Parking Lots, Bridges, Roads</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-300">Outdoor surfaces are excluded.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Extensions vs Additional - The Key Distinction -->
+                <div class="bg-indigo-50 dark:bg-indigo-900/20 border-2 border-indigo-300 dark:border-indigo-700 rounded-xl p-5 mb-6">
+                    <h3 class="text-xl font-bold text-indigo-800 dark:text-indigo-300 mb-4">IMPORTANT: Extensions vs Additional Coverages</h3>
+
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">
+                        This confuses everyone, but it's simple once you understand it:
+                    </p>
+
+                    <div class="grid md:grid-cols-2 gap-6 mb-6">
+                        <div class="bg-green-100 dark:bg-green-900/40 p-5 rounded-lg">
+                            <h4 class="font-bold text-green-800 dark:text-green-300 text-lg mb-2">Coverage Extensions = BONUS Money</h4>
+                            <p class="text-gray-700 dark:text-gray-300 mb-3">
+                                These <strong>ADD extra coverage</strong> on top of your policy limit.
+                            </p>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                                <p class="text-sm text-gray-700 dark:text-gray-300">
+                                    <strong>Example:</strong> Your policy limit is $500K. You buy a new building for $180K.
+                                    The "Newly Acquired Building" extension gives you an EXTRA $250K to cover it.
+                                    You now have $750K available.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="bg-red-100 dark:bg-red-900/40 p-5 rounded-lg">
+                            <h4 class="font-bold text-red-800 dark:text-red-300 text-lg mb-2">Additional Coverages = From Your Limit</h4>
+                            <p class="text-gray-700 dark:text-gray-300 mb-3">
+                                These use up your <strong>existing policy limit</strong>.
+                            </p>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                                <p class="text-sm text-gray-700 dark:text-gray-300">
+                                    <strong>Example:</strong> Your policy limit is $500K. Building fire = $480K. Debris removal = $40K.
+                                    Total needed = $520K. But you only have $500K limit.
+                                    Debris comes FROM that limit (plus $25K extra if exhausted).
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Why It Matters Scenario -->
+                    <div class="bg-white dark:bg-gray-700 p-5 rounded-lg">
+                        <h4 class="font-bold text-indigo-800 dark:text-indigo-300 mb-3">Why This Matters on the Exam:</h4>
+                        <p class="text-gray-700 dark:text-gray-300 mb-3">
+                            <strong>Question:</strong> "Your $500K policy has a $480K building loss and $40K debris removal. How much does the insurer pay?"
+                        </p>
+                        <p class="text-gray-700 dark:text-gray-300">
+                            <strong>Answer:</strong> Debris is an ADDITIONAL coverage (from your limit), so total available is $500K + $25K extra debris allowance = $525K maximum.
+                            Since you need $520K, you get $520K.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Common Extensions -->
+                <div class="bg-amber-50 dark:bg-amber-900/20 p-5 rounded-lg border-l-4 border-amber-500 mb-6">
+                    <h3 class="font-bold text-amber-800 dark:text-amber-300 text-lg mb-3">Common Coverage Extensions (EXTRA Money)</h3>
+                    <p class="text-gray-600 dark:text-gray-300 text-sm mb-4">These only apply if you meet the 80% coinsurance requirement.</p>
+                    <div class="grid md:grid-cols-2 gap-3">
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <div class="flex justify-between">
+                                <span class="font-bold text-gray-700 dark:text-gray-200">Newly Acquired Building</span>
+                                <span class="text-amber-600 dark:text-amber-400 font-bold">$250,000 / 30 days</span>
+                            </div>
+                            <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">Buy a new building? Covered for 30 days while you update your policy.</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <div class="flex justify-between">
+                                <span class="font-bold text-gray-700 dark:text-gray-200">Newly Acquired Personal Property</span>
+                                <span class="text-amber-600 dark:text-amber-400 font-bold">$100,000 / 30 days</span>
+                            </div>
+                            <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">New equipment at a new location? Covered for 30 days.</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <div class="flex justify-between">
+                                <span class="font-bold text-gray-700 dark:text-gray-200">Property Off-Premises</span>
+                                <span class="text-amber-600 dark:text-amber-400 font-bold">$10,000</span>
+                            </div>
+                            <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">Your equipment at a trade show? Covered.</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <div class="flex justify-between">
+                                <span class="font-bold text-gray-700 dark:text-gray-200">Employee Personal Effects</span>
+                                <span class="text-amber-600 dark:text-amber-400 font-bold">$2,500/person</span>
+                            </div>
+                            <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">Employee's laptop damaged in office fire? Covered.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Common Additional Coverages -->
+                <div class="bg-indigo-50 dark:bg-indigo-900/20 p-5 rounded-lg border-l-4 border-indigo-500">
+                    <h3 class="font-bold text-indigo-800 dark:text-indigo-300 text-lg mb-3">Common Additional Coverages (From Your Limit)</h3>
+                    <div class="grid md:grid-cols-2 gap-3">
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <div class="flex justify-between">
+                                <span class="font-bold text-gray-700 dark:text-gray-200">Debris Removal</span>
+                                <span class="text-indigo-600 dark:text-indigo-400 font-bold">25% of loss + $25K if exhausted</span>
+                            </div>
+                            <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">Pays to haul away damaged stuff.</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <div class="flex justify-between">
+                                <span class="font-bold text-gray-700 dark:text-gray-200">Fire Dept Service Charge</span>
+                                <span class="text-indigo-600 dark:text-indigo-400 font-bold">$1,000</span>
+                            </div>
+                            <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">Volunteer fire department bills you? Covered.</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <div class="flex justify-between">
+                                <span class="font-bold text-gray-700 dark:text-gray-200">Pollutant Cleanup</span>
+                                <span class="text-indigo-600 dark:text-indigo-400 font-bold">$10,000/location/year</span>
+                            </div>
+                            <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">Fire releases chemicals? Cleanup covered.</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <div class="flex justify-between">
+                                <span class="font-bold text-gray-700 dark:text-gray-200">Electronic Data</span>
+                                <span class="text-indigo-600 dark:text-indigo-400 font-bold">$2,500</span>
+                            </div>
+                            <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">Cost to restore lost computer data.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Causes of Loss Forms -->
+        <section id="causes" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">5. Causes of Loss Forms - What Events Are Covered?</h2>
+
+                <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-6">
+                    The "Causes of Loss" form tells you WHAT EVENTS (perils) your policy covers.
+                    There are three versions, from least coverage to most coverage:
+                </p>
+
+                <!-- Three Forms Comparison -->
+                <div class="grid lg:grid-cols-3 gap-6 mb-8">
+                    <!-- Basic Form -->
+                    <div class="bg-gray-50 dark:bg-gray-700 rounded-xl p-5 border-t-4 border-gray-500">
+                        <h3 class="font-bold text-gray-800 dark:text-gray-200 text-xl mb-2">Basic Form</h3>
+                        <p class="text-sm text-gray-500 dark:text-gray-400 mb-4">Only covers 11 specific events</p>
+                        <div class="space-y-1 text-sm text-gray-700 dark:text-gray-300">
+                            <p>1. Fire</p>
+                            <p>2. Lightning</p>
+                            <p>3. Explosion</p>
+                            <p>4. Windstorm/Hail</p>
+                            <p>5. Smoke</p>
+                            <p>6. Aircraft/Vehicles hitting building</p>
+                            <p>7. Riot/Civil Commotion</p>
+                            <p>8. Vandalism</p>
+                            <p>9. Sprinkler Leakage</p>
+                            <p>10. Sinkhole Collapse (natural only)</p>
+                            <p>11. Volcanic Action</p>
+                        </div>
+                        <div class="bg-gray-200 dark:bg-gray-600 p-2 rounded mt-3 text-center">
+                            <p class="text-sm font-bold text-gray-700 dark:text-gray-200">Cheapest, Least Coverage</p>
+                        </div>
+                    </div>
+
+                    <!-- Broad Form -->
+                    <div class="bg-blue-50 dark:bg-blue-900/30 rounded-xl p-5 border-t-4 border-blue-500">
+                        <h3 class="font-bold text-blue-800 dark:text-blue-200 text-xl mb-2">Broad Form</h3>
+                        <p class="text-sm text-blue-600 dark:text-blue-400 mb-4">All 11 Basic perils + 3 more</p>
+                        <div class="space-y-1 text-sm text-gray-700 dark:text-gray-300">
+                            <p class="font-semibold">Everything in Basic PLUS:</p>
+                            <p>12. Falling Objects (after roof/wall damaged)</p>
+                            <p>13. Weight of Snow, Ice, Sleet</p>
+                            <p>14. Water Damage (pipes bursting)</p>
+                            <p class="mt-3 font-semibold">Bonus Coverages:</p>
+                            <p>- Collapse coverage</p>
+                            <p>- Limited mold/fungus ($15,000)</p>
+                        </div>
+                        <div class="bg-blue-200 dark:bg-blue-700 p-2 rounded mt-3 text-center">
+                            <p class="text-sm font-bold text-blue-800 dark:text-blue-100">Middle Ground</p>
+                        </div>
+                    </div>
+
+                    <!-- Special Form -->
+                    <div class="bg-green-50 dark:bg-green-900/30 rounded-xl p-5 border-t-4 border-green-500">
+                        <h3 class="font-bold text-green-800 dark:text-green-200 text-xl mb-2">Special Form</h3>
+                        <p class="text-sm text-green-600 dark:text-green-400 mb-4">Covers EVERYTHING except what's excluded</p>
+                        <div class="space-y-1 text-sm text-gray-700 dark:text-gray-300">
+                            <p class="font-semibold">Covers ALL risks EXCEPT:</p>
+                            <p>- Flood (need separate policy)</p>
+                            <p>- Earthquake (need endorsement)</p>
+                            <p>- Wear and tear</p>
+                            <p>- Mechanical breakdown</p>
+                            <p>- Mold/fungus</p>
+                            <p>- War, nuclear</p>
+                            <p>- Government seizure</p>
+                            <p>- Ordinance or law costs</p>
+                            <p class="mt-2 text-green-600 dark:text-green-400 font-bold">+ Includes theft!</p>
+                        </div>
+                        <div class="bg-green-200 dark:bg-green-700 p-2 rounded mt-3 text-center">
+                            <p class="text-sm font-bold text-green-800 dark:text-green-100">Most Expensive, Best Coverage</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Which Form to Choose -->
+                <div class="bg-purple-50 dark:bg-purple-900/20 p-5 rounded-lg border-2 border-purple-300 dark:border-purple-700 mb-6">
+                    <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg mb-4">Which Form Should You Choose?</h3>
+                    <div class="grid md:grid-cols-3 gap-4">
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                            <p class="font-bold text-gray-800 dark:text-gray-200 mb-2">Choose Basic When:</p>
+                            <ul class="text-sm text-gray-600 dark:text-gray-300 space-y-1">
+                                <li>- Budget is tight</li>
+                                <li>- Building is in low-risk area</li>
+                                <li>- Simple operations</li>
+                                <li>- Don't need theft coverage</li>
+                            </ul>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                            <p class="font-bold text-gray-800 dark:text-gray-200 mb-2">Choose Broad When:</p>
+                            <ul class="text-sm text-gray-600 dark:text-gray-300 space-y-1">
+                                <li>- Moderate budget</li>
+                                <li>- Cold climate (ice dams, snow)</li>
+                                <li>- Old plumbing concerns</li>
+                                <li>- Standard business operations</li>
+                            </ul>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                            <p class="font-bold text-gray-800 dark:text-gray-200 mb-2">Choose Special When:</p>
+                            <ul class="text-sm text-gray-600 dark:text-gray-300 space-y-1">
+                                <li>- Want maximum protection</li>
+                                <li>- Valuable inventory (need theft)</li>
+                                <li>- Complex operations</li>
+                                <li>- Budget allows for best coverage</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sinkhole Clarification -->
+                <div class="bg-green-50 dark:bg-green-900/20 border-2 border-green-300 dark:border-green-700 rounded-xl p-5 mb-6">
+                    <h3 class="text-lg font-bold text-green-800 dark:text-green-300 mb-3">Sinkhole Collapse - Yes, It's COVERED!</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mb-3">
+                        Sinkhole collapse is covered under the Basic Form. But there's a catch:
+                    </p>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="bg-green-100 dark:bg-green-800/30 p-4 rounded-lg">
+                            <p class="font-bold text-green-700 dark:text-green-300 mb-2">COVERED: Natural Sinkholes</p>
+                            <p class="text-sm text-gray-700 dark:text-gray-300">
+                                Ground collapses because underground limestone eroded over time.
+                                This happens naturally in Florida, Texas, Kentucky.
+                            </p>
+                        </div>
+                        <div class="bg-red-100 dark:bg-red-800/30 p-4 rounded-lg">
+                            <p class="font-bold text-red-700 dark:text-red-300 mb-2">NOT COVERED: Man-Made Holes</p>
+                            <p class="text-sm text-gray-700 dark:text-gray-300">
+                                Ground collapses because of old mines, tunnels, or construction underneath.
+                                Human activity caused it = not covered.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Same Loss, Different Outcomes -->
+                <div class="bg-indigo-50 dark:bg-indigo-900/20 p-5 rounded-lg border-2 border-indigo-300 dark:border-indigo-700">
+                    <h3 class="font-bold text-indigo-800 dark:text-indigo-300 text-lg mb-4">Same Events, Different Results</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">
+                        <strong>Scenario:</strong> A retail store experiences these events during winter:
+                    </p>
+                    <ul class="text-gray-700 dark:text-gray-300 mb-4 space-y-1">
+                        <li>1. Fire destroys $50,000 inventory</li>
+                        <li>2. Ice dam causes $20,000 water damage</li>
+                        <li>3. Thief steals $8,000 jewelry display</li>
+                        <li>4. HVAC system breaks down, food spoils ($15,000)</li>
+                    </ul>
+
+                    <div class="grid md:grid-cols-3 gap-4">
+                        <div class="bg-gray-100 dark:bg-gray-600 p-4 rounded-lg">
+                            <p class="font-bold text-gray-800 dark:text-gray-200 mb-2">Basic Form Pays:</p>
+                            <ul class="text-sm space-y-1">
+                                <li class="text-green-600 dark:text-green-400">Fire: $50,000</li>
+                                <li class="text-red-600 dark:text-red-400">Ice dam: $0 (not covered)</li>
+                                <li class="text-red-600 dark:text-red-400">Theft: $0 (not covered)</li>
+                                <li class="text-red-600 dark:text-red-400">HVAC: $0 (excluded)</li>
+                            </ul>
+                            <p class="font-bold mt-2 text-gray-800 dark:text-gray-200">Total: $50,000</p>
+                        </div>
+                        <div class="bg-blue-100 dark:bg-blue-800/30 p-4 rounded-lg">
+                            <p class="font-bold text-blue-800 dark:text-blue-200 mb-2">Broad Form Pays:</p>
+                            <ul class="text-sm space-y-1">
+                                <li class="text-green-600 dark:text-green-400">Fire: $50,000</li>
+                                <li class="text-green-600 dark:text-green-400">Ice dam: $20,000</li>
+                                <li class="text-red-600 dark:text-red-400">Theft: $0 (not covered)</li>
+                                <li class="text-red-600 dark:text-red-400">HVAC: $0 (excluded)</li>
+                            </ul>
+                            <p class="font-bold mt-2 text-blue-800 dark:text-blue-200">Total: $70,000</p>
+                        </div>
+                        <div class="bg-green-100 dark:bg-green-800/30 p-4 rounded-lg">
+                            <p class="font-bold text-green-800 dark:text-green-200 mb-2">Special Form Pays:</p>
+                            <ul class="text-sm space-y-1">
+                                <li class="text-green-600 dark:text-green-400">Fire: $50,000</li>
+                                <li class="text-green-600 dark:text-green-400">Ice dam: $20,000</li>
+                                <li class="text-green-600 dark:text-green-400">Theft: $2,500 (sublimit)</li>
+                                <li class="text-red-600 dark:text-red-400">HVAC: $0 (excluded)</li>
+                            </ul>
+                            <p class="font-bold mt-2 text-green-800 dark:text-green-200">Total: $72,500</p>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-600 dark:text-gray-400 mt-4">
+                        <strong>Note:</strong> HVAC breakdown is excluded from ALL forms. You need separate Equipment Breakdown coverage (covered in Part 2C).
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: Common Exclusions -->
+        <section id="exclusions" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">6. Common Exclusions (What's NEVER Covered)</h2>
+
+                <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-6">
+                    These exclusions apply to ALL forms (Basic, Broad, and Special). Memorize them!
+                </p>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    <!-- Ordinance or Law -->
+                    <div class="bg-red-50 dark:bg-red-900/20 p-5 rounded-lg border-l-4 border-red-500">
+                        <h3 class="font-bold text-red-800 dark:text-red-300 text-lg mb-2">Ordinance or Law</h3>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm mb-3">
+                            Fire damage is covered. But EXTRA costs from building codes are NOT.
+                        </p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="text-sm text-gray-700 dark:text-gray-300">
+                                <strong>Example:</strong> Fire damages 30% of your 1960s building ($300K).
+                                City says "You can't just fix it - you must tear down and rebuild to modern code."
+                                Total cost: $1.1M. Policy pays only $300K for the fire damage.
+                                You pay the extra $800K code upgrade costs.
+                            </p>
+                            <p class="text-sm text-gray-500 dark:text-gray-400 mt-2">
+                                <strong>Solution:</strong> Buy "Ordinance or Law" endorsement.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Earth Movement -->
+                    <div class="bg-red-50 dark:bg-red-900/20 p-5 rounded-lg border-l-4 border-red-500">
+                        <h3 class="font-bold text-red-800 dark:text-red-300 text-lg mb-2">Earth Movement</h3>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm mb-3">
+                            Earthquake, landslide, mudflow = NOT covered.
+                        </p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="text-sm text-gray-700 dark:text-gray-300">
+                                <strong>Example:</strong> Earthquake cracks your foundation. NOT covered.
+                                BUT: If the earthquake causes a fire, the fire damage IS covered!
+                            </p>
+                            <p class="text-sm text-gray-500 dark:text-gray-400 mt-2">
+                                <strong>Solution:</strong> Buy Earthquake endorsement.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Flood/Water -->
+                    <div class="bg-red-50 dark:bg-red-900/20 p-5 rounded-lg border-l-4 border-red-500">
+                        <h3 class="font-bold text-red-800 dark:text-red-300 text-lg mb-2">Flood</h3>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm mb-3">
+                            Flood, surface water, sewer backup = NOT covered.
+                        </p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="text-sm text-gray-700 dark:text-gray-300">
+                                <strong>Example:</strong> River overflows and floods your warehouse. NOT covered.
+                            </p>
+                            <p class="text-sm text-gray-500 dark:text-gray-400 mt-2">
+                                <strong>Solution:</strong> Buy NFIP flood policy (see Part 4A).
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Mechanical Breakdown -->
+                    <div class="bg-red-50 dark:bg-red-900/20 p-5 rounded-lg border-l-4 border-red-500">
+                        <h3 class="font-bold text-red-800 dark:text-red-300 text-lg mb-2">Mechanical Breakdown</h3>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm mb-3">
+                            Equipment fails from wear or breakdown = NOT covered.
+                        </p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="text-sm text-gray-700 dark:text-gray-300">
+                                <strong>Example:</strong> Your HVAC compressor fails because it's old and worn out. NOT covered.
+                            </p>
+                            <p class="text-sm text-gray-500 dark:text-gray-400 mt-2">
+                                <strong>Solution:</strong> Buy Equipment Breakdown coverage (see Part 2C).
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Utility Services -->
+                    <div class="bg-red-50 dark:bg-red-900/20 p-5 rounded-lg border-l-4 border-red-500">
+                        <h3 class="font-bold text-red-800 dark:text-red-300 text-lg mb-2">Utility Services Failure</h3>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm mb-3">
+                            Power outage from off-premises = NOT covered.
+                        </p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="text-sm text-gray-700 dark:text-gray-300">
+                                <strong>Example:</strong> Transformer explodes 2 miles away. Your freezers thaw and $50K of food spoils. NOT covered - the problem started off your property.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- War, Nuclear, Government -->
+                    <div class="bg-red-50 dark:bg-red-900/20 p-5 rounded-lg border-l-4 border-red-500">
+                        <h3 class="font-bold text-red-800 dark:text-red-300 text-lg mb-2">War, Nuclear, Government Action</h3>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm mb-3">
+                            These catastrophic events are never covered.
+                        </p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="text-sm text-gray-700 dark:text-gray-300">
+                                <strong>Examples:</strong> Acts of war, nuclear accidents, government seizing or destroying your property.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cheat Sheet -->
+        <section id="cheat-sheet" class="mb-10">
+            <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 border-2 border-dashed border-gray-300 dark:border-gray-600">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100">Cheat Sheet: Part 2A</h2>
+                    <span class="text-sm text-gray-500 dark:text-gray-400">Print this for quick reference</span>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-4">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-gray-800 dark:text-gray-200 mb-2">Key Numbers</p>
+                        <ul class="text-sm text-gray-600 dark:text-gray-300 space-y-1">
+                            <li><strong>60 days</strong> = Vacancy rule kicks in</li>
+                            <li><strong>85%</strong> = What you get paid after 60 days vacant</li>
+                            <li><strong>80%</strong> = Coinsurance requirement</li>
+                            <li><strong>30 days</strong> = Extension for newly acquired property</li>
+                            <li><strong>$25,000</strong> = Extra debris removal if limits exhausted</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-gray-800 dark:text-gray-200 mb-2">Forms Comparison</p>
+                        <ul class="text-sm text-gray-600 dark:text-gray-300 space-y-1">
+                            <li><strong>Basic</strong> = 11 named perils</li>
+                            <li><strong>Broad</strong> = 14 named perils</li>
+                            <li><strong>Special</strong> = All except excluded</li>
+                            <li><strong>Theft</strong> = Only in Special form</li>
+                            <li><strong>Ice dam</strong> = Not in Basic</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-gray-800 dark:text-gray-200 mb-2">Always Excluded</p>
+                        <ul class="text-sm text-gray-600 dark:text-gray-300 space-y-1">
+                            <li><strong>Flood</strong> - Need NFIP policy</li>
+                            <li><strong>Earthquake</strong> - Need endorsement</li>
+                            <li><strong>Equipment breakdown</strong> - Need separate coverage</li>
+                            <li><strong>Ordinance/Law costs</strong> - Need endorsement</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Traps -->
+        <section id="exam-traps" class="mb-10">
+            <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-xl p-5 lg:p-6">
+                <h2 class="text-2xl font-bold text-red-800 dark:text-red-300 mb-4">Exam Trap Alerts</h2>
+                <div class="space-y-4">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">Trap #1: Vacant vs Unoccupied</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">
+                            <strong>Wrong:</strong> Building has furniture but no people = 60-day rule applies.
+                            <br><strong>Right:</strong> That's UNOCCUPIED, not vacant. Rule only applies to completely EMPTY buildings.
+                        </p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">Trap #2: Sinkhole Confusion</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">
+                            <strong>Wrong:</strong> Sinkholes are excluded like earthquakes.
+                            <br><strong>Right:</strong> Natural sinkholes ARE covered in Basic form. Only man-made holes are excluded.
+                        </p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">Trap #3: Extensions vs Additional</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">
+                            <strong>Wrong:</strong> All extra coverages are added on top of your limit.
+                            <br><strong>Right:</strong> Only EXTENSIONS add extra money. ADDITIONAL coverages use your existing limit.
+                        </p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">Trap #4: Fire After Earthquake</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">
+                            <strong>Wrong:</strong> If earthquake causes fire, nothing is covered.
+                            <br><strong>Right:</strong> Earthquake damage is NOT covered, but fire damage IS covered even if earthquake caused it!
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Navigation -->
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <a href="../part-1/index.html" class="text-green-400 hover:text-green-300 flex items-center">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                    </svg>
+                    Part 1: Dwelling & Homeowners
+                </a>
+                <span class="text-gray-400">Part 2A of 4</span>
+                <a href="../part-2b/index.html" class="text-green-400 hover:text-green-300 flex items-center">
+                    Part 2B: Business Income
+                    <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AI Tutor Button -->
+    <button onclick="openAITutor()" class="fixed bottom-6 right-6 bg-green-600 hover:bg-green-700 text-white p-4 rounded-full shadow-lg transition-transform hover:scale-110 z-40" title="Ask AI Tutor">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+        </svg>
+    </button>
+
+    <script>
+        function openAITutor() {
+            const context = `
+                Topic: Commercial Property Fundamentals (Part 2A)
+                Key concepts: 60-day vacancy rule, coinsurance (80%), BPP form, Causes of Loss forms (Basic/Broad/Special)
+                Key numbers: 60 days vacancy, 85% reduced payment, 80% coinsurance, 30 days for extensions, $25K debris extra
+                Common confusions: Vacant vs unoccupied, Extensions vs Additional coverages, Natural vs man-made sinkholes
+            `;
+            if (typeof initiateAITutor === 'function') {
+                initiateAITutor(context);
+            } else {
+                alert('AI Tutor is loading. Please try again in a moment.');
+            }
+        }
+    </script>
+</body>
+</html>

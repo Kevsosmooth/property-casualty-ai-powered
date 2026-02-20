@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 2B: Business Income & Extra Expense | Chapter 3 | Property Insurance</title>
+    <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <link rel="stylesheet" href="../../../css/styles.css">
+    <script src="../../../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+        }
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <!-- Settings & Theme Toggle Buttons -->
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="showAPIKeySetup()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings">
+            <svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+        </button>
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/>
+            </svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center text-blue-200 text-sm mb-2">
+                <a href="../../index.html" class="hover:text-white">Property</a>
+                <span class="mx-2">→</span>
+                <a href="../index.html" class="hover:text-white">Chapter 3</a>
+                <span class="mx-2">→</span>
+                <span class="text-white">Part 2B</span>
+            </div>
+            <h1 class="text-3xl font-bold">Part 2B: Business Income & Extra Expense</h1>
+            <p class="text-blue-200 mt-1">What Happens When You Can't Operate? Coverage for Lost Income</p>
+        </div>
+    </header>
+
+    <!-- Sticky Navigation -->
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-wrap gap-2 text-sm">
+                <span class="text-gray-500 dark:text-gray-400 px-2 py-1">Part 2:</span>
+                <a href="../part-2a/index.html" class="text-green-600 dark:text-green-400 hover:bg-green-50 dark:hover:bg-gray-700 px-3 py-1 rounded">2A: Fundamentals</a>
+                <a href="#" class="bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 px-3 py-1 rounded font-medium">2B: Business Income</a>
+                <a href="../part-2c/index.html" class="text-green-600 dark:text-green-400 hover:bg-green-50 dark:hover:bg-gray-700 px-3 py-1 rounded">2C: Package Policies</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-5xl lg:max-w-7xl">
+
+        <!-- Start Here: 5 Things You MUST Know -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-blue-100 to-indigo-100 dark:from-blue-900/40 dark:to-indigo-900/40 rounded-xl p-6 border border-blue-300 dark:border-blue-700">
+                <h2 class="text-xl font-bold text-blue-800 dark:text-blue-200 mb-4">Start Here: 5 Things You MUST Know From This Part</h2>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="flex items-start">
+                        <span class="bg-blue-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
+                        <div>
+                            <p class="font-bold text-gray-800 dark:text-gray-200">72-Hour Waiting Period</p>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm">Business Income coverage starts 72 hours (3 days) after the loss. Nothing paid for first 3 days.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-blue-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
+                        <div>
+                            <p class="font-bold text-gray-800 dark:text-gray-200">Extended BI = 60 Days After Reopening</p>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm">Coverage continues 60 days after you reopen to allow customers to return.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-blue-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
+                        <div>
+                            <p class="font-bold text-gray-800 dark:text-gray-200">BI Formula: Net Income + Expenses</p>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm">Business Income = lost profit + bills you still have to pay (rent, loans, payroll).</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-blue-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">4</span>
+                        <div>
+                            <p class="font-bold text-gray-800 dark:text-gray-200">Civil Authority = 4 Weeks Max</p>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm">If government blocks access to your business (within 1 mile), coverage is up to 4 weeks.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start md:col-span-2">
+                        <span class="bg-blue-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">5</span>
+                        <div>
+                            <p class="font-bold text-gray-800 dark:text-gray-200">Extra Expense vs Business Income</p>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm">BI = for businesses that WILL close. Extra Expense = for businesses that MUST stay open (banks, hospitals).</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 1: What is Business Income Coverage? -->
+        <section id="what-is-bi" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">1. What is Business Income Coverage?</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/30 rounded-xl p-5 lg:p-6 mb-6 border border-blue-200 dark:border-blue-800">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">
+                        <strong>Business Income coverage</strong> pays you when your business can't operate because of property damage.
+                    </p>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mt-3">
+                        Think about it: A fire destroys your restaurant. Property insurance pays to rebuild. But what about the 3 months you can't work?
+                        Who pays your rent, your loan payments, your employees? <strong>Business Income coverage does.</strong>
+                    </p>
+                </div>
+
+                <!-- Simple Example -->
+                <div class="bg-green-50 dark:bg-green-900/20 p-5 rounded-lg border-l-4 border-green-500 mb-6">
+                    <h3 class="font-bold text-green-800 dark:text-green-300 text-lg mb-3">Simple Example: Mike's Auto Shop</h3>
+                    <div class="space-y-3">
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                            <p class="font-bold text-gray-700 dark:text-gray-200">Before the Fire:</p>
+                            <ul class="text-gray-600 dark:text-gray-300 text-sm mt-1 space-y-1">
+                                <li>Monthly profit (net income): <strong>$20,000</strong></li>
+                                <li>Monthly bills that continue (rent, insurance, loan): <strong>$15,000</strong></li>
+                                <li>Total monthly income: <strong>$35,000</strong></li>
+                            </ul>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                            <p class="font-bold text-gray-700 dark:text-gray-200">After the Fire:</p>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm">Closed for 3 months while being rebuilt.</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                            <p class="font-bold text-gray-700 dark:text-gray-200">What Business Income Pays:</p>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm">
+                                $35,000/month x 3 months = <strong>$105,000</strong>
+                            </p>
+                            <p class="text-gray-500 dark:text-gray-400 text-sm mt-1">
+                                (minus 72-hour waiting period - about $4,000)
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- The Formula -->
+                <div class="bg-purple-50 dark:bg-purple-900/20 p-5 rounded-lg border-2 border-purple-300 dark:border-purple-700 mb-6">
+                    <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg mb-3">The Business Income Formula</h3>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg mb-4">
+                        <p class="text-center text-xl font-mono text-gray-800 dark:text-gray-200">
+                            Business Income = Net Income + Continuing Expenses
+                        </p>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                            <p class="font-bold text-gray-800 dark:text-gray-200 mb-2">Net Income (Profit)</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-300">
+                                The profit you would have made if the loss hadn't happened.
+                            </p>
+                            <p class="text-sm text-gray-500 dark:text-gray-400 mt-2">
+                                <strong>Example:</strong> You normally make $20,000/month profit.
+                            </p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                            <p class="font-bold text-gray-800 dark:text-gray-200 mb-2">Continuing Expenses</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-300">
+                                Bills you still have to pay even when closed: rent, loans, insurance, some payroll.
+                            </p>
+                            <p class="text-sm text-gray-500 dark:text-gray-400 mt-2">
+                                <strong>Example:</strong> $15,000/month in bills that don't stop.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Clarification -->
+                    <div class="bg-amber-100 dark:bg-amber-800/30 p-4 rounded-lg mt-4">
+                        <p class="font-bold text-amber-800 dark:text-amber-300 mb-2">Wait - Is Payroll Part of Expenses?</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">
+                            <strong>Yes!</strong> Payroll is usually included in "continuing expenses."
+                            But you can buy an endorsement to EXCLUDE some payroll (like hourly workers who won't work during closure).
+                            Key employees' salaries are usually kept to retain them.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: The Timeline - When Coverage Starts and Stops -->
+        <section id="timeline" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">2. The Timeline: When Does Coverage Start and Stop?</h2>
+
+                <!-- Visual Timeline -->
+                <div class="bg-blue-50 dark:bg-blue-900/20 p-5 rounded-lg mb-6">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg mb-4">Business Income Timeline</h3>
+
+                    <div class="relative">
+                        <!-- Timeline bar -->
+                        <div class="flex items-center justify-between relative">
+                            <!-- Point 1: Loss -->
+                            <div class="text-center">
+                                <div class="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center text-white font-bold mx-auto">1</div>
+                                <p class="text-sm font-bold text-gray-700 dark:text-gray-200 mt-2">Loss Occurs</p>
+                                <p class="text-xs text-gray-500 dark:text-gray-400">Fire on Monday 8am</p>
+                            </div>
+
+                            <!-- Arrow -->
+                            <div class="flex-1 border-t-2 border-dashed border-gray-300 dark:border-gray-600 mx-2"></div>
+
+                            <!-- Point 2: 72 hours -->
+                            <div class="text-center">
+                                <div class="w-8 h-8 bg-amber-500 rounded-full flex items-center justify-center text-white font-bold mx-auto">2</div>
+                                <p class="text-sm font-bold text-gray-700 dark:text-gray-200 mt-2">72 Hours Later</p>
+                                <p class="text-xs text-gray-500 dark:text-gray-400">Thursday 8am</p>
+                                <p class="text-xs text-amber-600 dark:text-amber-400">Coverage STARTS</p>
+                            </div>
+
+                            <!-- Arrow -->
+                            <div class="flex-1 border-t-2 border-dashed border-gray-300 dark:border-gray-600 mx-2"></div>
+
+                            <!-- Point 3: Repairs done -->
+                            <div class="text-center">
+                                <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center text-white font-bold mx-auto">3</div>
+                                <p class="text-sm font-bold text-gray-700 dark:text-gray-200 mt-2">Repairs Done</p>
+                                <p class="text-xs text-gray-500 dark:text-gray-400">3 months later</p>
+                                <p class="text-xs text-green-600 dark:text-green-400">Business Reopens</p>
+                            </div>
+
+                            <!-- Arrow -->
+                            <div class="flex-1 border-t-2 border-dashed border-gray-300 dark:border-gray-600 mx-2"></div>
+
+                            <!-- Point 4: Extended BI ends -->
+                            <div class="text-center">
+                                <div class="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center text-white font-bold mx-auto">4</div>
+                                <p class="text-sm font-bold text-gray-700 dark:text-gray-200 mt-2">60 Days Later</p>
+                                <p class="text-xs text-gray-500 dark:text-gray-400">Extended BI ends</p>
+                                <p class="text-xs text-purple-600 dark:text-purple-400">Coverage STOPS</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 72-Hour Waiting Period -->
+                <div class="bg-amber-50 dark:bg-amber-900/20 border-2 border-amber-300 dark:border-amber-700 rounded-xl p-5 mb-6">
+                    <h3 class="text-lg font-bold text-amber-800 dark:text-amber-300 mb-3">The 72-Hour Waiting Period</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mb-3">
+                        Coverage doesn't start immediately. You have to wait <strong>72 hours (3 days)</strong> after the loss before Business Income kicks in.
+                    </p>
+
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg mb-4">
+                        <p class="font-bold text-gray-800 dark:text-gray-200 mb-2">Why 72 Hours?</p>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm">
+                            This filters out small losses. If your business is only closed for a day or two,
+                            you probably don't need income replacement. The 72-hour rule keeps premiums lower for everyone.
+                        </p>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-gray-800 dark:text-gray-200 mb-2">Example:</p>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm">
+                            Fire happens Monday at 8am. Your business makes $1,000/day.
+                        </p>
+                        <ul class="text-gray-600 dark:text-gray-300 text-sm mt-2 space-y-1">
+                            <li>Monday, Tuesday, Wednesday = <strong>NO coverage</strong> (72-hour wait)</li>
+                            <li>Thursday onward = <strong>Coverage begins</strong></li>
+                            <li>You lose about $3,000 to the waiting period</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Period of Restoration -->
+                <div class="bg-blue-50 dark:bg-blue-900/20 p-5 rounded-lg border border-blue-200 dark:border-blue-800 mb-6">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg mb-3">Period of Restoration</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">
+                        This is the time period when Business Income is paid. It starts after the 72-hour wait and ends when repairs <strong>should</strong> be completed.
+                    </p>
+
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">Important: "Should" Not "Actually"</p>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm">
+                            Coverage ends when repairs <strong>should be done</strong> with reasonable speed.
+                            If you drag your feet and take 6 months when it should have taken 3, you only get paid for 3 months.
+                        </p>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm mt-2">
+                            <strong>Why?</strong> This prevents people from delaying repairs just to collect more Business Income.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Extended Business Income -->
+                <div class="bg-purple-50 dark:bg-purple-900/20 p-5 rounded-lg border-2 border-purple-300 dark:border-purple-700">
+                    <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg mb-3">Extended Business Income (60 Days After Reopening)</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">
+                        Even after you reopen, customers might not come back right away.
+                        Extended BI covers your reduced income for <strong>up to 60 days</strong> after reopening.
+                    </p>
+
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-gray-800 dark:text-gray-200 mb-2">Example: Maria's Hair Salon</p>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm">
+                            Maria's salon was closed for 2 months after a fire. When she reopened:
+                        </p>
+                        <ul class="text-gray-600 dark:text-gray-300 text-sm mt-2 space-y-1">
+                            <li>Week 1: Only 30% of normal business (customers found new stylists)</li>
+                            <li>Week 4: 60% of normal business</li>
+                            <li>Week 8: 85% of normal business</li>
+                            <li>Day 60: Back to normal</li>
+                        </ul>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm mt-2">
+                            Extended BI covers the difference between what she actually made and what she would have made for those 60 days.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Civil Authority Coverage -->
+        <section id="civil-authority" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">3. Civil Authority Coverage</h2>
+
+                <div class="bg-indigo-50 dark:bg-indigo-900/20 p-5 rounded-lg border border-indigo-200 dark:border-indigo-800 mb-6">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">
+                        Sometimes the government blocks access to your business because of damage <strong>nearby</strong> (not to your building).
+                        Civil Authority coverage pays for this.
+                    </p>
+                </div>
+
+                <!-- The Rules -->
+                <div class="bg-amber-50 dark:bg-amber-900/20 p-5 rounded-lg border-l-4 border-amber-500 mb-6">
+                    <h3 class="font-bold text-amber-800 dark:text-amber-300 text-lg mb-3">The Rules</h3>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                            <p class="font-bold text-gray-800 dark:text-gray-200 mb-2">4 Weeks Maximum</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-300">
+                                Coverage is limited to 4 consecutive weeks. If the blockade lasts longer, you stop getting paid after week 4.
+                            </p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                            <p class="font-bold text-gray-800 dark:text-gray-200 mb-2">Within 1 Mile</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-300">
+                                The damaged property that caused the blockade must be within 1 mile of your business.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Example -->
+                <div class="bg-green-50 dark:bg-green-900/20 p-5 rounded-lg border-l-4 border-green-500">
+                    <h3 class="font-bold text-green-800 dark:text-green-300 text-lg mb-3">Real Example</h3>
+                    <div class="space-y-3">
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                            <p class="font-bold text-gray-700 dark:text-gray-200">The Situation:</p>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm">
+                                A building 2 blocks from your store has a gas leak. The fire department evacuates the area and blocks all access for 10 days.
+                                Your building is fine, but you can't get in.
+                            </p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                            <p class="font-bold text-gray-700 dark:text-gray-200">What's Covered:</p>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm">
+                                Your lost income for those 10 days (minus 72-hour wait).
+                                The damaged property is within 1 mile, and 10 days is under the 4-week limit.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Extra Expense Coverage -->
+        <section id="extra-expense" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">4. Extra Expense Coverage</h2>
+
+                <div class="bg-purple-50 dark:bg-purple-900/30 rounded-xl p-5 lg:p-6 mb-6 border border-purple-200 dark:border-purple-800">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">
+                        <strong>Extra Expense coverage</strong> is for businesses that <strong>cannot close</strong>.
+                        It pays the EXTRA costs to keep operating after a loss.
+                    </p>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mt-3">
+                        Banks, hospitals, newspapers, data centers - these businesses can't just shut down.
+                        They need to pay whatever it takes to keep running.
+                    </p>
+                </div>
+
+                <!-- Business Income vs Extra Expense -->
+                <div class="bg-indigo-50 dark:bg-indigo-900/20 border-2 border-indigo-300 dark:border-indigo-700 rounded-xl p-5 mb-6">
+                    <h3 class="text-lg font-bold text-indigo-800 dark:text-indigo-300 mb-4">Business Income vs. Extra Expense - Which Do You Need?</h3>
+
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="bg-blue-100 dark:bg-blue-800/30 p-5 rounded-lg">
+                            <h4 class="font-bold text-blue-800 dark:text-blue-300 text-lg mb-2">Business Income</h4>
+                            <p class="text-gray-700 dark:text-gray-300 mb-3">
+                                For businesses that <strong>WILL close</strong> during repairs.
+                            </p>
+                            <p class="text-sm text-gray-600 dark:text-gray-300 mb-2"><strong>Covers:</strong> Lost income while closed</p>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded mt-2">
+                                <p class="text-sm text-gray-600 dark:text-gray-300">
+                                    <strong>Examples:</strong> Restaurant, retail store, hair salon, auto repair shop
+                                </p>
+                            </div>
+                        </div>
+                        <div class="bg-purple-100 dark:bg-purple-800/30 p-5 rounded-lg">
+                            <h4 class="font-bold text-purple-800 dark:text-purple-300 text-lg mb-2">Extra Expense</h4>
+                            <p class="text-gray-700 dark:text-gray-300 mb-3">
+                                For businesses that <strong>MUST stay open</strong> no matter what.
+                            </p>
+                            <p class="text-sm text-gray-600 dark:text-gray-300 mb-2"><strong>Covers:</strong> Extra costs to keep operating</p>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded mt-2">
+                                <p class="text-sm text-gray-600 dark:text-gray-300">
+                                    <strong>Examples:</strong> Bank, hospital, newspaper, law firm, data center
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- What Extra Expense Covers -->
+                <div class="bg-green-50 dark:bg-green-900/20 p-5 rounded-lg border border-green-200 dark:border-green-800 mb-6">
+                    <h3 class="font-bold text-green-800 dark:text-green-300 text-lg mb-3">What Extra Expense Pays For</h3>
+                    <div class="grid md:grid-cols-2 gap-3">
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded flex items-start">
+                            <span class="text-green-500 mr-2 font-bold">+</span>
+                            <span class="text-gray-700 dark:text-gray-300 text-sm">Renting temporary space</span>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded flex items-start">
+                            <span class="text-green-500 mr-2 font-bold">+</span>
+                            <span class="text-gray-700 dark:text-gray-300 text-sm">Moving costs</span>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded flex items-start">
+                            <span class="text-green-500 mr-2 font-bold">+</span>
+                            <span class="text-gray-700 dark:text-gray-300 text-sm">Renting equipment</span>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded flex items-start">
+                            <span class="text-green-500 mr-2 font-bold">+</span>
+                            <span class="text-gray-700 dark:text-gray-300 text-sm">Overtime pay to speed up repairs</span>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded flex items-start">
+                            <span class="text-green-500 mr-2 font-bold">+</span>
+                            <span class="text-gray-700 dark:text-gray-300 text-sm">Express shipping for replacement parts</span>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded flex items-start">
+                            <span class="text-green-500 mr-2 font-bold">+</span>
+                            <span class="text-gray-700 dark:text-gray-300 text-sm">Extra security for temporary location</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Percentage Limits -->
+                <div class="bg-amber-50 dark:bg-amber-900/20 p-5 rounded-lg border-l-4 border-amber-500 mb-6">
+                    <h3 class="font-bold text-amber-800 dark:text-amber-300 text-lg mb-3">Important: Percentage Limits</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">
+                        Extra Expense has built-in limits on how much you can use during different time periods:
+                    </p>
+
+                    <div class="grid md:grid-cols-3 gap-4">
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg text-center">
+                            <p class="text-3xl font-bold text-amber-600 dark:text-amber-400">40%</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-300 mt-2">First 30 days</p>
+                            <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">($100K limit = max $40K)</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg text-center">
+                            <p class="text-3xl font-bold text-amber-600 dark:text-amber-400">80%</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-300 mt-2">First 60 days</p>
+                            <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">($100K limit = max $80K)</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg text-center">
+                            <p class="text-3xl font-bold text-amber-600 dark:text-amber-400">100%</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-300 mt-2">After 60 days</p>
+                            <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">(Full limit available)</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg mt-4">
+                        <p class="font-bold text-gray-800 dark:text-gray-200 mb-2">Why These Limits?</p>
+                        <p class="text-gray-600 dark:text-gray-300 text-sm">
+                            This prevents businesses from spending all their coverage in the first week.
+                            It forces you to pace your extra expenses over the restoration period.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Real Example -->
+                <div class="bg-green-50 dark:bg-green-900/20 p-5 rounded-lg border-l-4 border-green-500">
+                    <h3 class="font-bold text-green-800 dark:text-green-300 text-lg mb-3">Real Example: Community Bank</h3>
+                    <div class="space-y-3">
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                            <p class="font-bold text-gray-700 dark:text-gray-200">The Situation:</p>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm">
+                                Tornado damages the bank's main branch. They CANNOT close - customers need access to their money.
+                            </p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                            <p class="font-bold text-gray-700 dark:text-gray-200">Extra Expenses Incurred:</p>
+                            <ul class="text-gray-600 dark:text-gray-300 text-sm mt-1 space-y-1">
+                                <li>Rent temporary office space: $8,000/month</li>
+                                <li>Lease computers and equipment: $15,000</li>
+                                <li>Moving and setup: $5,000</li>
+                                <li>Extra security: $3,000/month</li>
+                                <li>Expedited repairs: $12,000 (overtime)</li>
+                            </ul>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                            <p class="font-bold text-gray-700 dark:text-gray-200">What's Covered:</p>
+                            <p class="text-gray-600 dark:text-gray-300 text-sm">
+                                All these extra costs (about $43,000) - subject to the percentage limits.
+                                The bank stays open, keeps customers, and the policy pays the extra costs.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cheat Sheet -->
+        <section id="cheat-sheet" class="mb-10">
+            <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 border-2 border-dashed border-gray-300 dark:border-gray-600">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100">Cheat Sheet: Part 2B</h2>
+                    <span class="text-sm text-gray-500 dark:text-gray-400">Print this for quick reference</span>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-4">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-gray-800 dark:text-gray-200 mb-2">Key Numbers</p>
+                        <ul class="text-sm text-gray-600 dark:text-gray-300 space-y-1">
+                            <li><strong>72 hours</strong> = Waiting period</li>
+                            <li><strong>60 days</strong> = Extended BI after reopening</li>
+                            <li><strong>4 weeks</strong> = Civil Authority maximum</li>
+                            <li><strong>1 mile</strong> = Civil Authority distance</li>
+                            <li><strong>40/80/100%</strong> = Extra Expense limits</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-gray-800 dark:text-gray-200 mb-2">BI Formula</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-300 mb-2">
+                            <strong>Business Income =</strong>
+                        </p>
+                        <p class="text-sm text-gray-600 dark:text-gray-300">
+                            Net Income (profit) + Continuing Expenses (rent, payroll, loans)
+                        </p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-gray-800 dark:text-gray-200 mb-2">Quick Reference</p>
+                        <ul class="text-sm text-gray-600 dark:text-gray-300 space-y-1">
+                            <li><strong>BI</strong> = Will close, pay lost income</li>
+                            <li><strong>Extra Expense</strong> = Must stay open, pay extra costs</li>
+                            <li><strong>Period of Restoration</strong> = When should be fixed (not actually)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Traps -->
+        <section id="exam-traps" class="mb-10">
+            <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-xl p-5 lg:p-6">
+                <h2 class="text-2xl font-bold text-red-800 dark:text-red-300 mb-4">Exam Trap Alerts</h2>
+                <div class="space-y-4">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">Trap #1: 72 Hours = NO Coverage</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">
+                            <strong>Wrong:</strong> Business Income covers from day 1 of closure.
+                            <br><strong>Right:</strong> First 72 hours (3 days) are NOT covered. Coverage starts on day 4.
+                        </p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">Trap #2: Period of Restoration = "Should" Not "Actual"</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">
+                            <strong>Wrong:</strong> Coverage continues until you actually finish repairs.
+                            <br><strong>Right:</strong> Coverage ends when repairs SHOULD be done with reasonable speed. Delays don't extend coverage.
+                        </p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">Trap #3: Extended BI Starts After Reopening</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">
+                            <strong>Wrong:</strong> Extended BI is extra time before reopening.
+                            <br><strong>Right:</strong> Extended BI covers 60 days AFTER you reopen (for customers to return).
+                        </p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">Trap #4: Civil Authority Limits</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">
+                            <strong>Wrong:</strong> Civil Authority covers any government action anywhere.
+                            <br><strong>Right:</strong> Must be within 1 mile AND maximum 4 weeks coverage.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Navigation -->
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <a href="../part-2a/index.html" class="text-blue-400 hover:text-blue-300 flex items-center">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                    </svg>
+                    Part 2A: Commercial Property Fundamentals
+                </a>
+                <span class="text-gray-400">Part 2B of 4</span>
+                <a href="../part-2c/index.html" class="text-blue-400 hover:text-blue-300 flex items-center">
+                    Part 2C: Package Policies
+                    <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AI Tutor Button -->
+    <button onclick="openAITutor()" class="fixed bottom-6 right-6 bg-blue-600 hover:bg-blue-700 text-white p-4 rounded-full shadow-lg transition-transform hover:scale-110 z-40" title="Ask AI Tutor">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+        </svg>
+    </button>
+
+    <script>
+        function openAITutor() {
+            const context = `
+                Topic: Business Income & Extra Expense Coverage (Part 2B)
+                Key concepts: 72-hour waiting period, Period of Restoration, Extended Business Income (60 days), Civil Authority (4 weeks/1 mile)
+                Key numbers: 72 hours wait, 60 days extended BI, 4 weeks civil authority, 1 mile distance, 40/80/100% extra expense limits
+                Formula: Business Income = Net Income + Continuing Operating Expenses (including payroll)
+                BI vs Extra Expense: BI = businesses that WILL close, Extra Expense = businesses that MUST stay open
+            `;
+            if (typeof initiateAITutor === 'function') {
+                initiateAITutor(context);
+            } else {
+                alert('AI Tutor is loading. Please try again in a moment.');
+            }
+        }
+    </script>
+</body>
+</html>
