@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 4: Trade Practices | Chapter 4 | Property Insurance</title>
+    <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <link rel="stylesheet" href="../../../css/styles.css">
+    <script src="../../../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+        }
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <!-- Settings & Theme Toggle Buttons -->
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="showAPIKeySetup()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings">
+            <svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+        </button>
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/>
+            </svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-purple-600 to-purple-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center text-purple-200 text-sm mb-2">
+                <a href="../../index.html" class="hover:text-white">Property</a>
+                <span class="mx-2">→</span>
+                <a href="../index.html" class="hover:text-white">Chapter 4</a>
+                <span class="mx-2">→</span>
+                <span class="text-white">Part 4</span>
+            </div>
+            <h1 class="text-3xl font-bold">Part 4: Trade Practices</h1>
+            <p class="text-purple-200 mt-1">Prohibited Practices and Producer Responsibilities</p>
+        </div>
+    </header>
+
+    <!-- Sticky Navigation -->
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-wrap gap-2 text-sm">
+                <a href="#prohibited" class="text-purple-600 dark:text-purple-400 hover:text-purple-800 px-2 py-1 rounded hover:bg-purple-50 dark:hover:bg-gray-700">Prohibited</a>
+                <a href="#claims" class="text-purple-600 dark:text-purple-400 hover:text-purple-800 px-2 py-1 rounded hover:bg-purple-50 dark:hover:bg-gray-700">Unfair Claims</a>
+                <a href="#responsibilities" class="text-purple-600 dark:text-purple-400 hover:text-purple-800 px-2 py-1 rounded hover:bg-purple-50 dark:hover:bg-gray-700">Responsibilities</a>
+                <a href="#funds" class="text-purple-600 dark:text-purple-400 hover:text-purple-800 px-2 py-1 rounded hover:bg-purple-50 dark:hover:bg-gray-700">Managing Funds</a>
+                <span class="text-gray-300 dark:text-gray-600">|</span>
+                <a href="#exam-traps" class="text-red-600 dark:text-red-400 hover:text-red-800 px-2 py-1 rounded hover:bg-red-50 dark:hover:bg-gray-700">Exam Traps</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-5xl lg:max-w-7xl">
+
+        <!-- Start Here Summary -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-red-100 to-amber-100 dark:from-red-900/40 dark:to-amber-900/40 rounded-xl p-6 border border-red-300 dark:border-red-700">
+                <h3 class="text-xl font-bold text-red-800 dark:text-red-200 mb-4">Start Here: 6 Things You MUST Know</h3>
+                <div class="grid md:grid-cols-2 gap-3">
+                    <div class="flex items-start">
+                        <span class="bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>Rebating:</strong> Offering ANY inducement not in the policy to get someone to buy. ILLEGAL (both offering AND accepting).</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>$100 Exception:</strong> Promotional items under $100 are allowed and NOT considered rebating.</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>5 Business Days:</strong> Premiums must be remitted to insurer AND claims reported to insurer within 5 business days.</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">4</span>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>10 Calendar Days:</strong> Policies must be delivered to insured within 10 calendar days of receipt.</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">5</span>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>30 Days:</strong> Must report change of address to Department within 30 days.</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">6</span>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>5 Years:</strong> Keep all financial records for 5 years after termination of coverage.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 1: Prohibited Practices -->
+        <section id="prohibited" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">1. Prohibited Practices</h2>
+
+                <div class="bg-red-50 dark:bg-red-900/20 border-2 border-red-300 dark:border-red-700 rounded-xl p-5 mb-6">
+                    <p class="text-gray-700 dark:text-gray-300 text-lg">It is considered an <strong>unfair trade practice</strong> to knowingly engage in unfair competition or deceptive acts with enough frequency that it indicates a <strong>general business practice</strong>.</p>
+                </div>
+
+                <!-- Misrepresentation -->
+                <div class="bg-amber-50 dark:bg-amber-900/20 rounded-xl p-5 border-l-4 border-amber-500 mb-6">
+                    <h4 class="font-bold text-amber-800 dark:text-amber-300 text-lg mb-3">Misrepresentation</h4>
+                    <p class="text-gray-700 dark:text-gray-300 mb-3"><strong>What it means:</strong> Issuing, publishing, or circulating any illustration, sales material, or verbal statement that is FALSE, MISLEADING, or DECEPTIVE about policy benefits, terms, or dividends.</p>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Example:</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400"><strong>The Setup:</strong> Agent tells customer "This policy covers flood damage" when it actually excludes flood.</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mt-1"><strong>What Happens:</strong> Customer's basement floods. Claim denied. Customer discovers they were misled.</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mt-1"><strong>Result:</strong> Agent faces disciplinary action for misrepresentation. Possible license revocation, fines, and customer lawsuit.</p>
+                    </div>
+                </div>
+
+                <!-- False Advertising -->
+                <div class="bg-orange-50 dark:bg-orange-900/20 rounded-xl p-5 border-l-4 border-orange-500 mb-6">
+                    <h4 class="font-bold text-orange-800 dark:text-orange-300 text-lg mb-3">False Advertising</h4>
+                    <p class="text-gray-700 dark:text-gray-300 mb-3"><strong>What it means:</strong> Any advertising (print, TV, internet, radio, brochures) that contains untrue, deceptive, or misleading statements.</p>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg mb-3">
+                        <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Specifically includes misrepresenting:</p>
+                        <ul class="text-sm text-gray-600 dark:text-gray-400 space-y-1">
+                            <li>• Terms, benefits, conditions, or advantages of any policy</li>
+                            <li>• Dividends to be received or previously paid</li>
+                            <li>• Financial condition of any person or company</li>
+                            <li>• True purpose of an assignment or loan against a policy</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg mb-3">
+                        <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Also prohibited:</p>
+                        <ul class="text-sm text-gray-600 dark:text-gray-400 space-y-1">
+                            <li>• Representing a policy as "stock" or shares</li>
+                            <li>• Using names that misrepresent true nature of policy</li>
+                            <li>• Using a name that deceptively suggests you're an insurer</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Example:</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400"><strong>The Setup:</strong> Agency runs Facebook ads claiming "GUARANTEED approval for all homeowners - no inspections, no questions asked!"</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mt-1"><strong>What Happens:</strong> Customer applies based on the ad, but underwriting rejects them due to roof condition and claims history.</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mt-1"><strong>Why It's Wrong:</strong> The ad falsely promised "guaranteed approval." No insurer guarantees approval without underwriting. This is false advertising that could result in fines and license action.</p>
+                    </div>
+                </div>
+
+                <!-- Rebating -->
+                <div class="bg-red-50 dark:bg-red-900/20 rounded-xl p-5 border-l-4 border-red-500 mb-6">
+                    <h4 class="font-bold text-red-800 dark:text-red-300 text-lg mb-3">Rebating and Inducement</h4>
+                    <p class="text-gray-700 dark:text-gray-300 mb-3"><strong>What it means:</strong> Offering ANY inducement to purchase insurance that is NOT specified in the policy.</p>
+                    <p class="text-red-700 dark:text-red-400 font-semibold mb-4">Both OFFERING and ACCEPTING rebates are ILLEGAL!</p>
+
+                    <div class="grid md:grid-cols-2 gap-4 mb-4">
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                            <p class="font-semibold text-red-800 dark:text-red-300 mb-2">Examples of PROHIBITED Rebates:</p>
+                            <ul class="text-sm text-gray-600 dark:text-gray-400 space-y-1">
+                                <li>• Cash or cash equivalents over $100</li>
+                                <li>• Concert/event tickets worth over $100</li>
+                                <li>• Premium rebates</li>
+                                <li>• Special favors or services</li>
+                                <li>• Stocks, bonds, securities</li>
+                                <li>• Special dividend advantages</li>
+                            </ul>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                            <p class="font-semibold text-green-800 dark:text-green-300 mb-2">ALLOWED (Not Considered Rebating):</p>
+                            <ul class="text-sm text-gray-600 dark:text-gray-400 space-y-1">
+                                <li>• Promotional items <strong>under $100</strong></li>
+                                <li>• Gifts of merchandise under $100</li>
+                                <li>• Branded pens, calendars, etc.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Example:</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400"><strong>The Setup:</strong> Agent tells customer "Buy this policy and I'll give you $150 cash back from my commission."</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mt-1"><strong>Why It's Wrong:</strong> This is rebating - offering something NOT in the policy to induce purchase.</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mt-1"><strong>VERSUS:</strong> Agent giving customer a $50 branded umbrella? ALLOWED - under $100 promotional item.</p>
+                    </div>
+                </div>
+
+                <!-- Boycott, Coercion, Intimidation -->
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-xl p-5 border-l-4 border-purple-500 mb-6">
+                    <h4 class="font-bold text-purple-800 dark:text-purple-300 text-lg mb-3">Boycott, Coercion, Intimidation</h4>
+                    <p class="text-gray-700 dark:text-gray-300 mb-3"><strong>What it means:</strong> Any activity intended to restrict fair trade or create a monopoly.</p>
+
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg mb-3">
+                        <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Coercion specifically means:</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Requiring someone to buy insurance from a SPECIFIC insurer as a condition of getting a loan.</p>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Example:</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400"><strong>The Setup:</strong> Bank officer tells mortgage applicant: "I'll only approve your loan if you buy homeowners insurance from my brother's agency."</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mt-1"><strong>Why It's Wrong:</strong> This is coercion. The bank can require insurance, but cannot dictate which specific insurer you use.</p>
+                    </div>
+                </div>
+
+                <!-- Other Prohibited Practices with Examples -->
+
+                <!-- False Financial Statements -->
+                <div class="bg-gray-50 dark:bg-gray-700 rounded-xl p-5 border-l-4 border-gray-500 mb-6">
+                    <h4 class="font-bold text-gray-800 dark:text-gray-200 text-lg mb-3">False Financial Statements</h4>
+                    <p class="text-gray-700 dark:text-gray-300 mb-3"><strong>What it means:</strong> Statements intended to deceive about an insurer's financial condition. Often involves hiding facts to make the company look better.</p>
+                    <div class="bg-white dark:bg-gray-600 p-4 rounded-lg">
+                        <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Example:</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400"><strong>The Setup:</strong> Agent knows that XYZ Insurance Company recently had their credit rating downgraded and is under regulatory scrutiny for insufficient reserves.</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mt-1"><strong>What Happens:</strong> A customer asks if XYZ is financially stable. Agent says, "Oh absolutely! They're one of the strongest companies in the industry. Rock solid."</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mt-1"><strong>Why It's Wrong:</strong> The agent made false statements about the insurer's financial condition. The agent should have directed the customer to independent rating agencies (AM Best, S&P) for accurate financial information.</p>
+                    </div>
+                </div>
+
+                <!-- Defamation -->
+                <div class="bg-gray-50 dark:bg-gray-700 rounded-xl p-5 border-l-4 border-gray-500 mb-6">
+                    <h4 class="font-bold text-gray-800 dark:text-gray-200 text-lg mb-3">Defamation</h4>
+                    <p class="text-gray-700 dark:text-gray-300 mb-3"><strong>What it means:</strong> Making oral or written statements intended to injure another person in the insurance business, or maliciously criticizing their financial condition.</p>
+                    <div class="bg-white dark:bg-gray-600 p-4 rounded-lg">
+                        <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Example:</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400"><strong>The Setup:</strong> Agent Tom is competing with Agent Sarah for a large commercial account.</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mt-1"><strong>What Happens:</strong> Tom tells the prospect: "Don't use Sarah - she's been investigated for fraud multiple times and her clients' claims never get paid. She's basically a scam artist."</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mt-1"><strong>Why It's Wrong:</strong> Tom is making false, malicious statements to injure Sarah's business reputation. Even if Tom genuinely believes these things, making such statements without proof is defamation and a prohibited trade practice.</p>
+                    </div>
+                </div>
+
+                <!-- Unfair Discrimination -->
+                <div class="bg-gray-50 dark:bg-gray-700 rounded-xl p-5 border-l-4 border-gray-500 mb-6">
+                    <h4 class="font-bold text-gray-800 dark:text-gray-200 text-lg mb-3">Unfair Discrimination</h4>
+                    <p class="text-gray-700 dark:text-gray-300 mb-3"><strong>What it means:</strong> Discrimination in rates or benefits for people in the same class or risk. Cannot discriminate based on marital status, race, national origin, gender identity, sexual orientation, creed, or ancestry (unless for legitimate business purpose or required by law).</p>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="bg-red-100 dark:bg-red-900/30 p-4 rounded-lg">
+                            <p class="font-semibold text-red-800 dark:text-red-300 mb-2">VIOLATION Example:</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400"><strong>Setup:</strong> Two homeowners apply for the same HO-3 policy. Both have similar homes, same neighborhood, identical claims history and credit scores.</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mt-1"><strong>What Happens:</strong> Agent quotes Mr. Johnson (single) $1,200/year but quotes Mr. Rodriguez (also single, same risk profile) $1,800/year based solely on his Hispanic surname.</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mt-1"><strong>Result:</strong> This is unfair discrimination based on national origin - illegal.</p>
+                        </div>
+                        <div class="bg-green-100 dark:bg-green-900/30 p-4 rounded-lg">
+                            <p class="font-semibold text-green-800 dark:text-green-300 mb-2">ACCEPTABLE Difference:</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400"><strong>Setup:</strong> Same two homeowners apply, but Mr. Johnson has a new roof and updated electrical, while Mr. Smith has a 30-year-old roof and knob-and-tube wiring.</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mt-1"><strong>What Happens:</strong> Mr. Smith is quoted a higher premium due to the increased risk from outdated systems.</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mt-1"><strong>Result:</strong> This is legitimate underwriting based on actual risk factors - perfectly legal.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stock Operations -->
+                <div class="bg-gray-50 dark:bg-gray-700 rounded-xl p-5 border-l-4 border-gray-500 mb-6">
+                    <h4 class="font-bold text-gray-800 dark:text-gray-200 text-lg mb-3">Stock Operations</h4>
+                    <p class="text-gray-700 dark:text-gray-300 mb-3"><strong>What it means:</strong> Cannot issue company stock, securities, or promises of profits as an inducement to buy insurance.</p>
+                    <div class="bg-white dark:bg-gray-600 p-4 rounded-lg">
+                        <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Example:</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400"><strong>The Setup:</strong> Agent is trying to sell a large life insurance policy to a wealthy prospect.</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mt-1"><strong>What Happens:</strong> Agent says: "If you buy this $1 million policy, I can get you 100 shares of the insurance company's stock at a special insider price. You'll make a fortune when the stock goes up!"</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mt-1"><strong>Why It's Wrong:</strong> Offering securities or profit-sharing arrangements as an inducement to purchase insurance is prohibited. Insurance must stand on its own merits.</p>
+                    </div>
+                </div>
+
+                <!-- Failure to Maintain Complaint Procedures -->
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-5 border-l-4 border-blue-500">
+                    <h4 class="font-bold text-blue-800 dark:text-blue-300 text-lg mb-3">Failure to Maintain Complaint Handling Procedures</h4>
+                    <p class="text-gray-700 dark:text-gray-300 mb-3">Insurers MUST maintain complete records of all complaints since their last examination. Records must include:</p>
+                    <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-1">
+                        <li>• Total number of complaints</li>
+                        <li>• Line of insurance and nature of each complaint</li>
+                        <li>• Action taken and time to process each</li>
+                    </ul>
+                    <p class="text-sm text-gray-600 dark:text-gray-400 mt-3"><strong>Note:</strong> "Complaint" = any WRITTEN communication expressing a grievance</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Unfair Claim Settlement Practices -->
+        <section id="claims" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">2. Unfair Claim Settlement Practices</h2>
+
+                <div class="bg-amber-50 dark:bg-amber-900/20 border-l-4 border-amber-500 p-4 rounded-r-lg mb-6">
+                    <p class="text-gray-700 dark:text-gray-300">These are unfair practices if done <strong>openly and in conscious disregard</strong> of rules, OR if done with <strong>such frequency</strong> as to indicate a general business practice.</p>
+                </div>
+
+                <!-- Unfair Claims Grid with Examples -->
+                <div class="space-y-6">
+
+                    <!-- Misrepresenting Coverage -->
+                    <div class="bg-red-50 dark:bg-red-900/20 p-5 rounded-lg border border-red-200 dark:border-red-800">
+                        <p class="font-bold text-red-800 dark:text-red-300 mb-2 text-lg">1. Misrepresenting Coverage</p>
+                        <p class="text-gray-700 dark:text-gray-300 mb-3">Misrepresenting pertinent facts or policy provisions relating to coverages.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                            <p class="text-sm text-gray-600 dark:text-gray-400"><strong>Example:</strong> Homeowner files a water damage claim. Adjuster tells them "Your policy doesn't cover any water damage" when in fact it covers sudden/accidental discharge from plumbing - just not flood. The adjuster misrepresented what was actually covered.</p>
+                        </div>
+                    </div>
+
+                    <!-- Failing to Act Promptly -->
+                    <div class="bg-red-50 dark:bg-red-900/20 p-5 rounded-lg border border-red-200 dark:border-red-800">
+                        <p class="font-bold text-red-800 dark:text-red-300 mb-2 text-lg">2. Failing to Act Promptly</p>
+                        <p class="text-gray-700 dark:text-gray-300 mb-3">Failing to acknowledge and act reasonably promptly on communications regarding claims.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                            <p class="text-sm text-gray-600 dark:text-gray-400"><strong>Example:</strong> Insured calls to report a car accident on Monday. They call again Wednesday, Friday, and the following week. No one returns calls. After 3 weeks with no response, they still haven't received a claim number or been assigned an adjuster.</p>
+                        </div>
+                    </div>
+
+                    <!-- Inadequate Investigation -->
+                    <div class="bg-red-50 dark:bg-red-900/20 p-5 rounded-lg border border-red-200 dark:border-red-800">
+                        <p class="font-bold text-red-800 dark:text-red-300 mb-2 text-lg">3. Inadequate Investigation</p>
+                        <p class="text-gray-700 dark:text-gray-300 mb-3">Failing to adopt reasonable standards for prompt investigation of claims.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                            <p class="text-sm text-gray-600 dark:text-gray-400"><strong>Example:</strong> Insured reports roof damage from a storm. Company never sends an adjuster to inspect, never requests photos, and takes 4 months just to review paperwork that was submitted in week one.</p>
+                        </div>
+                    </div>
+
+                    <!-- Refusing Without Investigation -->
+                    <div class="bg-red-50 dark:bg-red-900/20 p-5 rounded-lg border border-red-200 dark:border-red-800">
+                        <p class="font-bold text-red-800 dark:text-red-300 mb-2 text-lg">4. Refusing Without Investigation</p>
+                        <p class="text-gray-700 dark:text-gray-300 mb-3">Refusing to pay claims without conducting reasonable investigation.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                            <p class="text-sm text-gray-600 dark:text-gray-400"><strong>Example:</strong> Insured files theft claim for stolen jewelry. Within 24 hours, company sends denial letter saying "claim denied - insufficient evidence." No adjuster ever contacted the insured, no police report was requested, no investigation was done.</p>
+                        </div>
+                    </div>
+
+                    <!-- Delayed Coverage Decision -->
+                    <div class="bg-red-50 dark:bg-red-900/20 p-5 rounded-lg border border-red-200 dark:border-red-800">
+                        <p class="font-bold text-red-800 dark:text-red-300 mb-2 text-lg">5. Delayed Coverage Decision</p>
+                        <p class="text-gray-700 dark:text-gray-300 mb-3">Failing to affirm or deny coverage within reasonable time after proof of loss.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                            <p class="text-sm text-gray-600 dark:text-gray-400"><strong>Example:</strong> After a house fire, insured submits complete proof of loss with all documentation. Six months pass with no word from the company - no approval, no denial, no explanation. The insured is left in limbo, unable to rebuild or move forward.</p>
+                        </div>
+                    </div>
+
+                    <!-- Not Settling in Good Faith -->
+                    <div class="bg-red-50 dark:bg-red-900/20 p-5 rounded-lg border border-red-200 dark:border-red-800">
+                        <p class="font-bold text-red-800 dark:text-red-300 mb-2 text-lg">6. Not Settling in Good Faith</p>
+                        <p class="text-gray-700 dark:text-gray-300 mb-3">Not attempting in good faith to promptly and fairly settle claims where liability is reasonably clear.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                            <p class="text-sm text-gray-600 dark:text-gray-400"><strong>Example:</strong> Clear liability auto accident - insured rear-ended another car at a red light. The other driver has $5,000 in documented medical bills and repair estimates. Company drags feet for months hoping the claimant will give up or accept a lowball offer.</p>
+                        </div>
+                    </div>
+
+                    <!-- Lowballing -->
+                    <div class="bg-red-50 dark:bg-red-900/20 p-5 rounded-lg border border-red-200 dark:border-red-800">
+                        <p class="font-bold text-red-800 dark:text-red-300 mb-2 text-lg">7. Lowballing to Force Litigation</p>
+                        <p class="text-gray-700 dark:text-gray-300 mb-3">Offering substantially less than what's due, compelling insureds to sue to recover proper amounts.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                            <p class="text-sm text-gray-600 dark:text-gray-400"><strong>Example:</strong> Contractor estimates show $45,000 to repair fire damage. Company offers $12,000, knowing full well this won't cover repairs. They're betting the insured can't afford a lawyer and will accept the lowball offer rather than fight.</p>
+                        </div>
+                    </div>
+
+                    <!-- Appealing Arbitration -->
+                    <div class="bg-red-50 dark:bg-red-900/20 p-5 rounded-lg border border-red-200 dark:border-red-800">
+                        <p class="font-bold text-red-800 dark:text-red-300 mb-2 text-lg">8. Appealing All Arbitration Awards</p>
+                        <p class="text-gray-700 dark:text-gray-300 mb-3">Making a policy of appealing arbitration awards to force lower settlements.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                            <p class="text-sm text-gray-600 dark:text-gray-400"><strong>Example:</strong> Company has internal policy: "Appeal every arbitration award over $10,000 automatically." They do this not because the awards are wrong, but to exhaust claimants into accepting less money just to end the process.</p>
+                        </div>
+                    </div>
+
+                    <!-- Duplicate Submissions -->
+                    <div class="bg-red-50 dark:bg-red-900/20 p-5 rounded-lg border border-red-200 dark:border-red-800">
+                        <p class="font-bold text-red-800 dark:text-red-300 mb-2 text-lg">9. Requiring Duplicate Submissions</p>
+                        <p class="text-gray-700 dark:text-gray-300 mb-3">Requiring preliminary claim report THEN formal proof of loss with the same information.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                            <p class="text-sm text-gray-600 dark:text-gray-400"><strong>Example:</strong> Insured fills out 10-page claim form with full details. Company then requires them to fill out another "official" form with the exact same questions. Then requests a third "sworn statement" with identical information. This is designed to frustrate claimants into giving up.</p>
+                        </div>
+                    </div>
+
+                    <!-- No Explanation for Denial -->
+                    <div class="bg-red-50 dark:bg-red-900/20 p-5 rounded-lg border border-red-200 dark:border-red-800">
+                        <p class="font-bold text-red-800 dark:text-red-300 mb-2 text-lg">10. No Explanation for Denial</p>
+                        <p class="text-gray-700 dark:text-gray-300 mb-3">Failing to promptly explain the policy basis for denying a claim.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                            <p class="text-sm text-gray-600 dark:text-gray-400"><strong>Example:</strong> Insured receives letter: "Your claim has been denied." That's it. No explanation of which policy provision applies, no reference to any exclusion, no description of why the damage isn't covered. The insured has no idea what to do next.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Licensee Responsibilities -->
+        <section id="responsibilities" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">3. Licensee Responsibilities</h2>
+
+                <!-- Key Time Requirements -->
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg text-center border-2 border-purple-300 dark:border-purple-700">
+                        <p class="text-3xl font-bold text-purple-600 dark:text-purple-400">30</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">days to report address change</p>
+                    </div>
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg text-center border-2 border-blue-300 dark:border-blue-700">
+                        <p class="text-3xl font-bold text-blue-600 dark:text-blue-400">15</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">days to reply to Commissioner inquiry</p>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg text-center border-2 border-green-300 dark:border-green-700">
+                        <p class="text-3xl font-bold text-green-600 dark:text-green-400">10</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">days to deliver policy to insured</p>
+                    </div>
+                    <div class="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg text-center border-2 border-amber-300 dark:border-amber-700">
+                        <p class="text-3xl font-bold text-amber-600 dark:text-amber-400">5</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">business days to report claims</p>
+                    </div>
+                </div>
+
+                <!-- Address & Business Names -->
+                <h3 class="text-xl font-bold text-gray-800 dark:text-gray-100 mb-4">Address & Business Names</h3>
+
+                <div class="bg-gray-50 dark:bg-gray-700 rounded-xl p-5 mb-6">
+                    <div class="space-y-4">
+                        <div>
+                            <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Change of Address</p>
+                            <p class="text-sm text-gray-700 dark:text-gray-300">Must notify Department of changes to business address, residence address, phone number, and email within <strong>30 days</strong>. Keep proof on file for <strong>5 years</strong>.</p>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Business Names</p>
+                            <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-1">
+                                <li>• Cannot use name other than legal name unless filed with and approved by Department</li>
+                                <li>• Must notify Commissioner BEFORE using an assumed name</li>
+                                <li>• Name cannot be misleading or deceptive</li>
+                                <li>• Cannot be identical/confusingly similar to another licensed producer</li>
+                                <li>• Cannot imply government or nonprofit affiliation</li>
+                                <li>• If using "insurance" in name, must add "agency" or "brokerage" to distinguish from insurer</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Branch Offices -->
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-5 border-l-4 border-blue-500 mb-6">
+                    <h4 class="font-bold text-blue-800 dark:text-blue-300 text-lg mb-3">Branch Offices</h4>
+                    <ul class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
+                        <li>• Must register with Commissioner to get branch office certificate</li>
+                        <li>• File registration form within <strong>30 days BEFORE</strong> starting business there</li>
+                        <li>• Certificate expires same time as producer's license</li>
+                        <li>• Must notify Department within <strong>30 days</strong> of closing a branch office</li>
+                        <li>• At least ONE licensed producer must be assigned to each branch</li>
+                        <li>• Hours must be posted; must be open to provide public access</li>
+                        <li>• Cannot conduct insurance business unless licensed producer is present</li>
+                    </ul>
+                </div>
+
+                <!-- Marketing Standards -->
+                <div class="bg-amber-50 dark:bg-amber-900/20 rounded-xl p-5 border-l-4 border-amber-500 mb-6">
+                    <h4 class="font-bold text-amber-800 dark:text-amber-300 text-lg mb-3">Marketing Standards</h4>
+                    <div class="space-y-3">
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                            <p class="font-semibold text-gray-800 dark:text-gray-200">Disclosure of Information</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">PROHIBITED from disclosing personal or privileged information received in connection with an insurance transaction</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                            <p class="font-semibold text-gray-800 dark:text-gray-200">Policy Delivery</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Deliver/mail to insured within <strong>10 calendar days</strong> of receipt. Can only keep longer if insured agrees in writing.</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                            <p class="font-semibold text-gray-800 dark:text-gray-200">Replies to Commissioner</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Must reply IN WRITING within <strong>15 calendar days</strong> to any Department inquiry</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                            <p class="font-semibold text-gray-800 dark:text-gray-200">Reporting Claims</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Report to insurer within <strong>5 business days</strong> after receiving notice of claim</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Management of Funds -->
+        <section id="funds" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">4. Management of Funds</h2>
+
+                <div class="bg-red-50 dark:bg-red-900/20 border-2 border-red-300 dark:border-red-700 rounded-xl p-5 mb-6">
+                    <h4 class="font-bold text-red-800 dark:text-red-300 text-lg mb-3">Commingling of Funds - PROHIBITED!</h4>
+                    <p class="text-gray-700 dark:text-gray-300">All premiums collected must be held in a <strong>fiduciary capacity</strong>. They CANNOT be:</p>
+                    <ul class="mt-2 space-y-1 text-sm text-gray-700 dark:text-gray-300">
+                        <li>• Misappropriated</li>
+                        <li>• Illegally withheld</li>
+                        <li>• Improperly converted to producer's own funds</li>
+                    </ul>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg mt-4">
+                        <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Example:</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400"><strong>The Setup:</strong> Agent Mike collects $5,000 in premiums from various clients during the week.</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mt-1"><strong>What Happens:</strong> Instead of depositing into a separate trust account, Mike deposits the checks into his personal checking account. He uses $2,000 to pay his rent, planning to "replace it later" before sending premiums to the insurer.</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mt-1"><strong>Why It's Wrong:</strong> This is commingling - mixing client premiums with personal funds. Even if Mike intended to pay it back, the premiums were held in fiduciary capacity and must NEVER be mixed with personal money. This is grounds for license revocation and possible criminal charges.</p>
+                    </div>
+                </div>
+
+                <!-- Remittance Standards -->
+                <div class="bg-green-50 dark:bg-green-900/20 rounded-xl p-5 border-l-4 border-green-500 mb-6">
+                    <h4 class="font-bold text-green-800 dark:text-green-300 text-lg mb-3">Remittance Standards</h4>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg text-center">
+                            <p class="text-2xl font-bold text-green-600 dark:text-green-400">5 Business Days</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">To remit premiums TO insurer</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg text-center">
+                            <p class="text-2xl font-bold text-green-600 dark:text-green-400">5 Business Days</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">To pay/credit premiums due TO insured</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Trust Account -->
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-5 border-l-4 border-blue-500 mb-6">
+                    <h4 class="font-bold text-blue-800 dark:text-blue-300 text-lg mb-3">Trust Account Required When:</h4>
+                    <ul class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
+                        <li class="flex items-start"><span class="text-blue-500 mr-2">•</span>Producer holds premiums for more than 5 business days before remitting</li>
+                        <li class="flex items-start"><span class="text-blue-500 mr-2">•</span>Producer deposits premiums into a financial institution account, even if remitting within 5 days</li>
+                    </ul>
+                </div>
+
+                <!-- Record Maintenance -->
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-xl p-5 border-l-4 border-purple-500 mb-6">
+                    <h4 class="font-bold text-purple-800 dark:text-purple-300 text-lg mb-3">Record Maintenance</h4>
+                    <ul class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
+                        <li>• Must issue receipt for EVERY premium payment/deposit/installment</li>
+                        <li>• Keep copy of each receipt issued</li>
+                        <li>• Completed receipt books: retain <strong>5 years</strong> from completion</li>
+                        <li>• All other books/records: maintain for <strong>5 years</strong> after termination of coverage</li>
+                    </ul>
+                </div>
+
+                <!-- Commissions -->
+                <div class="bg-gray-50 dark:bg-gray-700 rounded-xl p-5">
+                    <h4 class="font-bold text-gray-800 dark:text-gray-200 text-lg mb-3">Commissions and Compensation Rules</h4>
+                    <ul class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
+                        <li class="flex items-start"><span class="text-red-500 mr-2">!</span>NO company/agent may pay commission to a person who is NOT properly licensed</li>
+                        <li class="flex items-start"><span class="text-red-500 mr-2">!</span>NO one may accept commission if required to be licensed but isn't</li>
+                        <li class="flex items-start"><span class="text-green-500 mr-2">!</span>RENEWAL commissions may be paid to someone who WAS licensed at the time of the original sale</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Administrative Procedures -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">Administrative Procedures</h2>
+
+                <div class="bg-amber-50 dark:bg-amber-900/20 rounded-xl p-5 border border-amber-200 dark:border-amber-800 mb-6">
+                    <p class="text-gray-700 dark:text-gray-300 mb-3">If a producer violates Standards of Conduct, the Department may impose penalties. The notice must be sent by <strong>certified mail or personal delivery</strong> and include:</p>
+                    <ul class="space-y-1 text-sm text-gray-700 dark:text-gray-300">
+                        <li>• Reference to statute/rule violated</li>
+                        <li>• Brief statement of facts</li>
+                        <li>• Statement of administrative penalty</li>
+                        <li>• Notice of right to hearing and how to request one</li>
+                    </ul>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-l-4 border-blue-500">
+                        <p class="font-bold text-blue-800 dark:text-blue-300 mb-2">20 Calendar Days</p>
+                        <p class="text-sm text-gray-700 dark:text-gray-300">Producer has 20 days from service of notice to request a hearing IN WRITING</p>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                        <p class="font-bold text-red-800 dark:text-red-300 mb-2">Failure to Respond</p>
+                        <p class="text-sm text-gray-700 dark:text-gray-300">Failure to respond = admission of all allegations. No further proceeding required before final order imposing penalty.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cheat Sheet -->
+        <section id="cheat-sheet" class="mb-10">
+            <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 border-2 border-dashed border-gray-300 dark:border-gray-600">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100">Cheat Sheet: Trade Practices</h2>
+                    <span class="text-sm text-gray-500 dark:text-gray-400">Print for quick reference</span>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-4">
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                        <p class="font-bold text-purple-700 dark:text-purple-300">$100</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Max value for promotional items (not rebating)</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                        <p class="font-bold text-purple-700 dark:text-purple-300">5 business days</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Remit premiums to insurer</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                        <p class="font-bold text-purple-700 dark:text-purple-300">5 business days</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Report claims to insurer</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                        <p class="font-bold text-purple-700 dark:text-purple-300">10 calendar days</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Deliver policy to insured</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                        <p class="font-bold text-purple-700 dark:text-purple-300">15 calendar days</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Reply to Commissioner inquiry</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                        <p class="font-bold text-purple-700 dark:text-purple-300">20 calendar days</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Request hearing after notice</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                        <p class="font-bold text-purple-700 dark:text-purple-300">30 days</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Report address change / branch office opening/closing</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                        <p class="font-bold text-purple-700 dark:text-purple-300">5 years</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Keep financial records after coverage ends</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                        <p class="font-bold text-purple-700 dark:text-purple-300">Fiduciary</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Premiums must be held in fiduciary capacity</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Trap Alerts -->
+        <section id="exam-traps" class="mb-10">
+            <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-xl p-5 lg:p-6">
+                <h2 class="text-2xl font-bold text-red-800 dark:text-red-300 mb-4">Exam Trap Alerts</h2>
+                <div class="space-y-4">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">1. Both Offering AND Accepting Rebates = Illegal</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">Don't think only the agent gets in trouble. If you ACCEPT a rebate as a customer, you've also violated the law.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">2. $100 is the Magic Number</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">Promotional items UNDER $100 are OK. At $100 or more, it's rebating. Questions may try to trick with "$99" (OK) vs "$101" (not OK).</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">3. Business Days vs Calendar Days</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">Premium remittance and claims = 5 BUSINESS days. Policy delivery = 10 CALENDAR days. Commissioner reply = 15 CALENDAR days. Pay attention!</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">4. "General Business Practice"</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">Unfair trade practice requires "frequency indicating a general business practice." One mistake might not be a violation, but a pattern of behavior is.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">5. Coercion = Specific Insurer Requirement</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">A bank CAN require you to have insurance as a loan condition. A bank CANNOT require you to buy from a SPECIFIC insurer. That's coercion.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">6. Renewal Commissions Are OK</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">Even if someone is no longer licensed, they CAN receive renewal commissions for policies they sold when they WERE licensed. That's not a violation.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Reference Summary -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-purple-600 to-purple-800 rounded-xl p-6 text-white">
+                <h2 class="text-2xl font-bold mb-6">Quick Reference Summary</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Rebating</p>
+                        <p class="text-sm text-purple-100">Offering inducements not in policy. Both parties violate. Under $100 promotional OK.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Coercion</p>
+                        <p class="text-sm text-purple-100">Requiring purchase from specific insurer as loan condition</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Premiums</p>
+                        <p class="text-sm text-purple-100">Fiduciary capacity, remit within 5 business days, trust account if holding longer</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Policy Delivery</p>
+                        <p class="text-sm text-purple-100">10 calendar days from receipt</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Claims</p>
+                        <p class="text-sm text-purple-100">Report to insurer within 5 business days</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Records</p>
+                        <p class="text-sm text-purple-100">Keep 5 years after coverage terminates</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Navigation -->
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <a href="../part-3/index.html" class="text-purple-400 hover:text-purple-300 mb-4 md:mb-0">← Part 3: Licensing</a>
+                <span class="text-gray-400 mb-4 md:mb-0">Part 4 of 9</span>
+                <a href="../part-5/index.html" class="text-purple-400 hover:text-purple-300">Part 5: Information Privacy →</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AI Tutor Button -->
+    <button onclick="openAITutor()" class="fixed bottom-8 right-8 bg-purple-600 hover:bg-purple-700 text-white rounded-full p-4 shadow-lg hover:scale-110 transition-transform">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+        </svg>
+    </button>
+
+    <script>
+        function openAITutor() {
+            const context = `I'm studying NJ Trade Practices regulations. Key topics:
+
+PROHIBITED PRACTICES:
+1. Misrepresentation - False/misleading statements about policy benefits
+2. False Advertising - Deceptive ads about terms, benefits, financial condition
+3. Rebating - Offering inducements not in policy (UNDER $100 promotional items OK)
+4. Boycott, Coercion, Intimidation - Requiring specific insurer as loan condition
+5. False Financial Statements - Deceiving about insurer's financial condition
+6. Defamation - Malicious statements about other agents/companies
+7. Unfair Discrimination - Different rates for same risk class based on protected characteristics
+
+KEY NUMBERS:
+- $100 = Max promotional item value (not rebating)
+- 5 business days = Remit premiums to insurer
+- 5 business days = Report claims to insurer
+- 10 calendar days = Deliver policy to insured
+- 15 calendar days = Reply to Commissioner inquiry
+- 20 calendar days = Request hearing after notice
+- 30 days = Report address change
+- 5 years = Keep financial records
+
+UNFAIR CLAIM SETTLEMENT PRACTICES:
+- Misrepresenting coverage
+- Failing to act promptly
+- Inadequate investigation
+- Refusing without investigation
+- Lowballing to force litigation
+- No explanation for denial
+
+COMMINGLING: Never mix client premiums with personal funds - must be held in fiduciary capacity`;
+
+            showAITutor(context);
+        }
+    </script>
+</body>
+</html>

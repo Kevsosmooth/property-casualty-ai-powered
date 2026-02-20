@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 9: Ethics | Chapter 4 | Property Insurance</title>
+    <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <link rel="stylesheet" href="../../../css/styles.css">
+    <script src="../../../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+        }
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <!-- Settings & Theme Toggle Buttons -->
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="showAPIKeySetup()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings">
+            <svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+        </button>
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/>
+            </svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-purple-600 to-purple-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center text-purple-200 text-sm mb-2">
+                <a href="../../index.html" class="hover:text-white">Property</a>
+                <span class="mx-2">→</span>
+                <a href="../index.html" class="hover:text-white">Chapter 4</a>
+                <span class="mx-2">→</span>
+                <span class="text-white">Part 9</span>
+            </div>
+            <h1 class="text-3xl font-bold">Part 9: Professional Ethics</h1>
+            <p class="text-purple-200 mt-1">Ethical Principles, Responsibilities, and Practices for Insurance Professionals</p>
+        </div>
+    </header>
+
+    <!-- Sticky Navigation -->
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-wrap gap-2 text-sm">
+                <a href="#overview" class="text-purple-600 dark:text-purple-400 hover:text-purple-800 px-2 py-1 rounded hover:bg-purple-50 dark:hover:bg-gray-700">Overview</a>
+                <a href="#responsibilities" class="text-purple-600 dark:text-purple-400 hover:text-purple-800 px-2 py-1 rounded hover:bg-purple-50 dark:hover:bg-gray-700">4 Responsibilities</a>
+                <a href="#practices" class="text-purple-600 dark:text-purple-400 hover:text-purple-800 px-2 py-1 rounded hover:bg-purple-50 dark:hover:bg-gray-700">Ethical Practices</a>
+                <a href="#unethical" class="text-purple-600 dark:text-purple-400 hover:text-purple-800 px-2 py-1 rounded hover:bg-purple-50 dark:hover:bg-gray-700">Unethical Practices</a>
+                <a href="#values" class="text-purple-600 dark:text-purple-400 hover:text-purple-800 px-2 py-1 rounded hover:bg-purple-50 dark:hover:bg-gray-700">Core Values</a>
+                <a href="#cheat-sheet" class="text-purple-600 dark:text-purple-400 hover:text-purple-800 px-2 py-1 rounded hover:bg-purple-50 dark:hover:bg-gray-700">Cheat Sheet</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-5xl lg:max-w-7xl">
+
+        <!-- Note: Not on Exam -->
+        <section class="mb-6">
+            <div class="bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-800 rounded-lg p-4">
+                <p class="text-blue-800 dark:text-blue-300 text-base lg:text-lg"><strong>Note:</strong> The information in this section is part of required ethics education but will NOT appear on the state exam. This content helps you understand ethical principles and practices for your career as an insurance professional.</p>
+            </div>
+        </section>
+
+        <!-- Overview Section -->
+        <section id="overview" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">Overview: Ethics in Insurance</h2>
+
+                <div class="bg-purple-50 dark:bg-purple-900/30 rounded-xl p-5 lg:p-6 mb-6 border border-purple-200 dark:border-purple-800">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Ethics can be studied on two levels: <strong>philosophically</strong> (helping you gain personal and professional satisfaction) and <strong>practically</strong> (helping you avoid controversy and increase efficiency). The core idea is simple: <em>"Regard for others."</em></p>
+                </div>
+
+                <!-- Definition -->
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-5 mb-6 border-l-4 border-blue-500">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg mb-3">Ethics Defined (Albert Schweitzer)</h3>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg italic">"Ethics is the name we give to our concern for good behavior. We feel an obligation to consider not only our own personal well-being but also that of others and of human society as a whole."</p>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm mt-3">Distilled into three words: <strong>"Regard for others"</strong></p>
+                </div>
+
+                <!-- Start Here: 5 Things You MUST Know -->
+                <div class="bg-gradient-to-r from-purple-100 to-purple-200 dark:from-purple-900/40 dark:to-purple-800/40 rounded-xl p-6 mb-8 border border-purple-300 dark:border-purple-700">
+                    <h3 class="text-xl font-bold text-purple-800 dark:text-purple-200 mb-4">Start Here: 5 Key Ethical Concepts</h3>
+                    <div class="grid md:grid-cols-2 gap-3">
+                        <div class="flex items-start">
+                            <span class="bg-purple-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>4 Primary Responsibilities:</strong> To the Insurer, Policyowners, Public, and State</p>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="bg-purple-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>Sell to Needs:</strong> Match products to what clients actually need, not what makes the most commission</p>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="bg-purple-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>Service the Sale:</strong> Ethical service doesn't end at the sale - it continues throughout the relationship</p>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="bg-purple-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">4</span>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>Avoid Deception:</strong> Full disclosure, honest presentations, no misleading comparisons</p>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="bg-purple-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">5</span>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>8 Core Values:</strong> Honesty, Integrity, Promise-keeping, Fidelity, Fairness, Caring, Respect, Responsibility</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 1: Four Primary Ethical Responsibilities -->
+        <section id="responsibilities" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">The 4 Primary Ethical Responsibilities</h2>
+
+                <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-6">An insurance agent has four primary ethical responsibilities. Each creates obligations that guide professional conduct.</p>
+
+                <!-- Responsibility 1: To the Insurer -->
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-5 mb-6 border-l-4 border-blue-500">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg lg:text-xl mb-3">1. Responsibilities to the Insurer</h3>
+
+                    <div class="space-y-3 mb-4">
+                        <p class="text-gray-700 dark:text-gray-300">The duties to the insurer are established by the <strong>concept of agency</strong>, represented by the agency contract. Within that contract, you owe:</p>
+                        <ul class="ml-6 space-y-1 text-gray-700 dark:text-gray-300 text-sm lg:text-base">
+                            <li class="flex items-start"><span class="text-blue-600 mr-2">•</span><strong>Honesty</strong> - Never lie to or deceive the insurer</li>
+                            <li class="flex items-start"><span class="text-blue-600 mr-2">•</span><strong>Good Faith</strong> - Act in the insurer's best interest</li>
+                            <li class="flex items-start"><span class="text-blue-600 mr-2">•</span><strong>Loyalty</strong> - Exclusive loyalty if you're a captive agent</li>
+                            <li class="flex items-start"><span class="text-blue-600 mr-2">•</span><strong>Full Disclosure</strong> - Reveal all material facts to the insurer</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-semibold text-blue-800 dark:text-blue-300 mb-2">Real-World Scenario: Agent Reflects Company Image</p>
+                        <div class="space-y-2 text-sm lg:text-base">
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Agent Tom is a captive agent for ABC Insurance. He handles all sales in his community.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Tom is rude to clients, makes false promises about coverage, and doesn't return calls. Clients in town start saying "ABC Insurance is terrible!"</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Impact:</strong> Tom's unethical behavior damages ABC Insurance's reputation in the entire community. The agent IS the company in the public's eyes.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Responsibility 2: To Policyowners -->
+                <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-5 mb-6 border-l-4 border-green-500">
+                    <h3 class="font-bold text-green-800 dark:text-green-300 text-lg lg:text-xl mb-3">2. Responsibilities to Policyowners</h3>
+
+                    <div class="space-y-3 mb-4">
+                        <p class="text-gray-700 dark:text-gray-300">You meet your ethical responsibilities to policyowners by <strong>filling needs</strong> and providing <strong>quality service</strong>. You owe them:</p>
+                        <ul class="ml-6 space-y-1 text-gray-700 dark:text-gray-300 text-sm lg:text-base">
+                            <li class="flex items-start"><span class="text-green-600 mr-2">•</span><strong>Sell to Needs</strong> - Recommend what they need, not what pays the most commission</li>
+                            <li class="flex items-start"><span class="text-green-600 mr-2">•</span><strong>Service the Sale</strong> - Ongoing service throughout the relationship</li>
+                            <li class="flex items-start"><span class="text-green-600 mr-2">•</span><strong>Full Disclosure</strong> - Explain policy terms, benefits, and limitations honestly</li>
+                            <li class="flex items-start"><span class="text-green-600 mr-2">•</span><strong>Confidentiality</strong> - Protect personal and financial information</li>
+                            <li class="flex items-start"><span class="text-green-600 mr-2">•</span><strong>Timely Submission</strong> - Submit applications promptly</li>
+                            <li class="flex items-start"><span class="text-green-600 mr-2">•</span><strong>Prompt Delivery</strong> - Deliver policies without delay</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-semibold text-green-800 dark:text-green-300 mb-2">Real-World Scenario: Selling to Needs vs. Commissions</p>
+                        <div class="space-y-2 text-sm lg:text-base">
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Young couple Mike and Sarah just bought their first home. They need basic homeowners insurance. Agent Lisa knows a comprehensive policy with all endorsements pays her 3x the commission.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>Ethical Choice:</strong> Lisa recommends the basic HO-3 policy that fits their needs and budget, not the expensive policy with coverage they don't need.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Mike and Sarah trust Lisa and become long-term clients. They refer friends and family. Ethical selling builds lasting relationships.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Responsibility 3: To the Public -->
+                <div class="bg-amber-50 dark:bg-amber-900/20 rounded-lg p-5 mb-6 border-l-4 border-amber-500">
+                    <h3 class="font-bold text-amber-800 dark:text-amber-300 text-lg lg:text-xl mb-3">3. Responsibilities to the Public</h3>
+
+                    <div class="space-y-3 mb-4">
+                        <p class="text-gray-700 dark:text-gray-300">The insurance agent has <strong>more control over the public's attitude toward insurance</strong> than representatives for most other consumer products. Why? Because the agent:</p>
+                        <ul class="ml-6 space-y-1 text-gray-700 dark:text-gray-300 text-sm lg:text-base">
+                            <li class="flex items-start"><span class="text-amber-600 mr-2">•</span>Initiates contact with prospects</li>
+                            <li class="flex items-start"><span class="text-amber-600 mr-2">•</span>Determines the prospect's needs</li>
+                            <li class="flex items-start"><span class="text-amber-600 mr-2">•</span>Recommends products</li>
+                            <li class="flex items-start"><span class="text-amber-600 mr-2">•</span>Makes the sales presentation</li>
+                            <li class="flex items-start"><span class="text-amber-600 mr-2">•</span>Develops long-term relationships</li>
+                        </ul>
+                        <p class="text-gray-700 dark:text-gray-300 mt-3"><strong>Two main ethical responsibilities to the public:</strong></p>
+                        <ul class="ml-6 space-y-1 text-gray-700 dark:text-gray-300 text-sm lg:text-base">
+                            <li class="flex items-start"><span class="text-amber-600 mr-2">1.</span>Inform the public about insurance with the highest level of professional integrity</li>
+                            <li class="flex items-start"><span class="text-amber-600 mr-2">2.</span>Maintain a strong, positive image of the industry through professionalism</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-semibold text-amber-800 dark:text-amber-300 mb-2">The Big Picture</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Since the public understands very little about insurance, their perception of the entire industry is based on how well or poorly YOU do YOUR job. One bad agent can make people distrust all insurance professionals.</p>
+                    </div>
+                </div>
+
+                <!-- Responsibility 4: To the State -->
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-5 mb-6 border-l-4 border-purple-500">
+                    <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg lg:text-xl mb-3">4. Responsibilities to the State</h3>
+
+                    <div class="space-y-3 mb-4">
+                        <p class="text-gray-700 dark:text-gray-300">States carry the burden of regulating insurance, including the ethical conduct of licensed agents. Your responsibilities include:</p>
+                        <ul class="ml-6 space-y-1 text-gray-700 dark:text-gray-300 text-sm lg:text-base">
+                            <li class="flex items-start"><span class="text-purple-600 mr-2">•</span>Following all laws and regulations</li>
+                            <li class="flex items-start"><span class="text-purple-600 mr-2">•</span>Avoiding unfair trade practices</li>
+                            <li class="flex items-start"><span class="text-purple-600 mr-2">•</span>Making no misrepresentations to insureds or insurers</li>
+                            <li class="flex items-start"><span class="text-purple-600 mr-2">•</span>Being knowledgeable about products you sell</li>
+                            <li class="flex items-start"><span class="text-purple-600 mr-2">•</span>Refraining from improper solicitations</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-red-100 dark:bg-red-900/30 p-4 rounded-lg">
+                        <p class="font-semibold text-red-800 dark:text-red-300 mb-2">Key Point</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">It is impossible for laws to include every possible unethical action. Therefore, <strong>an action can be unethical even if it's not illegal</strong>. Your ethical responsibility goes beyond just following the law.</p>
+                    </div>
+                </div>
+
+                <!-- Visual Summary: 4 Responsibilities -->
+                <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-5">
+                    <h3 class="font-bold text-gray-800 dark:text-gray-200 text-lg mb-4">Quick Reference: The 4 Responsibilities</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <div class="bg-blue-100 dark:bg-blue-900/40 p-4 rounded-lg text-center">
+                            <p class="text-2xl font-bold text-blue-700 dark:text-blue-300">1</p>
+                            <p class="font-semibold text-blue-800 dark:text-blue-200">Insurer</p>
+                            <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">Honesty, Good Faith, Loyalty</p>
+                        </div>
+                        <div class="bg-green-100 dark:bg-green-900/40 p-4 rounded-lg text-center">
+                            <p class="text-2xl font-bold text-green-700 dark:text-green-300">2</p>
+                            <p class="font-semibold text-green-800 dark:text-green-200">Policyowners</p>
+                            <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">Sell to Needs, Service, Disclosure</p>
+                        </div>
+                        <div class="bg-amber-100 dark:bg-amber-900/40 p-4 rounded-lg text-center">
+                            <p class="text-2xl font-bold text-amber-700 dark:text-amber-300">3</p>
+                            <p class="font-semibold text-amber-800 dark:text-amber-200">Public</p>
+                            <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">Integrity, Positive Image</p>
+                        </div>
+                        <div class="bg-purple-100 dark:bg-purple-900/40 p-4 rounded-lg text-center">
+                            <p class="text-2xl font-bold text-purple-700 dark:text-purple-300">4</p>
+                            <p class="font-semibold text-purple-800 dark:text-purple-200">State</p>
+                            <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">Laws, No Misrepresentation</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Ethical Practices -->
+        <section id="practices" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">Ethical Practices</h2>
+
+                <!-- Avoiding Conflicts of Interest -->
+                <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-5 mb-6 border-l-4 border-red-500">
+                    <h3 class="font-bold text-red-800 dark:text-red-300 text-lg lg:text-xl mb-3">Avoiding Conflicts of Interest</h3>
+
+                    <div class="space-y-3 mb-4">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>Captive Agents:</strong> An agent with an exclusive contract cannot serve two principals (insurers) at the same time. They owe singular loyalty to their insurer.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>Independent Agents:</strong> Face conflict when representing both the insurer and the client. Guidelines:</p>
+                        <ul class="ml-6 space-y-1 text-gray-700 dark:text-gray-300 text-sm lg:text-base">
+                            <li class="flex items-start"><span class="text-red-600 mr-2">•</span>Represent the <strong>insurer</strong> during application, underwriting, recordkeeping, and claims</li>
+                            <li class="flex items-start"><span class="text-red-600 mr-2">•</span>Represent the <strong>client</strong> during the process of selecting the best insurance plan</li>
+                        </ul>
+                        <p class="text-gray-700 dark:text-gray-300 mt-3"><strong>Disclosure Required:</strong> Inform the insurer about any other related services you provide and receive payment for (e.g., tax preparation, consulting).</p>
+                    </div>
+                </div>
+
+                <!-- Commitment to Knowledge -->
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-5 mb-6 border-l-4 border-blue-500">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg lg:text-xl mb-3">Commitment to Knowledge and Skills</h3>
+
+                    <div class="space-y-3">
+                        <p class="text-gray-700 dark:text-gray-300">The policyowner trusts that you have the knowledge and skills to give proper advice. This means you must:</p>
+                        <ul class="ml-6 space-y-1 text-gray-700 dark:text-gray-300 text-sm lg:text-base">
+                            <li class="flex items-start"><span class="text-blue-600 mr-2">•</span>Obtain necessary knowledge and skills to evaluate client needs</li>
+                            <li class="flex items-start"><span class="text-blue-600 mr-2">•</span>Keep your knowledge base current through continuing education</li>
+                            <li class="flex items-start"><span class="text-blue-600 mr-2">•</span>Stay informed of latest developments affecting clients' interests</li>
+                            <li class="flex items-start"><span class="text-blue-600 mr-2">•</span>If not qualified, refer to another professional who is</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Confidentiality -->
+                <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-5 mb-6 border-l-4 border-green-500">
+                    <h3 class="font-bold text-green-800 dark:text-green-300 text-lg lg:text-xl mb-3">Confidentiality</h3>
+
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">In the course of qualifying prospects, completing questionnaires, and analyzing needs, you become privy to personal and financial information. Ethics require that you:</p>
+                    <ul class="ml-6 space-y-1 text-gray-700 dark:text-gray-300 text-sm lg:text-base">
+                        <li class="flex items-start"><span class="text-green-600 mr-2">•</span>Respect the sensitive nature of client information</li>
+                        <li class="flex items-start"><span class="text-green-600 mr-2">•</span>Keep all personal information confidential</li>
+                        <li class="flex items-start"><span class="text-green-600 mr-2">•</span>Never release information without proper client approval</li>
+                    </ul>
+                </div>
+
+                <!-- Underwriting Process -->
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-5 mb-6 border-l-4 border-purple-500">
+                    <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg lg:text-xl mb-3">During the Underwriting Process</h3>
+
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                            <p class="font-bold text-gray-800 dark:text-gray-200 mb-2">Promptness</p>
+                            <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-1">
+                                <li>• Submit applications as soon as possible</li>
+                                <li>• Check applications for accuracy before submitting</li>
+                                <li>• Notify applicant if underwriting takes longer than expected</li>
+                            </ul>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                            <p class="font-bold text-gray-800 dark:text-gray-200 mb-2">Policy Delivery</p>
+                            <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-1">
+                                <li>• Deliver policy promptly and review features</li>
+                                <li>• If policy is rated or rejected, personally review why</li>
+                                <li>• Notify applicant promptly of any adverse decisions</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Unethical Practices to Avoid -->
+        <section id="unethical" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">Unethical Practices to Avoid</h2>
+
+                <!-- Deceptive Advertising -->
+                <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-5 mb-6 border-l-4 border-red-500">
+                    <h3 class="font-bold text-red-800 dark:text-red-300 text-lg lg:text-xl mb-3">Deceptive Use of Advertising Material</h3>
+
+                    <div class="space-y-3">
+                        <p class="text-gray-700 dark:text-gray-300">The potential for deceptive advertising is significant because:</p>
+                        <ul class="ml-6 space-y-1 text-gray-700 dark:text-gray-300 text-sm lg:text-base">
+                            <li class="flex items-start"><span class="text-red-600 mr-2">•</span>Average buyers know very little about insurance</li>
+                            <li class="flex items-start"><span class="text-red-600 mr-2">•</span>By the time consumers find a policy doesn't meet needs, it may be too late</li>
+                        </ul>
+                        <p class="text-gray-700 dark:text-gray-300 mt-3">The NAIC Unfair Trade Practices Act forbids:</p>
+                        <ul class="ml-6 space-y-1 text-gray-700 dark:text-gray-300 text-sm lg:text-base">
+                            <li class="flex items-start"><span class="text-red-600 mr-2">•</span>Misrepresenting benefits, terms, conditions, or features</li>
+                            <li class="flex items-start"><span class="text-red-600 mr-2">•</span>Misrepresenting the insurer's financial condition</li>
+                            <li class="flex items-start"><span class="text-red-600 mr-2">•</span>Using policy names that don't represent true character</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Deceptive Sales Presentations -->
+                <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-5 mb-6 border-l-4 border-red-500">
+                    <h3 class="font-bold text-red-800 dark:text-red-300 text-lg lg:text-xl mb-3">Deceptive Sales Presentations</h3>
+
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">Deceptive sales presentations have generated <strong>more complaints</strong> of unethical agent behavior than any other activity. A presentation is deceptive if it:</p>
+
+                    <div class="grid md:grid-cols-2 gap-4 mb-4">
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                            <p class="font-bold text-red-700 dark:text-red-300 mb-2">Gives the Wrong Impression</p>
+                            <p class="text-sm text-gray-700 dark:text-gray-300">About any aspect of the policy or plan</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                            <p class="font-bold text-red-700 dark:text-red-300 mb-2">Lacks Full Disclosure</p>
+                            <p class="text-sm text-gray-700 dark:text-gray-300">Doesn't explain limitations, exclusions, or conditions</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                            <p class="font-bold text-red-700 dark:text-red-300 mb-2">Misleading Comparisons</p>
+                            <p class="text-sm text-gray-700 dark:text-gray-300">Incomplete or inconclusive product comparisons</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                            <p class="font-bold text-red-700 dark:text-red-300 mb-2">Even Unintentional</p>
+                            <p class="text-sm text-gray-700 dark:text-gray-300">Deception doesn't have to be intentional to be unethical</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-50 dark:bg-gray-900/30 p-4 rounded-lg">
+                        <p class="font-semibold text-red-800 dark:text-red-300 mb-2">Examples of Deceptive Presentations</p>
+                        <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-2">
+                            <li>• Comparing term and whole life policies based ONLY on premium rates</li>
+                            <li>• Calling a policy a "tax shelter" without mentioning premiums aren't deductible</li>
+                            <li>• Recommending health policy without explaining cancellation conditions</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Policy Illustrations -->
+                <div class="bg-amber-50 dark:bg-amber-900/20 rounded-lg p-5 mb-6 border-l-4 border-amber-500">
+                    <h3 class="font-bold text-amber-800 dark:text-amber-300 text-lg lg:text-xl mb-3">Misuse of Policy Illustrations</h3>
+
+                    <div class="space-y-3">
+                        <p class="text-gray-700 dark:text-gray-300">Policy illustrations have been misused to "predict" future performance based on assumptions that may not come true. Problems include:</p>
+                        <ul class="ml-6 space-y-1 text-gray-700 dark:text-gray-300 text-sm lg:text-base">
+                            <li class="flex items-start"><span class="text-amber-600 mr-2">•</span>Showing "vanishing premiums" based on nonguaranteed numbers</li>
+                            <li class="flex items-start"><span class="text-amber-600 mr-2">•</span>Projecting huge cash values without explaining assumptions</li>
+                            <li class="flex items-start"><span class="text-amber-600 mr-2">•</span>Making the illustration the focus rather than the actual policy</li>
+                            <li class="flex items-start"><span class="text-amber-600 mr-2">•</span>Not distinguishing between guaranteed and nonguaranteed values</li>
+                        </ul>
+                        <p class="text-gray-700 dark:text-gray-300 mt-3"><strong>Ethical Practice:</strong> Show illustrations based on a variety of assumptions, not just optimistic scenarios. Clearly distinguish guaranteed from nonguaranteed values.</p>
+                    </div>
+                </div>
+
+                <!-- Attitude Toward Competition -->
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-5 mb-6 border-l-4 border-blue-500">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg lg:text-xl mb-3">Attitude Toward Competition</h3>
+
+                    <div class="space-y-3">
+                        <p class="text-gray-700 dark:text-gray-300">Agents should:</p>
+                        <ul class="ml-6 space-y-1 text-gray-700 dark:text-gray-300 text-sm lg:text-base">
+                            <li class="flex items-start"><span class="text-blue-600 mr-2">•</span><strong>Avoid criticizing other agents</strong> - detrimental to everyone in the business</li>
+                            <li class="flex items-start"><span class="text-blue-600 mr-2">•</span><strong>Avoid criticizing competitors' policies</strong> - incomplete comparisons are misleading</li>
+                            <li class="flex items-start"><span class="text-blue-600 mr-2">•</span>If asked to evaluate a company's reputation, refer to <strong>rating systems</strong> (AM Best, S&P, Weiss)</li>
+                        </ul>
+                        <p class="text-gray-700 dark:text-gray-300 mt-3"><strong>Warning:</strong> An incomplete comparison is misleading and harmful to the public, and can result in <strong>license revocation</strong>.</p>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg mt-4">
+                        <p class="font-semibold text-blue-800 dark:text-blue-300 mb-2">Real-World Scenario: Handling a Competitor Question</p>
+                        <div class="space-y-2 text-sm lg:text-base">
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> A prospect says, "I've been with XYZ Insurance for 10 years. My neighbor says they're terrible and going bankrupt. Should I switch to you?"</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>Wrong Response:</strong> "Oh yes, XYZ is awful! Their claims service is terrible and they're definitely in financial trouble. Come to us instead!"</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>Ethical Response:</strong> "I can't speak to rumors about other companies. If you're concerned about an insurer's financial strength, I'd recommend checking their ratings through AM Best or Standard & Poor's. I'd be happy to show you what our company offers and let you compare."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Core Ethical Values -->
+        <section id="values" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">Core Ethical Values</h2>
+
+                <div class="bg-purple-50 dark:bg-purple-900/30 rounded-xl p-5 lg:p-6 mb-6 border border-purple-200 dark:border-purple-800">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Ethics vs. Values:</strong> Ethics is the rightness of what you do. Values are what you believe in, what you hold important. Leading an ethical life requires establishing values carefully and working every day to live up to them.</p>
+                </div>
+
+                <!-- The 8 Core Values -->
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
+                        <p class="font-bold text-blue-800 dark:text-blue-300 text-lg mb-2">1. Honesty</p>
+                        <p class="text-sm text-gray-700 dark:text-gray-300">Truthful, straightforward, sincere, candid. Not deceptive, tricky, or misleading.</p>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border border-green-200 dark:border-green-800">
+                        <p class="font-bold text-green-800 dark:text-green-300 text-lg mb-2">2. Integrity</p>
+                        <p class="text-sm text-gray-700 dark:text-gray-300">Honorable, has courage of conviction, stands up for beliefs. Puts principle over expediency.</p>
+                    </div>
+                    <div class="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg border border-amber-200 dark:border-amber-800">
+                        <p class="font-bold text-amber-800 dark:text-amber-300 text-lg mb-2">3. Promise-Keeping</p>
+                        <p class="text-sm text-gray-700 dark:text-gray-300">Always strives to keep commitments made to clients, insurers, and others.</p>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border border-purple-200 dark:border-purple-800">
+                        <p class="font-bold text-purple-800 dark:text-purple-300 text-lg mb-2">4. Fidelity/Loyalty</p>
+                        <p class="text-sm text-gray-700 dark:text-gray-300">Commits to being reliable and dependable to those you serve.</p>
+                    </div>
+                    <div class="bg-teal-50 dark:bg-teal-900/20 p-4 rounded-lg border border-teal-200 dark:border-teal-800">
+                        <p class="font-bold text-teal-800 dark:text-teal-300 text-lg mb-2">5. Fairness</p>
+                        <p class="text-sm text-gray-700 dark:text-gray-300">Equitable, open, just, unprejudiced. Not arbitrary, discriminatory, or self-serving.</p>
+                    </div>
+                    <div class="bg-pink-50 dark:bg-pink-900/20 p-4 rounded-lg border border-pink-200 dark:border-pink-800">
+                        <p class="font-bold text-pink-800 dark:text-pink-300 text-lg mb-2">6. Caring/Compassion</p>
+                        <p class="text-sm text-gray-700 dark:text-gray-300">Considerate, kind, sharing, charitable. Not selfish, manipulative, or controlling.</p>
+                    </div>
+                    <div class="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-lg border border-indigo-200 dark:border-indigo-800">
+                        <p class="font-bold text-indigo-800 dark:text-indigo-300 text-lg mb-2">7. Respect for Others</p>
+                        <p class="text-sm text-gray-700 dark:text-gray-300">Respects freedom, dignity, and rights of all individuals.</p>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border border-red-200 dark:border-red-800">
+                        <p class="font-bold text-red-800 dark:text-red-300 text-lg mb-2">8. Personal Responsibility</p>
+                        <p class="text-sm text-gray-700 dark:text-gray-300">Considers consequences, accepts responsibility. Doesn't shift blame or make excuses.</p>
+                    </div>
+                </div>
+
+                <!-- Common Rationalizations to Avoid -->
+                <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-5 mb-6 border-l-4 border-red-500">
+                    <h3 class="font-bold text-red-800 dark:text-red-300 text-lg mb-3">Common Rationalizations to Avoid</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mb-3">Rationalizations make it easier to do what we want rather than what we should. Watch out for these:</p>
+                    <div class="grid md:grid-cols-2 gap-3">
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="text-sm text-gray-700 dark:text-gray-300">"If it's legal, it must be okay."</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="text-sm text-gray-700 dark:text-gray-300">"Everyone does it; it's how you play the game."</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="text-sm text-gray-700 dark:text-gray-300">"If it doesn't hurt anyone, it's okay."</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="text-sm text-gray-700 dark:text-gray-300">"It's necessary to get the sale."</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="text-sm text-gray-700 dark:text-gray-300">"I'm just fighting fire with fire."</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="text-sm text-gray-700 dark:text-gray-300">"I deserve it; I have it coming."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Four Principles of Highly Ethical Individual -->
+                <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-5 border-l-4 border-green-500">
+                    <h3 class="font-bold text-green-800 dark:text-green-300 text-lg mb-3">4 Principles of a Highly Ethical Individual</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-start">
+                            <span class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>At ease with diverse customers</strong> - Can interact comfortably with anyone</p>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>Obsessed with fairness</strong> - The other person's interests count as much as their own</p>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>Assumes personal responsibility</strong> - Responsible for self first, then to the organization</p>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">4</span>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>Sees activities in terms of purpose</strong> - Connected to the organization and its mission</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cheat Sheet Section -->
+        <section id="cheat-sheet" class="mb-10">
+            <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 border-2 border-dashed border-gray-300 dark:border-gray-600">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100">Cheat Sheet: Ethics Quick Reference</h2>
+                    <span class="text-sm text-gray-500 dark:text-gray-400">Print this page for quick reference</span>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg">
+                        <p class="font-bold text-blue-800 dark:text-blue-300 mb-2">4 Responsibilities</p>
+                        <p class="text-sm text-gray-700 dark:text-gray-300">Insurer, Policyowners, Public, State</p>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg">
+                        <p class="font-bold text-green-800 dark:text-green-300 mb-2">To Policyowners</p>
+                        <p class="text-sm text-gray-700 dark:text-gray-300">Sell to needs, service, disclosure, confidentiality</p>
+                    </div>
+                    <div class="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg">
+                        <p class="font-bold text-amber-800 dark:text-amber-300 mb-2">To Insurer</p>
+                        <p class="text-sm text-gray-700 dark:text-gray-300">Honesty, good faith, loyalty, full disclosure</p>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg">
+                        <p class="font-bold text-purple-800 dark:text-purple-300 mb-2">8 Core Values</p>
+                        <p class="text-sm text-gray-700 dark:text-gray-300">Honesty, Integrity, Promise-keeping, Fidelity, Fairness, Caring, Respect, Responsibility</p>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg">
+                        <p class="font-bold text-red-800 dark:text-red-300 mb-2">Avoid</p>
+                        <p class="text-sm text-gray-700 dark:text-gray-300">Deceptive presentations, misleading comparisons, criticizing competitors</p>
+                    </div>
+                    <div class="bg-teal-50 dark:bg-teal-900/20 p-4 rounded-lg">
+                        <p class="font-bold text-teal-800 dark:text-teal-300 mb-2">Key Principle</p>
+                        <p class="text-sm text-gray-700 dark:text-gray-300">"Regard for others" - consider others' well-being, not just your own</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Benefits of Ethics -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">Benefits of Applying Ethics</h2>
+
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <p class="font-bold text-green-800 dark:text-green-300 mb-2">Individual Growth</p>
+                        <p class="text-sm text-gray-700 dark:text-gray-300">Helps you face realities, builds confidence, and promotes personal satisfaction</p>
+                    </div>
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-l-4 border-blue-500">
+                        <p class="font-bold text-blue-800 dark:text-blue-300 mb-2">Insurance Against Legal Issues</p>
+                        <p class="text-sm text-gray-700 dark:text-gray-300">Ensures policies and practices can withstand public scrutiny and reduces litigation risk</p>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border-l-4 border-purple-500">
+                        <p class="font-bold text-purple-800 dark:text-purple-300 mb-2">Avoid Criminal Acts</p>
+                        <p class="text-sm text-gray-700 dark:text-gray-300">Detects ethical violations early so they can be addressed before becoming criminal</p>
+                    </div>
+                    <div class="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg border-l-4 border-amber-500">
+                        <p class="font-bold text-amber-800 dark:text-amber-300 mb-2">Strong Public Image</p>
+                        <p class="text-sm text-gray-700 dark:text-gray-300">Organizations that value ethics are seen as valuing people over profit</p>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-r from-purple-100 to-purple-200 dark:from-purple-900/40 dark:to-purple-800/40 rounded-lg p-5 mt-6">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>The Bottom Line:</strong> Applying ethical standards legitimizes managerial actions, strengthens industry coherence, improves trust in relationships, and supports greater consistency in product quality.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Reference Summary -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-purple-600 to-purple-800 rounded-xl p-6 text-white">
+                <h2 class="text-2xl font-bold mb-6">Quick Reference Summary</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Ethics Definition</p>
+                        <p class="text-sm text-purple-100">"Regard for others" - Dr. Schweitzer</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">4 Responsibilities</p>
+                        <p class="text-sm text-purple-100">Insurer, Policyowners, Public, State</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Sell to Needs</p>
+                        <p class="text-sm text-purple-100">Match products to what clients need, not what pays most</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Service the Sale</p>
+                        <p class="text-sm text-purple-100">Ongoing service throughout the relationship</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Confidentiality</p>
+                        <p class="text-sm text-purple-100">Protect client information, never release without approval</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Full Disclosure</p>
+                        <p class="text-sm text-purple-100">Explain all terms, benefits, and limitations honestly</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Avoid Deception</p>
+                        <p class="text-sm text-purple-100">No misleading presentations or comparisons</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Don't Criticize Competitors</p>
+                        <p class="text-sm text-purple-100">Refer to rating agencies instead</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">8 Core Values</p>
+                        <p class="text-sm text-purple-100">Honesty, Integrity, Promise-keeping, Loyalty, Fairness, Caring, Respect, Responsibility</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Navigation -->
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="../part-8/index.html" class="hover:text-purple-400">← Part 8: Conflict of Interest</a>
+                <span class="text-gray-400">Part 9 of 9</span>
+                <a href="../recap/index.html" class="hover:text-purple-400">Chapter 4 Recap →</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AI Tutor Button -->
+    <button onclick="openAITutor()" class="fixed bottom-8 right-8 bg-purple-600 hover:bg-purple-700 text-white rounded-full p-4 shadow-lg hover:scale-110 transition-transform">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+        </svg>
+    </button>
+
+    <script>
+        function openAITutor() {
+            const context = `I'm studying Insurance Professional Ethics. Key topics:
+
+4 PRIMARY RESPONSIBILITIES:
+1. Insurer - Honesty, good faith, loyalty, full disclosure
+2. Policyowners - Sell to needs, service, disclosure, confidentiality
+3. Public - Professional integrity, positive industry image
+4. State - Follow laws, no misrepresentation
+
+KEY PRACTICES:
+- Sell to needs (not commissions)
+- Service the sale (ongoing relationship)
+- Maintain confidentiality
+- Avoid conflicts of interest
+- Full disclosure on applications and policies
+
+8 CORE VALUES:
+Honesty, Integrity, Promise-keeping, Fidelity, Fairness, Caring, Respect, Responsibility
+
+UNETHICAL PRACTICES TO AVOID:
+- Deceptive sales presentations
+- Misleading policy illustrations
+- Criticizing competitors
+- Incomplete product comparisons
+
+Note: This content is for ethics education but NOT on the state exam.`;
+
+            showAITutor(context);
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 8: Conflict of Interest Law | Chapter 4 | Property Insurance</title>
+    <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <link rel="stylesheet" href="../../../css/styles.css">
+    <script src="../../../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+        }
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <!-- Settings & Theme Toggle Buttons -->
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="showAPIKeySetup()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings">
+            <svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+        </button>
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/>
+            </svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-purple-600 to-purple-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center text-purple-200 text-sm mb-2">
+                <a href="../../index.html" class="hover:text-white">Property</a>
+                <span class="mx-2">→</span>
+                <a href="../index.html" class="hover:text-white">Chapter 4</a>
+                <span class="mx-2">→</span>
+                <span class="text-white">Part 8</span>
+            </div>
+            <h1 class="text-3xl font-bold">Part 8: Conflict of Interest Law</h1>
+            <p class="text-purple-200 mt-1">Standards of Conduct for Insurance Professionals</p>
+        </div>
+    </header>
+
+    <!-- Sticky Navigation -->
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-wrap gap-2 text-sm">
+                <a href="#overview" class="text-purple-600 dark:text-purple-400 hover:text-purple-800 px-2 py-1 rounded hover:bg-purple-50 dark:hover:bg-gray-700">Overview</a>
+                <a href="#gifts" class="text-purple-600 dark:text-purple-400 hover:text-purple-800 px-2 py-1 rounded hover:bg-purple-50 dark:hover:bg-gray-700">Gifts</a>
+                <a href="#representation" class="text-purple-600 dark:text-purple-400 hover:text-purple-800 px-2 py-1 rounded hover:bg-purple-50 dark:hover:bg-gray-700">Representation</a>
+                <a href="#legislation" class="text-purple-600 dark:text-purple-400 hover:text-purple-800 px-2 py-1 rounded hover:bg-purple-50 dark:hover:bg-gray-700">Legislation</a>
+                <a href="#contracts" class="text-purple-600 dark:text-purple-400 hover:text-purple-800 px-2 py-1 rounded hover:bg-purple-50 dark:hover:bg-gray-700">Contracts</a>
+                <a href="#confidential" class="text-purple-600 dark:text-purple-400 hover:text-purple-800 px-2 py-1 rounded hover:bg-purple-50 dark:hover:bg-gray-700">Confidential Info</a>
+                <a href="#exam-traps" class="text-purple-600 dark:text-purple-400 hover:text-purple-800 px-2 py-1 rounded hover:bg-purple-50 dark:hover:bg-gray-700">Exam Traps</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-5xl lg:max-w-7xl">
+
+        <!-- Overview Section -->
+        <section id="overview" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">Overview: NJ Conflict of Interest Law</h2>
+
+                <div class="bg-purple-50 dark:bg-purple-900/30 rounded-xl p-5 lg:p-6 mb-6 border border-purple-200 dark:border-purple-800">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">The New Jersey Conflict of Interest Law and Legislative Code of Ethics establish standards of conduct for <strong>legislators and all state employees</strong>, including insurance producers working within the state regulatory framework. These rules ensure that public servants and insurance professionals act in the public's best interest, not their own.</p>
+                </div>
+
+                <!-- Exam Alert -->
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 lg:p-5 rounded-r-lg mb-6">
+                    <p class="font-bold text-amber-800 dark:text-amber-300 text-lg lg:text-xl mb-2">Exam Alert!</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">The exam wants to know if you understand what creates a conflict of interest in insurance practice. Focus on situations where personal gain conflicts with serving clients or the public interest.</p>
+                </div>
+
+                <!-- Start Here: 5 Things You MUST Know -->
+                <div class="bg-gradient-to-r from-purple-100 to-purple-200 dark:from-purple-900/40 dark:to-purple-800/40 rounded-xl p-6 mb-8 border border-purple-300 dark:border-purple-700">
+                    <h3 class="text-xl font-bold text-purple-800 dark:text-purple-200 mb-4">Start Here: 5 Things You MUST Know</h3>
+                    <div class="grid md:grid-cols-2 gap-3">
+                        <div class="flex items-start">
+                            <span class="bg-purple-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
+                            <p class="text-gray-700 dark:text-gray-300">Conflict of interest laws cover <strong>5 main areas</strong>: gifts, representation, legislation, contracts, and confidential info</p>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="bg-purple-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
+                            <p class="text-gray-700 dark:text-gray-300">You can't accept gifts that could <strong>influence your decisions</strong> or create obligation</p>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="bg-purple-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
+                            <p class="text-gray-700 dark:text-gray-300">You can't <strong>represent private interests</strong> against the state or public interest</p>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="bg-purple-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">4</span>
+                            <p class="text-gray-700 dark:text-gray-300">You must <strong>disclose personal financial interests</strong> in legislation or contracts</p>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="bg-purple-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">5</span>
+                            <p class="text-gray-700 dark:text-gray-300">You can't <strong>misuse confidential information</strong> for personal gain</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 1: Restrictions on Gifts -->
+        <section id="gifts" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">1. Restrictions on Gifts</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-5 mb-6 border-l-4 border-blue-500">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg mb-3">What It Means</h3>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Insurance professionals and state employees cannot accept gifts, favors, services, or other benefits that could influence their official duties or create a sense of obligation. The law prevents bribery and the appearance of impropriety.</p>
+                </div>
+
+                <!-- What Counts as a Gift -->
+                <div class="mb-6">
+                    <h3 class="font-bold text-gray-800 dark:text-gray-200 mb-4 text-lg">What Counts as a Prohibited Gift?</h3>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border border-red-200 dark:border-red-800">
+                            <p class="font-bold text-red-800 dark:text-red-300 mb-2">Prohibited Gifts Include:</p>
+                            <ul class="text-sm lg:text-base text-gray-700 dark:text-gray-300 space-y-1">
+                                <li>- Cash or cash equivalents</li>
+                                <li>- Expensive meals, entertainment, or trips</li>
+                                <li>- Services provided for free or below market rate</li>
+                                <li>- Loans on favorable terms</li>
+                                <li>- Stock tips or investment opportunities</li>
+                                <li>- Gifts to family members (indirect benefit)</li>
+                            </ul>
+                        </div>
+                        <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border border-green-200 dark:border-green-800">
+                            <p class="font-bold text-green-800 dark:text-green-300 mb-2">Generally Acceptable:</p>
+                            <ul class="text-sm lg:text-base text-gray-700 dark:text-gray-300 space-y-1">
+                                <li>- Modest promotional items (pens, calendars)</li>
+                                <li>- Coffee or light refreshments at meetings</li>
+                                <li>- Educational materials or training</li>
+                                <li>- Industry conference attendance (if approved)</li>
+                                <li>- Gifts from personal friends (not business-related)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Examples -->
+                <div class="space-y-4">
+                    <div class="bg-gray-50 dark:bg-gray-900/20 p-5 rounded-lg border-l-4 border-red-500">
+                        <p class="font-semibold text-red-800 dark:text-red-300 mb-2">VIOLATION: Luxury Trip</p>
+                        <div class="space-y-2 text-sm lg:text-base">
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Insurance Producer Tom works part-time for the NJ Department of Banking & Insurance reviewing insurance company applications.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> A large insurance company whose application Tom will review offers to fly him to a luxury resort in Florida for a "conference" (which is mostly golf and dinners).</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> VIOLATION - Accepting this expensive trip creates an obligation and could influence Tom's review of the company's application. Even if Tom claims it won't affect his judgment, the law prohibits accepting it.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-50 dark:bg-gray-900/20 p-5 rounded-lg border-l-4 border-red-500">
+                        <p class="font-semibold text-red-800 dark:text-red-300 mb-2">VIOLATION: Cash Payment</p>
+                        <div class="space-y-2 text-sm lg:text-base">
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Insurance agent Sarah helps clients apply for state insurance programs.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> A client who was denied offers Sarah $500 cash to "expedite a second review" of the application.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> VIOLATION - Accepting cash to influence an official decision is bribery, prohibited under conflict of interest law. Sarah must refuse and report the offer.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-50 dark:bg-gray-900/20 p-5 rounded-lg border-l-4 border-green-500">
+                        <p class="font-semibold text-green-800 dark:text-green-300 mb-2">ACCEPTABLE: Industry Training</p>
+                        <div class="space-y-2 text-sm lg:text-base">
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> An insurance trade association invites Producer Mike to attend a continuing education seminar on new flood insurance regulations.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> The association pays for Mike's registration and provides lunch at the seminar. The event is educational, and many producers are invited.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> ACCEPTABLE - Educational events with modest refreshments are generally permitted when they serve a legitimate business purpose and aren't designed to influence specific decisions.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Prohibited Representations -->
+        <section id="representation" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">2. Prohibited Representations</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-5 mb-6 border-l-4 border-blue-500">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg mb-3">What It Means</h3>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">You cannot represent private interests (clients, companies, or yourself) in matters that are adverse to the state or public interest, especially if those matters relate to your official duties. This prevents you from being on "both sides" of a dispute.</p>
+                </div>
+
+                <!-- Key Principles -->
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-5 mb-6 border border-purple-200 dark:border-purple-800">
+                    <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg mb-3">Key Principles</h3>
+                    <ul class="space-y-2 text-gray-700 dark:text-gray-300 text-sm lg:text-base">
+                        <li class="flex items-start">
+                            <span class="text-purple-600 mr-2">•</span>
+                            <span>You can't represent a private client <strong>against the state</strong> in legal or regulatory matters</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-purple-600 mr-2">•</span>
+                            <span>You can't use your position to <strong>advocate for personal interests</strong> in your official capacity</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-purple-600 mr-2">•</span>
+                            <span>You can't represent clients in matters you have <strong>official responsibility</strong> for</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Examples -->
+                <div class="space-y-4">
+                    <div class="bg-gray-50 dark:bg-gray-900/20 p-5 rounded-lg border-l-4 border-red-500">
+                        <p class="font-semibold text-red-800 dark:text-red-300 mb-2">VIOLATION: Representing Client Against State</p>
+                        <div class="space-y-2 text-sm lg:text-base">
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Lisa works for the NJ Insurance Department reviewing insurer compliance with state laws. She also works part-time as an insurance consultant.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> An insurance company that Lisa oversees in her state job hires her consulting firm to represent them in an appeal of a Department enforcement action.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> VIOLATION - Lisa cannot represent a private client (the insurance company) in a matter against the state agency she works for. This is a clear conflict of interest.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-50 dark:bg-gray-900/20 p-5 rounded-lg border-l-4 border-red-500">
+                        <p class="font-semibold text-red-800 dark:text-red-300 mb-2">VIOLATION: Using Official Position for Personal Advocacy</p>
+                        <div class="space-y-2 text-sm lg:text-base">
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Mike is a state insurance regulator who also owns rental properties on the side.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> During official meetings about landlord insurance requirements, Mike pushes for regulations that would financially benefit his personal rental business, without disclosing his ownership.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> VIOLATION - Mike is using his official position to advocate for his personal financial interests. He must either recuse himself from these discussions or publicly disclose his conflict.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-50 dark:bg-gray-900/20 p-5 rounded-lg border-l-4 border-green-500">
+                        <p class="font-semibold text-green-800 dark:text-green-300 mb-2">ACCEPTABLE: Separate Roles Properly Managed</p>
+                        <div class="space-y-2 text-sm lg:text-base">
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Tom works for the NJ Insurance Department but also teaches insurance courses at a community college.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Tom teaches general insurance principles but never uses his state position to promote his courses, and he doesn't teach about areas he regulates in his state job.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> ACCEPTABLE - Teaching insurance courses doesn't represent private interests against the state, and Tom keeps his roles separate.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Personal Interest in Legislation -->
+        <section id="legislation" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">3. Personal Interest in Legislation</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-5 mb-6 border-l-4 border-blue-500">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg mb-3">What It Means</h3>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">If you have a personal financial interest in proposed insurance legislation or regulations, you must <strong>disclose that interest publicly</strong> and may need to <strong>recuse yourself</strong> (step aside) from voting or advocating for that legislation.</p>
+                </div>
+
+                <!-- What Requires Disclosure -->
+                <div class="bg-amber-50 dark:bg-amber-900/20 rounded-lg p-5 mb-6 border border-amber-200 dark:border-amber-800">
+                    <h3 class="font-bold text-amber-800 dark:text-amber-300 text-lg mb-3">What Requires Disclosure?</h3>
+                    <ul class="space-y-2 text-gray-700 dark:text-gray-300 text-sm lg:text-base">
+                        <li class="flex items-start">
+                            <span class="text-amber-600 mr-2">•</span>
+                            <span>Ownership or financial interest in a company affected by the legislation</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-amber-600 mr-2">•</span>
+                            <span>Employment or consulting relationship with affected parties</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-amber-600 mr-2">•</span>
+                            <span>Family members who would financially benefit</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-amber-600 mr-2">•</span>
+                            <span>Investments or stock holdings in affected companies</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Examples -->
+                <div class="space-y-4">
+                    <div class="bg-gray-50 dark:bg-gray-900/20 p-5 rounded-lg border-l-4 border-red-500">
+                        <p class="font-semibold text-red-800 dark:text-red-300 mb-2">VIOLATION: Undisclosed Financial Interest</p>
+                        <div class="space-y-2 text-sm lg:text-base">
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> State Senator Johnson serves on the Insurance Committee. He owns $50,000 in stock in Acme Insurance Company.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> A bill comes up that would allow Acme to sell a new type of profitable insurance product. Sen. Johnson votes for the bill without disclosing his stock ownership.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> VIOLATION - Sen. Johnson must publicly disclose his financial interest in Acme before voting. His vote could increase his stock value, creating a personal conflict.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-50 dark:bg-gray-900/20 p-5 rounded-lg border-l-4 border-red-500">
+                        <p class="font-semibold text-red-800 dark:text-red-300 mb-2">VIOLATION: Family Financial Benefit</p>
+                        <div class="space-y-2 text-sm lg:text-base">
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Insurance regulator Sarah's husband owns a public adjusting firm.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Sarah advocates for new regulations that would require all property insurance claims over $10,000 to use a public adjuster. She doesn't mention her husband's business.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> VIOLATION - Sarah's husband would directly profit from this regulation through increased business. She must disclose this relationship and recuse herself from this matter.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-50 dark:bg-gray-900/20 p-5 rounded-lg border-l-4 border-green-500">
+                        <p class="font-semibold text-green-800 dark:text-green-300 mb-2">PROPER HANDLING: Disclosure and Recusal</p>
+                        <div class="space-y-2 text-sm lg:text-base">
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Assembly Member Tom owns a small insurance agency. Legislation is proposed to change producer licensing requirements.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Before the committee votes, Tom publicly discloses that he owns an insurance agency and that the legislation could affect his business. He recuses himself from voting.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> PROPER HANDLING - Tom followed the law by disclosing his interest and recusing himself. Transparency and stepping aside prevent conflicts.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: State Contracts -->
+        <section id="contracts" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">4. State Contracts</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-5 mb-6 border-l-4 border-blue-500">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg mb-3">What It Means</h3>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">State employees and legislators generally <strong>cannot have financial interests</strong> in contracts with the state or contracts they can influence. This prevents self-dealing and ensures state contracts are awarded fairly.</p>
+                </div>
+
+                <!-- Key Rules -->
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-5 mb-6 border border-purple-200 dark:border-purple-800">
+                    <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg mb-3">Key Rules</h3>
+                    <ul class="space-y-2 text-gray-700 dark:text-gray-300 text-sm lg:text-base">
+                        <li class="flex items-start">
+                            <span class="text-purple-600 mr-2">•</span>
+                            <span>You can't award contracts to yourself or businesses you own</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-purple-600 mr-2">•</span>
+                            <span>You can't have hidden ownership in companies bidding for state contracts</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-purple-600 mr-2">•</span>
+                            <span>You can't use your position to steer contracts to family/friends</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-purple-600 mr-2">•</span>
+                            <span>If you discover a conflict, you must <strong>disclose and recuse</strong></span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Examples -->
+                <div class="space-y-4">
+                    <div class="bg-gray-50 dark:bg-gray-900/20 p-5 rounded-lg border-l-4 border-red-500">
+                        <p class="font-semibold text-red-800 dark:text-red-300 mb-2">VIOLATION: Self-Dealing</p>
+                        <div class="space-y-2 text-sm lg:text-base">
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Mike works for the NJ Insurance Department's IT division, responsible for selecting software vendors.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Mike owns 40% of a software company that bids on a state contract to build an insurance licensing database. Mike doesn't disclose his ownership and helps evaluate the bids.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> VIOLATION - Mike has a direct financial interest in a state contract he's evaluating. He must disclose his ownership and completely recuse himself from the selection process.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-50 dark:bg-gray-900/20 p-5 rounded-lg border-l-4 border-red-500">
+                        <p class="font-semibold text-red-800 dark:text-red-300 mb-2">VIOLATION: Steering Contracts to Friends</p>
+                        <div class="space-y-2 text-sm lg:text-base">
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Sarah oversees state contracts for insurance consulting services.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Sarah's college roommate owns a consulting firm. Sarah shares inside information about the state's needs with her friend and adjusts the contract requirements to favor her friend's firm.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> VIOLATION - Sarah is using her position to unfairly benefit a personal friend. This violates competitive bidding rules and conflict of interest law.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-50 dark:bg-gray-900/20 p-5 rounded-lg border-l-4 border-green-500">
+                        <p class="font-semibold text-green-800 dark:text-green-300 mb-2">PROPER HANDLING: Disclosure Prevents Conflict</p>
+                        <div class="space-y-2 text-sm lg:text-base">
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> State employee Lisa discovers that her brother's company submitted a bid for a state insurance audit contract.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Lisa immediately discloses the relationship to her supervisor and removes herself from any discussions or decisions about the contract. A different employee handles the evaluation.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> PROPER HANDLING - Lisa disclosed the conflict as soon as she discovered it and recused herself. The contract process remains fair and impartial.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Disclosure of Confidential Information -->
+        <section id="confidential" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">5. Disclosure of Confidential Information</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-5 mb-6 border-l-4 border-blue-500">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg mb-3">What It Means</h3>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">You cannot disclose or use confidential information obtained through your official position for <strong>personal gain</strong> or to benefit others. This includes non-public information about insurance companies, investigations, consumer data, or regulatory decisions.</p>
+                </div>
+
+                <!-- Types of Confidential Information -->
+                <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-5 mb-6 border border-red-200 dark:border-red-800">
+                    <h3 class="font-bold text-red-800 dark:text-red-300 text-lg mb-3">What Is Confidential Information?</h3>
+                    <ul class="space-y-2 text-gray-700 dark:text-gray-300 text-sm lg:text-base">
+                        <li class="flex items-start">
+                            <span class="text-red-600 mr-2">•</span>
+                            <span><strong>Consumer data:</strong> Personal information from insurance applications or claims</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-red-600 mr-2">•</span>
+                            <span><strong>Investigation details:</strong> Non-public information about fraud investigations or regulatory actions</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-red-600 mr-2">•</span>
+                            <span><strong>Trade secrets:</strong> Proprietary business information from insurers</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-red-600 mr-2">•</span>
+                            <span><strong>Pending decisions:</strong> Information about upcoming regulatory actions or legislation not yet public</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-red-600 mr-2">•</span>
+                            <span><strong>Financial data:</strong> Non-public financial information about insurance companies</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Examples -->
+                <div class="space-y-4">
+                    <div class="bg-gray-50 dark:bg-gray-900/20 p-5 rounded-lg border-l-4 border-red-500">
+                        <p class="font-semibold text-red-800 dark:text-red-300 mb-2">VIOLATION: Using Inside Information for Profit</p>
+                        <div class="space-y-2 text-sm lg:text-base">
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Regulator Tom learns that the state is about to announce a major enforcement action against Big Insurance Co., which will tank their stock price.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Before the announcement is public, Tom sells his shares of Big Insurance Co. stock and tells his brother to sell his shares too.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> VIOLATION - Tom used confidential information obtained through his official position for personal financial gain (insider trading). This is both a conflict of interest violation and potentially a crime.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-50 dark:bg-gray-900/20 p-5 rounded-lg border-l-4 border-red-500">
+                        <p class="font-semibold text-red-800 dark:text-red-300 mb-2">VIOLATION: Sharing Consumer Data</p>
+                        <div class="space-y-2 text-sm lg:text-base">
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Insurance Department employee Sarah has access to a database of all auto insurance applicants, including their addresses and claims history.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Sarah's friend owns a body shop. Sarah provides her friend with a list of people who recently filed auto claims so the body shop can solicit them for business.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> VIOLATION - Sarah disclosed confidential consumer information for someone else's commercial benefit. This violates privacy laws and conflict of interest rules.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-50 dark:bg-gray-900/20 p-5 rounded-lg border-l-4 border-red-500">
+                        <p class="font-semibold text-red-800 dark:text-red-300 mb-2">VIOLATION: Tipping Off Under Investigation</p>
+                        <div class="space-y-2 text-sm lg:text-base">
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Mike works in the fraud investigation unit. His former employer (an insurance agency) is under investigation for rebating.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Mike calls his old boss to warn him that investigators will be visiting next week and suggests he "clean up any issues."</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> VIOLATION - Mike disclosed confidential investigation information, potentially obstructing justice and helping his former employer avoid penalties. This is a serious violation.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-50 dark:bg-gray-900/20 p-5 rounded-lg border-l-4 border-green-500">
+                        <p class="font-semibold text-green-800 dark:text-green-300 mb-2">PROPER HANDLING: Protecting Confidential Information</p>
+                        <div class="space-y-2 text-sm lg:text-base">
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> State employee Lisa learns confidential information about upcoming insurance rate approvals through her work.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Lisa's family asks her about whether rates will go up. Lisa explains she can't discuss non-public information and suggests they wait for the official public announcement.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> PROPER HANDLING - Lisa protected confidential information and didn't use it for personal or family benefit, even though the request seemed harmless.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cheat Sheet Section -->
+        <section class="mb-10">
+            <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 border-2 border-dashed border-gray-300 dark:border-gray-600">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100">Cheat Sheet: Conflict of Interest Quick Reference</h2>
+                    <span class="text-sm text-gray-500 dark:text-gray-400">Print this page for quick reference</span>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg">
+                        <p class="font-bold text-red-800 dark:text-red-300 mb-2">1. Gifts</p>
+                        <p class="text-sm text-gray-700 dark:text-gray-300">No gifts that could influence decisions or create obligation</p>
+                    </div>
+                    <div class="bg-orange-50 dark:bg-orange-900/20 p-4 rounded-lg">
+                        <p class="font-bold text-orange-800 dark:text-orange-300 mb-2">2. Representation</p>
+                        <p class="text-sm text-gray-700 dark:text-gray-300">Can't represent private interests against state/public interest</p>
+                    </div>
+                    <div class="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg">
+                        <p class="font-bold text-amber-800 dark:text-amber-300 mb-2">3. Legislation</p>
+                        <p class="text-sm text-gray-700 dark:text-gray-300">Disclose personal financial interest, recuse from voting</p>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg">
+                        <p class="font-bold text-green-800 dark:text-green-300 mb-2">4. Contracts</p>
+                        <p class="text-sm text-gray-700 dark:text-gray-300">No financial interest in state contracts you can influence</p>
+                    </div>
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg">
+                        <p class="font-bold text-blue-800 dark:text-blue-300 mb-2">5. Confidential Info</p>
+                        <p class="text-sm text-gray-700 dark:text-gray-300">Can't use non-public info for personal gain</p>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg">
+                        <p class="font-bold text-purple-800 dark:text-purple-300 mb-2">Golden Rule</p>
+                        <p class="text-sm text-gray-700 dark:text-gray-300">When in doubt: Disclose and Recuse</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Trap Alerts -->
+        <section id="exam-traps" class="mb-10">
+            <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-xl p-5 lg:p-6">
+                <h2 class="text-2xl font-bold text-red-800 dark:text-red-300 mb-4">Exam Trap Alerts</h2>
+                <div class="space-y-3">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">1. "Harmless" Gifts Are Still Prohibited</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">A gift doesn't have to actually influence your decision to be prohibited. If it COULD create an appearance of impropriety or obligation, it violates the law. The exam may present scenarios where someone says "this won't affect my judgment" - it's still wrong.</p>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">2. Family Members Count</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Conflicts of interest include situations where your spouse, children, or close family members would benefit. You can't avoid the law by having a family member receive gifts, contracts, or confidential information on your behalf.</p>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">3. Disclosure Alone Isn't Enough</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">For serious conflicts (like contracts, legislation, representation), you typically must BOTH disclose AND recuse yourself. Simply telling people about your conflict doesn't give you permission to proceed with the conflicted action.</p>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">4. Confidential = Non-Public</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">If information hasn't been officially released to the public, it's confidential. Even if "everyone knows" or it's an "open secret," you can't use or disclose it until it's officially public. Insider trading and tipping off investigations are serious violations.</p>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">5. Former Employers Create Conflicts</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">You can't use your state position to benefit or warn former employers, especially if they're under investigation or seeking state contracts. The exam loves scenarios with "revolving door" conflicts between private sector and government jobs.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Reference Summary -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-purple-600 to-purple-800 rounded-xl p-6 text-white">
+                <h2 class="text-2xl font-bold mb-6">Quick Reference Summary</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">5 Main Areas</p>
+                        <p class="text-sm text-purple-100">Gifts, Representation, Legislation, Contracts, Confidential Info</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Core Principle</p>
+                        <p class="text-sm text-purple-100">Public service over personal gain</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Gift Rule</p>
+                        <p class="text-sm text-purple-100">Nothing that influences or obligates</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Representation Rule</p>
+                        <p class="text-sm text-purple-100">Can't be on both sides</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Financial Interest</p>
+                        <p class="text-sm text-purple-100">Disclose + Recuse</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Confidential Info</p>
+                        <p class="text-sm text-purple-100">Can't use for personal profit</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Family Rule</p>
+                        <p class="text-sm text-purple-100">Their conflicts are your conflicts</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">When in Doubt</p>
+                        <p class="text-sm text-purple-100">Disclose, recuse, ask supervisor</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Applies To</p>
+                        <p class="text-sm text-purple-100">Legislators + all state employees</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Navigation -->
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="../part-7/index.html" class="hover:text-purple-400">← Part 7: By the Numbers</a>
+                <span class="text-gray-400">Part 8 of 8</span>
+                <a href="../recap/index.html" class="hover:text-purple-400">Chapter 4 Recap →</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AI Tutor Button -->
+    <button onclick="openAITutor()" class="fixed bottom-8 right-8 bg-purple-600 hover:bg-purple-700 text-white rounded-full p-4 shadow-lg hover:scale-110 transition-transform">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+        </svg>
+    </button>
+
+    <script>
+        function openAITutor() {
+            const context = `I'm studying NJ Conflict of Interest Law and Legislative Code of Ethics. Key topics:
+
+5 MAIN AREAS:
+1. Gifts - Can't accept gifts that could influence or obligate
+2. Representation - Can't represent private interests against state
+3. Legislation - Must disclose personal financial interests
+4. Contracts - Can't have financial interest in state contracts
+5. Confidential Info - Can't use non-public info for personal gain
+
+KEY PRINCIPLES:
+- Family member conflicts = your conflicts
+- Disclosure + Recusal often required
+- "Appearance of impropriety" matters
+- Former employers can create conflicts
+
+Common exam scenarios:
+- Gifts from companies you regulate
+- Owning stock in companies affected by legislation
+- Using confidential information for profit
+- Representing clients against the state`;
+
+            showAITutor(context);
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 6: Insurance Fraud | Chapter 4 | Property Insurance</title>
+    <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <link rel="stylesheet" href="../../../css/styles.css">
+    <script src="../../../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+        }
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <!-- Settings & Theme Toggle Buttons -->
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="showAPIKeySetup()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings">
+            <svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+        </button>
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/>
+            </svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-purple-600 to-purple-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center text-purple-200 text-sm mb-2">
+                <a href="../../index.html" class="hover:text-white">Property</a>
+                <span class="mx-2">→</span>
+                <a href="../index.html" class="hover:text-white">Chapter 4</a>
+                <span class="mx-2">→</span>
+                <span class="text-white">Part 6</span>
+            </div>
+            <h1 class="text-3xl font-bold">Part 6: Insurance Fraud</h1>
+            <p class="text-purple-200 mt-1">The New Jersey Insurance Fraud Prevention Act</p>
+        </div>
+    </header>
+
+    <!-- Sticky Navigation -->
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-wrap gap-2 text-sm">
+                <a href="#overview" class="text-purple-600 dark:text-purple-400 hover:text-purple-800 px-2 py-1 rounded hover:bg-purple-50 dark:hover:bg-gray-700">Overview</a>
+                <a href="#violations" class="text-purple-600 dark:text-purple-400 hover:text-purple-800 px-2 py-1 rounded hover:bg-purple-50 dark:hover:bg-gray-700">11 Violations</a>
+                <a href="#enforcement" class="text-purple-600 dark:text-purple-400 hover:text-purple-800 px-2 py-1 rounded hover:bg-purple-50 dark:hover:bg-gray-700">Enforcement</a>
+                <a href="#penalties" class="text-purple-600 dark:text-purple-400 hover:text-purple-800 px-2 py-1 rounded hover:bg-purple-50 dark:hover:bg-gray-700">Penalties</a>
+                <a href="#cheat-sheet" class="text-purple-600 dark:text-purple-400 hover:text-purple-800 px-2 py-1 rounded hover:bg-purple-50 dark:hover:bg-gray-700">Cheat Sheet</a>
+                <a href="#exam-traps" class="text-purple-600 dark:text-purple-400 hover:text-purple-800 px-2 py-1 rounded hover:bg-purple-50 dark:hover:bg-gray-700">Exam Traps</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-5xl lg:max-w-7xl">
+
+        <!-- Overview Section -->
+        <section id="overview" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">Overview: New Jersey Insurance Fraud Prevention Act</h2>
+
+                <div class="bg-purple-50 dark:bg-purple-900/30 rounded-xl p-5 lg:p-6 mb-6 border border-purple-200 dark:border-purple-800">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">The New Jersey Insurance Fraud Prevention Act protects both consumers and insurance companies from fraudulent activity. Insurance fraud is a <strong>serious crime</strong> that can result in civil penalties, criminal prosecution, license suspension, and even jail time.</p>
+                </div>
+
+                <!-- Exam Alert -->
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 lg:p-5 rounded-r-lg mb-6">
+                    <p class="font-bold text-amber-800 dark:text-amber-300 text-lg lg:text-xl mb-2">Exam Alert!</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">The exam will test whether you can identify which behaviors qualify as fraud. Each type of fraud needs a CONCRETE example - abstract definitions aren't enough. Look for scenarios involving false statements, concealment, or solicitation.</p>
+                </div>
+
+                <!-- Start Here: 5 Things You MUST Know -->
+                <div class="bg-gradient-to-r from-purple-100 to-purple-200 dark:from-purple-900/40 dark:to-purple-800/40 rounded-xl p-6 mb-8 border border-purple-300 dark:border-purple-700">
+                    <h3 class="text-xl font-bold text-purple-800 dark:text-purple-200 mb-4">Start Here: 5 Things You MUST Know</h3>
+                    <div class="grid md:grid-cols-2 gap-3">
+                        <div class="flex items-start">
+                            <span class="bg-purple-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>"Knowingly"</strong> is the key word - fraud requires you KNEW the info was false or misleading</p>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="bg-purple-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
+                            <p class="text-gray-700 dark:text-gray-300">There are <strong>11 specific violations</strong> - false statements, concealment, residency fraud, solicitation, etc.</p>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="bg-purple-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
+                            <p class="text-gray-700 dark:text-gray-300">Penalties escalate: <strong>$5k (1st), $10k (2nd), $15k (subsequent)</strong> plus restitution</p>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="bg-purple-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">4</span>
+                            <p class="text-gray-700 dark:text-gray-300">Commissioner can bring <strong>civil actions</strong> OR refer for <strong>criminal prosecution</strong></p>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="bg-purple-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">5</span>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>$1,000 surcharge</strong> on individuals guilty of fraud (5% of settlement if monetary settlement)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 1: The 11 Fraud Violations -->
+        <section id="violations" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">The 11 Types of Insurance Fraud Violations</h2>
+
+                <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-6">Each of these violations requires <strong>KNOWING</strong> conduct - making a mistake is not fraud. The person must be aware that what they're doing is false or misleading.</p>
+
+                <!-- Violation 1: False/Misleading Statements -->
+                <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-5 mb-6 border-l-4 border-red-500">
+                    <h3 class="font-bold text-red-800 dark:text-red-300 text-lg lg:text-xl mb-3">1. False or Misleading Statements in Support of a Claim</h3>
+
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg mb-4">
+                        <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">What It Means:</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Knowingly making false statements (written or oral) to support a claim for insurance benefits.</p>
+                    </div>
+
+                    <div class="bg-gray-50 dark:bg-gray-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                        <p class="font-semibold text-red-800 dark:text-red-300 mb-2">Real-World Scenario: Inflated Theft Claim</p>
+                        <div class="space-y-2 text-sm lg:text-base">
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Sarah's home was burglarized. Thieves stole her TV worth $500 and some jewelry worth $1,000.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Sarah tells the insurance company the TV was worth $2,000 and the jewelry was worth $5,000, knowing these amounts are inflated.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> This is fraud - Sarah knowingly provided false values to increase her claim payout.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Violation 2: Concealing Events -->
+                <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-5 mb-6 border-l-4 border-red-500">
+                    <h3 class="font-bold text-red-800 dark:text-red-300 text-lg lg:text-xl mb-3">2. Concealing or Failing to Disclose Events Affecting Entitlement</h3>
+
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg mb-4">
+                        <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">What It Means:</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Hiding or failing to disclose events that affect your right to receive insurance benefits or the amount of benefits you're entitled to.</p>
+                    </div>
+
+                    <div class="bg-gray-50 dark:bg-gray-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                        <p class="font-semibold text-red-800 dark:text-red-300 mb-2">Real-World Scenario: Undisclosed Recovery</p>
+                        <div class="space-y-2 text-sm lg:text-base">
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Mike files a workers' comp claim and receives disability payments while supposedly unable to work.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Mike recovers and starts working full-time again, but he continues collecting disability payments and doesn't tell the insurance company he's working.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Fraud - Mike knowingly concealed the fact that he returned to work, which affects his continued entitlement to disability benefits.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Violation 3: Residency Fraud -->
+                <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-5 mb-6 border-l-4 border-red-500">
+                    <h3 class="font-bold text-red-800 dark:text-red-300 text-lg lg:text-xl mb-3">3. False Statement About Principal Residence (Auto Insurance)</h3>
+
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg mb-4">
+                        <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">What It Means:</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Claiming you live in New Jersey to get NJ auto insurance rates when you actually live in another state.</p>
+                    </div>
+
+                    <div class="bg-gray-50 dark:bg-gray-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                        <p class="font-semibold text-red-800 dark:text-red-300 mb-2">Real-World Scenario: Rate Shopping Across State Lines</p>
+                        <div class="space-y-2 text-sm lg:text-base">
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Jennifer lives and works in New York City. She discovers NJ auto insurance is cheaper than NY insurance.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Jennifer uses her parents' NJ address on her insurance application, claiming she lives there, when she actually lives full-time in her NYC apartment.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Fraud - Jennifer knowingly misrepresented her principal residence to obtain lower insurance rates.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Violation 4: Material False Info in Application -->
+                <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-5 mb-6 border-l-4 border-red-500">
+                    <h3 class="font-bold text-red-800 dark:text-red-300 text-lg lg:text-xl mb-3">4. Material False Information in Insurance Application</h3>
+
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg mb-4">
+                        <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">What It Means:</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Providing false information on ANY insurance application when you know it contains false or misleading information about material facts.</p>
+                    </div>
+
+                    <div class="bg-gray-50 dark:bg-gray-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                        <p class="font-semibold text-red-800 dark:text-red-300 mb-2">Real-World Scenario: Hiding a DUI</p>
+                        <div class="space-y-2 text-sm lg:text-base">
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Tom applies for auto insurance. The application asks if he's had any DUIs in the past 5 years.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Tom had a DUI 2 years ago, but he checks "NO" on the application to avoid higher premiums.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Fraud - Tom knowingly provided false information about a material fact (DUI history directly affects auto insurance rates).</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Violation 5: Concealing Evidence -->
+                <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-5 mb-6 border-l-4 border-red-500">
+                    <h3 class="font-bold text-red-800 dark:text-red-300 text-lg lg:text-xl mb-3">5. Concealing Evidence Relevant to a Fraud Finding</h3>
+
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg mb-4">
+                        <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">What It Means:</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Hiding or failing to provide evidence (written or oral) that could help determine whether a fraud violation occurred.</p>
+                    </div>
+
+                    <div class="bg-gray-50 dark:bg-gray-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                        <p class="font-semibold text-red-800 dark:text-red-300 mb-2">Real-World Scenario: Destroying Evidence</p>
+                        <div class="space-y-2 text-sm lg:text-base">
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> The insurance company is investigating whether Lisa's fire claim is fraudulent. They request all text messages between Lisa and her friend about the property.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Lisa deletes text messages where she discussed "accidentally" leaving a candle burning to collect insurance money.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Fraud - Lisa knowingly concealed evidence that was relevant to the fraud investigation.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Violation 6: Assisting/Conspiring -->
+                <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-5 mb-6 border-l-4 border-red-500">
+                    <h3 class="font-bold text-red-800 dark:text-red-300 text-lg lg:text-xl mb-3">6. Assisting, Conspiring, or Urging Others to Commit Fraud</h3>
+
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg mb-4">
+                        <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">What It Means:</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Helping someone else commit fraud, planning fraud with others, or encouraging someone to violate the fraud prevention law.</p>
+                    </div>
+
+                    <div class="bg-gray-50 dark:bg-gray-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                        <p class="font-semibold text-red-800 dark:text-red-300 mb-2">Real-World Scenario: Agent Coaches Client</p>
+                        <div class="space-y-2 text-sm lg:text-base">
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Client tells Agent Bob that he had a minor accident last year but wants to keep it off his insurance application to get lower rates.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Bob says, "Just don't mention it. They probably won't find out." Bob helps the client fill out the application without disclosing the accident.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Both commit fraud - the client for making false statements, and Bob for knowingly assisting and urging the client to violate the fraud prevention act.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Violation 7: Benefiting from Proceeds -->
+                <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-5 mb-6 border-l-4 border-red-500">
+                    <h3 class="font-bold text-red-800 dark:text-red-300 text-lg lg:text-xl mb-3">7. Knowingly Benefiting from Fraud Proceeds</h3>
+
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg mb-4">
+                        <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">What It Means:</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Benefiting (directly or indirectly) from money obtained through fraud, because you assisted, conspired with, or urged someone to commit fraud.</p>
+                    </div>
+
+                    <div class="bg-gray-50 dark:bg-gray-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                        <p class="font-semibold text-red-800 dark:text-red-300 mb-2">Real-World Scenario: Kickback Scheme</p>
+                        <div class="space-y-2 text-sm lg:text-base">
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Dr. Smith refers patients to file fake auto injury claims and exaggerates their injuries on medical reports.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> When the fraudulent claims are paid out, Dr. Smith receives a 20% kickback from the patients for helping them get more money.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Fraud - Dr. Smith knowingly benefited from the proceeds derived from insurance fraud that he helped orchestrate.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Violation 8: Hospital Allowing Fraud -->
+                <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-5 mb-6 border-l-4 border-red-500">
+                    <h3 class="font-bold text-red-800 dark:text-red-300 text-lg lg:text-xl mb-3">8. Hospital Allowing Facilities to be Used for Fraud</h3>
+
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg mb-4">
+                        <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">What It Means:</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">A hospital owner, administrator, or employee knowingly allowing the hospital to be used as part of a fraud scheme.</p>
+                    </div>
+
+                    <div class="bg-gray-50 dark:bg-gray-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                        <p class="font-semibold text-red-800 dark:text-red-300 mb-2">Real-World Scenario: Unnecessary Medical Services</p>
+                        <div class="space-y-2 text-sm lg:text-base">
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Shady Medical Center's administrator knows that some doctors are performing unnecessary MRIs on fake auto injury patients to inflate insurance claims.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> The administrator allows it to continue because the hospital profits from the unnecessary tests. He schedules the MRIs and bills the insurance companies.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Fraud - the hospital administrator knowingly allowed the facility to be used to further a fraud scheme.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Violation 9: Soliciting to Manage/Adjust Claims -->
+                <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-5 mb-6 border-l-4 border-red-500">
+                    <h3 class="font-bold text-red-800 dark:text-red-300 text-lg lg:text-xl mb-3">9. Soliciting to Manage, Adjust, or Prosecute Claims</h3>
+
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg mb-4">
+                        <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">What It Means:</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Directly or indirectly soliciting someone to hire you (or another person) to manage, adjust, or prosecute their claim for damages for pecuniary gain.</p>
+                    </div>
+
+                    <div class="bg-gray-50 dark:bg-gray-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                        <p class="font-semibold text-red-800 dark:text-red-300 mb-2">Real-World Scenario: Ambulance Chasing Adjuster</p>
+                        <div class="space-y-2 text-sm lg:text-base">
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Public adjuster Joe monitors police scanners for reports of house fires and car accidents.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Joe shows up at accident scenes or fire sites and hands victims his business card, saying "I can get you a bigger settlement if you hire me to handle your claim."</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Fraud - Joe is directly soliciting people to hire him for pecuniary gain to manage their insurance claims.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Violation 10: Soliciting to Bring Lawsuits -->
+                <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-5 mb-6 border-l-4 border-red-500">
+                    <h3 class="font-bold text-red-800 dark:text-red-300 text-lg lg:text-xl mb-3">10. Soliciting Others to Bring Lawsuits for Damages</h3>
+
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg mb-4">
+                        <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">What It Means:</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Directly or indirectly soliciting people to file lawsuits for personal injury, death, or for pecuniary gain.</p>
+                    </div>
+
+                    <div class="bg-gray-50 dark:bg-gray-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                        <p class="font-semibold text-red-800 dark:text-red-300 mb-2">Real-World Scenario: Runner for Injury Mill</p>
+                        <div class="space-y-2 text-sm lg:text-base">
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Mike works as a "runner" for a law firm specializing in personal injury cases.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Mike visits people in hospital waiting rooms after car accidents, offering them cash payments if they'll sign up with his law firm to sue the other driver, even if they weren't really injured.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Fraud - Mike is soliciting people to bring lawsuits for pecuniary gain (the law firm's profit).</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Violation 11: Soliciting PIP Claims -->
+                <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-5 mb-6 border-l-4 border-red-500">
+                    <h3 class="font-bold text-red-800 dark:text-red-300 text-lg lg:text-xl mb-3">11. Soliciting PIP (Personal Injury Protection) Claims</h3>
+
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg mb-4">
+                        <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">What It Means:</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Directly or indirectly soliciting people to file claims for personal injury protection (PIP) benefits under auto insurance.</p>
+                    </div>
+
+                    <div class="bg-gray-50 dark:bg-gray-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                        <p class="font-semibold text-red-800 dark:text-red-300 mb-2">Real-World Scenario: Fake Injury Clinic</p>
+                        <div class="space-y-2 text-sm lg:text-base">
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Chiropractor Dr. Lee runs ads saying "Been in a car accident? You deserve compensation! We'll help you file PIP claims - free consultation!"</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Dr. Lee solicits anyone who's been in an accident to come in and file PIP claims, even if they have minor or no injuries. He exaggerates injuries to maximize claims.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Fraud - Dr. Lee is soliciting people to make PIP claims for pecuniary gain (his treatment fees).</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Section 2: Commissioner Actions -->
+        <section id="enforcement" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">Commissioner Enforcement Powers</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-5 lg:p-6 mb-6 border border-blue-200 dark:border-blue-800">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">The Commissioner has multiple enforcement options when fraud is discovered. The punishment fits the severity of the violation.</p>
+                </div>
+
+                <!-- Commissioner Options -->
+                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                    <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-5 border-l-4 border-purple-500">
+                        <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg mb-3">Option 1: Civil Action</h3>
+                        <p class="text-gray-700 dark:text-gray-300 mb-4">The Commissioner can bring a <strong>civil lawsuit</strong> against the offender.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>Example:</strong> Insurance company discovers Tom submitted 5 inflated claims over 2 years. Commissioner files civil lawsuit seeking restitution and civil penalties totaling $15,000.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-5 border-l-4 border-purple-500">
+                        <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg mb-3">Option 2: Civil Administrative Penalty + Restitution</h3>
+                        <p class="text-gray-700 dark:text-gray-300 mb-4">The Commissioner can directly <strong>assess penalties</strong> and <strong>order restitution</strong> without going to court.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>Example:</strong> Sarah inflated her theft claim by $3,000. Commissioner assesses $5,000 penalty (1st violation) and orders $3,000 restitution to the insurance company.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Alternative: Criminal/Licensing -->
+                <div class="bg-red-50 dark:bg-red-900/20 rounded-xl p-5 lg:p-6 border border-red-200 dark:border-red-800">
+                    <h3 class="font-bold text-red-800 dark:text-red-300 text-lg mb-3">Alternative Actions</h3>
+
+                    <div class="grid md:grid-cols-2 gap-4 mt-4">
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                            <p class="font-bold text-gray-800 dark:text-gray-200 mb-2">Criminal Prosecution</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Commissioner can request the <strong>Attorney General</strong> to bring criminal charges.</p>
+                            <div class="bg-red-100 dark:bg-red-900/40 p-3 rounded mt-3">
+                                <p class="text-xs lg:text-sm text-gray-700 dark:text-gray-300"><strong>Example:</strong> Large-scale fraud ring organizing fake auto accidents. Commissioner refers to AG for criminal prosecution, resulting in jail time for organizers.</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                            <p class="font-bold text-gray-800 dark:text-gray-200 mb-2">License Actions</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Commissioner can refer to <strong>licensing authorities</strong> for license suspension or revocation.</p>
+                            <div class="bg-red-100 dark:bg-red-900/40 p-3 rounded mt-3">
+                                <p class="text-xs lg:text-sm text-gray-700 dark:text-gray-300"><strong>Example:</strong> Insurance agent helps clients falsify applications. Commissioner refers to licensing authority - agent's license is revoked permanently.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Penalties -->
+        <section id="penalties" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">Penalty Structure</h2>
+
+                <!-- Penalty Amounts -->
+                <div class="bg-gradient-to-r from-red-50 to-orange-50 dark:from-red-900/30 dark:to-orange-900/30 rounded-xl p-6 border border-red-200 dark:border-red-800 mb-6">
+                    <h3 class="text-xl font-bold text-red-800 dark:text-red-300 mb-4">Civil Administrative Penalties (Escalating)</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg text-center border-2 border-red-400">
+                            <p class="text-3xl font-bold text-red-600 dark:text-red-400">$5,000</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">First Violation</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg text-center border-2 border-orange-400">
+                            <p class="text-3xl font-bold text-orange-600 dark:text-orange-400">$10,000</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">Second Violation</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg text-center border-2 border-red-600">
+                            <p class="text-3xl font-bold text-red-700 dark:text-red-400">$15,000</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">Each Subsequent Violation</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Surcharges -->
+                <div class="bg-amber-50 dark:bg-amber-900/20 rounded-xl p-5 lg:p-6 border border-amber-200 dark:border-amber-800">
+                    <h3 class="text-xl font-bold text-amber-800 dark:text-amber-300 mb-4">Additional Surcharges</h3>
+
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                            <p class="font-bold text-gray-800 dark:text-gray-200 mb-2">Individual Found Guilty</p>
+                            <p class="text-2xl font-bold text-amber-600 dark:text-amber-400 mb-2">$1,000</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Flat surcharge on any individual found guilty of insurance fraud</p>
+                        </div>
+
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                            <p class="font-bold text-gray-800 dark:text-gray-200 mb-2">Monetary Settlement</p>
+                            <p class="text-2xl font-bold text-amber-600 dark:text-amber-400 mb-2">5%</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">5% of total settlement payment if fraud is resolved through monetary settlement</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-purple-100 dark:bg-purple-900/40 p-4 rounded-lg mt-4">
+                        <p class="font-bold text-purple-800 dark:text-purple-300 mb-2">Where Do Surcharges Go?</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">All surcharges are payable to the <strong>Treasurer of the State of New Jersey</strong>.</p>
+                    </div>
+                </div>
+
+                <!-- Penalty Example -->
+                <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-5 mt-6 border-l-4 border-purple-500">
+                    <p class="font-semibold text-purple-800 dark:text-purple-300 mb-2">Real-World Penalty Calculation:</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Maria files her first fraudulent claim, inflating damages by $2,500. She's caught and settles with the insurance company.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What She Owes:</strong></p>
+                        <ul class="ml-6 space-y-1 text-gray-600 dark:text-gray-400">
+                            <li>- $5,000 civil penalty (1st violation)</li>
+                            <li>- $2,500 restitution (give back the fraudulent amount)</li>
+                            <li>- $1,000 surcharge (individual guilty of fraud)</li>
+                            <li>- $425 settlement surcharge (5% of $8,500 total settlement)</li>
+                        </ul>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>Total: $8,925</strong> (plus possible license suspension and criminal charges)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cheat Sheet Section -->
+        <section id="cheat-sheet" class="mb-10">
+            <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 border-2 border-dashed border-gray-300 dark:border-gray-600">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100">Cheat Sheet: Insurance Fraud Quick Reference</h2>
+                    <span class="text-sm text-gray-500 dark:text-gray-400">Print this page for quick reference</span>
+                </div>
+
+                <!-- 11 Violations Condensed -->
+                <div class="mb-6">
+                    <h3 class="font-bold text-gray-800 dark:text-gray-200 mb-3">The 11 Fraud Violations</h3>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-2 text-sm">
+                        <div class="bg-white dark:bg-gray-700 p-2 rounded">1. False statements in claim</div>
+                        <div class="bg-white dark:bg-gray-700 p-2 rounded">2. Concealing events affecting benefits</div>
+                        <div class="bg-white dark:bg-gray-700 p-2 rounded">3. False NJ residency (auto)</div>
+                        <div class="bg-white dark:bg-gray-700 p-2 rounded">4. Material false info in application</div>
+                        <div class="bg-white dark:bg-gray-700 p-2 rounded">5. Concealing fraud evidence</div>
+                        <div class="bg-white dark:bg-gray-700 p-2 rounded">6. Assisting/conspiring in fraud</div>
+                        <div class="bg-white dark:bg-gray-700 p-2 rounded">7. Benefiting from fraud proceeds</div>
+                        <div class="bg-white dark:bg-gray-700 p-2 rounded">8. Hospital allowing fraud</div>
+                        <div class="bg-white dark:bg-gray-700 p-2 rounded">9. Soliciting claim management</div>
+                        <div class="bg-white dark:bg-gray-700 p-2 rounded">10. Soliciting lawsuits</div>
+                        <div class="bg-white dark:bg-gray-700 p-2 rounded">11. Soliciting PIP claims</div>
+                    </div>
+                </div>
+
+                <!-- Penalties Condensed -->
+                <div class="mb-6">
+                    <h3 class="font-bold text-gray-800 dark:text-gray-200 mb-3">Penalties</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                        <div class="bg-red-100 dark:bg-red-900/40 p-3 rounded text-center">
+                            <p class="font-bold text-red-700 dark:text-red-300">$5,000</p>
+                            <p class="text-xs text-gray-600 dark:text-gray-400">1st violation</p>
+                        </div>
+                        <div class="bg-orange-100 dark:bg-orange-900/40 p-3 rounded text-center">
+                            <p class="font-bold text-orange-700 dark:text-orange-300">$10,000</p>
+                            <p class="text-xs text-gray-600 dark:text-gray-400">2nd violation</p>
+                        </div>
+                        <div class="bg-red-100 dark:bg-red-900/40 p-3 rounded text-center">
+                            <p class="font-bold text-red-700 dark:text-red-300">$15,000</p>
+                            <p class="text-xs text-gray-600 dark:text-gray-400">Subsequent</p>
+                        </div>
+                        <div class="bg-amber-100 dark:bg-amber-900/40 p-3 rounded text-center">
+                            <p class="font-bold text-amber-700 dark:text-amber-300">$1,000</p>
+                            <p class="text-xs text-gray-600 dark:text-gray-400">Individual surcharge</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Commissioner Powers Condensed -->
+                <div>
+                    <h3 class="font-bold text-gray-800 dark:text-gray-200 mb-3">Commissioner Powers</h3>
+                    <div class="grid md:grid-cols-3 gap-3 text-sm">
+                        <div class="bg-purple-100 dark:bg-purple-900/40 p-3 rounded">
+                            <p class="font-bold">Civil Action</p>
+                            <p class="text-xs text-gray-600 dark:text-gray-400">File lawsuit</p>
+                        </div>
+                        <div class="bg-purple-100 dark:bg-purple-900/40 p-3 rounded">
+                            <p class="font-bold">Direct Penalty</p>
+                            <p class="text-xs text-gray-600 dark:text-gray-400">Assess penalty + restitution</p>
+                        </div>
+                        <div class="bg-purple-100 dark:bg-purple-900/40 p-3 rounded">
+                            <p class="font-bold">Refer</p>
+                            <p class="text-xs text-gray-600 dark:text-gray-400">To AG (criminal) or licensing</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Trap Alerts -->
+        <section id="exam-traps" class="mb-10">
+            <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-xl p-5 lg:p-6">
+                <h2 class="text-2xl font-bold text-red-800 dark:text-red-300 mb-4">Exam Trap Alerts</h2>
+                <div class="space-y-3">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">1. "Knowingly" is Critical</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">All fraud violations require KNOWING conduct. Making an honest mistake on an application is NOT fraud. The person must be AWARE the information is false or misleading. Look for words like "intentionally," "deliberately," or "knowing it was false."</p>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">2. Escalating Penalties</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Don't confuse the three penalty amounts. First violation = $5,000. Second = $10,000. Subsequent (third, fourth, etc.) = $15,000. The exam may ask "what's the maximum penalty?" - it's $15,000 per violation (not total).</p>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">3. Solicitation = Fraud</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Three violations (9, 10, 11) involve solicitation. You don't have to actually COMPLETE a fraudulent claim - just soliciting someone to file claims or lawsuits for money is fraud. "Ambulance chasing" scenarios = fraud.</p>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">4. Residency Fraud (Auto Only)</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Violation #3 specifically applies to MOTOR VEHICLE insurance. Claiming you live in NJ when you don't to get cheaper auto rates = fraud. This doesn't apply to homeowners or other policies.</p>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">5. Hospital Fraud is Specific</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Violation #8 only applies to hospitals, not other medical facilities. The owner, administrator, or employee must KNOWINGLY ALLOW the hospital to be used for fraud. A doctor's office or clinic wouldn't fall under this specific violation (though they could commit other types of fraud).</p>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">6. Surcharges Go to the State</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">All surcharges ($1,000 individual or 5% settlement) are paid to the Treasurer of the State of New Jersey, NOT to the insurance company. Restitution goes to the insurer, surcharges go to the state.</p>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">7. Assisting = Committing</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">If you help someone commit fraud, you're ALSO guilty of fraud (Violation #6). An agent who helps a client lie on an application commits fraud even if the agent doesn't personally benefit.</p>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">8. Commissioner Has Options</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The Commissioner doesn't have to choose just ONE enforcement action. They can assess civil penalties AND refer for criminal prosecution AND refer for license revocation. These are not mutually exclusive.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Reference Summary -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-purple-600 to-purple-800 rounded-xl p-6 text-white">
+                <h2 class="text-2xl font-bold mb-6">Quick Reference Summary</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Key Word</p>
+                        <p class="text-sm text-purple-100">KNOWINGLY - fraud requires intent</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">11 Violations</p>
+                        <p class="text-sm text-purple-100">False statements, concealment, solicitation</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">First Penalty</p>
+                        <p class="text-sm text-purple-100">$5,000 + restitution + $1,000 surcharge</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Second Penalty</p>
+                        <p class="text-sm text-purple-100">$10,000 (doubles)</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Subsequent Penalty</p>
+                        <p class="text-sm text-purple-100">$15,000 (max per violation)</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Settlement Surcharge</p>
+                        <p class="text-sm text-purple-100">5% of total settlement amount</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Surcharge Recipient</p>
+                        <p class="text-sm text-purple-100">Treasurer of State of NJ</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Commissioner Power</p>
+                        <p class="text-sm text-purple-100">Civil action, penalties, or refer to AG/licensing</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Residency Fraud</p>
+                        <p class="text-sm text-purple-100">Applies to MOTOR VEHICLE insurance only</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Navigation -->
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="../part-5/index.html" class="hover:text-purple-400">← Part 5: Producer Responsibilities</a>
+                <span class="text-gray-400">Part 6 of 8</span>
+                <a href="../part-7/index.html" class="hover:text-purple-400">Part 7: By the Numbers →</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AI Tutor Button -->
+    <button onclick="openAITutor()" class="fixed bottom-8 right-8 bg-purple-600 hover:bg-purple-700 text-white rounded-full p-4 shadow-lg hover:scale-110 transition-transform">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+        </svg>
+    </button>
+
+    <script>
+        function openAITutor() {
+            const context = `I'm studying NJ Insurance Fraud Prevention Act. Key topics:
+- 11 types of fraud violations (knowingly making false statements, concealment, residency fraud, etc.)
+- Enforcement powers: civil action, penalties, criminal referral
+- Penalties: $5k (1st), $10k (2nd), $15k (subsequent) + $1k surcharge + restitution
+- Solicitation of claims/lawsuits is fraud
+- All surcharges go to State Treasurer
+
+Common confusions:
+- Which violations require "knowingly"
+- Difference between solicitation types (#9, #10, #11)
+- When Commissioner can use different enforcement options
+- How surcharges vs restitution work`;
+
+            showAITutor(context);
+        }
+    </script>
+
+</body>
+</html>

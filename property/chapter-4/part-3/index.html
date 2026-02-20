@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 3: Licensing | Chapter 4 | Property Insurance</title>
+    <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <link rel="stylesheet" href="../../../css/styles.css">
+    <script src="../../../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+        }
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <!-- Settings & Theme Toggle Buttons -->
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="showAPIKeySetup()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings">
+            <svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+        </button>
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/>
+            </svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-purple-600 to-purple-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center text-purple-200 text-sm mb-2">
+                <a href="../../index.html" class="hover:text-white">Property</a>
+                <span class="mx-2">→</span>
+                <a href="../index.html" class="hover:text-white">Chapter 4</a>
+                <span class="mx-2">→</span>
+                <span class="text-white">Part 3</span>
+            </div>
+            <h1 class="text-3xl font-bold">Part 3: Licensing</h1>
+            <p class="text-purple-200 mt-1">Requirements, Procedures, Maintenance, and Termination</p>
+        </div>
+    </header>
+
+    <!-- Sticky Navigation -->
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-wrap gap-2 text-sm">
+                <a href="#licensees" class="text-purple-600 dark:text-purple-400 hover:text-purple-800 px-2 py-1 rounded hover:bg-purple-50 dark:hover:bg-gray-700">Types</a>
+                <a href="#obtaining" class="text-purple-600 dark:text-purple-400 hover:text-purple-800 px-2 py-1 rounded hover:bg-purple-50 dark:hover:bg-gray-700">Obtaining</a>
+                <a href="#maintenance" class="text-purple-600 dark:text-purple-400 hover:text-purple-800 px-2 py-1 rounded hover:bg-purple-50 dark:hover:bg-gray-700">Maintenance</a>
+                <a href="#termination" class="text-purple-600 dark:text-purple-400 hover:text-purple-800 px-2 py-1 rounded hover:bg-purple-50 dark:hover:bg-gray-700">Termination</a>
+                <a href="#appointments" class="text-purple-600 dark:text-purple-400 hover:text-purple-800 px-2 py-1 rounded hover:bg-purple-50 dark:hover:bg-gray-700">Appointments</a>
+                <span class="text-gray-300 dark:text-gray-600">|</span>
+                <a href="#exam-traps" class="text-red-600 dark:text-red-400 hover:text-red-800 px-2 py-1 rounded hover:bg-red-50 dark:hover:bg-gray-700">Exam Traps</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-5xl lg:max-w-7xl">
+
+        <!-- Start Here Summary -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-purple-100 to-indigo-100 dark:from-purple-900/40 dark:to-indigo-900/40 rounded-xl p-6 border border-purple-300 dark:border-purple-700">
+                <h3 class="text-xl font-bold text-purple-800 dark:text-purple-200 mb-4">Start Here: 7 Numbers You MUST Memorize</h3>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-3">
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                        <p class="text-2xl font-bold text-purple-600 dark:text-purple-400">18</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Minimum age to apply</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                        <p class="text-2xl font-bold text-purple-600 dark:text-purple-400">20 hrs</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Pre-licensing per line</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                        <p class="text-2xl font-bold text-purple-600 dark:text-purple-400">2 yrs</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">License duration</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                        <p class="text-2xl font-bold text-purple-600 dark:text-purple-400">24 hrs</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">CE every 2 years</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                        <p class="text-2xl font-bold text-purple-600 dark:text-purple-400">3 hrs</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">CE in ethics</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                        <p class="text-2xl font-bold text-purple-600 dark:text-purple-400">1 yr</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Exam valid for license app</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                        <p class="text-2xl font-bold text-purple-600 dark:text-purple-400">5 yrs</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Wait after revocation</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                        <p class="text-2xl font-bold text-purple-600 dark:text-purple-400">180 days</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Temporary license max</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 1: Types of Licensees -->
+        <section id="licensees" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">1. Types of Licensees</h2>
+
+                <div class="bg-red-50 dark:bg-red-900/20 border-2 border-red-300 dark:border-red-700 rounded-xl p-5 mb-6">
+                    <h4 class="font-bold text-red-800 dark:text-red-300 text-lg mb-2">The Core Rule</h4>
+                    <p class="text-gray-700 dark:text-gray-300 text-lg">A person <strong>CANNOT sell, solicit, or negotiate</strong> insurance in this state unless <strong>licensed for the appropriate line(s) of authority</strong>.</p>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg mt-4">
+                        <p class="font-semibold text-red-800 dark:text-red-300 mb-2">Real-World Scenario: Wrong Line of Authority</p>
+                        <p class="text-sm text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Agent Tom holds only a Life insurance license. His client asks him to help with homeowners insurance since they trust him.</p>
+                        <p class="text-sm text-gray-700 dark:text-gray-300 mt-1"><strong>What Happens:</strong> Tom sells the client a homeowners policy anyway, thinking "it's just one policy."</p>
+                        <p class="text-sm text-gray-700 dark:text-gray-300 mt-1"><strong>The Result:</strong> Tom has committed a violation. He transacted Property insurance without the proper license. The Commissioner can suspend or revoke his Life license, impose fines, and Tom could face criminal charges. The policy itself may also be voidable.</p>
+                    </div>
+                </div>
+
+                <!-- Lines of Authority -->
+                <h3 class="text-xl font-bold text-gray-800 dark:text-gray-100 mb-4">Lines of Authority in New Jersey</h3>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-l-4 border-blue-500">
+                        <p class="font-bold text-blue-800 dark:text-blue-300">Life</p>
+                    </div>
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-l-4 border-blue-500">
+                        <p class="font-bold text-blue-800 dark:text-blue-300">Accident and Health (Sickness)</p>
+                    </div>
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-l-4 border-blue-500">
+                        <p class="font-bold text-blue-800 dark:text-blue-300">Variable Life and Variable Annuity*</p>
+                        <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">*Requires securities license too</p>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <p class="font-bold text-green-800 dark:text-green-300">Property</p>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <p class="font-bold text-green-800 dark:text-green-300">Casualty</p>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <p class="font-bold text-green-800 dark:text-green-300">Personal Lines</p>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border-l-4 border-purple-500">
+                        <p class="font-bold text-purple-800 dark:text-purple-300">Surplus Lines</p>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border-l-4 border-purple-500">
+                        <p class="font-bold text-purple-800 dark:text-purple-300">Title Insurance</p>
+                    </div>
+                    <div class="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg border-l-4 border-amber-500">
+                        <p class="font-bold text-amber-800 dark:text-amber-300">Limited Lines</p>
+                        <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">Bail bonds, car rental, credit, travel, etc.</p>
+                    </div>
+                </div>
+
+                <!-- Producer Requirements -->
+                <h3 class="text-xl font-bold text-gray-800 dark:text-gray-100 mb-4">Requirements to Become a Producer</h3>
+
+                <div class="bg-purple-50 dark:bg-purple-900/30 rounded-xl p-5 lg:p-6 mb-6 border border-purple-200 dark:border-purple-800">
+                    <p class="font-bold text-purple-800 dark:text-purple-300 mb-4">To qualify for a producer license, you must:</p>
+                    <div class="space-y-3">
+                        <div class="flex items-start">
+                            <span class="bg-purple-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
+                            <span class="text-gray-700 dark:text-gray-300">Be <strong>18 years of age or older</strong></span>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="bg-purple-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
+                            <span class="text-gray-700 dark:text-gray-300">Submit the <strong>NAIC uniform licensing application</strong> and pay required fees</span>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="bg-purple-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
+                            <span class="text-gray-700 dark:text-gray-300">Complete <strong>20 hours of prelicensing education</strong> for each line of authority (unless exempt)</span>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="bg-purple-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">4</span>
+                            <span class="text-gray-700 dark:text-gray-300">Pass the licensing examination <strong>no more than 1 year</strong> before submitting application</span>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="bg-purple-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">5</span>
+                            <span class="text-gray-700 dark:text-gray-300">Be a <strong>NJ resident</strong> OR plan to engage in business at an office in NJ</span>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="bg-purple-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">6</span>
+                            <span class="text-gray-700 dark:text-gray-300">Plan to sell to the <strong>public</strong>, NOT just for your own accounts or family/associates</span>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="bg-purple-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">7</span>
+                            <span class="text-gray-700 dark:text-gray-300">Be of <strong>good reputation and character</strong>, no crimes of moral turpitude</span>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="bg-purple-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">8</span>
+                            <span class="text-gray-700 dark:text-gray-300">Submit <strong>fingerprints</strong> and consent to criminal background check (applicant pays)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Business Entity Requirements -->
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-5 border-l-4 border-blue-500 mb-6">
+                    <h4 class="font-bold text-blue-800 dark:text-blue-300 text-lg mb-3">Business Entity License</h4>
+                    <p class="text-gray-700 dark:text-gray-300 mb-3">A business entity (corporation, LLC, partnership) can also get a producer license if:</p>
+                    <ul class="space-y-2 text-gray-700 dark:text-gray-300 text-sm">
+                        <li class="flex items-start"><span class="text-blue-500 mr-2">•</span>Domiciled in NJ OR authorized by Secretary of State to do business in NJ</li>
+                        <li class="flex items-start"><span class="text-blue-500 mr-2">•</span>Application signed by each partner/officer who holds a license</li>
+                        <li class="flex items-start"><span class="text-blue-500 mr-2">•</span>Partners/officers are of good reputation, no disqualifying convictions</li>
+                        <li class="flex items-start"><span class="text-blue-500 mr-2">•</span>Will sell to the general public, not just for itself</li>
+                        <li class="flex items-start"><span class="text-blue-500 mr-2">•</span><strong>At least ONE partner/officer holds a valid producer license</strong></li>
+                    </ul>
+                    <div class="mt-4 bg-white dark:bg-gray-700 p-3 rounded-lg">
+                        <p class="text-sm text-red-700 dark:text-red-400"><strong>Important:</strong> A license will NOT be issued to an entity operated by someone whose license was revoked in the past <strong>10 years</strong>.</p>
+                    </div>
+                </div>
+
+                <!-- Nonresident Producer -->
+                <div class="bg-green-50 dark:bg-green-900/20 rounded-xl p-5 border-l-4 border-green-500 mb-6">
+                    <h4 class="font-bold text-green-800 dark:text-green-300 text-lg mb-3">Nonresident Producer</h4>
+                    <p class="text-gray-700 dark:text-gray-300 mb-3">A producer licensed in another state can transact insurance in NJ by obtaining a nonresident license. Requirements:</p>
+                    <ul class="space-y-2 text-gray-700 dark:text-gray-300 text-sm">
+                        <li class="flex items-start"><span class="text-green-500 mr-2">•</span>Hold the same line of authority in their home state</li>
+                        <li class="flex items-start"><span class="text-green-500 mr-2">•</span>Submit proper request and pay fees</li>
+                        <li class="flex items-start"><span class="text-green-500 mr-2">•</span><strong>Appoint the Commissioner as agent for service of process</strong> (so court papers can be delivered to NJ Commissioner)</li>
+                    </ul>
+
+                    <div class="mt-4 bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Moving to NJ?</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">If a nonresident producer moves to NJ, they must:</p>
+                        <ul class="text-sm text-gray-600 dark:text-gray-400 mt-2 space-y-1">
+                            <li>• Notify Department of change within <strong>30 days</strong></li>
+                            <li>• Within <strong>90 days</strong> of change in residence status, request to qualify as NJ resident</li>
+                            <li>• Submit fingerprints</li>
+                        </ul>
+                    </div>
+                    <div class="mt-4 bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-semibold text-green-800 dark:text-green-300 mb-2">Real-World Scenario: Nonresident Working in NJ</p>
+                        <p class="text-sm text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Sarah is a licensed P&C producer in Pennsylvania. A NJ business owner she knows asks her to write their commercial policy.</p>
+                        <p class="text-sm text-gray-700 dark:text-gray-300 mt-1"><strong>What She Must Do:</strong> Sarah needs to obtain a NJ nonresident license first. She applies, pays the fee, and designates the NJ Commissioner as her agent for service of process.</p>
+                        <p class="text-sm text-gray-700 dark:text-gray-300 mt-1"><strong>The Result:</strong> Once approved, Sarah can legally write the NJ policy. If she later moves to NJ permanently, she has 30 days to notify the Department and 90 days to convert to a resident license.</p>
+                    </div>
+                </div>
+
+                <!-- Surplus Lines -->
+                <div class="bg-amber-50 dark:bg-amber-900/20 rounded-xl p-5 border-l-4 border-amber-500">
+                    <h4 class="font-bold text-amber-800 dark:text-amber-300 text-lg mb-3">Surplus Lines Agent</h4>
+                    <p class="text-gray-700 dark:text-gray-300 mb-3">A surplus lines agent can write business for insurers that DON'T have a Certificate of Authority in NJ (nonadmitted insurers) when no admitted insurer offers that coverage.</p>
+
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg mb-3">
+                        <p class="font-semibold text-gray-800 dark:text-gray-200">Requirements:</p>
+                        <ul class="text-sm text-gray-600 dark:text-gray-400 mt-1 space-y-1">
+                            <li>• Must be a <strong>NJ resident</strong></li>
+                            <li>• Must hold a <strong>Property and Casualty license</strong></li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                        <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Example:</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400"><strong>The Setup:</strong> A rare art collector needs specialized coverage for a $50 million painting. No admitted NJ insurers will write this policy.</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mt-1"><strong>Solution:</strong> A surplus lines agent can place this coverage with Lloyd's of London (an unauthorized insurer in NJ) because the coverage isn't available from authorized insurers.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Obtaining a License -->
+        <section id="obtaining" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">2. Obtaining a License</h2>
+
+                <!-- Prelicensing -->
+                <h3 class="text-xl font-bold text-gray-800 dark:text-gray-100 mb-4">Prelicensing Requirements</h3>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-5 border border-blue-200 dark:border-blue-800 mb-6">
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div>
+                            <p class="font-bold text-blue-800 dark:text-blue-300 mb-2">Standard Requirement:</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>20 hours</strong> of prelicensing education for <strong>EACH</strong> line of authority</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">Must include NJ insurance regulations</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Self-study and online courses count</p>
+                        </div>
+                        <div>
+                            <p class="font-bold text-blue-800 dark:text-blue-300 mb-2">Then You Must:</p>
+                            <p class="text-gray-700 dark:text-gray-300">Pass the state licensing examination</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Professional Designation Waivers -->
+                <div class="bg-green-50 dark:bg-green-900/20 rounded-xl p-5 border-l-4 border-green-500 mb-6">
+                    <h4 class="font-bold text-green-800 dark:text-green-300 text-lg mb-3">Professional Designations That Waive Education/Exam</h4>
+                    <p class="text-gray-700 dark:text-gray-300 mb-3">The Commissioner may waive prelicensing education and exam if you hold certain designations:</p>
+
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                            <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">For Life/Health:</p>
+                            <div class="flex flex-wrap gap-2 text-xs">
+                                <span class="bg-green-100 dark:bg-green-900/40 px-2 py-1 rounded">CLU</span>
+                                <span class="bg-green-100 dark:bg-green-900/40 px-2 py-1 rounded">ChFC</span>
+                                <span class="bg-green-100 dark:bg-green-900/40 px-2 py-1 rounded">CFP</span>
+                                <span class="bg-green-100 dark:bg-green-900/40 px-2 py-1 rounded">FLMI</span>
+                                <span class="bg-green-100 dark:bg-green-900/40 px-2 py-1 rounded">LUTCF</span>
+                                <span class="bg-green-100 dark:bg-green-900/40 px-2 py-1 rounded">CEBS</span>
+                                <span class="bg-green-100 dark:bg-green-900/40 px-2 py-1 rounded">CIC</span>
+                                <span class="bg-green-100 dark:bg-green-900/40 px-2 py-1 rounded">RHU</span>
+                                <span class="bg-green-100 dark:bg-green-900/40 px-2 py-1 rounded">REBC</span>
+                                <span class="bg-green-100 dark:bg-green-900/40 px-2 py-1 rounded">HIA</span>
+                            </div>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                            <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">For P&C:</p>
+                            <div class="flex flex-wrap gap-2 text-xs">
+                                <span class="bg-green-100 dark:bg-green-900/40 px-2 py-1 rounded">CPCU</span>
+                                <span class="bg-green-100 dark:bg-green-900/40 px-2 py-1 rounded">AAI</span>
+                                <span class="bg-green-100 dark:bg-green-900/40 px-2 py-1 rounded">ARM</span>
+                                <span class="bg-green-100 dark:bg-green-900/40 px-2 py-1 rounded">CIC</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-sm text-gray-600 dark:text-gray-400 mt-3"><strong>Note:</strong> These waivers do NOT apply to continuing education requirements.</p>
+                </div>
+
+                <!-- Other Exemptions -->
+                <div class="bg-amber-50 dark:bg-amber-900/20 rounded-xl p-5 border border-amber-200 dark:border-amber-800 mb-6">
+                    <h4 class="font-bold text-amber-800 dark:text-amber-300 text-lg mb-3">Other Exam Exemptions</h4>
+                    <div class="space-y-3 text-sm">
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                            <p class="font-semibold text-gray-800 dark:text-gray-200">Former Public Employee:</p>
+                            <p class="text-gray-600 dark:text-gray-400">If you previously held a NJ license that was terminated as a condition of public employment in an insurance-related field, you're exempt from re-examination if you apply within <strong>1 year</strong> of leaving that job.</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                            <p class="font-semibold text-gray-800 dark:text-gray-200">Previously Licensed in Another State:</p>
+                            <p class="text-gray-600 dark:text-gray-400">If you were licensed and in good standing in another state, you don't need prelicensing or exam - but application must be received within <strong>90 days</strong> of cancellation of previous license.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Temporary Work Authority -->
+                <div class="bg-indigo-50 dark:bg-indigo-900/20 rounded-xl p-5 border-l-4 border-indigo-500 mb-6">
+                    <h4 class="font-bold text-indigo-800 dark:text-indigo-300 text-lg mb-3">Temporary Work Authority</h4>
+                    <p class="text-gray-700 dark:text-gray-300 mb-3">Completed all requirements but waiting for the actual license?</p>
+                    <p class="text-gray-700 dark:text-gray-300">You can get <strong>temporary work authority</strong> to start working immediately.</p>
+                    <div class="mt-3 bg-white dark:bg-gray-700 p-3 rounded-lg">
+                        <p class="text-sm text-gray-600 dark:text-gray-400"><strong>Duration:</strong> Expires no more than <strong>60 days</strong> after issued, OR when actual license is issued (whichever is first)</p>
+                    </div>
+                </div>
+
+                <!-- Who Doesn't Need a License -->
+                <h3 class="text-xl font-bold text-gray-800 dark:text-gray-100 mb-4">Who Does NOT Need a Producer License</h3>
+
+                <div class="bg-gray-50 dark:bg-gray-700 rounded-xl p-5">
+                    <p class="text-gray-700 dark:text-gray-300 mb-3">The following do NOT need a license:</p>
+                    <div class="grid md:grid-cols-2 gap-3 text-sm">
+                        <div class="flex items-start">
+                            <span class="text-green-500 mr-2">!</span>
+                            <span class="text-gray-700 dark:text-gray-300">Directors/employees doing executive, admin, managerial, or clerical work only</span>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="text-green-500 mr-2">!</span>
+                            <span class="text-gray-700 dark:text-gray-300">Directors/employees providing technical advice to licensed producers</span>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="text-green-500 mr-2">!</span>
+                            <span class="text-gray-700 dark:text-gray-300">Those securing info for group insurance or admin services for mass-marketed P&C</span>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="text-green-500 mr-2">!</span>
+                            <span class="text-gray-700 dark:text-gray-300">Employers/associations administering their OWN employee benefit programs</span>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="text-green-500 mr-2">!</span>
+                            <span class="text-gray-700 dark:text-gray-300">Those doing inspection, rating, classification, or training producers (not selling)</span>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="text-green-500 mr-2">!</span>
+                            <span class="text-gray-700 dark:text-gray-300">Those advertising WITHOUT intent to solicit</span>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="text-green-500 mr-2">!</span>
+                            <span class="text-gray-700 dark:text-gray-300">Nonresidents selling commercial P&C for multi-state risks</span>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="text-green-500 mr-2">!</span>
+                            <span class="text-gray-700 dark:text-gray-300">Salaried employees advising their OWN employer about employer's insurance</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Maintenance and Duration -->
+        <section id="maintenance" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">3. Maintenance and Duration</h2>
+
+                <!-- License Duration & Renewal -->
+                <div class="bg-purple-50 dark:bg-purple-900/30 rounded-xl p-5 lg:p-6 mb-6 border border-purple-200 dark:border-purple-800">
+                    <h4 class="font-bold text-purple-800 dark:text-purple-300 text-lg mb-4">License Duration and Renewal</h4>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                            <p class="text-3xl font-bold text-purple-600 dark:text-purple-400">2 Years</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">License duration</p>
+                            <p class="text-xs text-gray-500 dark:text-gray-500 mt-2">Expires on last day of your birth month</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                            <p class="text-3xl font-bold text-purple-600 dark:text-purple-400">$20</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Renewal fee</p>
+                            <p class="text-xs text-gray-500 dark:text-gray-500 mt-2">$100 for late renewal</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CE Requirements -->
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-5 border-l-4 border-blue-500 mb-6">
+                    <h4 class="font-bold text-blue-800 dark:text-blue-300 text-lg mb-3">Continuing Education (CE) Requirements</h4>
+                    <div class="grid md:grid-cols-3 gap-4 mb-4">
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                            <p class="text-2xl font-bold text-blue-600 dark:text-blue-400">24 hours</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Total CE every 2 years</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                            <p class="text-2xl font-bold text-blue-600 dark:text-blue-400">3 hours</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Must be in ETHICS</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                            <p class="text-2xl font-bold text-green-600 dark:text-green-400">EXEMPT</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Nonresidents if home state has reciprocity</p>
+                        </div>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg mt-4">
+                        <p class="font-semibold text-blue-800 dark:text-blue-300 mb-2">Real-World Scenario: Missing CE Requirements</p>
+                        <p class="text-sm text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Agent Maria's license expires on March 31st. She completed 21 hours of CE (including 3 hours of ethics) but forgot she needed 24 total hours.</p>
+                        <p class="text-sm text-gray-700 dark:text-gray-300 mt-1"><strong>What Happens:</strong> Maria applies for renewal on March 20th. The Department rejects her renewal because she's 3 hours short.</p>
+                        <p class="text-sm text-gray-700 dark:text-gray-300 mt-1"><strong>The Result:</strong> Maria must quickly complete 3 more hours before March 31st or her license expires. If it expires, she must pay the $100 late renewal fee and cannot sell any policies until reinstated.</p>
+                    </div>
+                </div>
+
+                <!-- Renewal Process -->
+                <div class="bg-amber-50 dark:bg-amber-900/20 rounded-xl p-5 border border-amber-200 dark:border-amber-800 mb-6">
+                    <h4 class="font-bold text-amber-800 dark:text-amber-300 text-lg mb-3">Renewal Process Timeline</h4>
+                    <div class="space-y-3">
+                        <div class="flex items-center">
+                            <span class="bg-amber-500 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-3">10</span>
+                            <span class="text-gray-700 dark:text-gray-300"><strong>At least 10 days before expiration:</strong> Submit renewal application with fee and certification</span>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="bg-red-500 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-3">!</span>
+                            <span class="text-gray-700 dark:text-gray-300"><strong>Miss the deadline:</strong> License expires. You cannot sell insurance!</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Late Renewal -->
+                <div class="bg-red-50 dark:bg-red-900/20 rounded-xl p-5 border-l-4 border-red-500 mb-6">
+                    <h4 class="font-bold text-red-800 dark:text-red-300 text-lg mb-3">What If Your License Lapses?</h4>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Within 1 Year (12 months) of Expiration:</p>
+                        <ul class="text-sm text-gray-600 dark:text-gray-400 space-y-1">
+                            <li>• Apply for <strong>late renewal</strong></li>
+                            <li>• Provide proof of completing CE hours</li>
+                            <li>• Pay <strong>$100 late renewal fee</strong></li>
+                            <li>• Certify whether you transacted business while unlicensed (and how many policies written)</li>
+                            <li>• <strong>Waived</strong> from prelicensing education and exam</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg mt-3">
+                        <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">After 1 Year:</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Must start over - prelicensing, exam, and new application required.</p>
+                    </div>
+                </div>
+
+                <!-- Waivers -->
+                <div class="bg-gray-50 dark:bg-gray-700 rounded-xl p-5 mb-6">
+                    <h4 class="font-bold text-gray-800 dark:text-gray-200 text-lg mb-3">Waivers for Special Circumstances</h4>
+                    <p class="text-gray-700 dark:text-gray-300 mb-3">A producer may request waiver of renewal requirements if unable to comply due to:</p>
+                    <ul class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
+                        <li class="flex items-start"><span class="text-gray-500 mr-2">•</span><strong>Military service</strong></li>
+                        <li class="flex items-start"><span class="text-gray-500 mr-2">•</span><strong>Long-term medical disability</strong></li>
+                        <li class="flex items-start"><span class="text-gray-500 mr-2">•</span>Other extenuating circumstances</li>
+                    </ul>
+                    <p class="text-sm text-gray-600 dark:text-gray-400 mt-3">Can also request waiver of any exam requirements or fines related to failure to renew.</p>
+                </div>
+
+                <!-- Certification of License Status -->
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-5 border-l-4 border-blue-500 mb-6">
+                    <h4 class="font-bold text-blue-800 dark:text-blue-300 text-lg mb-3">Certification of License Status</h4>
+                    <p class="text-gray-700 dark:text-gray-300 mb-3">When requested by any person, the Department will issue a certification of license status for any currently licensed producer or producer licensed within the past <strong>4 years</strong>.</p>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">The certification must include:</p>
+                        <ul class="text-sm text-gray-600 dark:text-gray-400 space-y-1">
+                            <li>• Licensee's name, date of birth, license reference number</li>
+                            <li>• Statement whether license is in force or expired</li>
+                            <li>• Types of insurance for which authorized</li>
+                            <li>• Whether qualified by examination (or equivalent)</li>
+                            <li>• Whether any formal disciplinary action was taken in last 4 years</li>
+                        </ul>
+                    </div>
+                    <div class="mt-4 bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Example:</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400"><strong>The Setup:</strong> ABC Insurance Company is considering hiring Agent John. They want to verify his license history.</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mt-1"><strong>What They Do:</strong> ABC requests a certification of license status from the Department. The certification shows John has been licensed for 3 years, holds P&C authority, passed the exam, and has no disciplinary actions.</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mt-1"><strong>Result:</strong> ABC has official documentation of John's license status and clean record before hiring him.</p>
+                    </div>
+                </div>
+
+                <!-- Commissioner May Order Retake Exam -->
+                <div class="bg-red-50 dark:bg-red-900/20 rounded-xl p-5 border-l-4 border-red-500">
+                    <h4 class="font-bold text-red-800 dark:text-red-300 text-lg mb-3">Commissioner May Order Retake of Exam</h4>
+                    <p class="text-gray-700 dark:text-gray-300 mb-3">The Commissioner may, by order, require a licensee or applicant to <strong>retake the licensing examination</strong>.</p>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <ul class="text-sm text-gray-600 dark:text-gray-400 space-y-2">
+                            <li>• The order must clearly state the <strong>reasons</strong> for this requirement</li>
+                            <li>• The licensee's license remains <strong>effective</strong> pending results (unless suspended/revoked)</li>
+                            <li>• The licensee may <strong>appeal</strong> the decision within <strong>10 days</strong> of receiving the order</li>
+                        </ul>
+                    </div>
+                    <div class="mt-4 bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Example:</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400"><strong>The Setup:</strong> Agent Rachel has received multiple complaints about misunderstanding basic policy provisions and giving incorrect advice to clients.</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mt-1"><strong>What Happens:</strong> The Commissioner orders Rachel to retake the licensing exam to demonstrate she has proper knowledge. The order specifies the complaints and concerns.</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mt-1"><strong>Rachel's Options:</strong> She can take the exam (her license stays active while she prepares), or she can appeal the order within 10 days if she believes it's unjustified.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: License Refusal and Termination -->
+        <section id="termination" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">4. License Refusal and Termination</h2>
+
+                <!-- Reasons for Revocation/Suspension -->
+                <div class="bg-red-50 dark:bg-red-900/20 rounded-xl p-5 border-2 border-red-300 dark:border-red-700 mb-6">
+                    <h4 class="font-bold text-red-800 dark:text-red-300 text-lg mb-4">Reasons the Commissioner May Revoke, Suspend, or Refuse to Issue/Renew</h4>
+                    <div class="grid md:grid-cols-2 gap-3 text-sm">
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                            <p class="text-gray-700 dark:text-gray-300">Willfully violating any Insurance Code provision</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                            <p class="text-gray-700 dark:text-gray-300">Intentionally withholding material information on application</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                            <p class="text-gray-700 dark:text-gray-300">Obtaining license through misrepresentation or fraud</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                            <p class="text-gray-700 dark:text-gray-300">Cheating on an exam (including using notes)</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                            <p class="text-gray-700 dark:text-gray-300">Having license suspended/revoked in ANY state</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                            <p class="text-gray-700 dark:text-gray-300">Committing any fraudulent act</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                            <p class="text-gray-700 dark:text-gray-300">Misappropriating funds of insureds or insurers</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                            <p class="text-gray-700 dark:text-gray-300">Materially misrepresenting policy conditions</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                            <p class="text-gray-700 dark:text-gray-300">Paying rebates to induce business</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                            <p class="text-gray-700 dark:text-gray-300">Aiding/abetting another producer in violations</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                            <p class="text-gray-700 dark:text-gray-300">Being convicted of a crime of moral turpitude</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                            <p class="text-gray-700 dark:text-gray-300">Failing to file accurate business address</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                            <p class="text-gray-700 dark:text-gray-300">Failing to pay Commissioner's fine</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                            <p class="text-gray-700 dark:text-gray-300">Failing to appear for subpoena</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                            <p class="text-gray-700 dark:text-gray-300">Failing to notify of conviction/indictment within 30 days</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                            <p class="text-gray-700 dark:text-gray-300">Forging another's name on application</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                            <p class="text-gray-700 dark:text-gray-300">Failing to comply with child support order</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                            <p class="text-gray-700 dark:text-gray-300">Failing to pay state income tax</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                            <p class="text-gray-700 dark:text-gray-300">Knowingly accepting business from unlicensed producer</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- What Happens After -->
+                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                    <div class="bg-amber-50 dark:bg-amber-900/20 rounded-xl p-5 border-l-4 border-amber-500">
+                        <h4 class="font-bold text-amber-800 dark:text-amber-300 text-lg mb-3">After REVOCATION</h4>
+                        <p class="text-gray-700 dark:text-gray-300 mb-2">Must wait <strong>5 years</strong> before applying for reinstatement</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Must submit affidavit describing how competence, trustworthiness, reputation, and character have improved</p>
+                        <div class="mt-3 bg-white dark:bg-gray-700 p-3 rounded-lg">
+                            <p class="text-xs text-red-700 dark:text-red-400"><strong>Cannot:</strong> Act as partner/officer in producer organization or work in ANY capacity with a licensed producer</p>
+                        </div>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/20 rounded-xl p-5 border-l-4 border-green-500">
+                        <h4 class="font-bold text-green-800 dark:text-green-300 text-lg mb-3">After SUSPENSION</h4>
+                        <p class="text-gray-700 dark:text-gray-300 mb-2">Upon completion of suspension period and meeting all conditions, can reapply <strong>immediately</strong></p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Submit properly completed application</p>
+                    </div>
+                </div>
+
+                <!-- Revocation vs Suspension Example -->
+                <div class="bg-indigo-50 dark:bg-indigo-900/20 rounded-xl p-5 border border-indigo-200 dark:border-indigo-800 mb-6">
+                    <h4 class="font-bold text-indigo-800 dark:text-indigo-300 text-lg mb-3">Side-by-Side: Two Agents, Two Outcomes</h4>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                            <p class="font-semibold text-red-700 dark:text-red-300 mb-2">Agent Mike - REVOKED</p>
+                            <p class="text-sm text-gray-700 dark:text-gray-300"><strong>What He Did:</strong> Misappropriated $50,000 in client premiums.</p>
+                            <p class="text-sm text-gray-700 dark:text-gray-300 mt-1"><strong>Consequence:</strong> License revoked. Must wait 5 years to even apply. Cannot work at any insurance agency during this time - not even as a receptionist at an agency.</p>
+                            <p class="text-sm text-gray-700 dark:text-gray-300 mt-1"><strong>To Get Back:</strong> After 5 years, must submit an affidavit proving improved character and trustworthiness.</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                            <p class="font-semibold text-amber-700 dark:text-amber-300 mb-2">Agent Lisa - SUSPENDED (6 months)</p>
+                            <p class="text-sm text-gray-700 dark:text-gray-300"><strong>What She Did:</strong> Failed to complete CE requirements for 2 cycles and ignored Department notices.</p>
+                            <p class="text-sm text-gray-700 dark:text-gray-300 mt-1"><strong>Consequence:</strong> License suspended for 6 months. Cannot sell insurance during suspension.</p>
+                            <p class="text-sm text-gray-700 dark:text-gray-300 mt-1"><strong>To Get Back:</strong> Complete missing CE, pay fines, and apply for reinstatement immediately when suspension ends.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Important Rules -->
+                <div class="bg-red-50 dark:bg-red-900/30 rounded-xl p-5 border border-red-200 dark:border-red-800">
+                    <h4 class="font-bold text-red-800 dark:text-red-300 text-lg mb-3">Important Rules</h4>
+                    <ul class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
+                        <li class="flex items-start"><span class="text-red-500 mr-2">!</span>A producer <strong>cannot avoid</strong> disciplinary hearing by submitting license for cancellation</li>
+                        <li class="flex items-start"><span class="text-red-500 mr-2">!</span>All licenses are <strong>property of the State</strong> and must be returned upon suspension, revocation, or expiration</li>
+                        <li class="flex items-start"><span class="text-red-500 mr-2">!</span>Failure to maintain surplus lines bond = <strong>voided</strong> surplus lines authority</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Contractual Relationships -->
+        <section id="appointments" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">5. Contractual Relationships (Appointments)</h2>
+
+                <div class="bg-purple-50 dark:bg-purple-900/30 rounded-xl p-5 lg:p-6 mb-6 border border-purple-200 dark:border-purple-800">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">An insurer authorized in NJ may <strong>appoint</strong> anyone who holds a valid producer license as its agent. This creates the insurer-producer relationship.</p>
+                </div>
+
+                <!-- Key Numbers -->
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-l-4 border-blue-500">
+                        <p class="font-bold text-blue-800 dark:text-blue-300 mb-2">15 Days to Notify of Appointment</p>
+                        <p class="text-sm text-gray-700 dark:text-gray-300">Insurer must notify the Department of appointment within <strong>15 days</strong> after contract execution OR within 15 days after first application is submitted</p>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                        <p class="font-bold text-red-800 dark:text-red-300 mb-2">15 Days to Notify of Cancellation</p>
+                        <p class="text-sm text-gray-700 dark:text-gray-300">If insurer cancels agency contract, must notify Commissioner within <strong>15 days</strong>. Failure to do so implies contract still exists.</p>
+                    </div>
+                </div>
+
+                <!-- Contract Requirements -->
+                <div class="bg-gray-50 dark:bg-gray-700 rounded-xl p-5 mb-6">
+                    <h4 class="font-bold text-gray-800 dark:text-gray-200 text-lg mb-3">Agency Contract Must Specify:</h4>
+                    <ul class="space-y-2 text-gray-700 dark:text-gray-300">
+                        <li class="flex items-start"><span class="text-purple-500 mr-2">•</span>The <strong>lines of authority</strong> for which producer may represent the company</li>
+                        <li class="flex items-start"><span class="text-purple-500 mr-2">•</span><strong>Duties, responsibilities, and limitations</strong> of authority</li>
+                    </ul>
+                    <p class="text-sm text-gray-600 dark:text-gray-400 mt-3">Both insurer AND producer must maintain a copy. Insurer must verify producer is properly licensed BEFORE executing contract. Insurer cannot accept business produced before the individual was licensed.</p>
+                </div>
+
+                <!-- Temporary License -->
+                <div class="bg-amber-50 dark:bg-amber-900/20 rounded-xl p-5 border-l-4 border-amber-500">
+                    <h4 class="font-bold text-amber-800 dark:text-amber-300 text-lg mb-3">Temporary Agent License (Special Circumstances)</h4>
+                    <p class="text-gray-700 dark:text-gray-300 mb-3">Commissioner may issue a temporary license for <strong>maximum 180 days</strong>, without exam, to:</p>
+                    <ul class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
+                        <li class="flex items-start"><span class="text-amber-500 mr-2">•</span><strong>Death/disability of agent:</strong> Surviving spouse, court-appointed representative, or business entity member</li>
+                        <li class="flex items-start"><span class="text-amber-500 mr-2">•</span><strong>Agent entering military:</strong> Agent's designee</li>
+                        <li class="flex items-start"><span class="text-amber-500 mr-2">•</span><strong>Public interest:</strong> Any person Commissioner deems appropriate</li>
+                    </ul>
+                    <div class="mt-4 bg-white dark:bg-gray-700 p-3 rounded-lg">
+                        <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Example:</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400"><strong>The Setup:</strong> John, a sole proprietor insurance agent, suddenly dies. His wife Mary has never sold insurance but needs to handle John's existing clients.</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400 mt-1"><strong>Solution:</strong> The Commissioner can issue Mary a temporary license (up to 180 days) so she can service John's clients while she either gets fully licensed or sells the business.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cheat Sheet -->
+        <section id="cheat-sheet" class="mb-10">
+            <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 border-2 border-dashed border-gray-300 dark:border-gray-600">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100">Cheat Sheet: Licensing Numbers</h2>
+                    <span class="text-sm text-gray-500 dark:text-gray-400">Print this for quick reference</span>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                        <p class="font-bold text-purple-700 dark:text-purple-300">18 years old</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Minimum age to apply</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                        <p class="font-bold text-purple-700 dark:text-purple-300">20 hours</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Prelicensing per line</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                        <p class="font-bold text-purple-700 dark:text-purple-300">1 year</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Exam valid for application</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                        <p class="font-bold text-purple-700 dark:text-purple-300">60 days</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Temporary work authority</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                        <p class="font-bold text-purple-700 dark:text-purple-300">180 days</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Temporary license max</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                        <p class="font-bold text-purple-700 dark:text-purple-300">2 years</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">License duration</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                        <p class="font-bold text-purple-700 dark:text-purple-300">24 hours</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">CE every 2 years</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                        <p class="font-bold text-purple-700 dark:text-purple-300">3 hours</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">CE in ethics</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                        <p class="font-bold text-purple-700 dark:text-purple-300">10 days</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Before expiration to renew</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                        <p class="font-bold text-purple-700 dark:text-purple-300">$20 / $100</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Renewal / Late renewal fee</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                        <p class="font-bold text-purple-700 dark:text-purple-300">1 year</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Late renewal window</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                        <p class="font-bold text-purple-700 dark:text-purple-300">5 years</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Wait after revocation</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                        <p class="font-bold text-purple-700 dark:text-purple-300">10 years</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Revocation bars business entity</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                        <p class="font-bold text-purple-700 dark:text-purple-300">15 days</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Notify of appointment/cancellation</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                        <p class="font-bold text-purple-700 dark:text-purple-300">30 days</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Nonresident notify of address change</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                        <p class="font-bold text-purple-700 dark:text-purple-300">90 days</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Nonresident to qualify as resident</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                        <p class="font-bold text-purple-700 dark:text-purple-300">4 years</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Certification of license status available</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                        <p class="font-bold text-purple-700 dark:text-purple-300">10 days</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Appeal retake exam order</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Trap Alerts -->
+        <section id="exam-traps" class="mb-10">
+            <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-xl p-5 lg:p-6">
+                <h2 class="text-2xl font-bold text-red-800 dark:text-red-300 mb-4">Exam Trap Alerts</h2>
+                <div class="space-y-4">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">1. 20 Hours Per LINE</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">It's 20 hours for EACH line of authority, not 20 hours total. If getting Property AND Casualty, that's 40 hours.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">2. Revocation vs Suspension</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">Revocation = 5 year wait. Suspension = can reapply immediately when suspension ends. Know the difference!</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">3. 60 Days vs 180 Days</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">Temporary WORK authority = 60 days max. Temporary LICENSE (death/disability/military) = 180 days max. Don't mix them up!</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">4. Cannot Escape Discipline</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">If you're facing disciplinary action, you CANNOT avoid it by surrendering your license. The action continues.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">5. Surplus Lines = NJ Resident + P&C License</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">To be a surplus lines agent, you must be a NJ resident AND hold Property & Casualty license. Both requirements!</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">6. License Belongs to the STATE</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">Your license is state property. When suspended, revoked, or expired, you MUST return it to the Department.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Reference Summary -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-purple-600 to-purple-800 rounded-xl p-6 text-white">
+                <h2 class="text-2xl font-bold mb-6">Quick Reference Summary</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Getting Licensed</p>
+                        <p class="text-sm text-purple-100">18+ years, 20 hrs per line, pass exam within 1 year, fingerprints, good character</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">License Duration</p>
+                        <p class="text-sm text-purple-100">2 years, expires on birth month, renew 10 days before, $20 fee ($100 late)</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Continuing Education</p>
+                        <p class="text-sm text-purple-100">24 hours every 2 years, including 3 hours of ethics</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">After Revocation</p>
+                        <p class="text-sm text-purple-100">Wait 5 years, submit affidavit, cannot work with licensed producers</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Surplus Lines</p>
+                        <p class="text-sm text-purple-100">NJ resident + P&C license required</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Appointments</p>
+                        <p class="text-sm text-purple-100">15 days to notify Commissioner of appointment OR cancellation</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Navigation -->
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <a href="../part-2/index.html" class="text-purple-400 hover:text-purple-300 mb-4 md:mb-0">← Part 2: State Regulation</a>
+                <span class="text-gray-400 mb-4 md:mb-0">Part 3 of 9</span>
+                <a href="../part-4/index.html" class="text-purple-400 hover:text-purple-300">Part 4: Trade Practices →</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AI Tutor Button -->
+    <button onclick="openAITutor()" class="fixed bottom-8 right-8 bg-purple-600 hover:bg-purple-700 text-white rounded-full p-4 shadow-lg hover:scale-110 transition-transform">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+        </svg>
+    </button>
+
+    <script>
+        function openAITutor() {
+            const context = `I'm studying NJ Insurance Licensing requirements. Key topics:
+
+REQUIREMENTS TO GET LICENSED:
+- 18 years old minimum
+- 20 hours prelicensing per line of authority
+- Pass exam within 1 year of application
+- NJ resident OR plan to work at NJ office
+- Good reputation, no crimes of moral turpitude
+- Fingerprints and background check
+
+KEY NUMBERS:
+- 18 years = minimum age
+- 20 hours = prelicensing per line
+- 1 year = exam valid for application
+- 60 days = temporary work authority
+- 180 days = temporary license (death/disability/military)
+- 2 years = license duration
+- 24 hours CE every 2 years (including 3 hours ethics)
+- 10 days before expiration to renew
+- $20 renewal fee / $100 late renewal
+- 1 year = late renewal window
+- 5 years = wait after revocation
+- 10 years = revoked person cannot operate business entity
+- 15 days = notify of appointment/cancellation
+- 30 days = nonresident notify address change
+- 90 days = nonresident to qualify as resident
+- 4 years = certification of license status available
+- 10 days = appeal retake exam order
+
+SPECIAL TYPES:
+- Nonresident producer: Must appoint Commissioner as agent for service of process
+- Surplus Lines: Must be NJ resident + hold P&C license
+- Business Entity: At least one partner/officer must be licensed
+
+REVOCATION vs SUSPENSION:
+- Revocation = 5 year wait, cannot work at any agency
+- Suspension = reapply immediately when suspension ends
+
+WAIVERS: Military service, long-term disability`;
+
+            showAITutor(context);
+        }
+    </script>
+</body>
+</html>

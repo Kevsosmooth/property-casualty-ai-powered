@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 5: Information Privacy | Chapter 4 | Property Insurance</title>
+    <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <link rel="stylesheet" href="../../../css/styles.css">
+    <script src="../../../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+        }
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <!-- Settings & Theme Toggle Buttons -->
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="showAPIKeySetup()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings">
+            <svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+        </button>
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/>
+            </svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-purple-600 to-purple-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center text-purple-200 text-sm mb-2">
+                <a href="../../index.html" class="hover:text-white">Property</a>
+                <span class="mx-2">→</span>
+                <a href="../index.html" class="hover:text-white">Chapter 4</a>
+                <span class="mx-2">→</span>
+                <span class="text-white">Part 5</span>
+            </div>
+            <h1 class="text-3xl font-bold">Part 5: Information Privacy</h1>
+            <p class="text-purple-200 mt-1">Protecting Customer Information</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-5xl lg:max-w-7xl">
+
+        <!-- Short Section Notice -->
+        <section class="mb-10">
+            <div class="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-5 border border-blue-200 dark:border-blue-800">
+                <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">This is a brief section covering the key privacy requirement for insurers. While short, this concept may appear on your exam!</p>
+            </div>
+        </section>
+
+        <!-- Main Content Section -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">Information Security Program Requirement</h2>
+
+                <div class="bg-purple-50 dark:bg-purple-900/30 rounded-xl p-5 lg:p-6 mb-6 border border-purple-200 dark:border-purple-800">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">To protect customer information, insurers are required to implement and maintain a <strong>comprehensive written information security program</strong>.</p>
+                </div>
+
+                <!-- Three Types of Safeguards -->
+                <h3 class="text-xl font-bold text-gray-800 dark:text-gray-100 mb-4">The Three Required Safeguards</h3>
+
+                <div class="grid md:grid-cols-3 gap-6 mb-8">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-5 border-t-4 border-blue-500">
+                        <div class="text-center mb-4">
+                            <div class="bg-blue-100 dark:bg-blue-800 rounded-full w-16 h-16 flex items-center justify-center mx-auto">
+                                <svg class="w-8 h-8 text-blue-600 dark:text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <h4 class="font-bold text-blue-800 dark:text-blue-300 text-lg text-center mb-3">Administrative Safeguards</h4>
+                        <p class="text-sm text-gray-700 dark:text-gray-300 text-center">Policies, procedures, and training programs that govern how employees handle customer data</p>
+                        <div class="mt-4 bg-white dark:bg-gray-700 p-3 rounded-lg">
+                            <p class="text-xs text-gray-600 dark:text-gray-400"><strong>Examples:</strong> Employee training, access controls, background checks, written policies</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-green-50 dark:bg-green-900/20 rounded-xl p-5 border-t-4 border-green-500">
+                        <div class="text-center mb-4">
+                            <div class="bg-green-100 dark:bg-green-800 rounded-full w-16 h-16 flex items-center justify-center mx-auto">
+                                <svg class="w-8 h-8 text-green-600 dark:text-green-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <h4 class="font-bold text-green-800 dark:text-green-300 text-lg text-center mb-3">Technical Safeguards</h4>
+                        <p class="text-sm text-gray-700 dark:text-gray-300 text-center">Technology-based protections for electronic data and systems</p>
+                        <div class="mt-4 bg-white dark:bg-gray-700 p-3 rounded-lg">
+                            <p class="text-xs text-gray-600 dark:text-gray-400"><strong>Examples:</strong> Encryption, firewalls, passwords, secure networks, antivirus software</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-amber-50 dark:bg-amber-900/20 rounded-xl p-5 border-t-4 border-amber-500">
+                        <div class="text-center mb-4">
+                            <div class="bg-amber-100 dark:bg-amber-800 rounded-full w-16 h-16 flex items-center justify-center mx-auto">
+                                <svg class="w-8 h-8 text-amber-600 dark:text-amber-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <h4 class="font-bold text-amber-800 dark:text-amber-300 text-lg text-center mb-3">Physical Safeguards</h4>
+                        <p class="text-sm text-gray-700 dark:text-gray-300 text-center">Physical measures to protect facilities, equipment, and paper records</p>
+                        <div class="mt-4 bg-white dark:bg-gray-700 p-3 rounded-lg">
+                            <p class="text-xs text-gray-600 dark:text-gray-400"><strong>Examples:</strong> Locked file cabinets, secure offices, document shredding, visitor logs</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Department Access -->
+                <div class="bg-red-50 dark:bg-red-900/20 rounded-xl p-5 border-l-4 border-red-500 mb-6">
+                    <h4 class="font-bold text-red-800 dark:text-red-300 text-lg mb-3">Department Access Requirement</h4>
+                    <p class="text-gray-700 dark:text-gray-300">The <strong>Department of Insurance</strong> must have access to the insurer's records that demonstrate compliance with this requirement.</p>
+                    <p class="text-sm text-gray-600 dark:text-gray-400 mt-2">This means insurers must be able to show proof that they have implemented all three types of safeguards.</p>
+                </div>
+
+                <!-- Real World Example -->
+                <div class="bg-green-50 dark:bg-green-900/20 p-5 rounded-lg border-l-4 border-green-500">
+                    <p class="font-semibold text-green-800 dark:text-green-300 mb-2">Real-World Scenario: Why This Matters</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> ABC Insurance Company collects sensitive customer data including Social Security numbers, health information, and financial records from policy applications.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What's Required:</strong> ABC must have a written security program that includes:
+                            <ul class="ml-4 mt-1 space-y-1">
+                                <li>• Employee training on handling sensitive data (Administrative)</li>
+                                <li>• Encrypted databases and secure login systems (Technical)</li>
+                                <li>• Locked filing rooms and shredding protocols (Physical)</li>
+                            </ul>
+                        </p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> If the Department audits ABC, they must be able to produce documentation showing these safeguards are in place and functioning.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Memory Trick -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-indigo-100 to-purple-100 dark:from-indigo-900/30 dark:to-purple-900/30 rounded-xl p-6 border border-indigo-300 dark:border-indigo-700">
+                <h3 class="text-xl font-bold text-indigo-800 dark:text-indigo-300 mb-4">Memory Trick: A-T-P</h3>
+                <p class="text-gray-700 dark:text-gray-300 mb-4">Remember the three safeguards with <strong>A-T-P</strong>:</p>
+                <div class="grid md:grid-cols-3 gap-4">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg text-center">
+                        <p class="text-3xl font-bold text-indigo-600 dark:text-indigo-400">A</p>
+                        <p class="text-lg text-gray-700 dark:text-gray-300 mt-2"><strong>A</strong>dministrative</p>
+                        <p class="text-sm text-gray-500 dark:text-gray-400">Policies & People</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg text-center">
+                        <p class="text-3xl font-bold text-indigo-600 dark:text-indigo-400">T</p>
+                        <p class="text-lg text-gray-700 dark:text-gray-300 mt-2"><strong>T</strong>echnical</p>
+                        <p class="text-sm text-gray-500 dark:text-gray-400">Technology & Systems</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg text-center">
+                        <p class="text-3xl font-bold text-indigo-600 dark:text-indigo-400">P</p>
+                        <p class="text-lg text-gray-700 dark:text-gray-300 mt-2"><strong>P</strong>hysical</p>
+                        <p class="text-sm text-gray-500 dark:text-gray-400">Places & Paper</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Trap Alert -->
+        <section class="mb-10">
+            <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-xl p-5 lg:p-6">
+                <h2 class="text-2xl font-bold text-red-800 dark:text-red-300 mb-4">Exam Trap Alert</h2>
+                <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                    <p class="font-bold text-red-700 dark:text-red-300 mb-2">All THREE Safeguards Required</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm">The exam may try to trick you by suggesting that only one or two types of safeguards are needed. Remember: insurers must implement <strong>ALL THREE</strong> - Administrative, Technical, AND Physical. Having just one or two is not sufficient for compliance.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Reference Summary -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-purple-600 to-purple-800 rounded-xl p-6 text-white">
+                <h2 class="text-2xl font-bold mb-6">Quick Reference Summary</h2>
+                <div class="grid md:grid-cols-3 gap-4">
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Requirement</p>
+                        <p class="text-sm text-purple-100">Comprehensive WRITTEN information security program</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Safeguards</p>
+                        <p class="text-sm text-purple-100">Administrative + Technical + Physical (all three required)</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Oversight</p>
+                        <p class="text-sm text-purple-100">Department of Insurance has access to compliance records</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Navigation -->
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <a href="../part-4/index.html" class="text-purple-400 hover:text-purple-300 mb-4 md:mb-0">← Part 4: Trade Practices</a>
+                <span class="text-gray-400 mb-4 md:mb-0">Part 5 of 9</span>
+                <a href="../part-6/index.html" class="text-purple-400 hover:text-purple-300">Part 6: Insurance Fraud →</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AI Tutor Button -->
+    <button onclick="openAITutor()" class="fixed bottom-8 right-8 bg-purple-600 hover:bg-purple-700 text-white rounded-full p-4 shadow-lg hover:scale-110 transition-transform">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+        </svg>
+    </button>
+
+    <script>
+        function openAITutor() {
+            const context = `I'm studying NJ Information Privacy requirements. Key concepts:
+
+INFORMATION SECURITY PROGRAM:
+- Insurers must implement and maintain a COMPREHENSIVE WRITTEN information security program
+- Department of Insurance has access to compliance records
+
+THREE REQUIRED SAFEGUARDS (A-T-P):
+1. ADMINISTRATIVE Safeguards (Policies & People)
+   - Employee training
+   - Access controls
+   - Background checks
+   - Written policies
+
+2. TECHNICAL Safeguards (Technology & Systems)
+   - Encryption
+   - Firewalls
+   - Passwords
+   - Secure networks
+   - Antivirus software
+
+3. PHYSICAL Safeguards (Places & Paper)
+   - Locked file cabinets
+   - Secure offices
+   - Document shredding
+   - Visitor logs
+
+EXAM TIP: ALL THREE safeguards are required - not just one or two!`;
+
+            showAITutor(context);
+        }
+    </script>
+</body>
+</html>

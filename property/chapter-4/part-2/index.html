@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 2: State Regulatory Jurisdiction | Chapter 4 | Property Insurance</title>
+    <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <link rel="stylesheet" href="../../../css/styles.css">
+    <script src="../../../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+        }
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <!-- Settings & Theme Toggle Buttons -->
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="showAPIKeySetup()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings">
+            <svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+        </button>
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/>
+            </svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-purple-600 to-purple-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center text-purple-200 text-sm mb-2">
+                <a href="../../../index.html" class="hover:text-white">Property</a>
+                <span class="mx-2">→</span>
+                <a href="../../index.html" class="hover:text-white">Chapter 4</a>
+                <span class="mx-2">→</span>
+                <span class="text-white">Part 2</span>
+            </div>
+            <h1 class="text-3xl font-bold">Part 2: State Regulatory Jurisdiction</h1>
+            <p class="text-purple-200 mt-1">Who Regulates Insurance and How the Commissioner Enforces the Law</p>
+        </div>
+    </header>
+
+    <!-- Sticky Navigation -->
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-wrap gap-2 text-sm">
+                <a href="#overview" class="text-purple-600 dark:text-purple-400 hover:text-purple-800 px-2 py-1 rounded hover:bg-purple-50 dark:hover:bg-gray-700">Overview</a>
+                <a href="#must-know" class="text-purple-600 dark:text-purple-400 hover:text-purple-800 px-2 py-1 rounded hover:bg-purple-50 dark:hover:bg-gray-700">5 Must-Know</a>
+                <a href="#federal-cases" class="text-purple-600 dark:text-purple-400 hover:text-purple-800 px-2 py-1 rounded hover:bg-purple-50 dark:hover:bg-gray-700">Federal Law</a>
+                <a href="#commissioner" class="text-purple-600 dark:text-purple-400 hover:text-purple-800 px-2 py-1 rounded hover:bg-purple-50 dark:hover:bg-gray-700">Commissioner</a>
+                <a href="#penalties" class="text-purple-600 dark:text-purple-400 hover:text-purple-800 px-2 py-1 rounded hover:bg-purple-50 dark:hover:bg-gray-700">Penalties</a>
+                <a href="#cheat-sheet" class="text-purple-600 dark:text-purple-400 hover:text-purple-800 px-2 py-1 rounded hover:bg-purple-50 dark:hover:bg-gray-700">Cheat Sheet</a>
+                <a href="#exam-traps" class="text-purple-600 dark:text-purple-400 hover:text-purple-800 px-2 py-1 rounded hover:bg-purple-50 dark:hover:bg-gray-700">Exam Traps</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-5xl lg:max-w-7xl">
+
+        <!-- Overview Section -->
+        <section id="overview" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">Introduction: Who's In Charge?</h2>
+
+                <div class="bg-purple-50 dark:bg-purple-900/30 rounded-xl p-5 lg:p-6 mb-6 border border-purple-200 dark:border-purple-800">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Insurance affects millions of people and involves billions of dollars. Because it's "vested in the public interest," it must be <strong>highly regulated</strong> to protect consumers. But WHO regulates insurance - the federal government or the states?</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mt-3"><strong>Answer: Primarily the STATES.</strong> This wasn't always clear, and it took Supreme Court decisions to settle the question.</p>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-5 rounded-r-lg">
+                    <p class="font-bold text-amber-800 dark:text-amber-300 text-lg mb-2">Why This Matters</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Understanding the history of insurance regulation explains WHY each state has its own rules, WHY the Commissioner has so much power, and WHAT happens when federal and state laws conflict.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Start Here: 5 Things You MUST Know -->
+        <section id="must-know" class="mb-10">
+            <div class="bg-gradient-to-r from-purple-100 to-purple-200 dark:from-purple-900/40 dark:to-purple-800/40 rounded-xl p-6 mb-8 border border-purple-300 dark:border-purple-700">
+                <h3 class="text-xl font-bold text-purple-800 dark:text-purple-200 mb-4">Start Here: 5 Things You MUST Know</h3>
+                <div class="grid md:grid-cols-2 gap-3">
+                    <div class="flex items-start">
+                        <span class="bg-purple-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>States regulate insurance</strong> - not the federal government (thanks to McCarran-Ferguson Act)</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-purple-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>10 days' written notice</strong> before any disciplinary hearing</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-purple-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>$1,000 fine</strong> per unintentional violation charge</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-purple-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">4</span>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>$5,000 fine</strong> per willful/knowing violation charge</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-purple-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">5</span>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>$5,000/$10,000</strong> fines for violating cease and desist orders or insurance laws</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 1: History of Insurance Regulation -->
+        <section id="federal-cases" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">1. Federal Law & Historical Court Cases</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-5 lg:p-6 mb-6 border border-blue-200 dark:border-blue-800">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">The question "Who regulates insurance?" wasn't always clear. It took <strong>75 years</strong> and multiple Supreme Court cases to settle. Here's the timeline you need to know for the exam:</p>
+                </div>
+
+                <!-- Timeline -->
+                <div class="space-y-6">
+                    <!-- Paul vs Virginia (1869) -->
+                    <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-5 border-l-4 border-green-500">
+                        <div class="flex items-start mb-3">
+                            <div class="bg-green-600 text-white rounded-full px-3 py-1 text-sm font-bold mr-3">1869</div>
+                            <h3 class="font-bold text-green-800 dark:text-green-300 text-lg">Paul vs. Virginia</h3>
+                        </div>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-3"><strong>Supreme Court Decision:</strong> Insurance is NOT interstate commerce. Therefore, the federal government has NO authority to regulate it. Each state regulates insurance within its borders.</p>
+
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded mt-4">
+                            <p class="font-semibold text-gray-700 dark:text-gray-300 mb-2">Real-World Scenario: Why This Case Happened</p>
+                            <div class="space-y-2 text-sm lg:text-base">
+                                <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Samuel Paul was an agent for a New York insurance company. He sold policies in Virginia without getting a Virginia license (he thought his NY license was enough).</p>
+                                <p class="text-gray-700 dark:text-gray-300"><strong>What Happened:</strong> Virginia fined him for operating without a license. Paul argued that insurance is interstate commerce (selling across state lines), so only the federal government can regulate it - not individual states.</p>
+                                <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> The Supreme Court ruled AGAINST Paul. Insurance is NOT interstate commerce - it's a local transaction. States CAN require separate licenses. This decision stood for 75 years!</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-blue-100 dark:bg-blue-900/30 p-3 rounded mt-3">
+                            <p class="text-sm text-gray-700 dark:text-gray-300"><strong>Impact:</strong> For 75 years, insurance was exclusively regulated by states. Each state had total control over insurance companies and agents operating within its borders.</p>
+                        </div>
+                    </div>
+
+                    <!-- US vs South-Eastern Underwriters (1944) -->
+                    <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-5 border-l-4 border-red-500">
+                        <div class="flex items-start mb-3">
+                            <div class="bg-red-600 text-white rounded-full px-3 py-1 text-sm font-bold mr-3">1944</div>
+                            <h3 class="font-bold text-red-800 dark:text-red-300 text-lg">U.S. vs. South-Eastern Underwriters Association</h3>
+                        </div>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-3"><strong>Supreme Court Decision:</strong> REVERSED Paul vs. Virginia! Insurance IS interstate commerce. Therefore, the federal government CAN regulate it, and federal antitrust laws apply.</p>
+
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded mt-4">
+                            <p class="font-semibold text-gray-700 dark:text-gray-300 mb-2">Real-World Scenario: The Price-Fixing Conspiracy</p>
+                            <div class="space-y-2 text-sm lg:text-base">
+                                <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> The South-Eastern Underwriters Association was a group of nearly 200 insurance companies operating across multiple states. They worked together to fix prices, divide territories, and force agents to only sell their policies.</p>
+                                <p class="text-gray-700 dark:text-gray-300"><strong>What Happened:</strong> The federal government charged them with violating the Sherman Antitrust Act (a federal law against monopolies and price-fixing). The insurance companies argued, "Paul vs. Virginia says insurance isn't interstate commerce, so federal antitrust law doesn't apply to us!"</p>
+                                <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> The Supreme Court said, "Times have changed. Insurance companies now operate across many states. Insurance IS interstate commerce, and you ARE subject to federal antitrust laws." BOMBSHELL - this overturned 75 years of precedent!</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-amber-100 dark:bg-amber-900/30 p-3 rounded mt-3">
+                            <p class="text-sm text-gray-700 dark:text-gray-300"><strong>Impact:</strong> Chaos! If insurance is interstate commerce, does that mean all state insurance laws are now invalid? Can only the federal government regulate insurance? States and insurance companies panicked.</p>
+                        </div>
+                    </div>
+
+                    <!-- McCarran-Ferguson Act (1945) -->
+                    <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-5 border-l-4 border-purple-500">
+                        <div class="flex items-start mb-3">
+                            <div class="bg-purple-600 text-white rounded-full px-3 py-1 text-sm font-bold mr-3">1945</div>
+                            <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg">McCarran-Ferguson Act (Public Law 15)</h3>
+                        </div>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-3"><strong>Congressional Action:</strong> Congress stepped in to clarify. States DO have the right to regulate insurance. The federal government will NOT regulate insurance AS LONG AS states do an adequate job. However, federal laws against boycott, coercion, and intimidation still apply.</p>
+
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded mt-4">
+                            <p class="font-semibold text-gray-700 dark:text-gray-300 mb-2">What This Law Actually Says:</p>
+                            <div class="space-y-3 text-sm lg:text-base">
+                                <div class="flex items-start">
+                                    <span class="bg-purple-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
+                                    <p class="text-gray-700 dark:text-gray-300"><strong>States have primary authority</strong> to regulate insurance. State laws take precedence over conflicting federal laws (with exceptions).</p>
+                                </div>
+                                <div class="flex items-start">
+                                    <span class="bg-purple-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
+                                    <p class="text-gray-700 dark:text-gray-300"><strong>Federal government defers to states</strong> - but retains the RIGHT to regulate if states fail to do so adequately.</p>
+                                </div>
+                                <div class="flex items-start">
+                                    <span class="bg-purple-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
+                                    <p class="text-gray-700 dark:text-gray-300"><strong>Sherman Act exceptions:</strong> Federal antitrust laws DO apply to acts of boycott, coercion, or intimidation in the insurance business.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-green-100 dark:bg-green-900/30 p-4 rounded mt-4 border-l-4 border-green-500">
+                            <p class="font-semibold text-green-800 dark:text-green-300 mb-2">Real-World Example: States Must Do Their Job</p>
+                            <div class="space-y-2 text-sm">
+                                <p class="text-gray-700 dark:text-gray-300"><strong>Setup:</strong> State X decides to eliminate all insurance regulation - no licensing requirements, no rate review, no oversight of insurance companies.</p>
+                                <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Consumers in State X start getting defrauded. Insurance companies charge excessive rates. Unlicensed scammers sell fake policies.</p>
+                                <p class="text-gray-700 dark:text-gray-300"><strong>Result:</strong> The federal government CAN step in. McCarran-Ferguson says states regulate insurance "as long as they do an adequate job." If a state abdicates its duty, federal regulation kicks in.</p>
+                            </div>
+                        </div>
+
+                        <div class="mt-4 bg-blue-100 dark:bg-blue-900/30 p-3 rounded">
+                            <p class="text-sm text-gray-700 dark:text-gray-300"><strong>Impact TODAY:</strong> This is why each state has its own Insurance Department, Commissioner, and insurance laws. NJ regulates insurance in NJ, CA regulates in CA, etc. But the federal government is watching - if states don't protect consumers, federal regulators can intervene.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Summary Box -->
+                <div class="bg-gradient-to-r from-slate-100 to-slate-200 dark:from-slate-800 dark:to-slate-700 rounded-xl p-5 mt-6 border-2 border-slate-300 dark:border-slate-600">
+                    <h3 class="font-bold text-slate-800 dark:text-slate-200 text-lg mb-4">Summary: Who Regulates Insurance Today?</h3>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded">
+                            <p class="font-bold text-green-700 dark:text-green-300 mb-2">PRIMARY: States</p>
+                            <ul class="text-sm text-gray-600 dark:text-gray-400 space-y-1">
+                                <li>• Each state has its own Insurance Department</li>
+                                <li>• States license insurers and agents</li>
+                                <li>• States approve rates and policy forms</li>
+                                <li>• States investigate complaints and enforce laws</li>
+                            </ul>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded">
+                            <p class="font-bold text-blue-700 dark:text-blue-300 mb-2">SECONDARY: Federal Government</p>
+                            <ul class="text-sm text-gray-600 dark:text-gray-400 space-y-1">
+                                <li>• Can intervene if states fail to regulate</li>
+                                <li>• Sherman Act applies to boycott/coercion</li>
+                                <li>• Some federal laws apply (ACA, ERISA, etc.)</li>
+                                <li>• Generally defers to state regulation</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Department of Banking and Insurance -->
+        <section id="commissioner" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">2. Department of Banking and Insurance / Commissioner</h2>
+
+                <div class="bg-purple-50 dark:bg-purple-900/30 rounded-xl p-5 lg:p-6 mb-6 border border-purple-200 dark:border-purple-800">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">New Jersey created the Department of Banking and Insurance to execute laws relative to insurance, banking, and related industries. The <strong>Commissioner of Insurance</strong> is the administrator and chief executive officer.</p>
+                </div>
+
+                <!-- Commissioner Appointment -->
+                <div class="mb-6">
+                    <h3 class="font-bold text-gray-800 dark:text-gray-200 text-xl mb-4">Commissioner Appointment & Service</h3>
+                    <div class="grid md:grid-cols-3 gap-4">
+                        <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-l-4 border-blue-500">
+                            <p class="font-bold text-blue-800 dark:text-blue-300 mb-2">Appointed By</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm">Governor with advice and consent of the Senate</p>
+                        </div>
+                        <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                            <p class="font-bold text-green-800 dark:text-green-300 mb-2">Term</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm">Serves at the pleasure of the Governor (no fixed term)</p>
+                        </div>
+                        <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                            <p class="font-bold text-red-800 dark:text-red-300 mb-2">Restriction</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm">Cannot own/have interest in any licensed insurance company</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Commissioner's Powers -->
+                <div class="mb-6">
+                    <h3 class="font-bold text-gray-800 dark:text-gray-200 text-xl mb-4">Commissioner's Powers</h3>
+
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <div class="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-lg">
+                            <p class="font-bold text-indigo-800 dark:text-indigo-300 mb-2">Administer Department's Work</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Oversee all operations and activities</p>
+                        </div>
+                        <div class="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-lg">
+                            <p class="font-bold text-indigo-800 dark:text-indigo-300 mb-2">Appoint/Remove Personnel</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Hire and fire officers and staff</p>
+                        </div>
+                        <div class="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-lg">
+                            <p class="font-bold text-indigo-800 dark:text-indigo-300 mb-2">Organize Work</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Structure how the Department operates</p>
+                        </div>
+                        <div class="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-lg">
+                            <p class="font-bold text-indigo-800 dark:text-indigo-300 mb-2">Formulate Regulations</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Adopt, issue rules and regulations</p>
+                        </div>
+                        <div class="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-lg">
+                            <p class="font-bold text-indigo-800 dark:text-indigo-300 mb-2">Determine Policy</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Set direction and priorities</p>
+                        </div>
+                        <div class="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-lg">
+                            <p class="font-bold text-indigo-800 dark:text-indigo-300 mb-2">Make Annual Report</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Report to Governor and Legislature</p>
+                        </div>
+                        <div class="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-lg">
+                            <p class="font-bold text-indigo-800 dark:text-indigo-300 mb-2">Appoint Committees</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Create advisory committees as needed</p>
+                        </div>
+                        <div class="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-lg">
+                            <p class="font-bold text-indigo-800 dark:text-indigo-300 mb-2">Perform Functions</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Execute all Insurance Code requirements</p>
+                        </div>
+                        <div class="bg-red-100 dark:bg-red-900/30 p-4 rounded-lg border-2 border-red-400 dark:border-red-700">
+                            <p class="font-bold text-red-800 dark:text-red-300 mb-2">CANNOT Own Stock</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">In any insurance company licensed by Department</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Enforcement Powers -->
+                <div class="mb-6">
+                    <h3 class="font-bold text-gray-800 dark:text-gray-200 text-xl mb-4">Enforcement Powers</h3>
+
+                    <div class="bg-orange-50 dark:bg-orange-900/20 rounded-lg p-5 border-l-4 border-orange-500">
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-4">When the Commissioner suspects a violation, they have significant investigative and enforcement powers:</p>
+
+                        <div class="space-y-3">
+                            <div class="bg-white dark:bg-gray-700 p-4 rounded">
+                                <p class="font-bold text-gray-800 dark:text-gray-200 mb-1">Conduct Investigations</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">Examine books, records, and business practices</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-4 rounded">
+                                <p class="font-bold text-gray-800 dark:text-gray-200 mb-1">Administer Oaths</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">Require witnesses to testify under oath</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-4 rounded">
+                                <p class="font-bold text-gray-800 dark:text-gray-200 mb-1">Interrogate Licensees</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">Question agents, brokers, and insurers</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-4 rounded">
+                                <p class="font-bold text-gray-800 dark:text-gray-200 mb-1">Issue Subpoenas</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">Compel witnesses and evidence</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-4 rounded">
+                                <p class="font-bold text-gray-800 dark:text-gray-200 mb-1">Issue Statement of Charges</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">Formally accuse of violations</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-4 rounded">
+                                <p class="font-bold text-gray-800 dark:text-gray-200 mb-1">Hold Hearings</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">Conduct formal disciplinary proceedings</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Notice and Hearing -->
+                <div class="bg-amber-50 dark:bg-amber-900/20 rounded-xl p-5 lg:p-6 border-2 border-amber-400 dark:border-amber-600">
+                    <h3 class="font-bold text-amber-800 dark:text-amber-300 text-xl mb-4">Notice and Hearing Requirements</h3>
+
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded mb-4">
+                        <div class="flex items-center gap-4 mb-3">
+                            <div class="bg-amber-600 text-white rounded-full px-4 py-2 text-xl font-bold">10</div>
+                            <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>CRITICAL NUMBER:</strong> The Commissioner must provide <strong>10 days' written notice</strong> before any disciplinary hearing</p>
+                        </div>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">This gives the accused agent or company time to prepare a defense.</p>
+                    </div>
+
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-l-4 border-blue-500">
+                        <p class="font-semibold text-blue-800 dark:text-blue-300 mb-2">Real-World Scenario: Due Process in Action</p>
+                        <div class="space-y-2 text-sm lg:text-base">
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> The Commissioner receives multiple complaints that Agent Tom has been selling policies without properly disclosing exclusions. An investigation is launched.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> After investigation, the Commissioner issues a statement of charges accusing Tom of misrepresentation. The Commissioner schedules a hearing for November 15th and mails Tom a written notice on November 3rd.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> This is LEGAL - Tom received 12 days' notice (more than the required 10). Tom has time to hire a lawyer, gather evidence, and prepare his defense. At the hearing, Tom can testify, present witnesses, and challenge the accusations.</p>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 grid md:grid-cols-2 gap-3">
+                        <div class="bg-green-100 dark:bg-green-900/30 p-3 rounded text-sm">
+                            <p class="font-semibold text-green-800 dark:text-green-300 mb-1">LEGAL:</p>
+                            <p class="text-gray-600 dark:text-gray-400">Hearing on Nov 15, notice mailed Nov 3 (12 days' notice)</p>
+                        </div>
+                        <div class="bg-red-100 dark:bg-red-900/30 p-3 rounded text-sm">
+                            <p class="font-semibold text-red-800 dark:text-red-300 mb-1">ILLEGAL:</p>
+                            <p class="text-gray-600 dark:text-gray-400">Hearing on Nov 15, notice mailed Nov 7 (only 8 days)</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Section 3: Penalties -->
+        <section id="penalties" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">3. Penalties & Fines</h2>
+
+                <div class="bg-red-50 dark:bg-red-900/30 rounded-xl p-5 lg:p-6 mb-6 border border-red-200 dark:border-red-800">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">The Commissioner has the power to impose various penalties for violations. <strong>MEMORIZE THESE NUMBERS</strong> - they're heavily tested!</p>
+                </div>
+
+                <!-- Penalty Amounts -->
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+                    <div class="bg-white dark:bg-gray-700 p-5 rounded-lg text-center border-2 border-blue-400 dark:border-blue-600">
+                        <p class="text-3xl lg:text-4xl font-bold text-blue-600 dark:text-blue-400 mb-2">$1,000</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Per charge for UNINTENTIONAL violations</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-5 rounded-lg text-center border-2 border-red-400 dark:border-red-600">
+                        <p class="text-3xl lg:text-4xl font-bold text-red-600 dark:text-red-400 mb-2">$5,000</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Per charge for WILLFUL/KNOWING violations</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-5 rounded-lg text-center border-2 border-orange-400 dark:border-orange-600">
+                        <p class="text-3xl lg:text-4xl font-bold text-orange-600 dark:text-orange-400 mb-2">$5,000</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Per violation of cease and desist order</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-5 rounded-lg text-center border-2 border-purple-400 dark:border-purple-600">
+                        <p class="text-3xl lg:text-4xl font-bold text-purple-600 dark:text-purple-400 mb-2">$5,000</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">First offense violating insurance law</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-5 rounded-lg text-center border-2 border-fuchsia-400 dark:border-fuchsia-600">
+                        <p class="text-3xl lg:text-4xl font-bold text-fuchsia-600 dark:text-fuchsia-400 mb-2">$10,000</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Subsequent offenses violating insurance law</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-5 rounded-lg text-center border-2 border-green-400 dark:border-green-600">
+                        <p class="text-3xl lg:text-4xl font-bold text-green-600 dark:text-green-400 mb-2">Variable</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Restitution + investigation costs</p>
+                    </div>
+                </div>
+
+                <!-- Types of Penalties -->
+                <div class="space-y-6">
+                    <!-- Cease and Desist Order -->
+                    <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-5 border-l-4 border-red-500">
+                        <h3 class="font-bold text-red-800 dark:text-red-300 text-lg mb-3">Cease and Desist Order</h3>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-4">An order to immediately STOP a practice. Violating this order results in additional $5,000 fines.</p>
+
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded">
+                            <p class="font-semibold text-gray-700 dark:text-gray-300 mb-2">Example: Repeated Violations</p>
+                            <div class="space-y-2 text-sm lg:text-base">
+                                <p class="text-gray-700 dark:text-gray-300"><strong>Setup:</strong> ABC Insurance is using misleading advertising. The Commissioner investigates and orders them to cease and desist.</p>
+                                <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> ABC ignores the order and runs 3 more misleading ads after receiving it.</p>
+                                <p class="text-gray-700 dark:text-gray-300"><strong>Penalties:</strong> Original violation fine + $5,000 for EACH violation of the cease and desist order = $15,000 in additional fines!</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Fines: Unintentional vs Willful -->
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-5 border-l-4 border-blue-500">
+                        <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg mb-3">Fines: Unintentional vs. Willful Violations</h3>
+
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div class="bg-white dark:bg-gray-700 p-4 rounded">
+                                <p class="font-bold text-blue-700 dark:text-blue-300 mb-2">Unintentional: Up to $1,000 per charge</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-400 mb-3">Made a mistake without realizing it</p>
+                                <div class="bg-blue-100 dark:bg-blue-900/30 p-3 rounded text-sm">
+                                    <p class="font-semibold text-gray-700 dark:text-gray-300 mb-1">Example:</p>
+                                    <p class="text-gray-600 dark:text-gray-400">Agent Sarah thought her continuing education credits from 2022 carried over to 2023. They didn't. She unintentionally let her license lapse. Fine: up to $1,000 (unintentional violation).</p>
+                                </div>
+                            </div>
+
+                            <div class="bg-white dark:bg-gray-700 p-4 rounded">
+                                <p class="font-bold text-red-700 dark:text-red-300 mb-2">Willful/Knowing: Up to $5,000 per charge</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-400 mb-3">Did it on purpose OR knew it was wrong</p>
+                                <div class="bg-red-100 dark:bg-red-900/30 p-3 rounded text-sm">
+                                    <p class="font-semibold text-gray-700 dark:text-gray-300 mb-1">Example:</p>
+                                    <p class="text-gray-600 dark:text-gray-400">Agent Tom receives a renewal notice saying he needs continuing education. He ignores it and continues selling insurance anyway. Fine: up to $5,000 per charge (willful violation - he KNEW and did it anyway).</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-4 bg-amber-100 dark:bg-amber-900/30 border-2 border-amber-400 dark:border-amber-600 p-4 rounded">
+                            <p class="font-bold text-amber-800 dark:text-amber-300 mb-2">Key Distinction:</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm">Intent matters! Same violation, different penalty based on whether you MEANT to do it or KNEW it was wrong.</p>
+                        </div>
+                    </div>
+
+                    <!-- Violating Insurance Laws -->
+                    <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-5 border-l-4 border-purple-500">
+                        <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg mb-3">Violating Insurance Laws: $5,000 / $10,000</h3>
+
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded mb-4">
+                            <ul class="space-y-2 text-gray-700 dark:text-gray-300">
+                                <li class="flex items-start">
+                                    <span class="text-purple-500 mr-2 font-bold">•</span>
+                                    <span><strong>First offense:</strong> Up to $5,000 fine</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-purple-500 mr-2 font-bold">•</span>
+                                    <span><strong>Subsequent offenses:</strong> Up to $10,000 fine</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-red-100 dark:bg-red-900/30 p-4 rounded">
+                            <p class="font-semibold text-red-800 dark:text-red-300 mb-2">Real-World Example: Repeat Offender</p>
+                            <div class="space-y-2 text-sm">
+                                <p class="text-gray-700 dark:text-gray-300"><strong>Setup:</strong> Agent Lisa gets caught rebating (giving kickbacks to clients to buy policies) in January. She's fined $5,000 (first offense).</p>
+                                <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> In June, Lisa gets caught rebating again!</p>
+                                <p class="text-gray-700 dark:text-gray-300"><strong>Result:</strong> Second offense - fine up to $10,000. Plus, her license is likely suspended or revoked. The Commissioner takes repeat violations very seriously.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Restitution and Investigation Costs -->
+                    <div class="bg-teal-50 dark:bg-teal-900/20 rounded-lg p-5 border-l-4 border-teal-500">
+                        <h3 class="font-bold text-teal-800 dark:text-teal-300 text-lg mb-3">Restitution & Investigation Costs</h3>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-4">The Commissioner can order violators to:</p>
+
+                        <div class="space-y-3">
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                                <p class="font-bold text-gray-800 dark:text-gray-200 mb-1">Restitution</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">Pay back victims to make them whole</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                                <p class="font-bold text-gray-800 dark:text-gray-200 mb-1">Investigation Costs</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">Reimburse the Department for investigating them</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded mt-4 border-l-4 border-green-500">
+                            <p class="font-semibold text-green-800 dark:text-green-300 mb-2">Real-World Example: Agent Steals Premiums</p>
+                            <div class="space-y-2 text-sm">
+                                <p class="text-gray-700 dark:text-gray-300"><strong>Setup:</strong> Agent Mike collects $20,000 in premiums from clients but pockets the money instead of sending it to the insurance company. Policies lapse.</p>
+                                <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Clients complain. The Commissioner investigates (costs $3,000 in investigator time, legal review, etc.).</p>
+                                <p class="text-gray-700 dark:text-gray-300"><strong>Result:</strong> Mike is ordered to pay:
+                                    <ul class="ml-4 mt-1">
+                                        <li>• $20,000 restitution to the victims</li>
+                                        <li>• $3,000 investigation costs to the Department</li>
+                                        <li>• Plus fines for willful violations</li>
+                                        <li>• Plus license revocation and possible criminal charges</li>
+                                    </ul>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Cheat Sheet -->
+        <section id="cheat-sheet" class="mb-10">
+            <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 border-2 border-dashed border-gray-300 dark:border-gray-600">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100">Cheat Sheet: Numbers to Memorize</h2>
+                    <span class="text-sm text-gray-500 dark:text-gray-400">Print this!</span>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                        <p class="font-bold text-purple-700 dark:text-purple-300">10 Days</p>
+                        <p class="text-xs text-gray-600 dark:text-gray-400">Written notice before disciplinary hearing</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                        <p class="font-bold text-purple-700 dark:text-purple-300">$1,000</p>
+                        <p class="text-xs text-gray-600 dark:text-gray-400">Per charge - unintentional violations</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                        <p class="font-bold text-purple-700 dark:text-purple-300">$5,000</p>
+                        <p class="text-xs text-gray-600 dark:text-gray-400">Per charge - willful/knowing violations</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                        <p class="font-bold text-purple-700 dark:text-purple-300">$5,000</p>
+                        <p class="text-xs text-gray-600 dark:text-gray-400">Each violation of cease & desist order</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                        <p class="font-bold text-purple-700 dark:text-purple-300">$5,000</p>
+                        <p class="text-xs text-gray-600 dark:text-gray-400">First offense - violating insurance law</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                        <p class="font-bold text-purple-700 dark:text-purple-300">$10,000</p>
+                        <p class="text-xs text-gray-600 dark:text-gray-400">Subsequent offense - violating insurance law</p>
+                    </div>
+                </div>
+
+                <div class="mt-4 bg-amber-100 dark:bg-amber-900/30 p-4 rounded">
+                    <p class="font-bold text-amber-800 dark:text-amber-300 mb-2">Historical Dates to Know:</p>
+                    <div class="grid grid-cols-3 gap-3 text-sm">
+                        <div><strong>1869:</strong> Paul vs. Virginia</div>
+                        <div><strong>1944:</strong> SEUA case</div>
+                        <div><strong>1945:</strong> McCarran-Ferguson</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Trap Alerts -->
+        <section id="exam-traps" class="mb-10">
+            <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-xl p-5 lg:p-6">
+                <h2 class="text-2xl font-bold text-red-800 dark:text-red-300 mb-4">Exam Trap Alerts</h2>
+                <div class="space-y-3">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">1. McCarran-Ferguson Doesn't Eliminate Federal Power</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Common mistake: "States regulate insurance, so federal laws don't apply." WRONG! McCarran-Ferguson says states have PRIMARY authority, but the federal government CAN regulate if states don't do it adequately. Plus, Sherman Act still applies to boycott, coercion, and intimidation.</p>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">2. Notice Must Be BEFORE the Hearing</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The 10 days' notice must be BEFORE the hearing, not including the hearing day. If the hearing is on the 15th, notice must be received by the 5th (or earlier).</p>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">3. Fines Can Stack</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">If someone violates a cease and desist order, they get BOTH penalties: the original fine AND $5,000 for each violation of the order. Plus restitution. Plus investigation costs. Violations get expensive fast!</p>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">4. Willful vs. Knowing vs. Unintentional</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">"Willful" and "knowing" are grouped together (both $5,000). "Unintentional" is separate ($1,000). If you KNEW it was wrong OR did it on purpose = $5,000. If it was an honest mistake = $1,000.</p>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">5. Don't Confuse the $5,000 Penalties</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">There are THREE different $5,000 fines: (1) willful violations per charge, (2) violating cease & desist per violation, (3) first offense violating insurance law. Know which is which!</p>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">6. Historical Cases: Focus on Outcomes</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Don't memorize case details. Know: Paul vs. Virginia (1869) = states regulate. SEUA (1944) = reversed it, insurance IS interstate commerce. McCarran-Ferguson (1945) = gave regulation back to states. That's all you need.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Reference Summary -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-purple-600 to-purple-800 rounded-xl p-6 text-white">
+                <h2 class="text-2xl font-bold mb-6">Quick Reference Summary</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Who Regulates?</p>
+                        <p class="text-sm text-purple-100">States (primary), Federal (secondary backup)</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Commissioner</p>
+                        <p class="text-sm text-purple-100">Appointed by Governor, serves at pleasure, can't own insurer stock</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">10 Days</p>
+                        <p class="text-sm text-purple-100">Written notice before hearing</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">$1,000</p>
+                        <p class="text-sm text-purple-100">Unintentional violations</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">$5,000</p>
+                        <p class="text-sm text-purple-100">Willful violations / cease & desist / 1st offense</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">$10,000</p>
+                        <p class="text-sm text-purple-100">Subsequent insurance law violations</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Navigation -->
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="../part-1/index.html" class="text-purple-400 hover:text-purple-300 transition-colors">← Part 1: Definitions</a>
+                <span class="text-gray-400">Part 2 of 9</span>
+                <a href="../part-3/index.html" class="text-purple-400 hover:text-purple-300 transition-colors opacity-50">Part 3: Licensing →</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 7: By the Numbers | Chapter 4 | Property Insurance</title>
+    <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <link rel="stylesheet" href="../../../css/styles.css">
+    <script src="../../../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+        }
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <!-- Settings & Theme Toggle Buttons -->
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="showAPIKeySetup()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings">
+            <svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+        </button>
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/>
+            </svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-purple-600 to-purple-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center text-purple-200 text-sm mb-2">
+                <a href="../../index.html" class="hover:text-white">Property</a>
+                <span class="mx-2">→</span>
+                <a href="../index.html" class="hover:text-white">Chapter 4</a>
+                <span class="mx-2">→</span>
+                <span class="text-white">Part 7</span>
+            </div>
+            <h1 class="text-3xl font-bold">Part 7: By the Numbers</h1>
+            <p class="text-purple-200 mt-1">Visual Summary Chart - All Key Numbers for Chapter 4</p>
+        </div>
+    </header>
+
+    <!-- Sticky Navigation -->
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-wrap gap-2 text-sm">
+                <a href="#licensing" class="text-purple-600 dark:text-purple-400 hover:text-purple-800 px-2 py-1 rounded hover:bg-purple-50 dark:hover:bg-gray-700">Licensing</a>
+                <a href="#producer-duties" class="text-purple-600 dark:text-purple-400 hover:text-purple-800 px-2 py-1 rounded hover:bg-purple-50 dark:hover:bg-gray-700">Producer Duties</a>
+                <a href="#penalties" class="text-purple-600 dark:text-purple-400 hover:text-purple-800 px-2 py-1 rounded hover:bg-purple-50 dark:hover:bg-gray-700">Penalties</a>
+                <a href="#memory-tricks" class="text-purple-600 dark:text-purple-400 hover:text-purple-800 px-2 py-1 rounded hover:bg-purple-50 dark:hover:bg-gray-700">Memory Tricks</a>
+                <span class="text-gray-300 dark:text-gray-600">|</span>
+                <a href="#exam-traps" class="text-red-600 dark:text-red-400 hover:text-red-800 px-2 py-1 rounded hover:bg-red-50 dark:hover:bg-gray-700">Exam Traps</a>
+                <a href="#quiz" class="text-purple-600 dark:text-purple-400 hover:text-purple-800 px-2 py-1 rounded hover:bg-purple-50 dark:hover:bg-gray-700">Quick Quiz</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-5xl lg:max-w-7xl">
+
+        <!-- Overview -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">Overview: Your Master Number Reference</h2>
+
+                <div class="bg-purple-50 dark:bg-purple-900/30 rounded-xl p-5 lg:p-6 mb-6 border border-purple-200 dark:border-purple-800">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">This is THE page to memorize for Chapter 4. Every important number, time period, and dollar amount is here in a highly visual, color-coded format. <strong>Print this page</strong> and quiz yourself daily.</p>
+                </div>
+
+                <!-- Study Strategy -->
+                <div class="bg-blue-50 dark:bg-blue-900/20 border-l-4 border-blue-500 p-4 lg:p-5 rounded-r-lg">
+                    <p class="font-bold text-blue-800 dark:text-blue-300 text-lg lg:text-xl mb-2">Study Strategy</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Numbers are grouped by category and color-coded. TIME PERIODS are in blue, DOLLAR AMOUNTS are in green, and SPECIAL RULES are in purple. Look for patterns - many numbers repeat or relate to each other.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 1: Licensing and Appointment Numbers -->
+        <section id="licensing" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">Licensing and Appointment Requirements</h2>
+
+                <!-- Age and Education -->
+                <div class="mb-8">
+                    <h3 class="text-xl font-bold text-gray-700 dark:text-gray-200 mb-4">Getting Started</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <div class="bg-gradient-to-br from-blue-100 to-blue-200 dark:from-blue-900/40 dark:to-blue-800/40 p-5 rounded-xl text-center shadow-md border-2 border-blue-300 dark:border-blue-700">
+                            <p class="text-4xl font-bold text-blue-700 dark:text-blue-300">18</p>
+                            <p class="text-sm text-gray-700 dark:text-gray-300 mt-2 font-semibold">Minimum age to apply for license</p>
+                        </div>
+                        <div class="bg-gradient-to-br from-purple-100 to-purple-200 dark:from-purple-900/40 dark:to-purple-800/40 p-5 rounded-xl text-center shadow-md border-2 border-purple-300 dark:border-purple-700">
+                            <p class="text-4xl font-bold text-purple-700 dark:text-purple-300">20</p>
+                            <p class="text-sm text-gray-700 dark:text-gray-300 mt-2 font-semibold">Hours of prelicensing education required per line</p>
+                        </div>
+                        <div class="bg-gradient-to-br from-blue-100 to-blue-200 dark:from-blue-900/40 dark:to-blue-800/40 p-5 rounded-xl text-center shadow-md border-2 border-blue-300 dark:border-blue-700">
+                            <p class="text-4xl font-bold text-blue-700 dark:text-blue-300">60</p>
+                            <p class="text-sm text-gray-700 dark:text-gray-300 mt-2 font-semibold">Days temporary work authority is valid</p>
+                        </div>
+                        <div class="bg-gradient-to-br from-blue-100 to-blue-200 dark:from-blue-900/40 dark:to-blue-800/40 p-5 rounded-xl text-center shadow-md border-2 border-blue-300 dark:border-blue-700">
+                            <p class="text-4xl font-bold text-blue-700 dark:text-blue-300">1 year</p>
+                            <p class="text-sm text-gray-700 dark:text-gray-300 mt-2 font-semibold">To apply for license after passing exam</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- License Validity -->
+                <div class="mb-8">
+                    <h3 class="text-xl font-bold text-gray-700 dark:text-gray-200 mb-4">License Validity and Renewal</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <div class="bg-gradient-to-br from-blue-100 to-blue-200 dark:from-blue-900/40 dark:to-blue-800/40 p-5 rounded-xl text-center shadow-md border-2 border-blue-300 dark:border-blue-700">
+                            <p class="text-4xl font-bold text-blue-700 dark:text-blue-300">180</p>
+                            <p class="text-sm text-gray-700 dark:text-gray-300 mt-2 font-semibold">Days temporary license is valid</p>
+                        </div>
+                        <div class="bg-gradient-to-br from-blue-100 to-blue-200 dark:from-blue-900/40 dark:to-blue-800/40 p-5 rounded-xl text-center shadow-md border-2 border-blue-300 dark:border-blue-700">
+                            <p class="text-4xl font-bold text-blue-700 dark:text-blue-300">2 years</p>
+                            <p class="text-sm text-gray-700 dark:text-gray-300 mt-2 font-semibold">Producer licensing period</p>
+                        </div>
+                        <div class="bg-gradient-to-br from-blue-100 to-blue-200 dark:from-blue-900/40 dark:to-blue-800/40 p-5 rounded-xl text-center shadow-md border-2 border-blue-300 dark:border-blue-700">
+                            <p class="text-4xl font-bold text-blue-700 dark:text-blue-300">10 days</p>
+                            <p class="text-sm text-gray-700 dark:text-gray-300 mt-2 font-semibold">Before expiration to submit renewal</p>
+                        </div>
+                        <div class="bg-gradient-to-br from-blue-100 to-blue-200 dark:from-blue-900/40 dark:to-blue-800/40 p-5 rounded-xl text-center shadow-md border-2 border-blue-300 dark:border-blue-700">
+                            <p class="text-4xl font-bold text-blue-700 dark:text-blue-300">1 year</p>
+                            <p class="text-sm text-gray-700 dark:text-gray-300 mt-2 font-semibold">To renew lapsed license without exam</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Continuing Education -->
+                <div class="mb-8">
+                    <h3 class="text-xl font-bold text-gray-700 dark:text-gray-200 mb-4">Continuing Education (CE)</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                        <div class="bg-gradient-to-br from-purple-100 to-purple-200 dark:from-purple-900/40 dark:to-purple-800/40 p-5 rounded-xl text-center shadow-md border-2 border-purple-300 dark:border-purple-700">
+                            <p class="text-4xl font-bold text-purple-700 dark:text-purple-300">24</p>
+                            <p class="text-sm text-gray-700 dark:text-gray-300 mt-2 font-semibold">Total CE hours required every 2 years</p>
+                        </div>
+                        <div class="bg-gradient-to-br from-purple-100 to-purple-200 dark:from-purple-900/40 dark:to-purple-800/40 p-5 rounded-xl text-center shadow-md border-2 border-purple-300 dark:border-purple-700">
+                            <p class="text-4xl font-bold text-purple-700 dark:text-purple-300">3</p>
+                            <p class="text-sm text-gray-700 dark:text-gray-300 mt-2 font-semibold">CE hours in professional ethics</p>
+                        </div>
+                        <div class="bg-gradient-to-br from-purple-100 to-purple-200 dark:from-purple-900/40 dark:to-purple-800/40 p-5 rounded-xl text-center shadow-md border-2 border-purple-300 dark:border-purple-700">
+                            <p class="text-4xl font-bold text-purple-700 dark:text-purple-300">2 years</p>
+                            <p class="text-sm text-gray-700 dark:text-gray-300 mt-2 font-semibold">Licensing period (CE cycle matches)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Other Licensing Periods -->
+                <div>
+                    <h3 class="text-xl font-bold text-gray-700 dark:text-gray-200 mb-4">Other Important Licensing Timeframes</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                        <div class="bg-gradient-to-br from-blue-100 to-blue-200 dark:from-blue-900/40 dark:to-blue-800/40 p-5 rounded-xl text-center shadow-md border-2 border-blue-300 dark:border-blue-700">
+                            <p class="text-4xl font-bold text-blue-700 dark:text-blue-300">90 days</p>
+                            <p class="text-sm text-gray-700 dark:text-gray-300 mt-2 font-semibold">Nonresident to notify of intent to become resident</p>
+                        </div>
+                        <div class="bg-gradient-to-br from-red-100 to-red-200 dark:from-red-900/40 dark:to-red-800/40 p-5 rounded-xl text-center shadow-md border-2 border-red-300 dark:border-red-700">
+                            <p class="text-4xl font-bold text-red-700 dark:text-red-300">5 years</p>
+                            <p class="text-sm text-gray-700 dark:text-gray-300 mt-2 font-semibold">Before producer with revoked license can reapply</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Producer Duties and Responsibilities -->
+        <section id="producer-duties" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">Miscellaneous Producer Regulations</h2>
+
+                <!-- Notification Timeframes -->
+                <div class="mb-8">
+                    <h3 class="text-xl font-bold text-gray-700 dark:text-gray-200 mb-4">Notification Requirements</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <div class="bg-gradient-to-br from-amber-100 to-amber-200 dark:from-amber-900/40 dark:to-amber-800/40 p-5 rounded-xl text-center shadow-md border-2 border-amber-300 dark:border-amber-700">
+                            <p class="text-4xl font-bold text-amber-700 dark:text-amber-300">30 days</p>
+                            <p class="text-sm text-gray-700 dark:text-gray-300 mt-2 font-semibold">To report change of address or business name</p>
+                        </div>
+                        <div class="bg-gradient-to-br from-amber-100 to-amber-200 dark:from-amber-900/40 dark:to-amber-800/40 p-5 rounded-xl text-center shadow-md border-2 border-amber-300 dark:border-amber-700">
+                            <p class="text-4xl font-bold text-amber-700 dark:text-amber-300">30 days</p>
+                            <p class="text-sm text-gray-700 dark:text-gray-300 mt-2 font-semibold">To report opening/closing of branch office</p>
+                        </div>
+                        <div class="bg-gradient-to-br from-amber-100 to-amber-200 dark:from-amber-900/40 dark:to-amber-800/40 p-5 rounded-xl text-center shadow-md border-2 border-amber-300 dark:border-amber-700">
+                            <p class="text-4xl font-bold text-amber-700 dark:text-amber-300">15 days</p>
+                            <p class="text-sm text-gray-700 dark:text-gray-300 mt-2 font-semibold">Insurer to notify Commissioner of canceled agency contract</p>
+                        </div>
+                        <div class="bg-gradient-to-br from-amber-100 to-amber-200 dark:from-amber-900/40 dark:to-amber-800/40 p-5 rounded-xl text-center shadow-md border-2 border-amber-300 dark:border-amber-700">
+                            <p class="text-4xl font-bold text-amber-700 dark:text-amber-300">15 days</p>
+                            <p class="text-sm text-gray-700 dark:text-gray-300 mt-2 font-semibold">Producer must reply to Commissioner inquiries</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Timeframes -->
+                <div class="mb-8">
+                    <h3 class="text-xl font-bold text-gray-700 dark:text-gray-200 mb-4">Producer Action Requirements</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <div class="bg-gradient-to-br from-teal-100 to-teal-200 dark:from-teal-900/40 dark:to-teal-800/40 p-5 rounded-xl text-center shadow-md border-2 border-teal-300 dark:border-teal-700">
+                            <p class="text-4xl font-bold text-teal-700 dark:text-teal-300">5</p>
+                            <p class="text-sm text-gray-700 dark:text-gray-300 mt-2 font-semibold">Business days to remit premiums to insurer/insured</p>
+                        </div>
+                        <div class="bg-gradient-to-br from-teal-100 to-teal-200 dark:from-teal-900/40 dark:to-teal-800/40 p-5 rounded-xl text-center shadow-md border-2 border-teal-300 dark:border-teal-700">
+                            <p class="text-4xl font-bold text-teal-700 dark:text-teal-300">5</p>
+                            <p class="text-sm text-gray-700 dark:text-gray-300 mt-2 font-semibold">Business days to report claims to insurer</p>
+                        </div>
+                        <div class="bg-gradient-to-br from-teal-100 to-teal-200 dark:from-teal-900/40 dark:to-teal-800/40 p-5 rounded-xl text-center shadow-md border-2 border-teal-300 dark:border-teal-700">
+                            <p class="text-4xl font-bold text-teal-700 dark:text-teal-300">10</p>
+                            <p class="text-sm text-gray-700 dark:text-gray-300 mt-2 font-semibold">Calendar days to deliver policies to insured</p>
+                        </div>
+                        <div class="bg-gradient-to-br from-indigo-100 to-indigo-200 dark:from-indigo-900/40 dark:to-indigo-800/40 p-5 rounded-xl text-center shadow-md border-2 border-indigo-300 dark:border-indigo-700">
+                            <p class="text-4xl font-bold text-indigo-700 dark:text-indigo-300">5 years</p>
+                            <p class="text-sm text-gray-700 dark:text-gray-300 mt-2 font-semibold">Keep financial transaction records after coverage ends</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Memory Tip Box -->
+                <div class="bg-yellow-50 dark:bg-yellow-900/20 border-2 border-yellow-300 dark:border-yellow-700 rounded-lg p-5 mb-6">
+                    <p class="font-bold text-yellow-800 dark:text-yellow-300 mb-2">Memory Trick: The "5s"</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Notice THREE things all require <strong>5 business days</strong>: remitting premiums, reporting claims, and... wait, that's only two! Policy delivery is <strong>10 CALENDAR days</strong> (twice as long, different unit). Don't confuse them!</p>
+                </div>
+
+                <!-- Real-World Examples -->
+                <div class="bg-green-50 dark:bg-green-900/20 rounded-xl p-5 border border-green-200 dark:border-green-800">
+                    <h3 class="font-bold text-green-800 dark:text-green-300 text-lg mb-4">Real-World Scenarios: Timeline Math</h3>
+                    <div class="space-y-4">
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                            <p class="font-semibold text-green-700 dark:text-green-300 mb-2">Scenario 1: Premium Collection</p>
+                            <p class="text-sm text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Agent Sarah collects a $2,000 premium check from her client on Monday, March 3rd.</p>
+                            <p class="text-sm text-gray-700 dark:text-gray-300 mt-1"><strong>Question:</strong> By when must she send the premium to the insurance company?</p>
+                            <p class="text-sm text-gray-700 dark:text-gray-300 mt-1"><strong>Answer:</strong> Within 5 BUSINESS days. Count Mon(1), Tue(2), Wed(3), Thu(4), Fri(5) = by Friday, March 7th. Weekends don't count!</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                            <p class="font-semibold text-blue-700 dark:text-blue-300 mb-2">Scenario 2: Policy Delivery</p>
+                            <p class="text-sm text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Agent Mike receives a new homeowners policy from ABC Insurance on Tuesday, April 1st.</p>
+                            <p class="text-sm text-gray-700 dark:text-gray-300 mt-1"><strong>Question:</strong> By when must Mike deliver it to the policyholder?</p>
+                            <p class="text-sm text-gray-700 dark:text-gray-300 mt-1"><strong>Answer:</strong> Within 10 CALENDAR days (including weekends). April 1 + 10 = by April 11th.</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                            <p class="font-semibold text-amber-700 dark:text-amber-300 mb-2">Scenario 3: Address Change</p>
+                            <p class="text-sm text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Agent Lisa moves her office from Newark to Hoboken on June 15th.</p>
+                            <p class="text-sm text-gray-700 dark:text-gray-300 mt-1"><strong>Question:</strong> By when must she notify the Commissioner of Banking & Insurance?</p>
+                            <p class="text-sm text-gray-700 dark:text-gray-300 mt-1"><strong>Answer:</strong> Within 30 days = by July 15th.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Penalties and Dollar Amounts -->
+        <section id="penalties" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">Important Dollar Amounts</h2>
+
+                <!-- Fair Practice Violations -->
+                <div class="mb-8">
+                    <h3 class="text-xl font-bold text-gray-700 dark:text-gray-200 mb-4">Fair Methods of Competition / Fair Trade Practices</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                        <div class="bg-gradient-to-br from-green-100 to-green-200 dark:from-green-900/40 dark:to-green-800/40 p-5 rounded-xl text-center shadow-md border-2 border-green-300 dark:border-green-700">
+                            <p class="text-4xl font-bold text-green-700 dark:text-green-300">$1,000</p>
+                            <p class="text-sm text-gray-700 dark:text-gray-300 mt-2 font-semibold">Per violation (unintentional)</p>
+                        </div>
+                        <div class="bg-gradient-to-br from-orange-100 to-orange-200 dark:from-orange-900/40 dark:to-orange-800/40 p-5 rounded-xl text-center shadow-md border-2 border-orange-300 dark:border-orange-700">
+                            <p class="text-4xl font-bold text-orange-700 dark:text-orange-300">$5,000</p>
+                            <p class="text-sm text-gray-700 dark:text-gray-300 mt-2 font-semibold">Per violation (willful)</p>
+                        </div>
+                        <div class="bg-gradient-to-br from-red-100 to-red-200 dark:from-red-900/40 dark:to-red-800/40 p-5 rounded-xl text-center shadow-md border-2 border-red-300 dark:border-red-700">
+                            <p class="text-4xl font-bold text-red-700 dark:text-red-300">$5,000</p>
+                            <p class="text-sm text-gray-700 dark:text-gray-300 mt-2 font-semibold">Per cease and desist order violation</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Insurance Law Violations -->
+                <div class="mb-8">
+                    <h3 class="text-xl font-bold text-gray-700 dark:text-gray-200 mb-4">Insurance Law Violations (General)</h3>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-gradient-to-br from-orange-100 to-orange-200 dark:from-orange-900/40 dark:to-orange-800/40 p-5 rounded-xl text-center shadow-md border-2 border-orange-300 dark:border-orange-700">
+                            <p class="text-4xl font-bold text-orange-700 dark:text-orange-300">$5,000</p>
+                            <p class="text-sm text-gray-700 dark:text-gray-300 mt-2 font-semibold">First violation of insurance law</p>
+                        </div>
+                        <div class="bg-gradient-to-br from-red-100 to-red-200 dark:from-red-900/40 dark:to-red-800/40 p-5 rounded-xl text-center shadow-md border-2 border-red-300 dark:border-red-700">
+                            <p class="text-4xl font-bold text-red-700 dark:text-red-300">$10,000</p>
+                            <p class="text-sm text-gray-700 dark:text-gray-300 mt-2 font-semibold">Subsequent violations of insurance law</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Fraud Penalties -->
+                <div>
+                    <h3 class="text-xl font-bold text-gray-700 dark:text-gray-200 mb-4">Insurance Fraud Violations</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <div class="bg-gradient-to-br from-orange-100 to-orange-200 dark:from-orange-900/40 dark:to-orange-800/40 p-5 rounded-xl text-center shadow-md border-2 border-orange-300 dark:border-orange-700">
+                            <p class="text-4xl font-bold text-orange-700 dark:text-orange-300">$5,000</p>
+                            <p class="text-sm text-gray-700 dark:text-gray-300 mt-2 font-semibold">First fraud violation</p>
+                        </div>
+                        <div class="bg-gradient-to-br from-red-100 to-red-200 dark:from-red-900/40 dark:to-red-800/40 p-5 rounded-xl text-center shadow-md border-2 border-red-300 dark:border-red-700">
+                            <p class="text-4xl font-bold text-red-700 dark:text-red-300">$10,000</p>
+                            <p class="text-sm text-gray-700 dark:text-gray-300 mt-2 font-semibold">Second fraud violation</p>
+                        </div>
+                        <div class="bg-gradient-to-br from-red-100 to-red-200 dark:from-red-900/40 dark:to-red-800/40 p-5 rounded-xl text-center shadow-md border-2 border-red-300 dark:border-red-700">
+                            <p class="text-4xl font-bold text-red-700 dark:text-red-300">$15,000</p>
+                            <p class="text-sm text-gray-700 dark:text-gray-300 mt-2 font-semibold">Maximum fraud penalty per violation</p>
+                        </div>
+                        <div class="bg-gradient-to-br from-purple-100 to-purple-200 dark:from-purple-900/40 dark:to-purple-800/40 p-5 rounded-xl text-center shadow-md border-2 border-purple-300 dark:border-purple-700">
+                            <p class="text-4xl font-bold text-purple-700 dark:text-purple-300">$1,000</p>
+                            <p class="text-sm text-gray-700 dark:text-gray-300 mt-2 font-semibold">Surcharge on individual guilty of fraud</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Memory Tricks -->
+        <section id="memory-tricks" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">Memory Tricks and Patterns</h2>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    <!-- Pattern 1: The Threes -->
+                    <div class="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/30 dark:to-blue-800/30 p-5 rounded-lg border-2 border-blue-300 dark:border-blue-700">
+                        <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg mb-3">Pattern: "The Threes"</h3>
+                        <ul class="space-y-2 text-gray-700 dark:text-gray-300 text-sm lg:text-base">
+                            <li class="flex items-start">
+                                <span class="text-blue-600 mr-2">•</span>
+                                <span><strong>3 hours</strong> of CE must be in professional ethics</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-blue-600 mr-2">•</span>
+                                <span>Out of <strong>24 total hours</strong> every 2 years</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-blue-600 mr-2">•</span>
+                                <span>Think: "3 out of 24 is 1/8th - a small slice for ethics"</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Pattern 2: The Fives -->
+                    <div class="bg-gradient-to-br from-teal-50 to-teal-100 dark:from-teal-900/30 dark:to-teal-800/30 p-5 rounded-lg border-2 border-teal-300 dark:border-teal-700">
+                        <h3 class="font-bold text-teal-800 dark:text-teal-300 text-lg mb-3">Pattern: "The Fives"</h3>
+                        <ul class="space-y-2 text-gray-700 dark:text-gray-300 text-sm lg:text-base">
+                            <li class="flex items-start">
+                                <span class="text-teal-600 mr-2">•</span>
+                                <span><strong>5 business days:</strong> Remit premiums</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-teal-600 mr-2">•</span>
+                                <span><strong>5 business days:</strong> Report claims</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-teal-600 mr-2">•</span>
+                                <span><strong>5 years:</strong> Keep records after coverage ends</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-teal-600 mr-2">•</span>
+                                <span><strong>5 years:</strong> Before revoked license can reapply</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Pattern 3: Escalating Fraud Penalties -->
+                    <div class="bg-gradient-to-br from-red-50 to-orange-100 dark:from-red-900/30 dark:to-orange-800/30 p-5 rounded-lg border-2 border-red-300 dark:border-red-700">
+                        <h3 class="font-bold text-red-800 dark:text-red-300 text-lg mb-3">Pattern: Fraud Penalties Climb</h3>
+                        <ul class="space-y-2 text-gray-700 dark:text-gray-300 text-sm lg:text-base">
+                            <li class="flex items-start">
+                                <span class="text-red-600 mr-2">•</span>
+                                <span><strong>1st:</strong> $5,000 (starting point)</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-red-600 mr-2">•</span>
+                                <span><strong>2nd:</strong> $10,000 (doubles)</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-red-600 mr-2">•</span>
+                                <span><strong>3rd+:</strong> $15,000 (caps at 3x the starting amount)</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-red-600 mr-2">•</span>
+                                <span>Think: "5-10-15, like counting by fives"</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Pattern 4: The Thirties -->
+                    <div class="bg-gradient-to-br from-amber-50 to-amber-100 dark:from-amber-900/30 dark:to-amber-800/30 p-5 rounded-lg border-2 border-amber-300 dark:border-amber-700">
+                        <h3 class="font-bold text-amber-800 dark:text-amber-300 text-lg mb-3">Pattern: "30-Day Reports"</h3>
+                        <ul class="space-y-2 text-gray-700 dark:text-gray-300 text-sm lg:text-base">
+                            <li class="flex items-start">
+                                <span class="text-amber-600 mr-2">•</span>
+                                <span><strong>30 days:</strong> Report address/name change</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-amber-600 mr-2">•</span>
+                                <span><strong>30 days:</strong> Report branch office changes</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-amber-600 mr-2">•</span>
+                                <span>Think: "Monthly updates = 30 days"</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Pattern 5: Business vs Calendar Days -->
+                    <div class="bg-gradient-to-br from-indigo-50 to-indigo-100 dark:from-indigo-900/30 dark:to-indigo-800/30 p-5 rounded-lg border-2 border-indigo-300 dark:border-indigo-700">
+                        <h3 class="font-bold text-indigo-800 dark:text-indigo-300 text-lg mb-3">Trap: Business vs Calendar Days</h3>
+                        <ul class="space-y-2 text-gray-700 dark:text-gray-300 text-sm lg:text-base">
+                            <li class="flex items-start">
+                                <span class="text-indigo-600 mr-2">•</span>
+                                <span><strong>5 BUSINESS days:</strong> Premiums and claims (money/urgent)</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-indigo-600 mr-2">•</span>
+                                <span><strong>10 CALENDAR days:</strong> Deliver policies (paperwork)</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-indigo-600 mr-2">•</span>
+                                <span><strong>15 CALENDAR days:</strong> Reply to Commissioner</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Pattern 6: Two-Year Cycle -->
+                    <div class="bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/30 dark:to-purple-800/30 p-5 rounded-lg border-2 border-purple-300 dark:border-purple-700">
+                        <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg mb-3">Pattern: Two-Year Cycle</h3>
+                        <ul class="space-y-2 text-gray-700 dark:text-gray-300 text-sm lg:text-base">
+                            <li class="flex items-start">
+                                <span class="text-purple-600 mr-2">•</span>
+                                <span><strong>2 years:</strong> License is valid</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-purple-600 mr-2">•</span>
+                                <span><strong>24 hours CE every 2 years:</strong> Renewal requirement</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-purple-600 mr-2">•</span>
+                                <span>Think: "License period = CE period"</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Traps Section -->
+        <section id="exam-traps" class="mb-10">
+            <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-xl p-5 lg:p-6">
+                <h2 class="text-2xl font-bold text-red-800 dark:text-red-300 mb-4">Exam Trap Alerts</h2>
+                <div class="space-y-4">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">1. Business Days vs Calendar Days</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">The exam LOVES to trick you on this! <strong>5 BUSINESS days</strong> for money (premiums, claims). <strong>10 CALENDAR days</strong> for paperwork (policy delivery). If a question says "Monday to Friday" they're hinting at business days!</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">2. 60 Days vs 180 Days Temporary</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm"><strong>60 days</strong> = temporary WORK authority (waiting for your actual license). <strong>180 days</strong> = temporary LICENSE (issued after agent death/disability). The short one is for the quick scenario!</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">3. First Fraud vs Subsequent Fraud</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">Fraud penalties escalate: $5,000 → $10,000 → $15,000 (cap). But the escalation pattern is different from regular insurance law violations ($5,000 then $10,000 for ALL subsequent). Know which schedule applies!</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">4. Willful vs Unintentional</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">For fair trade practices: <strong>$1,000</strong> unintentional, <strong>$5,000</strong> willful. That's a 5x difference! If the question emphasizes "knowingly" or "intentionally," it's the higher penalty.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">5. 1 Year Has Two Meanings</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">You have <strong>1 year</strong> after passing the exam to apply for your license. You also have <strong>1 year</strong> after your license expires to renew without retaking the exam. Same number, completely different situations!</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">6. 15 Days vs 30 Days Notifications</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm"><strong>15 days</strong> for insurer notifications (appointments, cancellations) and Commissioner replies. <strong>30 days</strong> for producer notifications (address changes, branch offices). Insurers get shorter deadlines!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Real-World Application Examples -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">Putting Numbers Into Practice</h2>
+
+                <div class="space-y-6">
+                    <!-- Licensing Timeline Example -->
+                    <div class="bg-purple-50 dark:bg-purple-900/20 rounded-xl p-5 border-l-4 border-purple-500">
+                        <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg mb-3">Example: New Agent Timeline</h3>
+                        <p class="text-sm text-gray-700 dark:text-gray-300 mb-3"><strong>The Setup:</strong> Jake, age 22, wants to become a Property & Casualty insurance producer in NJ.</p>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                            <p class="font-semibold text-purple-700 dark:text-purple-300 mb-2">Jake's Journey (With Numbers):</p>
+                            <ul class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
+                                <li><strong>Step 1:</strong> Complete <span class="bg-purple-200 dark:bg-purple-800 px-1 rounded">20 hours</span> prelicensing for Property + <span class="bg-purple-200 dark:bg-purple-800 px-1 rounded">20 hours</span> for Casualty = 40 hours total</li>
+                                <li><strong>Step 2:</strong> Pass the state exam on March 1st</li>
+                                <li><strong>Step 3:</strong> Apply for license - must apply within <span class="bg-purple-200 dark:bg-purple-800 px-1 rounded">1 year</span> (by March 1st next year)</li>
+                                <li><strong>Step 4:</strong> Gets temporary work authority valid for <span class="bg-purple-200 dark:bg-purple-800 px-1 rounded">60 days</span> while waiting</li>
+                                <li><strong>Step 5:</strong> License issued - valid for <span class="bg-purple-200 dark:bg-purple-800 px-1 rounded">2 years</span>, expires last day of birth month</li>
+                                <li><strong>Step 6:</strong> Before renewal, must complete <span class="bg-purple-200 dark:bg-purple-800 px-1 rounded">24 hours CE</span> (including <span class="bg-purple-200 dark:bg-purple-800 px-1 rounded">3 hours</span> ethics)</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Fraud Penalty Example -->
+                    <div class="bg-red-50 dark:bg-red-900/20 rounded-xl p-5 border-l-4 border-red-500">
+                        <h3 class="font-bold text-red-800 dark:text-red-300 text-lg mb-3">Example: Repeat Fraud Offender</h3>
+                        <p class="text-sm text-gray-700 dark:text-gray-300 mb-3"><strong>The Setup:</strong> An insurance agent commits insurance fraud three times over several years.</p>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                            <p class="font-semibold text-red-700 dark:text-red-300 mb-2">How Penalties Escalate:</p>
+                            <div class="flex items-center gap-2 flex-wrap text-sm">
+                                <span class="bg-orange-100 dark:bg-orange-900/40 px-3 py-2 rounded font-bold text-orange-700 dark:text-orange-300">1st: $5,000</span>
+                                <span class="text-gray-400">→</span>
+                                <span class="bg-red-100 dark:bg-red-900/40 px-3 py-2 rounded font-bold text-red-700 dark:text-red-300">2nd: $10,000</span>
+                                <span class="text-gray-400">→</span>
+                                <span class="bg-red-200 dark:bg-red-800/40 px-3 py-2 rounded font-bold text-red-800 dark:text-red-200">3rd+: $15,000 (MAX)</span>
+                            </div>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mt-3">Plus each violation includes a <strong>$1,000 surcharge</strong> and possible restitution. After all this, license is <strong>REVOKED</strong> and they must wait <strong>5 years</strong> to reapply.</p>
+                        </div>
+                    </div>
+
+                    <!-- Daily Operations Example -->
+                    <div class="bg-teal-50 dark:bg-teal-900/20 rounded-xl p-5 border-l-4 border-teal-500">
+                        <h3 class="font-bold text-teal-800 dark:text-teal-300 text-lg mb-3">Example: A Week in Agent Life</h3>
+                        <p class="text-sm text-gray-700 dark:text-gray-300 mb-3"><strong>The Setup:</strong> Agent Maria has a busy week with multiple deadlines.</p>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                            <p class="font-semibold text-teal-700 dark:text-teal-300 mb-2">Monday, June 1st:</p>
+                            <ul class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
+                                <li><strong>Morning:</strong> Collects $1,500 premium check → must remit by Friday June 5th (<span class="bg-teal-200 dark:bg-teal-800 px-1 rounded">5 business days</span>)</li>
+                                <li><strong>Afternoon:</strong> Client reports fender bender → must notify insurer by Friday June 5th (<span class="bg-teal-200 dark:bg-teal-800 px-1 rounded">5 business days</span>)</li>
+                                <li><strong>Mail arrives:</strong> New auto policy for client → must deliver by Thursday June 11th (<span class="bg-teal-200 dark:bg-teal-800 px-1 rounded">10 calendar days</span>)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Quick Quiz -->
+        <section id="quiz" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">Quick Quiz: Test Yourself</h2>
+
+                <p class="text-gray-700 dark:text-gray-300 mb-6">Cover the answers and see how many you can remember!</p>
+
+                <div class="space-y-4">
+                    <!-- Quiz Item 1 -->
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-l-4 border-blue-500">
+                        <p class="font-bold text-gray-800 dark:text-gray-200 mb-2">Q1: How many hours of CE are required every 2 years?</p>
+                        <details class="text-gray-700 dark:text-gray-300">
+                            <summary class="cursor-pointer text-blue-700 dark:text-blue-400 hover:underline">Click to reveal answer</summary>
+                            <p class="mt-2 text-sm lg:text-base"><strong>24 hours</strong> total, with <strong>3 hours</strong> in professional ethics</p>
+                        </details>
+                    </div>
+
+                    <!-- Quiz Item 2 -->
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <p class="font-bold text-gray-800 dark:text-gray-200 mb-2">Q2: Producer receives premium payment on Monday. By when must they remit it to the insurer?</p>
+                        <details class="text-gray-700 dark:text-gray-300">
+                            <summary class="cursor-pointer text-green-700 dark:text-green-400 hover:underline">Click to reveal answer</summary>
+                            <p class="mt-2 text-sm lg:text-base"><strong>Within 5 business days</strong> (by Friday if no holidays)</p>
+                        </details>
+                    </div>
+
+                    <!-- Quiz Item 3 -->
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border-l-4 border-purple-500">
+                        <p class="font-bold text-gray-800 dark:text-gray-200 mb-2">Q3: What's the penalty for a third insurance fraud violation?</p>
+                        <details class="text-gray-700 dark:text-gray-300">
+                            <summary class="cursor-pointer text-purple-700 dark:text-purple-400 hover:underline">Click to reveal answer</summary>
+                            <p class="mt-2 text-sm lg:text-base"><strong>$15,000</strong> (maximum penalty) + restitution + $1,000 surcharge</p>
+                        </details>
+                    </div>
+
+                    <!-- Quiz Item 4 -->
+                    <div class="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg border-l-4 border-amber-500">
+                        <p class="font-bold text-gray-800 dark:text-gray-200 mb-2">Q4: You move your business to a new location. How long do you have to notify the Commissioner?</p>
+                        <details class="text-gray-700 dark:text-gray-300">
+                            <summary class="cursor-pointer text-amber-700 dark:text-amber-400 hover:underline">Click to reveal answer</summary>
+                            <p class="mt-2 text-sm lg:text-base"><strong>30 days</strong> to report change of business address</p>
+                        </details>
+                    </div>
+
+                    <!-- Quiz Item 5 -->
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                        <p class="font-bold text-gray-800 dark:text-gray-200 mb-2">Q5: Your license is revoked for fraud. How long must you wait before reapplying?</p>
+                        <details class="text-gray-700 dark:text-gray-300">
+                            <summary class="cursor-pointer text-red-700 dark:text-red-400 hover:underline">Click to reveal answer</summary>
+                            <p class="mt-2 text-sm lg:text-base"><strong>5 years</strong> before you can reapply for a new license</p>
+                        </details>
+                    </div>
+
+                    <!-- Quiz Item 6 -->
+                    <div class="bg-teal-50 dark:bg-teal-900/20 p-4 rounded-lg border-l-4 border-teal-500">
+                        <p class="font-bold text-gray-800 dark:text-gray-200 mb-2">Q6: Producer receives policy from insurer on January 1st. By when must it be delivered to the insured?</p>
+                        <details class="text-gray-700 dark:text-gray-300">
+                            <summary class="cursor-pointer text-teal-700 dark:text-teal-400 hover:underline">Click to reveal answer</summary>
+                            <p class="mt-2 text-sm lg:text-base"><strong>Within 10 calendar days</strong> (by January 10th)</p>
+                        </details>
+                    </div>
+
+                    <!-- Quiz Item 7 -->
+                    <div class="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-lg border-l-4 border-indigo-500">
+                        <p class="font-bold text-gray-800 dark:text-gray-200 mb-2">Q7: What's the minimum age to apply for an insurance license in NJ?</p>
+                        <details class="text-gray-700 dark:text-gray-300">
+                            <summary class="cursor-pointer text-indigo-700 dark:text-indigo-400 hover:underline">Click to reveal answer</summary>
+                            <p class="mt-2 text-sm lg:text-base"><strong>18 years old</strong></p>
+                        </details>
+                    </div>
+
+                    <!-- Quiz Item 8 -->
+                    <div class="bg-orange-50 dark:bg-orange-900/20 p-4 rounded-lg border-l-4 border-orange-500">
+                        <p class="font-bold text-gray-800 dark:text-gray-200 mb-2">Q8: What's the penalty for a WILLFUL violation of fair trade practices law?</p>
+                        <details class="text-gray-700 dark:text-gray-300">
+                            <summary class="cursor-pointer text-orange-700 dark:text-orange-400 hover:underline">Click to reveal answer</summary>
+                            <p class="mt-2 text-sm lg:text-base"><strong>$5,000</strong> per violation (vs $1,000 for unintentional)</p>
+                        </details>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Comprehensive Number Grid -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-purple-600 to-purple-800 rounded-xl p-6 lg:p-8 text-white">
+                <h2 class="text-2xl lg:text-3xl font-bold mb-6">Complete Number Reference</h2>
+                <div class="grid md:grid-cols-3 lg:grid-cols-4 gap-4">
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold text-2xl">18</p>
+                        <p class="text-sm text-purple-100">Min age for license</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold text-2xl">20</p>
+                        <p class="text-sm text-purple-100">Prelicense hours</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold text-2xl">24</p>
+                        <p class="text-sm text-purple-100">CE hours/2 years</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold text-2xl">3</p>
+                        <p class="text-sm text-purple-100">Ethics CE hours</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold text-2xl">60</p>
+                        <p class="text-sm text-purple-100">Days temp work authority</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold text-2xl">180</p>
+                        <p class="text-sm text-purple-100">Days temp license valid</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold text-2xl">2 yrs</p>
+                        <p class="text-sm text-purple-100">License period</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold text-2xl">1 yr</p>
+                        <p class="text-sm text-purple-100">Apply after passing exam</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold text-2xl">1 yr</p>
+                        <p class="text-sm text-purple-100">Renew lapsed w/o exam</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold text-2xl">90</p>
+                        <p class="text-sm text-purple-100">Days nonres → resident</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold text-2xl">5 yrs</p>
+                        <p class="text-sm text-purple-100">Revoked to reapply</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold text-2xl">30</p>
+                        <p class="text-sm text-purple-100">Days report address</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold text-2xl">30</p>
+                        <p class="text-sm text-purple-100">Days report branch</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold text-2xl">15</p>
+                        <p class="text-sm text-purple-100">Days insurer notify</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold text-2xl">15</p>
+                        <p class="text-sm text-purple-100">Days reply to Comm</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold text-2xl">10</p>
+                        <p class="text-sm text-purple-100">Days before renewal</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold text-2xl">10</p>
+                        <p class="text-sm text-purple-100">Cal days deliver policy</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold text-2xl">5</p>
+                        <p class="text-sm text-purple-100">Bus days remit premium</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold text-2xl">5</p>
+                        <p class="text-sm text-purple-100">Bus days report claims</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold text-2xl">5 yrs</p>
+                        <p class="text-sm text-purple-100">Keep records</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold text-2xl">$1,000</p>
+                        <p class="text-sm text-purple-100">Unintentional violation</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold text-2xl">$5,000</p>
+                        <p class="text-sm text-purple-100">Willful / 1st fraud</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold text-2xl">$10,000</p>
+                        <p class="text-sm text-purple-100">2nd fraud violation</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold text-2xl">$15,000</p>
+                        <p class="text-sm text-purple-100">Max fraud penalty</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold text-2xl">$1,000</p>
+                        <p class="text-sm text-purple-100">Fraud surcharge</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold text-2xl">5%</p>
+                        <p class="text-sm text-purple-100">Settlement surcharge</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Navigation -->
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="../part-6/index.html" class="hover:text-purple-400">← Part 6: Insurance Fraud</a>
+                <span class="text-gray-400">Part 7 of 8</span>
+                <a href="../part-8/index.html" class="hover:text-purple-400">Part 8: Conflict of Interest →</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AI Tutor Button -->
+    <button onclick="openAITutor()" class="fixed bottom-8 right-8 bg-purple-600 hover:bg-purple-700 text-white rounded-full p-4 shadow-lg hover:scale-110 transition-transform">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+        </svg>
+    </button>
+
+    <script>
+        function openAITutor() {
+            const context = `I'm studying all the important numbers from NJ Insurance Law Chapter 4. Key number categories:
+
+LICENSING:
+- 18 years old to apply
+- 20 hours prelicensing
+- 24 CE hours every 2 years (3 in ethics)
+- 2 year license period
+- 5 years if license revoked
+
+PRODUCER DUTIES:
+- 5 business days: remit premiums, report claims
+- 10 calendar days: deliver policies
+- 30 days: report address/branch changes
+- 15 days: reply to Commissioner
+
+PENALTIES:
+- $5k/$10k/$15k for fraud (escalating)
+- $5k willful, $1k unintentional violations
+- $1k fraud surcharge
+
+Help me memorize patterns and avoid confusing similar numbers.`;
+
+            showAITutor(context);
+        }
+    </script>
+
+</body>
+</html>
