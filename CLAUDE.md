@@ -654,3 +654,27 @@ Use sequential numbers when topics are independent:
 12. **Start with summary** - "5 Things You MUST Know" at the top
 13. **Include cheat sheet** - Condensed reference before exam traps
 14. **15-20 minute rule** - If it takes longer to study, split it
+
+---
+
+## Response Formatting Rules
+
+### NO Tables in Text Responses
+- **Never use markdown tables** when responding to user questions in conversation
+- Tables are for HTML pages only, not chat responses
+- Use bullet points, numbered lists, or simple formatting instead
+
+**Instead of a table, use:**
+```
+**Neon signs** - The glowing "OPEN" sign, a bar's neon beer signs
+**Fluorescent signs** - Lit-up menu boards, illuminated store name
+**Automatic signs** - Digital signs that change messages, scrolling LED displays
+**Mechanical signs** - Signs with moving parts, rotating signs, spinning barber poles
+```
+
+**NOT:**
+```
+| Sign Type | Example |
+|-----------|---------|
+| Neon signs | The glowing "OPEN" sign |
+```
