@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 1: FAIR Plan | Chapter 5 - NJ Property Insurance</title>
+    <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <link rel="stylesheet" href="../../../css/styles.css">
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+        }
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <!-- Theme Toggle Button -->
+    <div class="fixed top-4 right-4 z-50">
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/>
+            </svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-red-600 to-red-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4 lg:px-8">
+            <div class="flex flex-wrap gap-2 text-sm mb-2">
+                <a href="../../../index.html" class="text-red-200 hover:text-white">Home</a>
+                <span class="text-red-300">/</span>
+                <a href="../../index.html" class="text-red-200 hover:text-white">Property</a>
+                <span class="text-red-300">/</span>
+                <a href="../index.html" class="text-red-200 hover:text-white">Chapter 5</a>
+                <span class="text-red-300">/</span>
+                <span class="text-white">Part 1: FAIR Plan</span>
+            </div>
+            <h1 class="text-3xl lg:text-4xl font-bold">Part 1: The FAIR Plan</h1>
+            <p class="text-red-200 mt-2">New Jersey Insurance Underwriting Association - Insurance for Everyone</p>
+        </div>
+    </header>
+
+    <!-- Sticky Navigation -->
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-wrap gap-2 text-sm">
+                <span class="bg-red-700 dark:bg-red-800 text-white px-3 py-1 rounded font-medium">Part 1: FAIR Plan</span>
+                <a href="../part-2/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white px-3 py-1 rounded hover:bg-gray-100 dark:hover:bg-gray-700">Part 2: Cancellation</a>
+                <a href="../part-3/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white px-3 py-1 rounded hover:bg-gray-100 dark:hover:bg-gray-700">Part 3: Surplus Lines</a>
+                <a href="../part-4/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white px-3 py-1 rounded hover:bg-gray-100 dark:hover:bg-gray-700">Part 4: Coastal</a>
+                <a href="../part-5/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white px-3 py-1 rounded hover:bg-gray-100 dark:hover:bg-gray-700">Part 5: Deregulation</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-5xl lg:max-w-7xl">
+
+        <!-- Start Here Summary -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-red-100 to-orange-100 dark:from-red-900/30 dark:to-orange-900/30 rounded-xl p-6 border border-red-300 dark:border-red-700">
+                <h3 class="text-xl font-bold text-red-800 dark:text-red-300 mb-4">Start Here: 5 Things You MUST Know About the FAIR Plan</h3>
+                <div class="grid md:grid-cols-2 gap-3">
+                    <div class="flex items-start">
+                        <span class="bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
+                        <p class="text-gray-700 dark:text-gray-300">FAIR Plan is for people who <strong>cannot get insurance</strong> in the regular market</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
+                        <p class="text-gray-700 dark:text-gray-300">Maximum property value: <strong>$1,500,000</strong></p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
+                        <p class="text-gray-700 dark:text-gray-300">Binders are valid for <strong>60 days</strong> maximum</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">4</span>
+                        <p class="text-gray-700 dark:text-gray-300">All insurers pay a surcharge up to <strong>5%</strong> to fund it</p>
+                    </div>
+                    <div class="flex items-start md:col-span-2">
+                        <span class="bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">5</span>
+                        <p class="text-gray-700 dark:text-gray-300">All property insurance companies in NJ <strong>must participate</strong> - it's mandatory</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- What Is the FAIR Plan? -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">What Is the FAIR Plan? (Let's Start From Scratch)</h2>
+
+                <!-- The Problem -->
+                <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-5 border-l-4 border-red-500 mb-6">
+                    <h3 class="font-bold text-red-800 dark:text-red-300 text-lg mb-3">First, Let's Understand the Problem</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">
+                        Imagine you own a home in Newark, New Jersey. You try to buy homeowners insurance, but every company says "no." Why?
+                    </p>
+                    <ul class="space-y-2 text-gray-700 dark:text-gray-300">
+                        <li class="flex items-start">
+                            <span class="text-red-500 mr-2 font-bold">-</span>
+                            <span>Maybe your neighborhood has high crime rates</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-red-500 mr-2 font-bold">-</span>
+                            <span>Maybe the buildings are old and have outdated wiring</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-red-500 mr-2 font-bold">-</span>
+                            <span>Maybe there have been lots of fires in the area</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-red-500 mr-2 font-bold">-</span>
+                            <span>Maybe insurance companies just don't want to take the risk</span>
+                        </li>
+                    </ul>
+                    <p class="text-gray-700 dark:text-gray-300 mt-4 font-medium">
+                        This creates a big problem: You NEED insurance (banks require it for mortgages), but nobody will sell it to you!
+                    </p>
+                </div>
+
+                <!-- The Solution -->
+                <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-5 border-l-4 border-green-500 mb-6">
+                    <h3 class="font-bold text-green-800 dark:text-green-300 text-lg mb-3">The Solution: The FAIR Plan</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">
+                        <strong>FAIR</strong> stands for <strong>Fair Access to Insurance Requirements</strong>. It's a backup system that ensures everyone can get basic property insurance.
+                    </p>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Think of it like this:</p>
+                        <p class="text-gray-600 dark:text-gray-400">
+                            If the regular insurance market is like a restaurant that can choose not to serve you, the FAIR Plan is like a public cafeteria - they HAVE to serve everyone who qualifies, even if regular restaurants won't.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Real World Example -->
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-5 border-l-4 border-blue-500">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg mb-3">Real-World Scenario: Maria's Story</h3>
+                    <div class="space-y-3">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Maria buys a small house in Camden, NJ for $180,000. She needs homeowners insurance to get her mortgage.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> She contacts State Farm - rejected. Allstate - rejected. Liberty Mutual - rejected. Nobody wants to insure homes in her neighborhood because of high crime and fire rates.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Solution:</strong> Maria's insurance agent applies to the FAIR Plan. Within 60 days, Maria has a basic property insurance policy. Her mortgage goes through!</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Maria pays a higher premium than she would in a low-risk area, but at least she HAS insurance. Without the FAIR Plan, she couldn't have bought her home.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Who Runs the FAIR Plan? -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">Who Runs the FAIR Plan?</h2>
+
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-5 border-l-4 border-purple-500 mb-6">
+                    <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg mb-3">The New Jersey Insurance Underwriting Association</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">
+                        This is the official organization that operates the FAIR Plan. Let's break down what you need to know:
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    <!-- Mandatory Membership -->
+                    <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-5 border border-red-200 dark:border-red-800">
+                        <h4 class="font-bold text-red-800 dark:text-red-300 text-lg mb-3">Membership is MANDATORY</h4>
+                        <p class="text-gray-700 dark:text-gray-300 mb-3">
+                            Every insurance company that sells property insurance in New Jersey MUST be a member of the Association.
+                        </p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-semibold text-gray-800 dark:text-gray-200 text-sm">Why is this important?</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">
+                                It means all insurers share the risk. If the FAIR Plan loses money, all member companies chip in. No company can say "not my problem."
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Location Focus -->
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-5 border border-blue-200 dark:border-blue-800">
+                        <h4 class="font-bold text-blue-800 dark:text-blue-300 text-lg mb-3">Focus on Urban Areas</h4>
+                        <p class="text-gray-700 dark:text-gray-300 mb-3">
+                            The FAIR Plan specifically focuses on <strong>urban areas</strong> - cities and densely populated regions where insurance is hardest to get.
+                        </p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-semibold text-gray-800 dark:text-gray-200 text-sm">Examples of urban areas:</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">
+                                Newark, Camden, Trenton, Paterson, Jersey City - these are typical areas where FAIR Plan coverage is common.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Who Can Apply? -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">Who Can Apply for FAIR Plan Insurance?</h2>
+
+                <!-- Three Requirements -->
+                <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-5 border-l-4 border-green-500 mb-6">
+                    <h3 class="font-bold text-green-800 dark:text-green-300 text-lg mb-3">You Must Meet THREE Requirements:</h3>
+                    <div class="space-y-4">
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                            <div class="flex items-center mb-2">
+                                <span class="bg-green-600 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold mr-3">1</span>
+                                <p class="font-bold text-gray-800 dark:text-gray-200">You must have an "insurable interest"</p>
+                            </div>
+                            <p class="text-gray-600 dark:text-gray-400 ml-11">This means you would lose something if the property was damaged. Homeowners, landlords, and mortgage holders all have insurable interest.</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                            <div class="flex items-center mb-2">
+                                <span class="bg-green-600 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold mr-3">2</span>
+                                <p class="font-bold text-gray-800 dark:text-gray-200">The property must be "insurable"</p>
+                            </div>
+                            <p class="text-gray-600 dark:text-gray-400 ml-11">The property can't be falling apart. It needs to meet basic safety standards. You can't insure a condemned building!</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                            <div class="flex items-center mb-2">
+                                <span class="bg-green-600 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold mr-3">3</span>
+                                <p class="font-bold text-gray-800 dark:text-gray-200">You must have been REJECTED by the regular market</p>
+                            </div>
+                            <p class="text-gray-600 dark:text-gray-400 ml-11">You can't go straight to the FAIR Plan. You must first try to get insurance from regular companies. Only after being rejected can you apply.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Example: Who Qualifies -->
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 border border-green-200 dark:border-green-800">
+                        <h4 class="font-bold text-green-800 dark:text-green-300 mb-3">QUALIFIES for FAIR Plan</h4>
+                        <div class="space-y-3">
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                                <p class="text-sm text-gray-700 dark:text-gray-300"><strong>Jose:</strong> Owns a home in Newark. Three insurance companies rejected him because of the area. Property is well-maintained.</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                                <p class="text-sm text-gray-700 dark:text-gray-300"><strong>ABC Bank:</strong> Holds a mortgage on a property where the owner can't get regular insurance. Bank has insurable interest.</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                                <p class="text-sm text-gray-700 dark:text-gray-300"><strong>Lisa:</strong> Landlord with a rental property in Camden. Multiple insurers declined due to neighborhood risk.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-4 border border-red-200 dark:border-red-800">
+                        <h4 class="font-bold text-red-800 dark:text-red-300 mb-3">DOES NOT QUALIFY</h4>
+                        <div class="space-y-3">
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                                <p class="text-sm text-gray-700 dark:text-gray-300"><strong>Mike:</strong> Wants to skip regular insurers and go straight to FAIR Plan for cheaper rates. NOT ALLOWED - must try regular market first.</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                                <p class="text-sm text-gray-700 dark:text-gray-300"><strong>Condemned Building:</strong> Owner wants to insure an abandoned, structurally unsafe building. NOT INSURABLE.</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                                <p class="text-sm text-gray-700 dark:text-gray-300"><strong>Random Person:</strong> Someone with no connection to a property tries to insure it. NO INSURABLE INTEREST.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Property Value Limit -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">Property Value Limit: $1,500,000</h2>
+
+                <div class="bg-amber-50 dark:bg-amber-900/20 rounded-lg p-5 border-l-4 border-amber-500 mb-6">
+                    <div class="flex items-center mb-3">
+                        <span class="bg-amber-600 text-white rounded-full px-4 py-2 font-bold text-2xl mr-4">$1.5M</span>
+                        <div>
+                            <h3 class="font-bold text-amber-800 dark:text-amber-300 text-lg">Maximum Insurable Value</h3>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm">This is a KEY exam number!</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 dark:text-gray-300">
+                        The FAIR Plan only covers properties worth <strong>$1,500,000 or less</strong>. This includes both the building (real property) and contents (personal property) at that location.
+                    </p>
+                </div>
+
+                <!-- What counts -->
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 border border-blue-200 dark:border-blue-800">
+                        <h4 class="font-bold text-blue-800 dark:text-blue-300 mb-2">What Counts as Insurable Property?</h4>
+                        <ul class="space-y-2 text-gray-700 dark:text-gray-300 text-sm">
+                            <li class="flex items-start">
+                                <span class="text-blue-500 mr-2">1.</span>
+                                <span><strong>Real Property:</strong> The building itself, attached structures (garage, deck), permanent fixtures</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-blue-500 mr-2">2.</span>
+                                <span><strong>Personal Property:</strong> Furniture, appliances, clothes, electronics - your "stuff"</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 border border-purple-200 dark:border-purple-800">
+                        <h4 class="font-bold text-purple-800 dark:text-purple-300 mb-2">Location Requirement</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">
+                            The property must be at a <strong>fixed location</strong> in urban areas of New Jersey. You can't use FAIR Plan for:
+                        </p>
+                        <ul class="mt-2 space-y-1 text-gray-600 dark:text-gray-400 text-sm">
+                            <li>- Mobile homes (they move!)</li>
+                            <li>- Property in rural areas</li>
+                            <li>- Property outside NJ</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Example -->
+                <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 mb-6">
+                    <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Example: Does It Qualify?</p>
+                    <div class="grid md:grid-cols-3 gap-3 text-sm">
+                        <div class="bg-green-100 dark:bg-green-900/30 p-3 rounded">
+                            <p class="font-medium text-green-800 dark:text-green-300">YES - Qualifies</p>
+                            <p class="text-gray-600 dark:text-gray-400 mt-1">Home in Newark worth $400,000 with $50,000 in contents = $450,000 total (under limit)</p>
+                        </div>
+                        <div class="bg-green-100 dark:bg-green-900/30 p-3 rounded">
+                            <p class="font-medium text-green-800 dark:text-green-300">YES - Qualifies</p>
+                            <p class="text-gray-600 dark:text-gray-400 mt-1">Small apartment building worth $1,400,000 (just under limit)</p>
+                        </div>
+                        <div class="bg-red-100 dark:bg-red-900/30 p-3 rounded">
+                            <p class="font-medium text-red-800 dark:text-red-300">NO - Too Expensive</p>
+                            <p class="text-gray-600 dark:text-gray-400 mt-1">Commercial building worth $2,000,000 (over the $1.5M limit)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- What if value increases? -->
+                <div class="bg-amber-50 dark:bg-amber-900/20 rounded-lg p-4 border-l-4 border-amber-500">
+                    <p class="font-semibold text-amber-800 dark:text-amber-300 mb-2">What if My Property Value Goes UP During the Policy?</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm">
+                        The $1.5M limit applies <strong>when you apply</strong>. If your property appreciates above $1.5M while you're already insured, you don't automatically lose coverage. However, when it's time to renew, you may need to find coverage elsewhere or may only be covered up to the limit. Always discuss with your agent if your property value changes significantly.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- The Application Process -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">How to Apply for FAIR Plan Coverage</h2>
+
+                <!-- Who Can Apply -->
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-5 border-l-4 border-blue-500 mb-6">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg mb-3">Who Submits the Application?</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mb-3">
+                        Applications can be made by <strong>any licensed producer</strong> (insurance agent) who is authorized by the applicant. The homeowner doesn't apply directly - they work with an agent.
+                    </p>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                        <p class="text-gray-600 dark:text-gray-400 text-sm">
+                            <strong>Real-world:</strong> You call your insurance agent and say "I can't get coverage anywhere." The agent then submits a FAIR Plan application on your behalf.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Application Contents -->
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-5 border-l-4 border-purple-500 mb-6">
+                    <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg mb-3">What Must the Application Include?</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mb-3">The application form is prepared by the Commissioner and must contain:</p>
+                    <div class="grid md:grid-cols-3 gap-3">
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-semibold text-gray-800 dark:text-gray-200 text-sm mb-1">1. Proof of Rejection</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-xs">Evidence that you tried to get insurance from regular companies and failed</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-semibold text-gray-800 dark:text-gray-200 text-sm mb-1">2. Property Information</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-xs">Enough info to determine if the property is insurable and meets requirements</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-semibold text-gray-800 dark:text-gray-200 text-sm mb-1">3. Premium History</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-xs">Whether you owe any unpaid premiums from previous insurance on this property</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Property Inspection -->
+                <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-5 border-l-4 border-green-500">
+                    <h3 class="font-bold text-green-800 dark:text-green-300 text-lg mb-3">Property Inspection</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mb-3">
+                        When you apply for FAIR Plan coverage, the property will be <strong>inspected</strong>. Here's what's important:
+                    </p>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded">
+                        <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Inspection Rights (Important for Exam!)</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm mb-3">
+                            Producers and employees of participating insurance companies may <strong>enter any land and premises</strong> to make necessary examinations <strong>without being considered trespassers</strong>.
+                        </p>
+                        <div class="bg-amber-50 dark:bg-amber-900/30 p-3 rounded border border-amber-200 dark:border-amber-700">
+                            <p class="text-amber-800 dark:text-amber-300 text-sm">
+                                <strong>What this means:</strong> If you apply for FAIR Plan, inspectors have the legal right to check out your property. They're not trespassing even if they walk around your yard without permission.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Binders - Temporary Coverage -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">Binders: Your Temporary Coverage</h2>
+
+                <!-- What is a Binder -->
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-5 border-l-4 border-blue-500 mb-6">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg mb-3">What is a Binder?</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">
+                        A <strong>binder</strong> is a temporary insurance contract. Think of it as a "placeholder" that gives you coverage while your full policy is being processed.
+                    </p>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded">
+                        <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-Life Example:</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm">
+                            You're buying a house and need proof of insurance by Friday for your mortgage closing. Your agent can issue a <strong>binder</strong> immediately, so you're covered right away. The full policy paperwork comes later.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Key Facts About Binders -->
+                <div class="bg-amber-50 dark:bg-amber-900/20 rounded-lg p-5 border-l-4 border-amber-500 mb-6">
+                    <h3 class="font-bold text-amber-800 dark:text-amber-300 text-lg mb-3">Key Facts About FAIR Plan Binders</h3>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded">
+                            <div class="flex items-center mb-2">
+                                <span class="bg-amber-600 text-white rounded-full px-3 py-1 font-bold text-lg mr-3">60</span>
+                                <p class="font-bold text-gray-800 dark:text-gray-200">Days Maximum</p>
+                            </div>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm">
+                                A binder is valid for up to 60 days. After that, you either have a full policy or no coverage.
+                            </p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded">
+                            <p class="font-bold text-gray-800 dark:text-gray-200 mb-2">Can Be Verbal OR Written</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm">
+                                An agent can bind coverage over the phone! "Yes, you're covered" is binding. Written binders are also common.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Express Authority -->
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-5 border-l-4 border-purple-500 mb-6">
+                    <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg mb-3">Binders = Express Authority</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mb-3">
+                        <strong>Important exam concept:</strong> A binder is an example of <strong>Express Authority</strong>. This means the insurance company has specifically given the agent the power to bind coverage.
+                    </p>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                        <p class="text-gray-600 dark:text-gray-400 text-sm">
+                            <strong>Why it matters:</strong> When an agent issues a binder, the insurance company is legally bound to honor it - even before any paperwork is filed!
+                        </p>
+                    </div>
+                </div>
+
+                <!-- When Binder Ends -->
+                <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-5">
+                    <h3 class="font-bold text-gray-800 dark:text-gray-200 text-lg mb-3">When Does a Binder End?</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mb-3">A binder terminates at the EARLIEST of these three events:</p>
+                    <div class="grid md:grid-cols-3 gap-3">
+                        <div class="bg-white dark:bg-gray-600 p-3 rounded text-center">
+                            <p class="font-bold text-red-600 dark:text-red-400 text-lg">1</p>
+                            <p class="text-sm text-gray-700 dark:text-gray-300">Application is <strong>DENIED</strong></p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-600 p-3 rounded text-center">
+                            <p class="font-bold text-green-600 dark:text-green-400 text-lg">2</p>
+                            <p class="text-sm text-gray-700 dark:text-gray-300">Full policy is <strong>ISSUED</strong></p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-600 p-3 rounded text-center">
+                            <p class="font-bold text-amber-600 dark:text-amber-400 text-lg">3</p>
+                            <p class="text-sm text-gray-700 dark:text-gray-300"><strong>60 DAYS</strong> pass</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Agent's Role and Liability -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">The Agent's Role (Producer's Duties)</h2>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    <!-- What Agents Do -->
+                    <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-5 border-l-4 border-green-500">
+                        <h3 class="font-bold text-green-800 dark:text-green-300 text-lg mb-3">What the Agent Does</h3>
+                        <ul class="space-y-2 text-gray-700 dark:text-gray-300">
+                            <li class="flex items-start">
+                                <span class="text-green-500 mr-2 font-bold">1.</span>
+                                <span>Helps the applicant complete the application</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-green-500 mr-2 font-bold">2.</span>
+                                <span>Submits the application to the Association</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-green-500 mr-2 font-bold">3.</span>
+                                <span>May issue a binder for temporary coverage</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-green-500 mr-2 font-bold">4.</span>
+                                <span>Collects premiums from the insured</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Liability Limits -->
+                    <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-5 border-l-4 border-red-500">
+                        <h3 class="font-bold text-red-800 dark:text-red-300 text-lg mb-3">Important Liability Rule</h3>
+                        <p class="text-gray-700 dark:text-gray-300 mb-3">
+                            <strong>The Association is NOT liable</strong> for statements made in reports concerning the risk insured.
+                        </p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="text-gray-600 dark:text-gray-400 text-sm">
+                                <strong>What this means:</strong> If an inspector writes "property appears safe" but it burns down the next day, the Association isn't responsible for the inspector's opinion. The inspection reports are informational, not guarantees.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It's Funded - The Surcharge -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">How is the FAIR Plan Funded?</h2>
+
+                <!-- The Surcharge -->
+                <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-5 border-l-4 border-green-500 mb-6">
+                    <h3 class="font-bold text-green-800 dark:text-green-300 text-lg mb-3">The 5% Surcharge</h3>
+                    <div class="flex items-center mb-4">
+                        <span class="bg-green-600 text-white rounded-full px-4 py-2 font-bold text-2xl mr-4">5%</span>
+                        <div>
+                            <p class="font-bold text-gray-800 dark:text-gray-200">Maximum Surcharge on ALL Property Insurance</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm">This is a KEY exam number!</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 dark:text-gray-300">
+                        Every insurer authorized to write property insurance in NJ must collect a <strong>surcharge</strong> from the insured. This surcharge cannot exceed <strong>5% of the premium</strong>.
+                    </p>
+                </div>
+
+                <!-- How It Works -->
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-5 border-l-4 border-blue-500 mb-6">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg mb-3">How the Surcharge Works</h3>
+                    <div class="space-y-3">
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded">
+                            <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Example:</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm">
+                                Sarah buys a homeowners policy for $1,000/year. She pays an additional surcharge of up to $50 (5% of $1,000). This extra money goes to help fund the FAIR Plan.
+                            </p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded">
+                            <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Who Decides the Amount?</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm">
+                                The <strong>Commissioner</strong> determines the exact surcharge amount each year. It must be "reasonable" and cannot exceed 5%.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- NJ Insurance Development Fund -->
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-5 border-l-4 border-purple-500">
+                    <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg mb-3">Where Does the Money Go?</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mb-3">
+                        The surcharge money is paid <strong>semiannually</strong> (twice a year) to the <strong>New Jersey Insurance Development Fund</strong>.
+                    </p>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded">
+                        <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">What is the NJ Insurance Development Fund?</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm">
+                            This is a <strong>financial backup</strong> for the Association. If the FAIR Plan runs out of money (lots of claims, not enough premiums), this fund helps cover the difference. Think of it as a "rainy day fund" for the FAIR Plan.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cheat Sheet -->
+        <section id="cheat-sheet" class="mb-10">
+            <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 border-2 border-dashed border-gray-300 dark:border-gray-600">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100">FAIR Plan Cheat Sheet</h2>
+                    <span class="text-sm text-gray-500 dark:text-gray-400">Print this for quick reference</span>
+                </div>
+                <div class="grid md:grid-cols-3 gap-4">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-600 dark:text-red-400 text-2xl">$1,500,000</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Maximum property value</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-blue-600 dark:text-blue-400 text-2xl">60 Days</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Binder validity</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-green-600 dark:text-green-400 text-2xl">5%</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Max surcharge</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-purple-600 dark:text-purple-400 text-lg">Mandatory</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">All NJ insurers must participate</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-amber-600 dark:text-amber-400 text-lg">Urban Areas</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Focus location</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-teal-600 dark:text-teal-400 text-lg">Semiannually</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Surcharge payment frequency</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Traps -->
+        <section class="mb-10">
+            <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-xl p-6">
+                <h2 class="text-2xl font-bold text-red-800 dark:text-red-300 mb-6">Exam Trap Alerts</h2>
+                <div class="space-y-4">
+                    <div class="bg-white dark:bg-gray-800 p-4 rounded-lg flex items-start">
+                        <span class="text-red-500 mr-3 text-xl font-bold">!</span>
+                        <div>
+                            <p class="font-semibold text-gray-800 dark:text-gray-200">FAIR Plan is NOT First Choice</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">You must TRY the regular market first. FAIR Plan is only for those who have been REJECTED elsewhere.</p>
+                        </div>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 p-4 rounded-lg flex items-start">
+                        <span class="text-red-500 mr-3 text-xl font-bold">!</span>
+                        <div>
+                            <p class="font-semibold text-gray-800 dark:text-gray-200">$1.5 Million - Not Just the Building</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">The $1,500,000 limit includes BOTH the building AND the contents. Don't think it's just for the structure!</p>
+                        </div>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 p-4 rounded-lg flex items-start">
+                        <span class="text-red-500 mr-3 text-xl font-bold">!</span>
+                        <div>
+                            <p class="font-semibold text-gray-800 dark:text-gray-200">60 Days for Binder, NOT the Policy</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">The 60-day limit is for BINDERS only. The actual policy can last much longer (usually 1 year).</p>
+                        </div>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 p-4 rounded-lg flex items-start">
+                        <span class="text-red-500 mr-3 text-xl font-bold">!</span>
+                        <div>
+                            <p class="font-semibold text-gray-800 dark:text-gray-200">5% is the MAX, Not a Fixed Amount</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">The surcharge can be LESS than 5% - the Commissioner decides each year. But it can NEVER exceed 5%.</p>
+                        </div>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 p-4 rounded-lg flex items-start">
+                        <span class="text-red-500 mr-3 text-xl font-bold">!</span>
+                        <div>
+                            <p class="font-semibold text-gray-800 dark:text-gray-200">Membership is MANDATORY</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">Insurance companies don't volunteer for the FAIR Plan - they MUST participate if they sell property insurance in NJ.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Reference Summary -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-red-600 to-red-800 rounded-xl p-6 text-white">
+                <h2 class="text-2xl font-bold mb-6">Quick Reference Summary</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">FAIR Plan Purpose</p>
+                        <p class="text-sm text-red-100">Insurance for those rejected by regular market</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Who Runs It</p>
+                        <p class="text-sm text-red-100">NJ Insurance Underwriting Association</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Property Limit</p>
+                        <p class="text-sm text-red-100">$1,500,000 maximum value</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Binder Duration</p>
+                        <p class="text-sm text-red-100">Up to 60 days</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Surcharge</p>
+                        <p class="text-sm text-red-100">Up to 5% of premium, paid semiannually</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Backed By</p>
+                        <p class="text-sm text-red-100">NJ Insurance Development Fund</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Navigation -->
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="../index.html" class="text-gray-300 hover:text-white">← Chapter 5 Overview</a>
+                <span class="text-gray-400">Part 1 of 5</span>
+                <a href="../part-2/index.html" class="text-gray-300 hover:text-white">Part 2: Cancellation →</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

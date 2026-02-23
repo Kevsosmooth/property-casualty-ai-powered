@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 2: Cancellation & Nonrenewal | Chapter 5 - NJ Property Insurance</title>
+    <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <link rel="stylesheet" href="../../../css/styles.css">
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+        }
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <!-- Theme Toggle Button -->
+    <div class="fixed top-4 right-4 z-50">
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/>
+            </svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-red-600 to-red-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4 lg:px-8">
+            <div class="flex flex-wrap gap-2 text-sm mb-2">
+                <a href="../../../index.html" class="text-red-200 hover:text-white">Home</a>
+                <span class="text-red-300">/</span>
+                <a href="../../index.html" class="text-red-200 hover:text-white">Property</a>
+                <span class="text-red-300">/</span>
+                <a href="../index.html" class="text-red-200 hover:text-white">Chapter 5</a>
+                <span class="text-red-300">/</span>
+                <span class="text-white">Part 2: Cancellation & Nonrenewal</span>
+            </div>
+            <h1 class="text-3xl lg:text-4xl font-bold">Part 2: Cancellation & Nonrenewal</h1>
+            <p class="text-red-200 mt-2">When Can an Insurer Drop Your Coverage?</p>
+        </div>
+    </header>
+
+    <!-- Sticky Navigation -->
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-wrap gap-2 text-sm">
+                <a href="../part-1/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white px-3 py-1 rounded hover:bg-gray-100 dark:hover:bg-gray-700">Part 1: FAIR Plan</a>
+                <span class="bg-red-700 dark:bg-red-800 text-white px-3 py-1 rounded font-medium">Part 2: Cancellation</span>
+                <a href="../part-3/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white px-3 py-1 rounded hover:bg-gray-100 dark:hover:bg-gray-700">Part 3: Surplus Lines</a>
+                <a href="../part-4/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white px-3 py-1 rounded hover:bg-gray-100 dark:hover:bg-gray-700">Part 4: Coastal</a>
+                <a href="../part-5/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-white px-3 py-1 rounded hover:bg-gray-100 dark:hover:bg-gray-700">Part 5: Deregulation</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-5xl lg:max-w-7xl">
+
+        <!-- Start Here Summary -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-red-100 to-orange-100 dark:from-red-900/30 dark:to-orange-900/30 rounded-xl p-6 border border-red-300 dark:border-red-700">
+                <h3 class="text-xl font-bold text-red-800 dark:text-red-300 mb-4">Start Here: 5 Things You MUST Know About Cancellation Rules</h3>
+                <div class="grid md:grid-cols-2 gap-3">
+                    <div class="flex items-start">
+                        <span class="bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
+                        <p class="text-gray-700 dark:text-gray-300">First <strong>60 days</strong>: Insurer can cancel for ANY reason</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
+                        <p class="text-gray-700 dark:text-gray-300">After 60 days: Insurer needs a <strong>specific reason</strong> to cancel</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
+                        <p class="text-gray-700 dark:text-gray-300">Regular cancellation notice: <strong>30-120 days</strong> before expiration</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">4</span>
+                        <p class="text-gray-700 dark:text-gray-300">Non-payment cancellation: Only <strong>10 days</strong> notice needed</p>
+                    </div>
+                    <div class="flex items-start md:col-span-2">
+                        <span class="bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">5</span>
+                        <p class="text-gray-700 dark:text-gray-300">Block cancellations require <strong>Commissioner approval</strong> and up to <strong>3 years</strong> to complete</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Understanding Cancellation vs Nonrenewal -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">First, Let's Understand the Difference</h2>
+
+                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                    <!-- Cancellation -->
+                    <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-5 border-2 border-red-300 dark:border-red-700">
+                        <h3 class="font-bold text-red-800 dark:text-red-300 text-xl mb-3">Cancellation</h3>
+                        <p class="text-gray-700 dark:text-gray-300 mb-3">
+                            Terminating a policy <strong>BEFORE</strong> its natural end date.
+                        </p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-semibold text-gray-800 dark:text-gray-200 text-sm">Example:</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">
+                                Your homeowners policy runs January 1 - December 31. In June, the insurer sends a letter saying "Your policy ends July 15th." That's a <strong>cancellation</strong> - ending early.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Nonrenewal -->
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-5 border-2 border-blue-300 dark:border-blue-700">
+                        <h3 class="font-bold text-blue-800 dark:text-blue-300 text-xl mb-3">Nonrenewal</h3>
+                        <p class="text-gray-700 dark:text-gray-300 mb-3">
+                            Deciding NOT to continue a policy <strong>AFTER</strong> it naturally expires.
+                        </p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-semibold text-gray-800 dark:text-gray-200 text-sm">Example:</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">
+                                Your policy runs January 1 - December 31. In October, the insurer sends a letter saying "We won't renew your policy next year." That's a <strong>nonrenewal</strong> - just not continuing.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Why This Matters -->
+                <div class="bg-amber-50 dark:bg-amber-900/20 rounded-lg p-5 border-l-4 border-amber-500">
+                    <h3 class="font-bold text-amber-800 dark:text-amber-300 text-lg mb-3">Why Does This Distinction Matter?</h3>
+                    <p class="text-gray-700 dark:text-gray-300">
+                        <strong>Cancellation</strong> is more disruptive - you lose coverage unexpectedly. So the law puts MORE restrictions on cancellation than on nonrenewal. Insurers can't just cancel whenever they want (after the first 60 days).
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- The 60-Day Rule -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">The Critical 60-Day Rule</h2>
+
+                <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-5 border-l-4 border-red-500 mb-6">
+                    <div class="flex items-center mb-4">
+                        <span class="bg-red-600 text-white rounded-full px-4 py-2 font-bold text-2xl mr-4">60</span>
+                        <div>
+                            <h3 class="font-bold text-red-800 dark:text-red-300 text-lg">Days - The Magic Number</h3>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm">This is THE most important number in this section!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    <!-- First 60 Days -->
+                    <div class="bg-orange-50 dark:bg-orange-900/20 rounded-lg p-5 border border-orange-200 dark:border-orange-800">
+                        <h4 class="font-bold text-orange-800 dark:text-orange-300 text-lg mb-3">FIRST 60 Days of Policy</h4>
+                        <p class="text-gray-700 dark:text-gray-300 mb-3">
+                            During the first 60 days, insurers can cancel <strong>at any time</strong> for <strong>any reason</strong>.
+                        </p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-semibold text-gray-800 dark:text-gray-200 text-sm">Real-World Example:</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">
+                                You buy a new homeowners policy on January 1st. On February 15th (day 46), the insurer discovers they don't like how your house looks. They can cancel - no reason required!
+                            </p>
+                        </div>
+                        <div class="mt-3 bg-amber-100 dark:bg-amber-900/40 p-2 rounded text-sm text-amber-800 dark:text-amber-300">
+                            <strong>Why?</strong> This gives insurers a "trial period" to properly evaluate the risk before they're locked in.
+                        </div>
+                    </div>
+
+                    <!-- After 60 Days -->
+                    <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-5 border border-green-200 dark:border-green-800">
+                        <h4 class="font-bold text-green-800 dark:text-green-300 text-lg mb-3">AFTER 60 Days</h4>
+                        <p class="text-gray-700 dark:text-gray-300 mb-3">
+                            After 60 days, insurers can ONLY cancel for <strong>specific, listed reasons</strong>.
+                        </p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-semibold text-gray-800 dark:text-gray-200 text-sm">Real-World Example:</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">
+                                Your policy started January 1st. On April 1st (day 90), the insurer decides they just don't want your business anymore. TOO BAD! They can't cancel without a valid reason.
+                            </p>
+                        </div>
+                        <div class="mt-3 bg-green-100 dark:bg-green-900/40 p-2 rounded text-sm text-green-800 dark:text-green-300">
+                            <strong>Why?</strong> This protects consumers from losing coverage arbitrarily once they're committed to a policy.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Valid Reasons for Cancellation -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">Valid Reasons to Cancel AFTER 60 Days</h2>
+
+                <p class="text-gray-700 dark:text-gray-300 mb-6">
+                    After the first 60 days, an insurer may ONLY cancel for these specific reasons. Let's explain each one in plain English:
+                </p>
+
+                <div class="space-y-4">
+                    <!-- Reason 1: Non-payment -->
+                    <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-5 border-l-4 border-red-500">
+                        <h4 class="font-bold text-red-800 dark:text-red-300 text-lg mb-2">1. Nonpayment of Premium</h4>
+                        <p class="text-gray-700 dark:text-gray-300 mb-2">
+                            <strong>Plain English:</strong> You didn't pay your bill.
+                        </p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="text-gray-600 dark:text-gray-400 text-sm">
+                                <strong>Example:</strong> Your premium was due March 1st. It's now March 20th and you still haven't paid. The insurer can cancel your policy.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Reason 2: Moral Hazard -->
+                    <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-5 border-l-4 border-purple-500">
+                        <h4 class="font-bold text-purple-800 dark:text-purple-300 text-lg mb-2">2. Moral Hazard</h4>
+                        <p class="text-gray-700 dark:text-gray-300 mb-2">
+                            <strong>Plain English:</strong> You're the type of person who might intentionally cause a loss.
+                        </p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="text-gray-600 dark:text-gray-400 text-sm">
+                                <strong>Example:</strong> The insurer discovers you have a history of arson convictions. They can cancel because you're a "moral hazard" - you might burn your house down for the insurance money.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Reason 3: Material Misrepresentation -->
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-5 border-l-4 border-blue-500">
+                        <h4 class="font-bold text-blue-800 dark:text-blue-300 text-lg mb-2">3. Material Misrepresentation or Nondisclosure</h4>
+                        <p class="text-gray-700 dark:text-gray-300 mb-2">
+                            <strong>Plain English:</strong> You lied or hid important information when you applied.
+                        </p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="text-gray-600 dark:text-gray-400 text-sm">
+                                <strong>Example:</strong> You said your house had a new roof, but it's actually 30 years old and leaking. Or you "forgot" to mention your dog that bit three neighbors. That's material misrepresentation.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Reason 4: Increased Hazard -->
+                    <div class="bg-orange-50 dark:bg-orange-900/20 rounded-lg p-5 border-l-4 border-orange-500">
+                        <h4 class="font-bold text-orange-800 dark:text-orange-300 text-lg mb-2">4. Increased Hazard or Material Change in Risk</h4>
+                        <p class="text-gray-700 dark:text-gray-300 mb-2">
+                            <strong>Plain English:</strong> Something changed that makes your property much riskier to insure.
+                        </p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="text-gray-600 dark:text-gray-400 text-sm">
+                                <strong>Example:</strong> You converted your garage into a fireworks storage facility. Or you started running a daycare out of your home. These changes increase the risk dramatically.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Reason 5: Breach of Contract -->
+                    <div class="bg-teal-50 dark:bg-teal-900/20 rounded-lg p-5 border-l-4 border-teal-500">
+                        <h4 class="font-bold text-teal-800 dark:text-teal-300 text-lg mb-2">5. Substantial Breaches of Contract</h4>
+                        <p class="text-gray-700 dark:text-gray-300 mb-2">
+                            <strong>Plain English:</strong> You broke the rules of your policy in a major way.
+                        </p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="text-gray-600 dark:text-gray-400 text-sm">
+                                <strong>Example:</strong> Your policy requires you to keep your property secure. You leave your doors unlocked every night and remove all smoke detectors. That's a substantial breach.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Reason 6: Lack of Cooperation -->
+                    <div class="bg-indigo-50 dark:bg-indigo-900/20 rounded-lg p-5 border-l-4 border-indigo-500">
+                        <h4 class="font-bold text-indigo-800 dark:text-indigo-300 text-lg mb-2">6. Lack of Cooperation on Loss Control</h4>
+                        <p class="text-gray-700 dark:text-gray-300 mb-2">
+                            <strong>Plain English:</strong> The insurer asked you to fix something dangerous, and you refused.
+                        </p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="text-gray-600 dark:text-gray-400 text-sm">
+                                <strong>Example:</strong> The insurer's inspector notices your electrical wiring is a fire hazard. They ask you to fix it. Six months later, you've done nothing. They can cancel.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Reason 7: Fraud -->
+                    <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-5 border-l-4 border-red-600">
+                        <h4 class="font-bold text-red-800 dark:text-red-300 text-lg mb-2">7. Fraudulent Acts</h4>
+                        <p class="text-gray-700 dark:text-gray-300 mb-2">
+                            <strong>Plain English:</strong> You tried to cheat the insurance company.
+                        </p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="text-gray-600 dark:text-gray-400 text-sm">
+                                <strong>Example:</strong> You filed a fake claim saying your TV was stolen when it wasn't. Or you exaggerated a claim by saying you lost $50,000 when you really lost $5,000.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Reason 8: Loss of Capacity -->
+                    <div class="bg-gray-100 dark:bg-gray-700 rounded-lg p-5 border-l-4 border-gray-500">
+                        <h4 class="font-bold text-gray-800 dark:text-gray-300 text-lg mb-2">8. Loss of Insurance Capacity</h4>
+                        <p class="text-gray-700 dark:text-gray-300 mb-2">
+                            <strong>Plain English:</strong> The insurer is running out of money or ability to cover risks.
+                        </p>
+                        <div class="bg-white dark:bg-gray-600 p-3 rounded">
+                            <p class="text-gray-600 dark:text-gray-400 text-sm">
+                                <strong>Example:</strong> After a major hurricane, the insurer has paid out so many claims that they can't afford to keep insuring as many properties. They may need to reduce their exposure.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- More reasons summarized -->
+                    <div class="bg-amber-50 dark:bg-amber-900/20 rounded-lg p-5 border border-amber-200 dark:border-amber-800">
+                        <h4 class="font-bold text-amber-800 dark:text-amber-300 text-lg mb-3">Additional Valid Reasons:</h4>
+                        <ul class="space-y-2 text-gray-700 dark:text-gray-300 text-sm">
+                            <li class="flex items-start">
+                                <span class="text-amber-500 mr-2 font-bold">9.</span>
+                                <span><strong>Change in law:</strong> New laws create risks that didn't exist when the policy was written</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-amber-500 mr-2 font-bold">10.</span>
+                                <span><strong>Loss of reinsurance:</strong> The insurer's backup insurance is no longer available (Reinsurance = insurance that insurance companies buy to protect themselves from big losses)</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-amber-500 mr-2 font-bold">11.</span>
+                                <span><strong>Code violations:</strong> You fail to fix fire, health, safety, or building code violations within 60 days of notice</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-amber-500 mr-2 font-bold">12.</span>
+                                <span><strong>Failure to provide information:</strong> Insurer asks for underwriting info, and you don't respond</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-amber-500 mr-2 font-bold">13.</span>
+                                <span><strong>Agency termination:</strong> The insurer ends its relationship with your agent (If ABC Insurance fires your agent's agency, they may cancel policies that came through that agent)</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Notice Requirements -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">Notice Requirements (Key Numbers!)</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-5 border-l-4 border-blue-500 mb-6">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg mb-3">How Much Notice Must Insurers Give?</h3>
+                    <p class="text-gray-700 dark:text-gray-300">
+                        Insurers can't just cancel your policy overnight. They must give you advance warning so you can find new coverage.
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                    <!-- Standard Notice -->
+                    <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-5 border-2 border-green-300 dark:border-green-700">
+                        <div class="flex items-center mb-3">
+                            <span class="bg-green-600 text-white rounded-full px-3 py-1 font-bold mr-3">30-120</span>
+                            <h4 class="font-bold text-green-800 dark:text-green-300 text-lg">Days for Standard Cancellation</h4>
+                        </div>
+                        <p class="text-gray-700 dark:text-gray-300 mb-3">
+                            For most cancellations and nonrenewals, the insurer must send notice:
+                        </p>
+                        <ul class="text-gray-600 dark:text-gray-400 text-sm space-y-1">
+                            <li>- <strong>At least 30 days</strong> before expiration</li>
+                            <li>- <strong>No more than 120 days</strong> before expiration</li>
+                        </ul>
+                        <div class="mt-3 bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="text-sm text-gray-600 dark:text-gray-400">
+                                <strong>Why 120 max?</strong> So you don't get a notice 6 months early and forget about it!
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Non-Payment Notice -->
+                    <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-5 border-2 border-red-300 dark:border-red-700">
+                        <div class="flex items-center mb-3">
+                            <span class="bg-red-600 text-white rounded-full px-3 py-1 font-bold mr-3">10</span>
+                            <h4 class="font-bold text-red-800 dark:text-red-300 text-lg">Days for Non-Payment</h4>
+                        </div>
+                        <p class="text-gray-700 dark:text-gray-300 mb-3">
+                            If you don't pay your premium, the insurer only needs to give you <strong>10 days notice</strong>.
+                        </p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="text-sm text-gray-600 dark:text-gray-400">
+                                <strong>Why shorter?</strong> You already know you didn't pay! The insurer shouldn't have to wait months for you to figure it out.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Timeline Visual -->
+                <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-5">
+                    <h4 class="font-bold text-gray-800 dark:text-gray-200 text-lg mb-4">Visual Timeline: When Can Notice Be Sent?</h4>
+                    <div class="relative">
+                        <div class="flex items-center justify-between text-sm mb-2">
+                            <span class="text-gray-600 dark:text-gray-400">Policy Expiration</span>
+                            <span class="text-gray-600 dark:text-gray-400">120 days before</span>
+                            <span class="text-gray-600 dark:text-gray-400">30 days before</span>
+                        </div>
+                        <div class="h-4 bg-gray-200 dark:bg-gray-600 rounded-full relative">
+                            <div class="absolute left-0 top-0 h-4 w-1/3 bg-red-200 dark:bg-red-900/50 rounded-l-full"></div>
+                            <div class="absolute left-1/3 top-0 h-4 w-1/2 bg-green-300 dark:bg-green-900/50"></div>
+                            <div class="absolute right-0 top-0 h-4 w-1/6 bg-red-200 dark:bg-red-900/50 rounded-r-full"></div>
+                        </div>
+                        <div class="flex items-center justify-between text-xs mt-2">
+                            <span class="text-red-600 dark:text-red-400">Too late!</span>
+                            <span class="text-green-600 dark:text-green-400">Valid notice window</span>
+                            <span class="text-red-600 dark:text-red-400">Too early!</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Prohibited Actions -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">What Insurers CANNOT Do</h2>
+
+                <p class="text-gray-700 dark:text-gray-300 mb-6">
+                    For homeowners and commercial policies (except workers comp, ocean marine, aviation, and surplus lines), these actions are <strong>PROHIBITED</strong>:
+                </p>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    <!-- Mid-Term Changes -->
+                    <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-5 border-l-4 border-red-500">
+                        <h4 class="font-bold text-red-800 dark:text-red-300 text-lg mb-3">No Surprise Mid-Term Changes</h4>
+                        <p class="text-gray-700 dark:text-gray-300 mb-3">
+                            Insurers <strong>CANNOT</strong> do these things during your policy term without Commissioner approval:
+                        </p>
+                        <ul class="space-y-2 text-gray-700 dark:text-gray-300 text-sm">
+                            <li class="flex items-start">
+                                <span class="text-red-500 mr-2 font-bold">X</span>
+                                <span>Raise your premium mid-term</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-red-500 mr-2 font-bold">X</span>
+                                <span>Reduce your coverage mid-term</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-red-500 mr-2 font-bold">X</span>
+                                <span>Change the type of coverage mid-term</span>
+                            </li>
+                        </ul>
+                        <div class="mt-3 bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="text-sm text-gray-600 dark:text-gray-400">
+                                <strong>Example:</strong> You paid $1,000 for a year of coverage. The insurer can't come back in June and say "Actually, now it's $1,500" or "We're removing flood coverage."
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Block Actions -->
+                    <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-5 border-l-4 border-purple-500">
+                        <h4 class="font-bold text-purple-800 dark:text-purple-300 text-lg mb-3">No Unplanned Block Cancellations</h4>
+                        <p class="text-gray-700 dark:text-gray-300 mb-3">
+                            Insurers <strong>CANNOT</strong> cancel or nonrenew entire classes of insurance without a approved plan.
+                        </p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="text-sm text-gray-600 dark:text-gray-400">
+                                <strong>What's a "block"?</strong> Cancelling ALL homeowners policies in flood zones, or ALL commercial policies in a certain industry. Insurers can't just drop thousands of customers at once without approval.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Block Cancellation Rules -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">Block Cancellation Rules</h2>
+
+                <div class="bg-amber-50 dark:bg-amber-900/20 rounded-lg p-5 border-l-4 border-amber-500 mb-6">
+                    <h3 class="font-bold text-amber-800 dark:text-amber-300 text-lg mb-3">What is Block Cancellation?</h3>
+                    <p class="text-gray-700 dark:text-gray-300">
+                        When an insurer wants to cancel or nonrenew an <strong>entire group</strong> of policies - like all policies in a certain area or all policies of a certain type.
+                    </p>
+                </div>
+
+                <!-- Plan Requirements -->
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-5 border-l-4 border-blue-500 mb-6">
+                    <h4 class="font-bold text-blue-800 dark:text-blue-300 text-lg mb-3">The Plan Must Include:</h4>
+                    <div class="grid md:grid-cols-2 gap-3">
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded text-sm">
+                            <span class="font-semibold text-gray-800 dark:text-gray-200">1.</span> Reason(s) for the action
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded text-sm">
+                            <span class="font-semibold text-gray-800 dark:text-gray-200">2.</span> Names of all companies involved
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded text-sm">
+                            <span class="font-semibold text-gray-800 dark:text-gray-200">3.</span> Line or class of insurance affected
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded text-sm">
+                            <span class="font-semibold text-gray-800 dark:text-gray-200">4.</span> Number of policies and exposures
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded text-sm">
+                            <span class="font-semibold text-gray-800 dark:text-gray-200">5.</span> Total market share by line
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded text-sm">
+                            <span class="font-semibold text-gray-800 dark:text-gray-200">6.</span> Copy of proposed notice
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded text-sm">
+                            <span class="font-semibold text-gray-800 dark:text-gray-200">7.</span> Criteria for the block action
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded text-sm">
+                            <span class="font-semibold text-gray-800 dark:text-gray-200">8.</span> Minimum 60 days notice to insureds
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Timeline -->
+                <div class="grid md:grid-cols-3 gap-4">
+                    <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 text-center border border-green-200 dark:border-green-800">
+                        <p class="text-2xl font-bold text-green-600 dark:text-green-400">30</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Days before sending notices, plan must be filed with Commissioner</p>
+                    </div>
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 text-center border border-blue-200 dark:border-blue-800">
+                        <p class="text-2xl font-bold text-blue-600 dark:text-blue-400">30</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Days for Commissioner to disapprove (silence = approval)</p>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-4 text-center border border-red-200 dark:border-red-800">
+                        <p class="text-2xl font-bold text-red-600 dark:text-red-400">3 Years</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Max time Commissioner can extend if market would be harmed</p>
+                    </div>
+                </div>
+
+                <!-- Example -->
+                <div class="mt-6 bg-gray-50 dark:bg-gray-700 rounded-lg p-5">
+                    <h4 class="font-bold text-gray-800 dark:text-gray-200 text-lg mb-3">Real-World Example: Block Cancellation</h4>
+                    <div class="space-y-3">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> XYZ Insurance decides to stop writing ALL homeowners policies in flood-prone coastal areas of NJ - about 15,000 policies.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Must Happen:</strong> XYZ files a plan with the Commissioner 30 days before sending any notices. The plan explains why, lists all affected policies, and describes how they'll give customers 60+ days to find new coverage.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Commissioner's Options:</strong> If the Commissioner thinks dropping 15,000 policies suddenly would destabilize the market, they can extend the timeline to up to 3 YEARS, forcing XYZ to phase out gradually.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cheat Sheet -->
+        <section id="cheat-sheet" class="mb-10">
+            <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 border-2 border-dashed border-gray-300 dark:border-gray-600">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100">Cancellation Cheat Sheet</h2>
+                    <span class="text-sm text-gray-500 dark:text-gray-400">Print for quick reference</span>
+                </div>
+                <div class="grid md:grid-cols-4 gap-4">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg text-center">
+                        <p class="font-bold text-red-600 dark:text-red-400 text-2xl">60</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Days - Free cancellation period</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg text-center">
+                        <p class="font-bold text-blue-600 dark:text-blue-400 text-2xl">30-120</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Days - Notice window</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg text-center">
+                        <p class="font-bold text-orange-600 dark:text-orange-400 text-2xl">10</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Days - Non-payment notice</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg text-center">
+                        <p class="font-bold text-purple-600 dark:text-purple-400 text-2xl">3 Yrs</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Max block cancellation extension</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Traps -->
+        <section class="mb-10">
+            <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-xl p-6">
+                <h2 class="text-2xl font-bold text-red-800 dark:text-red-300 mb-6">Exam Trap Alerts</h2>
+                <div class="space-y-4">
+                    <div class="bg-white dark:bg-gray-800 p-4 rounded-lg flex items-start">
+                        <span class="text-red-500 mr-3 text-xl font-bold">!</span>
+                        <div>
+                            <p class="font-semibold text-gray-800 dark:text-gray-200">60 Days is for CANCELLATION, Not Claims!</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">Don't confuse this with claim notice periods. The 60-day rule is about when insurers can cancel freely.</p>
+                        </div>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 p-4 rounded-lg flex items-start">
+                        <span class="text-red-500 mr-3 text-xl font-bold">!</span>
+                        <div>
+                            <p class="font-semibold text-gray-800 dark:text-gray-200">10 Days is ONLY for Non-Payment</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">All other cancellations need 30+ days notice. Only non-payment of premium gets the short 10-day notice.</p>
+                        </div>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 p-4 rounded-lg flex items-start">
+                        <span class="text-red-500 mr-3 text-xl font-bold">!</span>
+                        <div>
+                            <p class="font-semibold text-gray-800 dark:text-gray-200">120 Days is Maximum, Not Minimum</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">Notice must be between 30 AND 120 days. Not "at least 120 days" - too early is invalid!</p>
+                        </div>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 p-4 rounded-lg flex items-start">
+                        <span class="text-red-500 mr-3 text-xl font-bold">!</span>
+                        <div>
+                            <p class="font-semibold text-gray-800 dark:text-gray-200">Block Cancellation Requires APPROVAL</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">It's not "Commissioner MAY approve" - the plan goes through if not disapproved within 30 days (silence = approval).</p>
+                        </div>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 p-4 rounded-lg flex items-start">
+                        <span class="text-red-500 mr-3 text-xl font-bold">!</span>
+                        <div>
+                            <p class="font-semibold text-gray-800 dark:text-gray-200">Cancellation vs Nonrenewal - Same Notice Rules</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">Both require 30-120 days notice. The exam may try to trick you into thinking they're different.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Reference Summary -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-red-600 to-red-800 rounded-xl p-6 text-white">
+                <h2 class="text-2xl font-bold mb-6">Quick Reference Summary</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">First 60 Days</p>
+                        <p class="text-sm text-red-100">Cancel for any reason</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">After 60 Days</p>
+                        <p class="text-sm text-red-100">Specific reasons required</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Standard Notice</p>
+                        <p class="text-sm text-red-100">30-120 days before expiration</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Non-Payment Notice</p>
+                        <p class="text-sm text-red-100">10 days minimum</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Block Cancellation</p>
+                        <p class="text-sm text-red-100">Requires plan filing, 60+ days notice</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Market Protection</p>
+                        <p class="text-sm text-red-100">Up to 3 years to phase out</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Navigation -->
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="../part-1/index.html" class="text-gray-300 hover:text-white">← Part 1: FAIR Plan</a>
+                <span class="text-gray-400">Part 2 of 5</span>
+                <a href="../part-3/index.html" class="text-gray-300 hover:text-white">Part 3: Surplus Lines →</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
