@@ -44,7 +44,7 @@
                 <span class="text-white">Quiz</span>
             </div>
             <h1 class="text-3xl font-bold">Quick Guide Quiz</h1>
-            <p class="text-orange-200 mt-1">76 questions weighted by exam percentage</p>
+            <p class="text-orange-200 mt-1">76 questions per mode, weighted by exam percentage</p>
         </div>
     </header>
 
@@ -56,6 +56,19 @@
             <p class="text-gray-600 dark:text-gray-400 mb-6 text-base lg:text-lg">Questions pulled directly from the Exam Day Quick Guide, weighted to match the real exam.</p>
 
             <div class="space-y-4 mb-6">
+                <!-- Difficulty -->
+                <div>
+                    <label class="block text-gray-700 dark:text-gray-300 font-semibold mb-2">Difficulty:</label>
+                    <div class="grid grid-cols-2 gap-3">
+                        <button onclick="selectDifficulty('standard')" id="diffStandard" class="diff-btn p-3 rounded-lg border-2 border-orange-500 bg-orange-50 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 font-semibold text-center">
+                            Standard<br><span class="text-xs font-normal">Core concepts</span>
+                        </button>
+                        <button onclick="selectDifficulty('hard')" id="diffHard" class="diff-btn p-3 rounded-lg border-2 border-gray-200 dark:border-gray-600 text-gray-700 dark:text-gray-300 font-semibold text-center hover:border-red-400">
+                            Hard<br><span class="text-xs font-normal">Tricky scenarios</span>
+                        </button>
+                    </div>
+                </div>
+
                 <!-- Chapter Filter -->
                 <div>
                     <label class="block text-gray-700 dark:text-gray-300 font-semibold mb-2">Chapter Focus:</label>
@@ -115,7 +128,10 @@
             <div class="mb-6">
                 <div class="flex justify-between text-sm text-gray-600 dark:text-gray-400 mb-1">
                     <span>Question <span id="currentQ">1</span> of <span id="totalQ">15</span></span>
-                    <span id="timer" class="font-mono">00:00</span>
+                    <div class="flex items-center gap-2">
+                        <span id="hardBadge" class="hidden text-xs font-bold px-2 py-0.5 rounded-full bg-red-100 dark:bg-red-900/40 text-red-700 dark:text-red-300">HARD</span>
+                        <span id="timer" class="font-mono">00:00</span>
+                    </div>
                 </div>
                 <div class="progress-bar">
                     <div class="progress-bar-fill" id="progressBar" style="width: 0%"></div>
@@ -158,6 +174,7 @@
                     <h2 class="text-2xl font-bold mb-2">Quiz Complete!</h2>
                     <p class="text-6xl font-bold my-4" id="scorePercent">0%</p>
                     <p class="text-xl" id="scoreText">0 out of 0 correct</p>
+                    <p id="resultDifficultyLabel" class="text-sm mt-1 text-white/70"></p>
                 </div>
 
                 <div class="p-6">
@@ -229,6 +246,8 @@
     let startTime = null;
     let timerInterval = null;
     let selectedCount = 15;
+    let selectedDifficulty = 'standard';
+    let hardQuestions = {};
 
     const chapterNames = {
         '1': 'Ch 1: Insurance Terms',
@@ -263,6 +282,21 @@
     }
     loadQuestions();
 
+    async function ensureHardQuestions() {
+        if (Object.keys(hardQuestions).length > 0) return true;
+        try {
+            const res = await fetch('quiz-questions-hard.json');
+            hardQuestions = await res.json();
+            return true;
+        } catch (err) {
+            console.error('Failed to load hard questions:', err);
+            alert('Failed to load Hard Mode questions. Switching to Standard.');
+            selectedDifficulty = 'standard';
+            selectDifficulty('standard');
+            return false;
+        }
+    }
+
     // ========================================
     // SETUP
     // ========================================
@@ -277,6 +311,24 @@
         active.classList.add('border-orange-500', 'bg-orange-50', 'dark:bg-orange-900/30', 'text-orange-700', 'dark:text-orange-300');
     }
 
+    function selectDifficulty(mode) {
+        selectedDifficulty = mode;
+        document.querySelectorAll('.diff-btn').forEach(btn => {
+            btn.classList.remove(
+                'border-orange-500', 'bg-orange-50', 'dark:bg-orange-900/30', 'text-orange-700', 'dark:text-orange-300',
+                'border-red-500', 'bg-red-50', 'dark:bg-red-900/30', 'text-red-700', 'dark:text-red-300'
+            );
+            btn.classList.add('border-gray-200', 'dark:border-gray-600', 'text-gray-700', 'dark:text-gray-300');
+        });
+        const btn = document.getElementById(mode === 'standard' ? 'diffStandard' : 'diffHard');
+        btn.classList.remove('border-gray-200', 'dark:border-gray-600', 'text-gray-700', 'dark:text-gray-300');
+        if (mode === 'standard') {
+            btn.classList.add('border-orange-500', 'bg-orange-50', 'dark:bg-orange-900/30', 'text-orange-700', 'dark:text-orange-300');
+        } else {
+            btn.classList.add('border-red-500', 'bg-red-50', 'dark:bg-red-900/30', 'text-red-700', 'dark:text-red-300');
+        }
+    }
+
     function showSetup() {
         document.getElementById('setupScreen').classList.remove('hidden');
         document.getElementById('quizScreen').classList.add('hidden');
@@ -287,14 +339,24 @@
     // ========================================
     // START QUIZ
     // ========================================
-    function startQuiz() {
+    async function startQuiz() {
+        // Resolve question bank based on difficulty
+        let questionBank;
+        if (selectedDifficulty === 'hard') {
+            const loaded = await ensureHardQuestions();
+            if (!loaded) return;
+            questionBank = hardQuestions;
+        } else {
+            questionBank = allQuestions;
+        }
+
         const chapter = document.getElementById('chapterFilter').value;
         let pool = [];
 
         if (chapter === 'all') {
             // Proportional selection based on exam weights
             const totalTarget = selectedCount;
-            Object.entries(allQuestions).forEach(([ch, questions]) => {
+            Object.entries(questionBank).forEach(([ch, questions]) => {
                 const target = Math.max(1, Math.round(totalTarget * examWeights[ch]));
                 const shuffled = [...questions].sort(() => Math.random() - 0.5);
                 const selected = shuffled.slice(0, Math.min(target, shuffled.length));
@@ -305,7 +367,7 @@
             pool = pool.slice(0, totalTarget);
         } else {
             // Single chapter
-            const questions = allQuestions[chapter] || [];
+            const questions = questionBank[chapter] || [];
             const shuffled = [...questions].sort(() => Math.random() - 0.5);
             pool = shuffled.slice(0, Math.min(selectedCount, shuffled.length)).map(q => ({ ...q, chapter }));
         }
@@ -330,6 +392,14 @@
         document.getElementById('resultsScreen').classList.add('hidden');
         document.getElementById('quizScreen').classList.remove('hidden');
         document.getElementById('totalQ').textContent = currentQuiz.length;
+
+        // Show/hide hard mode badge
+        const hardBadge = document.getElementById('hardBadge');
+        if (selectedDifficulty === 'hard') {
+            hardBadge.classList.remove('hidden');
+        } else {
+            hardBadge.classList.add('hidden');
+        }
 
         showQuestion();
     }
@@ -460,6 +530,16 @@
 
         document.getElementById('scorePercent').textContent = percent + '%';
         document.getElementById('scoreText').textContent = `${correct} out of ${total} correct`;
+
+        // Show difficulty label in results
+        const diffLabel = document.getElementById('resultDifficultyLabel');
+        if (selectedDifficulty === 'hard') {
+            diffLabel.textContent = 'Hard Mode';
+            diffLabel.className = 'text-sm mt-1 text-red-200';
+        } else {
+            diffLabel.textContent = 'Standard Mode';
+            diffLabel.className = 'text-sm mt-1 text-white/70';
+        }
         document.getElementById('correctCount').textContent = correct;
         document.getElementById('incorrectCount').textContent = total - correct;
         document.getElementById('finalTime').textContent = document.getElementById('timer').textContent;
@@ -548,7 +628,8 @@
         results.unshift({
             chapter: chapter === 'all' ? 'All Chapters' : chapterNames[chapter],
             score: score,
-            date: new Date().toLocaleDateString()
+            date: new Date().toLocaleDateString(),
+            difficulty: selectedDifficulty
         });
         results = results.slice(0, 10);
         setCookie('quickGuizResults', JSON.stringify(results), 365);
@@ -565,6 +646,7 @@
                         <div class="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
                             <div>
                                 <span class="text-gray-700 dark:text-gray-300 text-sm">${r.chapter}</span>
+                                ${r.difficulty === 'hard' ? '<span class="text-xs font-bold px-1.5 py-0.5 rounded bg-red-100 dark:bg-red-900/40 text-red-700 dark:text-red-300 ml-1">HARD</span>' : ''}
                                 <span class="text-gray-400 dark:text-gray-500 text-xs ml-2">${r.date}</span>
                             </div>
                             <span class="font-bold ${r.score >= 80 ? 'text-green-600 dark:text-green-400' : r.score >= 60 ? 'text-amber-600 dark:text-amber-400' : 'text-red-600 dark:text-red-400'}">${r.score}%</span>
