@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quick Guide Quiz | P&C Property Insurance</title>
+    <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <link rel="stylesheet" href="../../css/styles.css">
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+        }
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <!-- Theme Toggle -->
+    <div class="fixed top-4 right-4 z-50">
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/>
+            </svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-orange-600 to-amber-700 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center text-orange-200 text-sm mb-2">
+                <a href="../index.html" class="hover:text-white">Property</a>
+                <span class="mx-2">&rarr;</span>
+                <a href="index.html" class="hover:text-white">Quick Guide</a>
+                <span class="mx-2">&rarr;</span>
+                <span class="text-white">Quiz</span>
+            </div>
+            <h1 class="text-3xl font-bold">Quick Guide Quiz</h1>
+            <p class="text-orange-200 mt-1">76 questions weighted by exam percentage</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-8 max-w-3xl">
+
+        <!-- Setup Screen -->
+        <div id="setupScreen" class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+            <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-2">Test Your Knowledge</h2>
+            <p class="text-gray-600 dark:text-gray-400 mb-6 text-base lg:text-lg">Questions pulled directly from the Exam Day Quick Guide, weighted to match the real exam.</p>
+
+            <div class="space-y-4 mb-6">
+                <!-- Chapter Filter -->
+                <div>
+                    <label class="block text-gray-700 dark:text-gray-300 font-semibold mb-2">Chapter Focus:</label>
+                    <select id="chapterFilter" class="w-full p-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-200 text-base">
+                        <option value="all">All Chapters (Exam Weighted)</option>
+                        <option value="1">Ch 1: Insurance Terms (17%)</option>
+                        <option value="2">Ch 2: Policy Provisions (14%)</option>
+                        <option value="3">Ch 3: Types of Policies (32%)</option>
+                        <option value="4">Ch 4: NJ Laws & Regulations (32%)</option>
+                        <option value="5">Ch 5: NJ Property Laws (5%)</option>
+                    </select>
+                </div>
+
+                <!-- Question Count -->
+                <div>
+                    <label class="block text-gray-700 dark:text-gray-300 font-semibold mb-2">Number of Questions:</label>
+                    <div class="grid grid-cols-3 gap-3">
+                        <button onclick="selectCount(15)" id="count15" class="count-btn p-3 rounded-lg border-2 border-orange-500 bg-orange-50 dark:bg-orange-900/30 text-orange-700 dark:text-orange-300 font-semibold text-center">
+                            15<br><span class="text-xs font-normal">Quick</span>
+                        </button>
+                        <button onclick="selectCount(25)" id="count25" class="count-btn p-3 rounded-lg border-2 border-gray-200 dark:border-gray-600 text-gray-700 dark:text-gray-300 font-semibold text-center hover:border-orange-400">
+                            25<br><span class="text-xs font-normal">Standard</span>
+                        </button>
+                        <button onclick="selectCount(76)" id="count76" class="count-btn p-3 rounded-lg border-2 border-gray-200 dark:border-gray-600 text-gray-700 dark:text-gray-300 font-semibold text-center hover:border-orange-400">
+                            All 76<br><span class="text-xs font-normal">Full Exam</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exam Weight Info -->
+            <div class="bg-orange-50 dark:bg-orange-900/20 border border-orange-200 dark:border-orange-800 rounded-lg p-4 mb-6">
+                <p class="font-semibold text-orange-800 dark:text-orange-300 mb-2">Exam Weight Distribution</p>
+                <div class="flex flex-wrap gap-2 text-sm">
+                    <span class="bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300 px-2 py-1 rounded">Ch1: 17%</span>
+                    <span class="bg-purple-100 dark:bg-purple-900/40 text-purple-700 dark:text-purple-300 px-2 py-1 rounded">Ch2: 14%</span>
+                    <span class="bg-green-100 dark:bg-green-900/40 text-green-700 dark:text-green-300 px-2 py-1 rounded font-bold">Ch3: 32%</span>
+                    <span class="bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 px-2 py-1 rounded font-bold">Ch4: 32%</span>
+                    <span class="bg-red-100 dark:bg-red-900/40 text-red-700 dark:text-red-300 px-2 py-1 rounded">Ch5: 5%</span>
+                </div>
+            </div>
+
+            <!-- Previous Results -->
+            <div id="previousResults" class="mb-6 hidden">
+                <h3 class="font-semibold text-gray-700 dark:text-gray-300 mb-3">Recent Results:</h3>
+                <div id="resultsList" class="space-y-2"></div>
+            </div>
+
+            <button onclick="startQuiz()" class="w-full py-4 bg-orange-600 hover:bg-orange-700 text-white font-bold rounded-lg transition-colors text-lg">
+                Start Quiz
+            </button>
+        </div>
+
+        <!-- Quiz Screen -->
+        <div id="quizScreen" class="hidden">
+            <!-- Progress -->
+            <div class="mb-6">
+                <div class="flex justify-between text-sm text-gray-600 dark:text-gray-400 mb-1">
+                    <span>Question <span id="currentQ">1</span> of <span id="totalQ">15</span></span>
+                    <span id="timer" class="font-mono">00:00</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-bar-fill" id="progressBar" style="width: 0%"></div>
+                </div>
+            </div>
+
+            <!-- Question Card -->
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6 mb-6">
+                <div class="flex items-center gap-2 mb-3">
+                    <span id="chapterBadge" class="text-xs font-bold px-2 py-1 rounded-full">Ch 1</span>
+                </div>
+                <h2 class="text-lg lg:text-xl font-bold text-gray-800 dark:text-gray-100 mb-5" id="questionText"></h2>
+
+                <div id="optionsContainer" class="space-y-3">
+                </div>
+
+                <!-- Explanation -->
+                <div id="explanation" class="hidden mt-6 p-4 rounded-lg">
+                    <p class="font-semibold mb-2" id="explanationTitle"></p>
+                    <p class="text-gray-700 dark:text-gray-300 text-base" id="explanationText"></p>
+                </div>
+            </div>
+
+            <!-- Navigation -->
+            <div class="flex justify-between gap-4">
+                <button onclick="prevQuestion()" id="prevBtn" class="flex-1 py-3 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors font-semibold disabled:opacity-40" disabled>
+                    Previous
+                </button>
+                <button onclick="nextQuestion()" id="nextBtn" class="flex-1 py-3 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-colors font-semibold">
+                    Next
+                </button>
+            </div>
+        </div>
+
+        <!-- Results Screen -->
+        <div id="resultsScreen" class="hidden">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden">
+                <!-- Score Header -->
+                <div id="resultHeader" class="p-8 text-white text-center">
+                    <h2 class="text-2xl font-bold mb-2">Quiz Complete!</h2>
+                    <p class="text-6xl font-bold my-4" id="scorePercent">0%</p>
+                    <p class="text-xl" id="scoreText">0 out of 0 correct</p>
+                </div>
+
+                <div class="p-6">
+                    <!-- Stats Row -->
+                    <div class="grid grid-cols-3 gap-3 mb-6">
+                        <div class="text-center p-3 bg-green-50 dark:bg-green-900/20 rounded-lg">
+                            <p class="text-2xl font-bold text-green-600 dark:text-green-400" id="correctCount">0</p>
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Correct</p>
+                        </div>
+                        <div class="text-center p-3 bg-red-50 dark:bg-red-900/20 rounded-lg">
+                            <p class="text-2xl font-bold text-red-600 dark:text-red-400" id="incorrectCount">0</p>
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Incorrect</p>
+                        </div>
+                        <div class="text-center p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                            <p class="text-2xl font-bold text-gray-700 dark:text-gray-300" id="finalTime">00:00</p>
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Time</p>
+                        </div>
+                    </div>
+
+                    <!-- Chapter Breakdown -->
+                    <div id="chapterBreakdown" class="mb-6">
+                        <h3 class="font-semibold text-gray-700 dark:text-gray-300 mb-3">Score by Chapter:</h3>
+                        <div id="breakdownBars" class="space-y-3"></div>
+                    </div>
+
+                    <!-- Review Incorrect -->
+                    <div id="reviewSection" class="mb-6 hidden">
+                        <h3 class="font-semibold text-gray-700 dark:text-gray-300 mb-3">Review Incorrect Answers:</h3>
+                        <div id="reviewList" class="space-y-3 max-h-80 overflow-y-auto"></div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="grid grid-cols-2 gap-3">
+                        <button onclick="startQuiz()" class="py-3 bg-orange-600 hover:bg-orange-700 text-white font-semibold rounded-lg transition-colors">
+                            Try Again
+                        </button>
+                        <button onclick="showSetup()" class="py-3 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 font-semibold rounded-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors">
+                            New Quiz
+                        </button>
+                    </div>
+                    <a href="index.html" class="block text-center mt-4 text-orange-600 dark:text-orange-400 hover:underline font-medium">
+                        Back to Quick Guide
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6 mt-8">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="index.html" class="text-gray-300 hover:text-white">&larr; Quick Guide</a>
+                <span class="text-gray-400">Quiz</span>
+                <a href="../index.html" class="text-gray-300 hover:text-white">Property &rarr;</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    // ========================================
+    // STATE
+    // ========================================
+    let allQuestions = {};
+    let currentQuiz = [];
+    let currentIndex = 0;
+    let answers = [];
+    let startTime = null;
+    let timerInterval = null;
+    let selectedCount = 15;
+
+    const chapterNames = {
+        '1': 'Ch 1: Insurance Terms',
+        '2': 'Ch 2: Policy Provisions',
+        '3': 'Ch 3: Types of Policies',
+        '4': 'Ch 4: NJ Laws & Regs',
+        '5': 'Ch 5: NJ Property Laws'
+    };
+
+    const chapterColors = {
+        '1': { bg: 'bg-blue-100 dark:bg-blue-900/40', text: 'text-blue-700 dark:text-blue-300', bar: 'bg-blue-500' },
+        '2': { bg: 'bg-purple-100 dark:bg-purple-900/40', text: 'text-purple-700 dark:text-purple-300', bar: 'bg-purple-500' },
+        '3': { bg: 'bg-green-100 dark:bg-green-900/40', text: 'text-green-700 dark:text-green-300', bar: 'bg-green-500' },
+        '4': { bg: 'bg-amber-100 dark:bg-amber-900/40', text: 'text-amber-700 dark:text-amber-300', bar: 'bg-amber-500' },
+        '5': { bg: 'bg-red-100 dark:bg-red-900/40', text: 'text-red-700 dark:text-red-300', bar: 'bg-red-500' }
+    };
+
+    // Exam weight targets for proportional selection
+    const examWeights = { '1': 0.17, '2': 0.14, '3': 0.32, '4': 0.32, '5': 0.05 };
+
+    // ========================================
+    // LOAD QUESTIONS
+    // ========================================
+    async function loadQuestions() {
+        try {
+            const res = await fetch('quiz-questions.json');
+            allQuestions = await res.json();
+        } catch (err) {
+            console.error('Failed to load questions:', err);
+            alert('Failed to load quiz questions. Please refresh the page.');
+        }
+    }
+    loadQuestions();
+
+    // ========================================
+    // SETUP
+    // ========================================
+    function selectCount(n) {
+        selectedCount = n;
+        document.querySelectorAll('.count-btn').forEach(btn => {
+            btn.classList.remove('border-orange-500', 'bg-orange-50', 'dark:bg-orange-900/30', 'text-orange-700', 'dark:text-orange-300');
+            btn.classList.add('border-gray-200', 'dark:border-gray-600', 'text-gray-700', 'dark:text-gray-300');
+        });
+        const active = document.getElementById('count' + n);
+        active.classList.remove('border-gray-200', 'dark:border-gray-600', 'text-gray-700', 'dark:text-gray-300');
+        active.classList.add('border-orange-500', 'bg-orange-50', 'dark:bg-orange-900/30', 'text-orange-700', 'dark:text-orange-300');
+    }
+
+    function showSetup() {
+        document.getElementById('setupScreen').classList.remove('hidden');
+        document.getElementById('quizScreen').classList.add('hidden');
+        document.getElementById('resultsScreen').classList.add('hidden');
+        loadPreviousResults();
+    }
+
+    // ========================================
+    // START QUIZ
+    // ========================================
+    function startQuiz() {
+        const chapter = document.getElementById('chapterFilter').value;
+        let pool = [];
+
+        if (chapter === 'all') {
+            // Proportional selection based on exam weights
+            const totalTarget = selectedCount;
+            Object.entries(allQuestions).forEach(([ch, questions]) => {
+                const target = Math.max(1, Math.round(totalTarget * examWeights[ch]));
+                const shuffled = [...questions].sort(() => Math.random() - 0.5);
+                const selected = shuffled.slice(0, Math.min(target, shuffled.length));
+                selected.forEach(q => pool.push({ ...q, chapter: ch }));
+            });
+            // Trim or pad to exact count
+            pool.sort(() => Math.random() - 0.5);
+            pool = pool.slice(0, totalTarget);
+        } else {
+            // Single chapter
+            const questions = allQuestions[chapter] || [];
+            const shuffled = [...questions].sort(() => Math.random() - 0.5);
+            pool = shuffled.slice(0, Math.min(selectedCount, shuffled.length)).map(q => ({ ...q, chapter }));
+        }
+
+        if (pool.length === 0) {
+            alert('No questions available. Please refresh and try again.');
+            return;
+        }
+
+        // Shuffle final order
+        pool.sort(() => Math.random() - 0.5);
+
+        currentQuiz = pool;
+        currentIndex = 0;
+        answers = new Array(pool.length).fill(null);
+        startTime = Date.now();
+
+        if (timerInterval) clearInterval(timerInterval);
+        timerInterval = setInterval(updateTimer, 1000);
+
+        document.getElementById('setupScreen').classList.add('hidden');
+        document.getElementById('resultsScreen').classList.add('hidden');
+        document.getElementById('quizScreen').classList.remove('hidden');
+        document.getElementById('totalQ').textContent = currentQuiz.length;
+
+        showQuestion();
+    }
+
+    // ========================================
+    // QUESTION DISPLAY
+    // ========================================
+    function showQuestion() {
+        const q = currentQuiz[currentIndex];
+        document.getElementById('currentQ').textContent = currentIndex + 1;
+        document.getElementById('questionText').textContent = q.question;
+
+        // Chapter badge
+        const badge = document.getElementById('chapterBadge');
+        const colors = chapterColors[q.chapter];
+        badge.className = `text-xs font-bold px-2 py-1 rounded-full ${colors.bg} ${colors.text}`;
+        badge.textContent = chapterNames[q.chapter];
+
+        // Progress bar
+        const progress = ((currentIndex + 1) / currentQuiz.length) * 100;
+        document.getElementById('progressBar').style.width = progress + '%';
+
+        // Options
+        const container = document.getElementById('optionsContainer');
+        container.innerHTML = q.options.map((opt, i) => `
+            <div class="quiz-option p-4 rounded-lg bg-gray-50 dark:bg-gray-700 cursor-pointer ${answers[currentIndex] === i ? 'selected' : ''}"
+                 onclick="selectOption(${i})" id="option${i}">
+                <span class="font-semibold mr-3 text-gray-500 dark:text-gray-400">${String.fromCharCode(65 + i)}.</span>
+                <span class="text-gray-700 dark:text-gray-300">${opt}</span>
+            </div>
+        `).join('');
+
+        // Show explanation if already answered
+        if (answers[currentIndex] !== null) {
+            showExplanation();
+        } else {
+            document.getElementById('explanation').classList.add('hidden');
+        }
+
+        // Nav buttons
+        document.getElementById('prevBtn').disabled = currentIndex === 0;
+        document.getElementById('nextBtn').textContent = currentIndex === currentQuiz.length - 1 ? 'Finish' : 'Next';
+    }
+
+    // ========================================
+    // ANSWER HANDLING
+    // ========================================
+    function selectOption(index) {
+        if (answers[currentIndex] !== null) return;
+        answers[currentIndex] = index;
+
+        document.querySelectorAll('.quiz-option').forEach((el, i) => {
+            el.classList.remove('selected');
+            if (i === index) el.classList.add('selected');
+        });
+
+        showExplanation();
+    }
+
+    function showExplanation() {
+        const q = currentQuiz[currentIndex];
+        const userAnswer = answers[currentIndex];
+        const isCorrect = userAnswer === q.correct;
+
+        document.querySelectorAll('.quiz-option').forEach((el, i) => {
+            el.style.pointerEvents = 'none';
+            if (i === q.correct) el.classList.add('correct');
+            else if (i === userAnswer && !isCorrect) el.classList.add('incorrect');
+        });
+
+        const expDiv = document.getElementById('explanation');
+        expDiv.classList.remove('hidden');
+        expDiv.className = `mt-6 p-4 rounded-lg ${isCorrect ? 'bg-green-50 dark:bg-green-900/30' : 'bg-red-50 dark:bg-red-900/30'}`;
+        document.getElementById('explanationTitle').textContent = isCorrect ? 'Correct!' : 'Incorrect';
+        document.getElementById('explanationTitle').className = `font-semibold mb-2 ${isCorrect ? 'text-green-700 dark:text-green-400' : 'text-red-700 dark:text-red-400'}`;
+        document.getElementById('explanationText').textContent = q.explanation;
+    }
+
+    // ========================================
+    // NAVIGATION
+    // ========================================
+    function nextQuestion() {
+        if (answers[currentIndex] === null) {
+            alert('Please select an answer before continuing.');
+            return;
+        }
+        if (currentIndex < currentQuiz.length - 1) {
+            currentIndex++;
+            showQuestion();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+            finishQuiz();
+        }
+    }
+
+    function prevQuestion() {
+        if (currentIndex > 0) {
+            currentIndex--;
+            showQuestion();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    }
+
+    // ========================================
+    // TIMER
+    // ========================================
+    function updateTimer() {
+        const elapsed = Math.floor((Date.now() - startTime) / 1000);
+        const mins = Math.floor(elapsed / 60).toString().padStart(2, '0');
+        const secs = (elapsed % 60).toString().padStart(2, '0');
+        document.getElementById('timer').textContent = `${mins}:${secs}`;
+    }
+
+    // ========================================
+    // FINISH & RESULTS
+    // ========================================
+    function finishQuiz() {
+        clearInterval(timerInterval);
+
+        const correct = answers.filter((a, i) => a === currentQuiz[i].correct).length;
+        const total = currentQuiz.length;
+        const percent = Math.round((correct / total) * 100);
+
+        saveResult(percent);
+
+        document.getElementById('quizScreen').classList.add('hidden');
+        document.getElementById('resultsScreen').classList.remove('hidden');
+
+        document.getElementById('scorePercent').textContent = percent + '%';
+        document.getElementById('scoreText').textContent = `${correct} out of ${total} correct`;
+        document.getElementById('correctCount').textContent = correct;
+        document.getElementById('incorrectCount').textContent = total - correct;
+        document.getElementById('finalTime').textContent = document.getElementById('timer').textContent;
+
+        // Header color
+        const header = document.getElementById('resultHeader');
+        if (percent >= 90) header.className = 'p-8 text-white text-center result-excellent';
+        else if (percent >= 70) header.className = 'p-8 text-white text-center result-good';
+        else if (percent >= 50) header.className = 'p-8 text-white text-center result-fair';
+        else header.className = 'p-8 text-white text-center result-needs-work';
+
+        // Chapter breakdown
+        buildChapterBreakdown();
+
+        // Review incorrect
+        const incorrect = currentQuiz.filter((q, i) => answers[i] !== q.correct);
+        if (incorrect.length > 0) {
+            document.getElementById('reviewSection').classList.remove('hidden');
+            document.getElementById('reviewList').innerHTML = incorrect.map(q => {
+                const userIdx = answers[currentQuiz.indexOf(q)];
+                const colors = chapterColors[q.chapter];
+                return `
+                <div class="p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                    <span class="text-xs font-bold px-2 py-0.5 rounded-full ${colors.bg} ${colors.text}">${chapterNames[q.chapter]}</span>
+                    <p class="font-semibold text-gray-800 dark:text-gray-200 mt-2 mb-1">${q.question}</p>
+                    <p class="text-red-600 dark:text-red-400 text-sm">Your answer: ${q.options[userIdx]}</p>
+                    <p class="text-green-600 dark:text-green-400 text-sm">Correct: ${q.options[q.correct]}</p>
+                    <p class="text-gray-500 dark:text-gray-400 text-xs mt-1">${q.explanation}</p>
+                </div>`;
+            }).join('');
+        } else {
+            document.getElementById('reviewSection').classList.add('hidden');
+        }
+
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function buildChapterBreakdown() {
+        const stats = {};
+        currentQuiz.forEach((q, i) => {
+            if (!stats[q.chapter]) stats[q.chapter] = { correct: 0, total: 0 };
+            stats[q.chapter].total++;
+            if (answers[i] === q.correct) stats[q.chapter].correct++;
+        });
+
+        const container = document.getElementById('breakdownBars');
+        container.innerHTML = Object.entries(stats)
+            .sort(([a], [b]) => a - b)
+            .map(([ch, s]) => {
+                const pct = Math.round((s.correct / s.total) * 100);
+                const colors = chapterColors[ch];
+                return `
+                <div>
+                    <div class="flex justify-between text-sm mb-1">
+                        <span class="text-gray-700 dark:text-gray-300 font-medium">${chapterNames[ch]}</span>
+                        <span class="font-bold ${pct >= 70 ? 'text-green-600 dark:text-green-400' : pct >= 50 ? 'text-amber-600 dark:text-amber-400' : 'text-red-600 dark:text-red-400'}">${s.correct}/${s.total} (${pct}%)</span>
+                    </div>
+                    <div class="h-3 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                        <div class="${colors.bar} h-full rounded-full transition-all duration-500" style="width: ${pct}%"></div>
+                    </div>
+                </div>`;
+            }).join('');
+    }
+
+    // ========================================
+    // PERSISTENCE (Cookies)
+    // ========================================
+    function setCookie(name, value, days) {
+        const expires = new Date(Date.now() + days * 864e5).toUTCString();
+        document.cookie = name + '=' + encodeURIComponent(value) + '; expires=' + expires + '; path=/';
+    }
+
+    function getCookie(name) {
+        return document.cookie.split('; ').reduce((r, v) => {
+            const parts = v.split('=');
+            return parts[0] === name ? decodeURIComponent(parts[1]) : r;
+        }, '');
+    }
+
+    function saveResult(score) {
+        let results = [];
+        const saved = getCookie('quickGuizResults');
+        if (saved) { try { results = JSON.parse(saved); } catch (e) {} }
+
+        const chapter = document.getElementById('chapterFilter').value;
+        results.unshift({
+            chapter: chapter === 'all' ? 'All Chapters' : chapterNames[chapter],
+            score: score,
+            date: new Date().toLocaleDateString()
+        });
+        results = results.slice(0, 10);
+        setCookie('quickGuizResults', JSON.stringify(results), 365);
+    }
+
+    function loadPreviousResults() {
+        const saved = getCookie('quickGuizResults');
+        if (saved) {
+            try {
+                const results = JSON.parse(saved);
+                if (results.length > 0) {
+                    document.getElementById('previousResults').classList.remove('hidden');
+                    document.getElementById('resultsList').innerHTML = results.slice(0, 5).map(r => `
+                        <div class="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                            <div>
+                                <span class="text-gray-700 dark:text-gray-300 text-sm">${r.chapter}</span>
+                                <span class="text-gray-400 dark:text-gray-500 text-xs ml-2">${r.date}</span>
+                            </div>
+                            <span class="font-bold ${r.score >= 80 ? 'text-green-600 dark:text-green-400' : r.score >= 60 ? 'text-amber-600 dark:text-amber-400' : 'text-red-600 dark:text-red-400'}">${r.score}%</span>
+                        </div>
+                    `).join('');
+                }
+            } catch (e) {}
+        }
+    }
+
+    // ========================================
+    // INIT
+    // ========================================
+    document.addEventListener('DOMContentLoaded', () => {
+        loadPreviousResults();
+    });
+    </script>
+</body>
+</html>
