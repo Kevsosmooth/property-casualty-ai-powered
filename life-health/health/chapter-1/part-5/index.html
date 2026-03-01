@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 5: Policy Delivery - Ch 1 Health Insurance</title>
+    <link rel="icon" type="image/svg+xml" href="../../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') { document.documentElement.classList.remove('dark'); }
+        function toggleTheme() { document.documentElement.classList.toggle('dark'); localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light'); }
+    </script>
+    <link rel="stylesheet" href="../../../../css/styles.css">
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors duration-300">
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/></svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>
+        </button>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <nav class="text-blue-200 text-sm mb-3">
+                <a href="../../../../index.html" class="hover:text-white">Home</a>
+                <span class="mx-2">/</span>
+                <a href="../../index.html" class="hover:text-white">Health Insurance</a>
+                <span class="mx-2">/</span>
+                <a href="../index.html" class="hover:text-white">Chapter 1</a>
+                <span class="mx-2">/</span>
+                <span class="text-white">Part 5</span>
+            </nav>
+            <h1 class="text-3xl lg:text-4xl font-bold">Chapter 1, Part 5: Policy Delivery</h1>
+            <p class="mt-2 text-blue-100">How the policy gets to you, the free-look period, and why personal delivery matters</p>
+        </div>
+    </header>
+
+    <!-- Sticky Part Navigation -->
+    <nav class="sticky top-0 z-40 bg-white dark:bg-gray-800 shadow-md border-b border-gray-200 dark:border-gray-700">
+        <div class="container mx-auto px-4 overflow-x-auto">
+            <div class="flex space-x-1 py-2 text-sm min-w-max">
+                <a href="../part-1/index.html" class="px-3 py-1.5 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">Part 1</a>
+                <a href="../part-2/index.html" class="px-3 py-1.5 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">Part 2</a>
+                <a href="../part-3/index.html" class="px-3 py-1.5 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">Part 3</a>
+                <a href="../part-4/index.html" class="px-3 py-1.5 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">Part 4</a>
+                <a href="index.html" class="px-3 py-1.5 rounded-full bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 font-semibold">Part 5</a>
+                <a href="../part-6/index.html" class="px-3 py-1.5 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">Part 6</a>
+                <a href="../part-7/index.html" class="px-3 py-1.5 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">Part 7</a>
+                <a href="../recap/index.html" class="px-3 py-1.5 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">Recap</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-5xl lg:max-w-7xl">
+
+        <!-- 5 Things You Must Know -->
+        <div class="bg-gradient-to-r from-blue-100 to-indigo-100 dark:from-blue-900/40 dark:to-indigo-900/40 rounded-xl p-6 mb-8 border border-blue-300 dark:border-blue-700">
+            <h3 class="text-xl font-bold text-blue-800 dark:text-blue-200 mb-4">Start Here: 5 Things You MUST Know</h3>
+            <div class="grid md:grid-cols-2 gap-3">
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
+                    <p class="text-gray-700 dark:text-gray-300">Policy delivery can happen <strong>without physically handing the policy</strong> to the policyowner - this is called <strong>constructive delivery</strong></p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
+                    <p class="text-gray-700 dark:text-gray-300">Agents should <strong>personally deliver</strong> policies whenever possible - this is the preferred method</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
+                    <p class="text-gray-700 dark:text-gray-300">The <strong>free-look period</strong> begins once the policy is delivered - typically <strong>10 days</strong> for health insurance</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">4</span>
+                    <p class="text-gray-700 dark:text-gray-300">During the free-look period, you can <strong>return the policy for a full refund</strong> of all premiums paid - no questions asked</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">5</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>Constructive delivery</strong> = the insurer gives up control of the policy (like mailing it to the agent). <strong>Actual delivery</strong> = physically placed in the policyowner's hands.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 1: What Is Policy Delivery? -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">1. What Is Policy Delivery?</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-4">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg">Definition</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">Policy delivery is the process of getting the approved, issued policy into the hands of the policyowner. This is the final step in the insurance process - the insurer has approved the application, created the policy, and now it needs to reach the person who bought it.</p>
+                </div>
+
+                <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300 mb-4">Here's what surprises most people: "delivery" in insurance law doesn't always mean someone physically hands you a document. The law recognizes two types of delivery, and the exam tests both.</p>
+
+                <!-- Two Types of Delivery -->
+                <div class="grid md:grid-cols-2 gap-4 mb-4">
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <h4 class="font-bold text-green-800 dark:text-green-300 text-lg mb-2">Actual Delivery</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What it means:</strong> The policy is physically placed into the policyowner's hands. Someone literally gives the document to the policyowner in person.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm text-gray-600 dark:text-gray-400"><strong>Think of it as:</strong> A mail carrier handing you a certified letter and you signing for it. You're holding it in your hands.</p>
+                        </div>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border-l-4 border-purple-500">
+                        <h4 class="font-bold text-purple-800 dark:text-purple-300 text-lg mb-2">Constructive Delivery</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What it means:</strong> The insurer has given up control of the policy, even if the policyowner hasn't physically received it yet. The insurer has done everything on their end to deliver it.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm text-gray-600 dark:text-gray-400"><strong>Think of it as:</strong> The insurer mails the policy to the agent's office. The insurer no longer controls the policy. Even if the agent hasn't given it to the policyowner yet, delivery has legally occurred.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 rounded-r-lg mb-4">
+                    <p class="font-bold text-amber-800 dark:text-amber-300">Key Insight</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Constructive delivery is the tricky concept. The policy is considered "delivered" as soon as the insurer gives up control of it - not when the policyowner actually receives it. If the insurer mails the policy to the agent, delivery has occurred even if the policy is sitting in the agent's desk drawer.</p>
+                </div>
+
+                <!-- Example -->
+                <div class="bg-gray-50 dark:bg-gray-900/20 p-4 rounded-lg border-l-4 border-blue-500">
+                    <p class="font-semibold text-blue-800 dark:text-blue-300 mb-2">Real-World Scenario: The Policy in the Desk Drawer</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> The insurance company approves Beth's health insurance application and mails the policy to Agent Carlos's office on Monday. Agent Carlos receives the policy on Wednesday but is busy all week and doesn't contact Beth.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> The policy sits in Carlos's desk drawer for two weeks. Beth doesn't even know her policy has been approved. On Thursday of the second week, Beth has a medical emergency.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Even though Beth never physically received the policy, <strong>constructive delivery</strong> occurred when the insurer mailed it to Carlos (the agent). The insurer gave up control of the policy at that point. Beth IS covered for her medical emergency because delivery has legally taken place, even though she hasn't held the policy in her hands.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Why Personal Delivery Matters -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">2. Why Personal Delivery Is Preferred</h2>
+
+                <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-green-500 mb-4">
+                    <h3 class="font-bold text-green-800 dark:text-green-300 text-lg">The Recommendation</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">Agents should <strong>personally deliver</strong> the policy to the policyowner whenever possible. While it's not always legally required, it's strongly recommended and considered best practice in the industry.</p>
+                </div>
+
+                <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300 mb-4">Why does this matter? Personal delivery gives the agent a chance to:</p>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-3 mb-4">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-3 rounded-lg border border-blue-200 dark:border-blue-800 text-center">
+                        <p class="font-bold text-blue-800 dark:text-blue-300 mb-1">Explain the Policy</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Walk through what's covered, deductibles, limits, and exclusions face-to-face</p>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/20 p-3 rounded-lg border border-green-200 dark:border-green-800 text-center">
+                        <p class="font-bold text-green-800 dark:text-green-300 mb-1">Answer Questions</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Address any concerns or confusion the policyowner might have</p>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-3 rounded-lg border border-purple-200 dark:border-purple-800 text-center">
+                        <p class="font-bold text-purple-800 dark:text-purple-300 mb-1">Verify Good Health</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Confirm the insured is still in the same health as when they applied</p>
+                    </div>
+                    <div class="bg-amber-50 dark:bg-amber-900/20 p-3 rounded-lg border border-amber-200 dark:border-amber-800 text-center">
+                        <p class="font-bold text-amber-800 dark:text-amber-300 mb-1">Collect Balance</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Collect any remaining premium if only a partial payment was made initially</p>
+                    </div>
+                    <div class="bg-indigo-50 dark:bg-indigo-900/20 p-3 rounded-lg border border-indigo-200 dark:border-indigo-800 text-center">
+                        <p class="font-bold text-indigo-800 dark:text-indigo-300 mb-1">Explain Free-Look</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Tell the policyowner about the free-look period and their right to return the policy</p>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 p-3 rounded-lg border border-red-200 dark:border-red-800 text-center">
+                        <p class="font-bold text-red-800 dark:text-red-300 mb-1">Build Trust</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Strengthen the agent-client relationship for renewals and referrals</p>
+                    </div>
+                </div>
+
+                <!-- Example -->
+                <div class="bg-gray-50 dark:bg-gray-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                    <p class="font-semibold text-green-800 dark:text-green-300 mb-2">Real-World Scenario: Personal Delivery Done Right</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Agent Maria receives Jessica's approved health insurance policy from the insurance company. Instead of just mailing it, Maria calls Jessica and says "Your policy has been approved! Let me come by and drop it off so I can walk you through everything."</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Maria meets Jessica at her home. She hands Jessica the policy, explains the coverage amounts, points out the deductible, and explains the exclusions. She tells Jessica "You have 10 days to look this over. If anything isn't what you expected, you can return it for a full refund."</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Jessica feels confident about her coverage because she understands exactly what she's getting. She also knows about the free-look period, so she doesn't feel pressured. Maria has done her job well - Jessica has the policy, understands it, and the free-look period clock starts now.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: The Free-Look Period -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">3. The Free-Look Period</h2>
+
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-purple-500 mb-4">
+                    <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg">What Is the Free-Look Period?</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">The free-look period is a window of time after policy delivery during which the policyowner can review the policy and <strong>return it for a full refund of all premiums paid</strong>. Think of it like a "no questions asked" return policy at a store. You get to take the policy home, read through it, and if you don't like what you see, you can send it back and get all your money back.</p>
+                </div>
+
+                <!-- Key Number Box -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-3 lg:gap-4 mb-6">
+                    <div class="bg-white dark:bg-gray-800 p-3 lg:p-4 rounded-lg text-center border-2 border-blue-300 dark:border-blue-700">
+                        <p class="text-2xl lg:text-3xl font-bold text-blue-600 dark:text-blue-400">10</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Days - typical free-look for health insurance</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 p-3 lg:p-4 rounded-lg text-center border-2 border-green-300 dark:border-green-700">
+                        <p class="text-2xl lg:text-3xl font-bold text-green-600 dark:text-green-400">100%</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Refund of all premiums paid</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 p-3 lg:p-4 rounded-lg text-center border-2 border-purple-300 dark:border-purple-700">
+                        <p class="text-2xl lg:text-3xl font-bold text-purple-600 dark:text-purple-400">0</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Questions asked - no reason needed to return</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 p-3 lg:p-4 rounded-lg text-center border-2 border-amber-300 dark:border-amber-700">
+                        <p class="text-lg lg:text-xl font-bold text-amber-600 dark:text-amber-400">Delivery</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Clock starts at policy delivery</p>
+                    </div>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 rounded-r-lg mb-4">
+                    <p class="font-bold text-amber-800 dark:text-amber-300">When Does the Free-Look Clock Start?</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">The free-look period begins the moment the policy is <strong>delivered</strong> to the policyowner. This is one of the big reasons delivery matters so much - it triggers the free-look countdown. If the agent delivers the policy on March 1st, the policyowner has until March 11th (10 days) to return it.</p>
+                </div>
+
+                <!-- What Happens When You Return -->
+                <div class="bg-gray-50 dark:bg-gray-900/20 p-4 rounded-lg border border-gray-200 dark:border-gray-700 mb-4">
+                    <h3 class="font-bold text-gray-800 dark:text-gray-100 mb-3">What Happens If You Return the Policy?</h3>
+                    <div class="flex items-center gap-2 lg:gap-4 flex-wrap justify-center">
+                        <div class="bg-blue-100 dark:bg-blue-900/40 p-3 rounded-lg text-center">
+                            <p class="font-bold text-blue-800 dark:text-blue-300 text-sm">Policyowner Returns Policy</p>
+                            <p class="text-xs text-gray-600 dark:text-gray-400">within the free-look period</p>
+                        </div>
+                        <div class="text-xl text-gray-400">-></div>
+                        <div class="bg-green-100 dark:bg-green-900/40 p-3 rounded-lg text-center">
+                            <p class="font-bold text-green-800 dark:text-green-300 text-sm">Full Refund Issued</p>
+                            <p class="text-xs text-gray-600 dark:text-gray-400">all premiums paid are returned</p>
+                        </div>
+                        <div class="text-xl text-gray-400">-></div>
+                        <div class="bg-red-100 dark:bg-red-900/40 p-3 rounded-lg text-center">
+                            <p class="font-bold text-red-800 dark:text-red-300 text-sm">Policy Is Void</p>
+                            <p class="text-xs text-gray-600 dark:text-gray-400">as if it never existed</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Example -->
+                <div class="bg-gray-50 dark:bg-gray-900/20 p-4 rounded-lg border-l-4 border-purple-500 mb-4">
+                    <p class="font-semibold text-purple-800 dark:text-purple-300 mb-2">Real-World Scenario: Using the Free-Look Period</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Gary receives his new health insurance policy on April 5th. He paid $500 for the first month's premium. That night, Gary sits down and reads through the policy carefully.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Gary realizes the policy has a $5,000 deductible - much higher than he expected. He also notices that his preferred doctor is not in the network. On April 10th (day 5 of the free-look period), Gary calls the insurer and says "I want to return this policy."</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Because Gary is within the 10-day free-look period, the insurer must accept the return. Gary gets his full $500 back. The policy is treated as if it never existed. Gary doesn't need to give a reason - the free-look period is a "no questions asked" right.</p>
+                    </div>
+                </div>
+
+                <!-- Second Example -->
+                <div class="bg-gray-50 dark:bg-gray-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                    <p class="font-semibold text-red-800 dark:text-red-300 mb-2">Real-World Scenario: Too Late for the Free-Look</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Nancy receives her health insurance policy on June 1st. She puts it in a drawer and forgets about it.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> On June 25th, Nancy finally reads the policy and doesn't like the coverage. She calls the insurer and says "I want to return this for a refund."</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Nancy is out of luck. The free-look period ended on June 11th (10 days after delivery). She can still cancel the policy going forward, but she will NOT get a full refund of premiums already paid. The free-look period is a use-it-or-lose-it right.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Constructive vs Actual Delivery Deep Dive -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">4. Constructive Delivery vs. Actual Delivery - Exam Deep Dive</h2>
+
+                <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300 mb-4">The exam loves to test whether you understand the difference between these two. Here's a side-by-side comparison with scenarios for each:</p>
+
+                <div class="overflow-x-auto mb-4">
+                    <table class="w-full text-sm lg:text-base">
+                        <thead>
+                            <tr class="bg-blue-600 text-white">
+                                <th class="p-3 lg:p-4 text-left rounded-tl-lg">Detail</th>
+                                <th class="p-3 lg:p-4 text-left">Actual Delivery</th>
+                                <th class="p-3 lg:p-4 text-left rounded-tr-lg">Constructive Delivery</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">How it works</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Policy physically placed in policyowner's hands</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Insurer gives up control of the policy</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Example</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Agent hands policy to policyowner in person</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Insurer mails policy to agent's office</td>
+                            </tr>
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Policyowner has it?</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Yes - holding the physical document</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Not necessarily - might still be in transit or at agent's office</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Is delivery complete?</td>
+                                <td class="p-3 lg:p-4 text-green-700 dark:text-green-400 font-bold">YES</td>
+                                <td class="p-3 lg:p-4 text-green-700 dark:text-green-400 font-bold">YES - legally considered delivered</td>
+                            </tr>
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Free-look starts?</td>
+                                <td class="p-3 lg:p-4 text-green-700 dark:text-green-400 font-bold">YES</td>
+                                <td class="p-3 lg:p-4 text-green-700 dark:text-green-400 font-bold">YES</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Example -->
+                <div class="bg-gray-50 dark:bg-gray-900/20 p-4 rounded-lg border-l-4 border-indigo-500">
+                    <p class="font-semibold text-indigo-800 dark:text-indigo-300 mb-2">Real-World Scenario: Constructive Delivery in Action</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> The insurance company approves Henry's health insurance application. They mail the policy to Agent Susan with instructions to deliver it to Henry. The insurer has now done everything on their end - the policy is out of their control.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Agent Susan receives the policy on Monday. She plans to deliver it to Henry on Friday but gets busy and doesn't. Henry has a medical emergency on Wednesday.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Henry IS covered. Constructive delivery happened when the insurer mailed the policy to Agent Susan. The insurer gave up control, so delivery is complete. It doesn't matter that Henry hasn't physically received the policy yet. The fact that Agent Susan has it is enough - delivery occurred, and Henry's coverage is active.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cheat Sheet -->
+        <section id="cheat-sheet" class="mb-8 lg:mb-10">
+            <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 border-2 border-dashed border-gray-300 dark:border-gray-600">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100">Cheat Sheet</h2>
+                    <span class="text-sm text-gray-500 dark:text-gray-400">Print this page for quick reference</span>
+                </div>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Types of Delivery:</p>
+                        <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-1">
+                            <li>Actual = physically handed to policyowner</li>
+                            <li>Constructive = insurer gives up control of the policy</li>
+                            <li>Both count as valid delivery</li>
+                            <li>Personal delivery by agent is preferred (not required)</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Free-Look Period:</p>
+                        <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-1">
+                            <li>Typically 10 days for health insurance</li>
+                            <li>Starts when policy is delivered</li>
+                            <li>Full refund of all premiums - no questions asked</li>
+                            <li>Policy treated as if it never existed</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Why Personal Delivery:</p>
+                        <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-1">
+                            <li>Explain coverage, deductibles, exclusions</li>
+                            <li>Answer questions face-to-face</li>
+                            <li>Verify insured is still in good health</li>
+                            <li>Explain the free-look period</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Key Trigger:</p>
+                        <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-1">
+                            <li>Delivery triggers the free-look period</li>
+                            <li>Constructive delivery = insurer mails policy to agent</li>
+                            <li>Actual delivery = agent hands policy to policyowner</li>
+                            <li>Either type starts the free-look clock</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Traps -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-xl p-5 lg:p-6">
+                <h2 class="text-2xl font-bold text-red-800 dark:text-red-300 mb-4">Exam Trap Alerts</h2>
+                <div class="space-y-3">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">1. Delivery does NOT require physical possession</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The biggest trap in this section. If the exam asks "Has delivery occurred?" and the insurer has mailed the policy to the agent - the answer is YES (constructive delivery), even if the policyowner doesn't have it yet.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">2. The free-look period is 10 days for health insurance</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Know this number. If the exam asks about the free-look period for health insurance, the answer is typically 10 days. This may differ slightly by state, but 10 days is the standard answer on the exam.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">3. Free-look means FULL refund</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">During the free-look period, the policyowner gets ALL premiums back - not a partial refund, not a prorated amount. 100% of what they paid is returned. No penalties, no deductions.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">4. When does the free-look period START?</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The free-look period begins at <strong>delivery</strong> - not when the policy is approved, not when the application is submitted, and not when the premium is paid. Delivery is the trigger. This is why the exam cares so much about delivery.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">5. Personal delivery is PREFERRED, not required</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The agent SHOULD personally deliver the policy whenever possible, but the policy is still valid even if it's mailed. The exam may try to trick you into thinking delivery must be in person - it doesn't. Constructive delivery counts too.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Reference Summary -->
+        <div class="bg-gradient-to-r from-blue-600 to-blue-800 rounded-xl p-6 text-white">
+            <h2 class="text-2xl font-bold mb-6">Quick Reference Summary</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div class="bg-white/20 rounded-lg p-4">
+                    <p class="font-bold">Actual Delivery</p>
+                    <p class="text-sm text-blue-100">Policy physically placed in policyowner's hands</p>
+                </div>
+                <div class="bg-white/20 rounded-lg p-4">
+                    <p class="font-bold">Constructive Delivery</p>
+                    <p class="text-sm text-blue-100">Insurer gives up control - still counts as delivered</p>
+                </div>
+                <div class="bg-white/20 rounded-lg p-4">
+                    <p class="font-bold">Personal Delivery</p>
+                    <p class="text-sm text-blue-100">Preferred but not required - lets agent explain policy</p>
+                </div>
+                <div class="bg-white/20 rounded-lg p-4">
+                    <p class="font-bold">Free-Look Period</p>
+                    <p class="text-sm text-blue-100">10 days from delivery - full refund, no questions asked</p>
+                </div>
+                <div class="bg-white/20 rounded-lg p-4">
+                    <p class="font-bold">Refund Amount</p>
+                    <p class="text-sm text-blue-100">100% of all premiums paid during free-look</p>
+                </div>
+                <div class="bg-white/20 rounded-lg p-4">
+                    <p class="font-bold">Delivery Triggers</p>
+                    <p class="text-sm text-blue-100">Free-look period countdown starts at delivery</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Navigation -->
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="../part-4/index.html" class="text-gray-300 hover:text-white flex items-center gap-1">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                    Part 4: Submitting the Application
+                </a>
+                <span class="text-gray-400">Part 5 of 7</span>
+                <a href="../part-6/index.html" class="text-gray-300 hover:text-white flex items-center gap-1">
+                    Part 6: Policy Provisions
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

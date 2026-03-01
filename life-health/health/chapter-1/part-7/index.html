@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 7: Replacement - Ch 1 Health Insurance</title>
+    <link rel="icon" type="image/svg+xml" href="../../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') { document.documentElement.classList.remove('dark'); }
+        function toggleTheme() { document.documentElement.classList.toggle('dark'); localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light'); }
+    </script>
+    <link rel="stylesheet" href="../../../../css/styles.css">
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors duration-300">
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/></svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>
+        </button>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <nav class="text-blue-200 text-sm mb-3">
+                <a href="../../../../index.html" class="hover:text-white">Home</a>
+                <span class="mx-2">/</span>
+                <a href="../../index.html" class="hover:text-white">Health Insurance</a>
+                <span class="mx-2">/</span>
+                <a href="../index.html" class="hover:text-white">Chapter 1</a>
+                <span class="mx-2">/</span>
+                <span class="text-white">Part 7</span>
+            </nav>
+            <h1 class="text-3xl lg:text-4xl font-bold">Chapter 1, Part 7: Replacement</h1>
+            <p class="mt-2 text-blue-100">Replacing an existing health policy with a new one - and why it can be dangerous</p>
+        </div>
+    </header>
+
+    <!-- Sticky Part Navigation -->
+    <nav class="sticky top-0 z-40 bg-white dark:bg-gray-800 shadow-md border-b border-gray-200 dark:border-gray-700">
+        <div class="container mx-auto px-4 overflow-x-auto">
+            <div class="flex space-x-1 py-2 text-sm min-w-max">
+                <a href="../part-1/index.html" class="px-3 py-1.5 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">Part 1</a>
+                <a href="../part-2/index.html" class="px-3 py-1.5 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">Part 2</a>
+                <a href="../part-3/index.html" class="px-3 py-1.5 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">Part 3</a>
+                <a href="../part-4/index.html" class="px-3 py-1.5 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">Part 4</a>
+                <a href="../part-5/index.html" class="px-3 py-1.5 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">Part 5</a>
+                <a href="../part-6/index.html" class="px-3 py-1.5 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">Part 6</a>
+                <a href="index.html" class="px-3 py-1.5 rounded-full bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 font-semibold">Part 7</a>
+                <a href="../recap/index.html" class="px-3 py-1.5 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">Recap</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-5xl lg:max-w-7xl">
+
+        <!-- 5 Things You Must Know -->
+        <div class="bg-gradient-to-r from-blue-100 to-indigo-100 dark:from-blue-900/40 dark:to-indigo-900/40 rounded-xl p-6 mb-8 border border-blue-300 dark:border-blue-700">
+            <h3 class="text-xl font-bold text-blue-800 dark:text-blue-200 mb-4">Start Here: 5 Things You MUST Know</h3>
+            <div class="grid md:grid-cols-2 gap-3">
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
+                    <p class="text-gray-700 dark:text-gray-300">The agent must <strong>never cancel the old policy before the new one is issued</strong> - NO coverage gap is the #1 rule</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
+                    <p class="text-gray-700 dark:text-gray-300">The agent must <strong>carefully compare benefits, limitations, and exclusions</strong> between the old and new policies</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
+                    <p class="text-gray-700 dark:text-gray-300">Replacement may result in <strong>higher premiums</strong> because the insured is now older and may have new health conditions</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">4</span>
+                    <p class="text-gray-700 dark:text-gray-300">New policies may impose <strong>new waiting periods</strong> for pre-existing conditions that the old policy already covered</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">5</span>
+                    <p class="text-gray-700 dark:text-gray-300">Underwriting for the replacement policy is based on the insured's <strong>current age, health, and risk factors</strong> - not the original ones</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 1: What Is Replacement? -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">1. What Is Replacement?</h2>
+
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-purple-500 mb-4">
+                    <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg">Definition</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">Replacement happens when an agent helps an insured <strong>cancel their existing health insurance policy and purchase a new one</strong> in its place. This sounds simple, but it carries serious risks for the insured that the agent must understand and communicate.</p>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 rounded-r-lg mb-4">
+                    <p class="font-bold text-amber-800 dark:text-amber-300">The Core Responsibility</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">When an agent attempts to replace an insured's current health insurance policy, the agent must be careful not to <strong>mislead the insured</strong> or provide coverage that is <strong>to the insured's detriment</strong>. The replacement must genuinely benefit the insured - not just generate a new commission for the agent.</p>
+                </div>
+
+                <!-- Example -->
+                <div class="bg-gray-50 dark:bg-gray-900/20 p-4 rounded-lg border-l-4 border-blue-500">
+                    <p class="font-semibold text-blue-800 dark:text-blue-300 mb-2">Real-World Scenario: The "Better Deal" That Wasn't</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Linda, age 52, has had her health insurance policy for 8 years. It covers everything including her thyroid condition, which she was diagnosed with 5 years ago. An agent from a competing company contacts her and says, "I can get you a better policy for $50 less per month."</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Linda cancels her old policy and signs up for the new one. When she goes to her endocrinologist for her thyroid checkup, the claim is denied. The new policy has a 12-month waiting period for pre-existing conditions, and her thyroid condition counts as pre-existing.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Linda saved $50/month but lost coverage for a condition she's actively being treated for. The agent failed to properly compare the two policies and failed to warn Linda about the new waiting period. This is exactly the kind of harm replacement regulations are designed to prevent.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: The Agent's Responsibilities -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">2. The Agent's Responsibilities in Replacement</h2>
+
+                <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300 mb-4">Before recommending a replacement, the agent has a detailed checklist of responsibilities. Skipping any of these can harm the insured and put the agent's license at risk.</p>
+
+                <div class="space-y-4 mb-6">
+                    <!-- Responsibility 1 -->
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500">
+                        <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg">Compare Benefits Side-by-Side</h3>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">The agent must carefully compare the <strong>benefits, limitations, and exclusions</strong> found in both the current policy and the proposed replacement policy. This isn't a casual glance - it's a thorough, item-by-item comparison.</p>
+                    </div>
+
+                    <!-- Responsibility 2 -->
+                    <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-red-500">
+                        <h3 class="font-bold text-red-800 dark:text-red-300 text-lg">NO Coverage Gap - Ever</h3>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">The agent must make sure that the <strong>current policy is NOT cancelled before the new policy is issued</strong>. If the old policy ends on March 1 and the new one doesn't start until March 15, the insured has 14 days with ZERO coverage. This is unacceptable.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm text-gray-600 dark:text-gray-400"><strong>Key Rule:</strong> The old policy stays in force until the new one is officially issued and in effect. No exceptions.</p>
+                        </div>
+                    </div>
+
+                    <!-- Responsibility 3 -->
+                    <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-green-500">
+                        <h3 class="font-bold text-green-800 dark:text-green-300 text-lg">Don't Mislead the Insured</h3>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">The agent cannot exaggerate the benefits of the new policy, hide its limitations, or downplay the advantages of the current policy just to make a sale. Honesty about both policies is mandatory.</p>
+                    </div>
+                </div>
+
+                <!-- No Coverage Gap Visual -->
+                <div class="bg-gray-50 dark:bg-gray-900/20 p-4 rounded-lg border border-gray-200 dark:border-gray-700 mb-4">
+                    <h3 class="font-bold text-gray-800 dark:text-gray-100 mb-3">The Coverage Gap Timeline</h3>
+                    <div class="space-y-4">
+                        <!-- WRONG way -->
+                        <div>
+                            <p class="font-semibold text-red-700 dark:text-red-300 mb-2">WRONG - Coverage Gap (Dangerous)</p>
+                            <div class="flex items-center gap-1 flex-wrap">
+                                <div class="bg-green-200 dark:bg-green-900/40 p-2 rounded text-center flex-1 min-w-[100px]">
+                                    <p class="text-xs font-bold text-green-800 dark:text-green-300">Old Policy</p>
+                                    <p class="text-xs text-gray-600 dark:text-gray-400">Ends Mar 1</p>
+                                </div>
+                                <div class="bg-red-200 dark:bg-red-900/40 p-2 rounded text-center flex-1 min-w-[100px]">
+                                    <p class="text-xs font-bold text-red-800 dark:text-red-300">NO COVERAGE</p>
+                                    <p class="text-xs text-gray-600 dark:text-gray-400">Mar 1-15</p>
+                                </div>
+                                <div class="bg-blue-200 dark:bg-blue-900/40 p-2 rounded text-center flex-1 min-w-[100px]">
+                                    <p class="text-xs font-bold text-blue-800 dark:text-blue-300">New Policy</p>
+                                    <p class="text-xs text-gray-600 dark:text-gray-400">Starts Mar 15</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- RIGHT way -->
+                        <div>
+                            <p class="font-semibold text-green-700 dark:text-green-300 mb-2">RIGHT - No Gap (Safe)</p>
+                            <div class="flex items-center gap-1 flex-wrap">
+                                <div class="bg-green-200 dark:bg-green-900/40 p-2 rounded text-center flex-1 min-w-[120px]">
+                                    <p class="text-xs font-bold text-green-800 dark:text-green-300">Old Policy Active</p>
+                                    <p class="text-xs text-gray-600 dark:text-gray-400">Until new is issued</p>
+                                </div>
+                                <div class="text-lg text-gray-400">-></div>
+                                <div class="bg-blue-200 dark:bg-blue-900/40 p-2 rounded text-center flex-1 min-w-[120px]">
+                                    <p class="text-xs font-bold text-blue-800 dark:text-blue-300">New Policy Issued</p>
+                                    <p class="text-xs text-gray-600 dark:text-gray-400">Then cancel old</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Why Replacement Can Hurt -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">3. Why Replacement Can Hurt the Insured</h2>
+
+                <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300 mb-4">Replacement isn't always bad, but the agent needs to be aware of these common dangers that can leave the insured worse off:</p>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <!-- Danger 1 -->
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                        <h4 class="font-bold text-red-800 dark:text-red-300 mb-2">New Waiting Periods</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The old policy may have already satisfied waiting periods for pre-existing conditions. The new policy starts those clocks all over again. Conditions that were fully covered yesterday may not be covered for 12-24 months under the new policy.</p>
+                    </div>
+
+                    <!-- Danger 2 -->
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                        <h4 class="font-bold text-red-800 dark:text-red-300 mb-2">Higher Premiums Due to Age</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The insured is OLDER now than when they got their original policy. Health insurance premiums are based on current age - the new premium will reflect the insured's age TODAY, not the age when they first got insurance.</p>
+                    </div>
+
+                    <!-- Danger 3 -->
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                        <h4 class="font-bold text-red-800 dark:text-red-300 mb-2">New Health Conditions</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The insured may have developed health problems since they got the original policy. These conditions will be underwritten at their current severity, potentially leading to exclusion riders, rated premiums, or even denial.</p>
+                    </div>
+
+                    <!-- Danger 4 -->
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                        <h4 class="font-bold text-red-800 dark:text-red-300 mb-2">Different Benefits</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The new policy may not offer the same benefits. Coverage limits, copay amounts, prescription drug coverage, and specialist access may all be different - and not always in the insured's favor.</p>
+                    </div>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 rounded-r-lg mb-4">
+                    <p class="font-bold text-amber-800 dark:text-amber-300">The Underwriting Reality</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Underwriting for a replacement policy is based on the insured's <strong>current factors</strong> - not the factors from when they originally got insured. A person who was a 25-year-old nonsmoker in perfect health may now be a 45-year-old with high blood pressure. The new policy will be priced and structured based on who they are TODAY.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Robert's Story -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">4. The Classic Example: Robert's Replacement</h2>
+
+                <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300 mb-4">This is the textbook example of why replacement can be devastating. Study this carefully - the exam loves scenarios exactly like this.</p>
+
+                <!-- Robert's Timeline -->
+                <div class="bg-indigo-50 dark:bg-indigo-900/20 rounded-lg p-4 lg:p-5 border-2 border-indigo-300 dark:border-indigo-700 mb-4">
+                    <h3 class="font-bold text-indigo-800 dark:text-indigo-300 text-xl mb-3">Robert: Then vs. Now</h3>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                            <h4 class="font-bold text-green-800 dark:text-green-300 mb-2">Robert at Age 25 (Original Policy)</h4>
+                            <ul class="text-gray-700 dark:text-gray-300 space-y-1 text-sm lg:text-base">
+                                <li>- <strong>Age:</strong> 25 years old</li>
+                                <li>- <strong>Health:</strong> Perfect, no conditions</li>
+                                <li>- <strong>Smoking:</strong> Nonsmoker</li>
+                                <li>- <strong>Rating:</strong> Preferred (best rate)</li>
+                                <li>- <strong>Premium:</strong> $180/month</li>
+                                <li>- <strong>Pre-existing exclusions:</strong> None (no conditions)</li>
+                            </ul>
+                        </div>
+                        <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                            <h4 class="font-bold text-red-800 dark:text-red-300 mb-2">Robert at Age 45 (Replacement)</h4>
+                            <ul class="text-gray-700 dark:text-gray-300 space-y-1 text-sm lg:text-base">
+                                <li>- <strong>Age:</strong> 45 years old (20 years older)</li>
+                                <li>- <strong>Health:</strong> Had a heart attack 2 years ago</li>
+                                <li>- <strong>Smoking:</strong> 15 years of smoking</li>
+                                <li>- <strong>Rating:</strong> Substandard (rated up)</li>
+                                <li>- <strong>Premium:</strong> $650/month (or more)</li>
+                                <li>- <strong>Pre-existing exclusions:</strong> Heart condition rider likely</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Full Example -->
+                <div class="bg-gray-50 dark:bg-gray-900/20 p-4 rounded-lg border-l-4 border-indigo-500 mb-4">
+                    <p class="font-semibold text-indigo-800 dark:text-indigo-300 mb-2">Real-World Scenario: Robert's Costly Mistake</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Robert got his health insurance policy at age 25 when he was a healthy nonsmoker. He paid $180/month for comprehensive coverage. Over the next 20 years, Robert started smoking, gained weight, and suffered a heart attack at age 43. His current policy covers everything, including his heart condition, because he's had continuous coverage.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> At age 45, an agent tells Robert, "Your old policy is overpriced. I can get you into a newer plan." Robert agrees to replace his policy. The new insurer underwrites Robert based on his CURRENT profile: age 45, smoker, history of heart attack.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> The new policy comes back at $650/month (not the savings Robert expected), with a rider excluding heart-related coverage for 24 months, and higher copays. Even though his old policy may have seemed expensive at $180/month, it covered his heart condition with no restrictions. Robert is now paying more than 3 times as much AND has less coverage. The replacement left him significantly worse off.</p>
+                    </div>
+                </div>
+
+                <!-- Key Numbers -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                    <div class="bg-white dark:bg-gray-800 p-3 lg:p-4 rounded-lg text-center border border-gray-200 dark:border-gray-700">
+                        <p class="text-2xl lg:text-3xl font-bold text-green-600 dark:text-green-400">$180</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Original monthly premium</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 p-3 lg:p-4 rounded-lg text-center border border-gray-200 dark:border-gray-700">
+                        <p class="text-2xl lg:text-3xl font-bold text-red-600 dark:text-red-400">$650</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Replacement monthly premium</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 p-3 lg:p-4 rounded-lg text-center border border-gray-200 dark:border-gray-700">
+                        <p class="text-2xl lg:text-3xl font-bold text-purple-600 dark:text-purple-400">20</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Years between policies</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 p-3 lg:p-4 rounded-lg text-center border border-gray-200 dark:border-gray-700">
+                        <p class="text-2xl lg:text-3xl font-bold text-amber-600 dark:text-amber-400">24</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Month heart exclusion rider</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: When Replacement CAN Be Good -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">5. When Replacement CAN Be Beneficial</h2>
+
+                <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300 mb-4">Replacement isn't always bad. There are legitimate situations where switching policies genuinely benefits the insured:</p>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <h4 class="font-bold text-green-800 dark:text-green-300 mb-2">Better Coverage at Same Price</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">A new policy offers significantly better benefits (lower deductibles, more coverage) for the same or similar premium, with no new waiting periods.</p>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <h4 class="font-bold text-green-800 dark:text-green-300 mb-2">Old Policy No Longer Meets Needs</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The insured's circumstances have changed (new family, different career) and the current policy no longer fits their situation.</p>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <h4 class="font-bold text-green-800 dark:text-green-300 mb-2">Insured Is Still Young and Healthy</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">If the insured is still young with no health changes, the underwriting impact is minimal and a better policy may truly be a better deal.</p>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <h4 class="font-bold text-green-800 dark:text-green-300 mb-2">Current Insurer Is Financially Unstable</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">If the current insurer is in financial trouble, moving to a more stable company protects the insured's coverage long-term.</p>
+                    </div>
+                </div>
+
+                <!-- Example -->
+                <div class="bg-gray-50 dark:bg-gray-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                    <p class="font-semibold text-green-800 dark:text-green-300 mb-2">Real-World Scenario: The Smart Replacement</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Emma, age 28, got a basic health insurance policy when she was 24 and single. She's now married with a child on the way. Her current policy doesn't cover maternity care and has a high deductible.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Her agent finds a family policy that includes maternity coverage, pediatric care, and a lower deductible. Emma is still young and healthy with no pre-existing conditions. The agent carefully compares both policies side by side with Emma.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> The replacement makes sense here. Emma is young enough that the premium increase is minimal, she has no pre-existing conditions to worry about, and the new policy covers maternity and pediatric care that she genuinely needs. The agent ensures the old policy stays active until the new one is issued - no gap.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cheat Sheet -->
+        <section id="cheat-sheet" class="mb-8 lg:mb-10">
+            <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 border-2 border-dashed border-gray-300 dark:border-gray-600">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100">Cheat Sheet</h2>
+                    <span class="text-sm text-gray-500 dark:text-gray-400">Print this page for quick reference</span>
+                </div>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Agent's Duties in Replacement:</p>
+                        <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-1">
+                            <li>Compare benefits, limitations, and exclusions</li>
+                            <li>Never cancel old policy before new is issued</li>
+                            <li>Don't mislead - be honest about both policies</li>
+                            <li>Replacement must benefit the insured, not just the agent</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Dangers of Replacement:</p>
+                        <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-1">
+                            <li>New waiting periods for pre-existing conditions</li>
+                            <li>Higher premiums (older age, worse health)</li>
+                            <li>Possible exclusion riders for current conditions</li>
+                            <li>Different/lesser benefits than old policy</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Underwriting Reality:</p>
+                        <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-1">
+                            <li>Based on CURRENT age, health, and risk factors</li>
+                            <li>NOT based on original policy factors</li>
+                            <li>Smoker at 45 pays WAY more than nonsmoker at 25</li>
+                            <li>Heart attack = rated policy or exclusion rider</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">The #1 Rule:</p>
+                        <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-1">
+                            <li>NO COVERAGE GAP - EVER</li>
+                            <li>Old policy stays active until new is issued</li>
+                            <li>Cancel old ONLY after new is in force</li>
+                            <li>Even one day without coverage is unacceptable</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Traps -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-xl p-5 lg:p-6">
+                <h2 class="text-2xl font-bold text-red-800 dark:text-red-300 mb-4">Exam Trap Alerts</h2>
+                <div class="space-y-3">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">1. When must the old policy be cancelled?</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">ONLY after the new policy has been issued and is in force. Never before. If the exam asks "What should the agent do first?" - the answer is NEVER "cancel the existing policy." The old policy stays until the new one is active.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">2. Underwriting uses CURRENT factors, not original ones</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">If the exam describes someone who got a great rate at 25 and is now 45 with health problems, the replacement will be underwritten based on age 45 and current health. The fact that the original policy was "overpriced" doesn't matter - the new one will likely cost even more.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">3. New waiting periods restart the clock</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">If someone has had a policy for 10 years with no waiting period issues, a replacement policy can impose BRAND NEW waiting periods for pre-existing conditions. Years of continuous coverage are essentially "lost."</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">4. The agent must compare - not just sell</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The agent's responsibility is to carefully compare both policies BEFORE recommending replacement. An agent who pushes replacement without doing a thorough comparison has violated their duty. The comparison must include benefits, limitations, AND exclusions.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">5. Replacement must benefit the INSURED, not the agent</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">If a replacement is done primarily to generate a new commission for the agent rather than to benefit the insured, this is a violation. The exam may present scenarios where the replacement clearly hurts the insured - the correct answer is always that the agent should NOT have recommended it.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Reference Summary -->
+        <div class="bg-gradient-to-r from-blue-600 to-blue-800 rounded-xl p-6 text-white">
+            <h2 class="text-2xl font-bold mb-6">Quick Reference Summary</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div class="bg-white/20 rounded-lg p-4">
+                    <p class="font-bold">Replacement</p>
+                    <p class="text-sm text-blue-100">Cancelling old policy and buying a new one in its place</p>
+                </div>
+                <div class="bg-white/20 rounded-lg p-4">
+                    <p class="font-bold">No Coverage Gap</p>
+                    <p class="text-sm text-blue-100">Old policy stays active until new one is issued</p>
+                </div>
+                <div class="bg-white/20 rounded-lg p-4">
+                    <p class="font-bold">Compare First</p>
+                    <p class="text-sm text-blue-100">Side-by-side: benefits, limitations, exclusions</p>
+                </div>
+                <div class="bg-white/20 rounded-lg p-4">
+                    <p class="font-bold">Current Underwriting</p>
+                    <p class="text-sm text-blue-100">New policy priced on today's age and health</p>
+                </div>
+                <div class="bg-white/20 rounded-lg p-4">
+                    <p class="font-bold">New Waiting Periods</p>
+                    <p class="text-sm text-blue-100">Pre-existing condition clocks restart</p>
+                </div>
+                <div class="bg-white/20 rounded-lg p-4">
+                    <p class="font-bold">Agent's Duty</p>
+                    <p class="text-sm text-blue-100">Must benefit the insured, not just generate commission</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Navigation -->
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="../part-6/index.html" class="text-gray-300 hover:text-white flex items-center gap-1">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                    Part 6: Explaining the Policy
+                </a>
+                <span class="text-gray-400">Part 7 of 7</span>
+                <a href="../recap/index.html" class="text-gray-300 hover:text-white flex items-center gap-1">
+                    Chapter 1 Recap
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

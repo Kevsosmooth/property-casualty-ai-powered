@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 2: Sources of Insurability Information - Ch 1 Health Insurance</title>
+    <link rel="icon" type="image/svg+xml" href="../../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') { document.documentElement.classList.remove('dark'); }
+        function toggleTheme() { document.documentElement.classList.toggle('dark'); localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light'); }
+    </script>
+    <link rel="stylesheet" href="../../../../css/styles.css">
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors duration-300">
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/></svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>
+        </button>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <nav class="text-blue-200 text-sm mb-3">
+                <a href="../../../../index.html" class="hover:text-white">Home</a>
+                <span class="mx-2">/</span>
+                <a href="../../index.html" class="hover:text-white">Health Insurance</a>
+                <span class="mx-2">/</span>
+                <a href="../index.html" class="hover:text-white">Chapter 1</a>
+                <span class="mx-2">/</span>
+                <span class="text-white">Part 2</span>
+            </nav>
+            <h1 class="text-3xl lg:text-4xl font-bold">Chapter 1, Part 2: Sources of Insurability Information</h1>
+            <p class="mt-2 text-blue-100">How insurers check if you're a good risk before saying "yes"</p>
+        </div>
+    </header>
+
+    <!-- Sticky Nav -->
+    <nav class="sticky top-0 z-40 bg-white dark:bg-gray-800 shadow-md border-b border-gray-200 dark:border-gray-700">
+        <div class="container mx-auto px-4 overflow-x-auto">
+            <div class="flex space-x-1 py-2 text-sm min-w-max">
+                <a href="../part-1/index.html" class="px-3 py-1.5 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">Part 1</a>
+                <a href="index.html" class="px-3 py-1.5 rounded-full bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 font-semibold">Part 2</a>
+                <a href="../part-3/index.html" class="px-3 py-1.5 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">Part 3</a>
+                <a href="../part-4/index.html" class="px-3 py-1.5 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">Part 4</a>
+                <a href="../part-5/index.html" class="px-3 py-1.5 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">Part 5</a>
+                <a href="../part-6/index.html" class="px-3 py-1.5 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">Part 6</a>
+                <a href="../part-7/index.html" class="px-3 py-1.5 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">Part 7</a>
+                <a href="../recap/index.html" class="px-3 py-1.5 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">Recap</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-5xl lg:max-w-7xl">
+
+        <!-- 5 Things You Must Know -->
+        <div class="bg-gradient-to-r from-blue-100 to-indigo-100 dark:from-blue-900/40 dark:to-indigo-900/40 rounded-xl p-6 mb-8 border border-blue-300 dark:border-blue-700">
+            <h3 class="text-xl font-bold text-blue-800 dark:text-blue-200 mb-4">Start Here: 5 Things You MUST Know</h3>
+            <div class="grid md:grid-cols-2 gap-3">
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
+                    <p class="text-gray-700 dark:text-gray-300">The <strong>Fair Credit Reporting Act</strong> protects consumers - records must be confidential, accurate, and properly used</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
+                    <p class="text-gray-700 dark:text-gray-300">The <strong>MIB</strong> is a shared database between insurers - it flags areas to investigate, but <strong>cannot be the sole reason to deny coverage</strong></p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
+                    <p class="text-gray-700 dark:text-gray-300">Two types of reports: <strong>Consumer Reports</strong> (basic data) and <strong>Investigative Consumer Reports</strong> (interviews with people who know you)</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">4</span>
+                    <p class="text-gray-700 dark:text-gray-300">A <strong>paramedical report</strong> is done by a nurse/paramedic; an <strong>APS</strong> (Attending Physician's Statement) comes from your actual doctor</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">5</span>
+                    <p class="text-gray-700 dark:text-gray-300">The applicant <strong>must be told</strong> what sources will be used and how information will be gathered</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 1: Fair Credit Reporting Act -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">1. The Fair Credit Reporting Act (FCRA)</h2>
+
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-purple-500 mb-4">
+                    <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg">What Is It?</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">A federal law that says: "If you're going to dig into someone's personal information, you better do it fairly." It makes sure consumer-reporting agencies keep records confidential, accurate, relevant, and properly used.</p>
+                </div>
+
+                <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300 mb-4">Before an insurer says "yes" or "no" to your application, they often check up on you. The FCRA controls HOW they can do that. All sources used must follow this law.</p>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 rounded-r-lg mb-4">
+                    <p class="font-bold text-amber-800 dark:text-amber-300">Who Can Access These Reports?</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Only someone with a <strong>legitimate business purpose</strong>. This includes:</p>
+                    <ul class="text-gray-700 dark:text-gray-300 mt-2 space-y-1">
+                        <li>- <strong>Insurance underwriting</strong> (checking if you're a good risk)</li>
+                        <li>- <strong>Employment screening</strong> (background checks for jobs)</li>
+                        <li>- <strong>Credit transactions</strong> (loans, credit cards)</li>
+                    </ul>
+                </div>
+
+                <!-- Two Types of Reports -->
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">Two Types of Reports Under FCRA</h3>
+                <div class="grid md:grid-cols-2 gap-4 mb-4">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-l-4 border-blue-500">
+                        <h4 class="font-bold text-blue-800 dark:text-blue-300 mb-2">Consumer Report</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What it is:</strong> A basic report with factual data - credit history, driving record, claims history, public records.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm text-gray-600 dark:text-gray-400"><strong>Think of it as:</strong> A "report card" of your financial and personal history that already exists in databases.</p>
+                        </div>
+                    </div>
+                    <div class="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-lg border-l-4 border-indigo-500">
+                        <h4 class="font-bold text-indigo-800 dark:text-indigo-300 mb-2">Investigative Consumer Report</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What it is:</strong> A deeper dive that involves actually talking to people - neighbors, coworkers, friends - about your character, lifestyle, and reputation.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm text-gray-600 dark:text-gray-400"><strong>Think of it as:</strong> A "background investigation" where someone asks people who know you about your habits and character.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Example -->
+                <div class="bg-gray-50 dark:bg-gray-900/20 p-4 rounded-lg border-l-4 border-purple-500">
+                    <p class="font-semibold text-purple-800 dark:text-purple-300 mb-2">Real-World Scenario: Mike's High-Value Policy</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Mike applies for a $500,000 health insurance policy. The insurer wants to make sure everything checks out before approving such a large policy.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> The insurer pulls a consumer report (credit history, prior claims) and orders an investigative consumer report (an investigator calls Mike's employer and neighbor to ask about his lifestyle and habits).</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Under the FCRA, Mike MUST be informed that these reports will be used. The information gathered must be kept confidential and can only be used for the underwriting decision. If Mike is denied based on information in these reports, he has the right to know why.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Medical Information Sources -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">2. Medical Information & Consumer Reports</h2>
+
+                <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300 mb-4">For bigger policies or when something on the application raises a red flag, the insurer may need more medical info. Here's how they get it:</p>
+
+                <!-- Medical Report Types -->
+                <div class="space-y-4 mb-6">
+                    <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-green-500">
+                        <h3 class="font-bold text-green-800 dark:text-green-300 text-lg">Paramedical Report</h3>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg"><strong>Done by:</strong> A paramedic or registered nurse (NOT a doctor).</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-1"><strong>What it covers:</strong> Basic health screening - blood pressure, weight, blood/urine samples, basic health questions.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm text-gray-600 dark:text-gray-400"><strong>When it's used:</strong> For standard-level policies. Quick and routine - the nurse comes to you or you go to a lab.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500">
+                        <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg">Attending Physician's Statement (APS)</h3>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg"><strong>Done by:</strong> Your actual doctor - the one who treated you before.</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-1"><strong>What it covers:</strong> Your actual medical history, prior treatments, diagnoses, and current conditions.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm text-gray-600 dark:text-gray-400"><strong>When it's used:</strong> When the application reveals a prior medical issue. The insurer wants to hear it straight from the doctor who treated you. This is the <strong>best source for accurate medical history</strong>.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MIB Section -->
+                <div class="bg-indigo-50 dark:bg-indigo-900/20 rounded-lg p-4 lg:p-5 border-2 border-indigo-300 dark:border-indigo-700 mb-4">
+                    <h3 class="font-bold text-indigo-800 dark:text-indigo-300 text-xl mb-3">The MIB (Medical Information Bureau)</h3>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-3">Think of the MIB as a shared "heads up" system between insurance companies. Here's what you need to know:</p>
+
+                    <div class="grid md:grid-cols-2 gap-3">
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                            <p class="font-semibold text-gray-800 dark:text-gray-200 text-sm">What it is</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm">A nonprofit trade organization owned by member insurance companies</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                            <p class="font-semibold text-gray-800 dark:text-gray-200 text-sm">What it does</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm">Collects and shares underwriting information on applicants for life and health insurance</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                            <p class="font-semibold text-gray-800 dark:text-gray-200 text-sm">How it helps</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm">Lets companies compare notes - "did another insurer find something we should know about?"</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                            <p class="font-semibold text-gray-800 dark:text-gray-200 text-sm">What it CAN do</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm">Flag areas that need further investigation</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-red-50 dark:bg-red-900/30 border-l-4 border-red-500 p-4 rounded-r-lg mt-4">
+                        <p class="font-bold text-red-800 dark:text-red-300 text-lg">CRITICAL EXAM RULE</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">An applicant <strong>CANNOT be refused coverage solely because of adverse information on an MIB report</strong>. The MIB is only a tool to help insurers know what to investigate further - it's NOT a final decision-maker.</p>
+                    </div>
+                </div>
+
+                <!-- Example -->
+                <div class="bg-gray-50 dark:bg-gray-900/20 p-4 rounded-lg border-l-4 border-blue-500">
+                    <p class="font-semibold text-blue-800 dark:text-blue-300 mb-2">Real-World Scenario: Sandra's MIB Flag</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Sandra applies for health insurance with Company A. When Company A checks the MIB, they see a flag that says Sandra was previously noted for high blood pressure when she applied with Company B two years ago.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Company A sees the flag. They can use this information to ask Sandra more questions about her blood pressure, request her doctor's records, or order a paramedical exam.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Company A <strong>CANNOT</strong> just deny Sandra's application because of the MIB flag. They must do their own investigation. Maybe Sandra's blood pressure is now well-controlled with medication. The MIB flag just says "look into this" - it doesn't say "deny her."</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cheat Sheet -->
+        <section id="cheat-sheet" class="mb-8 lg:mb-10">
+            <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 border-2 border-dashed border-gray-300 dark:border-gray-600">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100">Cheat Sheet</h2>
+                    <span class="text-sm text-gray-500 dark:text-gray-400">Print this page for quick reference</span>
+                </div>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">FCRA:</p>
+                        <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-1">
+                            <li>Records must be: confidential, accurate, relevant, properly used</li>
+                            <li>Consumer Report = factual data from databases</li>
+                            <li>Investigative Report = interviews with people who know you</li>
+                            <li>Both require legitimate business purpose</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Medical Sources:</p>
+                        <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-1">
+                            <li>Paramedical = nurse/paramedic, basic screening</li>
+                            <li>APS = your doctor, best for medical history</li>
+                            <li>MIB = shared database, flags only, NOT sole basis for denial</li>
+                            <li>Applicant must be told what sources will be used</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Traps -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-xl p-5 lg:p-6">
+                <h2 class="text-2xl font-bold text-red-800 dark:text-red-300 mb-4">Exam Trap Alerts</h2>
+                <div class="space-y-3">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">1. MIB cannot be the sole reason for denial</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">This is the #1 tested fact about the MIB. If the exam asks "Can an insurer deny coverage based on an MIB report?" the answer is NO - not by itself. They must investigate further.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">2. APS vs. Paramedical - know the difference</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">APS = from YOUR doctor who treated you (best for history). Paramedical = from a nurse/paramedic doing a basic exam (basic screening). If the question asks which is best for "accurate medical history" - it's the APS.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">3. Consumer Report vs. Investigative Consumer Report</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Consumer Report = data that already exists. Investigative = they actually go talk to people about you. If the question mentions "interviews" or "personal inquiries" - that's an investigative consumer report.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Reference Summary -->
+        <div class="bg-gradient-to-r from-blue-600 to-blue-800 rounded-xl p-6 text-white">
+            <h2 class="text-2xl font-bold mb-6">Quick Reference Summary</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div class="bg-white/20 rounded-lg p-4">
+                    <p class="font-bold">FCRA</p>
+                    <p class="text-sm text-blue-100">Protects consumer info - must be accurate, confidential, properly used</p>
+                </div>
+                <div class="bg-white/20 rounded-lg p-4">
+                    <p class="font-bold">Consumer Report</p>
+                    <p class="text-sm text-blue-100">Basic factual data from existing databases</p>
+                </div>
+                <div class="bg-white/20 rounded-lg p-4">
+                    <p class="font-bold">Investigative Report</p>
+                    <p class="text-sm text-blue-100">Personal interviews with people who know you</p>
+                </div>
+                <div class="bg-white/20 rounded-lg p-4">
+                    <p class="font-bold">Paramedical Report</p>
+                    <p class="text-sm text-blue-100">Basic exam by nurse/paramedic</p>
+                </div>
+                <div class="bg-white/20 rounded-lg p-4">
+                    <p class="font-bold">APS</p>
+                    <p class="text-sm text-blue-100">Your doctor's report - best for medical history</p>
+                </div>
+                <div class="bg-white/20 rounded-lg p-4">
+                    <p class="font-bold">MIB</p>
+                    <p class="text-sm text-blue-100">Shared flag system - NEVER sole basis to deny</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="../part-1/index.html" class="text-gray-300 hover:text-white flex items-center gap-1">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                    Part 1: Contract Law
+                </a>
+                <span class="text-gray-400">Part 2 of 7</span>
+                <a href="../part-3/index.html" class="text-gray-300 hover:text-white flex items-center gap-1">
+                    Part 3: Completing the Application
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

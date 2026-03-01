@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 3: Completing the Application - Ch 1 Health Insurance</title>
+    <link rel="icon" type="image/svg+xml" href="../../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') { document.documentElement.classList.remove('dark'); }
+        function toggleTheme() { document.documentElement.classList.toggle('dark'); localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light'); }
+    </script>
+    <link rel="stylesheet" href="../../../../css/styles.css">
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors duration-300">
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/></svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>
+        </button>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <nav class="text-blue-200 text-sm mb-3">
+                <a href="../../../../index.html" class="hover:text-white">Home</a>
+                <span class="mx-2">/</span>
+                <a href="../../index.html" class="hover:text-white">Health Insurance</a>
+                <span class="mx-2">/</span>
+                <a href="../index.html" class="hover:text-white">Chapter 1</a>
+                <span class="mx-2">/</span>
+                <span class="text-white">Part 3</span>
+            </nav>
+            <h1 class="text-3xl lg:text-4xl font-bold">Chapter 1, Part 3: Completing the Application & Obtaining Signatures</h1>
+            <p class="mt-2 text-blue-100">How the application gets filled out and who needs to sign it</p>
+        </div>
+    </header>
+
+    <!-- Sticky Part Navigation -->
+    <nav class="sticky top-0 z-40 bg-white dark:bg-gray-800 shadow-md border-b border-gray-200 dark:border-gray-700">
+        <div class="container mx-auto px-4 overflow-x-auto">
+            <div class="flex space-x-1 py-2 text-sm min-w-max">
+                <a href="../part-1/index.html" class="px-3 py-1.5 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">Part 1</a>
+                <a href="../part-2/index.html" class="px-3 py-1.5 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">Part 2</a>
+                <a href="index.html" class="px-3 py-1.5 rounded-full bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 font-semibold">Part 3</a>
+                <a href="../part-4/index.html" class="px-3 py-1.5 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">Part 4</a>
+                <a href="../part-5/index.html" class="px-3 py-1.5 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">Part 5</a>
+                <a href="../part-6/index.html" class="px-3 py-1.5 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">Part 6</a>
+                <a href="../part-7/index.html" class="px-3 py-1.5 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">Part 7</a>
+                <a href="../recap/index.html" class="px-3 py-1.5 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">Recap</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-5xl lg:max-w-7xl">
+
+        <!-- 5 Things You Must Know -->
+        <div class="bg-gradient-to-r from-blue-100 to-indigo-100 dark:from-blue-900/40 dark:to-indigo-900/40 rounded-xl p-6 mb-8 border border-blue-300 dark:border-blue-700">
+            <h3 class="text-xl font-bold text-blue-800 dark:text-blue-200 mb-4">Start Here: 5 Things You MUST Know</h3>
+            <div class="grid md:grid-cols-2 gap-3">
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
+                    <p class="text-gray-700 dark:text-gray-300">The application is the applicant's <strong>written request</strong> asking the insurance company to issue a policy</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
+                    <p class="text-gray-700 dark:text-gray-300">The <strong>agent fills out</strong> the application based on the applicant's answers - the applicant does NOT fill it out themselves</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>THREE signatures</strong> are required: the agent, the applicant, and the proposed insured (if different from the applicant)</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">4</span>
+                    <p class="text-gray-700 dark:text-gray-300">Once the policy is issued, a <strong>copy of the application is stapled in the back</strong> of the policy and becomes part of the contract</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">5</span>
+                    <p class="text-gray-700 dark:text-gray-300">An <strong>accurate and thorough application</strong> is critical because the insurer uses it to decide whether to approve or reject you</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 1: What Is the Application? -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">1. What Is the Application?</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-4">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg">Definition</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">The application is the applicant's <strong>written request</strong> to the insurance company asking them to issue a policy. Think of it like a job application - you're asking the company to "hire" you as a policyholder based on the information you provide.</p>
+                </div>
+
+                <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300 mb-4">The whole process starts with a form that the insurance company provides. The agent sits down with the applicant, asks them questions, and writes down the answers on the form. Once it's done, the application gets sent to the insurance company, and they decide: approve or reject.</p>
+
+                <!-- Visual Flow -->
+                <div class="bg-gray-50 dark:bg-gray-900/20 p-4 rounded-lg border border-gray-200 dark:border-gray-700 mb-4">
+                    <h3 class="font-bold text-gray-800 dark:text-gray-100 mb-3">The Application Journey</h3>
+                    <div class="flex items-center gap-2 lg:gap-4 flex-wrap justify-center">
+                        <div class="bg-blue-100 dark:bg-blue-900/40 p-3 rounded-lg text-center">
+                            <p class="font-bold text-blue-800 dark:text-blue-300 text-sm">Company Provides Form</p>
+                            <p class="text-xs text-gray-600 dark:text-gray-400">blank application</p>
+                        </div>
+                        <div class="text-xl text-gray-400">-></div>
+                        <div class="bg-green-100 dark:bg-green-900/40 p-3 rounded-lg text-center">
+                            <p class="font-bold text-green-800 dark:text-green-300 text-sm">Agent Fills It Out</p>
+                            <p class="text-xs text-gray-600 dark:text-gray-400">asks applicant questions</p>
+                        </div>
+                        <div class="text-xl text-gray-400">-></div>
+                        <div class="bg-purple-100 dark:bg-purple-900/40 p-3 rounded-lg text-center">
+                            <p class="font-bold text-purple-800 dark:text-purple-300 text-sm">All 3 People Sign</p>
+                            <p class="text-xs text-gray-600 dark:text-gray-400">agent + applicant + insured</p>
+                        </div>
+                        <div class="text-xl text-gray-400">-></div>
+                        <div class="bg-amber-100 dark:bg-amber-900/40 p-3 rounded-lg text-center">
+                            <p class="font-bold text-amber-800 dark:text-amber-300 text-sm">Sent to Insurer</p>
+                            <p class="text-xs text-gray-600 dark:text-gray-400">for underwriting</p>
+                        </div>
+                        <div class="text-xl text-gray-400">-></div>
+                        <div class="bg-red-100 dark:bg-red-900/40 p-3 rounded-lg text-center">
+                            <p class="font-bold text-red-800 dark:text-red-300 text-sm">Approved or Rejected</p>
+                            <p class="text-xs text-gray-600 dark:text-gray-400">underwriter decides</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 rounded-r-lg mb-4">
+                    <p class="font-bold text-amber-800 dark:text-amber-300">Why Does This Matter?</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">The application is the <strong>foundation of the entire insurance contract</strong>. If information on the application is wrong, it can lead to denied claims or even a voided policy later on. That's why accuracy is so important.</p>
+                </div>
+
+                <!-- Example -->
+                <div class="bg-gray-50 dark:bg-gray-900/20 p-4 rounded-lg border-l-4 border-blue-500">
+                    <p class="font-semibold text-blue-800 dark:text-blue-300 mb-2">Real-World Scenario: Rachel Applies for Health Insurance</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Rachel, age 35, meets with an insurance agent named Carlos at his office. She wants health insurance for herself. Carlos pulls out a blank application form from the insurance company.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Carlos asks Rachel questions one by one: "What's your date of birth?" "Do you have any pre-existing conditions?" "Have you been hospitalized in the last 5 years?" He writes down each answer on the form. Rachel doesn't fill out anything herself - Carlos does all the writing.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Once all questions are answered, both Rachel and Carlos sign the application. Carlos sends it to the insurance company. If approved, a copy of this application will be stapled into the back of Rachel's policy - it becomes part of her contract forever.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Who Fills Out the Application? -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">2. Who Actually Fills Out the Application?</h2>
+
+                <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300 mb-4">This is a detail the exam loves to test. Most people assume the applicant fills out the form themselves - but that's NOT how it works.</p>
+
+                <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-green-500 mb-4">
+                    <h3 class="font-bold text-green-800 dark:text-green-300 text-lg">The Rule</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">The application is usually filled out by <strong>the agent</strong> and a <strong>medical examiner</strong> (if one is needed) based on information provided by the applicant. The applicant answers the questions, but the agent writes the answers down on the form.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-4">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-l-4 border-blue-500">
+                        <h4 class="font-bold text-blue-800 dark:text-blue-300 mb-2">The Agent's Job</h4>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-2">
+                            <li>- Ask the applicant each question on the form</li>
+                            <li>- Write down the applicant's answers accurately</li>
+                            <li>- Make sure <strong>every question</strong> is answered (no blanks)</li>
+                            <li>- Record information <strong>exactly as the applicant states it</strong></li>
+                        </ul>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border-l-4 border-purple-500">
+                        <h4 class="font-bold text-purple-800 dark:text-purple-300 mb-2">Medical Examiner's Job (If Applicable)</h4>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-2">
+                            <li>- Fills out the medical portion of the application</li>
+                            <li>- Records results of any physical exam</li>
+                            <li>- Asks medical-specific questions</li>
+                            <li>- Only involved for policies that require a medical exam</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Example -->
+                <div class="bg-gray-50 dark:bg-gray-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                    <p class="font-semibold text-green-800 dark:text-green-300 mb-2">Real-World Scenario: Who Writes What?</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> David wants a large health insurance policy. The insurer requires a medical exam. Agent Sarah sits with David and asks questions like "How old are you?" and "Do you smoke?" She writes down his answers on the form.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Later, a nurse comes to David's house for the medical exam. The nurse takes David's blood pressure, draws blood, and fills out the medical section of the application based on the exam results. David does NOT write on the form at all - the agent and the nurse do.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> The application has two parts filled out by two people: the general section (by agent Sarah) and the medical section (by the nurse). David's role was to answer questions honestly and then sign the completed form.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Application Becomes Part of the Contract -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">3. The Application Becomes Part of the Policy</h2>
+
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-purple-500 mb-4">
+                    <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg">The Rule</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">If the policy is approved and issued, a <strong>copy of the application is stapled into the back of the policy</strong>. At that point, the application becomes part of the <strong>entire contract</strong>. It's not just a form you filled out and forgot about - it's permanently attached to your insurance policy.</p>
+                </div>
+
+                <div class="bg-red-50 dark:bg-red-900/30 border-l-4 border-red-500 p-4 rounded-r-lg mb-4">
+                    <p class="font-bold text-red-800 dark:text-red-300">Why This Matters</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Because the application is part of the contract, everything you said on it can be checked later. If you lied about a health condition, the insurer can look at the application (which is stapled right there in the policy) and use it as proof. This is why accuracy is so important.</p>
+                </div>
+
+                <!-- Example -->
+                <div class="bg-gray-50 dark:bg-gray-900/20 p-4 rounded-lg border-l-4 border-purple-500">
+                    <p class="font-semibold text-purple-800 dark:text-purple-300 mb-2">Real-World Scenario: Tony's Claim Gets Reviewed</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Tony applies for health insurance. On the application, he answers "No" when asked if he has ever been diagnosed with diabetes. The policy gets approved and issued. A copy of Tony's application is stapled into the back of his policy.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Two years later, Tony files a large claim for diabetes-related treatment. The insurer pulls out the policy, flips to the back, and looks at the application. They see Tony said "No" to diabetes.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> The insurer investigates and finds Tony was diagnosed with diabetes BEFORE he applied. Because the application is part of the contract, Tony's "No" answer is a material misrepresentation. The insurer may deny the claim or even void the policy entirely.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: The 3 Required Signatures -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">4. The 3 Required Signatures</h2>
+
+                <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300 mb-4">This is one of the most tested topics on the exam. The application is NOT complete until all the right people sign it. There are <strong>three</strong> parties who must sign.</p>
+
+                <!-- Three Signatures Grid -->
+                <div class="grid md:grid-cols-3 gap-4 mb-6">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 text-center">
+                        <div class="bg-blue-600 text-white rounded-full w-10 h-10 flex items-center justify-center text-lg font-bold mx-auto mb-3">1</div>
+                        <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg">The Agent</h3>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">The agent who helped fill out the application must sign it. This confirms the agent was there and participated in the process.</p>
+                    </div>
+
+                    <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-green-500 text-center">
+                        <div class="bg-green-600 text-white rounded-full w-10 h-10 flex items-center justify-center text-lg font-bold mx-auto mb-3">2</div>
+                        <h3 class="font-bold text-green-800 dark:text-green-300 text-lg">The Applicant</h3>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">The person requesting the insurance must sign. This is the person who will own the policy (the policyowner).</p>
+                    </div>
+
+                    <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-purple-500 text-center">
+                        <div class="bg-purple-600 text-white rounded-full w-10 h-10 flex items-center justify-center text-lg font-bold mx-auto mb-3">3</div>
+                        <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg">The Proposed Insured</h3>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">The person who will be covered by the policy. <strong>If this is a different person than the applicant</strong>, they must sign too.</p>
+                    </div>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 rounded-r-lg mb-4">
+                    <p class="font-bold text-amber-800 dark:text-amber-300">When Are Only 2 Signatures Needed?</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">If the applicant IS the same person as the proposed insured (which is most of the time - you're buying insurance for yourself), then you only need <strong>2 signatures</strong>: the agent and the applicant/insured. The third signature only matters when someone is buying insurance for someone else.</p>
+                </div>
+
+                <!-- Two Scenarios Side by Side -->
+                <div class="grid md:grid-cols-2 gap-4 mb-4">
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border border-green-200 dark:border-green-800">
+                        <p class="font-bold text-green-800 dark:text-green-300 mb-2">Scenario A: Buying for Yourself</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Maria buys health insurance for herself. She is BOTH the applicant AND the proposed insured. Only <strong>2 signatures</strong> needed: Maria + Agent.</p>
+                    </div>
+                    <div class="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-lg border border-indigo-200 dark:border-indigo-800">
+                        <p class="font-bold text-indigo-800 dark:text-indigo-300 mb-2">Scenario B: Buying for Someone Else</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Linda buys health insurance for her husband Tom. Linda is the applicant, Tom is the proposed insured. <strong>3 signatures</strong> needed: Linda + Tom + Agent.</p>
+                    </div>
+                </div>
+
+                <!-- Example -->
+                <div class="bg-gray-50 dark:bg-gray-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                    <p class="font-semibold text-green-800 dark:text-green-300 mb-2">Real-World Scenario: The Missing Signature</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Karen wants to buy a health insurance policy for her 25-year-old son, Jason. Agent Mike fills out the application with Karen sitting in front of him. Karen signs, and Agent Mike signs.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Jason wasn't at the meeting. He never signed the application. Agent Mike sends the application to the insurer anyway.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> The application is <strong>incomplete</strong>. Because Karen (the applicant) and Jason (the proposed insured) are different people, all THREE signatures are required. The insurer will send it back and say "We need Jason's signature before we can process this." The policy cannot be issued until Jason signs.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Accuracy Is Critical -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">5. Why Accuracy Is Critical</h2>
+
+                <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300 mb-4">An accurate and thorough application is the backbone of proper underwriting. The insurer bases their entire decision on what's written in the application. If the information is wrong, everything built on top of it can fall apart.</p>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-4">
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border border-green-200 dark:border-green-800">
+                        <p class="font-bold text-green-800 dark:text-green-300 mb-2">Accurate Application</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>- Underwriter makes a correct decision</li>
+                            <li>- Applicant gets properly priced policy</li>
+                            <li>- Claims get paid without dispute</li>
+                            <li>- Everyone is protected</li>
+                        </ul>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border border-red-200 dark:border-red-800">
+                        <p class="font-bold text-red-800 dark:text-red-300 mb-2">Inaccurate Application</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>- Underwriter makes a wrong decision</li>
+                            <li>- Policy may be mispriced</li>
+                            <li>- Claims could be denied later</li>
+                            <li>- Policy could be voided entirely</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Example -->
+                <div class="bg-gray-50 dark:bg-gray-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                    <p class="font-semibold text-red-800 dark:text-red-300 mb-2">Real-World Scenario: The Agent Who Cut Corners</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Agent Pat is in a rush. His client, Ellen, mentions she takes medication for high blood pressure. Pat doesn't want to slow things down, so he skips that question on the application and leaves it blank.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> The insurer approves the policy without knowing about Ellen's blood pressure. A year later, Ellen has a heart attack and files a big claim. The insurer reviews everything and finds the blank question about medications.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> The insurer investigates and finds out about the blood pressure medication. Because this information would have changed the underwriting decision, the claim may be denied. Agent Pat could also face disciplinary action for not completing the application properly. This is exactly why accuracy and completeness matter.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cheat Sheet -->
+        <section id="cheat-sheet" class="mb-8 lg:mb-10">
+            <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 border-2 border-dashed border-gray-300 dark:border-gray-600">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100">Cheat Sheet</h2>
+                    <span class="text-sm text-gray-500 dark:text-gray-400">Print this page for quick reference</span>
+                </div>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">The Application:</p>
+                        <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-1">
+                            <li>Written request for the insurer to issue a policy</li>
+                            <li>Form is provided by the insurance company</li>
+                            <li>Filled out by the AGENT (not the applicant)</li>
+                            <li>Medical section filled out by medical examiner (if needed)</li>
+                            <li>Submitted to insurer for approval or rejection</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">3 Required Signatures:</p>
+                        <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-1">
+                            <li>1. The Agent</li>
+                            <li>2. The Applicant (policyowner)</li>
+                            <li>3. The Proposed Insured (if different from applicant)</li>
+                            <li>If applicant = insured, only 2 signatures needed</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Application + Policy:</p>
+                        <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-1">
+                            <li>Copy is stapled in the BACK of the policy</li>
+                            <li>Becomes part of the entire contract</li>
+                            <li>Can be reviewed if a claim is disputed</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Accuracy Rules:</p>
+                        <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-1">
+                            <li>ALL questions must be answered (no blanks)</li>
+                            <li>Accurate info = proper underwriting</li>
+                            <li>Inaccurate info = denied claims, voided policy</li>
+                            <li>Agent is responsible for completeness</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Traps -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-xl p-5 lg:p-6">
+                <h2 class="text-2xl font-bold text-red-800 dark:text-red-300 mb-4">Exam Trap Alerts</h2>
+                <div class="space-y-3">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">1. Who fills out the application?</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The AGENT fills it out - NOT the applicant. The applicant provides the answers, but the agent is the one writing them on the form. If the exam asks "Who completes the application?" the answer is the agent.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">2. How many signatures are needed?</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">THREE parties must sign: agent, applicant, and proposed insured (if different from applicant). Don't forget the agent needs to sign too. If the exam says "The applicant and insured are different people - how many signatures?" the answer is 3.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">3. Where does the application end up?</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">A copy is stapled in the BACK of the policy. It becomes part of the entire contract. If the exam asks "What becomes part of the policy contract?" - the application is one of the key answers.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">4. What is the application, technically?</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">It is the applicant's <strong>written request</strong> to the company to issue a policy. It is NOT an offer from the insurer. The applicant is making the offer by submitting the application (remember from Part 1: the applicant makes the offer).</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">5. Can blank questions be left on the application?</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">NO. Every single question must be answered. The agent is responsible for making sure the application is complete before submitting it. A blank question can lead to serious problems down the road.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Reference Summary -->
+        <div class="bg-gradient-to-r from-blue-600 to-blue-800 rounded-xl p-6 text-white">
+            <h2 class="text-2xl font-bold mb-6">Quick Reference Summary</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div class="bg-white/20 rounded-lg p-4">
+                    <p class="font-bold">Application</p>
+                    <p class="text-sm text-blue-100">Written request to the insurer to issue a policy</p>
+                </div>
+                <div class="bg-white/20 rounded-lg p-4">
+                    <p class="font-bold">Who Fills It Out</p>
+                    <p class="text-sm text-blue-100">Agent writes it, applicant answers questions</p>
+                </div>
+                <div class="bg-white/20 rounded-lg p-4">
+                    <p class="font-bold">3 Signatures</p>
+                    <p class="text-sm text-blue-100">Agent + Applicant + Proposed Insured (if different)</p>
+                </div>
+                <div class="bg-white/20 rounded-lg p-4">
+                    <p class="font-bold">Part of the Contract</p>
+                    <p class="text-sm text-blue-100">Copy stapled in back of policy - becomes permanent</p>
+                </div>
+                <div class="bg-white/20 rounded-lg p-4">
+                    <p class="font-bold">Accuracy</p>
+                    <p class="text-sm text-blue-100">Critical for proper underwriting - no blank questions</p>
+                </div>
+                <div class="bg-white/20 rounded-lg p-4">
+                    <p class="font-bold">Medical Examiner</p>
+                    <p class="text-sm text-blue-100">Fills out medical section if exam is required</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Navigation -->
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="../part-2/index.html" class="text-gray-300 hover:text-white flex items-center gap-1">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                    Part 2: Insurability Sources
+                </a>
+                <span class="text-gray-400">Part 3 of 7</span>
+                <a href="../part-4/index.html" class="text-gray-300 hover:text-white flex items-center gap-1">
+                    Part 4: Submitting the Application
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 6: Explaining the Policy - Ch 1 Health Insurance</title>
+    <link rel="icon" type="image/svg+xml" href="../../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') { document.documentElement.classList.remove('dark'); }
+        function toggleTheme() { document.documentElement.classList.toggle('dark'); localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light'); }
+    </script>
+    <link rel="stylesheet" href="../../../../css/styles.css">
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors duration-300">
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/></svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>
+        </button>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <nav class="text-blue-200 text-sm mb-3">
+                <a href="../../../../index.html" class="hover:text-white">Home</a>
+                <span class="mx-2">/</span>
+                <a href="../../index.html" class="hover:text-white">Health Insurance</a>
+                <span class="mx-2">/</span>
+                <a href="../index.html" class="hover:text-white">Chapter 1</a>
+                <span class="mx-2">/</span>
+                <span class="text-white">Part 6</span>
+            </nav>
+            <h1 class="text-3xl lg:text-4xl font-bold">Chapter 1, Part 6: Explaining the Policy</h1>
+            <p class="mt-2 text-blue-100">Provisions, riders, exclusions, ratings - and the agent's duty to explain them all</p>
+        </div>
+    </header>
+
+    <!-- Sticky Part Navigation -->
+    <nav class="sticky top-0 z-40 bg-white dark:bg-gray-800 shadow-md border-b border-gray-200 dark:border-gray-700">
+        <div class="container mx-auto px-4 overflow-x-auto">
+            <div class="flex space-x-1 py-2 text-sm min-w-max">
+                <a href="../part-1/index.html" class="px-3 py-1.5 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">Part 1</a>
+                <a href="../part-2/index.html" class="px-3 py-1.5 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">Part 2</a>
+                <a href="../part-3/index.html" class="px-3 py-1.5 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">Part 3</a>
+                <a href="../part-4/index.html" class="px-3 py-1.5 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">Part 4</a>
+                <a href="../part-5/index.html" class="px-3 py-1.5 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">Part 5</a>
+                <a href="index.html" class="px-3 py-1.5 rounded-full bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 font-semibold">Part 6</a>
+                <a href="../part-7/index.html" class="px-3 py-1.5 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">Part 7</a>
+                <a href="../recap/index.html" class="px-3 py-1.5 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">Recap</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-5xl lg:max-w-7xl">
+
+        <!-- 5 Things You Must Know -->
+        <div class="bg-gradient-to-r from-blue-100 to-indigo-100 dark:from-blue-900/40 dark:to-indigo-900/40 rounded-xl p-6 mb-8 border border-blue-300 dark:border-blue-700">
+            <h3 class="text-xl font-bold text-blue-800 dark:text-blue-200 mb-4">Start Here: 5 Things You MUST Know</h3>
+            <div class="grid md:grid-cols-2 gap-3">
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
+                    <p class="text-gray-700 dark:text-gray-300">The agent is <strong>legally responsible</strong> for explaining the policy's main benefits and provisions to the insured</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
+                    <p class="text-gray-700 dark:text-gray-300">If the policy comes back with <strong>changes or amendments</strong>, the agent must explain them AND get the insured's <strong>signature acknowledging receipt</strong></p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
+                    <p class="text-gray-700 dark:text-gray-300">A <strong>rider</strong> is an attachment that adds, removes, or modifies coverage - it becomes part of the policy</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">4</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>Exclusions</strong> are specific conditions, situations, or treatments the policy will NOT cover</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">5</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>Ratings</strong> (rated policies) mean the insured pays a higher premium because they are a higher risk than standard</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 1: The Agent's Duty to Explain -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">1. The Agent's Duty to Explain the Policy</h2>
+
+                <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300 mb-4">When a policy is delivered, the agent's job is NOT done. The agent has a legal responsibility to sit down with the insured and walk them through what they're getting. This isn't optional - it's required.</p>
+
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-purple-500 mb-4">
+                    <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg">What Must the Agent Explain?</h3>
+                    <ul class="text-gray-700 dark:text-gray-300 mt-2 space-y-2 text-base lg:text-lg">
+                        <li>- <strong>Main benefits</strong> - What is actually covered (hospitalization, surgery, prescriptions, etc.)</li>
+                        <li>- <strong>Key provisions</strong> - Deductibles, copays, coinsurance percentages, benefit limits</li>
+                        <li>- <strong>Exclusions</strong> - What the policy will NOT pay for</li>
+                        <li>- <strong>Riders or amendments</strong> - Any additions or changes to standard coverage</li>
+                        <li>- <strong>Premium amount</strong> - What the insured will pay, and if it differs from the original quote</li>
+                    </ul>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 rounded-r-lg mb-4">
+                    <p class="font-bold text-amber-800 dark:text-amber-300">Critical Rule: Changes and Amendments</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">If the policy is issued with ANY changes from what was originally applied for - different premium, added exclusion, modified benefits - the agent <strong>must explain these changes</strong> and <strong>obtain the insured's signature</strong> acknowledging receipt of the amendments. No signature = the agent hasn't done their job.</p>
+                </div>
+
+                <!-- Example -->
+                <div class="bg-gray-50 dark:bg-gray-900/20 p-4 rounded-lg border-l-4 border-blue-500">
+                    <p class="font-semibold text-blue-800 dark:text-blue-300 mb-2">Real-World Scenario: The Policy That Came Back Different</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Karen applied for a comprehensive health insurance policy through her agent, Dave. She was quoted $350/month for full coverage with no exclusions.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> The underwriter reviews Karen's application and medical history. Because Karen had knee surgery two years ago, the policy comes back with two changes: (1) a rider excluding coverage for any future knee-related treatments for the first 24 months, and (2) a premium of $410/month instead of $350.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Dave MUST sit down with Karen and explain both changes clearly. He must tell her: "Your knee condition caused two modifications. First, knee-related treatments won't be covered for the first 24 months. Second, your premium is $410, not $350." Karen must then sign a form acknowledging she understands and accepts these amendments. If Dave just hands her the policy without explaining, he has violated his duty.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Riders -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">2. Riders (Policy Attachments)</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-4">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg">What Is a Rider?</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">A rider is an attachment or addition to an insurance policy that <strong>modifies the original terms</strong>. Think of it like an amendment to a law - it changes, adds to, or takes away from the original contract. Once attached, it becomes part of the policy.</p>
+                </div>
+
+                <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300 mb-4">Riders can do three different things to a policy:</p>
+
+                <div class="grid md:grid-cols-3 gap-4 mb-6">
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <h4 class="font-bold text-green-800 dark:text-green-300 mb-2">Add Coverage</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Gives benefits beyond the standard policy.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm text-gray-600 dark:text-gray-400"><strong>Example:</strong> A dental rider added to a health policy that doesn't normally cover dental work.</p>
+                        </div>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                        <h4 class="font-bold text-red-800 dark:text-red-300 mb-2">Remove Coverage</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Excludes specific conditions or treatments.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm text-gray-600 dark:text-gray-400"><strong>Example:</strong> An exclusion rider that says the policy won't cover back injuries because of a pre-existing condition.</p>
+                        </div>
+                    </div>
+                    <div class="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg border-l-4 border-amber-500">
+                        <h4 class="font-bold text-amber-800 dark:text-amber-300 mb-2">Modify Terms</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Changes how existing coverage works.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm text-gray-600 dark:text-gray-400"><strong>Example:</strong> A rider that increases the maximum benefit for hospital stays from $500/day to $750/day.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Example -->
+                <div class="bg-gray-50 dark:bg-gray-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                    <p class="font-semibold text-green-800 dark:text-green-300 mb-2">Real-World Scenario: The Pre-Existing Condition Rider</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Tony, age 40, applies for individual health insurance. On his application, he discloses that he was diagnosed with Type 2 diabetes three years ago and takes medication for it.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> The underwriter doesn't want to deny Tony entirely, but they don't want to cover diabetes-related treatments right away either. So they issue the policy with an <strong>exclusion rider</strong> that states: "No coverage for diabetes-related treatment, medication, or complications for the first 12 months of this policy."</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Tony's agent must clearly explain: "You have coverage for everything else - broken bones, flu, surgery for non-diabetes issues. But for the first 12 months, anything related to your diabetes is not covered. After 12 months, the rider falls off and diabetes is covered like everything else." Tony signs acknowledging he understands the rider.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Exclusions -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">3. Exclusions</h2>
+
+                <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-red-500 mb-4">
+                    <h3 class="font-bold text-red-800 dark:text-red-300 text-lg">What Are Exclusions?</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">Exclusions are the specific conditions, situations, or treatments that a policy will <strong>NOT cover</strong>. Every policy has them. They are built into the policy language itself - they aren't separate attachments like riders.</p>
+                </div>
+
+                <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300 mb-4">Common exclusions in health insurance policies include:</p>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border border-red-200 dark:border-red-800">
+                        <p class="font-bold text-red-800 dark:text-red-300">NOT COVERED (Common Exclusions)</p>
+                        <ul class="text-gray-700 dark:text-gray-300 mt-2 space-y-1 text-sm lg:text-base">
+                            <li>- Cosmetic surgery (unless medically necessary)</li>
+                            <li>- Self-inflicted injuries</li>
+                            <li>- Injuries from war or military action</li>
+                            <li>- Experimental or investigational treatments</li>
+                            <li>- Pre-existing conditions (during waiting period)</li>
+                            <li>- Workers' compensation-eligible injuries</li>
+                        </ul>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border border-green-200 dark:border-green-800">
+                        <p class="font-bold text-green-800 dark:text-green-300">COVERED (Typically Included)</p>
+                        <ul class="text-gray-700 dark:text-gray-300 mt-2 space-y-1 text-sm lg:text-base">
+                            <li>- Hospitalization and surgery</li>
+                            <li>- Doctor visits and specialist care</li>
+                            <li>- Prescription medications</li>
+                            <li>- Emergency room visits</li>
+                            <li>- Lab work and diagnostic tests</li>
+                            <li>- Preventive care and screenings</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 rounded-r-lg mb-4">
+                    <p class="font-bold text-amber-800 dark:text-amber-300">Exclusion vs. Rider - What's the Difference?</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">An <strong>exclusion</strong> is printed right in the policy language - it applies to everyone who buys that type of policy. A <strong>rider</strong> is a separate document attached to YOUR specific policy based on YOUR individual situation (like your health history). Both limit coverage, but riders are personalized.</p>
+                </div>
+
+                <!-- Example -->
+                <div class="bg-gray-50 dark:bg-gray-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                    <p class="font-semibold text-red-800 dark:text-red-300 mb-2">Real-World Scenario: The "Cosmetic Surgery" Surprise</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Jenna has a health insurance policy. She was in a car accident and her face was badly scarred. Her plastic surgeon recommends reconstructive surgery to repair the damage.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Jenna's policy has an exclusion for "cosmetic surgery." She worries the claim will be denied.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> The surgery IS covered. The exclusion applies to elective cosmetic surgery (like a nose job for appearance). Reconstructive surgery after an accident is considered <strong>medically necessary</strong>, not cosmetic. This is exactly the kind of nuance the agent must explain so the insured understands what "cosmetic surgery exclusion" actually means.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Ratings -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">4. Ratings (Rated Policies)</h2>
+
+                <div class="bg-indigo-50 dark:bg-indigo-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-indigo-500 mb-4">
+                    <h3 class="font-bold text-indigo-800 dark:text-indigo-300 text-lg">What Is a Rating?</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">When an underwriter determines that an applicant is a <strong>higher-than-average risk</strong>, they may issue the policy at a <strong>higher premium</strong> than the standard rate. This is called a "rated" or "substandard" policy. The insured gets coverage, but pays more for it because they pose a greater risk to the insurer.</p>
+                </div>
+
+                <!-- Rating Visual -->
+                <div class="flex items-center gap-2 lg:gap-4 flex-wrap justify-center mb-6">
+                    <div class="bg-green-100 dark:bg-green-900/40 p-4 rounded-lg text-center">
+                        <p class="font-bold text-green-800 dark:text-green-300">Preferred</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Lowest premium</p>
+                        <p class="text-xs text-gray-500 dark:text-gray-500">Excellent health</p>
+                    </div>
+                    <div class="text-xl text-gray-400">-></div>
+                    <div class="bg-blue-100 dark:bg-blue-900/40 p-4 rounded-lg text-center">
+                        <p class="font-bold text-blue-800 dark:text-blue-300">Standard</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Normal premium</p>
+                        <p class="text-xs text-gray-500 dark:text-gray-500">Average health</p>
+                    </div>
+                    <div class="text-xl text-gray-400">-></div>
+                    <div class="bg-amber-100 dark:bg-amber-900/40 p-4 rounded-lg text-center">
+                        <p class="font-bold text-amber-800 dark:text-amber-300">Substandard (Rated)</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Higher premium</p>
+                        <p class="text-xs text-gray-500 dark:text-gray-500">Higher risk</p>
+                    </div>
+                    <div class="text-xl text-gray-400">-></div>
+                    <div class="bg-red-100 dark:bg-red-900/40 p-4 rounded-lg text-center">
+                        <p class="font-bold text-red-800 dark:text-red-300">Declined</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">No policy issued</p>
+                        <p class="text-xs text-gray-500 dark:text-gray-500">Too high risk</p>
+                    </div>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 rounded-r-lg mb-4">
+                    <p class="font-bold text-amber-800 dark:text-amber-300">Agent's Duty with Rated Policies</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">If the premium comes back higher than what was originally quoted, the agent <strong>must explain why</strong> - the insured's health history, lifestyle factors, or occupation may have caused the rating. The insured can accept the rated policy or decline it entirely.</p>
+                </div>
+
+                <!-- Example -->
+                <div class="bg-gray-50 dark:bg-gray-900/20 p-4 rounded-lg border-l-4 border-indigo-500">
+                    <p class="font-semibold text-indigo-800 dark:text-indigo-300 mb-2">Real-World Scenario: The Rated Premium</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Marcus, age 35, applies for health insurance. His agent quotes him $300/month based on standard rates. On his application, Marcus discloses that he smokes a pack a day and has high cholesterol.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> The underwriter classifies Marcus as substandard risk due to smoking and high cholesterol. The policy is issued as a "rated" policy at $475/month - 58% more than the standard quote.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Marcus's agent must explain: "The premium is higher than I originally quoted because the underwriter assessed your smoking and cholesterol as higher risk factors. You're being charged $475 instead of $300. You can accept this policy at the higher rate, or you can decline it." Marcus has the right to understand exactly why his premium changed before accepting.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Putting It All Together -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">5. Putting It All Together - The Full Delivery Conversation</h2>
+
+                <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300 mb-4">When a policy comes back from underwriting, the agent must cover ALL of these items with the insured. Here is the complete checklist:</p>
+
+                <!-- Comparison Table -->
+                <div class="overflow-x-auto mb-6">
+                    <table class="w-full text-sm lg:text-base">
+                        <thead>
+                            <tr class="bg-blue-600 text-white">
+                                <th class="p-3 lg:p-4 text-left rounded-tl-lg">Item</th>
+                                <th class="p-3 lg:p-4 text-left">Agent Must Do</th>
+                                <th class="p-3 lg:p-4 text-left rounded-tr-lg">Signature Needed?</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Main Benefits</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Explain what is covered</td>
+                                <td class="p-3 lg:p-4 text-gray-600 dark:text-gray-400">No (unless changed)</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Provisions</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Explain deductibles, copays, limits</td>
+                                <td class="p-3 lg:p-4 text-gray-600 dark:text-gray-400">No (unless changed)</td>
+                            </tr>
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Riders</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Explain any added/removed coverage</td>
+                                <td class="p-3 lg:p-4 text-red-600 dark:text-red-400 font-semibold">YES - always</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Exclusions</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Explain what is NOT covered</td>
+                                <td class="p-3 lg:p-4 text-gray-600 dark:text-gray-400">No (standard exclusions)</td>
+                            </tr>
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Premium Changes</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Explain why premium differs from quote</td>
+                                <td class="p-3 lg:p-4 text-red-600 dark:text-red-400 font-semibold">YES - if changed</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Any Amendment</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Explain every change from the application</td>
+                                <td class="p-3 lg:p-4 text-red-600 dark:text-red-400 font-semibold">YES - always</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Full Scenario Example -->
+                <div class="bg-gray-50 dark:bg-gray-900/20 p-4 rounded-lg border-l-4 border-purple-500">
+                    <p class="font-semibold text-purple-800 dark:text-purple-300 mb-2">Real-World Scenario: Everything Changes</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Angela applied for health insurance and was quoted $280/month for comprehensive coverage. She disclosed a history of asthma and a prior shoulder surgery on her application.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> The underwriter issues the policy with three modifications: (1) an exclusion rider for shoulder-related treatment for 18 months, (2) a rated premium of $340/month due to her asthma, and (3) a prescription drug benefit that has a higher copay than standard.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Angela's agent must explain each change clearly: the shoulder rider, the reason for the premium increase, and the modified prescription benefit. Angela must sign acknowledging she received and understands the amendments. Only after this explanation and signature is the delivery complete. If the agent skips any of this, they have failed their duty.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cheat Sheet -->
+        <section id="cheat-sheet" class="mb-8 lg:mb-10">
+            <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 border-2 border-dashed border-gray-300 dark:border-gray-600">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100">Cheat Sheet</h2>
+                    <span class="text-sm text-gray-500 dark:text-gray-400">Print this page for quick reference</span>
+                </div>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Agent's Duty:</p>
+                        <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-1">
+                            <li>Must explain main benefits and provisions</li>
+                            <li>Must explain all changes/amendments</li>
+                            <li>Must get insured's signature for amendments</li>
+                            <li>Must explain premium if it differs from quote</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Rider vs. Exclusion:</p>
+                        <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-1">
+                            <li>Rider = separate attachment, personalized to YOU</li>
+                            <li>Exclusion = built into policy, applies to everyone</li>
+                            <li>Riders can add, remove, or modify coverage</li>
+                            <li>Exclusions only limit/remove coverage</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Ratings:</p>
+                        <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-1">
+                            <li>Preferred = best rate, excellent health</li>
+                            <li>Standard = normal rate, average health</li>
+                            <li>Substandard (Rated) = higher rate, higher risk</li>
+                            <li>Declined = too risky, no policy issued</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Signature Required When:</p>
+                        <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-1">
+                            <li>Any rider is attached to the policy</li>
+                            <li>Premium is different from what was quoted</li>
+                            <li>Any amendment or change from application</li>
+                            <li>Benefits differ from what was applied for</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Traps -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-xl p-5 lg:p-6">
+                <h2 class="text-2xl font-bold text-red-800 dark:text-red-300 mb-4">Exam Trap Alerts</h2>
+                <div class="space-y-3">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">1. Agent MUST explain - it's not optional</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The exam may say something like "Is the agent required to explain the policy provisions?" The answer is always YES. It is a legal duty, not a courtesy. Simply handing over the policy without explanation violates the agent's responsibility.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">2. Signature is required for amendments</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">If the policy comes back with ANY change from the original application - a rider, a different premium, modified benefits - the insured must sign acknowledging receipt. No signature = incomplete delivery.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">3. Rider vs. Exclusion - know which is personalized</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">A rider is specific to YOUR policy based on YOUR health history. An exclusion is standard policy language that applies to all policyholders. If the question mentions something added because of a specific applicant's condition, it's a rider.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">4. "Rated" means higher premium, not denied</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">A rated (substandard) policy still provides coverage - the insured just pays more. Don't confuse "rated" with "declined." A declined applicant gets no policy at all. A rated applicant gets a policy with a higher premium.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">5. Cosmetic surgery exclusion has exceptions</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The exam may test whether reconstructive surgery after an accident is covered under a policy with a cosmetic surgery exclusion. YES it is - reconstructive surgery for medical necessity is NOT the same as elective cosmetic surgery.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Reference Summary -->
+        <div class="bg-gradient-to-r from-blue-600 to-blue-800 rounded-xl p-6 text-white">
+            <h2 class="text-2xl font-bold mb-6">Quick Reference Summary</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div class="bg-white/20 rounded-lg p-4">
+                    <p class="font-bold">Agent's Duty</p>
+                    <p class="text-sm text-blue-100">Must explain all benefits, provisions, and changes at delivery</p>
+                </div>
+                <div class="bg-white/20 rounded-lg p-4">
+                    <p class="font-bold">Rider</p>
+                    <p class="text-sm text-blue-100">Attachment that adds, removes, or modifies coverage</p>
+                </div>
+                <div class="bg-white/20 rounded-lg p-4">
+                    <p class="font-bold">Exclusion</p>
+                    <p class="text-sm text-blue-100">Standard policy language listing what is NOT covered</p>
+                </div>
+                <div class="bg-white/20 rounded-lg p-4">
+                    <p class="font-bold">Rating</p>
+                    <p class="text-sm text-blue-100">Higher premium for higher-risk applicants</p>
+                </div>
+                <div class="bg-white/20 rounded-lg p-4">
+                    <p class="font-bold">Amendments</p>
+                    <p class="text-sm text-blue-100">Any change requires explanation + insured's signature</p>
+                </div>
+                <div class="bg-white/20 rounded-lg p-4">
+                    <p class="font-bold">Insured's Right</p>
+                    <p class="text-sm text-blue-100">Can accept or decline the modified policy</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Navigation -->
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="../part-5/index.html" class="text-gray-300 hover:text-white flex items-center gap-1">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                    Part 5: Policy Delivery
+                </a>
+                <span class="text-gray-400">Part 6 of 7</span>
+                <a href="../part-7/index.html" class="text-gray-300 hover:text-white flex items-center gap-1">
+                    Part 7: Replacement
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

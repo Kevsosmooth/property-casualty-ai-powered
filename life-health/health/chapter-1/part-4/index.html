@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 4: Submitting the Application - Ch 1 Health Insurance</title>
+    <link rel="icon" type="image/svg+xml" href="../../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') { document.documentElement.classList.remove('dark'); }
+        function toggleTheme() { document.documentElement.classList.toggle('dark'); localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light'); }
+    </script>
+    <link rel="stylesheet" href="../../../../css/styles.css">
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors duration-300">
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/></svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>
+        </button>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <nav class="text-blue-200 text-sm mb-3">
+                <a href="../../../../index.html" class="hover:text-white">Home</a>
+                <span class="mx-2">/</span>
+                <a href="../../index.html" class="hover:text-white">Health Insurance</a>
+                <span class="mx-2">/</span>
+                <a href="../index.html" class="hover:text-white">Chapter 1</a>
+                <span class="mx-2">/</span>
+                <span class="text-white">Part 4</span>
+            </nav>
+            <h1 class="text-3xl lg:text-4xl font-bold">Chapter 1, Part 4: Submitting the Application for Underwriting</h1>
+            <p class="mt-2 text-blue-100">What happens after the application is filled out - premiums, receipts, and why agents cannot bind coverage</p>
+        </div>
+    </header>
+
+    <!-- Sticky Part Navigation -->
+    <nav class="sticky top-0 z-40 bg-white dark:bg-gray-800 shadow-md border-b border-gray-200 dark:border-gray-700">
+        <div class="container mx-auto px-4 overflow-x-auto">
+            <div class="flex space-x-1 py-2 text-sm min-w-max">
+                <a href="../part-1/index.html" class="px-3 py-1.5 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">Part 1</a>
+                <a href="../part-2/index.html" class="px-3 py-1.5 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">Part 2</a>
+                <a href="../part-3/index.html" class="px-3 py-1.5 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">Part 3</a>
+                <a href="index.html" class="px-3 py-1.5 rounded-full bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 font-semibold">Part 4</a>
+                <a href="../part-5/index.html" class="px-3 py-1.5 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">Part 5</a>
+                <a href="../part-6/index.html" class="px-3 py-1.5 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">Part 6</a>
+                <a href="../part-7/index.html" class="px-3 py-1.5 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">Part 7</a>
+                <a href="../recap/index.html" class="px-3 py-1.5 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">Recap</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-5xl lg:max-w-7xl">
+
+        <!-- 5 Things You Must Know -->
+        <div class="bg-gradient-to-r from-blue-100 to-indigo-100 dark:from-blue-900/40 dark:to-indigo-900/40 rounded-xl p-6 mb-8 border border-blue-300 dark:border-blue-700">
+            <h3 class="text-xl font-bold text-blue-800 dark:text-blue-200 mb-4">Start Here: 5 Things You MUST Know</h3>
+            <div class="grid md:grid-cols-2 gap-3">
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
+                    <p class="text-gray-700 dark:text-gray-300">The agent must <strong>check the application</strong> to make sure all questions are answered and all signatures are collected before sending it in</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
+                    <p class="text-gray-700 dark:text-gray-300">The <strong>initial premium</strong> is generally collected with the application and sent together to the insurer</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
+                    <p class="text-gray-700 dark:text-gray-300">A <strong>conditional receipt</strong> is given to the applicant when they pay the premium - but it does NOT mean they have coverage yet</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">4</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>Agents CANNOT bind coverage</strong> for health insurance - this is a MAJOR difference from property and casualty insurance</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">5</span>
+                    <p class="text-gray-700 dark:text-gray-300">Coverage does <strong>not begin</strong> until the insurer has <strong>approved the application AND issued the policy</strong></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 1: Agent's Duty Before Submitting -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">1. The Agent's Duty: Check Before You Send</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-4">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg">The Rule</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">Before the agent sends the application to the insurance company, they are <strong>obligated</strong> to review it carefully. The agent must make sure that <strong>all questions have been answered</strong> and <strong>all necessary signatures have been collected</strong>. This is not optional - it's the agent's responsibility.</p>
+                </div>
+
+                <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300 mb-4">Think of the agent as the quality control checkpoint. If the application reaches the insurer with blanks or missing signatures, it gets sent back - wasting everyone's time and delaying the applicant's coverage.</p>
+
+                <!-- Agent Checklist -->
+                <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 lg:p-5 border border-green-200 dark:border-green-800 mb-4">
+                    <h3 class="font-bold text-green-800 dark:text-green-300 text-lg mb-3">Agent's Pre-Submission Checklist</h3>
+                    <div class="grid md:grid-cols-2 gap-2">
+                        <div class="flex items-start">
+                            <span class="text-green-600 dark:text-green-400 mr-2 font-bold">--</span>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Every question on the application is answered</p>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="text-green-600 dark:text-green-400 mr-2 font-bold">--</span>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Agent's signature is on the form</p>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="text-green-600 dark:text-green-400 mr-2 font-bold">--</span>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Applicant's signature is on the form</p>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="text-green-600 dark:text-green-400 mr-2 font-bold">--</span>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Proposed insured's signature (if different person)</p>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="text-green-600 dark:text-green-400 mr-2 font-bold">--</span>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Initial premium collected (if applicable)</p>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="text-green-600 dark:text-green-400 mr-2 font-bold">--</span>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Conditional receipt issued to applicant</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Example -->
+                <div class="bg-gray-50 dark:bg-gray-900/20 p-4 rounded-lg border-l-4 border-blue-500">
+                    <p class="font-semibold text-blue-800 dark:text-blue-300 mb-2">Real-World Scenario: The Rejected Application</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Agent Dana meets with a new client, Frank. They go through the application together. Frank is in a rush and asks Dana to "just send it in and I'll answer the rest later."</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Dana, wanting to keep the client happy, sends the application with three unanswered questions. A week later, the insurance company sends the application back and says "We can't process this - there are blank questions."</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Frank's application is delayed by weeks. Dana now has to track Frank down again to finish the questions. If Dana had done her job properly and refused to submit an incomplete application, this delay wouldn't have happened. The agent's duty to check the application exists to prevent exactly this situation.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Collecting the Initial Premium -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">2. Collecting the Initial Premium</h2>
+
+                <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-green-500 mb-4">
+                    <h3 class="font-bold text-green-800 dark:text-green-300 text-lg">How It Works</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">Generally, the agent collects the <strong>initial premium payment</strong> from the applicant at the same time as the application. The agent then sends <strong>both the application and the premium</strong> together to the insurance company. The premium is the applicant's "consideration" - their part of the deal.</p>
+                </div>
+
+                <!-- Visual Flow -->
+                <div class="bg-gray-50 dark:bg-gray-900/20 p-4 rounded-lg border border-gray-200 dark:border-gray-700 mb-4">
+                    <h3 class="font-bold text-gray-800 dark:text-gray-100 mb-3">What Gets Sent to the Insurer</h3>
+                    <div class="flex items-center gap-2 lg:gap-4 flex-wrap justify-center">
+                        <div class="bg-blue-100 dark:bg-blue-900/40 p-3 rounded-lg text-center">
+                            <p class="font-bold text-blue-800 dark:text-blue-300 text-sm">Completed Application</p>
+                            <p class="text-xs text-gray-600 dark:text-gray-400">all questions answered, all signatures</p>
+                        </div>
+                        <div class="text-xl text-gray-400">+</div>
+                        <div class="bg-green-100 dark:bg-green-900/40 p-3 rounded-lg text-center">
+                            <p class="font-bold text-green-800 dark:text-green-300 text-sm">Initial Premium</p>
+                            <p class="text-xs text-gray-600 dark:text-gray-400">applicant's payment</p>
+                        </div>
+                        <div class="text-xl text-gray-400">-></div>
+                        <div class="bg-purple-100 dark:bg-purple-900/40 p-3 rounded-lg text-center">
+                            <p class="font-bold text-purple-800 dark:text-purple-300 text-sm">Sent to Insurer</p>
+                            <p class="text-xs text-gray-600 dark:text-gray-400">by the agent</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Example -->
+                <div class="bg-gray-50 dark:bg-gray-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                    <p class="font-semibold text-green-800 dark:text-green-300 mb-2">Real-World Scenario: Paying at the Kitchen Table</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Agent Rosa visits Mr. and Mrs. Chen at their home. She helps them fill out a health insurance application at their kitchen table. Once all the questions are answered and everyone signs, Rosa says "The first month's premium is $450."</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Mr. Chen writes a check for $450 and hands it to Rosa. Rosa gives Mr. Chen a conditional receipt showing that the payment was received. Rosa then puts the completed application and the check in an envelope and mails it to the insurance company.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> The insurer now has everything they need: the application (to review the risk) and the premium (the applicant's consideration). They will begin the underwriting process to decide whether to approve or reject the application.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: The Conditional Receipt -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">3. The Conditional Receipt</h2>
+
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-purple-500 mb-4">
+                    <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg">What Is a Conditional Receipt?</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">When the applicant pays the initial premium with the application, the agent gives them a <strong>conditional receipt</strong>. This is basically a piece of paper that says: "We got your money." But here's the important part - it does NOT mean you have coverage. The word "conditional" is the key: coverage is <strong>conditional</strong> on the insurer approving the application.</p>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 rounded-r-lg mb-4">
+                    <p class="font-bold text-amber-800 dark:text-amber-300">Plain English Translation</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Think of a conditional receipt like a "pending" status on a job application. Your application has been received, but you don't have the job yet. The employer still needs to review it. Same idea here - the insurer received your application and your money, but you are NOT insured yet. They still need to review and approve.</p>
+                </div>
+
+                <!-- What It Is vs What It Isn't -->
+                <div class="grid md:grid-cols-2 gap-4 mb-4">
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border border-green-200 dark:border-green-800">
+                        <p class="font-bold text-green-800 dark:text-green-300 mb-2">What a Conditional Receipt IS</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>- Proof that the premium was collected</li>
+                            <li>- A receipt for the applicant's payment</li>
+                            <li>- Given by the agent to the applicant</li>
+                            <li>- A standard part of the application process</li>
+                        </ul>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border border-red-200 dark:border-red-800">
+                        <p class="font-bold text-red-800 dark:text-red-300 mb-2">What a Conditional Receipt is NOT</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>- NOT proof of coverage</li>
+                            <li>- NOT a binder (health agents can't bind)</li>
+                            <li>- NOT a guarantee the policy will be issued</li>
+                            <li>- NOT the same as having an active policy</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Example -->
+                <div class="bg-gray-50 dark:bg-gray-900/20 p-4 rounded-lg border-l-4 border-purple-500">
+                    <p class="font-semibold text-purple-800 dark:text-purple-300 mb-2">Real-World Scenario: The Conditional Receipt Confusion</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Amy fills out a health insurance application with her agent and pays the first month's premium of $300. The agent hands her a conditional receipt.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Two weeks later, Amy gets into a car accident and needs surgery. She calls the insurance company and says "I have insurance - here's my conditional receipt!" The insurer checks and sees her application is still being reviewed by the underwriter.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Amy does NOT have coverage. The conditional receipt only proves she paid the premium - it does not mean she has a policy. Coverage doesn't begin until the insurer actually approves the application and issues the policy. Amy's claim is denied because no policy has been issued yet.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Agents CANNOT Bind Coverage -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">4. Agents CANNOT Bind Coverage (Big Difference from P&C)</h2>
+
+                <div class="bg-red-50 dark:bg-red-900/30 rounded-lg p-4 lg:p-5 border-2 border-red-300 dark:border-red-700 mb-4">
+                    <h3 class="font-bold text-red-800 dark:text-red-300 text-lg">Critical Rule</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">In health insurance, <strong>agents CANNOT bind coverage</strong>. This means an agent cannot say "You're covered right now" and make it true. Coverage does <strong>not begin</strong> until the insurance company has <strong>approved the application AND issued the policy</strong>. The agent has zero power to start coverage on their own.</p>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 rounded-r-lg mb-4">
+                    <p class="font-bold text-amber-800 dark:text-amber-300">Why Is This Different from P&C?</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">If you've studied Property & Casualty insurance, you know that P&C agents CAN often bind coverage immediately. You call your car insurance agent, and they can say "You're covered starting right now" before the insurer even sees the application. Health insurance is completely different. No health insurance agent can do this. Period.</p>
+                </div>
+
+                <!-- Comparison -->
+                <div class="overflow-x-auto mb-4">
+                    <table class="w-full text-sm lg:text-base">
+                        <thead>
+                            <tr class="bg-blue-600 text-white">
+                                <th class="p-3 lg:p-4 text-left rounded-tl-lg">Feature</th>
+                                <th class="p-3 lg:p-4 text-left">Property & Casualty</th>
+                                <th class="p-3 lg:p-4 text-left rounded-tr-lg">Health Insurance</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Can agent bind coverage?</td>
+                                <td class="p-3 lg:p-4 text-green-700 dark:text-green-400 font-bold">YES - agents can bind</td>
+                                <td class="p-3 lg:p-4 text-red-700 dark:text-red-400 font-bold">NO - agents cannot bind</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">When does coverage begin?</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Can start immediately via binder</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Only after insurer approves + issues policy</td>
+                            </tr>
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Receipt given</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Binder = temporary coverage</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Conditional receipt = NOT coverage</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Example -->
+                <div class="bg-gray-50 dark:bg-gray-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                    <p class="font-semibold text-red-800 dark:text-red-300 mb-2">Real-World Scenario: The Agent Who Promised Too Much</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Agent Kevin helps Lisa fill out a health insurance application. Lisa asks, "Am I covered starting today?" Kevin, who used to sell car insurance, says "Don't worry - you're covered as soon as you pay the premium."</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Lisa pays the premium and gets a conditional receipt. One week later, Lisa needs emergency surgery. She goes to the hospital thinking she has insurance.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Lisa does NOT have coverage. Kevin was wrong - he cannot bind health insurance coverage. The conditional receipt is not a binder. The insurer hasn't approved the application yet, so no policy exists. Lisa is stuck with the full hospital bill. Kevin could also face serious disciplinary action for telling Lisa she was covered when she wasn't.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: When Does Coverage Actually Begin? -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">5. When Does Coverage Actually Begin?</h2>
+
+                <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300 mb-4">This is the million-dollar question, and the exam will test you on it. Here's the timeline:</p>
+
+                <!-- Timeline -->
+                <div class="bg-gray-50 dark:bg-gray-900/20 p-4 rounded-lg border border-gray-200 dark:border-gray-700 mb-4">
+                    <h3 class="font-bold text-gray-800 dark:text-gray-100 mb-3">The Coverage Timeline</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div class="bg-gray-400 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-4 flex-shrink-0">1</div>
+                            <div>
+                                <p class="font-bold text-gray-800 dark:text-gray-200">Application + Premium Submitted</p>
+                                <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base">No coverage yet. Conditional receipt issued.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-gray-400 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-4 flex-shrink-0">2</div>
+                            <div>
+                                <p class="font-bold text-gray-800 dark:text-gray-200">Underwriter Reviews Application</p>
+                                <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base">Still no coverage. The insurer is deciding.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-gray-400 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-4 flex-shrink-0">3</div>
+                            <div>
+                                <p class="font-bold text-gray-800 dark:text-gray-200">Insurer Approves Application</p>
+                                <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base">Getting closer, but not quite.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-green-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-4 flex-shrink-0">4</div>
+                            <div>
+                                <p class="font-bold text-green-700 dark:text-green-300">Policy Is Issued</p>
+                                <p class="text-green-600 dark:text-green-400 text-sm lg:text-base">NOW coverage begins. The policy is in effect.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-red-50 dark:bg-red-900/30 border-l-4 border-red-500 p-4 rounded-r-lg mb-4">
+                    <p class="font-bold text-red-800 dark:text-red-300">The Bottom Line</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">There is a <strong>gap in time</strong> between when you apply and when you're actually covered. During that gap, you have NO health insurance through this policy - even though you've already paid. This is why people don't cancel their existing coverage until the new policy is officially issued.</p>
+                </div>
+
+                <!-- Example -->
+                <div class="bg-gray-50 dark:bg-gray-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                    <p class="font-semibold text-green-800 dark:text-green-300 mb-2">Real-World Scenario: Playing It Smart</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Marcus currently has health insurance through Company A. He applies for a better policy through Company B on March 1st. He pays the premium and gets a conditional receipt.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Marcus is tempted to cancel his Company A policy right away to save money. His agent wisely says "Keep your Company A policy until Company B officially issues your new one."</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Good thing Marcus listened. Company B takes 3 weeks to approve his application. During those 3 weeks, Marcus had a medical emergency. Because he kept his Company A policy, he was still covered. If he had cancelled prematurely, he would have had zero coverage during that gap period.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cheat Sheet -->
+        <section id="cheat-sheet" class="mb-8 lg:mb-10">
+            <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 border-2 border-dashed border-gray-300 dark:border-gray-600">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100">Cheat Sheet</h2>
+                    <span class="text-sm text-gray-500 dark:text-gray-400">Print this page for quick reference</span>
+                </div>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Submitting the Application:</p>
+                        <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-1">
+                            <li>Agent checks: all questions answered + all signatures</li>
+                            <li>Initial premium collected with the application</li>
+                            <li>Both sent together to the insurer</li>
+                            <li>Conditional receipt given to applicant</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Conditional Receipt:</p>
+                        <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-1">
+                            <li>Proof of premium payment ONLY</li>
+                            <li>NOT proof of coverage</li>
+                            <li>NOT a binder</li>
+                            <li>Coverage depends on insurer approval</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Binding Coverage:</p>
+                        <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-1">
+                            <li>Health agents CANNOT bind coverage</li>
+                            <li>P&C agents CAN bind coverage</li>
+                            <li>This is a major difference between the two</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">When Coverage Begins:</p>
+                        <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-1">
+                            <li>NOT when premium is paid</li>
+                            <li>NOT when application is submitted</li>
+                            <li>ONLY when insurer approves + issues the policy</li>
+                            <li>Don't cancel existing coverage until new policy is issued</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Traps -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-xl p-5 lg:p-6">
+                <h2 class="text-2xl font-bold text-red-800 dark:text-red-300 mb-4">Exam Trap Alerts</h2>
+                <div class="space-y-3">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">1. Conditional receipt does NOT equal coverage</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The exam loves this one. A conditional receipt is proof of payment, NOT proof of insurance. If a question says "The applicant received a conditional receipt - are they insured?" the answer is NO.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">2. Health agents CANNOT bind coverage</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">This is probably the single most important fact in this part. If the exam asks "Can a health insurance agent bind coverage?" the answer is always NO. This is different from P&C, where agents often can bind coverage.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">3. When does coverage begin?</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Coverage begins when the insurer <strong>approves the application AND issues the policy</strong>. Not when the application is submitted. Not when the premium is paid. Not when the conditional receipt is given. Only when the insurer says "approved" and issues the actual policy.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">4. Who is responsible for checking the application?</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The AGENT is obligated to make sure all questions are answered and all signatures are collected before submitting. This is the agent's responsibility, not the applicant's or the insurer's.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">5. Don't confuse "conditional receipt" with "binder"</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">A binder provides temporary coverage (used in P&C). A conditional receipt does NOT provide any coverage at all. They sound similar but are completely different. In health insurance, there is no such thing as a binder.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Reference Summary -->
+        <div class="bg-gradient-to-r from-blue-600 to-blue-800 rounded-xl p-6 text-white">
+            <h2 class="text-2xl font-bold mb-6">Quick Reference Summary</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div class="bg-white/20 rounded-lg p-4">
+                    <p class="font-bold">Agent's Duty</p>
+                    <p class="text-sm text-blue-100">Check all questions answered + all signatures before submitting</p>
+                </div>
+                <div class="bg-white/20 rounded-lg p-4">
+                    <p class="font-bold">Initial Premium</p>
+                    <p class="text-sm text-blue-100">Collected with the application, sent together to insurer</p>
+                </div>
+                <div class="bg-white/20 rounded-lg p-4">
+                    <p class="font-bold">Conditional Receipt</p>
+                    <p class="text-sm text-blue-100">Proof of payment only - NOT proof of coverage</p>
+                </div>
+                <div class="bg-white/20 rounded-lg p-4">
+                    <p class="font-bold">No Binding</p>
+                    <p class="text-sm text-blue-100">Health agents cannot bind coverage - unlike P&C agents</p>
+                </div>
+                <div class="bg-white/20 rounded-lg p-4">
+                    <p class="font-bold">Coverage Begins</p>
+                    <p class="text-sm text-blue-100">Only when insurer approves application + issues policy</p>
+                </div>
+                <div class="bg-white/20 rounded-lg p-4">
+                    <p class="font-bold">Coverage Gap</p>
+                    <p class="text-sm text-blue-100">Keep existing coverage until new policy is officially issued</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Navigation -->
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="../part-3/index.html" class="text-gray-300 hover:text-white flex items-center gap-1">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                    Part 3: Completing the Application
+                </a>
+                <span class="text-gray-400">Part 4 of 7</span>
+                <a href="../part-5/index.html" class="text-gray-300 hover:text-white flex items-center gap-1">
+                    Part 5: Policy Delivery
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
