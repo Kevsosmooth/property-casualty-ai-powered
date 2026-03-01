@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 5: Group Insurance - Ch 2 Health Insurance</title>
+    <link rel="icon" type="image/svg+xml" href="../../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') { document.documentElement.classList.remove('dark'); }
+        function toggleTheme() { document.documentElement.classList.toggle('dark'); localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light'); }
+    </script>
+    <link rel="stylesheet" href="../../../../css/styles.css">
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors duration-300">
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/></svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>
+        </button>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-purple-600 to-purple-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <nav class="text-purple-200 text-sm mb-3">
+                <a href="../../../../index.html" class="hover:text-white">Home</a>
+                <span class="mx-2">/</span>
+                <a href="../../index.html" class="hover:text-white">Health Insurance</a>
+                <span class="mx-2">/</span>
+                <a href="../index.html" class="hover:text-white">Chapter 2</a>
+                <span class="mx-2">/</span>
+                <span class="text-white">Part 5</span>
+            </nav>
+            <h1 class="text-3xl lg:text-4xl font-bold">Chapter 2, Part 5: Group Insurance</h1>
+            <p class="mt-2 text-purple-100">How group coverage works, conversion rights, COBRA, and HIPAA</p>
+        </div>
+    </header>
+
+    <!-- Sticky Part Navigation -->
+    <nav class="sticky top-0 z-40 bg-white dark:bg-gray-800 shadow-md border-b border-gray-200 dark:border-gray-700">
+        <div class="container mx-auto px-4 overflow-x-auto">
+            <div class="flex space-x-1 py-2 text-sm min-w-max">
+                <a href="../part-1/index.html" class="px-3 py-1.5 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">Part 1</a>
+                <a href="../part-2/index.html" class="px-3 py-1.5 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">Part 2</a>
+                <a href="../part-3/index.html" class="px-3 py-1.5 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">Part 3</a>
+                <a href="../part-4/index.html" class="px-3 py-1.5 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">Part 4</a>
+                <a href="index.html" class="px-3 py-1.5 rounded-full bg-purple-100 dark:bg-purple-900 text-purple-700 dark:text-purple-300 font-semibold">Part 5</a>
+                <a href="../part-6/index.html" class="px-3 py-1.5 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">Part 6</a>
+                <a href="../recap/index.html" class="px-3 py-1.5 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">Recap</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-5xl lg:max-w-7xl">
+
+        <!-- 5 Things You Must Know -->
+        <div class="bg-gradient-to-r from-purple-100 to-indigo-100 dark:from-purple-900/40 dark:to-indigo-900/40 rounded-xl p-6 mb-8 border border-purple-300 dark:border-purple-700">
+            <h3 class="text-xl font-bold text-purple-800 dark:text-purple-200 mb-4">Start Here: 5 Things You MUST Know</h3>
+            <div class="grid md:grid-cols-2 gap-3">
+                <div class="flex items-start">
+                    <span class="bg-purple-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
+                    <p class="text-gray-700 dark:text-gray-300">Groups must be formed for a purpose <strong>OTHER than obtaining insurance</strong> - insurance is incidental</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-purple-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
+                    <p class="text-gray-700 dark:text-gray-300">Conversion to individual: <strong>31 days</strong> after termination, no evidence of insurability required, insurer CANNOT deny</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-purple-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
+                    <p class="text-gray-700 dark:text-gray-300">COBRA: <strong>18 months</strong> for employee events, <strong>36 months</strong> for dependent events, max <strong>102%</strong> of group rate</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-purple-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">4</span>
+                    <p class="text-gray-700 dark:text-gray-300">COBRA applies to group <strong>HEALTH only</strong> (not group life), employers with <strong>20+ employees</strong></p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-purple-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">5</span>
+                    <p class="text-gray-700 dark:text-gray-300">HIPAA: to convert group to individual, need <strong>18 months creditable coverage</strong> and apply within <strong>63 days</strong></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 1: Group Basics -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">1. Group Insurance Fundamentals</h2>
+
+                <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300 mb-4">Group insurance is coverage purchased by an organization for its members. The key principle: the group must exist for a reason OTHER than buying insurance. Insurance is a secondary benefit, not the reason the group was formed.</p>
+
+                <!-- Master Contract vs Certificate -->
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-purple-500 mb-4">
+                    <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg">Master Contract vs. Certificate of Insurance</h3>
+                    <div class="grid md:grid-cols-2 gap-4 mt-3">
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-semibold text-gray-800 dark:text-gray-200">Master Contract</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Issued to the <strong>group sponsor</strong> (employer, association). Contains all the terms, conditions, and benefits of the plan. This is the actual policy.</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-semibold text-gray-800 dark:text-gray-200">Certificate of Insurance</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Given to each <strong>individual member</strong>. A summary of coverage - NOT the actual policy. Tells you what you're covered for, but the master contract governs.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Two Types of Groups -->
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <!-- Employer Groups -->
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-l-4 border-blue-500">
+                        <h4 class="font-bold text-blue-800 dark:text-blue-300 text-lg mb-2">Employer-Sponsored Groups</h4>
+                        <ul class="text-gray-700 dark:text-gray-300 space-y-2 text-sm lg:text-base">
+                            <li>- Employees must meet <strong>time-of-service requirements</strong></li>
+                            <li>- Must work <strong>full-time</strong></li>
+                            <li>- <strong>Contributory</strong>: employee pays part of premium</li>
+                            <li>- <strong>Noncontributory</strong>: employer pays full premium</li>
+                        </ul>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm text-gray-600 dark:text-gray-400"><strong>Example:</strong> ABC Corp offers health insurance to all employees who have worked full-time for 90 days. Employees pay 25% of the premium (contributory). The company pays 75%.</p>
+                        </div>
+                    </div>
+
+                    <!-- Association Groups -->
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <h4 class="font-bold text-green-800 dark:text-green-300 text-lg mb-2">Association Groups</h4>
+                        <ul class="text-gray-700 dark:text-gray-300 space-y-2 text-sm lg:text-base">
+                            <li>- Must have <strong>100+ members</strong></li>
+                            <li>- Organized for a purpose <strong>other than insurance</strong></li>
+                            <li>- Must have been active for <strong>2+ years</strong></li>
+                            <li>- Must have a <strong>constitution and bylaws</strong></li>
+                            <li>- Must hold <strong>annual meetings</strong></li>
+                        </ul>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm text-gray-600 dark:text-gray-400"><strong>Example:</strong> The National Association of Realtors (200,000+ members, organized for professional development) offers group health insurance to its members. The association exists for realtors - the insurance is a member benefit, not the reason it exists.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Group Underwriting -->
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 rounded-r-lg mb-4">
+                    <p class="font-bold text-amber-800 dark:text-amber-300 text-lg mb-2">Group Underwriting - How It Differs from Individual</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-3">Group underwriting focuses on the <strong>group as a whole</strong>, not on individual members. This is a fundamental concept.</p>
+                    <ul class="text-gray-700 dark:text-gray-300 space-y-2 text-sm lg:text-base">
+                        <li>- Every eligible member is covered <strong>regardless of health condition, age, sex, or occupation</strong></li>
+                        <li>- Evidence of insurability is usually <strong>NOT required</strong></li>
+                        <li>- Cost varies by the group's <strong>male/female ratio</strong> and <strong>average age</strong></li>
+                        <li>- Prior claims experience of the group affects rates</li>
+                    </ul>
+                </div>
+
+                <!-- Anti-Adverse Selection -->
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg">Anti-Adverse Selection Measures</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg mb-3">Adverse selection = sick people rushing to buy insurance. Group plans fight this through:</p>
+                    <div class="grid md:grid-cols-2 gap-3">
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <ul class="text-gray-700 dark:text-gray-300 space-y-1 text-sm lg:text-base">
+                                <li>- <strong>Steady flow of people</strong> in and out of the group</li>
+                                <li>- <strong>Persistency</strong> (group staying with insurer)</li>
+                                <li>- <strong>Method of benefit selection</strong></li>
+                                <li>- <strong>Eligibility rules</strong></li>
+                            </ul>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <ul class="text-gray-700 dark:text-gray-300 space-y-1 text-sm lg:text-base">
+                                <li>- <strong>Contributory vs noncontributory</strong></li>
+                                <li>- <strong>Group size and composition</strong></li>
+                                <li>- <strong>Prior claims experience</strong></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Group Conversion -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">2. Group Conversion Rights</h2>
+
+                <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300 mb-4">When an employee leaves a group plan, they have the right to convert to an individual policy. This is a critical safety net - know every detail.</p>
+
+                <!-- Key Numbers -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-3 lg:gap-4 mb-6">
+                    <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded-lg text-center border border-gray-200 dark:border-gray-600">
+                        <p class="text-2xl lg:text-3xl font-bold text-purple-600 dark:text-purple-400">31</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Days to initiate conversion</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded-lg text-center border border-gray-200 dark:border-gray-600">
+                        <p class="text-2xl lg:text-3xl font-bold text-green-600 dark:text-green-400">NO</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Evidence of insurability</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded-lg text-center border border-gray-200 dark:border-gray-600">
+                        <p class="text-2xl lg:text-3xl font-bold text-red-600 dark:text-red-400">CANNOT</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Deny coverage</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded-lg text-center border border-gray-200 dark:border-gray-600">
+                        <p class="text-2xl lg:text-3xl font-bold text-amber-600 dark:text-amber-400">CAN</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Charge higher premium</p>
+                    </div>
+                </div>
+
+                <!-- Conversion Rules -->
+                <div class="space-y-3 mb-6">
+                    <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 border-l-4 border-green-500">
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Who qualifies:</strong> Any terminated employee - voluntary OR involuntary termination. The ONLY exception is termination for <strong>gross misconduct</strong>.</p>
+                    </div>
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 border-l-4 border-blue-500">
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>No proof of health needed:</strong> The insurer CANNOT require evidence of insurability. You do NOT need a medical exam.</p>
+                    </div>
+                    <div class="bg-amber-50 dark:bg-amber-900/20 rounded-lg p-4 border-l-4 border-amber-500">
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Premium evaluation:</strong> The insurer CAN evaluate you for premium purposes (standard or substandard rating) but CANNOT deny coverage outright.</p>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-4 border-l-4 border-red-500">
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Missed the window:</strong> If you don't convert within 31 days, you must go through full individual application with medical exam. The insurer CAN deny you at that point.</p>
+                    </div>
+                </div>
+
+                <!-- Conversion Example -->
+                <div class="bg-gray-50 dark:bg-gray-900/20 p-4 rounded-lg border-l-4 border-purple-500">
+                    <p class="font-semibold text-purple-800 dark:text-purple-300 mb-2">Real-World Scenario: Maria's Conversion</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Maria is laid off from her company after 8 years. She has diabetes and high blood pressure. She has been covered under the company's group health plan the entire time.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Maria applies to convert her group coverage to an individual policy on day 25 after her termination.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> The insurer MUST issue her an individual policy. They cannot deny her despite her diabetes and high blood pressure. They CAN charge her a higher premium based on her health conditions (substandard rate). The benefits may be different from what she had under the group plan, but she will have coverage. If Maria had waited until day 35, she would have missed the 31-day window and would need to go through full underwriting - where she could be denied.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: COBRA -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">3. COBRA (Consolidated Omnibus Budget Reconciliation Act)</h2>
+
+                <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300 mb-4">COBRA allows employees and their dependents to CONTINUE their existing group health coverage after a qualifying event. Unlike conversion (which creates a new individual policy), COBRA keeps you on the same group plan.</p>
+
+                <!-- COBRA Key Numbers -->
+                <div class="grid grid-cols-2 md:grid-cols-5 gap-3 lg:gap-4 mb-6">
+                    <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded-lg text-center border border-gray-200 dark:border-gray-600">
+                        <p class="text-2xl lg:text-3xl font-bold text-purple-600 dark:text-purple-400">20+</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Employees required</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded-lg text-center border border-gray-200 dark:border-gray-600">
+                        <p class="text-2xl lg:text-3xl font-bold text-blue-600 dark:text-blue-400">18</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Months - employee events</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded-lg text-center border border-gray-200 dark:border-gray-600">
+                        <p class="text-2xl lg:text-3xl font-bold text-green-600 dark:text-green-400">36</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Months - dependent events</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded-lg text-center border border-gray-200 dark:border-gray-600">
+                        <p class="text-2xl lg:text-3xl font-bold text-amber-600 dark:text-amber-400">60</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Days to elect COBRA</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded-lg text-center border border-gray-200 dark:border-gray-600">
+                        <p class="text-2xl lg:text-3xl font-bold text-red-600 dark:text-red-400">102%</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Max premium (group + 2% admin)</p>
+                    </div>
+                </div>
+
+                <!-- COBRA Timeline Visual -->
+                <div class="bg-gray-50 dark:bg-gray-900/20 p-4 rounded-lg border border-gray-200 dark:border-gray-700 mb-6">
+                    <h3 class="font-bold text-gray-800 dark:text-gray-100 mb-3">COBRA Timeline</h3>
+                    <div class="flex items-center gap-2 lg:gap-4 flex-wrap justify-center">
+                        <div class="bg-red-100 dark:bg-red-900/40 p-3 rounded-lg text-center">
+                            <p class="font-bold text-red-800 dark:text-red-300 text-sm">Qualifying Event</p>
+                            <p class="text-xs text-gray-600 dark:text-gray-400">Job loss, hours cut</p>
+                        </div>
+                        <div class="text-xl text-gray-400">-></div>
+                        <div class="bg-amber-100 dark:bg-amber-900/40 p-3 rounded-lg text-center">
+                            <p class="font-bold text-amber-800 dark:text-amber-300 text-sm">60 Days</p>
+                            <p class="text-xs text-gray-600 dark:text-gray-400">To elect COBRA</p>
+                        </div>
+                        <div class="text-xl text-gray-400">-></div>
+                        <div class="bg-green-100 dark:bg-green-900/40 p-3 rounded-lg text-center">
+                            <p class="font-bold text-green-800 dark:text-green-300 text-sm">COBRA Active</p>
+                            <p class="text-xs text-gray-600 dark:text-gray-400">Same group coverage</p>
+                        </div>
+                        <div class="text-xl text-gray-400">-></div>
+                        <div class="bg-blue-100 dark:bg-blue-900/40 p-3 rounded-lg text-center">
+                            <p class="font-bold text-blue-800 dark:text-blue-300 text-sm">18 or 36 Months</p>
+                            <p class="text-xs text-gray-600 dark:text-gray-400">COBRA expires</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Qualifying Events - 18 vs 36 months -->
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-l-4 border-blue-500">
+                        <h4 class="font-bold text-blue-800 dark:text-blue-300 text-lg mb-2">18 Months - Employee Qualifying Events</h4>
+                        <ul class="text-gray-700 dark:text-gray-300 space-y-2 text-sm lg:text-base">
+                            <li>- <strong>Voluntary termination</strong> (employee quits)</li>
+                            <li>- <strong>Involuntary termination</strong> (fired - but NOT for gross misconduct)</li>
+                            <li>- <strong>Reduction in hours</strong> (full-time to part-time)</li>
+                        </ul>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Memory trick: <strong>18 months for the EMPLOYEE</strong> - the person who was working</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <h4 class="font-bold text-green-800 dark:text-green-300 text-lg mb-2">36 Months - Dependent Qualifying Events</h4>
+                        <ul class="text-gray-700 dark:text-gray-300 space-y-2 text-sm lg:text-base">
+                            <li>- <strong>Death of the covered employee</strong></li>
+                            <li>- <strong>Divorce or legal separation</strong></li>
+                            <li>- <strong>Child aging out of coverage</strong></li>
+                            <li>- <strong>Employee becomes Medicare eligible</strong></li>
+                        </ul>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Memory trick: <strong>36 months for DEPENDENTS</strong> - they lost coverage through no action of their own, so they get more time</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Critical COBRA Rules -->
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 rounded-r-lg mb-4">
+                    <p class="font-bold text-amber-800 dark:text-amber-300 text-lg mb-2">Critical COBRA Rules</p>
+                    <ul class="text-gray-700 dark:text-gray-300 space-y-2 text-base lg:text-lg">
+                        <li>- Applies to group <strong>HEALTH insurance only</strong> - NOT group life insurance</li>
+                        <li>- Only for employers with <strong>20 or more employees</strong></li>
+                        <li>- COBRA <strong>continues</strong> the same group coverage (does NOT create a new policy)</li>
+                        <li>- Maximum premium: <strong>102% of the group rate</strong> (100% + 2% admin fee)</li>
+                        <li>- Must elect within <strong>60 days</strong> of the qualifying event</li>
+                        <li>- Children covered to age <strong>26</strong> under ACA</li>
+                    </ul>
+                </div>
+
+                <!-- COBRA Disqualifying Events -->
+                <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-red-500 mb-4">
+                    <h3 class="font-bold text-red-800 dark:text-red-300 text-lg">When COBRA Ends (Disqualifying Events)</h3>
+                    <ul class="text-gray-700 dark:text-gray-300 space-y-2 text-sm lg:text-base mt-2">
+                        <li>- <strong>Nonpayment of premium</strong></li>
+                        <li>- Person obtains <strong>other group coverage</strong></li>
+                        <li>- Person becomes <strong>Medicare eligible</strong></li>
+                        <li>- Employer <strong>terminates ALL group health plans</strong></li>
+                        <li>- The maximum continuation period expires (18 or 36 months)</li>
+                    </ul>
+                </div>
+
+                <!-- COBRA Example -->
+                <div class="bg-gray-50 dark:bg-gray-900/20 p-4 rounded-lg border-l-4 border-purple-500">
+                    <p class="font-semibold text-purple-800 dark:text-purple-300 mb-2">Real-World Scenario: James Loses His Job</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> James works for a company with 50 employees. He is laid off (involuntary termination, not gross misconduct). He, his wife, and his 2 kids were covered under the group health plan.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> James elects COBRA within 45 days of his termination. The group premium was $1,200/month.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> James and his family continue on the EXACT same group health plan for up to <strong>18 months</strong>. He pays up to $1,224/month (102% of $1,200). He gets the same benefits, same network, same coverage - just at his own expense. If James finds a new job with health insurance after 8 months, COBRA ends because he has other group coverage.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Conversion vs COBRA Comparison -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">4. Conversion vs. COBRA - Know the Difference</h2>
+
+                <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300 mb-4">The exam WILL test whether you know the difference. These are two completely different options for someone leaving a group plan.</p>
+
+                <div class="overflow-x-auto mb-6">
+                    <table class="w-full text-sm lg:text-base">
+                        <thead>
+                            <tr class="bg-purple-600 text-white">
+                                <th class="p-3 lg:p-4 text-left rounded-tl-lg">Feature</th>
+                                <th class="p-3 lg:p-4 text-left">Conversion</th>
+                                <th class="p-3 lg:p-4 text-left rounded-tr-lg">COBRA</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">What happens</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Creates a NEW individual policy</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">CONTINUES existing group coverage</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Time to elect</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">31 days</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">60 days</td>
+                            </tr>
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Duration</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Permanent (as long as you pay)</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">18 or 36 months max</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Premium</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Individual rate (usually higher)</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Max 102% of group rate</td>
+                            </tr>
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Benefits</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">May differ from group plan</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Exact same group benefits</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Applies to</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Group health AND group life</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Group HEALTH only</td>
+                            </tr>
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Employer size</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Any size</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">20+ employees</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Evidence of insurability</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Not required</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Not required</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Key Distinction -->
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 rounded-r-lg">
+                    <p class="font-bold text-amber-800 dark:text-amber-300">The Big Distinction to Remember</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mt-2"><strong>Conversion</strong> = new policy, permanent, may have different benefits. <strong>COBRA</strong> = same plan, temporary, same benefits. Think of it like this: Conversion is getting a new car; COBRA is renting your old car for a while longer.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: HIPAA -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">5. HIPAA (Health Insurance Portability and Accountability Act)</h2>
+
+                <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300 mb-4">HIPAA is a federal law that protects people moving between group and individual health insurance. It focuses on portability - making sure your coverage history counts when you switch plans.</p>
+
+                <!-- HIPAA Core Rules -->
+                <div class="space-y-4 mb-6">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500">
+                        <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg">Group Plan Protections</h3>
+                        <ul class="text-gray-700 dark:text-gray-300 space-y-2 text-base lg:text-lg mt-2">
+                            <li>- Cannot discriminate based on <strong>health status</strong> for group plan eligibility</li>
+                            <li>- Cannot discriminate based on <strong>medical conditions, claims experience, genetic information, or disability</strong></li>
+                            <li>- Must provide <strong>special enrollment opportunities</strong> (marriage, birth, loss of other coverage)</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-green-500">
+                        <h3 class="font-bold text-green-800 dark:text-green-300 text-lg">Individual Market Protections</h3>
+                        <ul class="text-gray-700 dark:text-gray-300 space-y-2 text-base lg:text-lg mt-2">
+                            <li>- <strong>Guaranteed access</strong> for qualifying individuals</li>
+                            <li>- <strong>Guaranteed renewability</strong> of individual policies</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Creditable Coverage -->
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-purple-500 mb-4">
+                    <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg">Creditable Coverage</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">HIPAA introduced the concept of <strong>creditable coverage</strong> - day-for-day credit against any pre-existing condition exclusion period when you move between plans.</p>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                        <p class="font-semibold text-gray-700 dark:text-gray-300 text-sm">Example:</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base mt-1">Your new plan has a 12-month pre-existing condition exclusion. But you had 10 months of creditable coverage from your previous plan. Under HIPAA, 10 months is subtracted from 12: you only have a 2-month waiting period for pre-existing conditions, not 12.</p>
+                    </div>
+                </div>
+
+                <!-- ACA Update -->
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 rounded-r-lg mb-4">
+                    <p class="font-bold text-amber-800 dark:text-amber-300">Important ACA Update</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mt-2">The Affordable Care Act (ACA) went further than HIPAA and <strong>eliminated pre-existing condition exclusions entirely</strong>. It also capped waiting periods at <strong>90 days maximum</strong>. However, the exam still tests HIPAA concepts because they remain part of the underlying federal law framework.</p>
+                </div>
+
+                <!-- HIPAA Conversion Requirements -->
+                <div class="bg-indigo-50 dark:bg-indigo-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-indigo-500 mb-4">
+                    <h3 class="font-bold text-indigo-800 dark:text-indigo-300 text-lg">HIPAA Requirements to Convert Group to Individual</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg mb-3">To qualify for HIPAA guaranteed access to an individual policy, ALL of these must be true:</p>
+                    <div class="grid md:grid-cols-2 gap-3">
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded flex items-start">
+                            <span class="bg-indigo-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>18 months</strong> of continuous creditable coverage</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded flex items-start">
+                            <span class="bg-indigo-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Most recent coverage was a <strong>group plan</strong></p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded flex items-start">
+                            <span class="bg-indigo-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>Used up all COBRA</strong> coverage (if available)</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded flex items-start">
+                            <span class="bg-indigo-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">4</span>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>Not</strong> eligible for Medicare or Medicaid</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded flex items-start">
+                            <span class="bg-indigo-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">5</span>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Have <strong>no other insurance</strong> available</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded flex items-start">
+                            <span class="bg-indigo-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">6</span>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Apply within <strong>63 days</strong></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- HIPAA Example -->
+                <div class="bg-gray-50 dark:bg-gray-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                    <p class="font-semibold text-green-800 dark:text-green-300 mb-2">Real-World Scenario: Carlos and HIPAA</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Carlos worked for a company for 3 years with group health insurance. He was laid off and used his full 18 months of COBRA. He has a heart condition. He is not eligible for Medicare, and he has no spouse's plan available.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> With COBRA expired, Carlos applies for an individual health policy within 50 days.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Carlos qualifies under HIPAA. He has 18+ months of creditable coverage, his most recent coverage was group, he exhausted COBRA, he's not Medicare eligible, he has no other insurance, and he applied within 63 days. An individual insurer MUST offer him guaranteed access to a policy. They cannot deny him, even with his heart condition.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cheat Sheet -->
+        <section id="cheat-sheet" class="mb-8 lg:mb-10">
+            <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 border-2 border-dashed border-gray-300 dark:border-gray-600">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100">Cheat Sheet</h2>
+                    <span class="text-sm text-gray-500 dark:text-gray-400">Print this page for quick reference</span>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Group Basics:</p>
+                        <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-1">
+                            <li>Must be formed for purpose OTHER than insurance</li>
+                            <li>Master contract to sponsor, certificates to members</li>
+                            <li>Underwriting on GROUP, not individuals</li>
+                            <li>No evidence of insurability required</li>
+                            <li>Association: 100+ members, 2+ years, bylaws</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Conversion:</p>
+                        <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-1">
+                            <li>31 days to convert after termination</li>
+                            <li>No evidence of insurability</li>
+                            <li>Insurer CANNOT deny, CAN charge more</li>
+                            <li>Creates NEW individual policy</li>
+                            <li>Miss 31 days = full underwriting required</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">COBRA:</p>
+                        <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-1">
+                            <li>20+ employees required</li>
+                            <li>18 months = employee events</li>
+                            <li>36 months = dependent events</li>
+                            <li>60 days to elect</li>
+                            <li>102% max premium</li>
+                            <li>Health ONLY, not life</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">COBRA Ends When:</p>
+                        <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-1">
+                            <li>Nonpayment of premium</li>
+                            <li>Other group coverage obtained</li>
+                            <li>Medicare eligible</li>
+                            <li>Employer terminates all plans</li>
+                            <li>Max period expires</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">HIPAA Conversion (all required):</p>
+                        <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-1">
+                            <li>18 months creditable coverage</li>
+                            <li>Most recent = group plan</li>
+                            <li>Exhausted COBRA</li>
+                            <li>Not Medicare/Medicaid eligible</li>
+                            <li>No other insurance</li>
+                            <li>Apply within 63 days</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Key Numbers:</p>
+                        <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-1">
+                            <li>31 days = conversion window</li>
+                            <li>60 days = COBRA election</li>
+                            <li>63 days = HIPAA application</li>
+                            <li>18 months = COBRA (employee)</li>
+                            <li>36 months = COBRA (dependent)</li>
+                            <li>102% = max COBRA premium</li>
+                            <li>Age 26 = child coverage under ACA</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Traps -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-xl p-5 lg:p-6">
+                <h2 class="text-2xl font-bold text-red-800 dark:text-red-300 mb-4">Exam Trap Alerts</h2>
+                <div class="space-y-3">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">1. COBRA is Health Only - NOT Life</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The exam will try to trick you by asking if COBRA applies to group life insurance. It does NOT. COBRA only applies to group HEALTH plans. Conversion rights apply to both health and life.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">2. 31 Days vs 60 Days vs 63 Days</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">These three numbers are constantly tested. <strong>31 days</strong> = conversion to individual. <strong>60 days</strong> = COBRA election. <strong>63 days</strong> = HIPAA individual market application. If you mix these up, you'll get the question wrong. Memory trick: they go in alphabetical AND numerical order - Conversion (31), COBRA (60), Credit/HIPAA (63).</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">3. Conversion Creates a NEW Policy; COBRA Continues the OLD One</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">This is the fundamental distinction. If a question describes someone keeping the "same coverage, same benefits, same network" - that's COBRA. If someone gets "a new policy with different benefits" - that's conversion.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">4. 18 Months for Employee, 36 Months for Dependents</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The exam will describe a scenario where an employee dies and ask how long the spouse gets COBRA. The answer is 36 months - because it is a dependent qualifying event (death of the employee). If the employee simply quit, it would be 18 months for everyone.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">5. Gross Misconduct = No COBRA, No Conversion</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Termination for gross misconduct is the exception to both COBRA and conversion. If someone is fired for theft, fraud, or violence, they do NOT qualify for COBRA or conversion rights. Regular termination (poor performance, layoffs) DOES qualify.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">6. COBRA Requires 20+ Employees</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The exam may describe a small business with 15 employees. COBRA does NOT apply. Only employers with 20 or more employees must offer COBRA. Some states have "mini-COBRA" laws for smaller employers, but the standard federal COBRA requires 20+.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">7. Group Formed for Insurance = NOT a Valid Group</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">If a question describes people forming a group specifically to get cheaper insurance rates, this is NOT a valid group for group insurance purposes. The group must have been formed for a purpose other than obtaining insurance - a company, trade association, union, etc. Insurance must be incidental.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Reference Summary -->
+        <div class="bg-gradient-to-r from-purple-600 to-purple-800 rounded-xl p-6 text-white mb-8">
+            <h2 class="text-2xl font-bold mb-6">Quick Reference Summary</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div class="bg-white/20 rounded-lg p-4">
+                    <p class="font-bold">Group Purpose</p>
+                    <p class="text-sm text-purple-100">Formed for reason OTHER than insurance</p>
+                </div>
+                <div class="bg-white/20 rounded-lg p-4">
+                    <p class="font-bold">Master Contract</p>
+                    <p class="text-sm text-purple-100">To sponsor; certificates to individuals</p>
+                </div>
+                <div class="bg-white/20 rounded-lg p-4">
+                    <p class="font-bold">Conversion Window</p>
+                    <p class="text-sm text-purple-100">31 days - creates new individual policy</p>
+                </div>
+                <div class="bg-white/20 rounded-lg p-4">
+                    <p class="font-bold">COBRA Duration</p>
+                    <p class="text-sm text-purple-100">18 months employee / 36 months dependent</p>
+                </div>
+                <div class="bg-white/20 rounded-lg p-4">
+                    <p class="font-bold">COBRA Premium</p>
+                    <p class="text-sm text-purple-100">Max 102% of group rate</p>
+                </div>
+                <div class="bg-white/20 rounded-lg p-4">
+                    <p class="font-bold">COBRA Scope</p>
+                    <p class="text-sm text-purple-100">Health only, 20+ employees, 60 days to elect</p>
+                </div>
+                <div class="bg-white/20 rounded-lg p-4">
+                    <p class="font-bold">HIPAA Creditable Coverage</p>
+                    <p class="text-sm text-purple-100">Day-for-day credit against pre-existing exclusions</p>
+                </div>
+                <div class="bg-white/20 rounded-lg p-4">
+                    <p class="font-bold">HIPAA Application</p>
+                    <p class="text-sm text-purple-100">63 days, 18 months coverage, COBRA exhausted</p>
+                </div>
+                <div class="bg-white/20 rounded-lg p-4">
+                    <p class="font-bold">ACA Impact</p>
+                    <p class="text-sm text-purple-100">Eliminated pre-existing exclusions, 90-day max wait</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Navigation -->
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="../part-4/index.html" class="text-gray-300 hover:text-white flex items-center gap-1">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                    Part 4: Long-Term Care
+                </a>
+                <span class="text-gray-400">Part 5 of 6</span>
+                <a href="../part-6/index.html" class="text-gray-300 hover:text-white flex items-center gap-1">
+                    Part 6: Limited Benefit
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

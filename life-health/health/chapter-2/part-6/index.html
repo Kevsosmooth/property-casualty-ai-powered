@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 6: Limited Benefit Policies - Ch 2 Health Insurance</title>
+    <link rel="icon" type="image/svg+xml" href="../../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') { document.documentElement.classList.remove('dark'); }
+        function toggleTheme() { document.documentElement.classList.toggle('dark'); localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light'); }
+    </script>
+    <link rel="stylesheet" href="../../../../css/styles.css">
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors duration-300">
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/></svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>
+        </button>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-purple-600 to-purple-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <nav class="text-purple-200 text-sm mb-3">
+                <a href="../../../../index.html" class="hover:text-white">Home</a>
+                <span class="mx-2">/</span>
+                <a href="../../index.html" class="hover:text-white">Health Insurance</a>
+                <span class="mx-2">/</span>
+                <a href="../index.html" class="hover:text-white">Chapter 2</a>
+                <span class="mx-2">/</span>
+                <span class="text-white">Part 6</span>
+            </nav>
+            <h1 class="text-3xl lg:text-4xl font-bold">Chapter 2, Part 6: Limited Benefit Policies</h1>
+            <p class="mt-2 text-purple-100">Cancer policies, critical illness, and worksite coverage - the gap-fillers</p>
+        </div>
+    </header>
+
+    <!-- Sticky Part Navigation -->
+    <nav class="sticky top-0 z-40 bg-white dark:bg-gray-800 shadow-md border-b border-gray-200 dark:border-gray-700">
+        <div class="container mx-auto px-4 overflow-x-auto">
+            <div class="flex space-x-1 py-2 text-sm min-w-max">
+                <a href="../part-1/index.html" class="px-3 py-1.5 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">Part 1</a>
+                <a href="../part-2/index.html" class="px-3 py-1.5 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">Part 2</a>
+                <a href="../part-3/index.html" class="px-3 py-1.5 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">Part 3</a>
+                <a href="../part-4/index.html" class="px-3 py-1.5 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">Part 4</a>
+                <a href="../part-5/index.html" class="px-3 py-1.5 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">Part 5</a>
+                <a href="index.html" class="px-3 py-1.5 rounded-full bg-purple-100 dark:bg-purple-900 text-purple-700 dark:text-purple-300 font-semibold">Part 6</a>
+                <a href="../recap/index.html" class="px-3 py-1.5 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">Recap</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-5xl lg:max-w-7xl">
+
+        <!-- 5 Things You Must Know -->
+        <div class="bg-gradient-to-r from-purple-100 to-indigo-100 dark:from-purple-900/40 dark:to-indigo-900/40 rounded-xl p-6 mb-8 border border-purple-300 dark:border-purple-700">
+            <h3 class="text-xl font-bold text-purple-800 dark:text-purple-200 mb-4">Start Here: 5 Things You MUST Know</h3>
+            <div class="grid md:grid-cols-2 gap-3">
+                <div class="flex items-start">
+                    <span class="bg-purple-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
+                    <p class="text-gray-700 dark:text-gray-300">Limited benefit policies cover <strong>specific accidents or sicknesses only</strong> - they are NOT comprehensive health plans</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-purple-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>Cancer/Dread Disease</strong> = covers ONE specific disease. <strong>Critical Illness</strong> = covers MULTIPLE diseases</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-purple-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
+                    <p class="text-gray-700 dark:text-gray-300">Cancer policies pay a <strong>lump sum at first diagnosis</strong> with no restrictions on how the money is spent</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-purple-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">4</span>
+                    <p class="text-gray-700 dark:text-gray-300">Critical illness requires the insured to <strong>survive a minimum number of days</strong> after diagnosis to collect</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-purple-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">5</span>
+                    <p class="text-gray-700 dark:text-gray-300">Benefits can be paid on an <strong>expense-paid (reimbursement) basis</strong> or an <strong>indemnity (fixed-dollar) basis</strong></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 1: Overview -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">1. What Are Limited Benefit Policies?</h2>
+
+                <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300 mb-4">Limited benefit policies are supplemental policies that provide coverage for a <strong>specific type of accident or sickness</strong>. They are NOT designed to replace your regular health insurance - they fill the gaps that major medical doesn't cover.</p>
+
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-purple-500 mb-4">
+                    <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg">Key Characteristics</h3>
+                    <ul class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg space-y-2">
+                        <li>- Must <strong>specify the type of accident or sickness</strong> covered</li>
+                        <li>- Must specify the <strong>limited perils</strong> (specific risks) covered</li>
+                        <li>- Must specify the <strong>benefit amounts</strong> that will be paid</li>
+                        <li>- Coverage is narrow but provides targeted financial protection</li>
+                    </ul>
+                </div>
+
+                <!-- Two Payment Types -->
+                <h3 class="font-bold text-gray-800 dark:text-gray-100 text-lg mb-3">Two Ways Benefits Are Paid</h3>
+                <div class="grid md:grid-cols-2 gap-4 mb-4">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-l-4 border-blue-500">
+                        <h4 class="font-bold text-blue-800 dark:text-blue-300 mb-2">Expense-Paid (Reimbursement)</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">The insurer reimburses you for <strong>actual expenses incurred</strong>, up to the policy limit. You submit bills and get paid back.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm text-gray-600 dark:text-gray-400"><strong>Example:</strong> Your cancer policy has a $500/day hospital benefit. You're hospitalized for 5 days and billed $2,200. The policy reimburses you $2,200 (actual cost, under the $2,500 max).</p>
+                        </div>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <h4 class="font-bold text-green-800 dark:text-green-300 mb-2">Indemnity (Fixed-Dollar)</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">The insurer pays a <strong>fixed dollar amount</strong> for each covered event, regardless of actual expenses. You keep the money no matter what.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm text-gray-600 dark:text-gray-400"><strong>Example:</strong> Your cancer policy pays $300/day for hospital confinement. You're hospitalized 5 days. You get $1,500 flat - even if your actual bill was only $1,000. You keep the extra $500.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 rounded-r-lg">
+                    <p class="font-bold text-amber-800 dark:text-amber-300">Exam Alert!</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">The exam may ask about the difference between reimbursement and indemnity. Remember: <strong>reimbursement = actual costs</strong> and <strong>indemnity = fixed amount regardless of cost</strong>. Indemnity policies let you keep any excess payment.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Cancer / Specified Disease -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">2. Cancer and Specified Disease (Dread Disease) Policies</h2>
+
+                <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300 mb-4">These are the most common type of limited benefit policy. They provide benefits for ONE specific disease - most commonly cancer, but they can also cover heart disease or other individual diseases.</p>
+
+                <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-red-500 mb-4">
+                    <h3 class="font-bold text-red-800 dark:text-red-300 text-lg">Dread Disease / Limited Risk Policy</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">A policy that provides benefits for a <strong>single specific disease</strong>. Also called a "limited risk" policy because it covers only one particular peril.</p>
+                    <ul class="text-gray-700 dark:text-gray-300 mt-2 space-y-1 text-base lg:text-lg">
+                        <li>- Benefits are typically <strong>scheduled fixed-dollar indemnity</strong> amounts</li>
+                        <li>- Pays for specified events: hospital confinement, chemotherapy, radiation, surgery</li>
+                        <li>- Each event has its own dollar amount listed in the benefit schedule</li>
+                    </ul>
+                </div>
+
+                <!-- Cancer Policy Specifics -->
+                <div class="bg-indigo-50 dark:bg-indigo-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-indigo-500 mb-4">
+                    <h3 class="font-bold text-indigo-800 dark:text-indigo-300 text-lg">Cancer Policy - Key Features</h3>
+                    <div class="space-y-3 mt-3">
+                        <div class="flex items-start">
+                            <span class="bg-indigo-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0 mt-1">1</span>
+                            <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Covers <strong>ONLY cancer</strong> - no other disease, no accidents, nothing else</p>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="bg-indigo-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0 mt-1">2</span>
+                            <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Pays a <strong>lump sum at first diagnosis</strong> - one big payment when cancer is first diagnosed</p>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="bg-indigo-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0 mt-1">3</span>
+                            <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Acts as a <strong>supplemental policy</strong> - fills the gap between traditional health coverage and actual cancer treatment costs</p>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="bg-indigo-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0 mt-1">4</span>
+                            <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>No restrictions on how the insured spends the money</strong> - pay medical bills, cover mortgage, anything</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Benefit Schedule Example -->
+                <div class="overflow-x-auto mb-4">
+                    <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Typical Cancer Policy Benefit Schedule</p>
+                    <table class="w-full text-sm lg:text-base">
+                        <thead>
+                            <tr class="bg-purple-600 text-white">
+                                <th class="p-3 lg:p-4 text-left rounded-tl-lg">Covered Event</th>
+                                <th class="p-3 lg:p-4 text-left rounded-tr-lg">Fixed Indemnity Payment</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 text-gray-800 dark:text-gray-200">First diagnosis of cancer</td>
+                                <td class="p-3 lg:p-4 font-bold text-green-600 dark:text-green-400">$10,000 - $50,000 lump sum</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <td class="p-3 lg:p-4 text-gray-800 dark:text-gray-200">Hospital confinement</td>
+                                <td class="p-3 lg:p-4 font-bold text-green-600 dark:text-green-400">$200 - $500 per day</td>
+                            </tr>
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 text-gray-800 dark:text-gray-200">Chemotherapy</td>
+                                <td class="p-3 lg:p-4 font-bold text-green-600 dark:text-green-400">$500 - $2,000 per treatment</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <td class="p-3 lg:p-4 text-gray-800 dark:text-gray-200">Radiation therapy</td>
+                                <td class="p-3 lg:p-4 font-bold text-green-600 dark:text-green-400">$300 - $1,500 per treatment</td>
+                            </tr>
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 text-gray-800 dark:text-gray-200">Surgery</td>
+                                <td class="p-3 lg:p-4 font-bold text-green-600 dark:text-green-400">$1,000 - $5,000 per surgery</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Example -->
+                <div class="bg-gray-50 dark:bg-gray-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                    <p class="font-semibold text-red-800 dark:text-red-300 mb-2">Real-World Scenario: Linda's Cancer Diagnosis</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Linda has a major medical plan through work AND a separate cancer policy that pays $25,000 at first diagnosis plus $400/day for hospital confinement. She is diagnosed with breast cancer.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Linda receives the $25,000 lump sum immediately upon her first cancer diagnosis. She is then hospitalized for 10 days for surgery and recovery, receiving $4,000 ($400 x 10 days). Her major medical covers most hospital and treatment bills separately.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Linda receives $29,000 total from her cancer policy. She uses $15,000 to cover copays and deductibles from her major medical plan and uses the remaining $14,000 to pay her mortgage while she recovers. There are <strong>no restrictions</strong> on how she spends it.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Critical Illness -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">3. Critical Illness Policies</h2>
+
+                <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300 mb-4">Critical illness is the "upgraded" version of a dread disease policy. Instead of covering just ONE disease, it covers MULTIPLE serious illnesses in a single policy.</p>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-4">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg">Critical Illness - Key Features</h3>
+                    <ul class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg space-y-2">
+                        <li>- Covers <strong>multiple illnesses</strong> in one policy (heart attack, stroke, cancer, renal failure, etc.)</li>
+                        <li>- Pays a <strong>lump sum upon diagnosis AND survival</strong></li>
+                        <li>- Usually specifies a <strong>minimum number of days the insured must survive</strong> after diagnosis (commonly 30 days)</li>
+                        <li>- The survival requirement is the big distinction from cancer policies</li>
+                    </ul>
+                </div>
+
+                <!-- Common Covered Illnesses Grid -->
+                <h3 class="font-bold text-gray-800 dark:text-gray-100 text-lg mb-3">Commonly Covered Critical Illnesses</h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center border border-gray-200 dark:border-gray-600">
+                        <p class="text-lg font-bold text-red-600 dark:text-red-400">Heart Attack</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center border border-gray-200 dark:border-gray-600">
+                        <p class="text-lg font-bold text-red-600 dark:text-red-400">Stroke</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center border border-gray-200 dark:border-gray-600">
+                        <p class="text-lg font-bold text-red-600 dark:text-red-400">Cancer</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center border border-gray-200 dark:border-gray-600">
+                        <p class="text-lg font-bold text-red-600 dark:text-red-400">Renal Failure</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center border border-gray-200 dark:border-gray-600">
+                        <p class="text-lg font-bold text-red-600 dark:text-red-400">Organ Transplant</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center border border-gray-200 dark:border-gray-600">
+                        <p class="text-lg font-bold text-red-600 dark:text-red-400">Paralysis</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center border border-gray-200 dark:border-gray-600">
+                        <p class="text-lg font-bold text-red-600 dark:text-red-400">Blindness</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center border border-gray-200 dark:border-gray-600">
+                        <p class="text-lg font-bold text-red-600 dark:text-red-400">Coronary Bypass</p>
+                    </div>
+                </div>
+
+                <!-- Survival Requirement -->
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 rounded-r-lg mb-4">
+                    <p class="font-bold text-amber-800 dark:text-amber-300">The Survival Requirement - This is Heavily Tested</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mt-2">Critical illness policies typically require the insured to <strong>survive a minimum number of days after diagnosis</strong> (commonly 30 days) before the lump-sum benefit is paid. If the insured dies before the survival period ends, the benefit is typically NOT paid. This prevents claims where the disease causes immediate death before the insurer can verify the diagnosis.</p>
+                </div>
+
+                <!-- Example -->
+                <div class="bg-gray-50 dark:bg-gray-900/20 p-4 rounded-lg border-l-4 border-blue-500">
+                    <p class="font-semibold text-blue-800 dark:text-blue-300 mb-2">Real-World Scenario: Robert's Heart Attack</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Robert has a critical illness policy with a $50,000 lump-sum benefit and a 30-day survival requirement. He suffers a major heart attack.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Robert is rushed to the hospital and diagnosed with a heart attack (one of the covered conditions). He survives surgery and begins recovery. After 30 days, he is still alive.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Because Robert was diagnosed with a covered illness AND survived the required 30-day period, his critical illness policy pays the full <strong>$50,000 lump sum</strong>. He uses the money for cardiac rehab copays, household expenses while he can't work, and modifications to his home. If Robert had passed away on day 15, the benefit would NOT have been paid.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Cancer vs Critical Illness Comparison -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">4. Cancer Policy vs. Critical Illness - Side by Side</h2>
+
+                <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300 mb-4">This comparison is almost guaranteed to appear on the exam. Know the differences cold.</p>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <!-- Cancer -->
+                    <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-4 border-l-4 border-red-500">
+                        <h4 class="font-bold text-red-800 dark:text-red-300 mb-3 text-lg">Cancer / Dread Disease Policy</h4>
+                        <ul class="text-gray-700 dark:text-gray-300 space-y-2">
+                            <li><strong>Diseases covered:</strong> ONE specific disease (cancer only, heart disease only, etc.)</li>
+                            <li><strong>Payment trigger:</strong> First diagnosis</li>
+                            <li><strong>Survival required?</strong> No - paid at diagnosis</li>
+                            <li><strong>Benefit type:</strong> Lump sum at diagnosis PLUS scheduled indemnity for events (hospital, chemo, etc.)</li>
+                            <li><strong>Spending restrictions:</strong> None - spend it however you want</li>
+                        </ul>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm text-gray-600 dark:text-gray-400"><strong>Best for:</strong> Someone with a strong family history of ONE specific disease who wants targeted protection</p>
+                        </div>
+                    </div>
+
+                    <!-- Critical Illness -->
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 border-l-4 border-blue-500">
+                        <h4 class="font-bold text-blue-800 dark:text-blue-300 mb-3 text-lg">Critical Illness Policy</h4>
+                        <ul class="text-gray-700 dark:text-gray-300 space-y-2">
+                            <li><strong>Diseases covered:</strong> MULTIPLE serious illnesses (heart attack, stroke, cancer, renal failure, etc.)</li>
+                            <li><strong>Payment trigger:</strong> Diagnosis AND survival</li>
+                            <li><strong>Survival required?</strong> Yes - must survive minimum days after diagnosis</li>
+                            <li><strong>Benefit type:</strong> Lump sum only (no scheduled per-event payments)</li>
+                            <li><strong>Spending restrictions:</strong> None - spend it however you want</li>
+                        </ul>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm text-gray-600 dark:text-gray-400"><strong>Best for:</strong> Someone who wants broader protection against any major illness, not just one</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Comparison Table -->
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm lg:text-base">
+                        <thead>
+                            <tr class="bg-purple-600 text-white">
+                                <th class="p-3 lg:p-4 text-left rounded-tl-lg">Feature</th>
+                                <th class="p-3 lg:p-4 text-left">Cancer / Dread Disease</th>
+                                <th class="p-3 lg:p-4 text-left rounded-tr-lg">Critical Illness</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Number of diseases</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">ONE</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">MULTIPLE</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Must survive?</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">No</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Yes (minimum days)</td>
+                            </tr>
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Payment type</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Lump sum + per-event schedule</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Lump sum only</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Spending restrictions</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">None</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">None</td>
+                            </tr>
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Also called</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Dread disease / limited risk</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Critical illness</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Worksite / Employer-Sponsored -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">5. Worksite (Employer-Sponsored) Coverage</h2>
+
+                <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300 mb-4">Worksite policies are limited benefit policies offered through the employer as part of a group benefit package. These are sometimes called "voluntary benefits" because employees can choose to buy them or not.</p>
+
+                <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-green-500 mb-4">
+                    <h3 class="font-bold text-green-800 dark:text-green-300 text-lg">Key Rules for Worksite Coverage</h3>
+                    <div class="space-y-3 mt-3">
+                        <div class="flex items-start">
+                            <span class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0 mt-1">1</span>
+                            <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Employer provides group coverage</strong> - the employer sponsors the plan and typically handles enrollment</p>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0 mt-1">2</span>
+                            <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Service requirements</strong> - employees must meet minimum service requirements (e.g., worked at the company for 90 days)</p>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0 mt-1">3</span>
+                            <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Full-time work required</strong> - employees must work full-time to be eligible</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contributory vs Noncontributory -->
+                <div class="grid md:grid-cols-2 gap-4 mb-4">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-l-4 border-blue-500">
+                        <h4 class="font-bold text-blue-800 dark:text-blue-300 mb-2">Contributory Plan</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Both employer and employee share the cost.</strong> The employee pays part of the premium through payroll deductions.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm text-gray-600 dark:text-gray-400"><strong>Example:</strong> The employer pays 60% of the cancer policy premium, and the employee pays 40% through automatic paycheck deductions.</p>
+                        </div>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <h4 class="font-bold text-green-800 dark:text-green-300 mb-2">Noncontributory Plan</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>The employer pays 100% of the cost.</strong> The employee pays nothing for the coverage.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm text-gray-600 dark:text-gray-400"><strong>Example:</strong> The company provides a basic critical illness policy to all full-time employees at no cost to them - it's part of the benefits package.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Example -->
+                <div class="bg-gray-50 dark:bg-gray-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                    <p class="font-semibold text-green-800 dark:text-green-300 mb-2">Real-World Scenario: Mike's Worksite Benefits</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Mike starts a new full-time job at a manufacturing company. After 90 days (the service requirement), he becomes eligible for the company's benefits package. The employer offers a voluntary cancer policy and a critical illness policy through payroll deduction.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Mike enrolls in the cancer policy (contributory - he pays $15/month through payroll deduction). The company also provides a basic critical illness policy at no cost to Mike (noncontributory).</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Mike now has two limited benefit policies through his workplace. If he's diagnosed with cancer, his cancer policy pays a lump sum. If he has a heart attack or stroke, his critical illness policy covers it. Both work alongside his regular group health insurance, giving him extra financial protection.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: When Do Limited Policies Make Sense? -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">6. When Do Limited Benefit Policies Make Sense?</h2>
+
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border border-green-200 dark:border-green-800">
+                        <p class="font-bold text-green-800 dark:text-green-300 mb-2">GOOD Reasons to Buy</p>
+                        <ul class="text-gray-700 dark:text-gray-300 space-y-2 text-base lg:text-lg">
+                            <li>- Strong family history of a specific disease</li>
+                            <li>- High deductibles on your major medical plan that leave a financial gap</li>
+                            <li>- Supplementing existing coverage for catastrophic illness costs</li>
+                            <li>- Available at low cost through employer worksite plan</li>
+                            <li>- Want financial protection beyond just medical bills (lost income, travel to treatment, etc.)</li>
+                        </ul>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border border-red-200 dark:border-red-800">
+                        <p class="font-bold text-red-800 dark:text-red-300 mb-2">NOT a Replacement For</p>
+                        <ul class="text-gray-700 dark:text-gray-300 space-y-2 text-base lg:text-lg">
+                            <li>- Comprehensive health insurance</li>
+                            <li>- Major medical coverage</li>
+                            <li>- Your only health policy</li>
+                            <li>- Disability income insurance</li>
+                            <li>- General protection against all illnesses</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cheat Sheet -->
+        <section id="cheat-sheet" class="mb-8 lg:mb-10">
+            <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 border-2 border-dashed border-gray-300 dark:border-gray-600">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100">Cheat Sheet</h2>
+                    <span class="text-sm text-gray-500 dark:text-gray-400">Print this page for quick reference</span>
+                </div>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Limited Benefit Basics:</p>
+                        <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-1">
+                            <li>Cover specific accidents or sickness ONLY</li>
+                            <li>Must specify: type, perils, and amounts</li>
+                            <li>Reimbursement = actual costs paid back</li>
+                            <li>Indemnity = fixed dollar amount (keep excess)</li>
+                            <li>Supplemental - NOT a replacement for major medical</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Cancer / Dread Disease:</p>
+                        <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-1">
+                            <li>ONE specific disease only</li>
+                            <li>Lump sum at FIRST diagnosis</li>
+                            <li>PLUS scheduled per-event indemnity</li>
+                            <li>NO restrictions on spending</li>
+                            <li>NO survival requirement</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Critical Illness:</p>
+                        <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-1">
+                            <li>MULTIPLE diseases covered</li>
+                            <li>Lump sum upon diagnosis AND survival</li>
+                            <li>Must survive minimum days (typically 30)</li>
+                            <li>No per-event scheduled payments</li>
+                            <li>NO restrictions on spending</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Worksite Coverage:</p>
+                        <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-1">
+                            <li>Employer-sponsored group plan</li>
+                            <li>Must be full-time employee</li>
+                            <li>Must meet service requirements</li>
+                            <li>Contributory = employee pays part</li>
+                            <li>Noncontributory = employer pays 100%</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Traps -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-xl p-5 lg:p-6">
+                <h2 class="text-2xl font-bold text-red-800 dark:text-red-300 mb-4">Exam Trap Alerts</h2>
+                <div class="space-y-3">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">1. Cancer vs. Critical Illness - the #1 trap</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Cancer policy = ONE disease. Critical illness = MULTIPLE diseases. If the question says "covers heart attack, stroke, AND cancer" that's a critical illness policy, NOT a cancer policy. Cancer policies ONLY cover cancer.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">2. The survival requirement is ONLY for critical illness</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Cancer policies pay at first diagnosis - no survival period needed. Critical illness policies require the insured to survive a minimum number of days. Don't mix these up.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">3. "No restrictions on spending" applies to both</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Both cancer and critical illness policies pay lump sums with NO restrictions. The insured can use the money for medical bills, rent, groceries, vacation - anything. The exam may try to trick you into thinking the money must be used for medical expenses. It doesn't.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">4. Indemnity vs. reimbursement on the same exam question</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">If a question says the insured received MORE than their actual expenses, that's an indemnity (fixed-dollar) policy. If the insured was paid back for actual costs, that's reimbursement. The extra money in indemnity policies is kept by the insured.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">5. Limited benefit is NOT comprehensive coverage</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">These are supplemental policies. If the exam asks "which policy provides comprehensive health coverage?" - limited benefit policies are NEVER the answer. They fill gaps only.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">6. "Dread disease" = "limited risk" = "specified disease"</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">These are all names for the same type of policy. Don't let different terminology confuse you. They all mean: a policy that covers one specific disease.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Reference Summary -->
+        <div class="bg-gradient-to-r from-purple-600 to-purple-800 rounded-xl p-6 text-white mb-8">
+            <h2 class="text-2xl font-bold mb-6">Quick Reference Summary</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div class="bg-white/20 rounded-lg p-4">
+                    <p class="font-bold">Limited Benefit</p>
+                    <p class="text-sm text-purple-100">Covers specific accidents or sickness only - supplemental</p>
+                </div>
+                <div class="bg-white/20 rounded-lg p-4">
+                    <p class="font-bold">Cancer Policy</p>
+                    <p class="text-sm text-purple-100">ONE disease, lump sum at diagnosis, no survival required</p>
+                </div>
+                <div class="bg-white/20 rounded-lg p-4">
+                    <p class="font-bold">Critical Illness</p>
+                    <p class="text-sm text-purple-100">MULTIPLE diseases, lump sum, must survive minimum days</p>
+                </div>
+                <div class="bg-white/20 rounded-lg p-4">
+                    <p class="font-bold">Indemnity Basis</p>
+                    <p class="text-sm text-purple-100">Fixed dollar per event - keep excess over actual costs</p>
+                </div>
+                <div class="bg-white/20 rounded-lg p-4">
+                    <p class="font-bold">Reimbursement Basis</p>
+                    <p class="text-sm text-purple-100">Pays actual expenses up to the policy limit</p>
+                </div>
+                <div class="bg-white/20 rounded-lg p-4">
+                    <p class="font-bold">Worksite Coverage</p>
+                    <p class="text-sm text-purple-100">Employer-sponsored, full-time, contributory or noncontributory</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Navigation -->
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="../part-5/index.html" class="text-gray-300 hover:text-white flex items-center gap-1">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                    Part 5: Group Insurance
+                </a>
+                <span class="text-gray-400">Part 6 of 6</span>
+                <a href="../recap/index.html" class="text-gray-300 hover:text-white flex items-center gap-1">
+                    Chapter 2 Recap
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
