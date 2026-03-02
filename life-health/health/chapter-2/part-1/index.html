@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 1: Medical Expense Insurance - Ch 2 Health Insurance</title>
+    <link rel="icon" type="image/svg+xml" href="../../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') { document.documentElement.classList.remove('dark'); }
+        function toggleTheme() { document.documentElement.classList.toggle('dark'); localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light'); }
+    </script>
+    <link rel="stylesheet" href="../../../../css/styles.css">
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors duration-300">
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/></svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>
+        </button>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-purple-600 to-purple-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <nav class="text-purple-200 text-sm mb-3">
+                <a href="../../../../index.html" class="hover:text-white">Home</a>
+                <span class="mx-2">/</span>
+                <a href="../../index.html" class="hover:text-white">Health Insurance</a>
+                <span class="mx-2">/</span>
+                <a href="../index.html" class="hover:text-white">Chapter 2</a>
+                <span class="mx-2">/</span>
+                <span class="text-white">Part 1</span>
+            </nav>
+            <h1 class="text-3xl lg:text-4xl font-bold">Chapter 2, Part 1: Medical Expense Insurance</h1>
+            <p class="mt-2 text-purple-100">Basic plans, major medical, managed care, and health savings accounts</p>
+        </div>
+    </header>
+
+    <!-- Sticky Part Navigation -->
+    <nav class="sticky top-0 z-40 bg-white dark:bg-gray-800 shadow-md border-b border-gray-200 dark:border-gray-700">
+        <div class="container mx-auto px-4 overflow-x-auto">
+            <div class="flex space-x-1 py-2 text-sm min-w-max">
+                <a href="index.html" class="px-3 py-1.5 rounded-full bg-purple-100 dark:bg-purple-900 text-purple-700 dark:text-purple-300 font-semibold">Part 1</a>
+                <a href="../part-2/index.html" class="px-3 py-1.5 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">Part 2</a>
+                <a href="../part-3/index.html" class="px-3 py-1.5 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">Part 3</a>
+                <a href="../part-4/index.html" class="px-3 py-1.5 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">Part 4</a>
+                <a href="../part-5/index.html" class="px-3 py-1.5 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">Part 5</a>
+                <a href="../part-6/index.html" class="px-3 py-1.5 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">Part 6</a>
+                <a href="../recap/index.html" class="px-3 py-1.5 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">Recap</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-5xl lg:max-w-7xl">
+
+        <!-- 5 Things You Must Know -->
+        <div class="bg-gradient-to-r from-purple-100 to-indigo-100 dark:from-purple-900/40 dark:to-indigo-900/40 rounded-xl p-6 mb-8 border border-purple-300 dark:border-purple-700">
+            <h3 class="text-xl font-bold text-purple-800 dark:text-purple-200 mb-4">Start Here: 5 Things You MUST Know</h3>
+            <div class="grid md:grid-cols-2 gap-3">
+                <div class="flex items-start">
+                    <span class="bg-purple-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>Basic plans</strong> are first-dollar coverage (no deductible). They cover hospital, physician, or surgical expenses separately.</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-purple-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>HMO = gatekeeper/PCP required</strong>. PPO = any doctor, lower cost in-network. POS = choose each visit (HMO + PPO hybrid).</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-purple-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
+                    <p class="text-gray-700 dark:text-gray-300">A <strong>corridor deductible</strong> sits between basic coverage running out and supplemental major medical kicking in.</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-purple-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">4</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>HSA</strong> = your money, follows you. <strong>HRA</strong> = employer's money, stays with the employer. <strong>FSA</strong> = use it or lose it.</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-purple-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">5</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>Blue Cross</strong> = hospital services. <strong>Blue Shield</strong> = physician services. They are nonprofit, prepaid <strong>service plans</strong>.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================================================== -->
+        <!-- SECTION 1: BASIC PLANS -->
+        <!-- ================================================== -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">1. Basic Medical Expense Plans</h2>
+
+                <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300 mb-4">Basic plans are the oldest, simplest form of health insurance. They provide <strong>first-dollar coverage</strong> - meaning there is NO deductible. The insurance starts paying from dollar one. However, they have low maximum limits and only cover specific categories of expenses.</p>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 rounded-r-lg mb-6">
+                    <p class="font-bold text-amber-800 dark:text-amber-300">Exam Alert</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">"First-dollar coverage" = no deductible. If the exam asks which plan type has no deductible, the answer is <strong>basic plans</strong>.</p>
+                </div>
+
+                <!-- Three Basic Plans -->
+                <div class="space-y-4 mb-6">
+
+                    <!-- Basic Hospital -->
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500">
+                        <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg">A. Basic Hospital Expense</h3>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">Covers the costs of staying in the hospital. Two main components:</p>
+                        <div class="grid md:grid-cols-2 gap-3 mt-3">
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                                <p class="font-semibold text-gray-700 dark:text-gray-300 text-sm">Room & Board</p>
+                                <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base mt-1">Pays a daily dollar amount (e.g., $500/day) up to a maximum number of days. If the hospital charges more than the benefit, the insured pays the difference.</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                                <p class="font-semibold text-gray-700 dark:text-gray-300 text-sm">Miscellaneous Expenses</p>
+                                <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base mt-1">Lab work, X-rays, medications, operating room fees. Often set as a multiple of the daily room charge (e.g., 10x) or a flat dollar amount.</p>
+                            </div>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="font-semibold text-gray-700 dark:text-gray-300 text-sm">Example:</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base mt-1">Your policy pays $500/day for room & board, up to 30 days. The hospital charges $650/day. <strong>You pay:</strong> $150/day out of pocket ($650 - $500 = $150). Over a 5-day stay, that is $750 out of your pocket + insurance pays $2,500.</p>
+                        </div>
+                    </div>
+
+                    <!-- Basic Medical (Physician) -->
+                    <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-green-500">
+                        <h3 class="font-bold text-green-800 dark:text-green-300 text-lg">B. Basic Medical Expense (Physician's Nonsurgical)</h3>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">Covers doctor visits for <strong>NON-surgical</strong> care. Usually covers in-hospital visits, and sometimes limited office visits. Does NOT cover surgery - that is a separate plan.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="font-semibold text-gray-700 dark:text-gray-300 text-sm">How it works:</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base mt-1">Typically limits benefits to a certain number of visits per day or per hospital stay. For example: "1 doctor visit per day while hospitalized, up to $75 per visit."</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="font-semibold text-gray-700 dark:text-gray-300 text-sm">Example:</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base mt-1">You are hospitalized for pneumonia. The doctor visits you each morning to check your progress - that is a nonsurgical visit. Your policy covers $75/visit, max 1 visit per day. The doctor charges $100. <strong>You pay:</strong> $25 per visit out of pocket.</p>
+                        </div>
+                    </div>
+
+                    <!-- Basic Surgical -->
+                    <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-purple-500">
+                        <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg">C. Basic Surgical Expense</h3>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">Covers surgeon fees, anesthesiologist, and operating room costs. Uses a <strong>surgical schedule</strong> - a list that assigns a dollar amount to each type of surgery.</p>
+
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="font-semibold text-gray-700 dark:text-gray-300 text-sm">Relative Value Approach:</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base mt-1">Each surgery is assigned a point value based on complexity. Points are multiplied by a dollar conversion factor to get the benefit amount.</p>
+                        </div>
+
+                        <div class="bg-gray-50 dark:bg-gray-900/20 p-4 rounded-lg border-l-4 border-purple-500 mt-3">
+                            <p class="font-semibold text-purple-800 dark:text-purple-300 mb-2">Real-World Scenario: Surgical Schedule</p>
+                            <div class="space-y-2 text-sm lg:text-base">
+                                <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> A surgical schedule uses a $10 conversion factor. An appendectomy is rated at 200 points. Open-heart surgery is rated at 1,000 points.</p>
+                                <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Mike needs an appendectomy. His benefit = 200 points x $10 = <strong>$2,000</strong>. If Mike needed open-heart surgery instead, his benefit = 1,000 points x $10 = <strong>$10,000</strong>.</p>
+                                <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> More complex surgeries get more points, which means higher dollar benefits. If the surgeon charges more than the schedule allows, Mike pays the difference out of pocket.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Basic Plans Quick Comparison -->
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm lg:text-base">
+                        <thead>
+                            <tr class="bg-purple-600 text-white">
+                                <th class="p-3 lg:p-4 text-left rounded-tl-lg">Basic Plan Type</th>
+                                <th class="p-3 lg:p-4 text-left">What It Covers</th>
+                                <th class="p-3 lg:p-4 text-left">How It Pays</th>
+                                <th class="p-3 lg:p-4 text-left rounded-tr-lg">Deductible?</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Hospital Expense</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Room & board + misc. hospital charges</td>
+                                <td class="p-3 lg:p-4 text-gray-600 dark:text-gray-400">$/day up to max days</td>
+                                <td class="p-3 lg:p-4 text-green-600 dark:text-green-400 font-bold">No</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Medical (Physician)</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Doctor visits, nonsurgical care</td>
+                                <td class="p-3 lg:p-4 text-gray-600 dark:text-gray-400">$/visit, limited visits</td>
+                                <td class="p-3 lg:p-4 text-green-600 dark:text-green-400 font-bold">No</td>
+                            </tr>
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Surgical Expense</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Surgeon, anesthesiologist, OR</td>
+                                <td class="p-3 lg:p-4 text-gray-600 dark:text-gray-400">Surgical schedule (points x $)</td>
+                                <td class="p-3 lg:p-4 text-green-600 dark:text-green-400 font-bold">No</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================================================== -->
+        <!-- SECTION 2: MAJOR MEDICAL -->
+        <!-- ================================================== -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">2. Major Medical Insurance</h2>
+
+                <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300 mb-4">Major medical is the "big guns" of health insurance. It covers large, catastrophic medical expenses with high maximum limits. Unlike basic plans, major medical DOES have deductibles and coinsurance. It comes in two forms:</p>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <!-- Supplemental -->
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-l-4 border-blue-500">
+                        <h4 class="font-bold text-blue-800 dark:text-blue-300 text-lg mb-2">Supplemental Major Medical</h4>
+                        <p class="text-gray-700 dark:text-gray-300">Works ON TOP of a basic plan. After the basic plan's benefits run out, the insured pays a <strong>corridor deductible</strong>, then supplemental major medical kicks in.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm text-gray-600 dark:text-gray-400"><strong>Think of it as:</strong> Basic plan pays first --> Corridor deductible (gap the insured pays) --> Supplemental major medical pays the rest.</p>
+                        </div>
+                    </div>
+
+                    <!-- Comprehensive -->
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <h4 class="font-bold text-green-800 dark:text-green-300 text-lg mb-2">Comprehensive Major Medical</h4>
+                        <p class="text-gray-700 dark:text-gray-300">Combines basic + major medical in <strong>ONE single policy</strong>. Has a single deductible, then coinsurance applies. Most commonly sold as group insurance.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm text-gray-600 dark:text-gray-400"><strong>Think of it as:</strong> One deductible --> Coinsurance (e.g., 80/20) --> Stops at out-of-pocket max. Simpler because it is all in one plan.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Corridor Deductible Explanation -->
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 rounded-r-lg mb-4">
+                    <p class="font-bold text-amber-800 dark:text-amber-300 text-lg">What is a Corridor Deductible?</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mt-2">Imagine a hallway (corridor) between two rooms. Room 1 is your basic plan. Room 2 is your supplemental major medical. The corridor deductible is the gap you walk through - and pay for - between the two. It only applies to <strong>supplemental</strong> major medical, NOT comprehensive.</p>
+                </div>
+
+                <!-- Flow Diagram -->
+                <div class="bg-gray-50 dark:bg-gray-900/20 p-4 rounded-lg border border-gray-200 dark:border-gray-700 mb-4">
+                    <h3 class="font-bold text-gray-800 dark:text-gray-100 mb-3">How Supplemental Major Medical Works:</h3>
+                    <div class="flex items-center gap-2 lg:gap-4 flex-wrap justify-center">
+                        <div class="bg-blue-100 dark:bg-blue-900/40 p-3 rounded-lg text-center">
+                            <p class="font-bold text-blue-800 dark:text-blue-300 text-sm">Basic Plan Pays</p>
+                            <p class="text-xs text-gray-600 dark:text-gray-400">Up to its limits</p>
+                        </div>
+                        <div class="text-xl text-gray-400">-></div>
+                        <div class="bg-red-100 dark:bg-red-900/40 p-3 rounded-lg text-center">
+                            <p class="font-bold text-red-800 dark:text-red-300 text-sm">Corridor Deductible</p>
+                            <p class="text-xs text-gray-600 dark:text-gray-400">YOU pay this gap</p>
+                        </div>
+                        <div class="text-xl text-gray-400">-></div>
+                        <div class="bg-green-100 dark:bg-green-900/40 p-3 rounded-lg text-center">
+                            <p class="font-bold text-green-800 dark:text-green-300 text-sm">Major Medical Pays</p>
+                            <p class="text-xs text-gray-600 dark:text-gray-400">With coinsurance</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Example -->
+                <div class="bg-gray-50 dark:bg-gray-900/20 p-4 rounded-lg border-l-4 border-purple-500">
+                    <p class="font-semibold text-purple-800 dark:text-purple-300 mb-2">Real-World Scenario: Karen's Surgery</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Karen has a basic surgical plan that pays up to $5,000 for her procedure, plus supplemental major medical with a $500 corridor deductible and 80/20 coinsurance. Her surgery costs $15,000.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Basic plan pays its max of $5,000. That leaves $10,000. Karen pays the $500 corridor deductible. Remaining: $9,500. Major medical pays 80% = $7,600. Karen pays 20% = $1,900.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Karen's total out-of-pocket = $500 (corridor) + $1,900 (coinsurance) = <strong>$2,400</strong>. Without the supplemental major medical, she would have owed $10,000.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================================================== -->
+        <!-- SECTION 3: MANAGED CARE -->
+        <!-- ================================================== -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">3. Managed Care Plans</h2>
+
+                <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300 mb-4">Managed care plans control costs by managing how, where, and from whom you get your healthcare. They emphasize prevention and use networks of doctors. The three main types are HMO, PPO, and POS.</p>
+
+                <!-- HMO -->
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-4">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg">A. HMO (Health Maintenance Organization)</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">The most restrictive but often cheapest plan. Focuses on <strong>preventive care</strong>. You MUST use HMO doctors and facilities.</p>
+                    <div class="grid md:grid-cols-2 gap-3 mt-3">
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-semibold text-gray-700 dark:text-gray-300 text-sm">Key Features:</p>
+                            <ul class="text-gray-600 dark:text-gray-400 text-sm lg:text-base mt-1 space-y-1">
+                                <li>- PCP (Primary Care Physician) required - your "gatekeeper"</li>
+                                <li>- Need referral from PCP to see a specialist</li>
+                                <li>- Limited service area (geographic region)</li>
+                                <li>- Usually NO deductible - just copayments</li>
+                            </ul>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-semibold text-gray-700 dark:text-gray-300 text-sm">How You Pay:</p>
+                            <ul class="text-gray-600 dark:text-gray-400 text-sm lg:text-base mt-1 space-y-1">
+                                <li>- <strong>Capitated/prepaid:</strong> Doctors get paid a fixed amount per member, per month - whether you visit or not</li>
+                                <li>- You pay small copays ($20-$40 per visit)</li>
+                                <li>- Services provided, NOT reimbursed</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PPO -->
+                <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-green-500 mb-4">
+                    <h3 class="font-bold text-green-800 dark:text-green-300 text-lg">B. PPO (Preferred Provider Organization)</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">More flexible than an HMO. You can see ANY doctor, but you save money by staying in-network. Uses fee-for-service billing.</p>
+                    <div class="grid md:grid-cols-2 gap-3 mt-3">
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-semibold text-gray-700 dark:text-gray-300 text-sm">Key Features:</p>
+                            <ul class="text-gray-600 dark:text-gray-400 text-sm lg:text-base mt-1 space-y-1">
+                                <li>- NO PCP required - see any doctor you want</li>
+                                <li>- NO referral needed for specialists</li>
+                                <li>- In-network vs. out-of-network pricing</li>
+                                <li>- Fee-for-service (pay per visit/procedure)</li>
+                            </ul>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-semibold text-gray-700 dark:text-gray-300 text-sm">How You Pay:</p>
+                            <ul class="text-gray-600 dark:text-gray-400 text-sm lg:text-base mt-1 space-y-1">
+                                <li>- <strong>In-network:</strong> Plan pays ~90%, you pay ~10%</li>
+                                <li>- <strong>Out-of-network:</strong> Plan pays ~70%, you pay ~30%</li>
+                                <li>- Has deductibles and coinsurance</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- POS -->
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-purple-500 mb-4">
+                    <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg">C. POS (Point of Service)</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">A hybrid of HMO and PPO. Also called an <strong>"open-ended HMO."</strong> You choose at each visit (the "point of service") whether to use the HMO network or go outside it.</p>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                        <p class="font-semibold text-gray-700 dark:text-gray-300 text-sm">How it works:</p>
+                        <ul class="text-gray-600 dark:text-gray-400 text-sm lg:text-base mt-1 space-y-1">
+                            <li>- May have a gatekeeper/PCP like an HMO</li>
+                            <li>- In-network: works like an HMO (low copays, covered in full)</li>
+                            <li>- Out-of-network: works like a PPO (higher costs, deductibles, coinsurance)</li>
+                            <li>- You decide EACH TIME you need care which route to take</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- HMO vs PPO vs POS Comparison Table -->
+                <div class="overflow-x-auto mb-6">
+                    <table class="w-full text-sm lg:text-base">
+                        <thead>
+                            <tr class="bg-purple-600 text-white">
+                                <th class="p-3 lg:p-4 text-left rounded-tl-lg">Feature</th>
+                                <th class="p-3 lg:p-4 text-left">HMO</th>
+                                <th class="p-3 lg:p-4 text-left">PPO</th>
+                                <th class="p-3 lg:p-4 text-left rounded-tr-lg">POS</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">PCP Required?</td>
+                                <td class="p-3 lg:p-4 text-red-600 dark:text-red-400 font-bold">Yes (gatekeeper)</td>
+                                <td class="p-3 lg:p-4 text-green-600 dark:text-green-400 font-bold">No</td>
+                                <td class="p-3 lg:p-4 text-amber-600 dark:text-amber-400 font-bold">Often yes</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Referral for Specialist?</td>
+                                <td class="p-3 lg:p-4 text-red-600 dark:text-red-400 font-bold">Yes</td>
+                                <td class="p-3 lg:p-4 text-green-600 dark:text-green-400 font-bold">No</td>
+                                <td class="p-3 lg:p-4 text-amber-600 dark:text-amber-400 font-bold">For in-network</td>
+                            </tr>
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Out-of-Network?</td>
+                                <td class="p-3 lg:p-4 text-red-600 dark:text-red-400 font-bold">Not covered (usually)</td>
+                                <td class="p-3 lg:p-4 text-green-600 dark:text-green-400 font-bold">Covered at lower rate</td>
+                                <td class="p-3 lg:p-4 text-amber-600 dark:text-amber-400 font-bold">Covered at lower rate</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Deductible?</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Usually no</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Yes</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Out-of-network only</td>
+                            </tr>
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Payment Model</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Capitated/prepaid</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Fee-for-service</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Both (depends on choice)</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Cost to Member</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Lowest</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Medium</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Varies by choice</td>
+                            </tr>
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Flexibility</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Least</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Most</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Middle</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Managed Care Example -->
+                <div class="bg-gray-50 dark:bg-gray-900/20 p-4 rounded-lg border-l-4 border-blue-500">
+                    <p class="font-semibold text-blue-800 dark:text-blue-300 mb-2">Real-World Scenario: Alex Needs a Specialist</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Alex has knee pain and wants to see an orthopedic specialist. He has three friends with different plans.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong></p>
+                        <ul class="text-gray-700 dark:text-gray-300 space-y-1 ml-4">
+                            <li>- <strong>HMO friend:</strong> Must visit PCP first, get a referral, then see an in-network specialist only. Copay: $40.</li>
+                            <li>- <strong>PPO friend:</strong> Calls any orthopedic surgeon directly - no referral needed. In-network: pays 10%. Out-of-network: pays 30%.</li>
+                            <li>- <strong>POS friend:</strong> Can go to PCP for a referral and pay HMO-level copay, OR skip the referral and see any doctor at higher out-of-network cost.</li>
+                        </ul>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> HMO = cheapest but least choice. PPO = most freedom. POS = flexibility to choose each time.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================================================== -->
+        <!-- SECTION 4: BLUE PLANS -->
+        <!-- ================================================== -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">4. Blue Cross and Blue Shield Plans</h2>
+
+                <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300 mb-4">The "Blues" are unique - they are <strong>nonprofit</strong>, <strong>prepaid</strong> service plans. Unlike regular insurance that reimburses you, Blue plans pay providers directly.</p>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-4">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-l-4 border-blue-500">
+                        <h4 class="font-bold text-blue-800 dark:text-blue-300 text-lg mb-2">Blue Cross</h4>
+                        <p class="text-gray-700 dark:text-gray-300">Covers <strong>hospital</strong> services - room & board, surgery, lab work done in the hospital.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm text-gray-600 dark:text-gray-400"><strong>Memory trick:</strong> Cross = hospital bed (shaped like a +)</p>
+                        </div>
+                    </div>
+                    <div class="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-lg border-l-4 border-indigo-500">
+                        <h4 class="font-bold text-indigo-800 dark:text-indigo-300 text-lg mb-2">Blue Shield</h4>
+                        <p class="text-gray-700 dark:text-gray-300">Covers <strong>physician</strong> services - doctor visits, specialist consultations, outpatient care.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm text-gray-600 dark:text-gray-400"><strong>Memory trick:</strong> Shield = doctor's coat of arms</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-purple-500 mb-4">
+                    <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg">Key Facts for the Exam</h3>
+                    <ul class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mt-2 space-y-2">
+                        <li>- <strong>Service plan:</strong> Pays providers directly (not the subscriber)</li>
+                        <li>- <strong>Nonprofit</strong> organizations</li>
+                        <li>- <strong>Prepaid:</strong> Members pay in advance for covered services</li>
+                        <li>- <strong>Community rating</strong> for small groups (everyone pays the same rate)</li>
+                        <li>- <strong>Experience rating</strong> for large groups (rates based on the group's claims history)</li>
+                    </ul>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-900/20 p-4 rounded-lg border-l-4 border-blue-500">
+                    <p class="font-semibold text-blue-800 dark:text-blue-300 mb-2">Real-World Scenario: Service Plan vs. Reimbursement</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Dana has Blue Cross/Blue Shield. She gets knee surgery.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> With a regular insurance policy, Dana would pay the hospital $20,000, then submit a claim and wait to get reimbursed. With Blue Cross, the plan pays the hospital directly. Dana never handles the $20,000.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> This is the difference between a <strong>service plan</strong> (Blue pays providers) vs. a <strong>reimbursement plan</strong> (regular insurance pays YOU, and you pay providers).</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================================================== -->
+        <!-- SECTION 5: SAVINGS / TAX ACCOUNTS -->
+        <!-- ================================================== -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">5. Health Savings and Tax-Advantaged Accounts</h2>
+
+                <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300 mb-4">These accounts let people save money tax-free (or tax-deferred) to pay for medical expenses. The exam loves to test the differences between them. Pay close attention to who funds them, what happens to unused money, and the penalty rules.</p>
+
+                <!-- MSA -->
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-4">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg">A. MSA (Medical Savings Account) - Archer MSA</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">For <strong>small employers (50 or fewer employees)</strong> and <strong>self-employed</strong> individuals only. Must be paired with a high-deductible health plan.</p>
+                    <div class="grid md:grid-cols-2 gap-3 mt-3">
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-semibold text-gray-700 dark:text-gray-300 text-sm">Who funds it?</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base mt-1">Employer-funded (employer contributes, NOT the employee)</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-semibold text-gray-700 dark:text-gray-300 text-sm">Contribution limits:</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base mt-1">Max 65% of deductible (individual) / 75% of deductible (family)</p>
+                        </div>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 p-3 rounded mt-3 border border-red-200 dark:border-red-800">
+                        <p class="text-red-700 dark:text-red-300 text-sm lg:text-base"><strong>Penalty:</strong> Nonqualified withdrawal = income tax + <strong>20% penalty</strong></p>
+                    </div>
+                </div>
+
+                <!-- FSA -->
+                <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-green-500 mb-4">
+                    <h3 class="font-bold text-green-800 dark:text-green-300 text-lg">B. FSA (Flexible Spending Account)</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">Employee sets aside pre-tax salary dollars. Two types: Health Care Account and Dependent Care Account.</p>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                        <p class="font-semibold text-red-700 dark:text-red-300 text-sm">THE BIG RULE: Use It or Lose It!</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base mt-1">Any money left in the FSA at the end of the plan year is <strong>forfeited</strong>. Gone. You don't get it back. This is the most-tested FSA fact.</p>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-3 mt-3">
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-semibold text-gray-700 dark:text-gray-300 text-sm">Who funds it?</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base mt-1">Employee via salary reduction (pre-tax)</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-semibold text-gray-700 dark:text-gray-300 text-sm">Tax treatment:</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base mt-1">Exempt from federal income tax, FICA, and most state taxes</p>
+                        </div>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                        <p class="font-semibold text-gray-700 dark:text-gray-300 text-sm">Changes allowed:</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base mt-1">Can only change contributions during open enrollment OR after a <strong>qualified life event</strong> (marriage, birth, divorce, job change).</p>
+                    </div>
+                </div>
+
+                <!-- HRA -->
+                <div class="bg-amber-50 dark:bg-amber-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-amber-500 mb-4">
+                    <h3 class="font-bold text-amber-800 dark:text-amber-300 text-lg">C. HRA (Health Reimbursement Account)</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">100% employer-funded. NOT funded by salary reduction. The employer decides how much to contribute and what it covers.</p>
+                    <div class="grid md:grid-cols-2 gap-3 mt-3">
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-semibold text-green-700 dark:text-green-300 text-sm">Unused balances?</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base mt-1"><strong>Roll over</strong> year to year (unlike FSA)</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-semibold text-red-700 dark:text-red-300 text-sm">Portability?</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base mt-1"><strong>Stays with the employer.</strong> If you leave the job, you lose it.</p>
+                        </div>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                        <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base">No statutory (legal) limit on how much the employer can contribute. The employer sets its own limits.</p>
+                    </div>
+                </div>
+
+                <!-- HSA -->
+                <div class="bg-indigo-50 dark:bg-indigo-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-indigo-500 mb-4">
+                    <h3 class="font-bold text-indigo-800 dark:text-indigo-300 text-lg">D. HSA (Health Savings Account)</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">The most flexible and powerful savings account. Must be linked to a <strong>High Deductible Health Plan (HDHP)</strong>. Your money, your account - it follows you.</p>
+
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                        <p class="font-semibold text-gray-700 dark:text-gray-300 text-sm">Eligibility requirements (must meet ALL):</p>
+                        <ul class="text-gray-600 dark:text-gray-400 text-sm lg:text-base mt-1 space-y-1">
+                            <li>- Must be covered by an HDHP</li>
+                            <li>- Cannot have other health insurance coverage</li>
+                            <li>- Cannot be enrolled in Medicare</li>
+                            <li>- Cannot be claimed as a dependent on someone else's tax return</li>
+                        </ul>
+                    </div>
+
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mt-3">
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center border border-indigo-200 dark:border-indigo-800">
+                            <p class="text-xl lg:text-2xl font-bold text-indigo-600 dark:text-indigo-400">$4,150</p>
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Single contribution limit</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center border border-indigo-200 dark:border-indigo-800">
+                            <p class="text-xl lg:text-2xl font-bold text-indigo-600 dark:text-indigo-400">$8,300</p>
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Family contribution limit</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center border border-indigo-200 dark:border-indigo-800">
+                            <p class="text-xl lg:text-2xl font-bold text-indigo-600 dark:text-indigo-400">+$1,000</p>
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Catch-up (age 55+)</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center border border-red-200 dark:border-red-800">
+                            <p class="text-xl lg:text-2xl font-bold text-red-600 dark:text-red-400">20%</p>
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Penalty before age 65</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                        <p class="font-semibold text-gray-700 dark:text-gray-300 text-sm">Withdrawal rules:</p>
+                        <ul class="text-gray-600 dark:text-gray-400 text-sm lg:text-base mt-1 space-y-1">
+                            <li>- <strong>Qualified health expenses:</strong> Tax-free, no penalty</li>
+                            <li>- <strong>Nonhealth withdrawal BEFORE 65:</strong> Income tax + 20% penalty</li>
+                            <li>- <strong>Nonhealth withdrawal AFTER 65:</strong> Income tax only (no penalty)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- HDHP -->
+                <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-red-500 mb-4">
+                    <h3 class="font-bold text-red-800 dark:text-red-300 text-lg">E. HDHP (High Deductible Health Plan)</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">Higher deductibles = lower premiums. Required to open an HSA. Preventive care is covered first-dollar (no deductible for preventive services).</p>
+                    <div class="grid grid-cols-2 gap-3 mt-3">
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center border border-red-200 dark:border-red-800">
+                            <p class="text-xl lg:text-2xl font-bold text-red-600 dark:text-red-400">$1,600</p>
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Minimum deductible (single)</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center border border-red-200 dark:border-red-800">
+                            <p class="text-xl lg:text-2xl font-bold text-red-600 dark:text-red-400">$3,200</p>
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Minimum deductible (family)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CDHP -->
+                <div class="bg-gray-50 dark:bg-gray-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-gray-500 mb-6">
+                    <h3 class="font-bold text-gray-800 dark:text-gray-300 text-lg">F. CDHP (Consumer Driven Health Plan)</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">An employer-controlled plan that works in layers. First-dollar expenses come from an HRA or HSA until depleted, then there is a deductible gap (the insured pays), then traditional insurance kicks in. Rollover is at the employer's discretion.</p>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                        <div class="flex items-center gap-2 lg:gap-4 flex-wrap justify-center">
+                            <div class="bg-green-100 dark:bg-green-900/40 p-2 rounded-lg text-center">
+                                <p class="font-bold text-green-800 dark:text-green-300 text-sm">HRA/HSA Pays</p>
+                                <p class="text-xs text-gray-600 dark:text-gray-400">First dollar</p>
+                            </div>
+                            <div class="text-lg text-gray-400">-></div>
+                            <div class="bg-red-100 dark:bg-red-900/40 p-2 rounded-lg text-center">
+                                <p class="font-bold text-red-800 dark:text-red-300 text-sm">Deductible Gap</p>
+                                <p class="text-xs text-gray-600 dark:text-gray-400">YOU pay</p>
+                            </div>
+                            <div class="text-lg text-gray-400">-></div>
+                            <div class="bg-blue-100 dark:bg-blue-900/40 p-2 rounded-lg text-center">
+                                <p class="font-bold text-blue-800 dark:text-blue-300 text-sm">Insurance Pays</p>
+                                <p class="text-xs text-gray-600 dark:text-gray-400">With coinsurance</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MEGA Comparison Table -->
+                <h3 class="text-lg lg:text-xl font-bold text-gray-800 dark:text-gray-100 mb-3">Savings Accounts: Side-by-Side Comparison</h3>
+                <div class="overflow-x-auto mb-6">
+                    <table class="w-full text-sm lg:text-base">
+                        <thead>
+                            <tr class="bg-purple-600 text-white">
+                                <th class="p-3 lg:p-4 text-left rounded-tl-lg">Feature</th>
+                                <th class="p-3 lg:p-4 text-left">MSA</th>
+                                <th class="p-3 lg:p-4 text-left">FSA</th>
+                                <th class="p-3 lg:p-4 text-left">HRA</th>
+                                <th class="p-3 lg:p-4 text-left rounded-tr-lg">HSA</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Who funds it?</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Employer</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Employee (salary reduction)</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Employer only</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Individual or employer</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">HDHP required?</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Yes</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">No</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">No</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Yes</td>
+                            </tr>
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Rollover?</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Yes</td>
+                                <td class="p-3 lg:p-4 text-red-600 dark:text-red-400 font-bold">No (use it or lose it)</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Yes</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Yes</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Portable?</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Yes</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">No</td>
+                                <td class="p-3 lg:p-4 text-red-600 dark:text-red-400 font-bold">No (stays with employer)</td>
+                                <td class="p-3 lg:p-4 text-green-600 dark:text-green-400 font-bold">Yes (follows you)</td>
+                            </tr>
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Who can use?</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Small employers / self-employed</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Any employer plan</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Any employer</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Anyone with HDHP</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Nonhealth penalty</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Tax + 20%</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">N/A (use it or lose it)</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">N/A</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Before 65: tax + 20%. After 65: tax only</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- HSA Example -->
+                <div class="bg-gray-50 dark:bg-gray-900/20 p-4 rounded-lg border-l-4 border-indigo-500">
+                    <p class="font-semibold text-indigo-800 dark:text-indigo-300 mb-2">Real-World Scenario: Rachel's HSA</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Rachel, age 58, has an HDHP with a $1,600 deductible and an HSA. She contributes the max: $4,150 (single) + $1,000 (catch-up for being 55+) = $5,150 per year, all tax-deductible.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Rachel uses $2,000 from her HSA for dental work and a specialist visit. That withdrawal is tax-free because it was for qualified health expenses. The remaining $3,150 rolls over to next year - it never expires.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Years later at age 67, Rachel retires and withdraws $10,000 from her HSA to pay for a vacation. Since she is over 65, she pays income tax on the $10,000 but NO 20% penalty. If she were 60 and tried the same thing, she would owe income tax PLUS a 20% penalty ($2,000).</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================================================== -->
+        <!-- CHEAT SHEET -->
+        <!-- ================================================== -->
+        <section id="cheat-sheet" class="mb-8 lg:mb-10">
+            <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 border-2 border-dashed border-gray-300 dark:border-gray-600">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100">Cheat Sheet</h2>
+                    <span class="text-sm text-gray-500 dark:text-gray-400">Print this page for quick reference</span>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Basic Plans:</p>
+                        <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-1">
+                            <li>First-dollar coverage (NO deductible)</li>
+                            <li>Hospital = room & board + misc</li>
+                            <li>Medical = physician nonsurgical</li>
+                            <li>Surgical = schedule of surgeries</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Major Medical:</p>
+                        <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-1">
+                            <li>Supplemental = basic + corridor deductible + major medical</li>
+                            <li>Comprehensive = one policy, one deductible</li>
+                            <li>Corridor deductible = gap between basic and supplemental</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Managed Care:</p>
+                        <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-1">
+                            <li>HMO = PCP/gatekeeper, referrals, capitated, cheapest</li>
+                            <li>PPO = any doctor, no referral, fee-for-service</li>
+                            <li>POS = hybrid, choose each visit, "open-ended HMO"</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Blue Plans:</p>
+                        <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-1">
+                            <li>Blue Cross = hospital</li>
+                            <li>Blue Shield = physician</li>
+                            <li>Nonprofit, prepaid, service plan</li>
+                            <li>Community rating (small) / Experience rating (large)</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">HSA Key Numbers:</p>
+                        <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-1">
+                            <li>Single: $4,150 / Family: $8,300</li>
+                            <li>Catch-up (55+): extra $1,000</li>
+                            <li>Nonhealth before 65: tax + 20%</li>
+                            <li>Nonhealth after 65: tax only</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Account Rules:</p>
+                        <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-1">
+                            <li>FSA = use it or lose it</li>
+                            <li>HRA = employer-funded, stays with employer</li>
+                            <li>HSA = your money, follows you</li>
+                            <li>MSA = small employers only (50 or fewer)</li>
+                            <li>HDHP min deductible: $1,600 / $3,200</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================================================== -->
+        <!-- EXAM TRAPS -->
+        <!-- ================================================== -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-xl p-5 lg:p-6">
+                <h2 class="text-2xl font-bold text-red-800 dark:text-red-300 mb-4">Exam Trap Alerts</h2>
+                <div class="space-y-3">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">1. Basic plans have NO deductible</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">If the exam asks "which type of health plan provides first-dollar coverage?" the answer is <strong>basic plans</strong>. Major medical has deductibles - basic plans do not.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">2. Corridor deductible is ONLY for supplemental major medical</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Comprehensive major medical does NOT have a corridor deductible - it has a single regular deductible. If they mention a corridor deductible, the answer is always <strong>supplemental</strong> major medical.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">3. HMO provides services, NOT reimbursement</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">An HMO does not reimburse you - it provides services directly. You go to HMO doctors who are paid by the HMO. This is the same as Blue plans (service plans). PPOs use fee-for-service with reimbursement.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">4. FSA = use it or lose it. HSA = rolls over forever.</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The exam loves to test this. FSA money left at year-end is forfeited. HSA money rolls over indefinitely. HRA also rolls over, but stays with the employer. Don't confuse these three.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">5. HSA requires HDHP and has strict eligibility rules</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">You cannot open an HSA if you have other health coverage, are on Medicare, or are someone's dependent. The HDHP is mandatory. If the exam describes someone with a regular health plan trying to open an HSA - they can't.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">6. HSA nonhealth withdrawal penalty disappears at age 65</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Before 65: income tax + 20% penalty. After 65: income tax only, no penalty. Both MSA and HSA have the same 20% penalty for nonqualified withdrawals before age 65.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">7. POS is an "open-ended HMO" - NOT an "open-ended PPO"</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The exam may try to trick you. A POS plan is called an <strong>open-ended HMO</strong> because it starts as an HMO but gives you the option to go outside the network (like a PPO). It is NOT called an "open-ended PPO."</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================================================== -->
+        <!-- QUICK REFERENCE SUMMARY -->
+        <!-- ================================================== -->
+        <div class="bg-gradient-to-r from-purple-600 to-purple-800 rounded-xl p-6 text-white mb-8">
+            <h2 class="text-2xl font-bold mb-6">Quick Reference Summary</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div class="bg-white/20 rounded-lg p-4">
+                    <p class="font-bold">Basic Hospital Expense</p>
+                    <p class="text-sm text-purple-100">Room & board $/day + misc. No deductible.</p>
+                </div>
+                <div class="bg-white/20 rounded-lg p-4">
+                    <p class="font-bold">Basic Surgical Expense</p>
+                    <p class="text-sm text-purple-100">Surgical schedule: points x conversion factor.</p>
+                </div>
+                <div class="bg-white/20 rounded-lg p-4">
+                    <p class="font-bold">Supplemental Major Medical</p>
+                    <p class="text-sm text-purple-100">Basic runs out -> corridor deductible -> major medical.</p>
+                </div>
+                <div class="bg-white/20 rounded-lg p-4">
+                    <p class="font-bold">Comprehensive Major Medical</p>
+                    <p class="text-sm text-purple-100">One policy, one deductible, coinsurance. Usually group.</p>
+                </div>
+                <div class="bg-white/20 rounded-lg p-4">
+                    <p class="font-bold">HMO</p>
+                    <p class="text-sm text-purple-100">PCP gatekeeper, referrals, capitated, cheapest, most restrictive.</p>
+                </div>
+                <div class="bg-white/20 rounded-lg p-4">
+                    <p class="font-bold">PPO</p>
+                    <p class="text-sm text-purple-100">Any doctor, no referral, in-network 90% / out 70%.</p>
+                </div>
+                <div class="bg-white/20 rounded-lg p-4">
+                    <p class="font-bold">POS (Open-Ended HMO)</p>
+                    <p class="text-sm text-purple-100">Choose each visit: HMO route or PPO route.</p>
+                </div>
+                <div class="bg-white/20 rounded-lg p-4">
+                    <p class="font-bold">Blue Cross / Blue Shield</p>
+                    <p class="text-sm text-purple-100">Nonprofit, service plan, hospital / physician.</p>
+                </div>
+                <div class="bg-white/20 rounded-lg p-4">
+                    <p class="font-bold">HSA</p>
+                    <p class="text-sm text-purple-100">HDHP required. $4,150/$8,300. Portable. Rolls over.</p>
+                </div>
+                <div class="bg-white/20 rounded-lg p-4">
+                    <p class="font-bold">FSA</p>
+                    <p class="text-sm text-purple-100">Salary reduction. Use it or lose it. Pre-tax.</p>
+                </div>
+                <div class="bg-white/20 rounded-lg p-4">
+                    <p class="font-bold">HRA</p>
+                    <p class="text-sm text-purple-100">Employer-funded only. Rolls over. NOT portable.</p>
+                </div>
+                <div class="bg-white/20 rounded-lg p-4">
+                    <p class="font-bold">HDHP Minimums</p>
+                    <p class="text-sm text-purple-100">$1,600 single / $3,200 family deductible.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Navigation -->
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="../index.html" class="text-gray-300 hover:text-white flex items-center gap-1">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                    Chapter 2 Home
+                </a>
+                <span class="text-gray-400">Part 1 of 6</span>
+                <a href="../part-2/index.html" class="text-gray-300 hover:text-white flex items-center gap-1">
+                    Part 2: Disability Income
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

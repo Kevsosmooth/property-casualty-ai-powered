@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 2: Disability Income Insurance - Ch 2 Health Insurance</title>
+    <link rel="icon" type="image/svg+xml" href="../../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') { document.documentElement.classList.remove('dark'); }
+        function toggleTheme() { document.documentElement.classList.toggle('dark'); localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light'); }
+    </script>
+    <link rel="stylesheet" href="../../../../css/styles.css">
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors duration-300">
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/></svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>
+        </button>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-purple-600 to-purple-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <nav class="text-purple-200 text-sm mb-3">
+                <a href="../../../../index.html" class="hover:text-white">Home</a>
+                <span class="mx-2">/</span>
+                <a href="../../index.html" class="hover:text-white">Health Insurance</a>
+                <span class="mx-2">/</span>
+                <a href="../index.html" class="hover:text-white">Chapter 2</a>
+                <span class="mx-2">/</span>
+                <span class="text-white">Part 2</span>
+            </nav>
+            <h1 class="text-3xl lg:text-4xl font-bold">Chapter 2, Part 2: Disability Income Insurance</h1>
+            <p class="mt-2 text-purple-100">Replacing lost income when injury or illness prevents you from working</p>
+        </div>
+    </header>
+
+    <!-- Sticky Part Navigation -->
+    <nav class="sticky top-0 z-40 bg-white dark:bg-gray-800 shadow-md border-b border-gray-200 dark:border-gray-700">
+        <div class="container mx-auto px-4 overflow-x-auto">
+            <div class="flex space-x-1 py-2 text-sm min-w-max">
+                <a href="../part-1/index.html" class="px-3 py-1.5 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">Part 1</a>
+                <a href="index.html" class="px-3 py-1.5 rounded-full bg-purple-100 dark:bg-purple-900 text-purple-700 dark:text-purple-300 font-semibold">Part 2</a>
+                <a href="../part-3/index.html" class="px-3 py-1.5 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">Part 3</a>
+                <a href="../part-4/index.html" class="px-3 py-1.5 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">Part 4</a>
+                <a href="../part-5/index.html" class="px-3 py-1.5 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">Part 5</a>
+                <a href="../part-6/index.html" class="px-3 py-1.5 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">Part 6</a>
+                <a href="../recap/index.html" class="px-3 py-1.5 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">Recap</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-5xl lg:max-w-7xl">
+
+        <!-- 5 Things You Must Know -->
+        <div class="bg-gradient-to-r from-purple-100 to-indigo-100 dark:from-purple-900/40 dark:to-indigo-900/40 rounded-xl p-6 mb-8 border border-purple-300 dark:border-purple-700">
+            <h3 class="text-xl font-bold text-purple-800 dark:text-purple-200 mb-4">Start Here: 5 Things You MUST Know</h3>
+            <div class="grid md:grid-cols-2 gap-3">
+                <div class="flex items-start">
+                    <span class="bg-purple-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
+                    <p class="text-gray-700 dark:text-gray-300">Benefits are capped at about <strong>66% of income</strong> - never 100% - to prevent <strong>malingering</strong> (no incentive to return to work)</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-purple-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
+                    <p class="text-gray-700 dark:text-gray-300">The <strong>elimination period</strong> is a "time deductible" - longer elimination = lower premium. Benefits paid in <strong>arrears</strong></p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-purple-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>Probationary period</strong> (10-30 days) blocks sickness claims only - accidents are ALWAYS covered from day 1</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-purple-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">4</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>BOE</strong> covers business expenses but NOT the owner's salary; premiums are tax deductible, benefits taxable</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-purple-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">5</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>Accidental Bodily Injury</strong> (result is unexpected) is BROADER than <strong>Accidental Means</strong> (cause is unexpected)</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 1: Individual Disability Overview -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">1. Individual Disability Income Insurance - Overview</h2>
+
+                <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300 mb-4">Disability income insurance replaces a portion of your income when you can't work due to injury or illness. Here's a sobering stat: a <strong>25-year-old has about a 30% chance</strong> of being disabled for 90 or more days before reaching age 65. That's nearly 1 in 3 people.</p>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 rounded-r-lg mb-6">
+                    <p class="font-bold text-amber-800 dark:text-amber-300">Exam Alert!</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Disability income insurance is about <strong>replacing INCOME</strong>, not paying medical bills. Medical expense insurance covers doctor visits. Disability income covers your paycheck while you're too sick or hurt to work.</p>
+                </div>
+
+                <!-- Injury Definitions -->
+                <h3 class="text-lg lg:text-xl font-bold text-gray-800 dark:text-gray-100 mb-3">Injury Definitions: A Critical Distinction</h3>
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <h4 class="font-bold text-green-800 dark:text-green-300 text-lg mb-2">Accidental Bodily Injury (BROADER)</h4>
+                        <p class="text-gray-700 dark:text-gray-300">The <strong>result</strong> (damage/injury) was unexpected and unintended. The action itself may have been intentional.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400"><strong>Example:</strong> You intentionally lift a heavy box at work (intentional action), but your back gives out unexpectedly (unintended result). COVERED under accidental bodily injury.</p>
+                        </div>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                        <h4 class="font-bold text-red-800 dark:text-red-300 text-lg mb-2">Accidental Means (NARROWER)</h4>
+                        <p class="text-gray-700 dark:text-gray-300">The <strong>cause</strong> (the action itself) must be unexpected and unintended. Much harder to prove.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400"><strong>Example:</strong> You slip on ice (unexpected cause) and break your arm. COVERED. But lifting a box intentionally and hurting your back? NOT covered - because the act of lifting was intentional.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sickness Definition -->
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-4">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg">Sickness Definition</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">For a sickness to be covered, it must be <strong>contracted after 30 days</strong> the policy is in force, OR it must <strong>first manifest</strong> (show symptoms) after the policy is in force. This prevents people from buying insurance after they already know they're sick.</p>
+                </div>
+
+                <!-- Real-World Example -->
+                <div class="bg-gray-50 dark:bg-gray-900/20 p-4 rounded-lg border-l-4 border-purple-500">
+                    <p class="font-semibold text-purple-800 dark:text-purple-300 mb-2">Real-World Scenario: Kevin's Back Injury</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Kevin, a warehouse manager earning $5,000/month, has a disability income policy with 66% benefit. He intentionally picks up a heavy crate and throws out his back.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Kevin files a disability claim. His policy uses the "accidental bodily injury" definition.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Kevin is COVERED. Even though lifting the box was intentional, the injury was unexpected. He receives $3,300/month (66% of $5,000). If his policy used the stricter "accidental means" definition, he'd be DENIED because the act of lifting was intentional.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Elimination Period & Benefit Period -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">2. Elimination Period and Benefit Period</h2>
+
+                <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300 mb-4">These are the two most important timing concepts in disability insurance. Think of them as a "when do payments START" and "when do payments STOP" question.</p>
+
+                <!-- Elimination Period -->
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-purple-500 mb-6">
+                    <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg">Elimination Period = "Time Deductible"</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">The waiting period from the <strong>onset of disability</strong> until benefits begin. Think of it as a deductible measured in <strong>days, not dollars</strong>. Ranges from <strong>30 to 180 days</strong>.</p>
+                </div>
+
+                <!-- Key Rule -->
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 rounded-r-lg mb-6">
+                    <p class="font-bold text-amber-800 dark:text-amber-300">Critical Rule: Longer Elimination = Lower Premium</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Just like a higher dollar deductible lowers your premium, a longer elimination period lowers your premium. The insured takes on more of the initial risk.</p>
+                </div>
+
+                <!-- Payment Timeline Visual -->
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">Payment Timeline: How Arrears Work</h3>
+                <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300 mb-3">Benefits are paid in <strong>arrears</strong> (after the period, not before). Here is what that looks like with a 90-day elimination period:</p>
+
+                <div class="bg-gray-50 dark:bg-gray-900/20 p-4 rounded-lg border border-gray-200 dark:border-gray-700 mb-6">
+                    <div class="flex items-center gap-2 lg:gap-4 flex-wrap justify-center">
+                        <div class="bg-red-100 dark:bg-red-900/40 p-3 rounded-lg text-center min-w-[120px]">
+                            <p class="font-bold text-red-800 dark:text-red-300 text-sm">Day 1</p>
+                            <p class="text-xs text-gray-600 dark:text-gray-400">Disability begins</p>
+                        </div>
+                        <div class="text-xl text-gray-400">-></div>
+                        <div class="bg-amber-100 dark:bg-amber-900/40 p-3 rounded-lg text-center min-w-[120px]">
+                            <p class="font-bold text-amber-800 dark:text-amber-300 text-sm">Days 1-90</p>
+                            <p class="text-xs text-gray-600 dark:text-gray-400">Elimination period (no pay)</p>
+                        </div>
+                        <div class="text-xl text-gray-400">-></div>
+                        <div class="bg-blue-100 dark:bg-blue-900/40 p-3 rounded-lg text-center min-w-[120px]">
+                            <p class="font-bold text-blue-800 dark:text-blue-300 text-sm">Day 91</p>
+                            <p class="text-xs text-gray-600 dark:text-gray-400">ELIGIBLE for benefits</p>
+                        </div>
+                        <div class="text-xl text-gray-400">-></div>
+                        <div class="bg-green-100 dark:bg-green-900/40 p-3 rounded-lg text-center min-w-[120px]">
+                            <p class="font-bold text-green-800 dark:text-green-300 text-sm">Day 121</p>
+                            <p class="text-xs text-gray-600 dark:text-gray-400">FIRST CHECK arrives (30 days arrears)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Benefit Period -->
+                <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-green-500 mb-6">
+                    <h3 class="font-bold text-green-800 dark:text-green-300 text-lg">Benefit Period = How Long Payments Last</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">Once benefits start, how long do they continue? Options include: <strong>1 year, 2 years, 5 years, to age 65, or lifetime</strong>. Longer benefit period = higher premium.</p>
+                </div>
+
+                <!-- Comparison Grid -->
+                <div class="grid grid-cols-2 md:grid-cols-5 gap-3 mb-6">
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center border border-gray-200 dark:border-gray-600">
+                        <p class="text-xl lg:text-2xl font-bold text-purple-600 dark:text-purple-400">1 yr</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Short-term needs</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center border border-gray-200 dark:border-gray-600">
+                        <p class="text-xl lg:text-2xl font-bold text-purple-600 dark:text-purple-400">2 yr</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Common option</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center border border-gray-200 dark:border-gray-600">
+                        <p class="text-xl lg:text-2xl font-bold text-purple-600 dark:text-purple-400">5 yr</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Mid-range</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center border border-gray-200 dark:border-gray-600">
+                        <p class="text-xl lg:text-2xl font-bold text-blue-600 dark:text-blue-400">Age 65</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Most common LTD</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center border border-gray-200 dark:border-gray-600">
+                        <p class="text-xl lg:text-2xl font-bold text-green-600 dark:text-green-400">Lifetime</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Most expensive</p>
+                    </div>
+                </div>
+
+                <!-- Real-World Example -->
+                <div class="bg-gray-50 dark:bg-gray-900/20 p-4 rounded-lg border-l-4 border-purple-500">
+                    <p class="font-semibold text-purple-800 dark:text-purple-300 mb-2">Real-World Scenario: Maria's Elimination Period Math</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Maria has a disability policy with a 90-day elimination period and a benefit period to age 65. She's 40 years old and earns $6,000/month. On January 1st, she's in a car accident and can't work.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Days 1-90 (Jan 1 - Mar 31): Elimination period. Maria receives nothing. Day 91 (April 1): Maria is now eligible for benefits. Day 121 (May 1): Maria's first check arrives - $3,960/month (66% of $6,000), covering the month of April.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Maria will keep getting $3,960/month until she either recovers, turns 65, or dies. That's potentially 25 years of benefits. This is why a 90-day elimination period saves so much on premiums - the insurer avoids paying for short-term disabilities.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Benefit Limitations & SIS -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">3. Benefit Limitations and Social Insurance Supplement</h2>
+
+                <!-- Benefit Cap -->
+                <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-red-500 mb-6">
+                    <h3 class="font-bold text-red-800 dark:text-red-300 text-lg">The 66% Rule: Why Benefits Are Never 100%</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">Disability benefits are typically capped at about <strong>66% of pre-disability earnings</strong>. Why not 100%? To prevent <strong>malingering</strong> - if you got paid the same amount to stay home, many people would have little incentive to return to work. The gap between 66% and 100% is the financial motivation to recover and get back on the job.</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">Benefits are also adjusted downward if you receive <strong>Social Security disability</strong> or <strong>Workers' Compensation</strong> benefits, so total payments don't exceed that ~66% target.</p>
+                </div>
+
+                <!-- SIS Rider -->
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-6">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg">Social Insurance Supplement (SIS) Rider</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">This rider fills the gaps in Social Security disability coverage. It pays in <strong>3 specific situations</strong>:</p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-4 mb-6">
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border border-purple-200 dark:border-purple-800">
+                        <div class="bg-purple-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mb-3">1</div>
+                        <p class="font-bold text-purple-800 dark:text-purple-300 mb-1">Waiting for SS Benefits</p>
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300">Social Security has a <strong>5-month waiting period</strong>. SIS pays during those 5 months when you're eligible but benefits haven't started yet.</p>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border border-purple-200 dark:border-purple-800">
+                        <div class="bg-purple-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mb-3">2</div>
+                        <p class="font-bold text-purple-800 dark:text-purple-300 mb-1">SS Claim Denied</p>
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300">About <strong>75% of initial SS disability claims are denied</strong> because of SS's rigid definition. SIS covers you when SS won't.</p>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border border-purple-200 dark:border-purple-800">
+                        <div class="bg-purple-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mb-3">3</div>
+                        <p class="font-bold text-purple-800 dark:text-purple-300 mb-1">SS Pays Less Than Rider</p>
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300">If your Social Security benefit amount is <strong>less than the SIS rider amount</strong>, the rider pays the difference to make up the gap.</p>
+                    </div>
+                </div>
+
+                <!-- Key Numbers -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
+                    <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded-lg text-center border border-gray-200 dark:border-gray-600">
+                        <p class="text-2xl lg:text-3xl font-bold text-red-600 dark:text-red-400">66%</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Typical benefit cap</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded-lg text-center border border-gray-200 dark:border-gray-600">
+                        <p class="text-2xl lg:text-3xl font-bold text-blue-600 dark:text-blue-400">5 mo</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">SS waiting period</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded-lg text-center border border-gray-200 dark:border-gray-600">
+                        <p class="text-2xl lg:text-3xl font-bold text-amber-600 dark:text-amber-400">75%</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">SS claims denied</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded-lg text-center border border-gray-200 dark:border-gray-600">
+                        <p class="text-2xl lg:text-3xl font-bold text-purple-600 dark:text-purple-400">30%</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Chance of 90+ day disability (age 25)</p>
+                    </div>
+                </div>
+
+                <!-- Example -->
+                <div class="bg-gray-50 dark:bg-gray-900/20 p-4 rounded-lg border-l-4 border-blue-500">
+                    <p class="font-semibold text-blue-800 dark:text-blue-300 mb-2">Real-World Scenario: James and the SIS Rider</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> James, a plumber earning $5,000/month, becomes disabled from a back injury. His disability policy has a 90-day elimination period. He also has a SIS rider that pays $1,500/month. He applies for Social Security disability.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> After his elimination period, his private policy starts paying $3,300/month (66%). He's told SS has a 5-month waiting period AND his initial claim is denied. The SIS rider kicks in, paying an additional $1,500/month.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> James receives $3,300 + $1,500 = $4,800/month while fighting his SS denial. When SS eventually approves and pays $1,200/month, the SIS rider drops to $300/month ($1,500 - $1,200) to cover the shortfall. Without SIS, James would have had a significant gap in coverage during the SS waiting period.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Special Disability Provisions -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">4. Special Disability Provisions</h2>
+
+                <div class="space-y-4 mb-6">
+                    <!-- Presumptive Disability -->
+                    <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-red-500">
+                        <h3 class="font-bold text-red-800 dark:text-red-300 text-lg">Presumptive Disability</h3>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">Certain catastrophic losses <strong>automatically qualify</strong> for full disability benefits - no questions asked, no need to prove you can't work. The disability is "presumed."</p>
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-2 mt-3">
+                            <div class="bg-white dark:bg-gray-700 p-2 rounded text-center">
+                                <p class="font-bold text-red-700 dark:text-red-300 text-sm">Loss of 2+ limbs</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-2 rounded text-center">
+                                <p class="font-bold text-red-700 dark:text-red-300 text-sm">Total blindness</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-2 rounded text-center">
+                                <p class="font-bold text-red-700 dark:text-red-300 text-sm">Loss of speech</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-2 rounded text-center">
+                                <p class="font-bold text-red-700 dark:text-red-300 text-sm">Loss of hearing</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recurrent Disability -->
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500">
+                        <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg">Recurrent Disability</h3>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">If the <strong>same disability returns within 3-6 months</strong>, it's treated as a <strong>continuation</strong> of the original claim. That means: no new elimination period! The insured goes right back to collecting benefits.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400"><strong>Example:</strong> Lisa was out for 4 months with a herniated disc, went back to work, but 2 months later the same disc flares up again. Since it recurred within 6 months, she doesn't have to sit through another 90-day elimination period - benefits resume immediately.</p>
+                        </div>
+                    </div>
+
+                    <!-- Probationary Period -->
+                    <div class="bg-amber-50 dark:bg-amber-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-amber-500">
+                        <h3 class="font-bold text-amber-800 dark:text-amber-300 text-lg">Probationary Period (10-30 days)</h3>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">A short period after policy issue (usually <strong>10 to 30 days</strong>) during which <strong>NO benefits are paid for SICKNESS</strong>. Accidents ARE covered from day 1. This guards against <strong>adverse selection</strong> - people who buy insurance because they already know they're getting sick.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400"><strong>Example:</strong> Dave buys a disability policy on March 1st (15-day probationary period). On March 10th, he's diagnosed with pneumonia and can't work. His sickness claim is DENIED - he's still in the probationary period. But if Dave had broken his leg in a car accident on March 10th, he'd be covered because accident claims aren't subject to the probationary period.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Exclusions -->
+                <h3 class="text-lg lg:text-xl font-bold text-gray-800 dark:text-gray-100 mb-3">Common Exclusions</h3>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
+                    <div class="bg-red-50 dark:bg-red-900/20 p-3 rounded-lg border border-red-200 dark:border-red-800">
+                        <p class="font-bold text-red-800 dark:text-red-300 text-sm">War or Military Service</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Injuries from armed conflict</p>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 p-3 rounded-lg border border-red-200 dark:border-red-800">
+                        <p class="font-bold text-red-800 dark:text-red-300 text-sm">Self-Inflicted Injuries</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Intentional self-harm</p>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 p-3 rounded-lg border border-red-200 dark:border-red-800">
+                        <p class="font-bold text-red-800 dark:text-red-300 text-sm">Overseas Residence</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Living outside the US</p>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 p-3 rounded-lg border border-red-200 dark:border-red-800">
+                        <p class="font-bold text-red-800 dark:text-red-300 text-sm">Committing a Felony</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Injury while committing a crime</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Business Disability Insurance -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">5. Business Disability Insurance</h2>
+
+                <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300 mb-4">When a business owner or key employee becomes disabled, it's not just their personal income at risk - the entire business can suffer. Three types of business disability coverage address different needs.</p>
+
+                <!-- BOE -->
+                <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-green-500 mb-4">
+                    <h3 class="font-bold text-green-800 dark:text-green-300 text-lg">Business Overhead Expense (BOE)</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">Pays the <strong>business's operating expenses</strong> while the owner is disabled. Keeps the lights on so the business survives until the owner returns.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border border-green-200 dark:border-green-800">
+                        <p class="font-bold text-green-800 dark:text-green-300">COVERED by BOE</p>
+                        <ul class="text-gray-700 dark:text-gray-300 mt-2 space-y-1 text-sm lg:text-base">
+                            <li>- Rent / mortgage on business property</li>
+                            <li>- Utilities (electric, water, internet)</li>
+                            <li>- Employee salaries and wages</li>
+                            <li>- Equipment leases</li>
+                            <li>- Business loan payments</li>
+                        </ul>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border border-red-200 dark:border-red-800">
+                        <p class="font-bold text-red-800 dark:text-red-300">NOT COVERED by BOE</p>
+                        <ul class="text-gray-700 dark:text-gray-300 mt-2 space-y-1 text-sm lg:text-base">
+                            <li>- The OWNER'S salary</li>
+                            <li>- Owner's personal expenses</li>
+                            <li>- Business expansion costs</li>
+                            <li>- New equipment purchases</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- BOE Key Numbers -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center border border-gray-200 dark:border-gray-600">
+                        <p class="text-xl lg:text-2xl font-bold text-green-600 dark:text-green-400">15-30</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Day elimination period</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center border border-gray-200 dark:border-gray-600">
+                        <p class="text-xl lg:text-2xl font-bold text-green-600 dark:text-green-400">1-2 yr</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Benefit period</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center border border-gray-200 dark:border-gray-600">
+                        <p class="text-xl lg:text-2xl font-bold text-blue-600 dark:text-blue-400">YES</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Premiums tax deductible</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center border border-gray-200 dark:border-gray-600">
+                        <p class="text-xl lg:text-2xl font-bold text-red-600 dark:text-red-400">YES</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Benefits taxable</p>
+                    </div>
+                </div>
+
+                <!-- Business Disability Buyout -->
+                <div class="bg-indigo-50 dark:bg-indigo-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-indigo-500 mb-4">
+                    <h3 class="font-bold text-indigo-800 dark:text-indigo-300 text-lg">Business Disability Buyout</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">Funds a <strong>buy-sell agreement</strong> when a business partner becomes permanently disabled. The healthy partners use the insurance payout to buy out the disabled partner's share of the business.</p>
+                    <div class="grid md:grid-cols-2 gap-3 mt-3">
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-semibold text-gray-700 dark:text-gray-300 text-sm">Key features:</p>
+                            <ul class="text-sm text-gray-600 dark:text-gray-400 mt-1 space-y-1">
+                                <li>- Long elimination period: <strong>1-2 years</strong> (to confirm permanent disability)</li>
+                                <li>- Pays as a <strong>lump sum</strong></li>
+                            </ul>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-semibold text-gray-700 dark:text-gray-300 text-sm">Tax treatment (OPPOSITE of BOE):</p>
+                            <ul class="text-sm text-gray-600 dark:text-gray-400 mt-1 space-y-1">
+                                <li>- Premiums: <strong>NOT tax deductible</strong></li>
+                                <li>- Benefits: <strong>TAX FREE</strong></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Key Person Disability -->
+                <div class="bg-amber-50 dark:bg-amber-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-amber-500 mb-6">
+                    <h3 class="font-bold text-amber-800 dark:text-amber-300 text-lg">Key Person Disability</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">The <strong>employer</strong> buys a disability policy on a key employee whose absence would hurt the business. The <strong>business is the owner, premium payor, and beneficiary</strong>. Must have the employee's <strong>written consent</strong>.</p>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                        <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400"><strong>Example:</strong> A tech startup's lead developer is the only person who understands their proprietary code. The company buys a key person disability policy on her. If she becomes disabled, the business receives benefits to hire temporary help or consultants while finding a replacement.</p>
+                    </div>
+                </div>
+
+                <!-- Comparison Table -->
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm lg:text-base">
+                        <thead>
+                            <tr class="bg-purple-600 text-white">
+                                <th class="p-3 lg:p-4 text-left rounded-tl-lg">Feature</th>
+                                <th class="p-3 lg:p-4 text-left">BOE</th>
+                                <th class="p-3 lg:p-4 text-left">Buyout</th>
+                                <th class="p-3 lg:p-4 text-left rounded-tr-lg">Key Person</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Purpose</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Pay business expenses</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Buy out disabled partner</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Replace key employee value</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Elimination</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">15-30 days</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">1-2 years</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Varies</td>
+                            </tr>
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Benefit Period</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">1-2 years</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Lump sum</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Varies</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Premiums</td>
+                                <td class="p-3 lg:p-4 text-green-700 dark:text-green-300 font-bold">Tax deductible</td>
+                                <td class="p-3 lg:p-4 text-red-700 dark:text-red-300 font-bold">NOT deductible</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Varies</td>
+                            </tr>
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Benefits</td>
+                                <td class="p-3 lg:p-4 text-red-700 dark:text-red-300 font-bold">Taxable</td>
+                                <td class="p-3 lg:p-4 text-green-700 dark:text-green-300 font-bold">Tax FREE</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Varies</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Owner</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Business owner</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Partners</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Employer (business)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Real-World Example -->
+                <div class="bg-gray-50 dark:bg-gray-900/20 p-4 rounded-lg border-l-4 border-green-500 mt-6">
+                    <p class="font-semibold text-green-800 dark:text-green-300 mb-2">Real-World Scenario: Dr. Patel's Dental Practice</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Dr. Patel owns a dental practice with $12,000/month in overhead (rent $4,000, staff salaries $6,000, equipment leases $2,000). She has a BOE policy with a 30-day elimination period. She breaks her wrist and can't perform dental work for 3 months.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> After the 30-day elimination period, the BOE policy starts paying $12,000/month to cover rent, staff, and equipment. Her employees keep getting paid. The office stays open for hygienist appointments. Her personal income? NOT covered by BOE - she'd need a separate individual disability policy for that.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Dr. Patel's premiums were tax deductible (a business expense), but the $12,000/month benefits are taxable income to the business. When she recovers, her practice is intact and ready for her return - without BOE, she might have had to close up shop permanently.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: Group Disability -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">6. Group Disability Insurance</h2>
+
+                <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300 mb-4">Group disability is offered through employers. The key difference from individual policies: benefits are based on a <strong>percentage of income</strong> rather than a flat dollar amount.</p>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <!-- Short-Term -->
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-l-4 border-blue-500">
+                        <h4 class="font-bold text-blue-800 dark:text-blue-300 text-lg mb-2">Short-Term Group Disability (STD)</h4>
+                        <ul class="text-gray-700 dark:text-gray-300 space-y-2 text-sm lg:text-base">
+                            <li><strong>Duration:</strong> 13-52 weeks (26 weeks most common)</li>
+                            <li><strong>Benefit:</strong> 50-100% of income</li>
+                            <li><strong>Renewable:</strong> NOT renewable</li>
+                            <li><strong>Waiting:</strong> Short elimination period</li>
+                        </ul>
+                    </div>
+
+                    <!-- Long-Term -->
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <h4 class="font-bold text-green-800 dark:text-green-300 text-lg mb-2">Long-Term Group Disability (LTD)</h4>
+                        <ul class="text-gray-700 dark:text-gray-300 space-y-2 text-sm lg:text-base">
+                            <li><strong>Duration:</strong> 2+ years (often to age 65)</li>
+                            <li><strong>Benefit:</strong> Usually 60% of income</li>
+                            <li><strong>Renewable:</strong> Can be renewable</li>
+                            <li><strong>Waiting:</strong> Longer elimination period</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Group Rules -->
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-purple-500 mb-6">
+                    <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg">Group Disability Rules</h3>
+                    <ul class="text-gray-700 dark:text-gray-300 mt-2 space-y-2 text-base lg:text-lg">
+                        <li><strong>Employment requirement:</strong> Must work 30-90 days before eligible</li>
+                        <li><strong>Workers' Comp:</strong> Benefits supplement (not replace) workers' compensation</li>
+                        <li><strong>Occupational limits:</strong> Some plans cover only nonoccupational disabilities (on-the-job injuries handled by workers' comp)</li>
+                    </ul>
+                </div>
+
+                <!-- Example -->
+                <div class="bg-gray-50 dark:bg-gray-900/20 p-4 rounded-lg border-l-4 border-blue-500">
+                    <p class="font-semibold text-blue-800 dark:text-blue-300 mb-2">Real-World Scenario: Sarah's Group Coverage</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Sarah starts a new job on January 1st earning $4,000/month. Her employer offers group STD (26 weeks, 60% of income) and group LTD (to age 65, 60% of income). There's a 60-day employment waiting period. On February 15th (day 46), Sarah slips on ice and fractures her hip.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Sarah hasn't completed the 60-day employment requirement yet. Her group disability claim is DENIED. She wasn't eligible for the plan until March 2nd (day 61).</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Had Sarah been injured after March 2nd, her STD would pay $2,400/month (60% of $4,000) for up to 26 weeks. If still disabled after that, LTD would take over at $2,400/month until age 65. The 60-day waiting period is why many employees keep their old coverage active during job transitions.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cheat Sheet -->
+        <section id="cheat-sheet" class="mb-8 lg:mb-10">
+            <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 border-2 border-dashed border-gray-300 dark:border-gray-600">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100">Cheat Sheet</h2>
+                    <span class="text-sm text-gray-500 dark:text-gray-400">Print this page for quick reference</span>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Key Numbers:</p>
+                        <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-1">
+                            <li>66% = typical benefit cap</li>
+                            <li>30% = chance of 90+ day disability (age 25)</li>
+                            <li>75% = SS disability claims denied</li>
+                            <li>5 months = SS waiting period</li>
+                            <li>30-180 days = elimination period range</li>
+                            <li>10-30 days = probationary period</li>
+                            <li>3-6 months = recurrent disability window</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Elimination Period:</p>
+                        <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-1">
+                            <li>"Time deductible" (days, not dollars)</li>
+                            <li>Longer = lower premium</li>
+                            <li>Benefits paid in ARREARS</li>
+                            <li>90-day EP: eligible day 91, first check day 121</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">BOE vs Buyout Tax Rules:</p>
+                        <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-1">
+                            <li>BOE: premiums deductible, benefits taxable</li>
+                            <li>Buyout: premiums NOT deductible, benefits tax-free</li>
+                            <li>BOE does NOT cover owner's salary</li>
+                            <li>Buyout elimination: 1-2 years</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Injury Definitions:</p>
+                        <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-1">
+                            <li>Accidental Bodily Injury = result unexpected (BROADER)</li>
+                            <li>Accidental Means = cause unexpected (NARROWER)</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Group Disability:</p>
+                        <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-1">
+                            <li>STD: 13-52 weeks (26 most common), 50-100%</li>
+                            <li>LTD: 2+ years, usually 60%</li>
+                            <li>30-90 day employment waiting period</li>
+                            <li>Benefits supplement workers' comp</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Presumptive Disability:</p>
+                        <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-1">
+                            <li>Loss of 2+ limbs</li>
+                            <li>Total blindness</li>
+                            <li>Loss of speech or hearing</li>
+                            <li>= Automatic full benefits</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Traps -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-xl p-5 lg:p-6">
+                <h2 class="text-2xl font-bold text-red-800 dark:text-red-300 mb-4">Exam Trap Alerts</h2>
+                <div class="space-y-3">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">1. Elimination Period vs. Probationary Period - They Are NOT the Same!</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>Elimination period</strong> = waiting time AFTER disability begins before benefits start (applies to every claim). <strong>Probationary period</strong> = waiting time after the policy is ISSUED before sickness claims are covered (one-time only, accidents always covered). Don't confuse them.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">2. BOE Does NOT Cover the Owner's Salary</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">BOE covers rent, utilities, employee wages, and equipment. It specifically EXCLUDES the disabled owner's personal income. The owner needs a separate individual disability policy for that. This is a favorite exam question.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">3. BOE and Buyout Have OPPOSITE Tax Treatment</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">BOE: premiums tax deductible, benefits taxable. Buyout: premiums NOT deductible, benefits tax-free. If the exam asks about one, make sure you don't accidentally apply the other's rules.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">4. "Accidental Bodily Injury" is the BROADER Definition</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">It seems counterintuitive, but "accidental bodily injury" (result is unexpected) covers MORE situations than "accidental means" (cause is unexpected). Remember: RESULT unexpected = broader, CAUSE unexpected = narrower.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">5. Benefits Paid in ARREARS - First Check Comes LATE</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">With a 90-day elimination period, you become eligible on day 91 but don't receive your first check until day 121 (30 days later). The exam may ask when the "first payment" arrives - it's NOT when you become eligible.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">6. Probationary Period Applies to SICKNESS Only</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Accidents are covered from day 1 of the policy. The probationary period (10-30 days) only delays coverage for sickness claims. If the exam asks "what is NOT covered during the probationary period?" - it's sickness, not accidents.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">7. Why Benefits Cap at 66% - "Malingering"</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">If the exam asks WHY disability benefits don't replace 100% of income, the answer is to prevent "malingering" - the insured having no financial incentive to return to work. The 34% gap is the motivator.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Reference Summary -->
+        <div class="bg-gradient-to-r from-purple-600 to-purple-800 rounded-xl p-6 text-white mb-8">
+            <h2 class="text-2xl font-bold mb-6">Quick Reference Summary</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div class="bg-white/20 rounded-lg p-4">
+                    <p class="font-bold">Elimination Period</p>
+                    <p class="text-sm text-purple-100">"Time deductible" - 30-180 days, longer = cheaper</p>
+                </div>
+                <div class="bg-white/20 rounded-lg p-4">
+                    <p class="font-bold">Benefit Period</p>
+                    <p class="text-sm text-purple-100">1yr to lifetime - how long payments last</p>
+                </div>
+                <div class="bg-white/20 rounded-lg p-4">
+                    <p class="font-bold">66% Cap</p>
+                    <p class="text-sm text-purple-100">Prevents malingering - never 100% replacement</p>
+                </div>
+                <div class="bg-white/20 rounded-lg p-4">
+                    <p class="font-bold">SIS Rider</p>
+                    <p class="text-sm text-purple-100">Fills gaps in Social Security disability coverage</p>
+                </div>
+                <div class="bg-white/20 rounded-lg p-4">
+                    <p class="font-bold">BOE Insurance</p>
+                    <p class="text-sm text-purple-100">Business expenses only - NOT owner's salary</p>
+                </div>
+                <div class="bg-white/20 rounded-lg p-4">
+                    <p class="font-bold">Presumptive Disability</p>
+                    <p class="text-sm text-purple-100">2+ limbs, blindness, speech, hearing = auto full</p>
+                </div>
+                <div class="bg-white/20 rounded-lg p-4">
+                    <p class="font-bold">Probationary Period</p>
+                    <p class="text-sm text-purple-100">10-30 days, sickness only - accidents always covered</p>
+                </div>
+                <div class="bg-white/20 rounded-lg p-4">
+                    <p class="font-bold">Accidental Bodily Injury</p>
+                    <p class="text-sm text-purple-100">Result unexpected = BROADER coverage</p>
+                </div>
+                <div class="bg-white/20 rounded-lg p-4">
+                    <p class="font-bold">Group STD/LTD</p>
+                    <p class="text-sm text-purple-100">STD: 26 weeks typical. LTD: 60% to age 65</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Navigation -->
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="../part-1/index.html" class="text-gray-300 hover:text-white flex items-center gap-1">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                    Part 1: Medical Expense
+                </a>
+                <span class="text-gray-400">Part 2 of 6</span>
+                <a href="../part-3/index.html" class="text-gray-300 hover:text-white flex items-center gap-1">
+                    Part 3: AD&D Insurance
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
