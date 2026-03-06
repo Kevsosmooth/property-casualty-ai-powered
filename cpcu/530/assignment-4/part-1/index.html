@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 1: Statute of Frauds & Parol Evidence Rule | Assignment 4 | CPCU 530</title>
+    <link rel="icon" type="image/svg+xml" href="../../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config = { darkMode: 'class' }</script>
+    <link rel="stylesheet" href="../../../../css/styles.css">
+    <script src="../../../../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') { document.documentElement.classList.remove('dark'); }
+        function toggleTheme() { document.documentElement.classList.toggle('dark'); localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light'); }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="showAPIKeySetup()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings"><svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg></button>
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/></svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>
+        </button>
+    </div>
+
+    <header class="bg-gradient-to-r from-purple-600 to-purple-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap gap-2 text-sm mb-2">
+                <a href="../../../../index.html" class="text-purple-200 hover:text-white">Home</a><span class="text-purple-300">/</span>
+                <a href="../../../index.html" class="text-purple-200 hover:text-white">CPCU</a><span class="text-purple-300">/</span>
+                <a href="../../index.html" class="text-purple-200 hover:text-white">530</a><span class="text-purple-300">/</span>
+                <a href="../index.html" class="text-purple-200 hover:text-white">Assignment 4</a><span class="text-purple-300">/</span>
+                <span class="text-white">Part 1</span>
+            </div>
+            <h1 class="text-3xl font-bold">Part 1: Statute of Frauds &amp; Parol Evidence Rule</h1>
+            <p class="text-purple-200 mt-1">Assignment 4 &mdash; Contracts: Form, Interpretation &amp; Obligations</p>
+        </div>
+    </header>
+
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-wrap gap-2 text-sm">
+                <a href="../index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Intro</a>
+                <span class="bg-purple-600 text-white px-3 py-1 rounded font-medium">Part 1</span>
+                <a href="../part-2/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 2</a>
+                <a href="../part-3/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 3</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-5xl lg:max-w-7xl">
+
+        <!-- Start Here -->
+        <div class="bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/40 dark:to-purple-800/40 rounded-xl p-6 mb-8 border border-blue-300 dark:border-blue-700">
+            <h3 class="text-xl font-bold text-blue-800 dark:text-blue-200 mb-4">Start Here: 5 Things You MUST Know</h3>
+            <div class="grid md:grid-cols-2 gap-3">
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>6 types of contracts</strong> must be in writing under the Statute of Frauds &mdash; land, 1+ year, another's debt, marriage, executor, UCC $500+</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
+                    <p class="text-gray-700 dark:text-gray-300">Most <strong>P&amp;C policies are NOT</strong> subject to the Statute of Frauds because they can be performed within one year</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
+                    <p class="text-gray-700 dark:text-gray-300">The <strong>Parol Evidence Rule</strong> bars outside oral/written evidence from contradicting a written contract</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">4</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>4 exceptions</strong> let parol evidence in: incomplete contract, ambiguity, fraud/mistake, failed condition precedent</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">5</span>
+                    <p class="text-gray-700 dark:text-gray-300">The <strong>UCC is more flexible</strong> &mdash; only requires quantity term and allows trade usage and course of dealing as evidence</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 1: Statute of Frauds -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">1. What Is the Statute of Frauds?</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-6">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg lg:text-xl">Statute of Frauds</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">A law designed to <strong>prevent fraud and perjury</strong> by requiring that certain types of contracts be put in writing and signed by the party responsible for performing the contract. Without a writing, these contracts are generally <strong>unenforceable</strong>.</p>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>Plain English:</strong> The law says, "Some deals are too important to rely on a handshake. Write it down or it won't hold up in court."</p>
+                    </div>
+                </div>
+
+                <!-- 6 Types -->
+                <h3 class="text-lg lg:text-xl font-bold text-gray-800 dark:text-gray-100 mb-4">Six Types of Contracts That MUST Be in Writing</h3>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border-l-4 border-purple-500">
+                        <span class="bg-purple-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold mb-2">1</span>
+                        <p class="font-bold text-purple-800 dark:text-purple-300">Sale of Land</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Any interest in land &mdash; purchases, leases, easements, mortgages</p>
+                        <p class="text-purple-600 dark:text-purple-400 text-xs lg:text-sm mt-2 font-semibold">Exception: Buyer took possession AND made substantial improvements</p>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border-l-4 border-purple-500">
+                        <span class="bg-purple-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold mb-2">2</span>
+                        <p class="font-bold text-purple-800 dark:text-purple-300">Cannot Perform Within 1 Year</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">By its terms, contract is impossible to complete in under 12 months</p>
+                        <p class="text-purple-600 dark:text-purple-400 text-xs lg:text-sm mt-2 font-semibold">Key: If it is POSSIBLE within 1 year, writing NOT required</p>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border-l-4 border-purple-500">
+                        <span class="bg-purple-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold mb-2">3</span>
+                        <p class="font-bold text-purple-800 dark:text-purple-300">Another's Debt</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Suretyship/guaranty &mdash; promising to pay someone else's debt</p>
+                        <p class="text-purple-600 dark:text-purple-400 text-xs lg:text-sm mt-2 font-semibold">Exception: Primary purpose serves your OWN business interest</p>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border-l-4 border-purple-500">
+                        <span class="bg-purple-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold mb-2">4</span>
+                        <p class="font-bold text-purple-800 dark:text-purple-300">Marriage Consideration</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Prenuptial agreements must be in writing</p>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border-l-4 border-purple-500">
+                        <span class="bg-purple-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold mb-2">5</span>
+                        <p class="font-bold text-purple-800 dark:text-purple-300">Executor's Own Funds</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Executor/administrator promising to pay estate debts from personal funds</p>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border-l-4 border-purple-500">
+                        <span class="bg-purple-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold mb-2">6</span>
+                        <p class="font-bold text-purple-800 dark:text-purple-300">UCC: Personal Property $500+</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Sale of goods for $500 or more under the UCC</p>
+                        <p class="text-purple-600 dark:text-purple-400 text-xs lg:text-sm mt-2 font-semibold">Only REQUIRED term: quantity</p>
+                    </div>
+                </div>
+
+                <!-- Example: Land -->
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-gray-400 mb-4">
+                    <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Scenario: Oral Land Sale Enforced</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> Tom orally agrees to sell his farm to Sarah for $200,000. No written contract is signed.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> Sarah moves onto the property, builds a barn, and plants crops &mdash; all in reliance on the deal.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> Even without a written contract, most courts will enforce the oral agreement because Sarah <strong>took possession AND made substantial improvements</strong> in reliance on it. This is the major exception to the land sale writing requirement.</p>
+                </div>
+
+                <!-- Example: 1 Year -->
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-gray-400 mb-6">
+                    <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Scenario: The 1-Year Possibility Test</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> An employer orally agrees to hire someone for a 14-month project.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> The employee wants to enforce the oral contract.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> Because 14 months CANNOT be completed within one year, the contract needed to be in writing. BUT if the contract said "until the project is done" (indefinite), it <strong>could theoretically</strong> finish within a year, so a writing might NOT be required. The test is <strong>possibility, not probability</strong>.</p>
+                </div>
+
+                <!-- Writing Form -->
+                <div class="bg-indigo-50 dark:bg-indigo-900/20 rounded-lg p-4 border-l-4 border-indigo-500 mb-6">
+                    <p class="font-bold text-indigo-800 dark:text-indigo-300 text-lg">What Form of Writing Is Required?</p>
+                    <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-2 space-y-1">
+                        <li>A <strong>written note or memorandum</strong> is sufficient &mdash; no formal contract needed</li>
+                        <li>Must be <strong>signed by the party to be charged</strong> (the person against whom enforcement is sought)</li>
+                        <li>Under the UCC, only the <strong>quantity</strong> term is required in the writing</li>
+                    </ul>
+                </div>
+
+                <!-- Insurance Exception -->
+                <h3 class="text-lg lg:text-xl font-bold text-gray-800 dark:text-gray-100 mb-3">Insurance Contracts &amp; the Statute of Frauds</h3>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-2 border-amber-300 dark:border-amber-700 rounded-xl p-5 mb-4">
+                    <p class="font-bold text-amber-800 dark:text-amber-300 text-lg mb-2">Only 2 of the 6 Categories Apply to Insurance</p>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                            <span class="bg-amber-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold mb-2">1</span>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>Cannot perform within 1 year</strong> &mdash; Policies with terms exceeding one year</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                            <span class="bg-amber-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold mb-2">2</span>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>Another's debt</strong> &mdash; Such as surety bonds</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-800 rounded-lg p-4">
+                    <p class="font-bold text-red-800 dark:text-red-300 mb-1">Exam Trap: Insurance &amp; the 1-Year Rule</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Most P&amp;C policies have terms of <strong>one year or less</strong>, so the Statute of Frauds generally does NOT apply. Life insurance policies can theoretically be performed within one year (the insured could die within a year), so many courts hold the one-year rule does NOT apply to life insurance either.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Parol Evidence Rule -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">2. The Parol Evidence Rule</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-6">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg lg:text-xl">Parol Evidence Rule</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">A rule of evidence that <strong>limits the terms of a contract to those expressed in writing</strong>. Once you have written down your deal, you cannot introduce outside oral or written evidence to contradict or add to what is already in the written contract.</p>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>Plain English:</strong> "Parol" means "oral" or "spoken." The rule says: you wrote it down, so that is the deal. No take-backs with verbal side agreements.</p>
+                    </div>
+                </div>
+
+                <!-- 3 Purposes -->
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">Three Purposes of the Rule</h3>
+                <div class="grid md:grid-cols-3 gap-4 mb-6">
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border border-green-200 dark:border-green-800 text-center">
+                        <span class="bg-green-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold mx-auto mb-2">1</span>
+                        <p class="font-bold text-green-800 dark:text-green-300">Carry Out Intent</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">If they wrote it down, that is what they meant</p>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border border-green-200 dark:border-green-800 text-center">
+                        <span class="bg-green-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold mx-auto mb-2">2</span>
+                        <p class="font-bold text-green-800 dark:text-green-300">Certainty &amp; Finality</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Achieve certainty about the parties' rights and duties</p>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border border-green-200 dark:border-green-800 text-center">
+                        <span class="bg-green-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold mx-auto mb-2">3</span>
+                        <p class="font-bold text-green-800 dark:text-green-300">Exclude Fraud</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Prevent someone from fabricating terms later</p>
+                    </div>
+                </div>
+
+                <!-- 4 Exceptions -->
+                <h3 class="text-lg lg:text-xl font-bold text-gray-800 dark:text-gray-100 mb-3">Four Exceptions: When Parol Evidence IS Allowed</h3>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg border-l-4 border-amber-500">
+                        <span class="bg-amber-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold mb-2">1</span>
+                        <p class="font-bold text-amber-800 dark:text-amber-300">Incomplete Contracts</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">To prove terms of contracts that are <strong>not complete on their face</strong>. If the written agreement clearly leaves gaps, outside evidence can fill them.</p>
+                    </div>
+                    <div class="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg border-l-4 border-amber-500">
+                        <span class="bg-amber-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold mb-2">2</span>
+                        <p class="font-bold text-amber-800 dark:text-amber-300">Ambiguity</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">To <strong>clarify ambiguous terms</strong> in a contract. If a term can mean two things, outside evidence helps the court determine the intended meaning.</p>
+                    </div>
+                    <div class="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg border-l-4 border-amber-500">
+                        <span class="bg-amber-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold mb-2">3</span>
+                        <p class="font-bold text-amber-800 dark:text-amber-300">Fraud, Accident, Illegality, or Mistake</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">To support allegations that the contract was tainted by <strong>fraud, accident, illegality, or mistake</strong>.</p>
+                    </div>
+                    <div class="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg border-l-4 border-amber-500">
+                        <span class="bg-amber-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold mb-2">4</span>
+                        <p class="font-bold text-amber-800 dark:text-amber-300">Condition Precedent</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">To prove that a <strong>condition precedent</strong> (something that had to happen first) failed to occur, meaning the contract never took effect.</p>
+                    </div>
+                </div>
+
+                <!-- Example -->
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-gray-400 mb-6">
+                    <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Scenario: The House Sale and the Patio Furniture</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> Barry buys Sam's house for $200,000. The written contract mentions only the property. Barry produces a letter from Sam saying the patio furniture goes with the house, and also claims Sam orally agreed to include a microwave.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> Barry tries to introduce the letter and the oral conversation as evidence.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> Under the parol evidence rule, this evidence is generally <strong>excluded</strong> because the written contract governs. HOWEVER, if Barry can prove the contract was <strong>incomplete</strong> (it did not address personal property at all), <strong>ambiguous</strong>, or that there was <strong>fraud or mistake</strong>, the letter and conversation might be admitted.</p>
+                </div>
+
+                <!-- UCC Flexibility -->
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">Parol Evidence Under the UCC (More Flexible)</h3>
+
+                <div class="bg-indigo-50 dark:bg-indigo-900/20 rounded-lg p-4 border-l-4 border-indigo-500">
+                    <p class="font-bold text-indigo-800 dark:text-indigo-300 text-lg mb-2">UCC Is More Lenient Than Common Law</p>
+                    <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-2">
+                        <li>The contract writing need NOT set forth <strong>all material terms</strong></li>
+                        <li>A letter showing the written contract was not the entire agreement <strong>IS allowable evidence</strong></li>
+                        <li>Evidence of <strong>prior course of dealings</strong> between the parties is allowed</li>
+                        <li>Evidence of <strong>trade usage</strong> (common industry practices) is allowed</li>
+                        <li>The only REQUIRED term in the basic written agreement is the <strong>quantity</strong></li>
+                    </ul>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>Example:</strong> Two lumber companies have been trading for 10 years. Their latest written contract just says "500 units of pine." The UCC allows evidence of their past dealings and industry customs to fill in delivery terms, grading standards, and payment timing &mdash; even though those details are not in the written contract.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cheat Sheet -->
+        <section id="cheat-sheet" class="mb-10">
+            <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 border-2 border-dashed border-gray-300 dark:border-gray-600">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100">Cheat Sheet</h2>
+                    <span class="text-sm text-gray-500 dark:text-gray-400">Print this page for quick reference</span>
+                </div>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Statute of Frauds &mdash; 6 Types</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>1. Land sales (any interest in land)</li>
+                            <li>2. Cannot perform within 1 year (possibility test)</li>
+                            <li>3. Another's debt (suretyship/guaranty)</li>
+                            <li>4. Marriage consideration (prenups)</li>
+                            <li>5. Executor paying estate debts from own funds</li>
+                            <li>6. UCC: Personal property $500+ (quantity required)</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Parol Evidence &mdash; 4 Exceptions</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>1. Incomplete contracts</li>
+                            <li>2. Ambiguity in terms</li>
+                            <li>3. Fraud, accident, illegality, or mistake</li>
+                            <li>4. Condition precedent failed to occur</li>
+                        </ul>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2 mt-4">Insurance + Statute of Frauds</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>Only 2 categories apply: 1-year rule &amp; another's debt</li>
+                            <li>Most P&amp;C policies = 1 year or less = NOT subject</li>
+                            <li>A note/memorandum is sufficient (no formal contract)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Traps -->
+        <section class="mb-10">
+            <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-xl p-5 lg:p-6">
+                <h2 class="text-2xl font-bold text-red-800 dark:text-red-300 mb-4">Exam Trap Alerts</h2>
+                <div class="space-y-3">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">1. Possibility vs. Probability (1-Year Rule)</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The test is whether performance within one year is <strong>possible</strong>, NOT whether it is probable. A contract "until the project is done" COULD be done in a year, so no writing is required &mdash; even if it will likely take 3 years.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">2. Insurance Policies and the Statute of Frauds</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Most P&amp;C policies are for one year or less &mdash; the Statute of Frauds does NOT apply. Life insurance can theoretically be performed within one year (insured could die), so courts often say the 1-year rule does not apply to life insurance either.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">3. Parol Evidence Rule vs. Exceptions</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The rule bars outside evidence, BUT the exam loves to test the 4 exceptions. If the contract is incomplete, ambiguous, involves fraud/mistake, or a condition precedent failed, outside evidence CAN come in.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">4. UCC Only Requires Quantity</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Under the UCC, the ONLY term that must be in the written agreement is <strong>quantity</strong>. Price, delivery, and other terms can be supplied by trade usage or course of dealing. Do not confuse this with common law, which is stricter.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">5. Primary Purpose Exception (Another's Debt)</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">If someone guarantees another's debt primarily to serve their <strong>own business interest</strong>, the promise may NOT need to be in writing. This is the "primary purpose" or "leading object" exception.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Reference Summary -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-purple-600 to-purple-800 rounded-xl p-6 text-white">
+                <h2 class="text-2xl font-bold mb-6">Quick Reference Summary</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Statute of Frauds</p>
+                        <p class="text-sm text-purple-100">Requires 6 types of contracts to be in writing to be enforceable.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Land Sale Exception</p>
+                        <p class="text-sm text-purple-100">Oral OK if buyer took possession AND made substantial improvements.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">1-Year Rule</p>
+                        <p class="text-sm text-purple-100">Test is possibility, not probability. If it COULD be done in 1 year, no writing needed.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Parol Evidence Rule</p>
+                        <p class="text-sm text-purple-100">Bars outside evidence from contradicting a written contract.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">4 Exceptions</p>
+                        <p class="text-sm text-purple-100">Incomplete, ambiguous, fraud/mistake, condition precedent.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">UCC Flexibility</p>
+                        <p class="text-sm text-purple-100">Only quantity required. Trade usage and course of dealing allowed.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="../index.html" class="text-gray-400 hover:text-white transition-colors">&larr; Assignment 4 Overview</a>
+                <span class="text-gray-500">Part 1 of 3</span>
+                <a href="../part-2/index.html" class="text-gray-400 hover:text-white transition-colors">Part 2: Interpretation &amp; Third-Party Rights &rarr;</a>
+            </div>
+        </div>
+    </footer>
+
+    <button onclick="openAITutor({topic: 'Statute of Frauds and Parol Evidence Rule', concepts: ['6 types requiring writing', 'Land sale exception (possession + improvements)', '1-year possibility test', 'Insurance and statute of frauds (only 2 apply)', 'Primary purpose exception for another debt', 'Parol evidence rule bars outside evidence', '4 exceptions to parol evidence', 'UCC flexibility - only quantity required', 'Trade usage and course of dealing under UCC'], keywords: ['statute of frauds', 'parol evidence rule', 'suretyship', 'guaranty', 'executor', 'administrator', 'UCC', 'quantity term', 'condition precedent', 'ambiguity', 'incomplete contract', 'trade usage', 'course of dealing']})" class="fixed bottom-6 right-6 bg-purple-600 hover:bg-purple-700 text-white p-4 rounded-full shadow-xl hover:scale-110 transition-all z-50" title="AI Tutor">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+    </button>
+</body>
+</html>

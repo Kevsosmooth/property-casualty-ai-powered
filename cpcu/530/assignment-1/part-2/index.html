@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 2: Legal Procedures &amp; ADR | CPCU 530</title>
+    <link rel="icon" type="image/svg+xml" href="../../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config = { darkMode: 'class' }</script>
+    <link rel="stylesheet" href="../../../../css/styles.css">
+    <script src="../../../../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') document.documentElement.classList.remove('dark');
+        function toggleTheme() { document.documentElement.classList.toggle('dark'); localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light'); }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="showAPIKeySetup()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings"><svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg></button>
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform"><svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/></svg><svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg></button>
+    </div>
+
+    <header class="bg-gradient-to-r from-purple-600 to-purple-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap gap-2 text-sm mb-2">
+                <a href="../../../../index.html" class="text-purple-200 hover:text-white">Home</a><span class="text-purple-300">/</span>
+                <a href="../../../index.html" class="text-purple-200 hover:text-white">CPCU</a><span class="text-purple-300">/</span>
+                <a href="../../index.html" class="text-purple-200 hover:text-white">530</a><span class="text-purple-300">/</span>
+                <a href="../index.html" class="text-purple-200 hover:text-white">Assignment 1</a><span class="text-purple-300">/</span>
+                <span class="text-white">Part 2</span>
+            </div>
+            <h1 class="text-3xl font-bold">Legal Procedures &amp; Alternative Dispute Resolution</h1>
+            <p class="text-purple-200 mt-1">How lawsuits work from start to finish, evidence rules, appeals, and faster alternatives</p>
+        </div>
+    </header>
+
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-wrap gap-2 text-sm">
+                <a href="../index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Overview</a>
+                <a href="../part-1/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 1</a>
+                <span class="bg-purple-600 text-white px-3 py-1 rounded font-medium">Part 2</span>
+                <a href="../part-3/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 3</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-5xl lg:max-w-7xl">
+
+        <!-- Start Here -->
+        <div class="bg-gradient-to-r from-purple-100 to-purple-200 dark:from-purple-900/40 dark:to-purple-800/40 rounded-xl p-6 mb-8 border border-purple-300 dark:border-purple-700">
+            <h3 class="text-xl lg:text-2xl font-bold text-purple-800 dark:text-purple-200 mb-4">Start Here: 5 Things You MUST Know</h3>
+            <div class="grid md:grid-cols-2 gap-3">
+                <div class="flex items-start"><span class="bg-purple-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span><p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">The lawsuit process: <strong>Complaint &rarr; Summons &rarr; Answer &rarr; Discovery &rarr; Trial &rarr; Verdict</strong>.</p></div>
+                <div class="flex items-start"><span class="bg-purple-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span><p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Three discovery tools: <strong>depositions</strong> (oral), <strong>interrogatories</strong> (written), <strong>motions to produce</strong> (documents).</p></div>
+                <div class="flex items-start"><span class="bg-purple-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span><p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Evidence is excluded for lack of <strong>relevance</strong>, <strong>materiality</strong>, or <strong>competence</strong>.</p></div>
+                <div class="flex items-start"><span class="bg-purple-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">4</span><p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Appellate courts do NOT conduct new trials</strong> &mdash; they only review whether the law was applied correctly.</p></div>
+                <div class="flex items-start"><span class="bg-purple-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">5</span><p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Three forms of ADR: <strong>Arbitration</strong> (third party decides), <strong>Mediation</strong> (facilitator helps), <strong>Negotiation</strong> (direct talks).</p></div>
+            </div>
+        </div>
+
+        <!-- Pretrial Procedure -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">1. Pretrial Procedure</h2>
+
+                <!-- Lawsuit Flow -->
+                <div class="flex flex-wrap items-center gap-3 mb-6 justify-center">
+                    <div class="bg-blue-100 dark:bg-blue-900/40 p-3 rounded-lg text-center min-w-[100px]"><p class="font-bold text-blue-800 dark:text-blue-300 text-sm">Complaint</p><p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Plaintiff files</p></div>
+                    <div class="text-2xl text-gray-400">&rarr;</div>
+                    <div class="bg-green-100 dark:bg-green-900/40 p-3 rounded-lg text-center min-w-[100px]"><p class="font-bold text-green-800 dark:text-green-300 text-sm">Summons</p><p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Court notifies</p></div>
+                    <div class="text-2xl text-gray-400">&rarr;</div>
+                    <div class="bg-amber-100 dark:bg-amber-900/40 p-3 rounded-lg text-center min-w-[100px]"><p class="font-bold text-amber-800 dark:text-amber-300 text-sm">Answer</p><p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Defendant responds</p></div>
+                    <div class="text-2xl text-gray-400">&rarr;</div>
+                    <div class="bg-purple-100 dark:bg-purple-900/40 p-3 rounded-lg text-center min-w-[100px]"><p class="font-bold text-purple-800 dark:text-purple-300 text-sm">Discovery</p><p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Gather evidence</p></div>
+                    <div class="text-2xl text-gray-400">&rarr;</div>
+                    <div class="bg-red-100 dark:bg-red-900/40 p-3 rounded-lg text-center min-w-[100px]"><p class="font-bold text-red-800 dark:text-red-300 text-sm">Trial</p><p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Present case</p></div>
+                </div>
+
+                <!-- Pleadings -->
+                <div class="bg-blue-50 dark:bg-blue-900/20 border-l-4 border-blue-500 p-4 lg:p-5 rounded-r-lg mb-6">
+                    <h4 class="font-bold text-blue-800 dark:text-blue-300 mb-2">Pleadings (The Opening Documents)</h4>
+                    <div class="space-y-2 text-gray-700 dark:text-gray-300 text-base lg:text-lg">
+                        <p><strong>Complaint:</strong> Plaintiff files allegations, states a cause of action, requests a remedy.</p>
+                        <p><strong>Summons:</strong> Court notifies defendant with copy of complaint + deadline to respond.</p>
+                        <p><strong>Answer:</strong> Defendant explains why plaintiff should not win. May include counterclaims (claims back) or crossclaims (against co-defendants).</p>
+                        <p><strong>Reply:</strong> Plaintiff may file after receiving the answer.</p>
+                    </div>
+                </div>
+
+                <!-- Pre-trial Motions -->
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg border border-amber-200 dark:border-amber-800">
+                        <p class="font-bold text-amber-800 dark:text-amber-300">Motion to Dismiss</p>
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300">Defendant asks the court to throw out the case (e.g., lack of jurisdiction).</p>
+                    </div>
+                    <div class="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg border border-amber-200 dark:border-amber-800">
+                        <p class="font-bold text-amber-800 dark:text-amber-300">Motion for Summary Judgment</p>
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300">Either side asks the court to decide without trial &mdash; no genuine dispute about the facts.</p>
+                    </div>
+                </div>
+
+                <!-- Discovery Tools -->
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">Discovery: Gathering Evidence Before Trial</h3>
+                <div class="grid md:grid-cols-3 gap-4 mb-6">
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <p class="font-bold text-green-800 dark:text-green-300">Depositions</p>
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300">Oral testimony under oath, face-to-face. Recorded by court reporter.</p>
+                    </div>
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-l-4 border-blue-500">
+                        <p class="font-bold text-blue-800 dark:text-blue-300">Interrogatories</p>
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300">Written questions sent to the other party. Must be answered in writing under oath.</p>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border-l-4 border-purple-500">
+                        <p class="font-bold text-purple-800 dark:text-purple-300">Motions to Produce</p>
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300">Court orders the other party to hand over documents (contracts, emails, records).</p>
+                    </div>
+                </div>
+
+                <!-- Example -->
+                <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                    <p class="font-semibold text-green-800 dark:text-green-300 mb-2">Real-World Scenario: Joyce's Slip-and-Fall</p>
+                    <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Joyce slips on an icy mall parking lot and wants to sue the mall owner.</p>
+                    <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Joyce's lawyer files a complaint alleging negligence. The mall owner files an answer. During discovery, Joyce's lawyer deposes the maintenance person, sends interrogatories about the ice removal policy, and files a motion to produce safety inspection records.</p>
+                    <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Both sides build their cases through discovery before ever going to trial.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trial Procedure & Evidence -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">2. Trial Procedure &amp; Evidence Rules</h2>
+
+                <!-- 3 Bases for Excluding Evidence -->
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">Three Bases for Excluding Evidence</h3>
+                <div class="grid md:grid-cols-3 gap-4 mb-6">
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border border-red-200 dark:border-red-800 text-center">
+                        <p class="text-2xl font-bold text-red-600 dark:text-red-400 mb-1">1</p>
+                        <p class="font-bold text-red-800 dark:text-red-300">Relevance</p>
+                        <p class="text-sm text-gray-700 dark:text-gray-300 mt-1">Does it relate to the issues?</p>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border border-red-200 dark:border-red-800 text-center">
+                        <p class="text-2xl font-bold text-red-600 dark:text-red-400 mb-1">2</p>
+                        <p class="font-bold text-red-800 dark:text-red-300">Materiality</p>
+                        <p class="text-sm text-gray-700 dark:text-gray-300 mt-1">Is it important enough to matter?</p>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border border-red-200 dark:border-red-800 text-center">
+                        <p class="text-2xl font-bold text-red-600 dark:text-red-400 mb-1">3</p>
+                        <p class="font-bold text-red-800 dark:text-red-300">Competence</p>
+                        <p class="text-sm text-gray-700 dark:text-gray-300 mt-1">Is the witness qualified / evidence reliable?</p>
+                    </div>
+                </div>
+
+                <!-- Hearsay -->
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 rounded-r-lg mb-6">
+                    <p class="font-bold text-amber-800 dark:text-amber-300">Hearsay Rule</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mt-1">Out-of-court statements offered to prove the truth of the matter are generally <strong>NOT admissible</strong>. BUT there are many exceptions: excited utterances, business records, dying declarations, and more.</p>
+                </div>
+
+                <!-- Evidence Example -->
+                <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-l-4 border-blue-500 mb-6">
+                    <p class="font-semibold text-blue-800 dark:text-blue-300 mb-2">Real-World Scenario: Jack's Truck Accident</p>
+                    <div class="space-y-2 text-sm lg:text-base text-gray-700 dark:text-gray-300">
+                        <p><strong>Jack's parking tickets:</strong> <span class="text-red-600 dark:text-red-400 font-bold">INADMISSIBLE</span> &mdash; irrelevant and immaterial to whether he backed into Mike.</p>
+                        <p><strong>Jack's drug abuse history:</strong> <span class="text-amber-600 dark:text-amber-400 font-bold">POTENTIALLY ADMISSIBLE</span> &mdash; only if connected to THIS case (e.g., he was under the influence at the time).</p>
+                        <p><strong>Wilma heard Jack say "Where'd you come from?":</strong> <span class="text-green-600 dark:text-green-400 font-bold">ADMISSIBLE</span> &mdash; relevant to show Jack did not see Mike. Hearsay exception (excited utterance) likely applies.</p>
+                    </div>
+                </div>
+
+                <!-- Verdicts & Finality -->
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border border-purple-200 dark:border-purple-800">
+                        <p class="font-bold text-purple-800 dark:text-purple-300 mb-2">Types of Verdicts</p>
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>General:</strong> Jury simply finds for plaintiff or defendant (+ damages).</p>
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300 mt-1"><strong>Special:</strong> Jury answers specific factual questions; judge applies the law.</p>
+                    </div>
+                    <div class="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-lg border border-indigo-200 dark:border-indigo-800">
+                        <p class="font-bold text-indigo-800 dark:text-indigo-300 mb-2">Finality Doctrines</p>
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>Res judicata:</strong> Case decided = cannot be relitigated.</p>
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300 mt-1"><strong>Collateral estoppel:</strong> Specific facts decided = cannot be re-argued in a related case.</p>
+                    </div>
+                </div>
+
+                <!-- Appeals -->
+                <div class="bg-red-50 dark:bg-red-900/20 border-l-4 border-red-500 p-4 rounded-r-lg">
+                    <h4 class="font-bold text-red-800 dark:text-red-300 mb-2">Appeals</h4>
+                    <div class="space-y-1 text-gray-700 dark:text-gray-300 text-base lg:text-lg">
+                        <p><strong>Appellant</strong> = the party who appeals (the loser at trial)</p>
+                        <p><strong>Appellee</strong> = the party who defends the appeal (the winner)</p>
+                        <p><strong>Key rule:</strong> Appellate courts do NOT conduct new trials. They only review whether the lower court applied the law correctly.</p>
+                        <p><strong>Writ of certiorari:</strong> How the U.S. Supreme Court chooses cases. If cert is denied, the lower court decision stands.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ADR Section -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">3. Alternative Dispute Resolution (ADR)</h2>
+
+                <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-6">ADR includes ways to resolve disputes <strong>without going through a full trial</strong>. It is faster, cheaper, and very common in insurance.</p>
+
+                <!-- ADR Comparison -->
+                <div class="grid md:grid-cols-3 gap-4 mb-6">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-l-4 border-blue-500">
+                        <h4 class="font-bold text-blue-800 dark:text-blue-300 mb-2">Arbitration</h4>
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300 mb-2">A neutral third party <strong>hears both sides and makes a decision</strong>.</p>
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>Binding?</strong> Yes, if agreed in advance. Many insurance policies contain arbitration clauses.</p>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <h4 class="font-bold text-green-800 dark:text-green-300 mb-2">Mediation</h4>
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300 mb-2">A neutral mediator <strong>helps parties negotiate</strong> a compromise.</p>
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>Binding?</strong> No &mdash; the mediator does NOT make a decision. Non-binding unless an agreement is reached.</p>
+                    </div>
+                    <div class="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg border-l-4 border-amber-500">
+                        <h4 class="font-bold text-amber-800 dark:text-amber-300 mb-2">Negotiation</h4>
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300 mb-2"><strong>Direct discussions</strong> between parties or their lawyers to settle the dispute.</p>
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>Most common:</strong> Most lawsuits settle through negotiation before trial.</p>
+                    </div>
+                </div>
+
+                <!-- Insurance ADR Example -->
+                <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                    <p class="font-semibold text-green-800 dark:text-green-300 mb-2">Real-World Scenario: Insurance Appraisal Clause</p>
+                    <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Maria's home suffers $80,000 in water damage. Her insurer says the damage is only $45,000. Maria disagrees but does not want to spend years in court.</p>
+                    <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Maria's homeowners policy has an <strong>appraisal clause</strong> (a form of ADR built into insurance contracts). Each side selects an appraiser, and the two appraisers select an umpire. Any two of the three agreeing on the amount settles the dispute.</p>
+                    <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>The Result:</strong> The appraisers and umpire agree on $67,000. This is <strong>binding</strong> on both parties. Resolved in weeks instead of years.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cheat Sheet -->
+        <section id="cheat-sheet" class="mb-10">
+            <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 border-2 border-dashed border-gray-300 dark:border-gray-600">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100">Cheat Sheet</h2>
+                    <span class="text-sm text-gray-500 dark:text-gray-400">Print this page for quick reference</span>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-3 text-sm">
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded"><strong>Pleadings:</strong> Complaint, Summons, Answer, Reply</div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded"><strong>Discovery:</strong> Depositions, Interrogatories, Motions to Produce</div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded"><strong>Evidence excluded for:</strong> Relevance, Materiality, Competence</div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded"><strong>Hearsay:</strong> Generally inadmissible but many exceptions</div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded"><strong>Appellate courts:</strong> Review law only, NO new trials</div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded"><strong>Certiorari:</strong> Supreme Court chooses cases</div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded"><strong>Res judicata:</strong> Case decided = done</div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded"><strong>Arbitration:</strong> Third party decides (binding if agreed)</div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded"><strong>Mediation:</strong> Facilitator helps (non-binding)</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Traps -->
+        <section class="mb-10">
+            <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-xl p-5 lg:p-6">
+                <h2 class="text-2xl font-bold text-red-800 dark:text-red-300 mb-4">Exam Trap Alerts</h2>
+                <div class="space-y-3">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">1. Appellate Courts Do NOT Retry Cases</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">They never hear witnesses or look at new evidence. They only review whether the trial court applied the law correctly. If an answer says an appellate court "conducts a new trial," it is WRONG.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">2. Hearsay Has MANY Exceptions</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Do not automatically exclude testimony as hearsay. Excited utterances, business records, and dying declarations are all exceptions. The exam may try to trick you.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">3. Discovery Tools &mdash; Know All Three</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Depositions (oral, in person), Interrogatories (written questions), Motions to Produce (documents). The exam may describe a scenario and ask which tool applies.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">4. ADR is Binding ONLY When Agreed in Advance</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Arbitration is often binding because parties agree upfront. Mediation is non-binding unless a settlement is reached. Do not confuse the two.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Reference Summary -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-purple-600 to-purple-800 rounded-xl p-6 text-white">
+                <h2 class="text-2xl font-bold mb-6">Quick Reference Summary</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-white/20 rounded-lg p-4"><p class="font-bold">Complaint</p><p class="text-sm text-purple-100">Plaintiff's opening document with allegations and cause of action.</p></div>
+                    <div class="bg-white/20 rounded-lg p-4"><p class="font-bold">Discovery</p><p class="text-sm text-purple-100">Depositions, interrogatories, motions to produce.</p></div>
+                    <div class="bg-white/20 rounded-lg p-4"><p class="font-bold">Evidence Bases</p><p class="text-sm text-purple-100">Relevance, materiality, competence.</p></div>
+                    <div class="bg-white/20 rounded-lg p-4"><p class="font-bold">Res Judicata</p><p class="text-sm text-purple-100">Once decided, a case cannot be relitigated.</p></div>
+                    <div class="bg-white/20 rounded-lg p-4"><p class="font-bold">Arbitration</p><p class="text-sm text-purple-100">Third party decides. Binding if agreed in advance.</p></div>
+                    <div class="bg-white/20 rounded-lg p-4"><p class="font-bold">Mediation</p><p class="text-sm text-purple-100">Facilitator helps negotiate. Non-binding.</p></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="../part-1/index.html" class="text-gray-400 hover:text-white transition-colors">&larr; Part 1: U.S. Legal System</a>
+                <span class="text-gray-500">Part 2 of 3</span>
+                <a href="../part-3/index.html" class="text-gray-400 hover:text-white transition-colors">Part 3: Insurance Regulation &rarr;</a>
+            </div>
+        </div>
+    </footer>
+
+    <button onclick="openAITutor({topic: 'Legal Procedures and ADR', concepts: ['Pretrial procedure (complaint, summons, answer, discovery)', 'Evidence rules (relevance, materiality, competence)', 'Hearsay rule and exceptions', 'Trial procedure and verdicts (general vs special)', 'Res judicata and collateral estoppel', 'Appeals process', 'ADR: arbitration, mediation, negotiation'], keywords: ['discovery', 'deposition', 'interrogatory', 'hearsay', 'res judicata', 'collateral estoppel', 'arbitration', 'mediation']})" class="fixed bottom-6 right-6 bg-purple-600 hover:bg-purple-700 text-white p-4 rounded-full shadow-xl hover:scale-110 transition-all z-50" title="AI Tutor">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+    </button>
+</body>
+</html>

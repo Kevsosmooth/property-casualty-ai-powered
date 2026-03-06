@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 1: Personal Property | Assignment 7 | CPCU 530</title>
+    <link rel="icon" type="image/svg+xml" href="../../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config = { darkMode: 'class' }</script>
+    <link rel="stylesheet" href="../../../../css/styles.css">
+    <script src="../../../../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') { document.documentElement.classList.remove('dark'); }
+        function toggleTheme() { document.documentElement.classList.toggle('dark'); localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light'); }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="showAPIKeySetup()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings"><svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg></button>
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/></svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>
+        </button>
+    </div>
+
+    <header class="bg-gradient-to-r from-purple-600 to-purple-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap gap-2 text-sm mb-2">
+                <a href="../../../../index.html" class="text-purple-200 hover:text-white">Home</a><span class="text-purple-300">/</span>
+                <a href="../../../index.html" class="text-purple-200 hover:text-white">CPCU</a><span class="text-purple-300">/</span>
+                <a href="../../index.html" class="text-purple-200 hover:text-white">530</a><span class="text-purple-300">/</span>
+                <a href="../index.html" class="text-purple-200 hover:text-white">Assignment 7</a><span class="text-purple-300">/</span>
+                <span class="text-white">Part 1</span>
+            </div>
+            <h1 class="text-3xl font-bold">Part 1: Personal Property</h1>
+            <p class="text-purple-200 mt-1">Assignment 7 &mdash; Property Law</p>
+        </div>
+    </header>
+
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-wrap gap-2 text-sm">
+                <a href="../index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Intro</a>
+                <span class="bg-purple-600 text-white px-3 py-1 rounded font-medium">Part 1</span>
+                <a href="../part-2/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 2</a>
+                <a href="../part-3/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 3</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-5xl lg:max-w-7xl">
+
+        <!-- Start Here -->
+        <div class="bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/40 dark:to-purple-800/40 rounded-xl p-6 mb-8 border border-blue-300 dark:border-blue-700">
+            <h3 class="text-xl font-bold text-blue-800 dark:text-blue-200 mb-4">Start Here: 5 Things You MUST Know</h3>
+            <div class="grid md:grid-cols-2 gap-3">
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>Property = legal rights</strong>, not the physical thing itself. Ownership, title, and possession are three separate concepts</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>Bailment = possession, NOT ownership.</strong> The bailee holds it; the bailor still owns it. Duty of care depends on who benefits</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>Common carriers are virtually insurers</strong> of goods &mdash; liable for almost ALL loss with only 5 narrow exceptions</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">4</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>3 requirements for a valid gift:</strong> donative intent + delivery + acceptance. Once complete, it is irrevocable</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">5</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>Intentional confusion = harsh penalty.</strong> If you deliberately mix your goods with someone else's, the innocent party claims the entire mixture</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 1: The Big Picture -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">1. Property &mdash; The Big Picture</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-6">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg lg:text-xl">What is Property?</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg"><strong>Property</strong> = the legal rights one person has against all others to the possession, use, and enjoyment of a thing. It is NOT the thing itself &mdash; it is the <em>bundle of legal rights</em> you hold over it (use it, sell it, give it away, exclude others).</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <p class="font-bold text-green-800 dark:text-green-300 text-lg">Real Property (Realty)</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">Land, buildings, and things permanently attached to land. Think "real estate."</p>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border-l-4 border-purple-500">
+                        <p class="font-bold text-purple-800 dark:text-purple-300 text-lg">Personal Property</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">Everything else &mdash; your car, furniture, bank account, stocks, clothing, etc.</p>
+                    </div>
+                </div>
+
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">Three Core Concepts</h3>
+                <div class="grid md:grid-cols-3 gap-4 mb-6">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800 text-center">
+                        <p class="font-bold text-blue-800 dark:text-blue-300 text-lg">Ownership</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">The complete bundle of rights. The right to possess, use, enjoy, and dispose of property.</p>
+                    </div>
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800 text-center">
+                        <p class="font-bold text-blue-800 dark:text-blue-300 text-lg">Title</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Evidence of ownership. The legal link between owner and property. Think: "proof you own it."</p>
+                    </div>
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800 text-center">
+                        <p class="font-bold text-blue-800 dark:text-blue-300 text-lg">Possession</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Physical custody or control. You can possess without owning (borrowing), and own without possessing (car at the shop).</p>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-gray-400">
+                    <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Scenario: Ownership vs. Possession</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> Sarah buys a painting at a gallery and receives a receipt (title). She then loans the painting to a museum for a 6-month exhibit.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> Sarah has ownership and title, but the museum has possession (physical custody).</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> If someone steals the painting from the museum, Sarah &mdash; as the owner &mdash; has the legal right to sue for its return, even though she did not have physical possession.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Intellectual Property -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">2. Intellectual Property Rights</h2>
+
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 border-l-4 border-purple-500 mb-6">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Intellectual property rights</strong> = legal rights to the products of your own mind and intellect. Intangible (you cannot touch them), but enormously valuable.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-l-4 border-blue-500">
+                        <p class="font-bold text-blue-800 dark:text-blue-300 text-lg mb-2">Copyrights</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Exclusive right to reproduce, publish, sell, or distribute a literary, musical, or artistic work. Created automatically when fixed in tangible form.</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-2 space-y-1">
+                            <li><strong>Protects:</strong> books, music, software, art, films, photos</li>
+                            <li><strong>Does NOT protect:</strong> ideas, facts, titles, short phrases</li>
+                            <li><strong>Duration:</strong> Author's life + 70 years</li>
+                        </ul>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Fair Use:</strong> Limited use without permission, evaluated by 4 factors &mdash; purpose (commercial vs. educational), nature of work, amount used, effect on market value.</p>
+                        </div>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <p class="font-bold text-green-800 dark:text-green-300 text-lg mb-2">Patents</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Government-granted exclusive right to make, use, or sell an invention for a limited time (generally 20 years from filing).</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-2 space-y-1">
+                            <li><strong>Protects:</strong> inventions, processes, machines, compositions</li>
+                            <li><strong>Requires:</strong> novelty, non-obviousness, usefulness</li>
+                            <li><strong>Must apply:</strong> Through U.S. Patent and Trademark Office</li>
+                        </ul>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Key difference:</strong> Copyrights are automatic. Patents must be applied for and granted.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-gray-400">
+                    <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Scenario: Copyright Fair Use</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> A college professor copies 3 pages from a 400-page textbook to hand out in class.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> The publisher claims copyright infringement.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> This likely qualifies as fair use &mdash; it is for education, it is a small portion of the whole, and it does not replace the need to buy the textbook.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Accession & Confusion -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">3. Accession &amp; Confusion</h2>
+
+                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <div class="bg-indigo-50 dark:bg-indigo-900/20 rounded-lg p-4 border-l-4 border-indigo-500 mb-4">
+                            <p class="font-bold text-indigo-800 dark:text-indigo-300 text-lg">Accession</p>
+                            <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">When someone adds value to another person's personal property without the owner's consent. In plain English: you accidentally (or intentionally) improve someone else's stuff.</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded border border-gray-200 dark:border-gray-600">
+                            <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>General Rule:</strong> Original owner keeps property AND improvements.</p>
+                            <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300 mt-1"><strong>Exception:</strong> Good faith improver who dramatically increases value may keep it but must compensate the original owner.</p>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="bg-amber-50 dark:bg-amber-900/20 rounded-lg p-4 border-l-4 border-amber-500 mb-4">
+                            <p class="font-bold text-amber-800 dark:text-amber-300 text-lg">Confusion</p>
+                            <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">The mingling of goods belonging to different owners so the individual properties can no longer be identified or separated. Your stuff gets mixed with someone else's stuff.</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded border border-gray-200 dark:border-gray-600">
+                            <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>By agreement or accident:</strong> Owners become co-owners (proportional shares).</p>
+                            <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300 mt-1"><strong>By intentional wrongdoing:</strong> Innocent party claims the ENTIRE mixture.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-indigo-400">
+                        <p class="font-semibold text-indigo-800 dark:text-indigo-300 mb-2">Accession Example</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> A carpenter mistakenly takes lumber from a neighbor's yard (thinking it was his own) and builds cabinets worth $5,000. The lumber was worth $200.</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> The neighbor discovers the mistake and demands the cabinets.</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> Because the carpenter acted in good faith and the value increased dramatically ($200 to $5,000), the carpenter likely keeps the cabinets but must pay the neighbor $200 for the lumber.</p>
+                    </div>
+                    <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-amber-400">
+                        <p class="font-semibold text-amber-800 dark:text-amber-300 mb-2">Confusion Example</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> Farmer A stores 1,000 bushels of wheat in a grain elevator. Farmer B stores 500 bushels. The operator accidentally mixes them together.</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> The wheat cannot be separated.</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> Farmer A owns 2/3 and Farmer B owns 1/3 of the 1,500-bushel mixture (proportional shares as co-owners). If one farmer had intentionally caused the mix, the innocent farmer gets it all.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Bailments -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">4. Bailments</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-6">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg lg:text-xl">Bailment</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">A legal relationship where one person (<strong>bailor</strong> = owner) transfers <strong>possession</strong> of personal property to another (<strong>bailee</strong> = holder) for a specific purpose, with the understanding it will be returned. Key: A bailment transfers POSSESSION, not OWNERSHIP.</p>
+                </div>
+
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">Three Types Based on Who Benefits</h3>
+                <div class="grid md:grid-cols-3 gap-4 mb-6">
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border border-green-200 dark:border-green-800">
+                        <p class="font-bold text-green-800 dark:text-green-300">Sole Benefit of Bailor</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">"Store my boat in your garage for free."</p>
+                        <p class="text-sm mt-2"><strong>Duty:</strong> <span class="text-green-600 dark:text-green-400 font-bold">LOWEST</span> &mdash; bailee liable only for gross negligence</p>
+                    </div>
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
+                        <p class="font-bold text-blue-800 dark:text-blue-300">Mutual Benefit</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Dry cleaning, car repair, storage rental.</p>
+                        <p class="text-sm mt-2"><strong>Duty:</strong> <span class="text-blue-600 dark:text-blue-400 font-bold">REASONABLE</span> &mdash; ordinary care standard</p>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border border-red-200 dark:border-red-800">
+                        <p class="font-bold text-red-800 dark:text-red-300">Sole Benefit of Bailee</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">"You can borrow my lawn mower."</p>
+                        <p class="text-sm mt-2"><strong>Duty:</strong> <span class="text-red-600 dark:text-red-400 font-bold">HIGHEST</span> &mdash; liable even for slight negligence</p>
+                    </div>
+                </div>
+
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">Bailee's and Bailor's Rights</h3>
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border-l-4 border-purple-500">
+                        <p class="font-bold text-purple-800 dark:text-purple-300 mb-2">Bailee's Rights &amp; Duties</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li><strong>Duty:</strong> Care for the property (standard varies by type)</li>
+                            <li><strong>Right to possess:</strong> Can sue third parties who interfere</li>
+                            <li><strong>Possessory lien:</strong> Can hold the property until paid for services</li>
+                        </ul>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border-l-4 border-purple-500">
+                        <p class="font-bold text-purple-800 dark:text-purple-300 mb-2">Bailor's Rights &amp; Duties</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li><strong>Right:</strong> Return of property in the same condition</li>
+                            <li><strong>Duty:</strong> Warn bailee of known defects</li>
+                            <li><strong>Mutual benefit:</strong> Must also warn of defects they should have known about</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 border-l-4 border-blue-500 mb-6">
+                    <p class="font-bold text-blue-800 dark:text-blue-300 text-lg">Lien &amp; Possessory Lien</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base"><strong>Lien</strong> = a legal claim on property as security for a debt. "You owe me money, so I have a legal grip on your stuff until you pay." A <strong>possessory lien</strong> depends on physical possession &mdash; once the bailee gives the property back, the lien is usually lost.</p>
+                </div>
+
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">Special Bailments (Higher Standards)</h3>
+                <div class="grid md:grid-cols-3 gap-4 mb-6">
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border border-red-200 dark:border-red-800">
+                        <p class="font-bold text-red-800 dark:text-red-300">Common Carriers</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1"><strong>Virtually insurers</strong> of goods. Liable for almost ALL loss. Only 5 exceptions:</p>
+                        <ol class="text-gray-700 dark:text-gray-300 text-sm mt-2 space-y-1">
+                            <li>1. Acts of God</li>
+                            <li>2. Acts of public enemy</li>
+                            <li>3. Acts of the shipper</li>
+                            <li>4. Acts of public authority</li>
+                            <li>5. Inherent nature of the goods</li>
+                        </ol>
+                    </div>
+                    <div class="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg border border-amber-200 dark:border-amber-800">
+                        <p class="font-bold text-amber-800 dark:text-amber-300">Hotelkeepers</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Liable for failure to exercise <strong>reasonable care</strong> in protecting guests' property. Can limit liability by providing safes for valuables.</p>
+                    </div>
+                    <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border border-gray-200 dark:border-gray-600">
+                        <p class="font-bold text-gray-800 dark:text-gray-200">Warehouse Operators</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Do <strong>not insure</strong> stored goods. Can limit liability in the warehouse receipt.</p>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-red-400">
+                    <p class="font-semibold text-red-800 dark:text-red-300 mb-2">Real-World Scenario: Common Carrier Liability</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> You ship a crate of electronics via FedEx (a common carrier). During transport, a driver leaves the truck unlocked at a rest stop and the crate is stolen.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> You file a claim for the loss.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> FedEx is liable because they are held to the highest standard. Theft does not fall under any of the 5 exceptions. They must compensate you for the full value.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Gifts -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">5. Gifts</h2>
+
+                <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-green-500 mb-6">
+                    <h3 class="font-bold text-green-800 dark:text-green-300 text-lg lg:text-xl">Gift</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">A voluntary transfer of property from one person (<strong>donor</strong>) to another (<strong>donee</strong>) without payment or consideration. Once a gift is complete (all 3 elements met), it is <strong>irrevocable</strong> &mdash; the donor cannot take it back.</p>
+                </div>
+
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">Three Requirements for a Valid Gift (MUST MEMORIZE)</h3>
+                <div class="grid md:grid-cols-3 gap-4 mb-6">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg text-center border-2 border-green-300 dark:border-green-700">
+                        <span class="bg-green-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-lg font-bold mx-auto">1</span>
+                        <p class="font-bold text-green-800 dark:text-green-300 mt-2">Donative Intent</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm mt-1">The donor must intend to make a gift (not a loan, not under duress)</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg text-center border-2 border-green-300 dark:border-green-700">
+                        <span class="bg-green-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-lg font-bold mx-auto">2</span>
+                        <p class="font-bold text-green-800 dark:text-green-300 mt-2">Delivery</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm mt-1">The donor must actually transfer possession to the donee</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg text-center border-2 border-green-300 dark:border-green-700">
+                        <span class="bg-green-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-lg font-bold mx-auto">3</span>
+                        <p class="font-bold text-green-800 dark:text-green-300 mt-2">Acceptance</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm mt-1">The donee must accept the gift (generally presumed for valuable items)</p>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-green-400">
+                    <p class="font-semibold text-green-800 dark:text-green-300 mb-2">Real-World Scenario: No Delivery = No Gift</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> Grandma tells her grandson "I want you to have my diamond ring" but keeps wearing it and never hands it over. She dies, and her will leaves everything to charity.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> The grandson claims the ring was a gift to him.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> No valid gift occurred. While there may have been donative intent, there was <strong>no delivery</strong>. The ring goes to the charity as directed by the will.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cheat Sheet -->
+        <section id="cheat-sheet" class="mb-10">
+            <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 border-2 border-dashed border-gray-300 dark:border-gray-600">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100">Cheat Sheet</h2>
+                    <span class="text-sm text-gray-500 dark:text-gray-400">Print this page for quick reference</span>
+                </div>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Core Concepts</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>Property = legal rights, NOT the thing itself</li>
+                            <li>Ownership = full bundle of rights</li>
+                            <li>Title = evidence of ownership</li>
+                            <li>Possession = physical custody/control</li>
+                            <li>Copyright = automatic on creation; life + 70 years</li>
+                            <li>Patent = must apply; 20 years from filing</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Bailments &amp; Gifts</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>Bailment = possession only, NOT ownership</li>
+                            <li>Bailor benefit = lowest duty (gross negligence only)</li>
+                            <li>Mutual benefit = reasonable care</li>
+                            <li>Bailee benefit = highest duty (slight negligence)</li>
+                            <li>Common carrier: 5 exceptions to near-absolute liability</li>
+                            <li>Gift: intent + delivery + acceptance = irrevocable</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Traps -->
+        <section class="mb-10">
+            <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-xl p-5 lg:p-6">
+                <h2 class="text-2xl font-bold text-red-800 dark:text-red-300 mb-4">Exam Trap Alerts</h2>
+                <div class="space-y-3">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">1. Ownership vs. Possession &mdash; NOT the Same</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">A bailee has possession but NOT ownership. You can own without possessing (car at the mechanic). You can possess without owning (borrowed book). The exam tests this distinction constantly.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">2. Common Carriers Are Virtually Insurers</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">They are liable for almost ALL loss with only 5 narrow exceptions. Do NOT confuse with hotelkeepers (reasonable care only) or warehouse operators (limited liability). If it is not an act of God, public enemy, shipper, public authority, or inherent nature of goods &mdash; the carrier is liable.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">3. Bailment Duty of Care Is Counterintuitive</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">When the BAILEE benefits (borrowing your mower), they owe the HIGHEST duty. When the BAILOR benefits (free storage), the bailee owes the LOWEST duty. Memory trick: the person getting the favor owes more care.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">4. A Gift Without Delivery Is No Gift</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Words alone are not enough. You must physically transfer the item. If Grandma says "this ring is yours" but never hands it over, no gift was made. All 3 elements (intent + delivery + acceptance) must be present.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">5. Intentional Confusion = Harsh Penalty</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">If someone deliberately mingles goods, the INNOCENT party gets to claim the entire mixture. This is a punishment rule. Accidental confusion just creates proportional co-ownership.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Reference Summary -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-purple-600 to-purple-800 rounded-xl p-6 text-white">
+                <h2 class="text-2xl font-bold mb-6">Quick Reference Summary</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Property</p>
+                        <p class="text-sm text-purple-100">Legal rights over a thing, not the thing itself.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Copyright vs. Patent</p>
+                        <p class="text-sm text-purple-100">Copyright = automatic, creative works. Patent = applied for, inventions.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Accession</p>
+                        <p class="text-sm text-purple-100">Adding value to another's property. Good faith improver may keep it but must pay.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Confusion</p>
+                        <p class="text-sm text-purple-100">Mingling goods. Accident = proportional shares. Intentional = innocent party takes all.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Bailment</p>
+                        <p class="text-sm text-purple-100">Transfer of possession, NOT ownership. 3 types, 3 duty levels.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Gift</p>
+                        <p class="text-sm text-purple-100">Intent + Delivery + Acceptance. Once complete = irrevocable.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="../index.html" class="text-gray-400 hover:text-white transition-colors">&larr; Assignment 7 Overview</a>
+                <span class="text-gray-500">Part 1 of 3</span>
+                <a href="../part-2/index.html" class="text-gray-400 hover:text-white transition-colors">Part 2: Real Property &rarr;</a>
+            </div>
+        </div>
+    </footer>
+
+    <button onclick="openAITutor({topic: 'Personal Property Law', concepts: ['Ownership vs title vs possession', 'Intellectual property (copyrights, patents)', 'Accession and confusion', 'Bailments (3 types, duty of care)', 'Special bailments (common carriers, hotelkeepers, warehouse operators)', 'Liens and possessory liens', 'Gifts (3 requirements)'], keywords: ['property', 'bailment', 'bailor', 'bailee', 'lien', 'possessory lien', 'common carrier', 'gift', 'donative intent', 'accession', 'confusion', 'copyright', 'patent', 'fair use']})" class="fixed bottom-6 right-6 bg-purple-600 hover:bg-purple-700 text-white p-4 rounded-full shadow-xl hover:scale-110 transition-all z-50" title="AI Tutor">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+    </button>
+</body>
+</html>

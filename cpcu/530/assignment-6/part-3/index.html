@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 3: Product Liability &amp; Strict Liability | Assignment 6 | CPCU 530</title>
+    <link rel="icon" type="image/svg+xml" href="../../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config = { darkMode: 'class' }</script>
+    <link rel="stylesheet" href="../../../../css/styles.css">
+    <script src="../../../../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') { document.documentElement.classList.remove('dark'); }
+        function toggleTheme() { document.documentElement.classList.toggle('dark'); localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light'); }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="showAPIKeySetup()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings"><svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg></button>
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/></svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>
+        </button>
+    </div>
+
+    <header class="bg-gradient-to-r from-purple-600 to-purple-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap gap-2 text-sm mb-2">
+                <a href="../../../../index.html" class="text-purple-200 hover:text-white">Home</a><span class="text-purple-300">/</span>
+                <a href="../../../index.html" class="text-purple-200 hover:text-white">CPCU</a><span class="text-purple-300">/</span>
+                <a href="../../index.html" class="text-purple-200 hover:text-white">530</a><span class="text-purple-300">/</span>
+                <a href="../index.html" class="text-purple-200 hover:text-white">Assignment 6</a><span class="text-purple-300">/</span>
+                <span class="text-white">Part 3</span>
+            </div>
+            <h1 class="text-3xl font-bold">Part 3: Product Liability &amp; Strict Liability</h1>
+            <p class="text-purple-200 mt-1">Assignment 6 &mdash; Commercial Law: UCC &amp; Sales</p>
+        </div>
+    </header>
+
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-wrap gap-2 text-sm">
+                <a href="../index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Intro</a>
+                <a href="../part-1/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 1</a>
+                <a href="../part-2/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 2</a>
+                <span class="bg-purple-600 text-white px-3 py-1 rounded font-medium">Part 3</span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-5xl lg:max-w-7xl">
+
+        <!-- Start Here -->
+        <div class="bg-gradient-to-r from-red-100 to-purple-100 dark:from-red-900/40 dark:to-purple-800/40 rounded-xl p-6 mb-8 border border-red-300 dark:border-red-700">
+            <h3 class="text-xl font-bold text-red-800 dark:text-red-200 mb-4">Start Here: 5 Things You MUST Know</h3>
+            <div class="grid md:grid-cols-2 gap-3">
+                <div class="flex items-start">
+                    <span class="bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
+                    <p class="text-gray-700 dark:text-gray-300">Product liability has <strong>three theories</strong>: negligence, strict liability, and breach of warranty</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>Strict liability</strong> = no need to prove fault. Defective product + injury = liability</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
+                    <p class="text-gray-700 dark:text-gray-300">Three types of product defects: <strong>manufacturing, design, and warning/labeling</strong></p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">4</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>Privity of contract</strong> is NOT required under strict liability &mdash; anyone injured can sue</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">5</span>
+                    <p class="text-gray-700 dark:text-gray-300">Key defenses: <strong>product misuse, assumption of risk, comparative fault, state of the art</strong></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 1: Product Liability Overview -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">1. Product Liability &mdash; Three Theories</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-6">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg lg:text-xl">What Is Product Liability?</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg"><strong>Product liability</strong> is the legal responsibility of manufacturers, distributors, and sellers for injuries caused by defective products. A plaintiff can sue under one or more of three legal theories.</p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-4 mb-6">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-l-4 border-blue-500">
+                        <p class="font-bold text-blue-800 dark:text-blue-300 text-lg">1. Negligence</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">Plaintiff must prove the manufacturer/seller <strong>failed to exercise reasonable care</strong> in designing, manufacturing, or warning about the product.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Burden:</strong> Plaintiff must prove fault</p>
+                        </div>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                        <p class="font-bold text-red-800 dark:text-red-300 text-lg">2. Strict Liability</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base"><strong>No need to prove fault.</strong> If the product was defective and unreasonably dangerous, the seller/manufacturer is liable regardless of how careful they were.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Burden:</strong> No fault needed</p>
+                        </div>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <p class="font-bold text-green-800 dark:text-green-300 text-lg">3. Breach of Warranty</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">The product failed to meet an <strong>express or implied warranty</strong> (as covered in Part 2). Based on contract law, not tort law.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Burden:</strong> Prove warranty existed and was breached</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-gray-400">
+                    <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Scenario: Three Theories, Same Product</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> A power tool manufacturer sells a table saw with a defective blade guard that can detach during use. The instruction manual does not warn about this risk.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> A carpenter is seriously injured when the blade guard flies off.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> The carpenter can sue under all three theories: (1) <strong>Negligence</strong> &mdash; the manufacturer failed to design a safe guard; (2) <strong>Strict liability</strong> &mdash; the product was defective and unreasonably dangerous; (3) <strong>Breach of warranty</strong> &mdash; the saw was not fit for its ordinary purpose (implied warranty of merchantability).</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Strict Liability in Detail -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">2. Strict Liability &mdash; Restatement (Second) of Torts, Section 402A</h2>
+
+                <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-red-500 mb-6">
+                    <h3 class="font-bold text-red-800 dark:text-red-300 text-lg lg:text-xl">The Core Rule</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">Anyone who sells a product in a <strong>defective condition unreasonably dangerous</strong> to the user or consumer is liable for physical harm caused, <strong>even if the seller exercised all possible care</strong> in the preparation and sale of the product.</p>
+                </div>
+
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">Elements the Plaintiff Must Prove</h3>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-3 mb-6">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg text-center border-2 border-red-200 dark:border-red-800">
+                        <span class="bg-red-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mx-auto mb-2">1</span>
+                        <p class="font-bold text-gray-800 dark:text-gray-200 text-sm">Product Was Defective</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-xs lg:text-sm mt-1">Manufacturing, design, or warning defect</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg text-center border-2 border-red-200 dark:border-red-800">
+                        <span class="bg-red-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mx-auto mb-2">2</span>
+                        <p class="font-bold text-gray-800 dark:text-gray-200 text-sm">Unreasonably Dangerous</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-xs lg:text-sm mt-1">Beyond what an ordinary consumer would expect</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg text-center border-2 border-red-200 dark:border-red-800">
+                        <span class="bg-red-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mx-auto mb-2">3</span>
+                        <p class="font-bold text-gray-800 dark:text-gray-200 text-sm">Caused Injury</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-xs lg:text-sm mt-1">The defect actually caused the plaintiff's harm</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg text-center border-2 border-red-200 dark:border-red-800">
+                        <span class="bg-red-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mx-auto mb-2">4</span>
+                        <p class="font-bold text-gray-800 dark:text-gray-200 text-sm">Product Reached User Without Substantial Change</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-xs lg:text-sm mt-1">No modification after leaving seller</p>
+                    </div>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 rounded-r-lg mb-6">
+                    <p class="font-bold text-amber-800 dark:text-amber-300">Key Point: No Privity Required</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-1 text-base lg:text-lg">Under strict liability, the injured party does NOT need to be the person who bought the product. <strong>Privity of contract is not required.</strong> A bystander injured by a defective product can sue the manufacturer directly.</p>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-gray-400">
+                    <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Scenario: Strict Liability Without Fault</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> A tire manufacturer produces 100,000 tires. Due to a rubber mixing error in one batch, 500 tires have weakened sidewalls. The manufacturer used state-of-the-art quality control and could not have detected the defect.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> A driver's tire from the defective batch blows out on the highway, causing a serious accident.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> The manufacturer is <strong>strictly liable</strong> even though they exercised all possible care. The product was defective and unreasonably dangerous. Under strict liability, fault is irrelevant &mdash; only the defect and resulting injury matter.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Types of Product Defects -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">3. Three Types of Product Defects</h2>
+
+                <div class="space-y-4 mb-6">
+                    <div class="bg-red-50 dark:bg-red-900/20 p-5 rounded-lg border-l-4 border-red-500">
+                        <p class="font-bold text-red-800 dark:text-red-300 text-lg">Manufacturing Defect</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">The product <strong>departs from its intended design</strong>. Something went wrong during production. The defect exists in <strong>one unit or batch</strong>, not in the design itself.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> A bicycle frame is welded improperly at the factory, causing it to crack during normal riding. The design is fine &mdash; the welding on this one bike was flawed.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-amber-50 dark:bg-amber-900/20 p-5 rounded-lg border-l-4 border-amber-500">
+                        <p class="font-bold text-amber-800 dark:text-amber-300 text-lg">Design Defect</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">The product was manufactured correctly, but the <strong>design itself is unreasonably dangerous</strong>. Every unit of the product has the same flaw because the flaw is in the blueprint.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> An SUV model is designed with a high center of gravity that makes it prone to rollovers during sharp turns. Every SUV of this model has the same problem &mdash; it is a design issue, not a manufacturing error.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-5 rounded-lg border-l-4 border-purple-500">
+                        <p class="font-bold text-purple-800 dark:text-purple-300 text-lg">Warning/Labeling Defect (Failure to Warn)</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">The product has <strong>inadequate instructions or warnings</strong> about known risks. The product itself may be fine, but users are not properly informed of dangers.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> A prescription medication causes severe liver damage when combined with alcohol, but the label does not warn about this interaction. The drug works as intended &mdash; the defect is the missing warning.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Who Can Be Held Liable -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">4. Who Can Be Held Liable?</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 border-l-4 border-blue-500 mb-6">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Under strict product liability, <strong>every entity in the distribution chain</strong> can potentially be held liable &mdash; not just the manufacturer.</p>
+                </div>
+
+                <!-- Distribution Chain Visual -->
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg mb-6">
+                    <p class="font-bold text-gray-800 dark:text-gray-200 mb-3">The Distribution Chain &mdash; All Potentially Liable</p>
+                    <div class="flex items-center gap-3 flex-wrap justify-center">
+                        <div class="bg-red-100 dark:bg-red-900/40 p-3 rounded-lg text-center min-w-[130px] border-2 border-red-400 dark:border-red-700">
+                            <p class="font-bold text-red-800 dark:text-red-300 text-sm">Manufacturer</p>
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Makes the product</p>
+                        </div>
+                        <div class="text-2xl text-gray-400 dark:text-gray-500 font-bold">&rarr;</div>
+                        <div class="bg-red-100 dark:bg-red-900/40 p-3 rounded-lg text-center min-w-[130px] border-2 border-red-400 dark:border-red-700">
+                            <p class="font-bold text-red-800 dark:text-red-300 text-sm">Wholesaler</p>
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Distributes in bulk</p>
+                        </div>
+                        <div class="text-2xl text-gray-400 dark:text-gray-500 font-bold">&rarr;</div>
+                        <div class="bg-red-100 dark:bg-red-900/40 p-3 rounded-lg text-center min-w-[130px] border-2 border-red-400 dark:border-red-700">
+                            <p class="font-bold text-red-800 dark:text-red-300 text-sm">Retailer</p>
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Sells to consumer</p>
+                        </div>
+                        <div class="text-2xl text-gray-400 dark:text-gray-500 font-bold">&rarr;</div>
+                        <div class="bg-green-100 dark:bg-green-900/40 p-3 rounded-lg text-center min-w-[130px] border-2 border-green-400 dark:border-green-700">
+                            <p class="font-bold text-green-800 dark:text-green-300 text-sm">Consumer / User</p>
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Injured party</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-gray-400">
+                    <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Scenario: Entire Chain Liable</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> A toy manufacturer makes a children's puzzle with small pieces that break off easily. The toy goes from manufacturer to a distribution company to a national retail store.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> A 3-year-old child chokes on a piece that breaks off during normal play.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> The child's parents can sue the <strong>manufacturer, the distributor, and the retailer</strong> under strict liability. All are in the distribution chain. The retailer may seek indemnification from the manufacturer, but all are potentially liable to the plaintiff.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Defenses to Product Liability -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">5. Defenses to Product Liability</h2>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 rounded-r-lg mb-6">
+                    <p class="font-bold text-amber-800 dark:text-amber-300">Exam Alert!</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-1 text-base lg:text-lg">Even under strict liability, defendants have several defenses available. The exam will test whether you know when each defense applies.</p>
+                </div>
+
+                <div class="space-y-4 mb-6">
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <p class="font-bold text-green-800 dark:text-green-300 text-lg">Product Misuse</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">The plaintiff used the product in a way that was <strong>not intended or foreseeable</strong>. If the misuse was unforeseeable, it can be a complete defense.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> A person uses a lawnmower to trim hedges by lifting and holding it sideways. They are injured. This is an unforeseeable misuse &mdash; the manufacturer is not liable.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <p class="font-bold text-green-800 dark:text-green-300 text-lg">Assumption of Risk</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">The plaintiff <strong>knew about the defect or danger and voluntarily proceeded</strong> to use the product anyway.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> A worker notices a crack in a power tool's housing but continues to use it because they do not want to wait for a replacement. They are injured when the tool shatters. The worker assumed the known risk.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <p class="font-bold text-green-800 dark:text-green-300 text-lg">Comparative Fault / Contributory Negligence</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">The plaintiff's own negligence <strong>contributed to the injury</strong>. In comparative fault states, damages are reduced by the plaintiff's percentage of fault.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> A driver is injured by a defective airbag, but was also not wearing a seatbelt. A jury might find the driver 20% at fault and the manufacturer 80% at fault, reducing the damages accordingly.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <p class="font-bold text-green-800 dark:text-green-300 text-lg">State of the Art</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">The product was designed using the <strong>best technology and knowledge available at the time</strong> of manufacture. The defect was unknown and unknowable at the time.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> A building material later discovered to cause health problems was considered safe by all scientific standards when it was manufactured and sold. The manufacturer may argue state-of-the-art defense.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <p class="font-bold text-green-800 dark:text-green-300 text-lg">Substantial Alteration</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">The product was <strong>substantially changed after it left the seller</strong>. If the alteration caused the injury, the original seller may not be liable.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> A buyer removes the safety guard from a machine to increase production speed. An employee is injured by the unguarded machine. The manufacturer can argue that the removal of the guard was a substantial alteration.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <p class="font-bold text-green-800 dark:text-green-300 text-lg">Statute of Limitations / Statute of Repose</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">The claim was filed <strong>too late</strong>. Statute of limitations runs from the date of injury. Statute of repose sets an absolute deadline from the date of sale, regardless of when the injury occurs.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: Consumer Protection Laws -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">6. Consumer Protection &amp; Magnuson-Moss Warranty Act</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 border-l-4 border-blue-500 mb-6">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">The <strong>Magnuson-Moss Warranty Act</strong> is a federal law governing consumer product warranties. It does not require warranties but regulates how they must be presented.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <p class="font-bold text-green-800 dark:text-green-300 text-lg">Full Warranty</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">Must meet strict federal standards:</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-2 space-y-1">
+                            <li>Remedy within a <strong>reasonable time at no charge</strong></li>
+                            <li>No <strong>unreasonable conditions</strong> on coverage</li>
+                            <li>If defect cannot be fixed after reasonable attempts, consumer can choose <strong>refund or replacement</strong></li>
+                        </ul>
+                    </div>
+                    <div class="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg border-l-4 border-amber-500">
+                        <p class="font-bold text-amber-800 dark:text-amber-300 text-lg">Limited Warranty</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">A warranty that does NOT meet all full warranty requirements. Manufacturers often label warranties as "limited" to <strong>avoid "lemon law" provisions</strong> that require refunds or replacements.</p>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-gray-400 mb-6">
+                    <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Scenario: Why "Limited" Instead of "Full"</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> A laptop manufacturer offers a 1-year warranty covering all defects with free repair.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> The warranty looks like a full warranty, but the company labels it "limited."</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> By labeling it "limited," the manufacturer avoids the Magnuson-Moss requirement that if the product cannot be fixed after reasonable attempts, the consumer can demand a <strong>full refund or replacement</strong>. Under a "limited" warranty, the manufacturer has more flexibility in remedies.</p>
+                </div>
+
+                <!-- McCarran-Ferguson -->
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 border-l-4 border-purple-500">
+                    <p class="font-bold text-purple-800 dark:text-purple-300 text-lg">McCarran-Ferguson Act &amp; Insurance</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">Insurance is generally <strong>exempt from federal antitrust laws</strong> under the McCarran-Ferguson Act because states regulate insurance. However, if a state does NOT have antitrust legislation applicable to insurance, federal laws (FTC Act, Deceptive Trade Practices Acts) can apply.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cheat Sheet -->
+        <section id="cheat-sheet" class="mb-10">
+            <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 border-2 border-dashed border-gray-300 dark:border-gray-600">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100">Cheat Sheet</h2>
+                    <span class="text-sm text-gray-500 dark:text-gray-400">Print this page for quick reference</span>
+                </div>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Strict Liability Elements</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>Product was defective</li>
+                            <li>Defect made it unreasonably dangerous</li>
+                            <li>Defect caused the injury</li>
+                            <li>Product reached user without substantial change</li>
+                            <li>No privity required &mdash; anyone injured can sue</li>
+                            <li>No need to prove fault or negligence</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Defenses</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>Product misuse (unforeseeable use)</li>
+                            <li>Assumption of risk (knew danger, proceeded anyway)</li>
+                            <li>Comparative fault (plaintiff partly at fault)</li>
+                            <li>State of the art (unknowable defect at time)</li>
+                            <li>Substantial alteration (product changed after sale)</li>
+                            <li>Statute of limitations/repose (too late to sue)</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Three Defect Types</p>
+                    <div class="grid md:grid-cols-3 gap-2">
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">Manufacturing = one bad unit (production error)</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">Design = all units flawed (blueprint problem)</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">Warning = inadequate instructions/labels</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Traps -->
+        <section class="mb-10">
+            <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-xl p-5 lg:p-6">
+                <h2 class="text-2xl font-bold text-red-800 dark:text-red-300 mb-4">Exam Trap Alerts</h2>
+                <div class="space-y-3">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">1. Strict Liability Does NOT Mean Automatic Liability</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">"Strict" means no need to prove fault, but the plaintiff still must prove the product was defective and that the defect caused the injury. There are also valid defenses (misuse, assumption of risk, etc.).</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">2. No Privity Required for Strict Liability</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Unlike breach of warranty (which traditionally requires a contract relationship), strict liability allows ANY injured person to sue &mdash; even a bystander who never bought the product.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">3. Manufacturing vs. Design Defect</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Manufacturing defect = one specific unit was flawed during production. Design defect = every unit has the same flaw because the design itself is dangerous. The exam will test whether you can identify which type.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">4. Entire Distribution Chain Is Liable</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Not just the manufacturer &mdash; the wholesaler and retailer can also be held strictly liable. The retailer may not have caused the defect, but they are still in the chain of distribution.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">5. "Limited" Warranty Trick</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Manufacturers label warranties "limited" even when they are essentially full warranties to avoid Magnuson-Moss "lemon law" obligations (refund/replacement after failed repairs). The exam loves this question.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">6. McCarran-Ferguson and Insurance</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Insurance is generally exempt from federal antitrust law because states regulate it. But if a state lacks applicable antitrust laws for insurance, federal laws step in. This exception is commonly tested.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Reference Summary -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-purple-600 to-purple-800 rounded-xl p-6 text-white">
+                <h2 class="text-2xl font-bold mb-6">Quick Reference Summary</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Three Liability Theories</p>
+                        <p class="text-sm text-purple-100">Negligence (prove fault), strict liability (no fault needed), breach of warranty (contract-based).</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Strict Liability</p>
+                        <p class="text-sm text-purple-100">Defective + unreasonably dangerous + caused injury + no substantial change.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Three Defect Types</p>
+                        <p class="text-sm text-purple-100">Manufacturing (one bad unit), design (all units flawed), warning (bad labels/instructions).</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">No Privity Required</p>
+                        <p class="text-sm text-purple-100">Anyone injured can sue under strict liability. No contract relationship needed.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Key Defenses</p>
+                        <p class="text-sm text-purple-100">Product misuse, assumption of risk, comparative fault, state of the art, substantial alteration.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Magnuson-Moss</p>
+                        <p class="text-sm text-purple-100">Full warranty = refund/replace after failed repairs. Limited = fewer obligations.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="../part-2/index.html" class="text-gray-400 hover:text-white transition-colors">&larr; Part 2: Risk of Loss &amp; Warranties</a>
+                <span class="text-gray-500">Part 3 of 3</span>
+                <a href="../../assignment-7/index.html" class="text-gray-400 hover:text-white transition-colors">Assignment 7 &rarr;</a>
+            </div>
+        </div>
+    </footer>
+
+    <button onclick="openAITutor({topic: 'Product Liability and Strict Liability', concepts: ['Three theories of product liability', 'Negligence vs strict liability vs breach of warranty', 'Restatement Second Section 402A', 'Manufacturing vs design vs warning defects', 'No privity required for strict liability', 'Entire distribution chain liable', 'Product misuse defense', 'Assumption of risk defense', 'Comparative fault defense', 'State of the art defense', 'Substantial alteration defense', 'Magnuson-Moss full vs limited warranty', 'McCarran-Ferguson Act'], keywords: ['product liability', 'strict liability', 'Section 402A', 'manufacturing defect', 'design defect', 'failure to warn', 'privity', 'product misuse', 'assumption of risk', 'comparative fault', 'Magnuson-Moss', 'McCarran-Ferguson']})" class="fixed bottom-6 right-6 bg-purple-600 hover:bg-purple-700 text-white p-4 rounded-full shadow-xl hover:scale-110 transition-all z-50" title="AI Tutor">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+    </button>
+</body>
+</html>

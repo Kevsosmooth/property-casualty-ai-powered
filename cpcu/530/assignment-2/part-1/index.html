@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 1: Contract Formation &amp; Types | Assignment 2 | CPCU 530</title>
+    <link rel="icon" type="image/svg+xml" href="../../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <link rel="stylesheet" href="../../../../css/styles.css">
+    <script src="../../../../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+        }
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <!-- Settings & Theme Toggle -->
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="showAPIKeySetup()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings">
+            <svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+        </button>
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/>
+            </svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-purple-600 to-purple-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap gap-2 text-sm mb-2">
+                <a href="../../../../index.html" class="text-purple-200 hover:text-white">Home</a>
+                <span class="text-purple-300">/</span>
+                <a href="../../../index.html" class="text-purple-200 hover:text-white">CPCU</a>
+                <span class="text-purple-300">/</span>
+                <a href="../../index.html" class="text-purple-200 hover:text-white">530</a>
+                <span class="text-purple-300">/</span>
+                <a href="../index.html" class="text-purple-200 hover:text-white">Assignment 2</a>
+                <span class="text-purple-300">/</span>
+                <span class="text-white">Part 1</span>
+            </div>
+            <h1 class="text-3xl font-bold">Part 1: Contract Formation &amp; Types of Contracts</h1>
+            <p class="text-purple-200 mt-1">Assignment 2 &mdash; Contracts: Formation, Agreement &amp; Capacity</p>
+        </div>
+    </header>
+
+    <!-- Part Navigation -->
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-wrap gap-2 text-sm">
+                <a href="../index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Intro</a>
+                <span class="bg-purple-600 text-white px-3 py-1 rounded font-medium">Part 1</span>
+                <a href="../part-2/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 2</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-5xl lg:max-w-7xl">
+
+        <!-- Start Here -->
+        <div class="bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/40 dark:to-purple-800/40 rounded-xl p-6 mb-8 border border-blue-300 dark:border-blue-700">
+            <h3 class="text-xl font-bold text-blue-800 dark:text-blue-200 mb-4">Start Here: 5 Things You MUST Know</h3>
+            <div class="grid md:grid-cols-2 gap-3">
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
+                    <p class="text-gray-700 dark:text-gray-300">A contract needs 4 elements: <strong>Agreement, Capacity, Legal purpose, Consideration</strong> (ACLC)</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
+                    <p class="text-gray-700 dark:text-gray-300">Insurance policies are <strong>unilateral</strong> contracts &mdash; only the insurer makes a promise</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>Void</strong> = never a contract. <strong>Voidable</strong> = valid until the protected party cancels</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">4</span>
+                    <p class="text-gray-700 dark:text-gray-300">Implied-in-<strong>fact</strong> = real contract from behavior. Implied-in-<strong>law</strong> = court fiction to prevent injustice</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">5</span>
+                    <p class="text-gray-700 dark:text-gray-300">Only parties in <strong>privity</strong> can sue &mdash; except <strong>third-party beneficiaries</strong></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 1: What is a Contract -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">1. What is a Contract?</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-6">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg lg:text-xl">Contract</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">A <strong>legally enforceable promise</strong>. Not every promise is a contract &mdash; only those that meet all four legal requirements.</p>
+                </div>
+
+                <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-4">Think of the four elements as legs on a table. Remove any one leg, and the table falls. Every enforceable contract &mdash; whether an insurance policy, a car purchase, or a handshake deal &mdash; must have all four:</p>
+
+                <!-- Four Elements Grid -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+                    <div class="bg-purple-50 dark:bg-purple-900/30 p-4 rounded-lg text-center border border-purple-200 dark:border-purple-800">
+                        <p class="text-2xl lg:text-3xl font-bold text-purple-600 dark:text-purple-400">A</p>
+                        <p class="text-sm lg:text-base font-bold text-purple-800 dark:text-purple-300 mt-1">Agreement</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400 mt-1">Offer + Acceptance</p>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/30 p-4 rounded-lg text-center border border-purple-200 dark:border-purple-800">
+                        <p class="text-2xl lg:text-3xl font-bold text-purple-600 dark:text-purple-400">C</p>
+                        <p class="text-sm lg:text-base font-bold text-purple-800 dark:text-purple-300 mt-1">Capacity</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400 mt-1">Legally qualified</p>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/30 p-4 rounded-lg text-center border border-purple-200 dark:border-purple-800">
+                        <p class="text-2xl lg:text-3xl font-bold text-purple-600 dark:text-purple-400">L</p>
+                        <p class="text-sm lg:text-base font-bold text-purple-800 dark:text-purple-300 mt-1">Legal Purpose</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400 mt-1">Not illegal</p>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/30 p-4 rounded-lg text-center border border-purple-200 dark:border-purple-800">
+                        <p class="text-2xl lg:text-3xl font-bold text-purple-600 dark:text-purple-400">C</p>
+                        <p class="text-sm lg:text-base font-bold text-purple-800 dark:text-purple-300 mt-1">Consideration</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400 mt-1">Value exchanged</p>
+                    </div>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 rounded-r-lg mb-6">
+                    <p class="font-bold text-amber-800 dark:text-amber-300">Memory Trick: ACLC</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-1 text-base lg:text-lg"><strong>A</strong>greement, <strong>C</strong>apacity, <strong>L</strong>egal purpose, <strong>C</strong>onsideration. Miss any one and the contract fails.</p>
+                </div>
+
+                <!-- Key Parties -->
+                <h3 class="text-lg lg:text-xl font-bold text-gray-800 dark:text-gray-100 mb-3">Key Parties in a Contract</h3>
+                <div class="grid md:grid-cols-3 gap-4 mb-6">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
+                        <p class="font-bold text-blue-800 dark:text-blue-300">Promisor</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-1 text-sm lg:text-base">The party <strong>making</strong> the promise.</p>
+                    </div>
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
+                        <p class="font-bold text-blue-800 dark:text-blue-300">Promisee</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-1 text-sm lg:text-base">The party to whom the promise is <strong>made</strong>.</p>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border border-green-200 dark:border-green-800">
+                        <p class="font-bold text-green-800 dark:text-green-300">Third-Party Beneficiary</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-1 text-sm lg:text-base">Not a party to the contract but has a legal right to <strong>enforce</strong> it.</p>
+                    </div>
+                </div>
+
+                <!-- Privity -->
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-purple-500 mb-6">
+                    <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg">Privity of Contract</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">The legal relationship between parties to a contract. Ordinarily, <strong>only parties in privity can sue for breach</strong>. The exception: a <strong>third-party beneficiary</strong> CAN sue even though they are not in privity.</p>
+                    <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded mt-3">
+                        <p class="font-semibold text-purple-800 dark:text-purple-300 mb-2">Real-World Scenario: Third-Party Beneficiary</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> Maria buys a life insurance policy and names her daughter Sofia as the beneficiary.</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> Maria dies. The insurer refuses to pay, claiming a technicality.</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> Sofia can sue the insurer even though she was not a party to the insurance contract. She is a <strong>third-party beneficiary</strong> with enforcement rights.</p>
+                    </div>
+                </div>
+
+                <!-- Breach -->
+                <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-4 border-l-4 border-red-500">
+                    <p class="font-bold text-red-800 dark:text-red-300">Breach of Contract</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-1 text-base lg:text-lg">The failure of a party, <strong>without legal excuse</strong>, to perform all or part of the contract. If you promised and did not deliver &mdash; and you have no valid legal reason &mdash; that is a breach.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Types of Contracts -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">2. Types of Contracts</h2>
+                <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-6">Contracts are classified along four dimensions. Each contract can be described using one label from each pair.</p>
+
+                <!-- A. Bilateral vs Unilateral -->
+                <h3 class="text-lg lg:text-xl font-bold text-gray-800 dark:text-gray-100 mb-3">A. Bilateral vs. Unilateral</h3>
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-l-4 border-blue-500">
+                        <p class="font-bold text-blue-800 dark:text-blue-300 text-lg">Bilateral Contract</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base"><strong>BOTH</strong> parties make promises to each other.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> You agree to buy a house; the seller agrees to sell it. Both sides promised &mdash; you to pay, them to deliver the deed.</p>
+                        </div>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <p class="font-bold text-green-800 dark:text-green-300 text-lg">Unilateral Contract</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base"><strong>ONLY ONE</strong> party makes a promise.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> "I will pay $500 to whoever finds my lost dog." Only you promised. The finder is not obligated to look &mdash; but if they find it, you must pay.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 rounded-r-lg mb-8">
+                    <p class="font-bold text-amber-800 dark:text-amber-300">Exam Tip: Insurance = Unilateral</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-1 text-base lg:text-lg">Insurance policies are classic <strong>unilateral</strong> contracts. The insurer promises to pay if a covered loss occurs, but the insured does not promise that a loss will occur.</p>
+                </div>
+
+                <!-- B. Executed vs Executory -->
+                <h3 class="text-lg lg:text-xl font-bold text-gray-800 dark:text-gray-100 mb-3">B. Executed vs. Executory</h3>
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <p class="font-bold text-green-800 dark:text-green-300 text-lg">Executed Contract</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base"><strong>Completely performed</strong> by both parties. Everything promised has been done.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> You paid the mechanic $200, and the mechanic already fixed your car. Both sides fully performed. Done.</p>
+                        </div>
+                    </div>
+                    <div class="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg border-l-4 border-amber-500">
+                        <p class="font-bold text-amber-800 dark:text-amber-300 text-lg">Executory Contract</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base"><strong>Not completely performed</strong> by one or both parties. Something is still owed.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> You signed a 12-month lease and lived there 3 months. 9 months of performance remain &mdash; the contract is executory.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 border-l-4 border-blue-500 p-4 rounded-r-lg mb-8">
+                    <p class="font-bold text-blue-800 dark:text-blue-300">Key Distinction</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-1 text-base lg:text-lg">A contract can be <strong>partly executed and partly executory</strong>. If you paid for a car but have not received it, the contract is executed on your side (you paid) but executory on the dealer's side (not yet delivered).</p>
+                </div>
+
+                <!-- C. Express vs Implied -->
+                <h3 class="text-lg lg:text-xl font-bold text-gray-800 dark:text-gray-100 mb-3">C. Express vs. Implied Contracts</h3>
+
+                <div class="grid md:grid-cols-3 gap-4 mb-6">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-l-4 border-blue-500">
+                        <p class="font-bold text-blue-800 dark:text-blue-300 text-lg">Express Contract</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">Terms and intentions are clearly <strong>stated</strong> &mdash; either written or oral.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> A signed insurance policy. Or: "I will paint your house for $3,000 by Friday."</p>
+                        </div>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border-l-4 border-purple-500">
+                        <p class="font-bold text-purple-800 dark:text-purple-300 text-lg">Implied-in-Fact</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">A <strong>real contract</strong> created by the parties' <strong>behavior</strong>, not words.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> You sit at a restaurant and order food. No one signs anything, but your behavior creates a contract &mdash; you will pay for the meal.</p>
+                        </div>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                        <p class="font-bold text-red-800 dark:text-red-300 text-lg">Implied-in-Law (Quasi-Contract)</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base"><strong>Not an actual contract</strong>. A legal fiction imposed by courts to prevent <strong>unjust enrichment</strong>.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> An unconscious person is rushed to the ER. They never agreed to pay, but the law creates an obligation so the hospital can recover reasonable costs.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-lg p-4 mb-8">
+                    <p class="font-bold text-red-800 dark:text-red-300">Critical Exam Distinction</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-1 text-base lg:text-lg">Implied-in-<strong>FACT</strong> = real contract based on behavior. Implied-in-<strong>LAW</strong> = NOT a real contract, just a court-created obligation to prevent injustice. The exam loves testing this difference.</p>
+                </div>
+
+                <!-- D. Void vs Voidable -->
+                <h3 class="text-lg lg:text-xl font-bold text-gray-800 dark:text-gray-100 mb-3">D. Void vs. Voidable Contracts</h3>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                        <p class="font-bold text-red-800 dark:text-red-300 text-lg">Void Contract</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base"><strong>Never was a contract</strong>. Despite the parties' intentions, it never reached contract status. Cannot be enforced or ratified.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> A "contract" to commit a crime (e.g., hiring someone to rob a store). Void from the start &mdash; no court will enforce it.</p>
+                        </div>
+                    </div>
+                    <div class="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg border-l-4 border-amber-500">
+                        <p class="font-bold text-amber-800 dark:text-amber-300 text-lg">Voidable Contract</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base"><strong>Valid and binding UNTIL</strong> the protected party chooses to cancel it. Can be ratified (confirmed) to become fully binding.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> A minor signs a contract to buy a car. The minor can honor it OR disaffirm (cancel) it. Their choice.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Visual Flow -->
+                <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 lg:p-5">
+                    <p class="font-bold text-gray-800 dark:text-gray-100 mb-3">Contract Classification Flow</p>
+                    <div class="flex flex-wrap items-center gap-3 text-sm lg:text-base">
+                        <div class="bg-blue-100 dark:bg-blue-900/40 px-3 py-2 rounded-lg font-medium text-blue-800 dark:text-blue-300">Who promises?</div>
+                        <span class="text-gray-400 text-xl">&rarr;</span>
+                        <div class="bg-blue-50 dark:bg-blue-800/30 px-3 py-2 rounded">Bilateral / Unilateral</div>
+                        <span class="text-gray-400 text-xl">&rarr;</span>
+                        <div class="bg-green-100 dark:bg-green-900/40 px-3 py-2 rounded-lg font-medium text-green-800 dark:text-green-300">Performed?</div>
+                        <span class="text-gray-400 text-xl">&rarr;</span>
+                        <div class="bg-green-50 dark:bg-green-800/30 px-3 py-2 rounded">Executed / Executory</div>
+                    </div>
+                    <div class="flex flex-wrap items-center gap-3 text-sm lg:text-base mt-3">
+                        <div class="bg-purple-100 dark:bg-purple-900/40 px-3 py-2 rounded-lg font-medium text-purple-800 dark:text-purple-300">How formed?</div>
+                        <span class="text-gray-400 text-xl">&rarr;</span>
+                        <div class="bg-purple-50 dark:bg-purple-800/30 px-3 py-2 rounded">Express / Implied</div>
+                        <span class="text-gray-400 text-xl">&rarr;</span>
+                        <div class="bg-red-100 dark:bg-red-900/40 px-3 py-2 rounded-lg font-medium text-red-800 dark:text-red-300">Enforceable?</div>
+                        <span class="text-gray-400 text-xl">&rarr;</span>
+                        <div class="bg-red-50 dark:bg-red-800/30 px-3 py-2 rounded">Void / Voidable / Valid</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cheat Sheet -->
+        <section id="cheat-sheet" class="mb-10">
+            <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 border-2 border-dashed border-gray-300 dark:border-gray-600">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100">Cheat Sheet</h2>
+                    <span class="text-sm text-gray-500 dark:text-gray-400">Print this page for quick reference</span>
+                </div>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">4 Elements of a Contract (ACLC)</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>Agreement (Offer + Acceptance)</li>
+                            <li>Capacity to Contract</li>
+                            <li>Legal Purpose</li>
+                            <li>Consideration (value exchanged)</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Contract Types</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li><strong>Bilateral</strong> = both promise | <strong>Unilateral</strong> = one promises</li>
+                            <li><strong>Executed</strong> = done | <strong>Executory</strong> = obligations remain</li>
+                            <li><strong>Express</strong> = stated | <strong>Implied</strong> = behavior/law</li>
+                            <li><strong>Void</strong> = never valid | <strong>Voidable</strong> = valid until cancelled</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Key Parties</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>Promisor &mdash; makes the promise</li>
+                            <li>Promisee &mdash; receives the promise</li>
+                            <li>Third-party beneficiary &mdash; can enforce, not in privity</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Insurance Contracts</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>Unilateral (only insurer promises)</li>
+                            <li>Executory (insurer's obligation continues)</li>
+                            <li>Express (written policy)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Traps -->
+        <section class="mb-10">
+            <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-xl p-5 lg:p-6">
+                <h2 class="text-2xl font-bold text-red-800 dark:text-red-300 mb-4">Exam Trap Alerts</h2>
+                <div class="space-y-3">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">1. Void vs. Voidable &mdash; Know the Difference Cold</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>Void</strong> = never was a contract, can NEVER be ratified. <strong>Voidable</strong> = IS a valid contract UNTIL the protected party cancels it, and CAN be ratified to become fully binding.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">2. Implied-in-Fact vs. Implied-in-Law</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Implied-in-<strong>fact</strong> = a REAL contract shown by behavior (restaurant ordering). Implied-in-<strong>law</strong> = NOT a real contract, just a legal fiction to prevent unjust enrichment (ER treatment of unconscious patient).</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">3. Insurance Policies Are Unilateral</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Do not confuse with bilateral. Only the insurer makes a promise (to pay claims). The insured does not promise a loss will occur &mdash; they just pay premiums.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">4. Third-Party Beneficiaries CAN Sue</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Even though they are not in privity of contract, third-party beneficiaries have the legal right to enforce the contract. This is the main exception to the privity rule.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Reference Summary -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-purple-600 to-purple-800 rounded-xl p-6 text-white">
+                <h2 class="text-2xl font-bold mb-6">Quick Reference Summary</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Contract</p>
+                        <p class="text-sm text-purple-100">A legally enforceable promise requiring ACLC.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Bilateral vs. Unilateral</p>
+                        <p class="text-sm text-purple-100">Both promise vs. only one promises.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Executed vs. Executory</p>
+                        <p class="text-sm text-purple-100">Fully done vs. obligations remain.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Express vs. Implied</p>
+                        <p class="text-sm text-purple-100">Stated in words vs. shown by behavior (or law).</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Void vs. Voidable</p>
+                        <p class="text-sm text-purple-100">Never valid vs. valid until cancelled.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Privity</p>
+                        <p class="text-sm text-purple-100">Only contract parties can sue &mdash; except third-party beneficiaries.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Navigation -->
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="../index.html" class="text-gray-400 hover:text-white transition-colors">&larr; Assignment 2 Overview</a>
+                <span class="text-gray-500">Part 1 of 2</span>
+                <a href="../part-2/index.html" class="text-gray-400 hover:text-white transition-colors">Part 2: Offer, Acceptance &amp; Capacity &rarr;</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AI Tutor Button -->
+    <button onclick="openAITutor({topic: 'Contract Formation and Types of Contracts', concepts: ['Four elements of a contract (ACLC)', 'Bilateral vs unilateral contracts', 'Executed vs executory contracts', 'Express vs implied-in-fact vs implied-in-law contracts', 'Void vs voidable contracts', 'Privity of contract', 'Third-party beneficiaries', 'Breach of contract'], keywords: ['contract', 'promisor', 'promisee', 'privity', 'bilateral', 'unilateral', 'executed', 'executory', 'express', 'implied-in-fact', 'implied-in-law', 'quasi-contract', 'void', 'voidable', 'breach']})" class="fixed bottom-6 right-6 bg-purple-600 hover:bg-purple-700 text-white p-4 rounded-full shadow-xl hover:scale-110 transition-all z-50" title="AI Tutor">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+        </svg>
+    </button>
+</body>
+</html>

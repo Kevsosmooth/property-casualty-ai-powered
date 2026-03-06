@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 1: Discrimination Laws | Assignment 13 | CPCU 530</title>
+    <link rel="icon" type="image/svg+xml" href="../../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config = { darkMode: 'class' }</script>
+    <link rel="stylesheet" href="../../../../css/styles.css">
+    <script src="../../../../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') { document.documentElement.classList.remove('dark'); }
+        function toggleTheme() { document.documentElement.classList.toggle('dark'); localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light'); }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="showAPIKeySetup()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings"><svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg></button>
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/></svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>
+        </button>
+    </div>
+
+    <header class="bg-gradient-to-r from-purple-600 to-purple-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap gap-2 text-sm mb-2">
+                <a href="../../../../index.html" class="text-purple-200 hover:text-white">Home</a><span class="text-purple-300">/</span>
+                <a href="../../../index.html" class="text-purple-200 hover:text-white">CPCU</a><span class="text-purple-300">/</span>
+                <a href="../../index.html" class="text-purple-200 hover:text-white">530</a><span class="text-purple-300">/</span>
+                <a href="../index.html" class="text-purple-200 hover:text-white">Assignment 13</a><span class="text-purple-300">/</span>
+                <span class="text-white">Part 1</span>
+            </div>
+            <h1 class="text-3xl font-bold">Part 1: Discrimination Laws</h1>
+            <p class="text-purple-200 mt-1">Assignment 13 &mdash; Employment Law</p>
+        </div>
+    </header>
+
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-wrap gap-2 text-sm">
+                <a href="../index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Intro</a>
+                <span class="bg-purple-600 text-white px-3 py-1 rounded font-medium">Part 1</span>
+                <a href="../part-2/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 2</a>
+                <a href="../part-3/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 3</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-5xl lg:max-w-7xl">
+
+        <!-- Start Here -->
+        <div class="bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/40 dark:to-purple-800/40 rounded-xl p-6 mb-8 border border-blue-300 dark:border-blue-700">
+            <h3 class="text-xl font-bold text-blue-800 dark:text-blue-200 mb-4">Start Here: 5 Things You MUST Know</h3>
+            <div class="grid md:grid-cols-2 gap-3">
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>Title VII</strong> covers sex, race, color, religion, and national origin &mdash; applies to employers with <strong>15+ employees</strong></p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>Race is NEVER a BFOQ</strong> &mdash; sex, religion, and age can be in very narrow cases, but race NEVER</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>Disparate treatment</strong> = intentional discrimination. <strong>Disparate impact</strong> = unintentional but discriminatory effect</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">4</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>ADEA</strong> protects workers age <strong>40 and older</strong> only &mdash; applies to employers with <strong>20+ employees</strong></p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">5</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>ADA</strong> requires <strong>reasonable accommodation</strong> unless it causes <strong>undue hardship</strong> &mdash; covers physical, mental, infectious diseases</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 1: Age Discrimination -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">1. Age Discrimination (ADEA)</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-6">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg lg:text-xl">Age Discrimination in Employment Act (ADEA)</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">Protects workers <strong>age 40 and older</strong> from discrimination in hiring, firing, pay, and terms of employment. Applies to employers with <strong>20+ employees</strong>, unions with <strong>25+ members</strong>, and employment agencies. Bans <strong>mandatory retirement</strong> at any age for most workers.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <p class="font-bold text-green-800 dark:text-green-300">BFOQ Exception</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">Age CAN be a <strong>bona fide occupational qualification</strong> in very narrow cases where age is genuinely necessary for job safety or performance.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> An airline may argue pilots over a certain age pose safety risks. But a law firm cannot refuse a 55-year-old attorney just because they prefer younger lawyers.</p>
+                        </div>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border-l-4 border-purple-500">
+                        <p class="font-bold text-purple-800 dark:text-purple-300">Older Workers Benefit Protection Act</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">Prevents employers from using benefit plans to refuse hiring older workers. Restricts reducing benefits for older workers unless cost-justified. Sets strict rules for ADEA waivers in severance packages.</p>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-gray-400">
+                    <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Scenario: ADEA Age Threshold</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> Ed, a 38-year-old plumber, is fired and replaced by a 30-year-old worker.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> Ed wants to sue for age discrimination under the ADEA.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> Ed <strong>CANNOT</strong> bring an ADEA claim. He is 38 &mdash; two years below the <strong>40-and-over</strong> threshold. Even though he was replaced by someone younger, the ADEA does not protect him.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Title VII -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">2. Civil Rights Act of 1964 &mdash; Title VII</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-6">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg lg:text-xl">Title VII (The Big One)</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">Prohibits discrimination based on <strong>sex, race, color, religion, or national origin</strong> in all aspects of employment. Applies to employers with <strong>15+ employees</strong>, labor unions, and employment agencies. After <em>Bostock v. Clayton County</em> (2020), also covers <strong>sexual orientation and gender identity</strong>.</p>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 rounded-r-lg mb-6">
+                    <p class="font-bold text-amber-800 dark:text-amber-300">BFOQ Defense Rules</p>
+                    <ul class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base space-y-1">
+                        <li><strong>Race</strong> is <strong>NEVER</strong> a BFOQ &mdash; no situation allows race as a job requirement</li>
+                        <li><strong>Sex</strong> CAN be a BFOQ in narrow cases (e.g., hiring a female attendant for a women's locker room)</li>
+                        <li><strong>Religion</strong> CAN be a BFOQ for religious organizations</li>
+                    </ul>
+                </div>
+
+                <!-- Disparate Treatment vs Impact -->
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">Two Theories of Discrimination</h3>
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                        <p class="font-bold text-red-800 dark:text-red-300 text-lg">Disparate Treatment</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">Employer <strong>intentionally</strong> treated someone differently because of their protected class. <strong>Intent IS the issue.</strong></p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> A hiring manager says, "We don't hire women for management positions." This is direct, intentional discrimination based on sex.</p>
+                        </div>
+                    </div>
+                    <div class="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-lg border-l-4 border-indigo-500">
+                        <p class="font-bold text-indigo-800 dark:text-indigo-300 text-lg">Disparate Impact</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">A <strong>neutral policy</strong> has a disproportionate negative effect on a protected class. <strong>Intent does NOT matter</strong> &mdash; only the discriminatory effect.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> A company requires all applicants be at least 5'10". This appears neutral but eliminates most women and many minorities &mdash; disparate impact even without discriminatory intent.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-gray-400">
+                    <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Scenario: Disparate Impact in Insurance</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> An insurance company requires all underwriters to have passed a written aptitude test. The test has no relationship to actual underwriting skills.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> Data shows 80% of white applicants pass but only 40% of minority applicants pass.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> This is <strong>disparate impact</strong>. Even though the company did not intend to discriminate, the neutral test disproportionately excludes a protected class. The employer must prove the test is job-related and consistent with business necessity, or eliminate it.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Sexual Harassment -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">3. Sexual Harassment &amp; Constructive Discharge</h2>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                        <p class="font-bold text-red-800 dark:text-red-300 text-lg">Quid Pro Quo</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">Job benefits or advancement <strong>conditioned on</strong> submission to sexual advances. A direct exchange: "Do this for me sexually, or lose your job."</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> A supervisor tells an employee, "If you want the promotion, you need to go out with me this weekend." Advancement is directly tied to sexual compliance.</p>
+                        </div>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border-l-4 border-purple-500">
+                        <p class="font-bold text-purple-800 dark:text-purple-300 text-lg">Hostile Environment</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">Pervasive offensive conduct creates an <strong>intimidating or abusive</strong> workplace. No direct exchange required &mdash; just a workplace saturated with offensive behavior.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> Co-workers constantly make sexual jokes, share explicit images, and make degrading comments. This ongoing conduct makes the workplace hostile even without a direct demand.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 rounded-r-lg mb-6">
+                    <p class="font-bold text-amber-800 dark:text-amber-300 text-lg">Constructive Discharge</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">When the work environment becomes <strong>so intolerable</strong> that a reasonable person would feel forced to quit. The employee technically resigned, but the law treats it as a <strong>firing</strong> because the employer created impossible conditions.</p>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-gray-400">
+                    <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Scenario: Constructive Discharge</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> Maria's supervisor makes daily sexual comments, displays offensive materials, and assigns her the worst shifts whenever she refuses his advances.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> Maria cannot take it anymore and quits.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> This is <strong>constructive discharge</strong>. Even though Maria quit, the law treats it as if she was fired. The employer is liable for hostile environment sexual harassment.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Civil Rights Act of 1991 & Other Laws -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">4. Civil Rights Act of 1991, Equal Pay Act &amp; Other Laws</h2>
+
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 border-l-4 border-purple-500 mb-6">
+                    <p class="font-bold text-purple-800 dark:text-purple-300 text-lg">Civil Rights Act of 1991</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">Strengthened Title VII significantly:</p>
+                    <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-2 space-y-1">
+                        <li>Allows <strong>compensatory AND punitive damages</strong> (not just back pay)</li>
+                        <li>Makes <strong>jury trials</strong> available for discrimination claims</li>
+                        <li>Changes <strong>burden of proof</strong> in disparate impact cases</li>
+                        <li>Allows recovery of <strong>expert witness fees</strong></li>
+                    </ul>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <p class="font-bold text-green-800 dark:text-green-300">Equal Pay Act</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">Requires <strong>equal pay for equal work</strong> regardless of sex. Jobs must be substantially equal in skill, effort, responsibility, and working conditions.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> Mary and Al do the same accounting work. Mary earns $50,000; Al earns $60,000. Unless the difference is based on seniority, merit, or quantity of work, this violates the Equal Pay Act.</p>
+                        </div>
+                    </div>
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-l-4 border-blue-500">
+                        <p class="font-bold text-blue-800 dark:text-blue-300">Executive Order 11246</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">Applies to <strong>federal government contractors</strong>. Requires <strong>affirmative action plans</strong> &mdash; proactive steps to recruit, hire, and promote minorities and women. Just "not discriminating" is not enough.</p>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-lg border-l-4 border-indigo-500">
+                        <p class="font-bold text-indigo-800 dark:text-indigo-300">Immigration Reform &amp; Control Act (1986)</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">Employers must verify <strong>identity and right to work</strong> using <strong>Form I-9</strong>. Prohibits discrimination based on national origin or citizenship status for authorized workers.</p>
+                    </div>
+                    <div class="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg border-l-4 border-amber-500">
+                        <p class="font-bold text-amber-800 dark:text-amber-300">Pregnancy Discrimination Act (1978)</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">Amendment to Title VII. Employers must treat pregnancy the same as any other temporary disability. Cannot fire or refuse to hire based on pregnancy.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> Lisa is fired because "we can't have you out on maternity leave during tax season." This violates the Pregnancy Discrimination Act &mdash; if the company allows leave for other medical conditions, it must allow the same for pregnancy.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: ADA -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">5. Americans with Disabilities Act (ADA)</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-6">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg lg:text-xl">What the ADA Covers</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">Much more than just physical disabilities. Applies to employers with <strong>15+ employees</strong>.</p>
+                    <div class="grid grid-cols-2 md:grid-cols-5 gap-3 mt-4">
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                            <p class="font-bold text-blue-600 dark:text-blue-400 text-sm">Physical</p>
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Mobility, vision, hearing</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                            <p class="font-bold text-blue-600 dark:text-blue-400 text-sm">Mental Illness</p>
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Depression, anxiety, etc.</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                            <p class="font-bold text-blue-600 dark:text-blue-400 text-sm">Infectious</p>
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">HIV/AIDS, etc.</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                            <p class="font-bold text-blue-600 dark:text-blue-400 text-sm">Addiction</p>
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Recovering addicts only</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                            <p class="font-bold text-blue-600 dark:text-blue-400 text-sm">Alcoholism</p>
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Protected condition</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <p class="font-bold text-green-800 dark:text-green-300">Reasonable Accommodation</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">Employers must make <strong>reasonable modifications</strong> to enable disabled workers to perform essential job functions. Examples: modified workstation, flexible schedule, assistive technology, relocated workspace.</p>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                        <p class="font-bold text-red-800 dark:text-red-300">Undue Hardship Defense</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">An employer does NOT have to provide accommodation if it causes <strong>significant difficulty or expense</strong> relative to the employer's size, resources, and nature of operations.</p>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-gray-400 mb-6">
+                    <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Scenario: ADA Reasonable Accommodation</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> A research company's two-story office has steps at every entrance and no elevator.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> A qualified wheelchair-using applicant applies for a job on the second floor.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> The company likely violates the ADA. They must provide <strong>reasonable accommodation</strong> &mdash; installing a ramp, relocating the position to the first floor, or installing an elevator if financially feasible.</p>
+                </div>
+
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 border-l-4 border-purple-500">
+                    <p class="font-bold text-purple-800 dark:text-purple-300">Rehabilitation Act of 1973</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">Similar to the ADA but applies to <strong>federal government</strong> and <strong>federal contractors</strong>. Section 503 requires contractors with contracts over $10,000 to take <strong>affirmative action</strong> for disabled individuals. Section 504 prohibits discrimination in any program receiving federal funds.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: Retaliation -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">6. Retaliation Claims</h2>
+
+                <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-red-500 mb-6">
+                    <p class="font-bold text-red-800 dark:text-red-300 text-lg lg:text-xl">Retaliation Is Independently Illegal</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">Title VII, ADA, and ADEA all prohibit <strong>retaliation</strong> against employees who file discrimination complaints, participate in investigations, or oppose discriminatory practices. Retaliation is now the <strong>most common charge</strong> filed with the EEOC.</p>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-gray-400">
+                    <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Scenario: Retaliation Claim</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> James, a warehouse worker, files a formal complaint with HR alleging racial discrimination by his supervisor.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> Two weeks later, James is transferred to the night shift, given the worst assignments, and written up for minor infractions that were previously ignored.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> Even if the original discrimination claim is hard to prove, the employer's <strong>retaliatory actions</strong> are independently illegal. James has a strong retaliation claim. Courts ask whether a reasonable employee would be discouraged from filing a complaint by this treatment.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Numbers -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">Key Numbers: Employer Size Thresholds</h2>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-3 lg:gap-4">
+                    <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded-lg text-center border border-gray-200 dark:border-gray-600">
+                        <p class="text-2xl lg:text-3xl font-bold text-blue-600 dark:text-blue-400">15</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Employees for Title VII &amp; ADA</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded-lg text-center border border-gray-200 dark:border-gray-600">
+                        <p class="text-2xl lg:text-3xl font-bold text-purple-600 dark:text-purple-400">20</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Employees for ADEA</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded-lg text-center border border-gray-200 dark:border-gray-600">
+                        <p class="text-2xl lg:text-3xl font-bold text-red-600 dark:text-red-400">25</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Union members for ADEA</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded-lg text-center border border-gray-200 dark:border-gray-600">
+                        <p class="text-2xl lg:text-3xl font-bold text-green-600 dark:text-green-400">40</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Minimum age for ADEA protection</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cheat Sheet -->
+        <section id="cheat-sheet" class="mb-10">
+            <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 border-2 border-dashed border-gray-300 dark:border-gray-600">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100">Cheat Sheet</h2>
+                    <span class="text-sm text-gray-500 dark:text-gray-400">Print this page for quick reference</span>
+                </div>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Core Discrimination Laws</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>Title VII: sex/race/color/religion/national origin (15+ employees)</li>
+                            <li>ADEA: age 40+ (20+ employees)</li>
+                            <li>ADA: disabilities, reasonable accommodation (15+ employees)</li>
+                            <li>Equal Pay Act: equal pay for equal work regardless of sex</li>
+                            <li>Pregnancy Discrimination Act: treat pregnancy like other disabilities</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Key Rules</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>Race is NEVER a BFOQ</li>
+                            <li>Disparate treatment = intent required</li>
+                            <li>Disparate impact = no intent needed, just effect</li>
+                            <li>Quid pro quo = job benefits conditioned on sex</li>
+                            <li>Hostile environment = pervasive offensive conduct</li>
+                            <li>Constructive discharge = forced to quit = treated as firing</li>
+                            <li>Retaliation = independently illegal, most common EEOC charge</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Traps -->
+        <section class="mb-10">
+            <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-xl p-5 lg:p-6">
+                <h2 class="text-2xl font-bold text-red-800 dark:text-red-300 mb-4">Exam Trap Alerts</h2>
+                <div class="space-y-3">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">1. ADEA Age Threshold Is 40, Not 50 or 55</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">A 38-year-old cannot bring an ADEA claim even if replaced by someone younger. The protection starts at exactly age 40.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">2. Race Is NEVER a BFOQ</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Sex, religion, and age can be BFOQs in very narrow cases. Race can NEVER be a BFOQ. There is no exception. If an exam question asks about a racial BFOQ, the answer is always "no."</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">3. Disparate Treatment vs. Disparate Impact</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Treatment requires PROOF OF INTENT. Impact does NOT require intent &mdash; just proof a neutral policy disproportionately excludes a protected group. The exam loves mixing these up.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">4. Employer Size Thresholds Are Different Per Law</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Title VII/ADA = 15 employees. ADEA = 20 employees. FMLA = 50 employees. COBRA = 20 employees. These are commonly tested.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">5. Current Drug Users Are NOT Protected by the ADA</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Recovering addicts are protected. Current illegal drug users are NOT. Alcoholism is also a protected condition under the ADA.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Reference Summary -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-purple-600 to-purple-800 rounded-xl p-6 text-white">
+                <h2 class="text-2xl font-bold mb-6">Quick Reference Summary</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Title VII</p>
+                        <p class="text-sm text-purple-100">Sex, race, color, religion, national origin. 15+ employees. Race never a BFOQ.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">ADEA</p>
+                        <p class="text-sm text-purple-100">Age 40+. 20+ employees. No mandatory retirement. BFOQ narrow exception.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">ADA</p>
+                        <p class="text-sm text-purple-100">Physical, mental, infectious, addiction (recovering). Reasonable accommodation required.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Disparate Treatment</p>
+                        <p class="text-sm text-purple-100">Intentional discrimination. Must prove employer intended to discriminate.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Disparate Impact</p>
+                        <p class="text-sm text-purple-100">Neutral policy with discriminatory effect. No intent required.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Retaliation</p>
+                        <p class="text-sm text-purple-100">Independently illegal. Most common EEOC charge. Cannot punish complainants.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="../index.html" class="text-gray-400 hover:text-white transition-colors">&larr; Assignment 13 Overview</a>
+                <span class="text-gray-500">Part 1 of 3</span>
+                <a href="../part-2/index.html" class="text-gray-400 hover:text-white transition-colors">Part 2: Workplace Safety &amp; Benefits &rarr;</a>
+            </div>
+        </div>
+    </footer>
+
+    <button onclick="openAITutor({topic: 'Employment Discrimination Laws', concepts: ['Title VII protected classes', 'ADEA age 40 threshold', 'ADA reasonable accommodation', 'BFOQ defense', 'Disparate treatment vs disparate impact', 'Quid pro quo vs hostile environment', 'Constructive discharge', 'Retaliation claims', 'Equal Pay Act', 'Pregnancy Discrimination Act'], keywords: ['Title VII', 'ADEA', 'ADA', 'BFOQ', 'disparate treatment', 'disparate impact', 'quid pro quo', 'hostile environment', 'constructive discharge', 'retaliation', 'reasonable accommodation', 'undue hardship']})" class="fixed bottom-6 right-6 bg-purple-600 hover:bg-purple-700 text-white p-4 rounded-full shadow-xl hover:scale-110 transition-all z-50" title="AI Tutor">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+    </button>
+</body>
+</html>

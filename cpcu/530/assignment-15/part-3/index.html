@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 3: Global Compliance | Assignment 15 | CPCU 530</title>
+    <link rel="icon" type="image/svg+xml" href="../../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config = { darkMode: 'class' }</script>
+    <link rel="stylesheet" href="../../../../css/styles.css">
+    <script src="../../../../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') { document.documentElement.classList.remove('dark'); }
+        function toggleTheme() { document.documentElement.classList.toggle('dark'); localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light'); }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="showAPIKeySetup()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings"><svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg></button>
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/></svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>
+        </button>
+    </div>
+
+    <header class="bg-gradient-to-r from-purple-600 to-purple-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap gap-2 text-sm mb-2">
+                <a href="../../../../index.html" class="text-purple-200 hover:text-white">Home</a><span class="text-purple-300">/</span>
+                <a href="../../../index.html" class="text-purple-200 hover:text-white">CPCU</a><span class="text-purple-300">/</span>
+                <a href="../../index.html" class="text-purple-200 hover:text-white">530</a><span class="text-purple-300">/</span>
+                <a href="../index.html" class="text-purple-200 hover:text-white">Assignment 15</a><span class="text-purple-300">/</span>
+                <span class="text-white">Part 3</span>
+            </div>
+            <h1 class="text-3xl font-bold">Part 3: Global Compliance</h1>
+            <p class="text-purple-200 mt-1">Assignment 15 &mdash; International Legal Environment</p>
+        </div>
+    </header>
+
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-wrap gap-2 text-sm">
+                <a href="../index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Intro</a>
+                <a href="../part-1/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 1</a>
+                <a href="../part-2/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 2</a>
+                <span class="bg-purple-600 text-white px-3 py-1 rounded font-medium">Part 3</span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-5xl lg:max-w-7xl">
+
+        <!-- Start Here -->
+        <div class="bg-gradient-to-r from-red-100 to-amber-100 dark:from-red-900/40 dark:to-amber-800/40 rounded-xl p-6 mb-8 border border-red-300 dark:border-red-700">
+            <h3 class="text-xl font-bold text-red-800 dark:text-red-200 mb-4">Start Here: 5 Things You MUST Know</h3>
+            <div class="grid md:grid-cols-2 gap-3">
+                <div class="flex items-start">
+                    <span class="bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
+                    <p class="text-gray-700 dark:text-gray-300">The <strong>FCPA</strong> has two parts: <strong>anti-bribery provisions</strong> (no bribing foreign officials) and <strong>accounting provisions</strong> (accurate books and records)</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
+                    <p class="text-gray-700 dark:text-gray-300">The <strong>Patriot Act</strong> requires anti-money laundering compliance, suspicious activity reporting, and OFAC sanctions screening</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
+                    <p class="text-gray-700 dark:text-gray-300">The three WTO agreements: <strong>GATT</strong> (goods), <strong>GATS</strong> (services including insurance), <strong>TRIPS</strong> (intellectual property)</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">4</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>NAFTA</strong> was replaced by <strong>USMCA</strong> (2020) &mdash; same three countries: U.S., Mexico, Canada</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">5</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>APEC</strong> is the only inter-governmental body that operates on <strong>nonbinding commitments</strong></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 1: FCPA -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">1. Foreign Corrupt Practices Act (FCPA)</h2>
+
+                <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-red-500 mb-6">
+                    <h3 class="font-bold text-red-800 dark:text-red-300 text-lg lg:text-xl">What Is the FCPA?</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">The FCPA <strong>prohibits U.S. companies and their agents from bribing foreign government officials</strong> to obtain or retain business. It is one of the most important compliance laws for international insurers.</p>
+                </div>
+
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">Two Main Provisions</h3>
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-l-4 border-blue-500">
+                        <p class="font-bold text-blue-800 dark:text-blue-300 text-lg">Anti-Bribery Provisions</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base"><strong>Illegal to pay bribes</strong> to foreign government officials to win or keep business. This includes direct payments, gifts, or disguised payments through "consultants" or intermediaries.</p>
+                    </div>
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-l-4 border-blue-500">
+                        <p class="font-bold text-blue-800 dark:text-blue-300 text-lg">Accounting Provisions</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">Companies must keep <strong>accurate books and records</strong> and maintain internal accounting controls. This prevents companies from hiding bribes as legitimate expenses.</p>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-gray-400 mb-6">
+                    <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Scenario: FCPA Violation</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> A U.S.-based insurer wants to enter the market in Country X. The local insurance regulator hints that licensing could take "years" unless the insurer hires the regulator's brother-in-law as a "consultant" for $200,000.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> The insurer pays the "consulting fee." The license is approved within weeks.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> This is an <strong>FCPA violation</strong>. The "consulting fee" is really a bribe disguised as a legitimate business expense. The insurer faces criminal prosecution, fines potentially in the hundreds of millions, and severe reputational damage. Both the company AND the individuals involved can be prosecuted.</p>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 rounded-r-lg">
+                    <p class="font-bold text-amber-800 dark:text-amber-300">Critical for Insurance</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-1 text-sm lg:text-base">Bribes can be disguised as commissions, consulting fees, or "facilitation payments." The UK Bribery Act 2010 is even broader than the FCPA. International anti-corruption enforcement is now coordinated across multiple jurisdictions.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Patriot Act & AML -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">2. The Patriot Act and Anti-Money Laundering</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-6">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">The <strong>USA PATRIOT Act</strong> enhanced the government's ability to combat terrorism and money laundering. It amended numerous existing U.S. laws and created new compliance requirements for financial institutions, <strong>including insurers</strong>.</p>
+                </div>
+
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">How the Patriot Act Affects Insurance</h3>
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border border-purple-200 dark:border-purple-800">
+                        <p class="font-bold text-purple-800 dark:text-purple-300">Enhanced Due Diligence</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Extra scrutiny on international transactions, identity verification, and source of funds for large purchases.</p>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border border-purple-200 dark:border-purple-800">
+                        <p class="font-bold text-purple-800 dark:text-purple-300">Anti-Money Laundering (AML)</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Insurers must have AML programs to detect and prevent money laundering through insurance products.</p>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border border-purple-200 dark:border-purple-800">
+                        <p class="font-bold text-purple-800 dark:text-purple-300">Suspicious Activity Reporting</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Must file SARs (Suspicious Activity Reports) with FinCEN when transactions appear suspicious.</p>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border border-purple-200 dark:border-purple-800">
+                        <p class="font-bold text-purple-800 dark:text-purple-300">OFAC Sanctions Screening</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Must screen policyholders and claimants against the SDN (Specially Designated Nationals) list. If matched, must block the transaction.</p>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-gray-400 mb-6">
+                    <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Scenario: Money Laundering Through Insurance</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> A walk-in customer at an insurance office wants to purchase a $5 million single-premium whole life policy and pay with a cashier's check from an offshore bank.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> The compliance department flags this as suspicious &mdash; large single-premium life policies are a known money laundering vehicle (dirty money goes in as premium, clean money comes out as death benefit or cash value).</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> The insurer must file a <strong>Suspicious Activity Report (SAR)</strong> with FinCEN, conduct enhanced due diligence on the customer, and screen them against the <strong>OFAC SDN list</strong>. If the customer appears on the SDN list, the insurer must block the transaction and report it. Failure to comply can result in severe penalties.</p>
+                </div>
+
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">U.S. Laws Changed by the Patriot Act (Know Any 5)</h3>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
+                    <div class="bg-gray-50 dark:bg-gray-700 p-3 rounded-lg border border-gray-200 dark:border-gray-600">
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Wiretap Statute (Title III)</p>
+                    </div>
+                    <div class="bg-gray-50 dark:bg-gray-700 p-3 rounded-lg border border-gray-200 dark:border-gray-600">
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Electronic Communications Privacy Act</p>
+                    </div>
+                    <div class="bg-gray-50 dark:bg-gray-700 p-3 rounded-lg border border-gray-200 dark:border-gray-600">
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Computer Fraud and Abuse Act</p>
+                    </div>
+                    <div class="bg-gray-50 dark:bg-gray-700 p-3 rounded-lg border border-gray-200 dark:border-gray-600">
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Foreign Intelligence Surveillance Act (FISA)</p>
+                    </div>
+                    <div class="bg-gray-50 dark:bg-gray-700 p-3 rounded-lg border border-gray-200 dark:border-gray-600">
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Bank Secrecy Act</p>
+                    </div>
+                    <div class="bg-gray-50 dark:bg-gray-700 p-3 rounded-lg border border-gray-200 dark:border-gray-600">
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Money Laundering Act / Control Act</p>
+                    </div>
+                    <div class="bg-gray-50 dark:bg-gray-700 p-3 rounded-lg border border-gray-200 dark:border-gray-600">
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Right to Financial Privacy Act</p>
+                    </div>
+                    <div class="bg-gray-50 dark:bg-gray-700 p-3 rounded-lg border border-gray-200 dark:border-gray-600">
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Fair Credit Reporting Act</p>
+                    </div>
+                    <div class="bg-gray-50 dark:bg-gray-700 p-3 rounded-lg border border-gray-200 dark:border-gray-600">
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Immigration and Nationality Act</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Tax Code -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">3. U.S. Tax Code (IRC) and International Insurance</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-6">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">The Internal Revenue Code (IRC) affects international insurance through rules on how foreign income is taxed, tax credits for foreign taxes paid, transfer pricing rules, and <strong>Controlled Foreign Corporation (CFC) rules</strong>.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-gray-400">
+                        <p class="font-bold text-gray-800 dark:text-gray-200">Foreign Sales Corporation (FSC)</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">A special corporation U.S. exporters could create in foreign countries for tax benefits on export income. <strong>Ruled illegal by the WTO</strong> and replaced by ETI, which was also struck down.</p>
+                    </div>
+                    <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-gray-400">
+                        <p class="font-bold text-gray-800 dark:text-gray-200">Extraterritorial Income (ETI)</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">A tax exclusion that replaced FSCs. <strong>Also struck down by the WTO</strong> as an illegal export subsidy. Current U.S. export incentives operate under different structures.</p>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-gray-400">
+                    <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Scenario: Tax Code Compliance</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> A U.S. insurer operates through subsidiaries in Bermuda (a tax haven) and the UK.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> The Bermuda subsidiary earns $50M in premium income. Under CFC rules, the IRS may require the U.S. parent to include some of this income on its U.S. tax return, even though it was earned abroad.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> The insurer cannot simply park profits in Bermuda to avoid U.S. taxes. CFC rules, transfer pricing scrutiny, and the 2017 tax reform (GILTI provisions) all work to ensure U.S. tax obligations on foreign earnings.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Multinational Organizations -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">4. Multinational Organizations and Agreements</h2>
+
+                <!-- UN -->
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 border-l-4 border-blue-500 mb-4">
+                    <p class="font-bold text-blue-800 dark:text-blue-300 text-lg">United Nations (UN)</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">Purposes: maintain international peace and security, develop friendly relations among nations, cooperate in solving economic/social/humanitarian problems, promote human rights, and harmonize the actions of nations.</p>
+                </div>
+
+                <!-- WTO -->
+                <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 border-l-4 border-green-500 mb-4">
+                    <p class="font-bold text-green-800 dark:text-green-300 text-lg">World Trade Organization (WTO)</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base mb-3">Governs international trade through three primary agreements:</p>
+                    <div class="grid md:grid-cols-3 gap-3">
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                            <p class="font-bold text-green-700 dark:text-green-300 text-lg">GATT</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm">General Agreement on Tariffs and Trade</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm mt-1">Covers <strong>goods</strong></p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                            <p class="font-bold text-green-700 dark:text-green-300 text-lg">GATS</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm">General Agreement on Trade in Services</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm mt-1">Covers <strong>services (including insurance)</strong></p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                            <p class="font-bold text-green-700 dark:text-green-300 text-lg">TRIPS</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm">Trade-Related Aspects of Intellectual Property</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm mt-1">Covers <strong>intellectual property</strong></p>
+                        </div>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>Dumping:</strong> Selling goods in a foreign country below cost or below domestic price. The WTO has anti-dumping rules to prevent this unfair practice.</p>
+                    </div>
+                </div>
+
+                <!-- NAFTA/USMCA -->
+                <div class="bg-amber-50 dark:bg-amber-900/20 rounded-lg p-4 border-l-4 border-amber-500 mb-4">
+                    <p class="font-bold text-amber-800 dark:text-amber-300 text-lg">NAFTA / USMCA</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">Applies to <strong>Canada, Mexico, and the United States</strong>. NAFTA eliminated nearly all tariffs between these countries. It was replaced by the <strong>USMCA</strong> (United States-Mexico-Canada Agreement) in 2020, with updated provisions on digital trade, labor standards, environmental protections, and auto rules of origin.</p>
+                </div>
+
+                <!-- EU -->
+                <div class="bg-indigo-50 dark:bg-indigo-900/20 rounded-lg p-4 border-l-4 border-indigo-500 mb-4">
+                    <p class="font-bold text-indigo-800 dark:text-indigo-300 text-lg">European Union (EU)</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">Operates a <strong>Common Market</strong> with free movement of goods, services, capital, and people. The <strong>Euro</strong> is the common currency of the Eurozone. EU insurance directives harmonize regulation, and <strong>Solvency II</strong> sets capital requirements. Note: Brexit (2020) means UK insurers lost "passporting" rights to serve EU clients directly.</p>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-gray-400 mb-6">
+                    <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Scenario: EU Passporting and Brexit</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> Before Brexit, a London-based insurer could use its UK license to write policies for clients in any EU country &mdash; this was called "passporting."</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> The UK leaves the EU in 2020. Passporting rights are lost.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> London insurers had to set up new EU subsidiaries (many chose Dublin, Luxembourg, or Paris) to continue serving EU clients. This added significant cost and regulatory complexity to the international insurance market.</p>
+                </div>
+
+                <!-- ASEAN & APEC -->
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 border-l-4 border-purple-500">
+                        <p class="font-bold text-purple-800 dark:text-purple-300 text-lg">ASEAN</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-xs lg:text-sm">Association of Southeast Asian Nations</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">Members: Indonesia, Malaysia, Philippines, Singapore, Thailand, Brunei, Vietnam, Laos, Myanmar, Cambodia. Purposes: accelerate economic growth and promote regional peace and stability.</p>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 border-l-4 border-purple-500">
+                        <p class="font-bold text-purple-800 dark:text-purple-300 text-lg">APEC</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-xs lg:text-sm">Asia-Pacific Economic Cooperation</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">Facilitates economic growth, trade, and investment in the Asia-Pacific. The <strong>only inter-governmental body</strong> that operates on <strong>nonbinding commitments</strong>, open dialogue, and equal respect for all participants.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cheat Sheet -->
+        <section id="cheat-sheet" class="mb-10">
+            <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 border-2 border-dashed border-gray-300 dark:border-gray-600">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100">Cheat Sheet</h2>
+                    <span class="text-sm text-gray-500 dark:text-gray-400">Print this page for quick reference</span>
+                </div>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">U.S. Laws</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>FCPA = anti-bribery + accounting provisions</li>
+                            <li>Patriot Act = AML, SARs, OFAC screening</li>
+                            <li>FSC and ETI = both struck down by WTO</li>
+                            <li>CFC rules = prevent parking profits in tax havens</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">WTO Agreements</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>GATT = goods</li>
+                            <li>GATS = services (including insurance)</li>
+                            <li>TRIPS = intellectual property</li>
+                            <li>Dumping = selling below cost abroad (prohibited)</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Trade Agreements</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>USMCA = U.S., Mexico, Canada (replaced NAFTA)</li>
+                            <li>EU = Common Market, Euro, Solvency II</li>
+                            <li>ASEAN = 10 Southeast Asian nations</li>
+                            <li>APEC = nonbinding commitments (unique)</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Insurance AML Requirements</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>File SARs with FinCEN for suspicious activity</li>
+                            <li>Screen against OFAC SDN list</li>
+                            <li>Enhanced due diligence on international transactions</li>
+                            <li>Life insurance = known money laundering vehicle</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Traps -->
+        <section class="mb-10">
+            <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-xl p-5 lg:p-6">
+                <h2 class="text-2xl font-bold text-red-800 dark:text-red-300 mb-4">Exam Trap Alerts</h2>
+                <div class="space-y-3">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">1. FCPA Has TWO Provisions, Not Just Anti-Bribery</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Most people only remember the anti-bribery part. The FCPA also requires accurate books and records (accounting provisions). Know both.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">2. GATT vs. GATS vs. TRIPS</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">GATT = goods. GATS = services (this is where insurance falls). TRIPS = intellectual property. The exam may ask which WTO agreement covers insurance &mdash; the answer is GATS.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">3. NAFTA Is Now USMCA</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">If the exam references NAFTA, know it was replaced by USMCA in 2020. Same three countries: U.S., Mexico, Canada. Updated rules on digital trade and auto manufacturing.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">4. APEC = Nonbinding Commitments</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">APEC is the ONLY inter-governmental body that operates on nonbinding commitments. This is a unique characteristic the exam may test. All other organizations (WTO, UN, EU) have binding rules or treaties.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">5. FSC and ETI Were Both Struck Down</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Foreign Sales Corporations were ruled illegal by the WTO. The replacement (ETI) was ALSO struck down. Both are outdated. Know this history but recognize neither exists today.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">6. Know ANY 5 Laws Changed by the Patriot Act</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The exam may ask you to list five. Easiest to remember: Bank Secrecy Act, Money Laundering Act, FISA, Wiretap Statute, Computer Fraud and Abuse Act.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Reference Summary -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-purple-600 to-purple-800 rounded-xl p-6 text-white">
+                <h2 class="text-2xl font-bold mb-6">Quick Reference Summary</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">FCPA</p>
+                        <p class="text-sm text-purple-100">Anti-bribery + accounting provisions. Prohibits bribing foreign officials. Both company and individuals face prosecution.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Patriot Act / AML</p>
+                        <p class="text-sm text-purple-100">Enhanced due diligence, SARs, OFAC screening. Insurers must prevent money laundering.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">WTO Agreements</p>
+                        <p class="text-sm text-purple-100">GATT (goods), GATS (services/insurance), TRIPS (IP). Anti-dumping rules.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">USMCA</p>
+                        <p class="text-sm text-purple-100">Replaced NAFTA (2020). U.S., Mexico, Canada. Tariff elimination + updated trade rules.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">EU &amp; Solvency II</p>
+                        <p class="text-sm text-purple-100">Common Market, Euro currency, harmonized insurance regulation. Brexit ended UK passporting.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">APEC</p>
+                        <p class="text-sm text-purple-100">Only body with nonbinding commitments. Asia-Pacific economic cooperation.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="../part-2/index.html" class="text-gray-400 hover:text-white transition-colors">&larr; Part 2: Cross-Border Insurance</a>
+                <span class="text-gray-500">Part 3 of 3</span>
+                <a href="../../index.html" class="text-gray-400 hover:text-white transition-colors">CPCU 530 Course Overview &rarr;</a>
+            </div>
+        </div>
+    </footer>
+
+    <button onclick="openAITutor({topic: 'Global Compliance in International Insurance', concepts: ['FCPA anti-bribery and accounting provisions', 'Patriot Act and anti-money laundering', 'Suspicious Activity Reports and FinCEN', 'OFAC sanctions and SDN list', 'FSC and ETI (both struck down by WTO)', 'WTO: GATT, GATS, TRIPS', 'NAFTA replaced by USMCA', 'EU Common Market, Euro, Solvency II', 'Brexit and passporting', 'ASEAN and APEC (nonbinding)'], keywords: ['FCPA', 'Patriot Act', 'AML', 'OFAC', 'SDN list', 'GATT', 'GATS', 'TRIPS', 'USMCA', 'NAFTA', 'Solvency II', 'APEC', 'ASEAN', 'dumping']})" class="fixed bottom-6 right-6 bg-purple-600 hover:bg-purple-700 text-white p-4 rounded-full shadow-xl hover:scale-110 transition-all z-50" title="AI Tutor">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+    </button>
+</body>
+</html>

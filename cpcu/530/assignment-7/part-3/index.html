@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 3: Mortgages, Easements, Licenses &amp; Zoning | Assignment 7 | CPCU 530</title>
+    <link rel="icon" type="image/svg+xml" href="../../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config = { darkMode: 'class' }</script>
+    <link rel="stylesheet" href="../../../../css/styles.css">
+    <script src="../../../../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') { document.documentElement.classList.remove('dark'); }
+        function toggleTheme() { document.documentElement.classList.toggle('dark'); localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light'); }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="showAPIKeySetup()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings"><svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg></button>
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/></svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>
+        </button>
+    </div>
+
+    <header class="bg-gradient-to-r from-purple-600 to-purple-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap gap-2 text-sm mb-2">
+                <a href="../../../../index.html" class="text-purple-200 hover:text-white">Home</a><span class="text-purple-300">/</span>
+                <a href="../../../index.html" class="text-purple-200 hover:text-white">CPCU</a><span class="text-purple-300">/</span>
+                <a href="../../index.html" class="text-purple-200 hover:text-white">530</a><span class="text-purple-300">/</span>
+                <a href="../index.html" class="text-purple-200 hover:text-white">Assignment 7</a><span class="text-purple-300">/</span>
+                <span class="text-white">Part 3</span>
+            </div>
+            <h1 class="text-3xl font-bold">Part 3: Mortgages, Easements, Licenses &amp; Zoning</h1>
+            <p class="text-purple-200 mt-1">Assignment 7 &mdash; Property Law</p>
+        </div>
+    </header>
+
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-wrap gap-2 text-sm">
+                <a href="../index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Intro</a>
+                <a href="../part-1/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 1</a>
+                <a href="../part-2/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 2</a>
+                <span class="bg-purple-600 text-white px-3 py-1 rounded font-medium">Part 3</span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-5xl lg:max-w-7xl">
+
+        <!-- Start Here -->
+        <div class="bg-gradient-to-r from-red-100 to-amber-100 dark:from-red-900/40 dark:to-amber-800/40 rounded-xl p-6 mb-8 border border-red-300 dark:border-red-700">
+            <h3 class="text-xl font-bold text-red-800 dark:text-red-200 mb-4">Start Here: 5 Things You MUST Know</h3>
+            <div class="grid md:grid-cols-2 gap-3">
+                <div class="flex items-start">
+                    <span class="bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>Mortgagor = BORROWER</strong> (gives the mortgage). <strong>Mortgagee = LENDER</strong> (receives it). The "-or" = person doing the action</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>Adverse possession</strong> requires 4 elements: exclusive, open, hostile (no permission), and continuous for a statutory period</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>Easement = permanent</strong>, runs with the land. <strong>License = temporary</strong>, revocable, personal</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">4</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>Trade fixtures belong to the TENANT</strong> and can be removed. Regular fixtures and improvements belong to the landlord</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">5</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>Eminent domain</strong> = government takes property for public use but MUST pay fair market value (just compensation)</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 1: Security Interests -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">1. Real Estate Security Interests</h2>
+
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">Mortgages</h3>
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-4">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">A <strong>mortgage</strong> is a security interest in real property given by a borrower to a lender to secure repayment of a loan.</p>
+                    <div class="grid md:grid-cols-2 gap-3 mt-3">
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-bold text-blue-800 dark:text-blue-300">Mortgagor = Borrower</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm">The property owner who gives the mortgage. The "-or" suffix = the person doing the action.</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-bold text-blue-800 dark:text-blue-300">Mortgagee = Lender</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm">The bank that receives the mortgage as security for the loan.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 border-l-4 border-purple-500 mb-6">
+                    <p class="font-bold text-purple-800 dark:text-purple-300 mb-2">Mortgagee's Rights</p>
+                    <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                        <li><strong>Foreclosure</strong> &mdash; a legal process where the property is sold to satisfy the debt if the loan is not repaid</li>
+                        <li><strong>Deficiency judgments</strong> &mdash; if the sale price does not cover the full debt, the lender can pursue the borrower for the remaining amount</li>
+                        <li><strong>Rights against subsequent purchasers</strong> &mdash; the lender can collect from anyone who later buys the property after foreclosure</li>
+                    </ul>
+                </div>
+
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">Trust Deeds &amp; Land Contracts</h3>
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-lg border-l-4 border-indigo-500">
+                        <p class="font-bold text-indigo-800 dark:text-indigo-300 text-lg">Trust Deed (Deed of Trust)</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">An alternative to a mortgage with <strong>3 parties</strong>: borrower, lender, and a trustee. The borrower conveys title to the trustee, who holds it as security. If the borrower defaults, the trustee can sell <strong>without court foreclosure</strong> (faster process).</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Best for:</strong> Large loans where a faster foreclosure process is desirable.</p>
+                        </div>
+                    </div>
+                    <div class="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg border-l-4 border-amber-500">
+                        <p class="font-bold text-amber-800 dark:text-amber-300 text-lg">Land Contract</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">The <strong>seller finances the purchase directly</strong>. The buyer makes payments over time but does NOT receive the deed until the full price is paid. The seller retains title during the payment period.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Best for:</strong> Buyers with poor credit or who cannot make large down payments.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">Mechanics' Liens</h3>
+                <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-4 border-l-4 border-red-500 mb-4">
+                    <p class="font-bold text-red-800 dark:text-red-300 text-lg">Mechanic's Lien</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">A lien available to anyone who contributes <strong>labor or materials</strong> to the improvement of real property. Protects contractors, subcontractors, and suppliers. The claimant must file notice. Remedy: <strong>foreclosure</strong> &mdash; forcing a court sale of the property to recover payment.</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base"><strong>Waiver of lien:</strong> A contractor may agree in advance to waive their right to file a mechanic's lien (sometimes required by lenders before funding construction).</p>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-red-400">
+                    <p class="font-semibold text-red-800 dark:text-red-300 mb-2">Real-World Scenario: Mechanic's Lien</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> A roofer installs a new roof on Jessica's barn. Jessica refuses to pay the $8,000 bill.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> The roofer files a mechanic's lien on the property.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> The roofer can now force a court sale of the property to recover the $8,000. The lien attaches to the real property, and Jessica cannot sell or refinance without satisfying the lien.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Incidental Real Property Rights -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">2. Incidental Real Property Rights</h2>
+
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">Adverse Possession</h3>
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 border-l-4 border-blue-500 mb-4">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Adverse possession</strong> = a way to gain legal title to someone else's land WITHOUT their permission, by occupying it for a long period under specific conditions.</p>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-2 border-amber-300 dark:border-amber-700 rounded-xl p-5 mb-6">
+                    <p class="font-bold text-amber-800 dark:text-amber-300 text-lg mb-3">4 Requirements (MUST MEMORIZE)</p>
+                    <div class="grid md:grid-cols-2 gap-3">
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                            <span class="bg-amber-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold mx-auto">1</span>
+                            <p class="font-bold text-gray-800 dark:text-gray-200 mt-2">Exclusive Possession</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm mt-1">Occupy and use it as your own (in the usual way)</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                            <span class="bg-amber-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold mx-auto">2</span>
+                            <p class="font-bold text-gray-800 dark:text-gray-200 mt-2">Open and Obvious</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm mt-1">Possession must be visible, not secret</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                            <span class="bg-amber-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold mx-auto">3</span>
+                            <p class="font-bold text-gray-800 dark:text-gray-200 mt-2">Adverse / Hostile</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm mt-1">Without the owner's permission</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                            <span class="bg-amber-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold mx-auto">4</span>
+                            <p class="font-bold text-gray-800 dark:text-gray-200 mt-2">Continuous</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm mt-1">For a statutory period (usually 10-20 years)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-amber-400 mb-6">
+                    <p class="font-semibold text-amber-800 dark:text-amber-300 mb-2">Real-World Scenario: Adverse Possession</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> A farmer builds a fence 10 feet onto his neighbor's land and farms that strip for 25 years. The neighbor never objects.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> After the statutory period, the farmer claims adverse possession.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> If all four requirements are met, the farmer gains legal title to the 10-foot strip. The original owner loses it. But if the owner had given permission, there would be NO adverse possession (not hostile).</p>
+                </div>
+
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">Surface, Subsurface &amp; Support Rights</h3>
+                <div class="grid md:grid-cols-3 gap-4 mb-6">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800 text-center">
+                        <p class="font-bold text-blue-800 dark:text-blue-300">Above Surface</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm mt-1">Airspace rights (within reasonable limits)</p>
+                    </div>
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800 text-center">
+                        <p class="font-bold text-blue-800 dark:text-blue-300">Below Surface</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm mt-1">Mineral rights (unless separately sold)</p>
+                    </div>
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800 text-center">
+                        <p class="font-bold text-blue-800 dark:text-blue-300">On Surface</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm mt-1">Full use of the land itself</p>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border-l-4 border-purple-500">
+                        <p class="font-bold text-purple-800 dark:text-purple-300">Lateral Support</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">The support soil receives from the land next to it. If your neighbor excavates their land and YOUR land collapses, you have a claim.</p>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border-l-4 border-purple-500">
+                        <p class="font-bold text-purple-800 dark:text-purple-300">Subjacent Support</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">The support the surface receives from earth beneath it. If someone mines under your land and it caves in, they are liable.</p>
+                    </div>
+                </div>
+
+                <div class="bg-indigo-50 dark:bg-indigo-900/20 rounded-lg p-4 border-l-4 border-indigo-500 mb-6">
+                    <p class="font-bold text-indigo-800 dark:text-indigo-300">Water Rights</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base"><strong>Riparian owner</strong> = a person who owns land bordering a natural waterway (river, stream, lake). Riparian owners have the right to <strong>reasonable use</strong> of the water.</p>
+                </div>
+
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">Fixtures</h3>
+                <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 border-l-4 border-green-500 mb-4">
+                    <p class="font-bold text-green-800 dark:text-green-300 text-lg">Fixture</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">An item of personal property that has been attached to real property in such a way that it is now considered part of the real property. <strong>Three tests:</strong></p>
+                    <ol class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-2 space-y-1">
+                        <li>1. Cannot be removed without <strong>substantial injury</strong> to the real property</li>
+                        <li>2. <strong>Specially constructed or fitted</strong> for use in the building</li>
+                        <li>3. <strong>Intent</strong> of the party who attached it &mdash; did they intend it to be permanent?</li>
+                    </ol>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-4">
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border border-green-200 dark:border-green-800">
+                        <p class="font-bold text-green-800 dark:text-green-300">Trade Fixture = TENANT'S Property</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">An item attached by a TENANT for use in their business. Trade fixtures CAN be removed by the tenant when the lease ends.</p>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border border-red-200 dark:border-red-800">
+                        <p class="font-bold text-red-800 dark:text-red-300">Improvements/Betterments = LANDLORD'S Property</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Changes by a tenant that increase the property's value and CANNOT be removed (new flooring, walls). These become part of the real property.</p>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-green-400">
+                    <p class="font-semibold text-green-800 dark:text-green-300 mb-2">Real-World Scenario: Trade Fixture vs. Improvement</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> A restaurant tenant installs a commercial pizza oven bolted to the floor and also tiles the entire kitchen.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> The lease ends. Both tenant and landlord claim the oven and tiles.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> The pizza oven is a <strong>trade fixture</strong> (installed for the tenant's business) &mdash; the tenant can remove it. The tile flooring is an <strong>improvement/betterment</strong> (cannot be removed without destruction) &mdash; it belongs to the landlord.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Land Use Restrictions -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">3. Land Use Restrictions</h2>
+
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">Incorporeal Interests</h3>
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 border-l-4 border-blue-500 mb-4">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Incorporeal interest</strong> = a right in real property that does NOT include the right to possess it. You have a right "in" the property, but you do not possess it.</p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-4 mb-6">
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <p class="font-bold text-green-800 dark:text-green-300 text-lg">Easement</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">The right to use someone else's land for a specific purpose (e.g., right of way).</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm mt-2 space-y-1">
+                            <li><strong>Created by:</strong> express words, implication, or prescription</li>
+                            <li><strong>Key feature:</strong> "Runs with the land" &mdash; survives sale</li>
+                            <li><strong>Permanent</strong> and transferable</li>
+                        </ul>
+                    </div>
+                    <div class="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg border-l-4 border-amber-500">
+                        <p class="font-bold text-amber-800 dark:text-amber-300 text-lg">Profits a Prendre</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">The right to enter someone else's land and <strong>remove something of value</strong>.</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm mt-2 space-y-1">
+                            <li>Minerals, timber, crops</li>
+                            <li>Fish, game</li>
+                            <li>Sand, gravel</li>
+                        </ul>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                        <p class="font-bold text-red-800 dark:text-red-300 text-lg">License</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Permission to use someone else's land.</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm mt-2 space-y-1">
+                            <li><strong>Temporary</strong> and <strong>revocable</strong></li>
+                            <li><strong>Personal</strong> &mdash; cannot be transferred</li>
+                            <li>Example: Permission to park in a driveway</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="bg-indigo-50 dark:bg-indigo-900/20 rounded-lg p-4 border border-indigo-200 dark:border-indigo-800 mb-6">
+                    <p class="font-bold text-indigo-800 dark:text-indigo-300 mb-2">Easement vs. License &mdash; Critical Distinction</p>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-bold text-green-700 dark:text-green-400">Easement</p>
+                            <p class="text-sm text-gray-700 dark:text-gray-300">Permanent. Runs with the land. Survives sale. Transferable.</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-bold text-red-700 dark:text-red-400">License</p>
+                            <p class="text-sm text-gray-700 dark:text-gray-300">Temporary. Revocable. Personal. Cannot be transferred.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">Government Controls</h3>
+
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 border-l-4 border-purple-500 mb-4">
+                    <p class="font-bold text-purple-800 dark:text-purple-300 text-lg">Zoning</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">Government laws that regulate how land can be used in specific areas (residential, commercial, industrial, agricultural).</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-3 mb-6">
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg border border-gray-200 dark:border-gray-600">
+                        <p class="font-bold text-gray-800 dark:text-gray-200 text-sm">Spot Zoning</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-xs lg:text-sm mt-1">Singling out a small parcel for different treatment. Generally disfavored by courts.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg border border-gray-200 dark:border-gray-600">
+                        <p class="font-bold text-gray-800 dark:text-gray-200 text-sm">Exclusionary Zoning</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-xs lg:text-sm mt-1">Designed to keep certain groups out. Can be struck down as unconstitutional.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg border border-gray-200 dark:border-gray-600">
+                        <p class="font-bold text-gray-800 dark:text-gray-200 text-sm">Special Exception</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-xs lg:text-sm mt-1">Permission for a use not normally allowed (e.g., a church in a residential area).</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg border border-gray-200 dark:border-gray-600">
+                        <p class="font-bold text-gray-800 dark:text-gray-200 text-sm">Hardship Variance</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-xs lg:text-sm mt-1">Granted because strict compliance would cause undue hardship to the owner.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg border border-gray-200 dark:border-gray-600">
+                        <p class="font-bold text-gray-800 dark:text-gray-200 text-sm">Use Variance</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-xs lg:text-sm mt-1">Allows a completely different use than the zone permits.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg border border-gray-200 dark:border-gray-600">
+                        <p class="font-bold text-gray-800 dark:text-gray-200 text-sm">Nonconforming Use</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-xs lg:text-sm mt-1">Pre-existing use "grandfathered" in. Allowed to continue but cannot be expanded.</p>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-l-4 border-blue-500">
+                        <p class="font-bold text-blue-800 dark:text-blue-300">Building Codes</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Regulations governing construction quality and safety standards &mdash; electrical wiring, plumbing, structural integrity, fire safety.</p>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                        <p class="font-bold text-red-800 dark:text-red-300">Eminent Domain</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">The government's power to take private property for public use, but MUST pay <strong>fair market value</strong> (just compensation). The legal process is called a <strong>condemnation proceeding</strong>.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Landlord and Tenant -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">4. Landlord and Tenant</h2>
+
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">Types of Tenancies</h3>
+                <div class="grid md:grid-cols-2 gap-3 mb-6">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
+                        <p class="font-bold text-blue-800 dark:text-blue-300">Estate for Years</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">A lease for a <strong>fixed, definite period</strong> (e.g., a 2-year lease).</p>
+                    </div>
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
+                        <p class="font-bold text-blue-800 dark:text-blue-300">Periodic Tenancy</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1"><strong>Auto-renews</strong> for successive periods (month-to-month, year-to-year) unless notice is given.</p>
+                    </div>
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
+                        <p class="font-bold text-blue-800 dark:text-blue-300">Tenancy at Will</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Can be terminated by either party <strong>at any time</strong>. No fixed duration.</p>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border border-red-200 dark:border-red-800">
+                        <p class="font-bold text-red-800 dark:text-red-300">Holdover Tenant / Tenant at Sufferance</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Stays after the lease expires without consent. Has <strong>no legal right</strong> to be there.</p>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border-l-4 border-purple-500">
+                        <p class="font-bold text-purple-800 dark:text-purple-300 mb-2">Landlord's Rights &amp; Duties</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li><strong>Primary duty:</strong> Deliver possession on the lease inception date</li>
+                            <li><strong>Right to rent:</strong> Entitled to receive rent as agreed</li>
+                            <li><strong>Remedies:</strong> Evict, apply to court, distraint (seize tenant's property), impose lien for unpaid rent</li>
+                        </ul>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border-l-4 border-purple-500">
+                        <p class="font-bold text-purple-800 dark:text-purple-300 mb-2">Tenant's Rights &amp; Duties</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li><strong>Primary right:</strong> To occupy the premises</li>
+                            <li><strong>Primary duty:</strong> Leave premises in same condition (except reasonable wear and tear)</li>
+                            <li><strong>Security deposit:</strong> Money held as security for lease obligations, usually refundable</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/20 rounded-lg p-4 border-l-4 border-amber-500 mb-4">
+                    <p class="font-bold text-amber-800 dark:text-amber-300">Constructive Eviction</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">When a <strong>landlord's actions (or inaction)</strong> make the property uninhabitable, effectively forcing the tenant out. The tenant can terminate the lease without penalty. This is a defense for the tenant, not an action by the landlord.</p>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-amber-400 mb-4">
+                    <p class="font-semibold text-amber-800 dark:text-amber-300 mb-2">Real-World Scenario: Constructive Eviction</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> A tenant's apartment has no heat in January because the landlord refuses to fix the broken furnace despite repeated requests.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> The apartment becomes uninhabitable. The tenant moves out and stops paying rent.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> The tenant can claim <strong>constructive eviction</strong>. The landlord's refusal to maintain habitability effectively forced the tenant out. The tenant can terminate the lease without penalty.</p>
+                </div>
+
+                <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-4 border-l-4 border-red-500">
+                    <p class="font-bold text-red-800 dark:text-red-300 mb-2">Liability for Injuries to Third Parties</p>
+                    <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                        <li><strong>Landlords</strong> are liable for injuries from their negligent acts or <strong>latent (hidden) defects</strong> on the premises</li>
+                        <li><strong>Tenants</strong> are liable for injuries occurring in areas <strong>under the tenant's control</strong></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cheat Sheet -->
+        <section id="cheat-sheet" class="mb-10">
+            <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 border-2 border-dashed border-gray-300 dark:border-gray-600">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100">Cheat Sheet</h2>
+                    <span class="text-sm text-gray-500 dark:text-gray-400">Print this page for quick reference</span>
+                </div>
+                <div class="grid md:grid-cols-3 gap-4">
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Security Interests</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>Mortgagor = borrower; Mortgagee = lender</li>
+                            <li>Remedy: foreclosure + deficiency judgment</li>
+                            <li>Trust deed: 3 parties, faster foreclosure</li>
+                            <li>Land contract: no deed until full payment</li>
+                            <li>Mechanic's lien: labor/materials providers</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Rights &amp; Restrictions</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>Adverse possession: exclusive + open + hostile + continuous</li>
+                            <li>Fixture tests: injury, fitted, intent</li>
+                            <li>Trade fixture = tenant's; improvement = landlord's</li>
+                            <li>Easement = permanent; License = revocable</li>
+                            <li>Eminent domain = must pay fair market value</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Landlord-Tenant</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>Landlord duty: deliver possession</li>
+                            <li>Tenant duty: leave in same condition</li>
+                            <li>Constructive eviction: landlord makes it uninhabitable</li>
+                            <li>Distraint: landlord seizes tenant's property</li>
+                            <li>Holdover = tenant at sufferance (no rights)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Traps -->
+        <section class="mb-10">
+            <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-xl p-5 lg:p-6">
+                <h2 class="text-2xl font-bold text-red-800 dark:text-red-300 mb-4">Exam Trap Alerts</h2>
+                <div class="space-y-3">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">1. Mortgagor vs. Mortgagee</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Mortgagor = BORROWER (gives the mortgage). Mortgagee = LENDER (receives it). The "-or" suffix = the person doing the action. Memory trick: the mortgagOR is the bORrower.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">2. Adverse Possession Requires Hostility</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">If the true owner gives permission to use the land, there is NO adverse possession. It is not hostile/adverse. The exam loves this trap &mdash; "neighborly permission" defeats the claim entirely.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">3. Trade Fixtures Belong to the TENANT</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Unlike regular fixtures which become part of the real property, trade fixtures remain the tenant's property and can be removed. But improvements/betterments (things that cannot be removed without destruction) become the landlord's.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">4. Easement vs. License</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">An easement is permanent and runs with the land (survives sale). A license is temporary and revocable. If a property is sold, easements transfer to the new owner. Licenses do not.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">5. Constructive Eviction Is the LANDLORD's Fault</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">This is about the landlord's actions (or inaction) making property uninhabitable. It is a defense for the tenant, not an action by the landlord. The tenant can walk away from the lease.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">6. Nonconforming Use Cannot Be Expanded</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">A pre-existing use is "grandfathered" in when zoning changes, but it can only continue as-is. The owner cannot expand, enlarge, or intensify the nonconforming use.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Reference Summary -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-purple-600 to-purple-800 rounded-xl p-6 text-white">
+                <h2 class="text-2xl font-bold mb-6">Quick Reference Summary</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Mortgage</p>
+                        <p class="text-sm text-purple-100">Mortgagor (borrower) gives security to mortgagee (lender). Remedy = foreclosure.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Trust Deed</p>
+                        <p class="text-sm text-purple-100">3 parties (borrower, lender, trustee). Faster foreclosure, no court needed.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Adverse Possession</p>
+                        <p class="text-sm text-purple-100">Exclusive + Open + Hostile + Continuous. Permission defeats the claim.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Easement vs. License</p>
+                        <p class="text-sm text-purple-100">Easement = permanent, runs with land. License = temporary, revocable.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Fixtures</p>
+                        <p class="text-sm text-purple-100">Trade fixtures = tenant's. Improvements = landlord's. 3 tests to determine.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Eminent Domain</p>
+                        <p class="text-sm text-purple-100">Government takes property for public use. Must pay just compensation.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="../part-2/index.html" class="text-gray-400 hover:text-white transition-colors">&larr; Part 2: Real Property</a>
+                <span class="text-gray-500">Part 3 of 3</span>
+                <a href="../../assignment-8/index.html" class="text-gray-400 hover:text-white transition-colors">Assignment 8 &rarr;</a>
+            </div>
+        </div>
+    </footer>
+
+    <button onclick="openAITutor({topic: 'Mortgages, Easements, Licenses and Zoning', concepts: ['Mortgages (mortgagor vs mortgagee)', 'Foreclosure and deficiency judgments', 'Trust deeds vs land contracts', 'Mechanics liens', 'Adverse possession (4 requirements)', 'Fixtures vs trade fixtures', 'Easements vs licenses', 'Zoning types (spot, exclusionary, variances)', 'Eminent domain', 'Landlord-tenant rights and duties', 'Constructive eviction'], keywords: ['mortgage', 'mortgagor', 'mortgagee', 'foreclosure', 'trust deed', 'land contract', 'mechanic lien', 'adverse possession', 'fixture', 'trade fixture', 'easement', 'license', 'zoning', 'variance', 'eminent domain', 'constructive eviction', 'distraint']})" class="fixed bottom-6 right-6 bg-purple-600 hover:bg-purple-700 text-white p-4 rounded-full shadow-xl hover:scale-110 transition-all z-50" title="AI Tutor">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+    </button>
+</body>
+</html>

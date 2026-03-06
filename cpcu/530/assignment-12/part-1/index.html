@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 1: Insurer-Agent Relationship | Assignment 12 | CPCU 530</title>
+    <link rel="icon" type="image/svg+xml" href="../../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config = { darkMode: 'class' }</script>
+    <link rel="stylesheet" href="../../../../css/styles.css">
+    <script src="../../../../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') { document.documentElement.classList.remove('dark'); }
+        function toggleTheme() { document.documentElement.classList.toggle('dark'); localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light'); }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="showAPIKeySetup()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings"><svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg></button>
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/></svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>
+        </button>
+    </div>
+
+    <header class="bg-gradient-to-r from-purple-600 to-purple-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap gap-2 text-sm mb-2">
+                <a href="../../../../index.html" class="text-purple-200 hover:text-white">Home</a><span class="text-purple-300">/</span>
+                <a href="../../../index.html" class="text-purple-200 hover:text-white">CPCU</a><span class="text-purple-300">/</span>
+                <a href="../../index.html" class="text-purple-200 hover:text-white">530</a><span class="text-purple-300">/</span>
+                <a href="../index.html" class="text-purple-200 hover:text-white">Assignment 12</a><span class="text-purple-300">/</span>
+                <span class="text-white">Part 1</span>
+            </div>
+            <h1 class="text-3xl font-bold">Part 1: Insurer-Agent Relationship</h1>
+            <p class="text-purple-200 mt-1">Assignment 12 &mdash; Agency Law: Insurance Applications</p>
+        </div>
+    </header>
+
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-wrap gap-2 text-sm">
+                <a href="../index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Intro</a>
+                <span class="bg-purple-600 text-white px-3 py-1 rounded font-medium">Part 1</span>
+                <a href="../part-2/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 2</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-5xl lg:max-w-7xl">
+
+        <!-- Start Here -->
+        <div class="bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/40 dark:to-purple-800/40 rounded-xl p-6 mb-8 border border-blue-300 dark:border-blue-700">
+            <h3 class="text-xl font-bold text-blue-800 dark:text-blue-200 mb-4">Start Here: 5 Things You MUST Know</h3>
+            <div class="grid md:grid-cols-2 gap-3">
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>Agent = represents the INSURER.</strong> Broker = represents the CUSTOMER. Never mix these up.</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>3 agent types ranked by authority:</strong> General (broadest) &gt; Special (most common) &gt; Soliciting (most limited)</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>Knowledge imputation:</strong> If the agent knows it, the insurer knows it &mdash; except when fraud or no real agency</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">4</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>Apparent authority</strong> comes from the PRINCIPAL's actions, not the agent's claims</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">5</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>Oral insurance contracts are valid.</strong> No writing required for a binding insurance agreement.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 1: Three Types of Insurance Agents -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">1. Three Types of Insurance Agents</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-6">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg lg:text-xl">Insurance Agent</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">A person authorized to act <strong>on behalf of an insurer</strong> (the principal). The insurer is the principal; the agent represents the insurer. All three agent types share this fundamental relationship &mdash; they differ in <strong>how much authority</strong> the insurer grants them.</p>
+                </div>
+
+                <!-- 3 Agent Types Grid -->
+                <div class="grid md:grid-cols-3 gap-4 mb-6">
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <p class="font-bold text-green-800 dark:text-green-300 text-lg">General Agent</p>
+                        <p class="text-green-600 dark:text-green-400 text-sm font-bold mt-1">BROADEST Authority</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">Can bind coverage, issue policies, collect premiums, settle small claims, manage an office, hire staff, and appoint sub-agents. Think of them as the insurer's <strong>regional manager</strong>.</p>
+                    </div>
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-l-4 border-blue-500">
+                        <p class="font-bold text-blue-800 dark:text-blue-300 text-lg">Special Agent</p>
+                        <p class="text-blue-600 dark:text-blue-400 text-sm font-bold mt-1">MOST COMMON Today</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">Limited authority restricted to specific tasks outlined by the insurer. Can only do what the insurer specifically authorizes. Think of them as an agent on a <strong>short leash</strong>.</p>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                        <p class="font-bold text-red-800 dark:text-red-300 text-lg">Soliciting Agent</p>
+                        <p class="text-red-600 dark:text-red-400 text-sm font-bold mt-1">MOST LIMITED</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">Can ONLY solicit applications, forward them to the insurer, and do related activities. <strong>Cannot bind coverage or issue policies.</strong> Think of them as a salesperson who takes orders.</p>
+                    </div>
+                </div>
+
+                <!-- General Agent Example -->
+                <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500 mb-4">
+                    <p class="font-semibold text-green-800 dark:text-green-300 mb-2">Real-World Scenario: General Agent</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Mega Insurance Co. appoints Sarah as their general agent for the tri-state area.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Sarah binds coverage, issues policies, collects premiums, settles small claims, and appoints sub-agents &mdash; all without calling the home office each time.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Sarah's actions within her broad authority <strong>legally bind Mega Insurance</strong> as if the company itself acted.</p>
+                    </div>
+                </div>
+
+                <!-- Special Agent Example -->
+                <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-l-4 border-blue-500 mb-4">
+                    <p class="font-semibold text-blue-800 dark:text-blue-300 mb-2">Real-World Scenario: Special Agent Exceeds Authority</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Tom is a special agent for ABC Insurance. His contract says he can solicit applications and issue binders for <strong>auto insurance only</strong>.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> A customer asks Tom to bind a homeowners policy. Tom says, "Sure, you're covered."</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Tom has <strong>NO authority</strong> to bind homeowners. ABC Insurance may not be bound &mdash; unless apparent authority applies because ABC allowed Tom to act this way in the past.</p>
+                    </div>
+                </div>
+
+                <!-- Soliciting Agent Example -->
+                <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                    <p class="font-semibold text-red-800 dark:text-red-300 mb-2">Real-World Scenario: Soliciting Agent Overstepping</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Angela works as a soliciting agent in Helen's agency. Helen (a general agent) steps out for an hour.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> A worried customer calls asking if her coverage is still active after a late premium. Angela reassures her, "I'm sure everything will be all right."</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Angela had <strong>no authority to affirm coverage</strong>. As a soliciting agent, she cannot bind the insurer. If the policy actually lapsed, Angela may face personal liability for her unauthorized statement. Helen may also be liable for leaving Angela in charge.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Producer Authority -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">2. Types of Producer Authority</h2>
+
+                <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-6">The term <strong>insurance producer</strong> is the umbrella covering both agents and brokers. A producer's <strong>authority</strong> determines what they can legally do on behalf of the insurer. There are three types.</p>
+
+                <div class="grid md:grid-cols-3 gap-4 mb-6">
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border-l-4 border-purple-500">
+                        <p class="font-bold text-purple-800 dark:text-purple-300 text-lg">Express Authority</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">What the contract or appointment letter <strong>specifically says</strong> the agent can do. Written, explicit, and clear.</p>
+                    </div>
+                    <div class="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-lg border-l-4 border-indigo-500">
+                        <p class="font-bold text-indigo-800 dark:text-indigo-300 text-lg">Implied Authority</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">What is <strong>reasonably necessary</strong> to carry out the express authority, even if not explicitly written.</p>
+                    </div>
+                    <div class="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg border-l-4 border-amber-500">
+                        <p class="font-bold text-amber-800 dark:text-amber-300 text-lg">Apparent Authority</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">Authority created by the <strong>PRINCIPAL's actions</strong> making a third party reasonably believe the agent has authority &mdash; even when they do not.</p>
+                    </div>
+                </div>
+
+                <!-- Implied Authority Example -->
+                <div class="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-lg border-l-4 border-indigo-500 mb-4">
+                    <p class="font-semibold text-indigo-800 dark:text-indigo-300 mb-2">Real-World Scenario: Implied Authority</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> An insurer's agency contract says Agent Mike can "sell and service auto insurance policies."</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> A customer asks Mike to issue a temporary binder while the formal policy is being processed.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Even though the contract does not specifically mention binders, issuing temporary binders is <strong>reasonably necessary</strong> to sell auto insurance. Mike has implied authority to issue the binder.</p>
+                    </div>
+                </div>
+
+                <!-- Apparent Authority Example -->
+                <div class="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg border-l-4 border-amber-500 mb-4">
+                    <p class="font-semibold text-amber-800 dark:text-amber-300 mb-2">Real-World Scenario: Apparent Authority Binds the Insurer</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Friendly Insurance has always allowed Agent Dave to offer 15% multi-policy discounts. The insurer quietly revokes this authority but never tells customers.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Dave continues offering the discount to a new customer, who relies on it.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> The insurer is <strong>bound by the discount</strong> because of apparent authority. The insurer created the appearance Dave could offer discounts, and the customer reasonably relied on it.</p>
+                    </div>
+                </div>
+
+                <!-- Ratification -->
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-2 border-amber-300 dark:border-amber-700 rounded-lg p-4">
+                    <p class="font-bold text-amber-800 dark:text-amber-300 text-lg mb-2">How Insurers Accidentally Create Apparent Authority</p>
+                    <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-2">
+                        <li><strong>Ratification</strong> &mdash; Accepting the benefits of an agent's unauthorized acts (e.g., cashing a premium check from an unauthorized policy)</li>
+                        <li><strong>Failing to object</strong> &mdash; Learning of unauthorized acts but saying nothing</li>
+                        <li><strong>Consistent practice</strong> &mdash; Repeatedly allowing behavior that goes beyond the written contract</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Knowledge Imputation -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">3. Knowledge Imputation Rule</h2>
+
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-purple-500 mb-6">
+                    <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg lg:text-xl">The Rule</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">If a producer <strong>knows</strong> something, that knowledge is <strong>imputed to</strong> (legally treated as known by) the insurer-principal. In plain English: <strong>If your agent knows it, the law says YOU (the insurer) know it too.</strong></p>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-gray-400 mb-6">
+                    <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Scenario: Agent's Knowledge Binds the Insurer</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Agent Lisa knows that applicant John has had 3 DUI convictions. John's application does not mention them. Lisa submits the application anyway.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> The insurer issues the policy. Later, a claim occurs and the insurer discovers the DUIs.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> The insurer <strong>CANNOT deny the claim</strong> based on the DUI non-disclosure. Lisa knew about the DUIs, and her knowledge is imputed to the insurer. The insurer is deemed to have known.</p>
+                    </div>
+                </div>
+
+                <!-- Two Exceptions -->
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">Two Exceptions (Heavily Tested)</h3>
+                <div class="grid md:grid-cols-2 gap-4 mb-4">
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                        <p class="font-bold text-red-800 dark:text-red-300">Exception 1: No Actual Agency Relationship</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">If there is no actual agency relationship between the producer and the insurer, knowledge is NOT imputed. The producer must truly be the insurer's agent for the rule to apply.</p>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                        <p class="font-bold text-red-800 dark:text-red-300">Exception 2: Agent Committing Fraud Against the Insurer</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">If the agent is colluding with the applicant to defraud the insurer, the agent has <strong>abandoned their role as agent</strong>. Their knowledge is NOT imputed. The insurer can void the policy.</p>
+                    </div>
+                </div>
+
+                <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                    <p class="font-semibold text-red-800 dark:text-red-300 mb-2">Real-World Scenario: The Fraud Exception</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Sally, a soliciting agent, is told by applicant Albert that he has a serious health condition. Sally and Albert <strong>agree to hide</strong> this from the insurer.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Sally submits the application without the health information. The insurer issues the life insurance policy.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Sally's knowledge is <strong>NOT imputed</strong> to the insurer because Sally conspired to defraud the insurer. She abandoned her role as agent and violated her duty of loyalty. The insurer can void the policy.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Binding Authority & Oral Contracts -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">4. Binding Authority &amp; Oral Contracts</h2>
+
+                <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 border-l-4 border-green-500 mb-6">
+                    <p class="font-bold text-green-800 dark:text-green-300 text-lg">Oral Insurance Contracts Are VALID</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">Insurance contracts do <strong>not</strong> have to be in writing. Why? Because the need for immediate insurance coverage arises frequently, and the lengthy underwriting process for a written policy is not time-efficient. The Statute of Frauds generally does not apply to insurance contracts.</p>
+                </div>
+
+                <!-- Who can bind -->
+                <div class="overflow-x-auto mb-6">
+                    <table class="w-full text-sm lg:text-base">
+                        <thead>
+                            <tr class="bg-purple-600 text-white">
+                                <th class="p-3 lg:p-4 text-left rounded-tl-lg">Agent Type</th>
+                                <th class="p-3 lg:p-4 text-left">Can Bind Coverage?</th>
+                                <th class="p-3 lg:p-4 text-left rounded-tr-lg">Notes</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-bold text-gray-800 dark:text-gray-200">General Agent</td>
+                                <td class="p-3 lg:p-4 text-green-700 dark:text-green-400 font-bold">YES &mdash; Oral binders included</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Broadest binding authority</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <td class="p-3 lg:p-4 font-bold text-gray-800 dark:text-gray-200">Special Agent</td>
+                                <td class="p-3 lg:p-4 text-blue-700 dark:text-blue-400 font-bold">DEPENDS on insurer authorization</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Only what the insurer specifically allows</td>
+                            </tr>
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-bold text-gray-800 dark:text-gray-200">Soliciting Agent</td>
+                                <td class="p-3 lg:p-4 text-red-700 dark:text-red-400 font-bold">NO &mdash; Cannot bind</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Can only solicit and forward applications</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-gray-400 mb-6">
+                    <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Scenario: Oral Binder Before a Written Policy</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> A customer calls Agent Rodriguez at 4:55 PM on Friday: "I just bought a new car. Can you put coverage on it right now?" Rodriguez says, "You're covered."</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> The customer gets into an accident Saturday morning. No written policy has been issued yet.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> If Rodriguez had binding authority (actual or apparent), the <strong>oral binder is valid</strong>. The insurer must cover the claim.</p>
+                    </div>
+                </div>
+
+                <!-- Subagents -->
+                <div class="bg-indigo-50 dark:bg-indigo-900/20 rounded-lg p-4 border-l-4 border-indigo-500">
+                    <p class="font-bold text-indigo-800 dark:text-indigo-300 text-lg">Subagent Delegation Rule</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">An insurance agent <strong>cannot delegate</strong> duties that involve the producer's individual care, skill, and judgment. However, routine and clerical tasks <strong>can</strong> be delegated to subagents. General agents typically appoint subagents.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Termination of Authority -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">5. Termination of Producer Authority</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 border-l-4 border-blue-500 mb-6">
+                    <p class="font-bold text-blue-800 dark:text-blue-300 text-lg">How It Ends</p>
+                    <ul class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base space-y-2">
+                        <li><strong>Contract terms</strong> &mdash; Expiration date, mutual agreement, or conditions specified in the agency contract</li>
+                        <li><strong>Act of a party</strong> &mdash; Insurer revokes authority, or agent renounces the agency</li>
+                        <li><strong>Conduct</strong> &mdash; An act by one party that the other could reasonably interpret as intent to terminate</li>
+                    </ul>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-2 border-amber-300 dark:border-amber-700 rounded-lg p-4 mb-4">
+                    <p class="font-bold text-amber-800 dark:text-amber-300">Critical Warning: Apparent Authority Survives Termination</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">After termination, the producer's <strong>apparent authority may continue</strong> until third parties are notified. The insurer must notify customers that the agent no longer represents them, or risk being bound by the former agent's actions.</p>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-gray-400">
+                    <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Scenario: Failing to Notify After Termination</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Mega Insurance terminates Agent Bob's contract but does not notify Bob's customers.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Bob continues writing policies using old Mega Insurance forms. Customer Carol buys a policy from Bob, not knowing he was terminated.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Mega Insurance may be <strong>bound by apparent authority</strong>. Carol had no reason to know Bob was terminated. The insurer should have notified customers.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: Duties & Liability to Customers -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">6. Producer Duties &amp; Liability to Customers</h2>
+
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 border-l-4 border-purple-500 mb-6">
+                    <p class="font-bold text-purple-800 dark:text-purple-300 text-lg">Standard of Care</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">An insurance producer must adhere to a <strong>standard of reasonable care and skill</strong> in relation to customers, even those who have little or no knowledge of insurance matters. This is judged by what a reasonably competent insurance professional would do.</p>
+                </div>
+
+                <!-- Key Duties -->
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
+                        <p class="font-bold text-blue-800 dark:text-blue-300">Duty to Procure Coverage</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-2">If a producer agrees or undertakes to obtain coverage, they must follow through. Failure to do so makes the producer liable for resulting losses.</p>
+                    </div>
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
+                        <p class="font-bold text-blue-800 dark:text-blue-300">Duty to Investigate Insurer Solvency</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-2">Producers should make <strong>reasonable attempts</strong> to check insurer financial health and disclose any information suggesting weak finances. Not an absolute guarantee, but reasonable inquiry.</p>
+                    </div>
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
+                        <p class="font-bold text-blue-800 dark:text-blue-300">Duty to Advise About Coverage Gaps</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-2">When a client has inadequate or no coverage for an unanticipated event, or incorrectly believes something is covered, some courts hold the agent has a duty to advise.</p>
+                    </div>
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
+                        <p class="font-bold text-blue-800 dark:text-blue-300">"Failure to Read" Defense is Weak</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-2">Many courts do NOT allow the defense that "the customer should have read the policy." Customers can rely on the producer's expertise, and policy language is often too complex for laypeople.</p>
+                    </div>
+                </div>
+
+                <!-- Failed to procure example -->
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-gray-400 mb-4">
+                    <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Scenario: Failure to Procure Coverage</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Customer Maria asks Agent Frank to get her a commercial liability policy. Frank says, "I'll take care of it." Frank then forgets to submit the application.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Maria's business is sued, and she discovers she has no coverage.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Frank is <strong>liable</strong>. He undertook the obligation to procure coverage and failed. Maria can sue Frank for damages.</p>
+                    </div>
+                </div>
+
+                <!-- No liability if insurer says no -->
+                <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500 mb-4">
+                    <p class="font-semibold text-green-800 dark:text-green-300 mb-2">Important Nuance: Agent Is NOT Liable If the Insurer Says No</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">An agent who promised a policy, contacted the insurer on the customer's behalf, and then <strong>advised the customer of the insurer's decision NOT to provide coverage</strong> has <strong>no liability</strong>. The agent fulfilled the obligation &mdash; the insurer just declined.</p>
+                </div>
+
+                <!-- Third parties -->
+                <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500 mb-4">
+                    <p class="font-bold text-red-800 dark:text-red-300">Third Parties CANNOT Sue the Agent</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">A third party who intends to sue an insurance customer <strong>cannot sue</strong> the producer who failed to procure coverage. The agent's duty runs to the customer, not to random third parties.</p>
+                    <div class="bg-white dark:bg-gray-800 p-3 rounded mt-3">
+                        <p class="text-sm lg:text-base"><strong>Example:</strong> A pedestrian injured by uninsured Driver Dan cannot sue Dan's agent for failing to renew the auto policy. The pedestrian must sue Dan directly.</p>
+                    </div>
+                </div>
+
+                <!-- Defenses -->
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">Producer Defenses Against Liability</h3>
+                <div class="grid md:grid-cols-3 gap-4">
+                    <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border border-gray-200 dark:border-gray-600">
+                        <p class="font-bold text-gray-800 dark:text-gray-200">"You Never Asked"</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Customer never requested the coverage they claim was missing. Valid defense if no special duty to recommend it existed.</p>
+                    </div>
+                    <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border border-gray-200 dark:border-gray-600">
+                        <p class="font-bold text-gray-800 dark:text-gray-200">"I Did What You Asked"</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Producer fulfilled the customer's specific request. If the customer asked for $1M and got $1M, the agent is not liable for a $3M claim.</p>
+                    </div>
+                    <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border border-gray-200 dark:border-gray-600">
+                        <p class="font-bold text-gray-800 dark:text-gray-200">Contributory Negligence</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Customer's own carelessness contributed. Example: ignoring a renewal notice, then blaming the agent when the policy lapses.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 7: Duties to the Insurer -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">7. Fiduciary Duties to the Insurer</h2>
+
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 border-l-4 border-purple-500 mb-6">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">The producer owes <strong>fiduciary duties</strong> to the insurer (the principal). This means the producer must act in the insurer's best interest, handle premiums properly, follow underwriting guidelines, and comply with the insurer's instructions.</p>
+                </div>
+
+                <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-lg p-4 mb-4">
+                    <p class="font-bold text-red-800 dark:text-red-300 text-lg">Full Liability for Ignoring Instructions</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">If a producer fails to comply with specific insurer directions (like canceling a policy), the producer is liable to the insurer for the <strong>FULL amount of the loss</strong> the insurer must cover. Not partial &mdash; <strong>full</strong>.</p>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-gray-400">
+                    <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Scenario: Agent Ignores Cancellation Order</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> The insurer tells Agent Pat to cancel a high-risk commercial policy immediately. Pat delays and does not cancel it.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> A covered loss occurs before Pat gets around to canceling.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Pat is <strong>personally liable to the insurer</strong> for the full amount of the claim the insurer has to pay.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cheat Sheet -->
+        <section id="cheat-sheet" class="mb-10">
+            <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 border-2 border-dashed border-gray-300 dark:border-gray-600">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100">Cheat Sheet</h2>
+                    <span class="text-sm text-gray-500 dark:text-gray-400">Print this page for quick reference</span>
+                </div>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Agent Types &amp; Authority</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>General = broadest authority, can bind, manage, appoint sub-agents</li>
+                            <li>Special = limited per contract, MOST COMMON today</li>
+                            <li>Soliciting = most limited, can only solicit/forward, CANNOT bind</li>
+                            <li>Express = written in contract. Implied = reasonably necessary. Apparent = principal's actions create belief</li>
+                            <li>Ratification = insurer accepts unauthorized act after the fact</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Key Rules</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>Agent knows it = insurer knows it (imputation)</li>
+                            <li>NOT imputed: (1) no real agency, (2) agent committing fraud</li>
+                            <li>Oral insurance contracts are VALID</li>
+                            <li>Apparent authority survives termination until customers notified</li>
+                            <li>Third parties CANNOT sue the agent for failure to procure</li>
+                            <li>Failure to follow insurer instructions = full loss liability</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Traps -->
+        <section class="mb-10">
+            <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-xl p-5 lg:p-6">
+                <h2 class="text-2xl font-bold text-red-800 dark:text-red-300 mb-4">Exam Trap Alerts</h2>
+                <div class="space-y-3">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">1. Soliciting Agent's Authority Is EXTREMELY Limited</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Soliciting agents can ONLY solicit, forward applications, and do related tasks. They CANNOT bind coverage, settle claims, or affirm coverage is in effect. But apparent authority can still apply if the insurer creates the appearance of broader authority.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">2. Apparent Authority Comes From the PRINCIPAL</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The exam will try to trick you. Apparent authority is created by the INSURER's actions (ratifying, failing to object, consistent practice), NOT by the agent's own claims about their authority.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">3. Knowledge Imputation Has 2 Exceptions &mdash; Know Both</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Generally, agent knows = insurer knows. But NOT when: (1) there is no actual agency relationship, or (2) the agent is colluding with the applicant to defraud the insurer. The exam loves testing exception #2.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">4. Oral Insurance Contracts ARE Valid</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Insurance contracts do NOT need to be in writing. Oral binders are enforceable. The Statute of Frauds generally does not apply. If an authorized agent says "you're covered," the insurer is bound.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">5. Third Parties Cannot Sue the Agent</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">If an injured third party wants to sue because the at-fault driver was uninsured, they CANNOT sue the driver's insurance agent. The agent's duty runs to the CUSTOMER, not to third parties.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">6. Producer Ignoring Insurer Instructions = FULL Liability</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">If the insurer says "cancel this policy" and the agent does not, the agent is liable for the FULL AMOUNT of any subsequent loss &mdash; not partial, not proportional, the entire thing.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Reference Summary -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-purple-600 to-purple-800 rounded-xl p-6 text-white">
+                <h2 class="text-2xl font-bold mb-6">Quick Reference Summary</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">General Agent</p>
+                        <p class="text-sm text-purple-100">Broadest authority. Can bind, manage, appoint sub-agents.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Special Agent</p>
+                        <p class="text-sm text-purple-100">Most common today. Limited to what the insurer specifically authorizes.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Soliciting Agent</p>
+                        <p class="text-sm text-purple-100">Most limited. Can only solicit and forward. Cannot bind.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Knowledge Imputation</p>
+                        <p class="text-sm text-purple-100">Agent knows = insurer knows. Except: no agency, or agent fraud.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Apparent Authority</p>
+                        <p class="text-sm text-purple-100">Created by PRINCIPAL's actions. Survives termination until notice given.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Oral Contracts</p>
+                        <p class="text-sm text-purple-100">Valid. Oral binders are enforceable. No writing required.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Standard of Care</p>
+                        <p class="text-sm text-purple-100">Reasonable care and skill of a competent insurance professional.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Third-Party Rule</p>
+                        <p class="text-sm text-purple-100">Third parties cannot sue the agent for failure to procure coverage.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Fiduciary Duty</p>
+                        <p class="text-sm text-purple-100">Producer owes fiduciary duties to insurer. Full liability if instructions ignored.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="../index.html" class="text-gray-400 hover:text-white transition-colors">&larr; Assignment 12 Overview</a>
+                <span class="text-gray-500">Part 1 of 2</span>
+                <a href="../part-2/index.html" class="text-gray-400 hover:text-white transition-colors">Part 2: Brokers, Surplus Lines &amp; Liability &rarr;</a>
+            </div>
+        </div>
+    </footer>
+
+    <button onclick="openAITutor({topic: 'Insurer-Agent Relationship in Insurance', concepts: ['Three types of insurance agents (general, special, soliciting)', 'Express, implied, and apparent authority', 'Knowledge imputation rule and its 2 exceptions', 'Binding authority and oral contracts', 'Termination of producer authority', 'Producer duties to customers and insurers', 'Standard of reasonable care and skill', 'Fiduciary duties to the insurer', 'Third parties cannot sue the agent'], keywords: ['general agent', 'special agent', 'soliciting agent', 'express authority', 'implied authority', 'apparent authority', 'ratification', 'knowledge imputation', 'oral binder', 'fiduciary duty', 'subagent']})" class="fixed bottom-6 right-6 bg-purple-600 hover:bg-purple-700 text-white p-4 rounded-full shadow-xl hover:scale-110 transition-all z-50" title="AI Tutor">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+    </button>
+</body>
+</html>

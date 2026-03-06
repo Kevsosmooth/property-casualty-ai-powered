@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 2: Offer, Acceptance &amp; Capacity | Assignment 2 | CPCU 530</title>
+    <link rel="icon" type="image/svg+xml" href="../../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <link rel="stylesheet" href="../../../../css/styles.css">
+    <script src="../../../../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+        }
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <!-- Settings & Theme Toggle -->
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="showAPIKeySetup()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings">
+            <svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+        </button>
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/>
+            </svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-purple-600 to-purple-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap gap-2 text-sm mb-2">
+                <a href="../../../../index.html" class="text-purple-200 hover:text-white">Home</a>
+                <span class="text-purple-300">/</span>
+                <a href="../../../index.html" class="text-purple-200 hover:text-white">CPCU</a>
+                <span class="text-purple-300">/</span>
+                <a href="../../index.html" class="text-purple-200 hover:text-white">530</a>
+                <span class="text-purple-300">/</span>
+                <a href="../index.html" class="text-purple-200 hover:text-white">Assignment 2</a>
+                <span class="text-purple-300">/</span>
+                <span class="text-white">Part 2</span>
+            </div>
+            <h1 class="text-3xl font-bold">Part 2: Offer, Acceptance &amp; Capacity to Contract</h1>
+            <p class="text-purple-200 mt-1">Assignment 2 &mdash; Contracts: Formation, Agreement &amp; Capacity</p>
+        </div>
+    </header>
+
+    <!-- Part Navigation -->
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-wrap gap-2 text-sm">
+                <a href="../index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Intro</a>
+                <a href="../part-1/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 1</a>
+                <span class="bg-purple-600 text-white px-3 py-1 rounded font-medium">Part 2</span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-5xl lg:max-w-7xl">
+
+        <!-- Start Here -->
+        <div class="bg-gradient-to-r from-green-100 to-blue-100 dark:from-green-900/40 dark:to-blue-800/40 rounded-xl p-6 mb-8 border border-green-300 dark:border-green-700">
+            <h3 class="text-xl font-bold text-green-800 dark:text-green-200 mb-4">Start Here: 5 Things You MUST Know</h3>
+            <div class="grid md:grid-cols-2 gap-3">
+                <div class="flex items-start">
+                    <span class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
+                    <p class="text-gray-700 dark:text-gray-300">An offer needs 3 things: <strong>Intent + Definite Terms + Communication</strong></p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
+                    <p class="text-gray-700 dark:text-gray-300">The <strong>Mailbox Rule</strong>: acceptance effective when SENT, revocation effective when RECEIVED</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
+                    <p class="text-gray-700 dark:text-gray-300">A <strong>counteroffer kills</strong> the original offer AND creates a new one</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">4</span>
+                    <p class="text-gray-700 dark:text-gray-300">Minor's contracts are <strong>voidable</strong>. Court-adjudged insane = <strong>void</strong></p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">5</span>
+                    <p class="text-gray-700 dark:text-gray-300">Unlicensed insurers <strong>cannot avoid</strong> their own contracts &mdash; policies are enforceable against them</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 1: The Offer -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">1. The Offer</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-6">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg lg:text-xl">Offer</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">A <strong>promise that requires some action</strong> by the intended recipient to make an agreement. It is the first step in forming a contract.</p>
+                </div>
+
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">Three Requirements of a Valid Offer</h3>
+                <div class="grid md:grid-cols-3 gap-4 mb-6">
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border border-purple-200 dark:border-purple-800">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="bg-purple-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold">1</span>
+                            <p class="font-bold text-purple-800 dark:text-purple-300">Intent to Contract</p>
+                        </div>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Courts use the <strong>objective test</strong>: Would a reasonable person believe this was a serious offer? Secret intentions do not matter.</p>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border border-purple-200 dark:border-purple-800">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="bg-purple-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold">2</span>
+                            <p class="font-bold text-purple-800 dark:text-purple-300">Definite Terms</p>
+                        </div>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Terms must be <strong>reasonably certain</strong> so a court can determine what was agreed and provide a remedy if breached.</p>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border border-purple-200 dark:border-purple-800">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="bg-purple-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold">3</span>
+                            <p class="font-bold text-purple-800 dark:text-purple-300">Communication</p>
+                        </div>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The offer must be <strong>communicated to the offeree</strong>. You cannot accept an offer you do not know about.</p>
+                    </div>
+                </div>
+
+                <!-- What is NOT an offer -->
+                <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-4 border-l-4 border-red-500 mb-6">
+                    <p class="font-bold text-red-800 dark:text-red-300 mb-2">NOT Offers</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Jokes, opinions, statements in anger or excitement, preliminary negotiations, and <strong>advertisements</strong> (generally). Ads are invitations to negotiate, not offers &mdash; the store invites you to come make an offer.</p>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                        <p class="text-sm lg:text-base"><strong>Exception:</strong> An ad CAN be an offer if it is very specific and leaves nothing to negotiate. Example: "First person at our store Saturday 9am gets this fur coat for $1."</p>
+                    </div>
+                </div>
+
+                <!-- 5 Ways Offer Terminates -->
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">Five Ways an Offer Ends (LORCE)</h3>
+                <div class="space-y-3 mb-6">
+                    <div class="flex items-start gap-3 bg-gray-50 dark:bg-gray-700 p-3 rounded-lg">
+                        <span class="bg-red-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold flex-shrink-0">L</span>
+                        <div>
+                            <p class="font-bold text-gray-800 dark:text-gray-100">Lapse of Time</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Offer expires when the deadline passes, or after a "reasonable time" if no deadline is set.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3 bg-gray-50 dark:bg-gray-700 p-3 rounded-lg">
+                        <span class="bg-red-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold flex-shrink-0">O</span>
+                        <div>
+                            <p class="font-bold text-gray-800 dark:text-gray-100">Operation of Law</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Automatic termination: subject matter destroyed, a party dies or becomes insane, or a new law makes the contract illegal.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3 bg-gray-50 dark:bg-gray-700 p-3 rounded-lg">
+                        <span class="bg-red-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold flex-shrink-0">R</span>
+                        <div>
+                            <p class="font-bold text-gray-800 dark:text-gray-100">Rejection by Offeree</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Once the offeree says "no," the offer is dead. Cannot come back later to accept.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3 bg-gray-50 dark:bg-gray-700 p-3 rounded-lg">
+                        <span class="bg-red-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold flex-shrink-0">C</span>
+                        <div>
+                            <p class="font-bold text-gray-800 dark:text-gray-100">Counteroffers</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">A counteroffer <strong>simultaneously REJECTS</strong> the original AND creates a new offer.</p>
+                            <div class="bg-white dark:bg-gray-600 p-2 rounded mt-2 text-sm">
+                                <strong>Example:</strong> "I will sell for $10,000." &rarr; "I will give you $8,000." The $10,000 offer is now dead. The seller cannot accept it anymore.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-3 bg-gray-50 dark:bg-gray-700 p-3 rounded-lg">
+                        <span class="bg-red-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold flex-shrink-0">E</span>
+                        <div>
+                            <p class="font-bold text-gray-800 dark:text-gray-100">Revocation by Offeror</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The offeror can take back the offer at any time BEFORE acceptance. Exception: <strong>option contracts</strong>.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Option Contract -->
+                <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                    <p class="font-semibold text-green-800 dark:text-green-300 mb-2">Option Contract</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mb-3">An agreement to keep an offer open for a stated period, <strong>supported by consideration</strong> (the offeree pays something). Once you have an option contract, the offeror CANNOT revoke during the option period.</p>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                        <p class="font-semibold text-green-800 dark:text-green-300 mb-2">Real-World Scenario: Option Contract</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> A property owner wants to buy the vacant lot next door for $200,000 to expand parking.</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> She pays $5,000 for a 90-day option &mdash; the lot owner promises to keep the offer open. On day 45, someone else offers $250,000.</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> Too bad for the lot owner. The option contract is binding &mdash; the $200,000 offer CANNOT be revoked during the 90 days. The $5,000 consideration makes this enforceable.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Acceptance -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">2. Acceptance</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-6">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg lg:text-xl">Acceptance</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">The second step of an agreement. Occurs when the offeree <strong>agrees to the proposal</strong> or does what the offeror proposed.</p>
+                </div>
+
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">Three Requirements of Valid Acceptance</h3>
+                <div class="grid md:grid-cols-3 gap-4 mb-6">
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border border-green-200 dark:border-green-800">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="bg-green-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold">1</span>
+                            <p class="font-bold text-green-800 dark:text-green-300">By the Offeree</p>
+                        </div>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Only the person the offer was made to can accept. No one else.</p>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border border-green-200 dark:border-green-800">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="bg-green-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold">2</span>
+                            <p class="font-bold text-green-800 dark:text-green-300">Unconditional</p>
+                        </div>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Must be a clear "yes" matching the offer exactly (<strong>mirror image rule</strong>). Adding conditions = counteroffer.</p>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border border-green-200 dark:border-green-800">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="bg-green-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold">3</span>
+                            <p class="font-bold text-green-800 dark:text-green-300">Communicated</p>
+                        </div>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Must be communicated by appropriate word or act. <strong>Silence is NOT acceptance.</strong></p>
+                    </div>
+                </div>
+
+                <!-- Mailbox Rule -->
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-2 border-amber-300 dark:border-amber-700 rounded-xl p-5 mb-6">
+                    <h3 class="text-lg lg:text-xl font-bold text-amber-800 dark:text-amber-300 mb-3">The Mailbox Rule (Heavily Tested)</h3>
+                    <div class="grid md:grid-cols-2 gap-4 mb-4">
+                        <div class="bg-green-50 dark:bg-green-900/20 p-3 rounded-lg border border-green-200 dark:border-green-800">
+                            <p class="font-bold text-green-800 dark:text-green-300">ACCEPTANCE</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Effective when <strong>SENT</strong> (dropped in the mailbox)</p>
+                        </div>
+                        <div class="bg-red-50 dark:bg-red-900/20 p-3 rounded-lg border border-red-200 dark:border-red-800">
+                            <p class="font-bold text-red-800 dark:text-red-300">REVOCATION</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Effective when <strong>RECEIVED</strong> (not when sent)</p>
+                        </div>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                        <p class="font-semibold text-amber-800 dark:text-amber-300 mb-2">Real-World Scenario: Mailbox Rule</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> Daniel mails a signed purchase contract to Patricia for real estate. Patricia receives it Jan 15, signs it, and mails it back.</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> Later that same day (Jan 15), Patricia calls Daniel to say she changed her mind. Daniel receives the signed contract Jan 17.</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> Too late for Patricia. Her acceptance became effective the moment she <strong>mailed</strong> it on Jan 15. The phone call came after acceptance was already effective. Binding contract.</p>
+                    </div>
+                </div>
+
+                <!-- UCC Battle of Forms -->
+                <div class="bg-indigo-50 dark:bg-indigo-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-indigo-500 mb-6">
+                    <h3 class="font-bold text-indigo-800 dark:text-indigo-300 text-lg">UCC Exception: Battle of the Forms (UCC 2-207)</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base mb-3">Under <strong>common law</strong>, acceptance must mirror the offer exactly. Under <strong>UCC 2-207</strong> (for sales of goods), an acceptance with additional or different terms can STILL be valid. Between merchants, extra terms become part of the contract unless they materially alter it, the offer limits acceptance, or the offeror objects promptly.</p>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                        <p class="font-semibold text-indigo-800 dark:text-indigo-300 mb-2">Real-World Scenario: Battle of the Forms</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> An insurer orders 500 office chairs. Purchase order says "Payment in 30 days."</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> Supplier's confirmation says "Payment in 15 days" and adds "All disputes subject to arbitration in Chicago."</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> Under common law = counteroffer (no contract yet). Under <strong>UCC 2-207</strong> = valid acceptance, contract exists. The arbitration clause likely materially alters the deal and would NOT automatically become part of it.</p>
+                    </div>
+                </div>
+
+                <!-- Silence & Forbearance -->
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                        <p class="font-bold text-red-800 dark:text-red-300">Silence is NOT Acceptance</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">An offeror CANNOT force someone into a contract by saying "If I don't hear from you, I assume you accept." The offeree's silence does not create a contract.</p>
+                    </div>
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-l-4 border-blue-500">
+                        <p class="font-bold text-blue-800 dark:text-blue-300">Forbearance</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">Giving up (or promising to give up) a legal right. Can serve as consideration or as a form of acceptance in some contracts.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Capacity to Contract -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">3. Capacity to Contract</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-6">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Capacity to contract</strong> is a legal qualification that determines one's ability to enter an enforceable contract. A <strong>competent party</strong> has the minimal mental ability to understand problems and make decisions.</p>
+                </div>
+
+                <!-- Who Lacks Capacity -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
+                    <div class="bg-red-50 dark:bg-red-900/30 p-3 rounded-lg text-center border border-red-200 dark:border-red-800">
+                        <p class="text-lg font-bold text-red-600 dark:text-red-400">Minors</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Voidable</p>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/30 p-3 rounded-lg text-center border border-red-200 dark:border-red-800">
+                        <p class="text-lg font-bold text-red-600 dark:text-red-400">Insane</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Void or Voidable</p>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/30 p-3 rounded-lg text-center border border-red-200 dark:border-red-800">
+                        <p class="text-lg font-bold text-red-600 dark:text-red-400">Intoxicated</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Voidable</p>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/30 p-3 rounded-lg text-center border border-red-200 dark:border-red-800">
+                        <p class="text-lg font-bold text-red-600 dark:text-red-400">Corporations</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Ultra vires</p>
+                    </div>
+                </div>
+
+                <!-- Minors -->
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">A. Minors' Contracts</h3>
+                <div class="bg-amber-50 dark:bg-amber-900/20 rounded-lg p-4 border-l-4 border-amber-500 mb-4">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Minor's contracts are <strong>voidable</strong> (not void) &mdash; the minor can choose to honor OR disaffirm the contract.</p>
+                    <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-2 space-y-1">
+                        <li><strong>Disaffirmance:</strong> Minor can cancel at any time during minority or within a reasonable time after reaching majority age</li>
+                        <li><strong>Ratification:</strong> After reaching majority, the former minor can confirm the contract, making it fully binding</li>
+                        <li><strong>Necessaries exception:</strong> Even if a minor disaffirms, they must pay the <strong>reasonable value</strong> of necessaries received (food, clothing, shelter, medical care)</li>
+                    </ul>
+                </div>
+
+                <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border-l-4 border-purple-500 mb-6">
+                    <p class="font-bold text-purple-800 dark:text-purple-300 mb-2">Parents' Liability for Minor's Contracts</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Parents are generally <strong>NOT liable</strong> UNLESS:</p>
+                    <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1 space-y-1">
+                        <li>A parent <strong>cosigned</strong> the contract</li>
+                        <li>The child acted on the <strong>parent's behalf</strong> or at parent's direction</li>
+                        <li>The parent <strong>neglected or refused</strong> to pay for necessaries</li>
+                    </ul>
+                </div>
+
+                <!-- Insane Persons -->
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">B. Insane Persons' Contracts</h3>
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                        <p class="font-bold text-red-800 dark:text-red-300">Court-Adjudged Insane = VOID</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">If a court has declared the person insane, any contract they enter is <strong>void</strong> (never a contract). Exception: necessaries.</p>
+                    </div>
+                    <div class="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg border-l-4 border-amber-500">
+                        <p class="font-bold text-amber-800 dark:text-amber-300">Claims Insanity (No Court Ruling) = VOIDABLE</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">If the person claims insanity but has NOT been adjudged by a court, the contract is <strong>voidable</strong> under certain conditions.</p>
+                    </div>
+                </div>
+
+                <!-- Intoxicated Persons -->
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">C. Intoxicated Persons' Contracts</h3>
+                <div class="bg-amber-50 dark:bg-amber-900/20 rounded-lg p-4 border-l-4 border-amber-500 mb-4">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">An intoxicated person can avoid a contract if they <strong>did not know</strong> a contract was being formed OR <strong>did not understand</strong> the legal consequences. The intoxication must be severe &mdash; mere impairment of judgment is NOT enough.</p>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-gray-400 mb-6">
+                    <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Scenario: Intoxication</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> Dave goes to a bar and gets extremely drunk. A car salesman gets him to sign a purchase agreement for a $50,000 car.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> Next morning, Dave has no memory of signing anything.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> Dave can likely avoid the contract &mdash; he was so intoxicated he did not understand what was happening. But if he had only a couple of drinks and was just "feeling good," the contract stands.</p>
+                </div>
+
+                <!-- Corporations -->
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">D. Corporations</h3>
+                <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-l-4 border-blue-500 mb-6">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Corporations have capacity to contract, but it is limited by their <strong>charter</strong> (articles of incorporation) and state laws. Acting beyond the charter is <strong>ultra vires</strong> (beyond its powers), which may affect enforceability.</p>
+                </div>
+
+                <!-- Insurance Special Rules -->
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">E. Insurance Contracts &mdash; Special Capacity Rules</h3>
+                <div class="grid md:grid-cols-3 gap-4">
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <p class="font-bold text-green-800 dark:text-green-300 mb-2">Insurer's Capacity</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Must be licensed. But policies sold by <strong>unlicensed</strong> insurers are still <strong>enforceable against the insurer</strong>. The insurer cannot use its own failure to get licensed as a defense.</p>
+                    </div>
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-l-4 border-blue-500">
+                        <p class="font-bold text-blue-800 dark:text-blue-300 mb-2">Producer's Capacity</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Must be licensed and authorized to bind coverage. Authority can be <strong>actual</strong> (explicitly granted), <strong>implied</strong> (reasonably necessary), or <strong>apparent</strong> (insurer's actions created belief).</p>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border-l-4 border-purple-500">
+                        <p class="font-bold text-purple-800 dark:text-purple-300 mb-2">Insured's Capacity</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Same rules as other contracts. Most states allow minors above a certain age (often 14-15) to enter insurance contracts that <strong>cannot be disaffirmed</strong>.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Numbers -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/30 dark:to-purple-900/30 rounded-xl p-6 border border-blue-200 dark:border-blue-800">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">Quick Reference: Key Numbers</h2>
+                <div class="grid grid-cols-2 md:grid-cols-5 gap-3">
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                        <p class="text-2xl font-bold text-purple-600 dark:text-purple-400">4</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Elements of a contract</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                        <p class="text-2xl font-bold text-blue-600 dark:text-blue-400">3</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Offer requirements</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                        <p class="text-2xl font-bold text-green-600 dark:text-green-400">3</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Acceptance requirements</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                        <p class="text-2xl font-bold text-red-600 dark:text-red-400">5</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Ways offer terminates</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                        <p class="text-2xl font-bold text-amber-600 dark:text-amber-400">4</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Incompetent party types</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cheat Sheet -->
+        <section id="cheat-sheet" class="mb-10">
+            <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 border-2 border-dashed border-gray-300 dark:border-gray-600">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100">Cheat Sheet</h2>
+                    <span class="text-sm text-gray-500 dark:text-gray-400">Print this page for quick reference</span>
+                </div>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Offer (3 Elements)</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>Intent (objective test) + Definite Terms + Communication</li>
+                            <li>Ads = NOT offers (unless ultra-specific)</li>
+                            <li>Terminates by: LORCE</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Acceptance (3 Elements)</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>By offeree + Unconditional + Communicated</li>
+                            <li>Mailbox rule: effective when SENT</li>
+                            <li>Silence is NEVER acceptance</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Capacity Rules</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>Minors = voidable (necessaries owed at reasonable value)</li>
+                            <li>Court-adjudged insane = VOID</li>
+                            <li>Claims insane (no ruling) = VOIDABLE</li>
+                            <li>Intoxicated = voidable if truly incapacitated</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Insurance Special Rules</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>Unlicensed insurer CANNOT avoid its contracts</li>
+                            <li>Producer authority: actual, implied, or apparent</li>
+                            <li>Minors age 14-15+ can buy insurance (cannot disaffirm)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Traps -->
+        <section class="mb-10">
+            <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-xl p-5 lg:p-6">
+                <h2 class="text-2xl font-bold text-red-800 dark:text-red-300 mb-4">Exam Trap Alerts</h2>
+                <div class="space-y-3">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">1. The Mailbox Rule Asymmetry</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Acceptance = effective when <strong>SENT</strong>. Revocation = effective when <strong>RECEIVED</strong>. This asymmetry is a favorite exam question. If acceptance is mailed before revocation is received, the contract is formed.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">2. Counteroffers Kill the Original</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">A counteroffer = REJECTION of the original + creation of a NEW offer. Once you counteroffer, you CANNOT go back and accept the original. The original is dead.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">3. Advertisements Are NOT Offers</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">General ads are invitations to negotiate. Only ultra-specific ads ("first person, this item, this price") qualify as offers.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">4. Silence is NOT Acceptance</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">An offeror CANNOT impose a duty to respond. "If I don't hear from you, deal's on" does NOT create a contract.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">5. Unlicensed Insurer Rule</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">An unlicensed insurer CANNOT avoid its contracts. Policies are enforceable <strong>against</strong> the insurer. The insurer suffers the consequences, not the policyholder.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">6. Insanity &mdash; Court-Adjudged vs. Claimed</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Court-adjudged insane = <strong>VOID</strong>. Claims insanity without court ruling = <strong>VOIDABLE</strong>. The distinction matters hugely on the exam.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">7. Minors and Necessaries</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Minors CAN disaffirm non-necessaries. But they owe <strong>reasonable value</strong> (not contract price) for necessaries received. Parents are NOT automatically liable.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">8. Common Law vs. UCC Acceptance</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Common law = mirror image rule (acceptance must match exactly). UCC 2-207 = acceptance with different terms can still be valid for goods. Know which applies.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Reference Summary -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-purple-600 to-purple-800 rounded-xl p-6 text-white">
+                <h2 class="text-2xl font-bold mb-6">Quick Reference Summary</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Offer</p>
+                        <p class="text-sm text-purple-100">Intent + Definite Terms + Communication. Dies by LORCE.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Acceptance</p>
+                        <p class="text-sm text-purple-100">By offeree + Unconditional + Communicated. Mailbox: effective when sent.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Option Contract</p>
+                        <p class="text-sm text-purple-100">Keeps offer open for stated period. Requires consideration. Cannot revoke.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Minors</p>
+                        <p class="text-sm text-purple-100">Voidable. Necessaries at reasonable value. Parents not auto-liable.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Insanity</p>
+                        <p class="text-sm text-purple-100">Court-adjudged = void. Claimed only = voidable.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Unlicensed Insurer</p>
+                        <p class="text-sm text-purple-100">Cannot avoid own contracts. Policies enforceable against them.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Navigation -->
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="../part-1/index.html" class="text-gray-400 hover:text-white transition-colors">&larr; Part 1: Contract Formation &amp; Types</a>
+                <span class="text-gray-500">Part 2 of 2</span>
+                <a href="../../assignment-3/index.html" class="text-gray-400 hover:text-white transition-colors">Assignment 3: Consideration &amp; Assent &rarr;</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AI Tutor Button -->
+    <button onclick="openAITutor({topic: 'Offer, Acceptance, and Capacity to Contract', concepts: ['Three requirements of a valid offer', 'Five ways an offer terminates (LORCE)', 'Option contracts', 'Three requirements of valid acceptance', 'Mailbox rule', 'Mirror image rule vs UCC 2-207', 'Silence is not acceptance', 'Capacity - minors, insane, intoxicated, corporations', 'Insurance special capacity rules', 'Unlicensed insurer rule'], keywords: ['offer', 'acceptance', 'counteroffer', 'mailbox rule', 'mirror image rule', 'UCC 2-207', 'option contract', 'capacity', 'minor', 'voidable', 'void', 'necessaries', 'ultra vires', 'forbearance']})" class="fixed bottom-6 right-6 bg-purple-600 hover:bg-purple-700 text-white p-4 rounded-full shadow-xl hover:scale-110 transition-all z-50" title="AI Tutor">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+        </svg>
+    </button>
+</body>
+</html>

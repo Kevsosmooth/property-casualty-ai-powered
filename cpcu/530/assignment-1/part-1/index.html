@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 1: The U.S. Legal System &amp; Sources of Law | CPCU 530</title>
+    <link rel="icon" type="image/svg+xml" href="../../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config = { darkMode: 'class' }</script>
+    <link rel="stylesheet" href="../../../../css/styles.css">
+    <script src="../../../../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') document.documentElement.classList.remove('dark');
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="showAPIKeySetup()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings">
+            <svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+        </button>
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/></svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>
+        </button>
+    </div>
+
+    <header class="bg-gradient-to-r from-purple-600 to-purple-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap gap-2 text-sm mb-2">
+                <a href="../../../../index.html" class="text-purple-200 hover:text-white">Home</a>
+                <span class="text-purple-300">/</span>
+                <a href="../../../index.html" class="text-purple-200 hover:text-white">CPCU</a>
+                <span class="text-purple-300">/</span>
+                <a href="../../index.html" class="text-purple-200 hover:text-white">530</a>
+                <span class="text-purple-300">/</span>
+                <a href="../index.html" class="text-purple-200 hover:text-white">Assignment 1</a>
+                <span class="text-purple-300">/</span>
+                <span class="text-white">Part 1</span>
+            </div>
+            <h1 class="text-3xl font-bold">The U.S. Legal System &amp; Sources of Law</h1>
+            <p class="text-purple-200 mt-1">Civil vs. common law, stare decisis, constitutions, and the key constitutional provisions</p>
+        </div>
+    </header>
+
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-wrap gap-2 text-sm">
+                <a href="../index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Overview</a>
+                <span class="bg-purple-600 text-white px-3 py-1 rounded font-medium">Part 1</span>
+                <a href="../part-2/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 2</a>
+                <a href="../part-3/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 3</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-5xl lg:max-w-7xl">
+
+        <!-- Start Here -->
+        <div class="bg-gradient-to-r from-purple-100 to-purple-200 dark:from-purple-900/40 dark:to-purple-800/40 rounded-xl p-6 mb-8 border border-purple-300 dark:border-purple-700">
+            <h3 class="text-xl lg:text-2xl font-bold text-purple-800 dark:text-purple-200 mb-4">Start Here: 5 Things You MUST Know</h3>
+            <div class="grid md:grid-cols-2 gap-3">
+                <div class="flex items-start">
+                    <span class="bg-purple-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Common law</strong> = court precedent (49 states). <strong>Civil law</strong> = written codes (Louisiana only).</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-purple-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Stare decisis</strong> means courts follow past decisions for consistency and predictability.</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-purple-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Federal diversity cases use <strong>state substantive law</strong> + <strong>federal procedural law</strong> (Erie doctrine).</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-purple-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">4</span>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">The <strong>Commerce Clause</strong> is why Congress COULD regulate insurance but chose not to.</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-purple-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">5</span>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Due Process</strong> (5th/14th Amendments) and <strong>Equal Protection</strong> (14th) apply to both federal AND state governments.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 1: The U.S. Legal System -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">1. The Two Legal Systems</h2>
+
+                <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-6">The United States uses two different legal traditions. Understanding which one applies &mdash; and why &mdash; is the starting point for everything else in this course.</p>
+
+                <!-- Civil vs Common Law Comparison -->
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 lg:p-5 rounded-lg border-l-4 border-blue-500">
+                        <h4 class="font-bold text-blue-800 dark:text-blue-300 text-lg mb-2">Civil-Law System</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-3">Built on a <strong>comprehensive written code</strong>. Judges look up answers in the code rather than relying on what previous judges decided.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-2">
+                            <p class="text-sm lg:text-base"><strong>Where used:</strong> Louisiana (French influence), most of continental Europe, Latin America</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-2">
+                            <p class="text-sm lg:text-base"><strong>Think of it as:</strong> A detailed employee handbook &mdash; if a situation arises, check the handbook.</p>
+                        </div>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 lg:p-5 rounded-lg border-l-4 border-green-500">
+                        <h4 class="font-bold text-green-800 dark:text-green-300 text-lg mb-2">Common-Law System</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-3">Built on <strong>court decisions</strong> (case law). Judges look at how previous courts ruled on similar cases and follow those rulings.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-2">
+                            <p class="text-sm lg:text-base"><strong>Where used:</strong> 49 U.S. states, England, former British colonies</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-2">
+                            <p class="text-sm lg:text-base"><strong>Key concept:</strong> <strong>Stare decisis</strong> ("to stand by things decided") &mdash; follow precedent for predictability.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stare Decisis Detail -->
+                <div class="bg-purple-50 dark:bg-purple-900/20 border-l-4 border-purple-500 p-4 lg:p-5 rounded-r-lg mb-6">
+                    <h4 class="font-bold text-purple-800 dark:text-purple-300 mb-2">How Courts Use Precedent</h4>
+                    <div class="grid md:grid-cols-2 gap-3 text-gray-700 dark:text-gray-300 text-base lg:text-lg">
+                        <p><strong>Apply</strong> &mdash; Follow the precedent directly (most common)</p>
+                        <p><strong>Distinguish</strong> &mdash; Find meaningful differences from the precedent</p>
+                        <p><strong>Discard</strong> &mdash; Reject precedent that has lost its usefulness</p>
+                        <p><strong>Depart</strong> &mdash; Make a landmark decision that breaks new ground</p>
+                    </div>
+                </div>
+
+                <!-- Equity -->
+                <div class="bg-indigo-50 dark:bg-indigo-900/20 border border-indigo-200 dark:border-indigo-800 rounded-lg p-4 lg:p-5 mb-6">
+                    <h4 class="font-bold text-indigo-800 dark:text-indigo-300 text-lg mb-2">Equity: The Fairness Safety Valve</h4>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-3">When the strict letter of the law produces an unfair result, <strong>courts of equity</strong> step in. Courts of law give <strong>money damages</strong>. Courts of equity give <strong>orders</strong> (injunctions, specific performance).</p>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                        <p class="font-semibold text-indigo-800 dark:text-indigo-300 mb-1">Real-World Scenario: The One-of-a-Kind House</p>
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> You contracted to buy a historic, one-of-a-kind home.</p>
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> The seller refuses to complete the sale.</p>
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Money damages would not make you whole because the home is unique. An equity court orders <strong>specific performance</strong> &mdash; forcing the seller to complete the sale.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Classifications of Law -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">2. Classifications of U.S. Law</h2>
+
+                <!-- Criminal vs Civil -->
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                        <h4 class="font-bold text-red-800 dark:text-red-300 mb-2">Criminal Law</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mb-2">Acts so harmful that the <strong>government</strong> prosecutes.</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mb-2"><strong>Who brings the case:</strong> The state/prosecution</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mb-2"><strong>Penalties:</strong> Fines, imprisonment, probation</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>Standard:</strong> Beyond a reasonable doubt (very high)</p>
+                    </div>
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-l-4 border-blue-500">
+                        <h4 class="font-bold text-blue-800 dark:text-blue-300 mb-2">Civil Law</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mb-2">Everything that is NOT criminal. Protects <strong>individual rights</strong>.</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mb-2"><strong>Who brings the case:</strong> The injured party</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mb-2"><strong>Penalties:</strong> Money damages, injunctions</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>Standard:</strong> Preponderance of evidence (more likely than not)</p>
+                    </div>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 rounded-r-lg mb-6">
+                    <p class="font-bold text-amber-800 dark:text-amber-300">Insurance Example</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mt-1">If an agent commits insurance fraud (filing fake claims), the state can prosecute <strong>criminally</strong> AND the insurer can sue <strong>civilly</strong>. Both can happen from the same act.</p>
+                </div>
+
+                <!-- Substantive vs Procedural -->
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border-l-4 border-purple-500">
+                        <h4 class="font-bold text-purple-800 dark:text-purple-300 mb-2">Substantive Law</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mb-2">The <strong>"WHAT"</strong> &mdash; the actual rules that create rights, duties, and obligations.</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>Example:</strong> "It is illegal to drive over 65 mph" = substantive</p>
+                    </div>
+                    <div class="bg-teal-50 dark:bg-teal-900/20 p-4 rounded-lg border-l-4 border-teal-500">
+                        <h4 class="font-bold text-teal-800 dark:text-teal-300 mb-2">Procedural Law</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mb-2">The <strong>"HOW"</strong> &mdash; rules for how legal proceedings are conducted.</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>Example:</strong> "You must file your complaint within 30 days" = procedural</p>
+                    </div>
+                </div>
+
+                <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-lg p-4 lg:p-5">
+                    <p class="font-bold text-red-800 dark:text-red-300 text-lg">CRITICAL Exam Point: Erie Doctrine</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mt-2">In federal diversity cases, federal courts apply <strong>STATE substantive law</strong> but <strong>FEDERAL procedural law</strong>. This comes from <em>Erie Railroad Co. v. Tompkins</em> (1938). This is one of the most tested concepts in the course.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Sources of Law -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">3. Sources of U.S. Law</h2>
+
+                <!-- Supremacy Clause -->
+                <div class="bg-blue-50 dark:bg-blue-900/20 border-l-4 border-blue-500 p-4 lg:p-5 rounded-r-lg mb-6">
+                    <h4 class="font-bold text-blue-800 dark:text-blue-300 mb-2">The Supremacy Clause (Article VI)</h4>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">The federal Constitution, federal statutes, and treaties are the <strong>"supreme law of the land."</strong> When state and federal laws conflict, <strong>federal law prevails</strong>.</p>
+                </div>
+
+                <!-- Constitutional Provisions Grid -->
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">Key Constitutional Provisions</h3>
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg border border-amber-200 dark:border-amber-800">
+                        <h4 class="font-bold text-amber-800 dark:text-amber-300 mb-2">Commerce Clause (Art. I, Sec. 8)</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mb-2">Gives Congress power to regulate interstate commerce.</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>Insurance connection:</strong> In <em>South-Eastern Underwriters</em> (1944), the Supreme Court ruled insurance IS interstate commerce. Congress COULD regulate it but chose to let states do it via McCarran-Ferguson.</p>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border border-green-200 dark:border-green-800">
+                        <h4 class="font-bold text-green-800 dark:text-green-300 mb-2">Due Process (5th &amp; 14th Amendments)</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mb-2">Fair procedures before government takes life, liberty, or property.</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>Two types:</strong> <strong>Substantive</strong> (the law itself must be fair) and <strong>Procedural</strong> (the process must be fair). 5th = federal, 14th = states.</p>
+                    </div>
+                    <div class="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-lg border border-indigo-200 dark:border-indigo-800">
+                        <h4 class="font-bold text-indigo-800 dark:text-indigo-300 mb-2">Equal Protection (14th Amendment)</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mb-2">No state shall deny any person equal protection of the laws.</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Laws CAN treat people differently, but only with a <strong>rational basis</strong>. Eye color, random traits = no rational basis = unconstitutional.</p>
+                    </div>
+                    <div class="bg-rose-50 dark:bg-rose-900/20 p-4 rounded-lg border border-rose-200 dark:border-rose-800">
+                        <h4 class="font-bold text-rose-800 dark:text-rose-300 mb-2">Supremacy Clause (Article VI)</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mb-2">Federal law is supreme. State law cannot conflict with it.</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">This is the foundation for understanding when federal law overrides state insurance regulation.</p>
+                    </div>
+                </div>
+
+                <!-- Courts -->
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">Court Systems</h3>
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg border border-gray-200 dark:border-gray-600">
+                        <h4 class="font-bold text-gray-800 dark:text-gray-200 mb-3">Federal Courts</h4>
+                        <div class="flex flex-col items-center gap-2">
+                            <div class="bg-purple-100 dark:bg-purple-900/40 p-3 rounded-lg text-center w-full"><p class="font-bold text-purple-800 dark:text-purple-300">U.S. Supreme Court</p><p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Highest court, chooses cases via certiorari</p></div>
+                            <div class="text-gray-400 text-xl">&darr;</div>
+                            <div class="bg-blue-100 dark:bg-blue-900/40 p-3 rounded-lg text-center w-full"><p class="font-bold text-blue-800 dark:text-blue-300">Circuit Courts of Appeals</p><p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">13 circuits, review for legal errors</p></div>
+                            <div class="text-gray-400 text-xl">&darr;</div>
+                            <div class="bg-green-100 dark:bg-green-900/40 p-3 rounded-lg text-center w-full"><p class="font-bold text-green-800 dark:text-green-300">District Courts</p><p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Trial courts, at least 1 per state</p></div>
+                        </div>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg border border-gray-200 dark:border-gray-600">
+                        <h4 class="font-bold text-gray-800 dark:text-gray-200 mb-3">Federal Jurisdiction</h4>
+                        <div class="space-y-3">
+                            <div class="bg-blue-50 dark:bg-blue-900/30 p-3 rounded">
+                                <p class="font-bold text-blue-800 dark:text-blue-300">Federal Question</p>
+                                <p class="text-sm text-gray-700 dark:text-gray-300">Case involves a federal law, treaty, or the Constitution</p>
+                            </div>
+                            <div class="bg-green-50 dark:bg-green-900/30 p-3 rounded">
+                                <p class="font-bold text-green-800 dark:text-green-300">Diversity Jurisdiction</p>
+                                <p class="text-sm text-gray-700 dark:text-gray-300">Parties from different states AND amount in controversy exceeds <strong>$75,000</strong></p>
+                            </div>
+                        </div>
+                        <div class="mt-4 bg-amber-50 dark:bg-amber-900/30 p-3 rounded">
+                            <p class="font-bold text-amber-800 dark:text-amber-300">Conflicts of Law</p>
+                            <p class="text-sm text-gray-700 dark:text-gray-300">When multiple states are involved, a <strong>choice of law clause</strong> in the contract specifies which state's law governs.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Conflicts of Law Example -->
+                <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500 mb-6">
+                    <p class="font-semibold text-green-800 dark:text-green-300 mb-2">Real-World Scenario: Cross-State Contract Dispute</p>
+                    <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> A New Jersey company signs a contract with a Texas company. The contract says "Texas law governs this agreement."</p>
+                    <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> A dispute arises and the NJ company sues in New Jersey.</p>
+                    <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>The Result:</strong> The NJ court applies <strong>Texas substantive law</strong> (contract says so) but <strong>NJ procedural law</strong> (forum state controls procedure).</p>
+                </div>
+
+                <!-- Legislative Bodies -->
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border border-gray-200 dark:border-gray-600 mb-6">
+                    <h4 class="font-bold text-gray-800 dark:text-gray-200 mb-2">Other Sources of Law</h4>
+                    <div class="grid md:grid-cols-2 gap-3 text-gray-700 dark:text-gray-300 text-sm lg:text-base">
+                        <p><strong>Legislative Bodies:</strong> Create statutes. Uniform laws (like UCC) aim to minimize state-to-state confusion.</p>
+                        <p><strong>Executive Branches:</strong> President/governors recommend legislation, sign/veto bills, and appoint heads of administrative agencies.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cheat Sheet -->
+        <section id="cheat-sheet" class="mb-10">
+            <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 border-2 border-dashed border-gray-300 dark:border-gray-600">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100">Cheat Sheet</h2>
+                    <span class="text-sm text-gray-500 dark:text-gray-400">Print this page for quick reference</span>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-3 text-sm">
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded"><strong>Civil law:</strong> Written codes, Louisiana only</div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded"><strong>Common law:</strong> Court precedent, 49 states</div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded"><strong>Stare decisis:</strong> Follow past decisions</div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded"><strong>Equity:</strong> Orders (injunctions) when money is not enough</div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded"><strong>Criminal:</strong> Beyond reasonable doubt</div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded"><strong>Civil:</strong> Preponderance of evidence</div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded"><strong>Substantive:</strong> The rules (WHAT)</div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded"><strong>Procedural:</strong> The process (HOW)</div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded"><strong>Erie:</strong> State substantive + federal procedural</div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded"><strong>Commerce Clause:</strong> Federal power over interstate commerce</div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded"><strong>Due Process:</strong> 5th (federal) + 14th (states)</div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded"><strong>Equal Protection:</strong> Rational basis required for different treatment</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Traps -->
+        <section class="mb-10">
+            <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-xl p-5 lg:p-6">
+                <h2 class="text-2xl font-bold text-red-800 dark:text-red-300 mb-4">Exam Trap Alerts</h2>
+                <div class="space-y-3">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">1. Erie Doctrine &mdash; Do NOT Mix Up the Laws</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Federal diversity cases: <strong>state SUBSTANTIVE law</strong> + <strong>federal PROCEDURAL law</strong>. The state tells you the rules; the federal system tells you the process.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">2. Due Process Applies to STATES Too</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The 5th Amendment originally only applied to the federal government. The 14th Amendment extended it to states. Both must provide due process.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">3. Equal Protection Needs "Rational Basis"</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">A law CAN treat people differently, but only if there is a rational reason. Arbitrary distinctions (like eye color) will be struck down.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">4. Conflicts of Law &mdash; Choice of Law Clause is the Easy Fix</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">When parties are in different states, the simplest solution is a choice of law provision specifying which state's law governs.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Reference Summary -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-purple-600 to-purple-800 rounded-xl p-6 text-white">
+                <h2 class="text-2xl font-bold mb-6">Quick Reference Summary</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Civil-Law System</p>
+                        <p class="text-sm text-purple-100">Written codes. Louisiana only in the U.S.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Common-Law System</p>
+                        <p class="text-sm text-purple-100">Court precedent. 49 states. Stare decisis.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Equity</p>
+                        <p class="text-sm text-purple-100">Fairness safety valve. Injunctions, specific performance.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Commerce Clause</p>
+                        <p class="text-sm text-purple-100">Congress can regulate interstate commerce including insurance.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Due Process</p>
+                        <p class="text-sm text-purple-100">5th (federal) + 14th (states). Substantive + procedural.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Erie Doctrine</p>
+                        <p class="text-sm text-purple-100">State substantive law + federal procedural law.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="../index.html" class="text-gray-400 hover:text-white transition-colors">&larr; Assignment 1 Overview</a>
+                <span class="text-gray-500">Part 1 of 3</span>
+                <a href="../part-2/index.html" class="text-gray-400 hover:text-white transition-colors">Part 2: Legal Procedures &rarr;</a>
+            </div>
+        </div>
+    </footer>
+
+    <button onclick="openAITutor({topic: 'U.S. Legal System and Sources of Law', concepts: ['Civil law vs common law systems', 'Stare decisis and precedent', 'Equity courts and remedies', 'Criminal vs civil law', 'Substantive vs procedural law', 'Erie doctrine', 'Commerce Clause', 'Due Process and Equal Protection', 'Federal vs state court systems', 'Federal jurisdiction (diversity, federal question)', 'Conflicts of law (lex loci, interest analysis, significant contacts)'], keywords: ['stare decisis', 'equity', 'Erie doctrine', 'Commerce Clause', 'Due Process', 'Equal Protection', 'diversity jurisdiction', 'federal question', 'lex loci', 'conflicts of law']})" class="fixed bottom-6 right-6 bg-purple-600 hover:bg-purple-700 text-white p-4 rounded-full shadow-xl hover:scale-110 transition-all z-50" title="AI Tutor">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+    </button>
+</body>
+</html>

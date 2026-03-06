@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 1: Strict &amp; Products Liability | Assignment 10 | CPCU 530</title>
+    <link rel="icon" type="image/svg+xml" href="../../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config = { darkMode: 'class' }</script>
+    <link rel="stylesheet" href="../../../../css/styles.css">
+    <script src="../../../../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') { document.documentElement.classList.remove('dark'); }
+        function toggleTheme() { document.documentElement.classList.toggle('dark'); localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light'); }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="showAPIKeySetup()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings"><svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg></button>
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/></svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>
+        </button>
+    </div>
+
+    <header class="bg-gradient-to-r from-purple-600 to-purple-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap gap-2 text-sm mb-2">
+                <a href="../../../../index.html" class="text-purple-200 hover:text-white">Home</a><span class="text-purple-300">/</span>
+                <a href="../../../index.html" class="text-purple-200 hover:text-white">CPCU</a><span class="text-purple-300">/</span>
+                <a href="../../index.html" class="text-purple-200 hover:text-white">530</a><span class="text-purple-300">/</span>
+                <a href="../index.html" class="text-purple-200 hover:text-white">Assignment 10</a><span class="text-purple-300">/</span>
+                <span class="text-white">Part 1</span>
+            </div>
+            <h1 class="text-3xl font-bold">Part 1: Strict &amp; Products Liability</h1>
+            <p class="text-purple-200 mt-1">Assignment 10 &mdash; Special Liability &amp; Tort Litigation</p>
+        </div>
+    </header>
+
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-wrap gap-2 text-sm">
+                <a href="../index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Intro</a>
+                <span class="bg-purple-600 text-white px-3 py-1 rounded font-medium">Part 1</span>
+                <a href="../part-2/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 2</a>
+                <a href="../part-3/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 3</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-5xl lg:max-w-7xl">
+
+        <!-- Start Here -->
+        <div class="bg-gradient-to-r from-red-100 to-purple-100 dark:from-red-900/40 dark:to-purple-800/40 rounded-xl p-6 mb-8 border border-red-300 dark:border-red-700">
+            <h3 class="text-xl font-bold text-red-800 dark:text-red-200 mb-4">Start Here: 5 Things You MUST Know</h3>
+            <div class="grid md:grid-cols-2 gap-3">
+                <div class="flex items-start">
+                    <span class="bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>Strict liability</strong> = liable WITHOUT fault. No need to prove negligence -- just that the product was defective and caused injury</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
+                    <p class="text-gray-700 dark:text-gray-300">The <strong>MacPherson Doctrine</strong> eliminated privity -- you do NOT need to have bought directly from the manufacturer to sue them</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
+                    <p class="text-gray-700 dark:text-gray-300">There are <strong>5 elements</strong> a plaintiff must prove for strict liability and <strong>3 types of defects</strong> (manufacturing, design, failure to warn)</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">4</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>Compliance with regulations is NOT a complete defense</strong> -- you can still be liable even if you followed every rule</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">5</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>CERCLA/Superfund</strong> imposes strict liability on 4 types of PRPs for hazardous waste cleanup -- even current owners who did not cause the contamination</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 1: Strict Liability Overview -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">1. Strict Liability &amp; Abnormally Dangerous Activities</h2>
+
+                <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-red-500 mb-6">
+                    <h3 class="font-bold text-red-800 dark:text-red-300 text-lg lg:text-xl">Strict Liability (Absolute Liability)</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg"><strong>Liability without fault.</strong> The defendant is liable for injuries regardless of how careful they were. In plain English: "It does not matter if you tried your best. If the product was defective and someone got hurt, you pay."</p>
+                </div>
+
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">Abnormally Dangerous Activities</h3>
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 border-l-4 border-purple-500 mb-4">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Anyone who uses or stores <strong>explosives</strong> or engages in other abnormally dangerous activities is <strong>strictly liable</strong> for all damages caused, regardless of how careful they were.</p>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-gray-400 mb-6">
+                    <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Scenario: Blasting Near Homes</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> A construction company uses dynamite to blast rock while building a highway near a residential neighborhood.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> Despite following every safety protocol, flying debris damages a homeowner's roof and cracks their foundation.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> The construction company is <strong>strictly liable</strong> for the damage. It does not matter that they followed all safety rules. Using explosives is an abnormally dangerous activity -- liability applies regardless of care taken.</p>
+                </div>
+
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">Animal Liability</h3>
+                <div class="grid md:grid-cols-2 gap-4 mb-4">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-l-4 border-blue-500">
+                        <p class="font-bold text-blue-800 dark:text-blue-300 text-lg">Domestic Animals</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">Owner is liable only if they <strong>knew or should have known</strong> the animal was dangerous (the "one-bite rule"). Exception: some states have <strong>strict liability dog-bite statutes</strong>.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> A dog bites a mail carrier. If the owner knew the dog was aggressive (it had bitten before), the owner is liable. In a strict liability state, the owner is liable regardless.</p>
+                        </div>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                        <p class="font-bold text-red-800 dark:text-red-300 text-lg">Wild Animals</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">Owner is <strong>strictly liable</strong> for ALL injuries. No need to prove negligence or prior knowledge. Wild animals are presumed dangerous.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> A neighbor keeps a pet monkey. It escapes and bites a mail carrier. The neighbor is strictly liable -- it does not matter that the monkey never bit anyone before.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Products Liability History -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">2. Products Liability: Historical Development</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 border-l-4 border-blue-500 mb-6">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Products liability</strong> holds manufacturers, sellers, and distributors responsible when a defective product injures someone. The law evolved from requiring a direct contract (privity) to holding anyone in the chain of distribution liable.</p>
+                </div>
+
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">Common-Law Exceptions to Privity</h3>
+                <div class="space-y-3 mb-6">
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border border-purple-200 dark:border-purple-800">
+                        <p class="font-bold text-purple-800 dark:text-purple-300">Exception 1: Inherently Dangerous Products</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">If you marketed something inherently dangerous (like poison) that was also defective, you were liable to <strong>anyone</strong> injured, not just the buyer.</p>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border border-purple-200 dark:border-purple-800">
+                        <p class="font-bold text-purple-800 dark:text-purple-300">Exception 2: Not Inherently Dangerous But Defective</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">A manufacturer who made a product that was not inherently dangerous but <strong>could become dangerous if defective</strong> was liable to anyone injured while using it reasonably.</p>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border border-purple-200 dark:border-purple-800">
+                        <p class="font-bold text-purple-800 dark:text-purple-300">Exception 3: Negligent Concealment</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">A manufacturer who was negligent in making the product AND <strong>knowingly concealed the defect</strong> could be liable for both negligence and fraud.</p>
+                    </div>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-2 border-amber-300 dark:border-amber-700 rounded-xl p-5 mb-4">
+                    <h4 class="text-lg font-bold text-amber-800 dark:text-amber-300 mb-3">The MacPherson Doctrine (Landmark Case)</h4>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mb-3">Eliminated the requirement for <strong>privity of contract</strong>. You do NOT need to be the person who bought the product to sue the manufacturer.</p>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                        <p class="font-semibold text-amber-800 dark:text-amber-300 mb-2">The Case That Changed Everything</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> MacPherson buys a car from a dealer. A wheel (made by a separate manufacturer) is defective.</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> The wheel collapses, injuring MacPherson. He sues the car manufacturer (Buick), not the dealer or wheel maker.</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> Court rules MacPherson CAN sue Buick even though he did not buy directly from them. The manufacturer has a duty to anyone who <strong>foreseeably uses</strong> the product.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Five Elements of Strict Liability -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">3. Five Elements of a Strict Liability Products Claim</h2>
+
+                <div class="bg-red-50 dark:bg-red-900/30 border-l-4 border-red-500 p-4 mb-6 rounded-r-lg">
+                    <p class="font-bold text-red-800 dark:text-red-300 text-lg">Guaranteed Exam Question</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-1 text-base lg:text-lg">The plaintiff must prove ALL five elements. Miss one and the claim fails.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg border-2 border-red-200 dark:border-red-800 text-center">
+                        <span class="bg-red-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-lg font-bold mx-auto mb-2">1</span>
+                        <p class="font-bold text-gray-800 dark:text-gray-100">Seller in Business</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">The seller was <strong>in the business</strong> of selling products (not a casual/garage sale)</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg border-2 border-red-200 dark:border-red-800 text-center">
+                        <span class="bg-red-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-lg font-bold mx-auto mb-2">2</span>
+                        <p class="font-bold text-gray-800 dark:text-gray-100">Product Had Defect</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">The product had a <strong>defect</strong> that made it unreasonably dangerous</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg border-2 border-red-200 dark:border-red-800 text-center">
+                        <span class="bg-red-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-lg font-bold mx-auto mb-2">3</span>
+                        <p class="font-bold text-gray-800 dark:text-gray-100">Defective When Sold</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">The defect existed <strong>when it left</strong> the manufacturer's or seller's control</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg border-2 border-red-200 dark:border-red-800 text-center">
+                        <span class="bg-red-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-lg font-bold mx-auto mb-2">4</span>
+                        <p class="font-bold text-gray-800 dark:text-gray-100">Proximate Cause</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">The defect was the <strong>proximate cause</strong> of the plaintiff's injury</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg border-2 border-red-200 dark:border-red-800 text-center">
+                        <span class="bg-red-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-lg font-bold mx-auto mb-2">5</span>
+                        <p class="font-bold text-gray-800 dark:text-gray-100">No Substantial Change</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">The product reached the consumer <strong>without substantial change</strong> in condition</p>
+                    </div>
+                </div>
+
+                <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                    <p class="font-semibold text-green-800 dark:text-green-300 mb-2">Real-World Scenario: Defective Blender</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> Maria buys a new blender from a department store. The blender has a cracked blade housing from the factory.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> While blending soup on the first use, the housing cracks open and hot liquid sprays on Maria, causing burns.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> Maria wins under strict liability. (1) The store sells blenders as a business, (2) the cracked housing was a defect, (3) it existed when it left the factory, (4) the defect caused her burns, and (5) she used it without modifying it. All 5 elements satisfied.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Three Types of Defects -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">4. Three Types of Product Defects</h2>
+
+                <div class="grid md:grid-cols-3 gap-4 mb-6">
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                        <p class="font-bold text-red-800 dark:text-red-300 text-lg">Manufacturing Defect</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">The product does NOT match the original design. Something went wrong on the assembly line.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> A car tire is supposed to have 4 layers of reinforcement but one unit only got 3 due to a machine error.</p>
+                        </div>
+                    </div>
+                    <div class="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg border-l-4 border-amber-500">
+                        <p class="font-bold text-amber-800 dark:text-amber-300 text-lg">Design Defect</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">The product matches the design perfectly, but <strong>the design itself is flawed</strong>. Every unit has the same problem.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> A space heater is designed without an automatic shut-off and tips over easily, causing fires.</p>
+                        </div>
+                    </div>
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-l-4 border-blue-500">
+                        <p class="font-bold text-blue-800 dark:text-blue-300 text-lg">Failure to Warn</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">Product is fine in design and manufacture, but has <strong>inherent dangers</strong> the manufacturer failed to warn about.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> A prescription drug causes severe side effects when taken with common OTC medications, but the label says nothing about this interaction.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">Who Can Be Liable? Who Can Sue?</h3>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border border-purple-200 dark:border-purple-800">
+                        <p class="font-bold text-purple-800 dark:text-purple-300 mb-2">Parties Who Can Be Strictly Liable</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Any entity <strong>in the business of selling products</strong> in the chain of distribution:</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-2 space-y-1">
+                            <li>Manufacturers, Wholesalers, Distributors</li>
+                            <li>Retailers, Bailors, Lessors</li>
+                            <li>Builders, Contractors</li>
+                        </ul>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border border-green-200 dark:border-green-800">
+                        <p class="font-bold text-green-800 dark:text-green-300 mb-2">Who Can Sue (Beyond the Buyer)</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>The <strong>ultimate user or consumer</strong> (may differ from buyer)</li>
+                            <li><strong>Bystanders</strong> (nearby when product malfunctioned)</li>
+                            <li>Anyone <strong>foreseeably affected</strong> by the defect</li>
+                        </ul>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> Greg uses a power mower. A blade guard breaks and a rock shoots out, hitting his neighbor's child Amy. Amy (a bystander) CAN sue the manufacturer.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Ten Defenses -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">5. Ten Defenses to Products Liability</h2>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
+                        <p class="font-bold text-blue-800 dark:text-blue-300">1. State-of-the-Art</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Product was safe by the standards that existed when it was made.</p>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border border-red-200 dark:border-red-800">
+                        <p class="font-bold text-red-800 dark:text-red-300">2. Compliance with Regulations</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Product met all government standards. <strong>NOT a complete defense</strong> -- you can still be liable!</p>
+                    </div>
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
+                        <p class="font-bold text-blue-800 dark:text-blue-300">3. Compliance with Specs</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Built to someone else's specs. Generally not a defense unless defect was sufficiently obvious.</p>
+                    </div>
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
+                        <p class="font-bold text-blue-800 dark:text-blue-300">4. Open and Obvious Danger</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">No duty to warn of plainly obvious dangers. A knife does not need a "this is sharp" label.</p>
+                    </div>
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
+                        <p class="font-bold text-blue-800 dark:text-blue-300">5. Plaintiff's Knowledge</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">The user had knowledge of the danger equal to the manufacturer's knowledge.</p>
+                    </div>
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
+                        <p class="font-bold text-blue-800 dark:text-blue-300">6. Assumption of Risk</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">The user knowingly accepted the risk of loss, injury, or damage.</p>
+                    </div>
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
+                        <p class="font-bold text-blue-800 dark:text-blue-300">7. Misuse of Product</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Plaintiff did not use the product in an appropriate and foreseeable manner.</p>
+                    </div>
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
+                        <p class="font-bold text-blue-800 dark:text-blue-300">8. Alteration of Product</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">The product was modified after it was sold, and the modification caused the injury.</p>
+                    </div>
+                    <div class="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg border border-amber-200 dark:border-amber-800">
+                        <p class="font-bold text-amber-800 dark:text-amber-300">9. Post-Accident Remedial Measures</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Improving a product AFTER an accident <strong>cannot be used as evidence of negligence</strong>. "The fact that we made it safer afterward cannot be used against us."</p>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border border-red-200 dark:border-red-800">
+                        <p class="font-bold text-red-800 dark:text-red-300">10. Written Disclaimers</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Attempts to disclaim strict liability. <strong>Most courts have REJECTED these</strong> as invalid.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: Toxic Torts and CERCLA -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">6. Toxic Torts &amp; CERCLA (Superfund)</h2>
+
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 border-l-4 border-purple-500 mb-6">
+                    <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg">Toxic Tort</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">A tort involving injury from exposure to <strong>toxic or hazardous substances</strong>. These are uniquely challenging: harm may not appear for years, causation is hard to prove, and thousands of plaintiffs may be involved.</p>
+                </div>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 border-l-4 border-blue-500 mb-6">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg">CERCLA (Superfund)</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg"><strong>Comprehensive Environmental Response, Compensation, and Liability Act.</strong> A federal law that forces cleanup of hazardous waste sites and makes the responsible parties pay for it. Liability is <strong>STRICT</strong> -- no negligence required.</p>
+                </div>
+
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">Four Types of Potentially Responsible Parties (PRPs)</h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
+                    <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded-lg text-center border border-red-200 dark:border-red-800">
+                        <p class="text-2xl lg:text-3xl font-bold text-red-600 dark:text-red-400">1</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400 mt-1">Current owners &amp; operators</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded-lg text-center border border-red-200 dark:border-red-800">
+                        <p class="text-2xl lg:text-3xl font-bold text-red-600 dark:text-red-400">2</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400 mt-1">Past owners or operators</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded-lg text-center border border-red-200 dark:border-red-800">
+                        <p class="text-2xl lg:text-3xl font-bold text-red-600 dark:text-red-400">3</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400 mt-1">Generators of waste</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded-lg text-center border border-red-200 dark:border-red-800">
+                        <p class="text-2xl lg:text-3xl font-bold text-red-600 dark:text-red-400">4</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400 mt-1">Transporters of waste</p>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-gray-400 mb-6">
+                    <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Scenario: Gas Station Contamination</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> Jack buys a gas station. He discovers the underground storage tank has been leaking gasoline into the ground for years -- long before he bought the property.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> The EPA identifies the site as contaminated.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> Jack must pay for cleanup because he is the <strong>current owner</strong> (PRP type 1), even though he did not cause the contamination. He may sue previous owners who were responsible.</p>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 rounded-r-lg">
+                    <p class="font-bold text-amber-800 dark:text-amber-300">CGL Policy Issues</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-1 text-sm lg:text-base">Occurrence-based CGL policies may not cover gradual pollution. Many policies only cover "sudden and accidental" discharges. For waste dumped years ago but discovered recently, the question is: <strong>when did the "occurrence" happen?</strong></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cheat Sheet -->
+        <section id="cheat-sheet" class="mb-10">
+            <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 border-2 border-dashed border-gray-300 dark:border-gray-600">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100">Cheat Sheet</h2>
+                    <span class="text-sm text-gray-500 dark:text-gray-400">Print this page for quick reference</span>
+                </div>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">5 Elements of Strict Liability</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>1. Seller in the business of selling products</li>
+                            <li>2. Product had a defect (unreasonably dangerous)</li>
+                            <li>3. Defect existed when it left seller's control</li>
+                            <li>4. Defect was proximate cause of injury</li>
+                            <li>5. No substantial change in product condition</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">3 Types of Defects</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>Manufacturing/Assembly -- does not match design</li>
+                            <li>Design -- design itself is flawed</li>
+                            <li>Failure to Warn -- no warning of inherent dangers</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">4 Types of CERCLA PRPs</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>Current owners/operators</li>
+                            <li>Past owners/operators</li>
+                            <li>Generators of hazardous waste</li>
+                            <li>Transporters of hazardous waste</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Key Defenses to Remember</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>Compliance with regulations = NOT a complete defense</li>
+                            <li>Written disclaimers = most courts REJECT them</li>
+                            <li>Post-accident fixes = cannot be used as evidence</li>
+                            <li>Open/obvious danger = no duty to warn</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Traps -->
+        <section class="mb-10">
+            <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-xl p-5 lg:p-6">
+                <h2 class="text-2xl font-bold text-red-800 dark:text-red-300 mb-4">Exam Trap Alerts</h2>
+                <div class="space-y-3">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">1. Compliance with Regulations is NOT a Complete Defense</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The exam will try to trick you into thinking that following government standards means you are off the hook. WRONG. You can still be held strictly liable for a defective product even if it met every regulation.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">2. Only the Buyer Can Sue? WRONG</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Users, consumers, AND bystanders can all sue under strict liability. The buyer is NOT the only protected party.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">3. CERCLA Requires Proof of Negligence? WRONG</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">CERCLA imposes STRICT liability. Current owners are liable even if they did NOT cause the contamination and did nothing wrong.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">4. Written Disclaimers Eliminate Strict Liability? WRONG</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Most courts have REJECTED written disclaimers as a valid defense to strict liability claims. Do not fall for this trap.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">5. Post-Accident Safety Improvements = Evidence of Negligence? WRONG</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Making a product safer after an accident CANNOT be used as evidence that the original product was negligently designed. This rule encourages manufacturers to improve safety without fear of it being used against them.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Reference Summary -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-purple-600 to-purple-800 rounded-xl p-6 text-white">
+                <h2 class="text-2xl font-bold mb-6">Quick Reference Summary</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Strict Liability</p>
+                        <p class="text-sm text-purple-100">Liable without fault. Just prove defect + causation.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">MacPherson Doctrine</p>
+                        <p class="text-sm text-purple-100">No privity needed. Anyone foreseeably affected can sue.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">5 Elements</p>
+                        <p class="text-sm text-purple-100">Business seller, defect, defect at sale, proximate cause, no change.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">3 Defect Types</p>
+                        <p class="text-sm text-purple-100">Manufacturing, Design, Failure to Warn.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">CERCLA PRPs</p>
+                        <p class="text-sm text-purple-100">Current owners, past owners, generators, transporters.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Toxic Torts</p>
+                        <p class="text-sm text-purple-100">Injury from toxic/hazardous exposure. Long latency, hard causation.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="../index.html" class="text-gray-400 hover:text-white transition-colors">&larr; Assignment 10 Overview</a>
+                <span class="text-gray-500">Part 1 of 3</span>
+                <a href="../part-2/index.html" class="text-gray-400 hover:text-white transition-colors">Part 2: Vicarious Liability &amp; Joint Tortfeasors &rarr;</a>
+            </div>
+        </div>
+    </footer>
+
+    <button onclick="openAITutor({topic: 'Strict Liability and Products Liability', concepts: ['Strict liability vs negligence', 'MacPherson Doctrine and privity', '5 elements of strict liability products claim', '3 types of product defects', '10 defenses to products liability', 'Toxic torts', 'CERCLA Superfund and PRPs', 'Animal liability domestic vs wild', 'CGL policy issues with environmental claims'], keywords: ['strict liability', 'products liability', 'MacPherson', 'privity', 'manufacturing defect', 'design defect', 'failure to warn', 'CERCLA', 'Superfund', 'PRP', 'toxic tort', 'state of the art defense']})" class="fixed bottom-6 right-6 bg-purple-600 hover:bg-purple-700 text-white p-4 rounded-full shadow-xl hover:scale-110 transition-all z-50" title="AI Tutor">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+    </button>
+</body>
+</html>

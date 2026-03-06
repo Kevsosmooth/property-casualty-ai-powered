@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 3: Genuine Assent | Assignment 3 | CPCU 530</title>
+    <link rel="icon" type="image/svg+xml" href="../../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config = { darkMode: 'class' }</script>
+    <link rel="stylesheet" href="../../../../css/styles.css">
+    <script src="../../../../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') { document.documentElement.classList.remove('dark'); }
+        function toggleTheme() { document.documentElement.classList.toggle('dark'); localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light'); }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="showAPIKeySetup()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings"><svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg></button>
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/></svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>
+        </button>
+    </div>
+
+    <header class="bg-gradient-to-r from-purple-600 to-purple-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap gap-2 text-sm mb-2">
+                <a href="../../../../index.html" class="text-purple-200 hover:text-white">Home</a><span class="text-purple-300">/</span>
+                <a href="../../../index.html" class="text-purple-200 hover:text-white">CPCU</a><span class="text-purple-300">/</span>
+                <a href="../../index.html" class="text-purple-200 hover:text-white">530</a><span class="text-purple-300">/</span>
+                <a href="../index.html" class="text-purple-200 hover:text-white">Assignment 3</a><span class="text-purple-300">/</span>
+                <span class="text-white">Part 3</span>
+            </div>
+            <h1 class="text-3xl font-bold">Part 3: Genuine Assent</h1>
+            <p class="text-purple-200 mt-1">Assignment 3 &mdash; Consideration, Legal Purpose &amp; Genuine Assent</p>
+        </div>
+    </header>
+
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-wrap gap-2 text-sm">
+                <a href="../index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Intro</a>
+                <a href="../part-1/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 1</a>
+                <a href="../part-2/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 2</a>
+                <span class="bg-purple-600 text-white px-3 py-1 rounded font-medium">Part 3</span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-5xl lg:max-w-7xl">
+
+        <!-- Start Here -->
+        <div class="bg-gradient-to-r from-green-100 to-blue-100 dark:from-green-900/40 dark:to-blue-800/40 rounded-xl p-6 mb-8 border border-green-300 dark:border-green-700">
+            <h3 class="text-xl font-bold text-green-800 dark:text-green-200 mb-4">Start Here: 5 Things You MUST Know</h3>
+            <div class="grid md:grid-cols-2 gap-3">
+                <div class="flex items-start">
+                    <span class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
+                    <p class="text-gray-700 dark:text-gray-300">Fraud requires <strong>6 elements</strong> &mdash; ALL must be present to void a contract</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>Concealment</strong> = misrepresentation by silence. <strong>Collusion</strong> = conspiracy to defraud</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
+                    <p class="text-gray-700 dark:text-gray-300">Unilateral mistake = usually NOT a defense. <strong>Bilateral mistake</strong> = more likely voidable</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">4</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>Representations</strong> = substantially true (modern rule). <strong>Warranties</strong> = exactly true (old rule)</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">5</span>
+                    <p class="text-gray-700 dark:text-gray-300">Fraud remedy = rescission OR damages. Innocent misrepresentation = rescission ONLY</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 1: What is Genuine Assent -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">1. What is Genuine Assent?</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-6">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg lg:text-xl">Genuine Assent</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">The contracting parties' <strong>actual consent</strong> to form a contract. Even if all four elements exist (agreement, capacity, consideration, legal purpose), the contract may be <strong>voidable</strong> if genuine assent is lacking.</p>
+                </div>
+
+                <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-4">Genuine assent may be absent in 5 situations:</p>
+                <div class="grid grid-cols-2 md:grid-cols-5 gap-3">
+                    <div class="bg-red-50 dark:bg-red-900/30 p-3 rounded-lg text-center border border-red-200 dark:border-red-800">
+                        <p class="font-bold text-red-600 dark:text-red-400">Fraud</p>
+                    </div>
+                    <div class="bg-amber-50 dark:bg-amber-900/30 p-3 rounded-lg text-center border border-amber-200 dark:border-amber-800">
+                        <p class="font-bold text-amber-600 dark:text-amber-400">Mistake</p>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/30 p-3 rounded-lg text-center border border-purple-200 dark:border-purple-800">
+                        <p class="font-bold text-purple-600 dark:text-purple-400">Duress</p>
+                    </div>
+                    <div class="bg-indigo-50 dark:bg-indigo-900/30 p-3 rounded-lg text-center border border-indigo-200 dark:border-indigo-800">
+                        <p class="font-bold text-indigo-600 dark:text-indigo-400">Undue Influence</p>
+                    </div>
+                    <div class="bg-blue-50 dark:bg-blue-900/30 p-3 rounded-lg text-center border border-blue-200 dark:border-blue-800">
+                        <p class="font-bold text-blue-600 dark:text-blue-400">Innocent Misrep.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Fraud -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">2. Fraud</h2>
+
+                <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-4 border-l-4 border-red-500 mb-6">
+                    <p class="font-bold text-red-800 dark:text-red-300 text-lg">Fraud</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">An <strong>intentional misrepresentation</strong> resulting in harm. Makes a contract <strong>voidable</strong> at the defrauded party's option. ALL 6 elements must be present:</p>
+                </div>
+
+                <!-- 6 Elements Grid -->
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border border-red-200 dark:border-red-800">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="bg-red-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold">1</span>
+                            <p class="font-bold text-red-800 dark:text-red-300">False Representation</p>
+                        </div>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">A false statement of <strong>fact</strong> (not opinion).</p>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border border-red-200 dark:border-red-800">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="bg-red-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold">2</span>
+                            <p class="font-bold text-red-800 dark:text-red-300">Of a Material Fact</p>
+                        </div>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">A fact that would influence a party's <strong>decision</strong>.</p>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border border-red-200 dark:border-red-800">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="bg-red-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold">3</span>
+                            <p class="font-bold text-red-800 dark:text-red-300">Knowingly Made</p>
+                        </div>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">The person <strong>knows</strong> it is false or acts with reckless disregard.</p>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border border-red-200 dark:border-red-800">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="bg-red-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold">4</span>
+                            <p class="font-bold text-red-800 dark:text-red-300">Intent to Deceive</p>
+                        </div>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">The person <strong>intends</strong> to mislead the other party.</p>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border border-red-200 dark:border-red-800">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="bg-red-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold">5</span>
+                            <p class="font-bold text-red-800 dark:text-red-300">Justifiable Reliance</p>
+                        </div>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">The deceived party <strong>reasonably relied</strong> on the false statement.</p>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border border-red-200 dark:border-red-800">
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="bg-red-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold">6</span>
+                            <p class="font-bold text-red-800 dark:text-red-300">Detriment</p>
+                        </div>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">The deceived party suffered actual <strong>harm or loss</strong>.</p>
+                    </div>
+                </div>
+
+                <!-- Remedies -->
+                <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500 mb-6">
+                    <p class="font-bold text-green-800 dark:text-green-300 mb-2">Remedies for Fraud</p>
+                    <div class="grid md:grid-cols-2 gap-3">
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-bold text-gray-800 dark:text-gray-200">Rescission</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm">Complete <strong>unmaking</strong> of the contract. Restored to original position.</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-bold text-gray-800 dark:text-gray-200">Damages</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm">Sue for <strong>monetary compensation</strong>. Generally choose rescission OR damages, not both.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Insurance Fraud -->
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">Fraud in Insurance Contracts</h3>
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                        <p class="font-bold text-red-800 dark:text-red-300">Collusion</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-1 text-sm lg:text-base">An agreement by 2+ people to <strong>defraud</strong> another.</p>
+                        <div class="bg-white dark:bg-gray-700 p-2 rounded mt-2 text-sm">
+                            <strong>Example:</strong> An insured and a repair shop conspire to inflate a claim.
+                        </div>
+                    </div>
+                    <div class="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg border-l-4 border-amber-500">
+                        <p class="font-bold text-amber-800 dark:text-amber-300">Concealment</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-1 text-sm lg:text-base">A misrepresentation by <strong>silence</strong>. A defense if: (1) insured <strong>knew</strong> the fact was material AND (2) concealed it with <strong>intent to defraud</strong>.</p>
+                        <div class="bg-white dark:bg-gray-700 p-2 rounded mt-2 text-sm">
+                            <strong>Example:</strong> Applicant knows house has severe foundation damage but says nothing. Foundation collapses a month later. Insurer can void the policy.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Mistake -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">3. Mistake</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 border-l-4 border-blue-500 mb-6">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">A <strong>mistake</strong> is a perception that does not agree with the facts. The effect on a contract depends on whether ONE or BOTH parties are mistaken.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg border-l-4 border-amber-500">
+                        <p class="font-bold text-amber-800 dark:text-amber-300 text-lg">Unilateral Mistake</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">ONE party is mistaken. Usually <strong>NOT a defense</strong>.</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm mt-1"><strong>Exception:</strong> If the other party <strong>knew or should have known</strong> about the mistake, the contract may be voidable.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> A contractor bids $50,000 instead of $500,000 (missed a zero). If the client knew this was obviously wrong (10x lower than all other bids), the contractor may escape.</p>
+                        </div>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <p class="font-bold text-green-800 dark:text-green-300 text-lg">Bilateral Mistake</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">BOTH parties share the same mistaken perception. <strong>More likely to make contract voidable</strong>.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> Both buyer and seller believe a ring is costume jewelry worth $200. It turns out to be worth $50,000. The seller may rescind the contract.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Insurance Mistakes -->
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">Mistakes in Insurance</h3>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border border-red-200 dark:border-red-800">
+                        <p class="font-bold text-red-800 dark:text-red-300">Mistakes of Law</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm mt-1">Generally do <strong>NOT</strong> allow voiding a contract. Everyone is presumed to know the law.</p>
+                    </div>
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
+                        <p class="font-bold text-blue-800 dark:text-blue-300">Reformation</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm mt-1">An equitable remedy: court <strong>rewrites</strong> the contract to reflect the parties' actual intentions.</p>
+                        <div class="bg-white dark:bg-gray-700 p-2 rounded mt-2 text-sm">
+                            <strong>Example:</strong> Policy says "132 Main St" due to a typo. Meant "123 Main St." A court can reform (correct) the policy.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Duress & Undue Influence -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">4. Duress &amp; Undue Influence</h2>
+
+                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                    <!-- Duress -->
+                    <div>
+                        <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border-l-4 border-purple-500 mb-4">
+                            <p class="font-bold text-purple-800 dark:text-purple-300 text-lg">Duress</p>
+                            <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">The use of <strong>violence, restraint, or threats</strong> to compel a party to act against their wishes. Deprives the person of <strong>free will</strong>. Types: physical force, threats of prosecution, threats of economic harm.</p>
+                        </div>
+                        <div class="bg-gray-50 dark:bg-gray-700 p-3 rounded-lg">
+                            <p class="font-semibold text-gray-800 dark:text-gray-200 text-sm mb-1">Insurance Example: Claims Duress</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm"><strong>Setup:</strong> After a car accident, an adjuster tells an injured claimant in the hospital: "Sign this $5,000 release or we deny your entire claim."</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm"><strong>Result:</strong> Release may be <strong>voidable due to duress</strong>. The adjuster exploited the claimant's vulnerable position.</p>
+                        </div>
+                    </div>
+
+                    <!-- Undue Influence -->
+                    <div>
+                        <div class="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-lg border-l-4 border-indigo-500 mb-4">
+                            <p class="font-bold text-indigo-800 dark:text-indigo-300 text-lg">Undue Influence</p>
+                            <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">Improper use of <strong>power or trust</strong> to deprive a person of free will. Occurs in <strong>confidential relationships</strong>: attorney-client, doctor-patient, guardian-ward, trustee-beneficiary, parent-child.</p>
+                        </div>
+                        <div class="bg-gray-50 dark:bg-gray-700 p-3 rounded-lg">
+                            <p class="font-semibold text-gray-800 dark:text-gray-200 text-sm mb-1">Insurance Example: Agent Undue Influence</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm"><strong>Setup:</strong> An agent visits an 82-year-old widow weekly, gains her trust, then convinces her to cash out a $500,000 whole life policy for an unsuitable annuity with a 15-year surrender charge.</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm"><strong>Result:</strong> Transaction may be voided. The agent exploited a <strong>confidential relationship</strong> for personal gain (massive commission).</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Innocent Misrepresentation & Rep vs Warranty -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">5. Innocent Misrepresentation &amp; Representations vs. Warranties</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 border-l-4 border-blue-500 mb-6">
+                    <p class="font-bold text-blue-800 dark:text-blue-300 text-lg">Innocent Misrepresentation</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">A false statement of material fact made <strong>WITHOUT knowledge of its falsity</strong> and WITHOUT intent to deceive. Remedy is typically <strong>rescission only</strong> (not damages).</p>
+                </div>
+
+                <!-- Comparison -->
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-2 border-amber-300 dark:border-amber-700 rounded-xl p-5 mb-6">
+                    <h3 class="text-lg font-bold text-amber-800 dark:text-amber-300 mb-3">Fraud vs. Innocent Misrepresentation</h3>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="bg-red-50 dark:bg-red-900/20 p-3 rounded-lg border border-red-200 dark:border-red-800">
+                            <p class="font-bold text-red-800 dark:text-red-300">Fraud</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm">Intentional deception. Remedy: rescission <strong>OR</strong> damages.</p>
+                        </div>
+                        <div class="bg-blue-50 dark:bg-blue-900/20 p-3 rounded-lg border border-blue-200 dark:border-blue-800">
+                            <p class="font-bold text-blue-800 dark:text-blue-300">Innocent Misrepresentation</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm">No intent to deceive. Remedy: rescission <strong>ONLY</strong> (no damages).</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Representations vs Warranties -->
+                <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-xl p-5">
+                    <h3 class="text-lg font-bold text-red-800 dark:text-red-300 mb-3">Representations vs. Warranties (Heavily Tested)</h3>
+                    <div class="grid md:grid-cols-2 gap-4 mb-4">
+                        <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                            <p class="font-bold text-green-800 dark:text-green-300">Representation (Modern Rule)</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm mt-1">A statement that must be <strong>substantially true</strong>. Minor inaccuracies do NOT void the policy. Insurer must prove the misrepresentation was <strong>material</strong> (would have changed their decision).</p>
+                        </div>
+                        <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                            <p class="font-bold text-red-800 dark:text-red-300">Warranty (Old/Strict Rule)</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm mt-1">A statement that must be <strong>exactly true</strong>. Any breach, even minor, can technically void the policy. Much harsher for policyholders.</p>
+                        </div>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Scenario: Why This Matters</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm"><strong>The Setup:</strong> A homeowner states the house has a burglar alarm. In reality, the alarm has not worked for 6 months.</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm"><strong>What Happens:</strong> The home is damaged by a <strong>fire</strong> (unrelated to the alarm).</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm"><strong>The Result:</strong> Under the <strong>warranty</strong> rule, the insurer could void the policy (any breach, regardless of relevance). Under the <strong>representation</strong> rule, the insurer must prove the non-working alarm was material to the risk &mdash; since the loss was a fire, not a burglary, the insurer likely cannot deny the claim.</p>
+                    </div>
+                    <p class="text-amber-800 dark:text-amber-300 text-sm font-bold mt-3">Most states now use the representation (substantially true) standard to protect policyholders.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cheat Sheet -->
+        <section id="cheat-sheet" class="mb-10">
+            <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 border-2 border-dashed border-gray-300 dark:border-gray-600">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100">Cheat Sheet</h2>
+                    <span class="text-sm text-gray-500 dark:text-gray-400">Print this page for quick reference</span>
+                </div>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">6 Elements of Fraud (ALL Required)</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm space-y-1">
+                            <li>1. False representation (fact, not opinion)</li>
+                            <li>2. Of a material fact</li>
+                            <li>3. Knowingly made</li>
+                            <li>4. With intent to deceive</li>
+                            <li>5. Justifiable reliance</li>
+                            <li>6. Resulting in detriment</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Mistake Rules</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm space-y-1">
+                            <li>Unilateral = usually NOT a defense</li>
+                            <li>Bilateral = more likely voidable</li>
+                            <li>Law mistakes = NOT a defense</li>
+                            <li>Reformation = court corrects the contract</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Assent Defenses</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm space-y-1">
+                            <li>Duress = threats/force = voidable</li>
+                            <li>Undue influence = trust abuse = voidable</li>
+                            <li>Innocent misrep = rescission only</li>
+                            <li>Fraud = rescission OR damages</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Insurance Terms</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm space-y-1">
+                            <li>Collusion = conspiracy to defraud</li>
+                            <li>Concealment = silence as misrepresentation</li>
+                            <li>Representation = substantially true (modern)</li>
+                            <li>Warranty = exactly true (old rule)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Traps -->
+        <section class="mb-10">
+            <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-xl p-5 lg:p-6">
+                <h2 class="text-2xl font-bold text-red-800 dark:text-red-300 mb-4">Exam Trap Alerts</h2>
+                <div class="space-y-3">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">1. Representations vs. Warranties</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Representations = <strong>substantially true</strong> standard (modern majority). Warranties = <strong>exactly true</strong> (old, harsher). Most states now use representations to protect policyholders. This is HEAVILY tested.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">2. Fraud Requires ALL 6 Elements</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Missing even one element means no fraud. The exam may describe a scenario missing one element (like no detriment or no reliance) to see if you catch it.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">3. Concealment Requires Intent</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">For concealment to be a defense, the insured must have (1) known the fact was material AND (2) concealed it with <strong>intent to defraud</strong>. Accidentally forgetting is not concealment.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">4. Unilateral vs. Bilateral Mistake</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Unilateral mistake = usually stuck with the contract. Bilateral mistake = more likely to void. Exception: if the other party knew about a unilateral mistake.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">5. Innocent Misrepresentation = Rescission ONLY</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">No intent to deceive means no damages. The remedy is only rescission (unmaking the contract). Fraud allows rescission OR damages.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">6. Mistakes of Law Are NOT a Defense</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Everyone is presumed to know the law. Ignorance of the law does not make a contract voidable, even when the law is ambiguous.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Reference Summary -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-purple-600 to-purple-800 rounded-xl p-6 text-white">
+                <h2 class="text-2xl font-bold mb-6">Quick Reference Summary</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Genuine Assent</p>
+                        <p class="text-sm text-purple-100">Absent with fraud, mistake, duress, undue influence, or innocent misrep.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Fraud (6 Elements)</p>
+                        <p class="text-sm text-purple-100">False + material + knowing + intent + reliance + detriment.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Collusion vs. Concealment</p>
+                        <p class="text-sm text-purple-100">Collusion = conspiracy. Concealment = silence as misrepresentation.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Mistakes</p>
+                        <p class="text-sm text-purple-100">Unilateral = usually bound. Bilateral = likely voidable. Law = not a defense.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Duress &amp; Undue Influence</p>
+                        <p class="text-sm text-purple-100">Threats/force or trust abuse = voidable. Look for power imbalance.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Rep. vs. Warranty</p>
+                        <p class="text-sm text-purple-100">Representation = substantially true. Warranty = exactly true. Modern = representation.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="../part-2/index.html" class="text-gray-400 hover:text-white transition-colors">&larr; Part 2: Legal Purpose</a>
+                <span class="text-gray-500">Part 3 of 3</span>
+                <a href="../../assignment-4/index.html" class="text-gray-400 hover:text-white transition-colors">Assignment 4: Contract Form &amp; Obligations &rarr;</a>
+            </div>
+        </div>
+    </footer>
+
+    <button onclick="openAITutor({topic: 'Genuine Assent in Contract Law', concepts: ['6 elements of fraud', 'Collusion and concealment in insurance', 'Unilateral vs bilateral mistake', 'Reformation', 'Duress types', 'Undue influence in confidential relationships', 'Innocent misrepresentation', 'Representations vs warranties', 'Rescission vs damages'], keywords: ['genuine assent', 'fraud', 'concealment', 'collusion', 'rescission', 'mistake', 'reformation', 'duress', 'undue influence', 'representation', 'warranty', 'material fact']})" class="fixed bottom-6 right-6 bg-purple-600 hover:bg-purple-700 text-white p-4 rounded-full shadow-xl hover:scale-110 transition-all z-50" title="AI Tutor">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+    </button>
+</body>
+</html>

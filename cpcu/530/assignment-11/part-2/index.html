@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 2: Authority | Assignment 11 | CPCU 530</title>
+    <link rel="icon" type="image/svg+xml" href="../../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config = { darkMode: 'class' }</script>
+    <link rel="stylesheet" href="../../../../css/styles.css">
+    <script src="../../../../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') { document.documentElement.classList.remove('dark'); }
+        function toggleTheme() { document.documentElement.classList.toggle('dark'); localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light'); }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="showAPIKeySetup()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings"><svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg></button>
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/></svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>
+        </button>
+    </div>
+
+    <header class="bg-gradient-to-r from-purple-600 to-purple-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap gap-2 text-sm mb-2">
+                <a href="../../../../index.html" class="text-purple-200 hover:text-white">Home</a><span class="text-purple-300">/</span>
+                <a href="../../../index.html" class="text-purple-200 hover:text-white">CPCU</a><span class="text-purple-300">/</span>
+                <a href="../../index.html" class="text-purple-200 hover:text-white">530</a><span class="text-purple-300">/</span>
+                <a href="../index.html" class="text-purple-200 hover:text-white">Assignment 11</a><span class="text-purple-300">/</span>
+                <span class="text-white">Part 2</span>
+            </div>
+            <h1 class="text-3xl font-bold">Part 2: Authority</h1>
+            <p class="text-purple-200 mt-1">Assignment 11 &mdash; Agency Law</p>
+        </div>
+    </header>
+
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-wrap gap-2 text-sm">
+                <a href="../index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Intro</a>
+                <a href="../part-1/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 1</a>
+                <span class="bg-purple-600 text-white px-3 py-1 rounded font-medium">Part 2</span>
+                <a href="../part-3/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 3</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-5xl lg:max-w-7xl">
+
+        <!-- Start Here -->
+        <div class="bg-gradient-to-r from-green-100 to-blue-100 dark:from-green-900/40 dark:to-blue-800/40 rounded-xl p-6 mb-8 border border-green-300 dark:border-green-700">
+            <h3 class="text-xl font-bold text-green-800 dark:text-green-200 mb-4">Start Here: 5 Things You MUST Know</h3>
+            <div class="grid md:grid-cols-2 gap-3">
+                <div class="flex items-start">
+                    <span class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>Actual authority</strong> = what the principal really gave the agent (express or implied)</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>Apparent authority</strong> = what a <strong>third party reasonably believes</strong> the agent can do &mdash; NOT granted by the principal</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>Implied authority</strong> covers acts reasonably necessary to carry out express authority OR that arise from <strong>business custom</strong></p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">4</span>
+                    <p class="text-gray-700 dark:text-gray-300">An agent generally <strong>cannot delegate</strong> duties except for <strong>ministerial tasks</strong>, custom, or emergencies</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">5</span>
+                    <p class="text-gray-700 dark:text-gray-300">If something seems fishy, the <strong>third party has a duty</strong> to verify the agent's authority with the principal</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 1: Actual Authority -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">1. Actual Authority</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-6">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg lg:text-xl">Actual Authority</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">Authority the principal has <strong>genuinely given</strong> to the agent. This is the real, legitimate power to act. It comes in two flavors: <strong>express</strong> and <strong>implied</strong>.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <p class="font-bold text-green-800 dark:text-green-300 text-lg">Express Authority</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">Authority the principal has <strong>specifically and explicitly</strong> given. Plain English: "I told you that you can do X."</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> Ed tells his agent Al, "Go purchase men's clothing for the store." Al has express authority to buy men's clothing because Ed specifically said so.</p>
+                        </div>
+                    </div>
+                    <div class="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-lg border-l-4 border-indigo-500">
+                        <p class="font-bold text-indigo-800 dark:text-indigo-300 text-lg">Implied Authority</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">Authority <strong>not explicitly stated</strong> but reasonably necessary to carry out express authority, OR arising from <strong>business custom</strong>. Plain English: "I didn't say you could do X, but it's obviously part of the job."</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> Al also buys perfumes (gift items) for Ed's men's clothing store. Ed never mentioned perfumes, but a reasonable agent might stock gift items. Al has <strong>implied authority</strong> to do this.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-green-400 mb-6">
+                    <p class="font-semibold text-green-800 dark:text-green-300 mb-2">Real-World Scenario: Express vs. Implied Authority</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> Ed owns a men's clothing store. He hires Al as a purchasing agent and says, "Buy merchandise for the store." Ed personally hates denim and tells Al, "Never buy denim."</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> Al buys men's shirts (express authority), perfumes as gift items (implied authority), and also buys a shipment of denim jeans (against express instructions).</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> Al has <strong>express authority</strong> for shirts, <strong>implied authority</strong> for perfumes, and <strong>no authority</strong> (express or implied) for denim because Ed specifically forbade it.</p>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 rounded-r-lg">
+                    <p class="font-bold text-amber-800 dark:text-amber-300">Business Custom and Implied Authority</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-1 text-sm lg:text-base">An agent may have implied authority based on business custom. If an agent has <strong>customarily sold</strong> the same kind of goods for the same price, they have implied authority to sell newly delivered goods for that price &mdash; even without express permission for each individual sale.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Apparent Authority -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">2. Apparent Authority</h2>
+
+                <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-red-500 mb-6">
+                    <h3 class="font-bold text-red-800 dark:text-red-300 text-lg lg:text-xl">Apparent Authority</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">Authority that a third party <strong>reasonably believes</strong> the agent has, based on the principal's words or conduct, <strong>even if the agent does NOT actually have that authority</strong>.</p>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-2 border-amber-300 dark:border-amber-700 rounded-xl p-5 mb-6">
+                    <h4 class="text-lg font-bold text-amber-800 dark:text-amber-300 mb-3">Critical Distinction (Most Heavily Tested)</h4>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                            <p class="font-bold text-blue-700 dark:text-blue-300">Actual Authority</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Between the <strong>principal and agent</strong>. "What did the principal really authorize?"</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                            <p class="font-bold text-red-700 dark:text-red-300">Apparent Authority</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">About what a <strong>third party</strong> reasonably believes. "What does the outsider think the agent can do?"</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 dark:text-gray-300 mt-3 text-sm lg:text-base"><strong>Key Rule:</strong> A principal does NOT grant apparent authority. It arises from a third party's <strong>reasonable belief</strong> that the agent has authority.</p>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-red-400 mb-6">
+                    <p class="font-semibold text-red-800 dark:text-red-300 mb-2">Real-World Scenario: The Denim Purchase</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> Ed told Al never to buy denim. But Ethel, a denim supplier, has no idea about this restriction. She sees Al purchasing all kinds of clothing for Ed's store.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> Al buys denim from Ethel, violating Ed's instructions.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> Ethel had no reason to think Al could not buy denim &mdash; it is a clothing store. Al has <strong>apparent authority</strong> from Ethel's perspective. <strong>Ed is bound by the purchase.</strong> Ed's remedy is to sue Al for disobeying instructions, but Ed still owes Ethel for the denim.</p>
+                </div>
+
+                <div class="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-lg border-l-4 border-indigo-500">
+                    <p class="font-semibold text-indigo-800 dark:text-indigo-300 mb-2">Insurance Example: Apparent Authority</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> An insurance agent has been told by the company to never bind coverage for earthquake risks. A customer asks for earthquake coverage.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> The agent says "Sure, you're covered!" and issues what looks like a valid policy on company letterhead.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> The customer had no way of knowing about the internal restriction. From the customer's perspective, the agent appeared to have authority to sell this coverage. The insurer may be bound under <strong>apparent authority</strong>, even though the agent exceeded actual authority.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Duty to Ascertain & Delegation -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">3. Duty to Ascertain Authority &amp; Delegation</h2>
+
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 border-l-4 border-purple-500 mb-6">
+                    <p class="font-bold text-purple-800 dark:text-purple-300 text-lg">Third Party's Duty to Verify</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">A third party must communicate directly with the principal to confirm the agent's authority <strong>if the agent acts in a way adverse to the principal's best interests</strong>. In plain English: if something smells fishy, the third party has a duty to check with the principal.</p>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                        <p class="text-sm lg:text-base"><strong>Example:</strong> An agent offers to sell company assets at 10% of their value. A buyer should realize this is suspicious and verify with the principal before closing the deal. If the buyer fails to verify, they cannot rely on apparent authority.</p>
+                    </div>
+                </div>
+
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">Delegation of Authority</h3>
+                <div class="bg-red-50 dark:bg-red-900/20 border-l-4 border-red-500 p-4 rounded-r-lg mb-4">
+                    <p class="font-bold text-red-800 dark:text-red-300">General Rule</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-1 text-sm lg:text-base">An agent <strong>cannot delegate duties to others</strong> (subagents). The principal chose this specific agent for a reason &mdash; their skill, judgment, or trustworthiness.</p>
+                </div>
+
+                <h4 class="text-base font-bold text-gray-800 dark:text-gray-100 mb-3">3 Exceptions to the No-Delegation Rule</h4>
+                <div class="grid md:grid-cols-3 gap-4 mb-6">
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border border-green-200 dark:border-green-800">
+                        <p class="font-bold text-green-800 dark:text-green-300">Ministerial Duties</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Routine, mechanical tasks that do not require the agent's personal skill or judgment. Filing paperwork, data entry, etc.</p>
+                        <p class="text-green-600 dark:text-green-400 text-sm font-bold mt-2">CAN delegate</p>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border border-green-200 dark:border-green-800">
+                        <p class="font-bold text-green-800 dark:text-green-300">Customary Appointments</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Situations where delegation is common practice in the industry. If everyone in the business delegates this task, so can the agent.</p>
+                        <p class="text-green-600 dark:text-green-400 text-sm font-bold mt-2">CAN delegate</p>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border border-green-200 dark:border-green-800">
+                        <p class="font-bold text-green-800 dark:text-green-300">Emergency Appointments</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">When an emergency requires immediate delegation because the agent cannot personally handle the situation in time.</p>
+                        <p class="text-green-600 dark:text-green-400 text-sm font-bold mt-2">CAN delegate</p>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-purple-400">
+                    <p class="font-semibold text-purple-800 dark:text-purple-300 mb-2">Real-World Scenario: Delegation</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> An insurance claims adjuster is assigned to personally evaluate a complex commercial property loss. They are swamped with work.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> The adjuster asks their assistant to file the claim paperwork (ministerial duty) but also asks an unqualified friend to evaluate the actual damage (non-ministerial).</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> Delegating the paperwork filing is fine &mdash; it is a ministerial task. But delegating the damage evaluation is <strong>not allowed</strong> because it requires professional judgment and skill, which is why the principal hired this specific adjuster.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Authority Types Visual Flow -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">4. Authority at a Glance</h2>
+
+                <div class="flex items-center gap-4 flex-wrap justify-center mb-6">
+                    <div class="bg-blue-100 dark:bg-blue-900/40 p-4 rounded-lg text-center min-w-[140px]">
+                        <p class="font-bold text-blue-800 dark:text-blue-300">Principal Grants</p>
+                    </div>
+                    <div class="text-2xl text-gray-400">&#8594;</div>
+                    <div class="bg-green-100 dark:bg-green-900/40 p-4 rounded-lg text-center min-w-[140px]">
+                        <p class="font-bold text-green-800 dark:text-green-300">Actual Authority</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">(Express + Implied)</p>
+                    </div>
+                    <div class="text-2xl text-gray-400">&#8594;</div>
+                    <div class="bg-purple-100 dark:bg-purple-900/40 p-4 rounded-lg text-center min-w-[140px]">
+                        <p class="font-bold text-purple-800 dark:text-purple-300">Agent Acts</p>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-4 flex-wrap justify-center mb-6">
+                    <div class="bg-red-100 dark:bg-red-900/40 p-4 rounded-lg text-center min-w-[140px]">
+                        <p class="font-bold text-red-800 dark:text-red-300">Third Party Believes</p>
+                    </div>
+                    <div class="text-2xl text-gray-400">&#8594;</div>
+                    <div class="bg-amber-100 dark:bg-amber-900/40 p-4 rounded-lg text-center min-w-[140px]">
+                        <p class="font-bold text-amber-800 dark:text-amber-300">Apparent Authority</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">(Reasonable belief)</p>
+                    </div>
+                    <div class="text-2xl text-gray-400">&#8594;</div>
+                    <div class="bg-purple-100 dark:bg-purple-900/40 p-4 rounded-lg text-center min-w-[140px]">
+                        <p class="font-bold text-purple-800 dark:text-purple-300">Principal Bound</p>
+                    </div>
+                </div>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm lg:text-base">
+                        <thead>
+                            <tr class="bg-purple-600 text-white">
+                                <th class="p-3 lg:p-4 text-left rounded-tl-lg">Authority Type</th>
+                                <th class="p-3 lg:p-4 text-left">Source</th>
+                                <th class="p-3 lg:p-4 text-left">Between Whom?</th>
+                                <th class="p-3 lg:p-4 text-left rounded-tr-lg">Principal Bound?</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-bold text-green-700 dark:text-green-300">Express</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Principal's explicit instructions</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Principal and Agent</td>
+                                <td class="p-3 lg:p-4 text-green-600 dark:text-green-400 font-bold">Yes</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <td class="p-3 lg:p-4 font-bold text-blue-700 dark:text-blue-300">Implied</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Reasonably necessary or business custom</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Principal and Agent</td>
+                                <td class="p-3 lg:p-4 text-green-600 dark:text-green-400 font-bold">Yes</td>
+                            </tr>
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-bold text-red-700 dark:text-red-300">Apparent</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Third party's reasonable belief</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Principal and Third Party</td>
+                                <td class="p-3 lg:p-4 text-green-600 dark:text-green-400 font-bold">Yes (but can sue agent)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cheat Sheet -->
+        <section id="cheat-sheet" class="mb-10">
+            <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 border-2 border-dashed border-gray-300 dark:border-gray-600">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100">Cheat Sheet</h2>
+                    <span class="text-sm text-gray-500 dark:text-gray-400">Print this page for quick reference</span>
+                </div>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Authority Types</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li><strong>Express:</strong> Principal explicitly grants ("do X")</li>
+                            <li><strong>Implied:</strong> Reasonably necessary or business custom</li>
+                            <li><strong>Apparent:</strong> Third party's reasonable belief (NOT from principal)</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Delegation Exceptions (3)</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>1. Ministerial duties (routine, no judgment needed)</li>
+                            <li>2. Customary appointments (industry practice)</li>
+                            <li>3. Emergency appointments (immediate need)</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Key Rules</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>Apparent authority is NOT granted by principal</li>
+                            <li>Third party must verify if agent acts suspiciously</li>
+                            <li>Principal bound by apparent authority (sue agent separately)</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Memory Trick</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li><strong>Actual</strong> = between principal and Agent (A and A)</li>
+                            <li><strong>Apparent</strong> = what the third Party Perceives (P and P)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Traps -->
+        <section class="mb-10">
+            <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-xl p-5 lg:p-6">
+                <h2 class="text-2xl font-bold text-red-800 dark:text-red-300 mb-4">Exam Trap Alerts</h2>
+                <div class="space-y-3">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">1. "Apparent Authority Comes From the Principal"</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">WRONG. Apparent authority arises from the <strong>third party's reasonable belief</strong>, NOT from anything the principal intentionally grants. The principal's conduct may create the appearance, but the authority itself is based on what the outsider perceives.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">2. "An Undisclosed Principal's Agent Can Have Apparent Authority"</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">WRONG. By definition, apparent authority requires the third party to know an agency exists. If the principal is <strong>undisclosed</strong>, the third party does not know there IS an agent, so apparent authority is impossible.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">3. Implied Authority vs. Apparent Authority</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">These are NOT the same thing. <strong>Implied authority</strong> is real authority the principal intended (based on necessity or custom). <strong>Apparent authority</strong> may exist even when the principal explicitly denied permission. The difference: who is the authority "between"?</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">4. Agent Cannot Delegate Judgment Calls</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The exam may describe an agent passing off important decisions to someone else. Only <strong>ministerial</strong> (routine) tasks can be delegated. Anything requiring professional skill, judgment, or discretion must be done by the agent personally.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Reference Summary -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-purple-600 to-purple-800 rounded-xl p-6 text-white">
+                <h2 class="text-2xl font-bold mb-6">Quick Reference Summary</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Express Authority</p>
+                        <p class="text-sm text-purple-100">Principal explicitly grants. "I told you to do X."</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Implied Authority</p>
+                        <p class="text-sm text-purple-100">Reasonably necessary or business custom. Part of the job.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Apparent Authority</p>
+                        <p class="text-sm text-purple-100">Third party's reasonable belief. NOT granted by principal.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Delegation Rule</p>
+                        <p class="text-sm text-purple-100">Cannot delegate except: ministerial, customary, emergency.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Duty to Verify</p>
+                        <p class="text-sm text-purple-100">Third party must check if agent acts adversely to principal.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Ministerial Duties</p>
+                        <p class="text-sm text-purple-100">Routine tasks not requiring personal skill or judgment.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="../part-1/index.html" class="text-gray-400 hover:text-white transition-colors">&larr; Part 1: Agency Creation</a>
+                <span class="text-gray-500">Part 2 of 3</span>
+                <a href="../part-3/index.html" class="text-gray-400 hover:text-white transition-colors">Part 3: Duties, Liability &amp; Termination &rarr;</a>
+            </div>
+        </div>
+    </footer>
+
+    <button onclick="openAITutor({topic: 'Authority in Agency Law', concepts: ['Actual authority (express and implied)', 'Apparent authority', 'Difference between actual and apparent authority', 'Duty to ascertain scope of authority', 'Delegation of authority', 'Ministerial duties', 'Business custom and implied authority'], keywords: ['express authority', 'implied authority', 'apparent authority', 'actual authority', 'delegation', 'ministerial duties', 'scope of authority', 'business custom']})" class="fixed bottom-6 right-6 bg-purple-600 hover:bg-purple-700 text-white p-4 rounded-full shadow-xl hover:scale-110 transition-all z-50" title="AI Tutor">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+    </button>
+</body>
+</html>

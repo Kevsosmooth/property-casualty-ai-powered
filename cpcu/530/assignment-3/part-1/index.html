@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 1: Consideration | Assignment 3 | CPCU 530</title>
+    <link rel="icon" type="image/svg+xml" href="../../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config = { darkMode: 'class' }</script>
+    <link rel="stylesheet" href="../../../../css/styles.css">
+    <script src="../../../../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') { document.documentElement.classList.remove('dark'); }
+        function toggleTheme() { document.documentElement.classList.toggle('dark'); localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light'); }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="showAPIKeySetup()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings"><svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg></button>
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/></svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>
+        </button>
+    </div>
+
+    <header class="bg-gradient-to-r from-purple-600 to-purple-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap gap-2 text-sm mb-2">
+                <a href="../../../../index.html" class="text-purple-200 hover:text-white">Home</a><span class="text-purple-300">/</span>
+                <a href="../../../index.html" class="text-purple-200 hover:text-white">CPCU</a><span class="text-purple-300">/</span>
+                <a href="../../index.html" class="text-purple-200 hover:text-white">530</a><span class="text-purple-300">/</span>
+                <a href="../index.html" class="text-purple-200 hover:text-white">Assignment 3</a><span class="text-purple-300">/</span>
+                <span class="text-white">Part 1</span>
+            </div>
+            <h1 class="text-3xl font-bold">Part 1: Consideration</h1>
+            <p class="text-purple-200 mt-1">Assignment 3 &mdash; Consideration, Legal Purpose &amp; Genuine Assent</p>
+        </div>
+    </header>
+
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-wrap gap-2 text-sm">
+                <a href="../index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Intro</a>
+                <span class="bg-purple-600 text-white px-3 py-1 rounded font-medium">Part 1</span>
+                <a href="../part-2/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 2</a>
+                <a href="../part-3/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 3</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-5xl lg:max-w-7xl">
+
+        <!-- Start Here -->
+        <div class="bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/40 dark:to-purple-800/40 rounded-xl p-6 mb-8 border border-blue-300 dark:border-blue-700">
+            <h3 class="text-xl font-bold text-blue-800 dark:text-blue-200 mb-4">Start Here: 5 Things You MUST Know</h3>
+            <div class="grid md:grid-cols-2 gap-3">
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>Valuable</strong> consideration supports a contract. <strong>Good</strong> consideration (love/affection) does NOT</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>Past consideration is NOT valid</strong> &mdash; something already done cannot be consideration for a new promise</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>Promissory estoppel</strong> can enforce a promise without consideration if reliance + injustice</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">4</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>P&amp;C insurance:</strong> no prepayment needed. <strong>Life insurance:</strong> first premium required before coverage</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">5</span>
+                    <p class="text-gray-700 dark:text-gray-300">Courts generally do NOT examine <strong>adequacy</strong> of consideration &mdash; unless fraud/duress is suspected</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 1: What is Consideration -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">1. What is Consideration?</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-6">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg lg:text-xl">Consideration</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg"><strong>Something of value bargained for and exchanged</strong> by the parties. Each side must give something up or promise something in return. Without consideration, a promise is just a gift &mdash; and gifts are not enforceable.</p>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-gray-400 mb-6">
+                    <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Scenario: No Consideration = No Contract</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> Your neighbor says, "I'll mow your lawn every Saturday."</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> You say "Great, thanks!" but promise nothing in return.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> This is a <strong>gratuitous promise</strong> (a gift). If your neighbor stops mowing, you cannot sue &mdash; there was no consideration from your side.</p>
+                </div>
+
+                <!-- Valuable vs Good -->
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">Valuable vs. Good Consideration</h3>
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <p class="font-bold text-green-800 dark:text-green-300 text-lg">Valuable Consideration</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">Something with <strong>actual legal value</strong>: money, services, promises, forbearance. This SUPPORTS a valid contract.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> "I'll pay you $500 if you paint my house." Your promise to pay = valuable consideration for the painter's work.</p>
+                        </div>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                        <p class="font-bold text-red-800 dark:text-red-300 text-lg">Good Consideration</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">Based on <strong>natural love, affection, or moral duty</strong>. This is NOT sufficient to support a contract.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> A father promises his daughter $10,000 as a wedding gift "because I love you." If he backs out, the daughter cannot enforce this &mdash; love is "good" but not legally sufficient consideration.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Types of Consideration -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">2. Types of Consideration</h2>
+
+                <!-- Forbearance -->
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 border-l-4 border-purple-500 mb-4">
+                    <p class="font-bold text-purple-800 dark:text-purple-300 text-lg">Forbearance</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">Giving up a <strong>legal right</strong> as your part of the bargain. Agreeing NOT to do something you are legally entitled to do counts as consideration.</p>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                        <p class="text-sm lg:text-base"><strong>Example:</strong> An employee discovers $2,000 underpayment. Employer says "I'll pay $1,500 now if you agree not to sue." The employee's forbearance (giving up the right to sue) is valid consideration.</p>
+                    </div>
+                </div>
+
+                <!-- Present/Past/Future -->
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3 mt-6">Present, Past &amp; Future Consideration</h3>
+                <div class="grid md:grid-cols-3 gap-4 mb-4">
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border border-green-200 dark:border-green-800">
+                        <p class="font-bold text-green-800 dark:text-green-300">Present</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Given at the time of the contract. Example: paying cash now.</p>
+                        <p class="text-green-600 dark:text-green-400 text-sm font-bold mt-2">VALID</p>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border border-green-200 dark:border-green-800">
+                        <p class="font-bold text-green-800 dark:text-green-300">Future</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">A promise to do something later. Example: "I'll pay next month."</p>
+                        <p class="text-green-600 dark:text-green-400 text-sm font-bold mt-2">VALID</p>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border border-red-200 dark:border-red-800">
+                        <p class="font-bold text-red-800 dark:text-red-300">Past</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Something already done BEFORE the promise. No bargained-for exchange.</p>
+                        <p class="text-red-600 dark:text-red-400 text-sm font-bold mt-2">NOT VALID</p>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-gray-400 mb-6">
+                    <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Scenario: Past Consideration Fails</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> Your neighbor shovels your driveway during a snowstorm without being asked.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> Afterward, you say "Thanks! I'll pay you $50 for that." You later refuse.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> Your neighbor CANNOT enforce your promise. The shoveling was already done (past consideration) before you promised to pay. No bargained-for exchange.</p>
+                </div>
+
+                <!-- Illusory Promise & Existing Obligation -->
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                        <p class="font-bold text-red-800 dark:text-red-300">Illusory Promise = No Consideration</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">If only one side is obligated, there is no consideration. "We may buy goods if we feel like it" = illusory. No commitment, no contract.</p>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                        <p class="font-bold text-red-800 dark:text-red-300">Existing Obligation = No New Consideration</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">Promising to do what you are already legally required to do is NOT valid consideration. A police officer cannot demand payment to investigate a crime &mdash; it is already their duty.</p>
+                    </div>
+                </div>
+
+                <!-- Accord and Satisfaction -->
+                <div class="bg-indigo-50 dark:bg-indigo-900/20 rounded-lg p-4 border-l-4 border-indigo-500">
+                    <p class="font-bold text-indigo-800 dark:text-indigo-300 text-lg">Accord and Satisfaction</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">An agreement to <strong>substitute a different performance</strong> than originally required, PLUS the carrying out of that substitute agreement. Partial payment can satisfy a full debt when:</p>
+                    <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-2 space-y-1">
+                        <li>There is a <strong>bona fide dispute</strong></li>
+                        <li><strong>Payment before</strong> the debt is due</li>
+                        <li>An <strong>accord and satisfaction</strong> agreement</li>
+                        <li>A <strong>composition of creditors</strong> (multiple creditors agree to accept partial payment)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Adequacy & Exceptions -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">3. Adequacy of Consideration &amp; Exceptions</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 border-l-4 border-blue-500 mb-6">
+                    <p class="font-bold text-blue-800 dark:text-blue-300">Adequacy Rule</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">Courts generally do <strong>NOT</strong> examine whether consideration is "fair." As long as something of legal value is exchanged, courts will not second-guess the deal. Exception: consideration so inadequate it suggests <strong>fraud, duress, or unconscionability</strong>.</p>
+                </div>
+
+                <!-- Promissory Estoppel -->
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">Exceptions to the Consideration Requirement</h3>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-2 border-amber-300 dark:border-amber-700 rounded-xl p-5 mb-4">
+                    <h4 class="text-lg font-bold text-amber-800 dark:text-amber-300 mb-3">Promissory Estoppel (Most Heavily Tested)</h4>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mb-3">Enforces a promise made <strong>without consideration</strong> to preserve justice. Three elements:</p>
+                    <div class="grid md:grid-cols-3 gap-3 mb-4">
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                            <span class="bg-amber-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold mx-auto">1</span>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm mt-2">Promise made <strong>expecting reliance</strong></p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                            <span class="bg-amber-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold mx-auto">2</span>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm mt-2">Other party <strong>justifiably relies</strong></p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                            <span class="bg-amber-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold mx-auto">3</span>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm mt-2"><strong>Only enforcement</strong> achieves justice</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                        <p class="font-semibold text-amber-800 dark:text-amber-300 mb-2">Insurance Example: Promissory Estoppel</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> An insurance agent tells a restaurant owner, "Don't worry, your new policy covers flood damage &mdash; I'll have it added."</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> The owner relies on this and cancels their standalone flood policy. A flood destroys the restaurant. The insurer denies the claim because flood coverage was never actually added.</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> The owner may invoke <strong>promissory estoppel</strong>. The agent made a clear promise, the owner reasonably relied by canceling other coverage, and injustice can only be avoided by enforcing the promise.</p>
+                    </div>
+                </div>
+
+                <!-- Other Exceptions -->
+                <div class="grid md:grid-cols-3 gap-4">
+                    <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border border-gray-200 dark:border-gray-600">
+                        <p class="font-bold text-gray-800 dark:text-gray-200">Charitable Subscriptions</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm mt-1">Promises to donate to charities often enforced without consideration, especially when the charity relied on the pledge.</p>
+                    </div>
+                    <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border border-gray-200 dark:border-gray-600">
+                        <p class="font-bold text-gray-800 dark:text-gray-200">UCC Exceptions</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm mt-1">The UCC has specific situations where consideration is not required (e.g., firm offers by merchants).</p>
+                    </div>
+                    <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border border-gray-200 dark:border-gray-600">
+                        <p class="font-bold text-gray-800 dark:text-gray-200">State Statutory</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm mt-1">Some states have enacted laws making certain promises enforceable without consideration.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Insurance Consideration -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">4. Consideration in Insurance Contracts</h2>
+
+                <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-lg p-4 mb-6">
+                    <p class="font-bold text-red-800 dark:text-red-300 text-lg">Critical Distinction for the Exam</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-1 text-base lg:text-lg">P&amp;C and life insurance have very different rules about when premium payment is required.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                    <div class="bg-green-50 dark:bg-green-900/20 p-5 rounded-lg border-l-4 border-green-500">
+                        <p class="font-bold text-green-800 dark:text-green-300 text-lg mb-2">Property-Casualty Insurance</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-2">
+                            <li>Prepaying the premium is <strong>NOT required</strong> for the contract to be valid</li>
+                            <li>If a loss occurs before first payment, the insurer <strong>MUST pay the claim</strong></li>
+                            <li>The premium obligation begins as soon as coverage starts</li>
+                            <li>Insurer can pursue unpaid premiums separately</li>
+                        </ul>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> A business gets a commercial property policy Jan 1 with $5,000/year premium billed quarterly. On Jan 15, before paying anything, a fire destroys the building. The insurer MUST pay the claim. They can then bill for the unpaid premium.</p>
+                        </div>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 p-5 rounded-lg border-l-4 border-red-500">
+                        <p class="font-bold text-red-800 dark:text-red-300 text-lg mb-2">Life Insurance</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-2">
+                            <li>Coverage does <strong>NOT take effect</strong> until the first premium is paid</li>
+                            <li>Nonpayment can result in <strong>forfeiture of policy rights</strong></li>
+                            <li>This is a <strong>stricter requirement</strong> than P&amp;C</li>
+                        </ul>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> John applies for life insurance but has not yet paid the first premium. He dies in a car accident. The insurer can likely <strong>DENY the claim</strong>. The policy never took effect because the first premium was never paid.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cheat Sheet -->
+        <section id="cheat-sheet" class="mb-10">
+            <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 border-2 border-dashed border-gray-300 dark:border-gray-600">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100">Cheat Sheet</h2>
+                    <span class="text-sm text-gray-500 dark:text-gray-400">Print this page for quick reference</span>
+                </div>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Consideration Rules</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>Valuable = supports contract. Good (love) = does NOT</li>
+                            <li>Past consideration = NOT valid</li>
+                            <li>Illusory promise = NOT valid consideration</li>
+                            <li>Existing obligation = NOT new consideration</li>
+                            <li>Courts do NOT judge adequacy (unless fraud/duress)</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Exceptions &amp; Insurance</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>Promissory estoppel: promise + reliance + injustice</li>
+                            <li>Charitable subscriptions: often enforced without consideration</li>
+                            <li>P&amp;C: no prepayment needed for valid contract</li>
+                            <li>Life: first premium MUST be paid before coverage starts</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Traps -->
+        <section class="mb-10">
+            <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-xl p-5 lg:p-6">
+                <h2 class="text-2xl font-bold text-red-800 dark:text-red-300 mb-4">Exam Trap Alerts</h2>
+                <div class="space-y-3">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">1. Past Consideration Is NOT Consideration</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">If someone already did something before you promised to pay, that is past consideration and CANNOT support a contract. The exam loves this trap.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">2. P&amp;C vs. Life Insurance Premium</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">P&amp;C = no prepayment needed, coverage is valid even before first premium paid. Life = coverage does NOT start until first premium is paid. This is a HUGE exam distinction.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">3. Promissory Estoppel Requires All 3 Elements</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Promise expecting reliance + justifiable reliance + only enforcement achieves justice. If any one is missing, promissory estoppel fails.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">4. Good Consideration vs. Valuable Consideration</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">"Good" sounds positive but is NOT legally sufficient. Only "valuable" consideration (money, services, forbearance) supports a contract. Love and affection = gratuitous promise.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Reference Summary -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-purple-600 to-purple-800 rounded-xl p-6 text-white">
+                <h2 class="text-2xl font-bold mb-6">Quick Reference Summary</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Consideration</p>
+                        <p class="text-sm text-purple-100">Something of value bargained for and exchanged.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Forbearance</p>
+                        <p class="text-sm text-purple-100">Giving up a legal right as consideration.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Accord &amp; Satisfaction</p>
+                        <p class="text-sm text-purple-100">Substituting different performance + carrying it out.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Promissory Estoppel</p>
+                        <p class="text-sm text-purple-100">Enforces promise without consideration when reliance + injustice.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">P&amp;C Premium</p>
+                        <p class="text-sm text-purple-100">No prepayment needed. Claims paid even before first payment.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Life Premium</p>
+                        <p class="text-sm text-purple-100">First premium required. No payment = no coverage.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="../index.html" class="text-gray-400 hover:text-white transition-colors">&larr; Assignment 3 Overview</a>
+                <span class="text-gray-500">Part 1 of 3</span>
+                <a href="../part-2/index.html" class="text-gray-400 hover:text-white transition-colors">Part 2: Legal Purpose &rarr;</a>
+            </div>
+        </div>
+    </footer>
+
+    <button onclick="openAITutor({topic: 'Consideration in Contract Law', concepts: ['Valuable vs good consideration', 'Forbearance', 'Past consideration invalid', 'Illusory promises', 'Existing obligation rule', 'Accord and satisfaction', 'Promissory estoppel', 'P&C vs life insurance premium rules'], keywords: ['consideration', 'forbearance', 'promissory estoppel', 'gratuitous promise', 'accord and satisfaction', 'illusory promise', 'valuable consideration', 'good consideration']})" class="fixed bottom-6 right-6 bg-purple-600 hover:bg-purple-700 text-white p-4 rounded-full shadow-xl hover:scale-110 transition-all z-50" title="AI Tutor">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+    </button>
+</body>
+</html>

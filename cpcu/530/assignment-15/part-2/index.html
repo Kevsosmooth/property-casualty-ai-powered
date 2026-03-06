@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 2: Cross-Border Insurance | Assignment 15 | CPCU 530</title>
+    <link rel="icon" type="image/svg+xml" href="../../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config = { darkMode: 'class' }</script>
+    <link rel="stylesheet" href="../../../../css/styles.css">
+    <script src="../../../../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') { document.documentElement.classList.remove('dark'); }
+        function toggleTheme() { document.documentElement.classList.toggle('dark'); localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light'); }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="showAPIKeySetup()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings"><svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg></button>
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/></svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>
+        </button>
+    </div>
+
+    <header class="bg-gradient-to-r from-purple-600 to-purple-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap gap-2 text-sm mb-2">
+                <a href="../../../../index.html" class="text-purple-200 hover:text-white">Home</a><span class="text-purple-300">/</span>
+                <a href="../../../index.html" class="text-purple-200 hover:text-white">CPCU</a><span class="text-purple-300">/</span>
+                <a href="../../index.html" class="text-purple-200 hover:text-white">530</a><span class="text-purple-300">/</span>
+                <a href="../index.html" class="text-purple-200 hover:text-white">Assignment 15</a><span class="text-purple-300">/</span>
+                <span class="text-white">Part 2</span>
+            </div>
+            <h1 class="text-3xl font-bold">Part 2: Cross-Border Insurance</h1>
+            <p class="text-purple-200 mt-1">Assignment 15 &mdash; International Legal Environment</p>
+        </div>
+    </header>
+
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-wrap gap-2 text-sm">
+                <a href="../index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Intro</a>
+                <a href="../part-1/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 1</a>
+                <span class="bg-purple-600 text-white px-3 py-1 rounded font-medium">Part 2</span>
+                <a href="../part-3/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 3</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-5xl lg:max-w-7xl">
+
+        <!-- Start Here -->
+        <div class="bg-gradient-to-r from-green-100 to-blue-100 dark:from-green-900/40 dark:to-blue-800/40 rounded-xl p-6 mb-8 border border-green-300 dark:border-green-700">
+            <h3 class="text-xl font-bold text-green-800 dark:text-green-200 mb-4">Start Here: 5 Things You MUST Know</h3>
+            <div class="grid md:grid-cols-2 gap-3">
+                <div class="flex items-start">
+                    <span class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>Expropriation</strong> = government takes property, often NO compensation. <strong>Eminent domain</strong> = MUST pay fair value</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
+                    <p class="text-gray-700 dark:text-gray-300">Three accounting standards: <strong>SAP</strong> (U.S. regulatory), <strong>GAAP</strong> (U.S. investors), <strong>IFRS</strong> (international)</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>Territorial tax</strong> = only domestic income. <strong>Worldwide tax</strong> = all income everywhere</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">4</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>Currency risk</strong> can create unexpected gains or losses when premiums and claims are in different currencies</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">5</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>Bearer shares</strong> = anonymous ownership. <strong>Registered shares</strong> = name on record. Tax havens use bearer shares for privacy</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 1: International Insurance Players -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">1. The International Insurance Market</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-6">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">The international insurance market has two segments: <strong>life insurance</strong> and <strong>nonlife insurance</strong> (property-casualty). Major players come from the U.S., UK, Germany, Switzerland, France, Japan, and increasingly China.</p>
+                </div>
+
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">Major Insurers and Brokers</h3>
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <p class="font-bold text-green-800 dark:text-green-300 text-lg">Major Insurers</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-2 space-y-1">
+                            <li><strong>Lloyd's of London</strong> (UK) &mdash; unique marketplace, not a single company</li>
+                            <li><strong>Munich Re, Allianz</strong> (Germany)</li>
+                            <li><strong>Swiss Re, Zurich</strong> (Switzerland)</li>
+                            <li><strong>AXA</strong> (France)</li>
+                            <li><strong>Ping An, China Life</strong> (China &mdash; now among world's largest)</li>
+                        </ul>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <p class="font-bold text-green-800 dark:text-green-300 text-lg">Major Brokers</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-2">International brokers facilitate risk placement across borders.</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-2 space-y-1">
+                            <li><strong>Marsh</strong></li>
+                            <li><strong>Aon</strong></li>
+                            <li><strong>WTW</strong> (Willis Towers Watson)</li>
+                        </ul>
+                        <p class="text-gray-500 dark:text-gray-400 text-xs lg:text-sm mt-2">Note: Significant broker consolidation has occurred since 2008.</p>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-gray-400">
+                    <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Scenario: Why International Brokers Matter</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> A U.S. manufacturer with factories in 12 countries needs property and liability coverage in each location.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> An international broker like Marsh coordinates the entire program &mdash; placing coverage with local admitted insurers in each country, arranging a master policy for gaps, and negotiating reinsurance.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> Without the broker, the manufacturer would need to separately navigate insurance regulations, languages, and markets in 12 different countries. The broker's global network and local expertise makes it possible.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Currency Risk -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">2. Currency and Foreign Exchange Risk</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-6">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg lg:text-xl">Pegged Currency</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">A currency whose value is <strong>fixed (pegged)</strong> to another currency, typically the U.S. dollar or Euro. The government says: "1 of our dollars always equals X of their dollars."</p>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 rounded-r-lg mb-6">
+                    <p class="font-bold text-amber-800 dark:text-amber-300">Why Currency Risk Matters for Insurance</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-1 text-sm lg:text-base">Premiums may be collected in one currency, claims paid in another. Exchange rate fluctuations can create unexpected gains or losses that have nothing to do with underwriting performance.</p>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-gray-400">
+                    <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Scenario: Currency Risk in Action</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> A U.S. insurer writes a policy for a UK company. The premium is 1 million British pounds.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> When the policy was written, 1 GBP = $1.50, so the premium was worth $1.5 million. Six months later when a claim is paid, 1 GBP = $1.30.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> The insurer received $1.5M worth of premium but claims are now valued in cheaper pounds &mdash; a gain in this case. But it could easily go the other way, creating an unexpected loss.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Expropriation -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">3. Expropriation vs. Eminent Domain</h2>
+
+                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                    <div class="bg-red-50 dark:bg-red-900/20 p-5 rounded-lg border-l-4 border-red-500">
+                        <p class="font-bold text-red-800 dark:text-red-300 text-lg mb-2">Expropriation</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Government's lawful acquisition of property <strong>without the owner's consent</strong>, and often <strong>without compensation</strong>. The government takes your property and you may get nothing.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> A new government nationalizes all foreign-owned financial services. The U.S. insurer loses its buildings and subsidiary with no payment.</p>
+                        </div>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/20 p-5 rounded-lg border-l-4 border-green-500">
+                        <p class="font-bold text-green-800 dark:text-green-300 text-lg mb-2">Eminent Domain</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Government's power to confiscate private property <strong>for public use</strong>. The U.S. Constitution requires <strong>just compensation</strong> &mdash; the government MUST pay fair market value.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> A city needs land for a highway. It takes a homeowner's property but pays appraised market value.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-gray-400">
+                    <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Scenario: Political Risk Insurance</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> A U.S. insurance company owns office buildings and a subsidiary in Country X.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> A new government comes to power and nationalizes all foreign-owned financial services companies.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> The insurer loses everything with no compensation. This is why <strong>political risk insurance</strong> exists &mdash; to protect against exactly this scenario. Recent examples include Russia seizing foreign company assets after 2022 sanctions.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Accounting Standards -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">4. Accounting Standards: SAP, GAAP, and IFRS</h2>
+
+                <div class="grid md:grid-cols-3 gap-4 mb-6">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-l-4 border-blue-500">
+                        <p class="font-bold text-blue-800 dark:text-blue-300 text-lg">SAP</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-xs lg:text-sm">Statutory Accounting Principles</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-2">Used in the U.S. for <strong>regulatory reporting</strong> to state insurance departments. Conservative &mdash; focuses on ability to pay claims (solvency). Excludes "non-admitted" assets like furniture and goodwill.</p>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <p class="font-bold text-green-800 dark:text-green-300 text-lg">GAAP</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-xs lg:text-sm">Generally Accepted Accounting Principles</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-2">Used in the U.S. for <strong>financial reporting to investors</strong>. More complete picture of profitability. Includes assets that SAP excludes.</p>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border-l-4 border-purple-500">
+                        <p class="font-bold text-purple-800 dark:text-purple-300 text-lg">IFRS</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-xs lg:text-sm">International Financial Reporting Standards</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-2">Used in <strong>most countries outside the U.S.</strong> Set by the IASB. Required in the EU, UK, and many other jurisdictions. IFRS 17 (2023) is a major overhaul for insurance contracts.</p>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-gray-400">
+                    <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Scenario: Same Insurer, Three Different Reports</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> A global insurer headquartered in London has a U.S. subsidiary. It collects $100M in premiums.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> The insurer must prepare IFRS statements for UK regulators, SAP statements for U.S. state regulators, and GAAP statements for U.S. investors.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> The same $100M in premiums can produce <strong>different profit figures</strong> under each standard because of how they treat reserves, investments, and expenses. The insurer may appear profitable under GAAP but financially strained under SAP, or vice versa.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Taxation -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">5. International Taxation</h2>
+
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">Five Approaches to Taxing International Earnings</h3>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
+                        <p class="font-bold text-blue-800 dark:text-blue-300">Territorial Tax</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Only taxes income earned <strong>within the country's borders</strong>. Earn it abroad? Your home country does not tax it.</p>
+                    </div>
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
+                        <p class="font-bold text-blue-800 dark:text-blue-300">Worldwide Tax</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Taxes <strong>all income regardless of where earned</strong>. The U.S. traditionally used this (now modified territorial).</p>
+                    </div>
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
+                        <p class="font-bold text-blue-800 dark:text-blue-300">Border Tax Adjustment</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Taxes applied to imports and removed from exports. Like a VAT adjustment at the border.</p>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border border-red-200 dark:border-red-800">
+                        <p class="font-bold text-red-800 dark:text-red-300">Earnings Stripping</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1"><strong>Tax avoidance strategy.</strong> Company reduces taxable income by making excessive interest payments to a related company in a low-tax country.</p>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border border-red-200 dark:border-red-800">
+                        <p class="font-bold text-red-800 dark:text-red-300">Inversion (Expatriation)</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Company <strong>reincorporates in a foreign country</strong> with lower taxes. Moves legal home but keeps U.S. operations. Largely curtailed by legislation.</p>
+                    </div>
+                </div>
+
+                <!-- Tax Havens & Key Terms -->
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">Tax Havens and Key Terms</h3>
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border-l-4 border-purple-500">
+                        <p class="font-bold text-purple-800 dark:text-purple-300 text-lg">Tax Haven</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-2">A country with very low or no taxes that attracts foreign businesses to incorporate there (e.g., Bermuda, Cayman Islands).</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-2 font-semibold">When establishing a subsidiary in a tax haven, consider:</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1 space-y-1">
+                            <li>Tax structure and privacy law enforcement</li>
+                            <li>Language and judicial system type</li>
+                            <li>Political stability and independence</li>
+                            <li>Costs of establishing the subsidiary</li>
+                        </ul>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-lg border border-indigo-200 dark:border-indigo-800">
+                            <p class="font-bold text-indigo-800 dark:text-indigo-300">Transfer Price</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">The price one subsidiary charges another of the same parent for goods/services. Can be manipulated to shift profits to low-tax countries.</p>
+                        </div>
+                        <div class="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-lg border border-indigo-200 dark:border-indigo-800">
+                            <p class="font-bold text-indigo-800 dark:text-indigo-300">Repatriation of Earnings</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Moving earnings from foreign affiliates back to the U.S. parent. Some countries restrict or tax this.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <p class="font-bold text-green-800 dark:text-green-300">Registered Shares</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Stock certificate with the owner's <strong>name officially recorded</strong> in company books. The company knows who its owners are.</p>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                        <p class="font-bold text-red-800 dark:text-red-300">Bearer Shares</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Ownership belongs to <strong>whoever physically holds</strong> the certificate. No registered owner &mdash; provides anonymity. Now banned or restricted in most jurisdictions due to AML rules.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cheat Sheet -->
+        <section id="cheat-sheet" class="mb-10">
+            <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 border-2 border-dashed border-gray-300 dark:border-gray-600">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100">Cheat Sheet</h2>
+                    <span class="text-sm text-gray-500 dark:text-gray-400">Print this page for quick reference</span>
+                </div>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Financial Risks</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>Currency risk = premiums/claims in different currencies</li>
+                            <li>Pegged currency = fixed to USD or Euro</li>
+                            <li>Expropriation = government takes, often NO compensation</li>
+                            <li>Eminent domain = government takes, MUST pay fair value</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Accounting Standards</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>SAP = U.S. regulatory, conservative, solvency-focused</li>
+                            <li>GAAP = U.S. investor reporting, more complete</li>
+                            <li>IFRS = international, IFRS 17 effective 2023</li>
+                            <li>Same premiums, different profit figures under each</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Tax Concepts</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>Territorial = only domestic income taxed</li>
+                            <li>Worldwide = all income everywhere taxed</li>
+                            <li>Transfer pricing = shifting profits between subsidiaries</li>
+                            <li>Tax haven = low/no tax, attracts foreign incorporation</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Key Players</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>Insurers: Lloyd's, Munich Re, Swiss Re, AXA, Allianz</li>
+                            <li>Brokers: Marsh, Aon, WTW</li>
+                            <li>Bearer shares = anonymous. Registered = on record</li>
+                            <li>Repatriation = moving foreign earnings back to U.S.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Traps -->
+        <section class="mb-10">
+            <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-xl p-5 lg:p-6">
+                <h2 class="text-2xl font-bold text-red-800 dark:text-red-300 mb-4">Exam Trap Alerts</h2>
+                <div class="space-y-3">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">1. Expropriation vs. Eminent Domain</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Expropriation = often NO compensation. Eminent domain = MUST compensate (U.S. constitutional requirement). Do NOT confuse these &mdash; the exam tests this distinction directly.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">2. Territorial vs. Worldwide Tax</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Territorial = only taxes income earned within the country. Worldwide = taxes ALL income everywhere. The U.S. now uses a modified territorial system (since 2017 tax reform).</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">3. SAP vs. GAAP vs. IFRS</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The same insurer can look profitable under one standard and struggling under another. SAP is conservative (solvency focus), GAAP is more complete (profitability focus), IFRS is the international standard.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">4. Bearer Shares vs. Registered Shares</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Bearer = anonymous ownership (whoever holds the physical certificate). Registered = name on record. Bearer shares are associated with tax havens and secrecy but are now largely banned.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">5. Earnings Stripping and Inversion Are Tax AVOIDANCE Strategies</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">These are not legitimate tax systems &mdash; they are strategies companies use to reduce tax burdens. Know the difference between the five approaches to taxation.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Reference Summary -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-purple-600 to-purple-800 rounded-xl p-6 text-white">
+                <h2 class="text-2xl font-bold mb-6">Quick Reference Summary</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Expropriation</p>
+                        <p class="text-sm text-purple-100">Government takes property, often without compensation. Political risk insurance protects against this.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Eminent Domain</p>
+                        <p class="text-sm text-purple-100">Government takes property for public use but MUST pay just compensation.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">SAP / GAAP / IFRS</p>
+                        <p class="text-sm text-purple-100">Three accounting frameworks. Same insurer, different results under each.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Tax Haven</p>
+                        <p class="text-sm text-purple-100">Low/no tax country attracting foreign incorporation. Consider: tax, privacy, stability, costs.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Transfer Price</p>
+                        <p class="text-sm text-purple-100">Intercompany pricing that can shift profits to low-tax jurisdictions.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Currency Risk</p>
+                        <p class="text-sm text-purple-100">Exchange rate changes create unexpected gains/losses on international policies.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="../part-1/index.html" class="text-gray-400 hover:text-white transition-colors">&larr; Part 1: International Law Basics</a>
+                <span class="text-gray-500">Part 2 of 3</span>
+                <a href="../part-3/index.html" class="text-gray-400 hover:text-white transition-colors">Part 3: Global Compliance &rarr;</a>
+            </div>
+        </div>
+    </footer>
+
+    <button onclick="openAITutor({topic: 'Cross-Border Insurance', concepts: ['International insurance market players', 'Lloyd of London', 'Major brokers: Marsh, Aon, WTW', 'Currency risk and pegged currencies', 'Expropriation vs eminent domain', 'SAP vs GAAP vs IFRS accounting', 'Territorial vs worldwide tax systems', 'Tax havens and transfer pricing', 'Bearer shares vs registered shares', 'Repatriation of earnings'], keywords: ['expropriation', 'eminent domain', 'SAP', 'GAAP', 'IFRS', 'tax haven', 'transfer price', 'bearer share', 'pegged currency', 'earnings stripping', 'inversion']})" class="fixed bottom-6 right-6 bg-purple-600 hover:bg-purple-700 text-white p-4 rounded-full shadow-xl hover:scale-110 transition-all z-50" title="AI Tutor">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+    </button>
+</body>
+</html>

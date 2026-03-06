@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 2: Insurable Interest, Subrogation &amp; Warranties | Assignment 5 | CPCU 530</title>
+    <link rel="icon" type="image/svg+xml" href="../../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config = { darkMode: 'class' }</script>
+    <link rel="stylesheet" href="../../../../css/styles.css">
+    <script src="../../../../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') { document.documentElement.classList.remove('dark'); }
+        function toggleTheme() { document.documentElement.classList.toggle('dark'); localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light'); }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="showAPIKeySetup()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings"><svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg></button>
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/></svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>
+        </button>
+    </div>
+
+    <header class="bg-gradient-to-r from-purple-600 to-purple-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap gap-2 text-sm mb-2">
+                <a href="../../../../index.html" class="text-purple-200 hover:text-white">Home</a><span class="text-purple-300">/</span>
+                <a href="../../../index.html" class="text-purple-200 hover:text-white">CPCU</a><span class="text-purple-300">/</span>
+                <a href="../../index.html" class="text-purple-200 hover:text-white">530</a><span class="text-purple-300">/</span>
+                <a href="../index.html" class="text-purple-200 hover:text-white">Assignment 5</a><span class="text-purple-300">/</span>
+                <span class="text-white">Part 2</span>
+            </div>
+            <h1 class="text-3xl font-bold">Part 2: Insurable Interest, Subrogation &amp; Warranties</h1>
+            <p class="text-purple-200 mt-1">Assignment 5 &mdash; Insurance Contract Law</p>
+        </div>
+    </header>
+
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-wrap gap-2 text-sm">
+                <a href="../index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Intro</a>
+                <a href="../part-1/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 1</a>
+                <span class="bg-purple-600 text-white px-3 py-1 rounded font-medium">Part 2</span>
+                <a href="../part-3/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 3</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-5xl lg:max-w-7xl">
+
+        <!-- Start Here -->
+        <div class="bg-gradient-to-r from-green-100 to-blue-100 dark:from-green-900/40 dark:to-blue-800/40 rounded-xl p-6 mb-8 border border-green-300 dark:border-green-700">
+            <h3 class="text-xl font-bold text-green-800 dark:text-green-200 mb-4">Start Here: 5 Things You MUST Know</h3>
+            <div class="grid md:grid-cols-2 gap-3">
+                <div class="flex items-start">
+                    <span class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>Property insurance</strong>: insurable interest required at <strong>time of loss</strong>. <strong>Life insurance</strong>: required at <strong>time policy is taken out</strong></p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>Subrogation</strong> = insurer pays your claim, then steps into your shoes to recover from the wrongdoer</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>Representations</strong> = substantial truth is enough. <strong>Warranties</strong> = strict compliance required</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">4</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>Contribute-to-loss statutes</strong> make it HARDER for insurers to void policies &mdash; the lie must relate to the actual loss</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">5</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>Incontestable clause</strong> (life/health): after ~2 years, insurer CANNOT contest the policy for misrepresentation</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 1: Insurable Interest -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">1. Insurable Interest</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-6">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg lg:text-xl">Definition</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">An <strong>insurable interest</strong> is a financial interest in the subject of insurance that would cause the insured to suffer a financial loss if the insured event occurs. You must have a financial stake in the thing you are insuring &mdash; without it, insurance becomes gambling.</p>
+                </div>
+
+                <!-- Critical Timing Distinction -->
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-2 border-amber-300 dark:border-amber-700 rounded-xl p-5 mb-6">
+                    <h3 class="text-lg font-bold text-amber-800 dark:text-amber-300 mb-3">Critical Timing Distinction (Heavily Tested)</h3>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                            <p class="font-bold text-green-700 dark:text-green-300 text-lg">Property &amp; Casualty</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Insurable interest must exist <strong>at the time of loss</strong> (not necessarily when the policy is purchased).</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                            <p class="font-bold text-blue-700 dark:text-blue-300 text-lg">Life Insurance</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Insurable interest must exist <strong>at the time the policy is taken out</strong> (not at the time of death).</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Property Example -->
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-gray-400 mb-4">
+                    <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Scenario: Property Insurance &mdash; No Interest at Loss</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> Maria buys fire insurance on a warehouse she owns. Six months later, she sells the warehouse to Tom but forgets to cancel the policy.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> The warehouse burns down after the sale.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> Maria <strong>CANNOT collect</strong> because she had no insurable interest at the time of loss &mdash; she no longer owned the warehouse.</p>
+                </div>
+
+                <!-- Life Example -->
+                <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500 mb-6">
+                    <p class="font-semibold text-green-800 dark:text-green-300 mb-2">Real-World Scenario: Life Insurance &mdash; Interest at Inception Is Enough</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> A company takes out a life insurance policy on its CEO (the company has insurable interest because the CEO's death would cause financial harm).</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> The CEO retires 5 years later. The company keeps the policy. The former CEO dies 10 years after retirement.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> The company <strong>CAN collect</strong>. Life insurance only requires insurable interest at inception, not at the time of death.</p>
+                </div>
+
+                <!-- Who Has Insurable Interest -->
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">Who Has Insurable Interest?</h3>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
+                        <p class="font-bold text-blue-800 dark:text-blue-300">Property Insurance</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1 space-y-1">
+                            <li>Property owners</li>
+                            <li>Lessees (tenants)</li>
+                            <li>Lienholders and secured creditors</li>
+                            <li>Life estate holders</li>
+                            <li>Anyone who would suffer genuine financial loss</li>
+                        </ul>
+                    </div>
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
+                        <p class="font-bold text-blue-800 dark:text-blue-300">Life Insurance</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1 space-y-1">
+                            <li>Spouses, parents, children</li>
+                            <li>Business partners</li>
+                            <li>Key employees (company takes out policy)</li>
+                            <li>Creditors (for the amount of the debt)</li>
+                            <li>Anyone on their own life (always has interest)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Subrogation -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">2. Subrogation</h2>
+
+                <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-green-500 mb-6">
+                    <h3 class="font-bold text-green-800 dark:text-green-300 text-lg lg:text-xl">Definition</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg"><strong>Subrogation</strong> is the right of an insurer who has paid a loss to recover the amount of the payment from a third party who caused the loss. After paying your claim, the insurer <strong>"steps into your shoes"</strong> and can pursue the wrongdoer.</p>
+                </div>
+
+                <!-- How It Works Flow -->
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">How Subrogation Works</h3>
+                <div class="flex items-center gap-3 flex-wrap mb-6">
+                    <div class="bg-blue-100 dark:bg-blue-900/40 p-3 lg:p-4 rounded-lg text-center flex-1 min-w-[140px]">
+                        <p class="font-bold text-blue-800 dark:text-blue-300 text-sm lg:text-base">Step 1</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-xs lg:text-sm mt-1">You suffer a covered loss caused by someone else</p>
+                    </div>
+                    <div class="text-2xl text-gray-400 flex-shrink-0">&rarr;</div>
+                    <div class="bg-green-100 dark:bg-green-900/40 p-3 lg:p-4 rounded-lg text-center flex-1 min-w-[140px]">
+                        <p class="font-bold text-green-800 dark:text-green-300 text-sm lg:text-base">Step 2</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-xs lg:text-sm mt-1">Your insurer pays your claim</p>
+                    </div>
+                    <div class="text-2xl text-gray-400 flex-shrink-0">&rarr;</div>
+                    <div class="bg-purple-100 dark:bg-purple-900/40 p-3 lg:p-4 rounded-lg text-center flex-1 min-w-[140px]">
+                        <p class="font-bold text-purple-800 dark:text-purple-300 text-sm lg:text-base">Step 3</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-xs lg:text-sm mt-1">Insurer "steps into your shoes" to sue the wrongdoer</p>
+                    </div>
+                    <div class="text-2xl text-gray-400 flex-shrink-0">&rarr;</div>
+                    <div class="bg-amber-100 dark:bg-amber-900/40 p-3 lg:p-4 rounded-lg text-center flex-1 min-w-[140px]">
+                        <p class="font-bold text-amber-800 dark:text-amber-300 text-sm lg:text-base">Step 4</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-xs lg:text-sm mt-1">Recovery goes to insurer (up to the amount paid)</p>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-gray-400 mb-4">
+                    <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Scenario: Subrogation After a Car Crash</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> A drunk driver runs a red light and crashes into your parked car, causing $15,000 in damage.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> Your auto insurer pays your $15,000 claim under collision coverage.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> Your insurer now has a <strong>subrogation right</strong>. They can sue the drunk driver (or his insurer) to recover the $15,000 they paid you.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                        <p class="font-bold text-red-800 dark:text-red-300">Key Rule: Do Not Harm Subrogation Rights</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">The insured must NOT sign a release with the at-fault party before the insurer can pursue recovery. If you do, you may have to <strong>reimburse the insurer</strong>.</p>
+                    </div>
+                    <div class="bg-amber-50 dark:bg-amber-900/30 p-4 rounded-lg border-l-4 border-amber-500">
+                        <p class="font-bold text-amber-800 dark:text-amber-300">Key Rule: No Subrogation in Life Insurance</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Subrogation does NOT apply to life insurance. You cannot subrogate against someone for causing a death and recover life insurance proceeds.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Third-Party Interests -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">3. Third-Party Interests</h2>
+
+                <!-- Direct-Action Statutes -->
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 border-l-4 border-purple-500 mb-6">
+                    <p class="font-bold text-purple-800 dark:text-purple-300 text-lg">Direct-Action Statute</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">A law that permits a negligence victim to sue an insurer directly, or to sue both the insurer and the wrongdoer jointly. <strong>Without</strong> a direct-action statute, the victim must first sue the wrongdoer, get a judgment, and THEN go after the insurer.</p>
+                </div>
+
+                <!-- Equitable Conversion -->
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">Real Estate vs. Goods: Who Bears Risk of Loss?</h3>
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                        <p class="font-bold text-red-800 dark:text-red-300 text-lg">Real Estate (Equitable Conversion)</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-2">Once a binding agreement of sale is signed, the <strong>BUYER bears the risk of loss</strong>, even before the deed transfer. The buyer should get insurance immediately.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> Jim signs a binding agreement to buy a house. Before closing, a fire damages the house. Under equitable conversion, <strong>Jim (the buyer) bears the risk</strong> even though he does not have the deed yet.</p>
+                        </div>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <p class="font-bold text-green-800 dark:text-green-300 text-lg">Goods (Seller Bears Risk)</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-2">For personal property (goods), the <strong>SELLER bears all risk of loss</strong> until the buyer either receives or refuses the goods. This is opposite from real estate.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> You buy a TV from a store. Before you pick it up, a fire destroys it. The <strong>store (seller) bears the loss</strong> &mdash; they must deliver another TV or refund you.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Representations -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">4. Representations</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-6">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg lg:text-xl">Definition</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">A <strong>representation</strong> is a statement made by the applicant to induce the insurer to enter into the contract. It is <strong>NOT part of the contract itself</strong> &mdash; it is a collateral inducement. For a misrepresentation to void a policy, it must be: (1) a false or misleading statement of (2) a <strong>material fact</strong> that (3) the insurer <strong>actually relied on</strong>.</p>
+                </div>
+
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 border-l-4 border-purple-500 mb-6">
+                    <p class="font-bold text-purple-800 dark:text-purple-300 text-lg">Material Fact Test</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">Would a <strong>reasonable insurer</strong> have made a different decision if it had known the true facts? If yes, the fact is material.</p>
+                </div>
+
+                <!-- Increase-of-Risk vs. Contribute-to-Loss -->
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">Two Statutory Approaches to Misrepresentation</h3>
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg border-l-4 border-amber-500">
+                        <p class="font-bold text-amber-800 dark:text-amber-300 text-lg">Increase-of-Risk Statutes</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-2">Sets standards for determining materiality. If the misrepresentation increased the risk, the insurer can void the policy. <strong>Easier for insurers</strong> to void.</p>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <p class="font-bold text-green-800 dark:text-green-300 text-lg">Contribute-to-Loss Statutes</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-2">Even if the insured lied, if the lie had <strong>nothing to do with the actual loss</strong>, the insurer CANNOT deny the claim. <strong>Harder for insurers</strong> to void.</p>
+                    </div>
+                </div>
+
+                <div class="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-lg border-l-4 border-indigo-500">
+                    <p class="font-semibold text-indigo-800 dark:text-indigo-300 mb-2">Real-World Scenario: The Swimming Pool Lie</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> A homeowner lies on their application about having a swimming pool (they do have one).</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> A tornado destroys the house.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>Under Increase-of-Risk:</strong> Insurer might void the policy because the pool increases the risk.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>Under Contribute-to-Loss:</strong> Insurer <strong>CANNOT void</strong> the policy because the pool had NOTHING to do with the tornado.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Warranties -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">5. Warranties</h2>
+
+                <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-red-500 mb-6">
+                    <h3 class="font-bold text-red-800 dark:text-red-300 text-lg lg:text-xl">Definition</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">A <strong>warranty</strong> is a written or oral statement in a contract that certain facts are true. Warranties are much more serious than representations because they are <strong>part of the contract itself</strong> and are <strong>presumed material</strong> without any need to prove it.</p>
+                </div>
+
+                <!-- Reps vs Warranties Comparison -->
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">Representations vs. Warranties (Critical Exam Comparison)</h3>
+                <div class="overflow-x-auto mb-6">
+                    <table class="w-full text-sm lg:text-base">
+                        <thead>
+                            <tr class="bg-purple-600 text-white">
+                                <th class="p-3 lg:p-4 text-left rounded-tl-lg">Feature</th>
+                                <th class="p-3 lg:p-4 text-left">Representations</th>
+                                <th class="p-3 lg:p-4 text-left rounded-tr-lg">Warranties</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Relationship to contract</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Collateral inducement (NOT part of contract)</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Part of the contract itself</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Materiality</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Must be PROVEN material</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">PRESUMED material automatically</td>
+                            </tr>
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Truth standard</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Substantial truth is sufficient</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Strict compliance required</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Form</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Can be oral, written, or incorporated</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Written in policy or incorporated by reference</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Warranty Types -->
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">Types of Warranties</h3>
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
+                        <p class="font-bold text-blue-800 dark:text-blue-300">Affirmative Warranty</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">A guarantee that specific facts exist <strong>at the time of contract formation</strong>.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> "The building has a sprinkler system" &mdash; must be true at the time the statement is made.</p>
+                        </div>
+                    </div>
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
+                        <p class="font-bold text-blue-800 dark:text-blue-300">Continuing (Promissory) Warranty</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">A guarantee that conditions will <strong>continue to exist throughout</strong> the policy term.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> "The building will maintain a working sprinkler system throughout the policy period" &mdash; must remain true for the life of the policy.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Incontestable Clause -->
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-2 border-amber-300 dark:border-amber-700 rounded-xl p-5 mb-4">
+                    <h3 class="text-lg font-bold text-amber-800 dark:text-amber-300 mb-3">Incontestable Clause (Life, Accident &amp; Health Only)</h3>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mb-3">After the <strong>contestable period</strong> (typically 2 years), the insurer <strong>CANNOT</strong> contest the policy for misrepresentation, concealment, or fraud. This protects policyholders and their beneficiaries.</p>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                        <p class="font-semibold text-amber-800 dark:text-amber-300 mb-2">Example: The Incontestable Clause in Action</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> John lies about his health history on a life insurance application.</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>Within 2 years:</strong> If John dies, the insurer CAN investigate and potentially void the policy.</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>After 2 years:</strong> The incontestable clause kicks in. The insurer <strong>CANNOT contest</strong> the policy. Beneficiaries receive payment.</p>
+                    </div>
+                </div>
+
+                <!-- Lessening Warranty Effects -->
+                <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                    <p class="font-bold text-green-800 dark:text-green-300">How Courts Have Softened Warranty Rules</p>
+                    <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-2 space-y-1">
+                        <li>Interpreting warranties as <strong>affirmative</strong> (point-in-time) rather than continuing</li>
+                        <li>Interpreting policies as <strong>severable</strong> (one warranty breach does not void everything)</li>
+                        <li>NOT treating the word "warranty" as automatically conclusive</li>
+                        <li>Making warranty breach no more burdensome than a material false representation</li>
+                        <li>Preventing insurers from specifying that representations have warranty-level effect</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cheat Sheet -->
+        <section id="cheat-sheet" class="mb-10">
+            <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 border-2 border-dashed border-gray-300 dark:border-gray-600">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100">Cheat Sheet</h2>
+                    <span class="text-sm text-gray-500 dark:text-gray-400">Print this page for quick reference</span>
+                </div>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Insurable Interest &amp; Subrogation</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>Property: interest at TIME OF LOSS</li>
+                            <li>Life: interest at TIME POLICY IS TAKEN OUT</li>
+                            <li>Subrogation: insurer steps into insured's shoes</li>
+                            <li>No subrogation in life insurance</li>
+                            <li>Do not release wrongdoer before insurer subrrogates</li>
+                            <li>Real estate buyer bears risk from agreement of sale</li>
+                            <li>Goods seller bears risk until delivery/acceptance</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Representations &amp; Warranties</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>Representations: collateral, prove materiality, substantial truth</li>
+                            <li>Warranties: part of contract, presumed material, strict compliance</li>
+                            <li>Increase-of-risk = easier for insurer to void</li>
+                            <li>Contribute-to-loss = harder for insurer (lie must relate to loss)</li>
+                            <li>Incontestable clause: after ~2 yrs, cannot contest (life/health)</li>
+                            <li>Affirmative warranty = point in time</li>
+                            <li>Continuing warranty = throughout policy</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Traps -->
+        <section class="mb-10">
+            <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-xl p-5 lg:p-6">
+                <h2 class="text-2xl font-bold text-red-800 dark:text-red-300 mb-4">Exam Trap Alerts</h2>
+                <div class="space-y-3">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">1. Insurable Interest Timing</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Property = at time of LOSS. Life = at time of INCEPTION. This is one of the most tested concepts on the CPCU 530 exam. Do not mix them up.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">2. Warranty Breach Does NOT Require Proof of Materiality</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Warranties are PRESUMED material. A representation must be PROVEN material. This is a critical difference.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">3. Incontestable Clause = Life/Health ONLY</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The incontestable clause applies to life, accident, and health insurance &mdash; NOT to property insurance. Do not assume it covers all lines.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">4. Equitable Conversion = Buyer Bears Risk</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Once a binding real estate agreement is signed, the BUYER bears the risk of loss &mdash; even before getting the deed. This is OPPOSITE for goods (seller bears risk).</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">5. Contribute-to-Loss vs. Increase-of-Risk</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Under contribute-to-loss, a homeowner who lies about a pool cannot have their claim denied for a tornado. The lie must CONTRIBUTE to the loss. Under increase-of-risk, the insurer may still void.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Reference Summary -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-purple-600 to-purple-800 rounded-xl p-6 text-white">
+                <h2 class="text-2xl font-bold mb-6">Quick Reference Summary</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Insurable Interest</p>
+                        <p class="text-sm text-purple-100">Financial stake in insured subject. Required to prevent gambling.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Subrogation</p>
+                        <p class="text-sm text-purple-100">Insurer recovers from wrongdoer after paying claim. No double recovery.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Direct-Action Statute</p>
+                        <p class="text-sm text-purple-100">Lets victim sue insurer directly without first suing the wrongdoer.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Representations</p>
+                        <p class="text-sm text-purple-100">Collateral statement. Must prove material. Substantial truth OK.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Warranties</p>
+                        <p class="text-sm text-purple-100">Part of contract. Presumed material. Strict compliance required.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Incontestable Clause</p>
+                        <p class="text-sm text-purple-100">After ~2 years, insurer cannot contest life/health policy.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="../part-1/index.html" class="text-gray-400 hover:text-white transition-colors">&larr; Part 1: Contract Characteristics</a>
+                <span class="text-gray-500">Part 2 of 3</span>
+                <a href="../part-3/index.html" class="text-gray-400 hover:text-white transition-colors">Part 3: Waiver, Estoppel &amp; Election &rarr;</a>
+            </div>
+        </div>
+    </footer>
+
+    <button onclick="openAITutor({topic: 'Insurable Interest, Subrogation, Representations and Warranties', concepts: ['Insurable interest timing - property vs life', 'Subrogation process and rules', 'Third-party interests and direct-action statutes', 'Equitable conversion for real estate', 'Representations vs warranties - four key differences', 'Increase-of-risk vs contribute-to-loss statutes', 'Incontestable clause', 'Affirmative vs continuing warranties'], keywords: ['insurable interest', 'subrogation', 'direct-action statute', 'equitable conversion', 'representation', 'warranty', 'material fact', 'incontestable clause', 'contribute-to-loss', 'increase-of-risk']})" class="fixed bottom-6 right-6 bg-purple-600 hover:bg-purple-700 text-white p-4 rounded-full shadow-xl hover:scale-110 transition-all z-50" title="AI Tutor">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+    </button>
+</body>
+</html>

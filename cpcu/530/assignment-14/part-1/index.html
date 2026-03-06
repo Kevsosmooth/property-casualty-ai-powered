@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 1: Sole Proprietorships &amp; Partnerships | Assignment 14 | CPCU 530</title>
+    <link rel="icon" type="image/svg+xml" href="../../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config = { darkMode: 'class' }</script>
+    <link rel="stylesheet" href="../../../../css/styles.css">
+    <script src="../../../../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') { document.documentElement.classList.remove('dark'); }
+        function toggleTheme() { document.documentElement.classList.toggle('dark'); localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light'); }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="showAPIKeySetup()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings"><svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg></button>
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/></svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>
+        </button>
+    </div>
+
+    <header class="bg-gradient-to-r from-purple-600 to-purple-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap gap-2 text-sm mb-2">
+                <a href="../../../../index.html" class="text-purple-200 hover:text-white">Home</a><span class="text-purple-300">/</span>
+                <a href="../../../index.html" class="text-purple-200 hover:text-white">CPCU</a><span class="text-purple-300">/</span>
+                <a href="../../index.html" class="text-purple-200 hover:text-white">530</a><span class="text-purple-300">/</span>
+                <a href="../index.html" class="text-purple-200 hover:text-white">Assignment 14</a><span class="text-purple-300">/</span>
+                <span class="text-white">Part 1</span>
+            </div>
+            <h1 class="text-3xl font-bold">Part 1: Sole Proprietorships &amp; Partnerships</h1>
+            <p class="text-purple-200 mt-1">Assignment 14 &mdash; Business Entities</p>
+        </div>
+    </header>
+
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-wrap gap-2 text-sm">
+                <a href="../index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Intro</a>
+                <span class="bg-purple-600 text-white px-3 py-1 rounded font-medium">Part 1</span>
+                <a href="../part-2/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 2</a>
+                <a href="../part-3/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 3</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-5xl lg:max-w-7xl">
+
+        <!-- Start Here -->
+        <div class="bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/40 dark:to-purple-800/40 rounded-xl p-6 mb-8 border border-blue-300 dark:border-blue-700">
+            <h3 class="text-xl font-bold text-blue-800 dark:text-blue-200 mb-4">Start Here: 5 Things You MUST Know</h3>
+            <div class="grid md:grid-cols-2 gap-3">
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
+                    <p class="text-gray-700 dark:text-gray-300">A <strong>sole proprietorship</strong> is the simplest entity &mdash; no filing required, but the owner has <strong>unlimited personal liability</strong></p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
+                    <p class="text-gray-700 dark:text-gray-300">In a <strong>general partnership</strong>, every partner has <strong>unlimited liability</strong> for all partnership debts &mdash; even for other partners' negligence</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
+                    <p class="text-gray-700 dark:text-gray-300">Partners owe each other <strong>fiduciary duties</strong> of trust, loyalty, and good faith &mdash; like agents and trustees</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">4</span>
+                    <p class="text-gray-700 dark:text-gray-300">Upon dissolution, assets are distributed in a <strong>specific order</strong>: outside creditors first, then partner loans, then capital, then surplus</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">5</span>
+                    <p class="text-gray-700 dark:text-gray-300">A <strong>joint venture</strong> is a partnership for a single project &mdash; same liability rules, but limited in scope</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 1: Sole Proprietorships -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">1. Sole Proprietorships</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-6">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg lg:text-xl">Sole Proprietorship</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">The simplest form of business entity. <strong>One person</strong> owns and operates the business. There is no legal separation between the owner and the business &mdash; they are the same legal person.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <p class="font-bold text-green-800 dark:text-green-300 text-lg">Advantages</p>
+                        <ul class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base space-y-1">
+                            <li>No state filing required to form</li>
+                            <li>Complete control over all decisions</li>
+                            <li>Simple tax reporting (Schedule C)</li>
+                            <li>Easy to start and dissolve</li>
+                        </ul>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                        <p class="font-bold text-red-800 dark:text-red-300 text-lg">Disadvantages</p>
+                        <ul class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base space-y-1">
+                            <li><strong>UNLIMITED personal liability</strong></li>
+                            <li>Difficult to raise capital</li>
+                            <li>Business dies with the owner</li>
+                            <li>All risk falls on one person</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-gray-400">
+                    <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Scenario: Unlimited Liability in Action</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> Mike runs a landscaping business as a sole proprietor. He has $20,000 in business equipment and $150,000 in personal savings.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> An employee driving a company truck causes a major accident, injuring three people. The judgment is $500,000.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> Mike is <strong>personally liable</strong> for the entire $500,000. Creditors can seize his business equipment AND his personal savings, car, and even put a lien on his house. There is NO separation between Mike and his business.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Partnership Formation -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">2. Partnership Formation</h2>
+
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-purple-500 mb-6">
+                    <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg lg:text-xl">Partnership</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">An association of <strong>two or more persons</strong> who carry on as <strong>co-owners of a business for profit</strong>. No state filing is required &mdash; a partnership can be formed by a simple handshake. Governed by the <strong>Uniform Partnership Act (UPA)</strong>.</p>
+                </div>
+
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">Key Characteristics</h3>
+                <div class="grid md:grid-cols-3 gap-4 mb-6">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800 text-center">
+                        <p class="font-bold text-blue-800 dark:text-blue-300 text-lg">Shared Profits</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Partners share profits AND losses equally (unless agreed otherwise)</p>
+                    </div>
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800 text-center">
+                        <p class="font-bold text-blue-800 dark:text-blue-300 text-lg">Mutual Agency</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Each partner is an <strong>agent</strong> of the partnership and can bind it in ordinary business</p>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border border-red-200 dark:border-red-800 text-center">
+                        <p class="font-bold text-red-800 dark:text-red-300 text-lg">Unlimited Liability</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Each partner has <strong>unlimited personal liability</strong> for all partnership debts</p>
+                    </div>
+                </div>
+
+                <!-- Partnership by Estoppel -->
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 rounded-r-lg mb-4">
+                    <p class="font-bold text-amber-800 dark:text-amber-300">Partnership by Estoppel</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-1 text-sm lg:text-base">When someone <strong>represents themselves as a partner</strong> (or allows it) and a third party <strong>relies on that representation</strong> to their detriment, that person may be treated as a partner &mdash; even if no formal partnership exists.</p>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>Example:</strong> Dan tells a bank, "My partner Steve and I need a $100,000 loan." Steve is NOT actually a partner but does not correct Dan. The bank lends the money based on both of their credit. If the loan defaults, Steve can be held liable as a "partner by estoppel" because he allowed the bank to rely on the representation.</p>
+                    </div>
+                </div>
+
+                <!-- Common Name Statute -->
+                <div class="bg-indigo-50 dark:bg-indigo-900/20 rounded-lg p-4 border-l-4 border-indigo-500">
+                    <p class="font-bold text-indigo-800 dark:text-indigo-300">Common Name Statute</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-1 text-sm lg:text-base">A law requiring partnerships doing business under a <strong>trade name</strong> (like "Sunrise Plumbing" instead of "Smith & Jones") to <strong>register that name with the state</strong>. This lets the public know who actually owns the business.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Partnership Liability -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">3. Partnership Liability</h2>
+
+                <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-lg p-4 mb-6">
+                    <p class="font-bold text-red-800 dark:text-red-300 text-lg">The Big Risk of General Partnerships</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-1 text-base lg:text-lg">Every partner is <strong>jointly and severally liable</strong> for torts committed by ANY partner acting in the ordinary course of partnership business. This means a creditor can go after <strong>any one partner</strong> for the entire debt.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                        <p class="font-bold text-red-800 dark:text-red-300">Tort Liability</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">ALL partners are jointly and severally liable for torts by any partner in the ordinary course of business. You are personally on the hook even if you did nothing wrong.</p>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <p class="font-bold text-green-800 dark:text-green-300">Criminal Liability</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">Partners are generally <strong>NOT liable</strong> for crimes committed by other partners &mdash; unless they participated in or authorized the criminal act.</p>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-gray-400">
+                    <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Scenario: Why Partnerships Are Risky</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> Alice and Bob are partners in a delivery business. Alice is careful and responsible. Bob sometimes drives recklessly.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> While making a delivery, Bob runs a red light and injures a pedestrian. The pedestrian sues for $300,000.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> Both the partnership AND Alice personally can be held liable for the full $300,000. Even though Alice was not driving and did nothing wrong, she is personally liable because Bob's negligence occurred in the <strong>ordinary course of partnership business</strong>. This is the HUGE risk of general partnerships.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Partners' Relationships -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">4. Partners' Relationships to Each Other</h2>
+
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 border-l-4 border-purple-500 mb-6">
+                    <p class="font-bold text-purple-800 dark:text-purple-300 text-lg">Fiduciary Relationship</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">Every partner owes fiduciary duties to the other partners and the partnership. This means duties of <strong>mutual trust</strong>, <strong>loyalty</strong> (no competing with the partnership), and <strong>good faith</strong> &mdash; similar to duties of an agent or trustee.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
+                        <p class="font-bold text-blue-800 dark:text-blue-300">Financial Relationship</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Each partner shares <strong>equally</strong> in profits and in any surplus remaining on dissolution after all liabilities are paid (unless the agreement says otherwise).</p>
+                    </div>
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
+                        <p class="font-bold text-blue-800 dark:text-blue-300">Right to Inspect Books</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">The partnership must maintain books. <strong>All partners</strong> have the right to inspect them at any time.</p>
+                    </div>
+                </div>
+
+                <!-- Assignment of Interest -->
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 rounded-r-lg mb-4">
+                    <p class="font-bold text-amber-800 dark:text-amber-300">Assignment of Partner's Interest</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-1 text-sm lg:text-base">A partner CAN assign their <strong>financial interest</strong> (right to receive profits) to someone else. However, they CANNOT transfer their <strong>right to participate in management</strong> without the other partners' consent.</p>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>Example:</strong> Partner A assigns their share of profits to their spouse. The spouse receives A's share of profits but has NO right to vote on partnership decisions, inspect books, or participate in management.</p>
+                    </div>
+                </div>
+
+                <!-- Decision Making -->
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">Decision Making</h3>
+                <div class="grid md:grid-cols-2 gap-4 mb-4">
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <p class="font-bold text-green-800 dark:text-green-300">Ordinary Business Matters</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1"><strong>Majority vote</strong> of partners decides. Day-to-day decisions like purchasing supplies, hiring staff, setting prices.</p>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                        <p class="font-bold text-red-800 dark:text-red-300">Extraordinary Matters</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1"><strong>Unanimous consent</strong> usually required. Major decisions like changing the nature of the business, admitting new partners, or selling all assets.</p>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-gray-400">
+                    <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Scenario: Fiduciary Duty Breach</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> Tom and Jerry are partners in a real estate firm. Tom learns about a prime commercial property for sale at a great price.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> Instead of presenting the opportunity to the partnership, Tom buys the property personally and flips it for a $200,000 profit.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> Tom breached his <strong>fiduciary duty of loyalty</strong>. He took a partnership opportunity for personal gain. Jerry can sue Tom, and the court will likely require Tom to turn over the $200,000 profit to the partnership.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Partners and Third Parties -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">5. Relationship of Partners to Third Parties</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 border-l-4 border-blue-500 mb-6">
+                    <p class="font-bold text-blue-800 dark:text-blue-300 text-lg">Apparent Authority (Estoppel)</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">If a partner <strong>appears to have authority</strong> to act and a third party <strong>reasonably relies</strong> on that appearance, the partnership is bound &mdash; even if the partner actually lacked authority.</p>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>Example:</strong> Partner A orders $50,000 worth of inventory from a supplier, even though the other partners told A not to. The supplier had no way of knowing about this internal restriction. The partnership is bound because ordering inventory is within the <strong>ordinary scope of business</strong> for that type of partnership.</p>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-4">
+                    <div class="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-lg border-l-4 border-indigo-500">
+                        <p class="font-bold text-indigo-800 dark:text-indigo-300">Conveying Real Property</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">Under the UPA, if property is held in the partnership's name, <strong>any partner</strong> can transfer it by signing a deed. The partnership IS bound unless the purchaser knew the partner lacked actual authority.</p>
+                    </div>
+                    <div class="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-lg border-l-4 border-indigo-500">
+                        <p class="font-bold text-indigo-800 dark:text-indigo-300">Spouses' Rights</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">The UPA does <strong>NOT</strong> give a partner's spouse any direct rights in partnership property. The spouse has no claim to partnership assets.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: Dissolution -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">6. Dissolution, Winding Up &amp; Termination</h2>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <p class="font-bold text-green-800 dark:text-green-300">Rightful Dissolution</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">Partners agree to dissolve, the partnership term expires, or a partner gives proper notice of withdrawal.</p>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                        <p class="font-bold text-red-800 dark:text-red-300">Wrongful Dissolution</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">A partner dissolves the partnership <strong>in violation of the agreement</strong>. The wrongfully dissolving partner may be liable for <strong>damages</strong>.</p>
+                    </div>
+                </div>
+
+                <!-- Distribution Order -->
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-2 border-amber-300 dark:border-amber-700 rounded-xl p-5 mb-6">
+                    <h3 class="text-lg font-bold text-amber-800 dark:text-amber-300 mb-3">Distribution of Assets Upon Dissolution (MEMORIZE THIS ORDER)</h3>
+                    <div class="flex flex-col md:flex-row items-center gap-3 md:gap-4">
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg text-center flex-1 w-full">
+                            <span class="bg-red-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mx-auto mb-2">1</span>
+                            <p class="font-bold text-gray-800 dark:text-gray-200">Outside Creditors</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-xs lg:text-sm">Pay non-partner debts FIRST</p>
+                        </div>
+                        <div class="text-2xl text-gray-400 hidden md:block">&rarr;</div>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg text-center flex-1 w-full">
+                            <span class="bg-orange-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mx-auto mb-2">2</span>
+                            <p class="font-bold text-gray-800 dark:text-gray-200">Partner Loans</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-xs lg:text-sm">Repay loans partners made to the firm</p>
+                        </div>
+                        <div class="text-2xl text-gray-400 hidden md:block">&rarr;</div>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg text-center flex-1 w-full">
+                            <span class="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mx-auto mb-2">3</span>
+                            <p class="font-bold text-gray-800 dark:text-gray-200">Capital Contributions</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-xs lg:text-sm">Return partners' original investment</p>
+                        </div>
+                        <div class="text-2xl text-gray-400 hidden md:block">&rarr;</div>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg text-center flex-1 w-full">
+                            <span class="bg-green-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mx-auto mb-2">4</span>
+                            <p class="font-bold text-gray-800 dark:text-gray-200">Surplus</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-xs lg:text-sm">Split any remaining assets equally</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 border-l-4 border-blue-500 mb-4">
+                    <p class="font-bold text-blue-800 dark:text-blue-300">Winding Up</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-1 text-sm lg:text-base">The process of settling partnership affairs after dissolution &mdash; collecting debts owed to the partnership, paying obligations, and distributing remaining assets to partners.</p>
+                </div>
+
+                <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-4 border-l-4 border-red-500">
+                    <p class="font-bold text-red-800 dark:text-red-300">Effect on Third Parties</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-1 text-sm lg:text-base">Until third parties receive <strong>notice of dissolution</strong>, they can still hold the partnership liable for <strong>new transactions</strong> entered into by the partners. Always notify business contacts when dissolving!</p>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>Example:</strong> Smith & Jones dissolve their partnership but forget to notify their regular supplier. The supplier ships $10,000 of inventory to the partnership based on a new order from Smith. The partnership (and both partners) are liable because the supplier had no notice of dissolution.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cheat Sheet -->
+        <section id="cheat-sheet" class="mb-10">
+            <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 border-2 border-dashed border-gray-300 dark:border-gray-600">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100">Cheat Sheet</h2>
+                    <span class="text-sm text-gray-500 dark:text-gray-400">Print this page for quick reference</span>
+                </div>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Sole Proprietorship</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>One owner, no filing, no formalities</li>
+                            <li>UNLIMITED personal liability</li>
+                            <li>Taxed on Schedule C (personal return)</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">General Partnership</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>2+ co-owners, no filing required</li>
+                            <li>Jointly and severally liable (torts)</li>
+                            <li>NOT liable for other partners' crimes</li>
+                            <li>Fiduciary duties: trust, loyalty, good faith</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Dissolution Order</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>1. Outside creditors</li>
+                            <li>2. Partner loans</li>
+                            <li>3. Capital contributions</li>
+                            <li>4. Surplus (split equally)</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Key Rules</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>Can assign profits, NOT management rights</li>
+                            <li>Ordinary = majority vote; Extraordinary = unanimous</li>
+                            <li>Third parties bound until notice of dissolution</li>
+                            <li>Spouse has NO rights in partnership property</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Traps -->
+        <section class="mb-10">
+            <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-xl p-5 lg:p-6">
+                <h2 class="text-2xl font-bold text-red-800 dark:text-red-300 mb-4">Exam Trap Alerts</h2>
+                <div class="space-y-3">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">1. Tort vs. Crime Liability</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Partners ARE liable for each other's torts (in ordinary course of business) but generally are NOT liable for each other's crimes. The exam loves testing this distinction.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">2. Assignment Does NOT Transfer Management</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">A partner can assign their right to receive profits, but CANNOT transfer the right to participate in management without the other partners' consent. The assignee gets money, not votes.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">3. Dissolution Order Matters</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Outside creditors are paid FIRST, then partner loans, then capital, then surplus. The exam tests this order. Partners who also loaned money to the firm get paid before partners who only contributed capital.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">4. Partnership by Estoppel</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">You do NOT need a formal agreement to be liable as a partner. If you allow someone to represent you as a partner and a third party relies on it, you can be treated as one.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">5. No Notice = Still Liable</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">After dissolution, until third parties receive notice, partners are still liable for new transactions. Dissolving is not enough &mdash; you must notify everyone.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Reference Summary -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-purple-600 to-purple-800 rounded-xl p-6 text-white">
+                <h2 class="text-2xl font-bold mb-6">Quick Reference Summary</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Sole Proprietorship</p>
+                        <p class="text-sm text-purple-100">One owner, no filing, unlimited liability, simplest entity form.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">General Partnership</p>
+                        <p class="text-sm text-purple-100">2+ co-owners, no filing needed, unlimited liability for all partners.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Joint &amp; Several Liability</p>
+                        <p class="text-sm text-purple-100">Any partner can be sued for the full amount of a partnership tort.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Fiduciary Duties</p>
+                        <p class="text-sm text-purple-100">Trust, loyalty, good faith. Cannot compete or take partnership opportunities.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Dissolution Order</p>
+                        <p class="text-sm text-purple-100">Outside creditors, partner loans, capital contributions, surplus.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Apparent Authority</p>
+                        <p class="text-sm text-purple-100">Partnership bound if partner appears authorized and third party relies.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="../index.html" class="text-gray-400 hover:text-white transition-colors">&larr; Assignment 14 Overview</a>
+                <span class="text-gray-500">Part 1 of 3</span>
+                <a href="../part-2/index.html" class="text-gray-400 hover:text-white transition-colors">Part 2: Corporations &rarr;</a>
+            </div>
+        </div>
+    </footer>
+
+    <button onclick="openAITutor({topic: 'Sole Proprietorships and Partnerships', concepts: ['Sole proprietorship unlimited liability', 'General partnership formation', 'Joint and several tort liability', 'Criminal liability exception', 'Fiduciary duties: trust loyalty good faith', 'Assignment of interest vs management rights', 'Partnership by estoppel', 'Apparent authority', 'Dissolution asset distribution order', 'Rightful vs wrongful dissolution', 'Common name statute', 'Joint ventures'], keywords: ['sole proprietorship', 'partnership', 'unlimited liability', 'joint and several', 'fiduciary duty', 'dissolution', 'winding up', 'apparent authority', 'estoppel', 'UPA']})" class="fixed bottom-6 right-6 bg-purple-600 hover:bg-purple-700 text-white p-4 rounded-full shadow-xl hover:scale-110 transition-all z-50" title="AI Tutor">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+    </button>
+</body>
+</html>

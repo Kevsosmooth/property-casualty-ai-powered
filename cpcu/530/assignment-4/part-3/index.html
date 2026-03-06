@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 3: Discharge, Conditions & Breach | Assignment 4 | CPCU 530</title>
+    <link rel="icon" type="image/svg+xml" href="../../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config = { darkMode: 'class' }</script>
+    <link rel="stylesheet" href="../../../../css/styles.css">
+    <script src="../../../../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') { document.documentElement.classList.remove('dark'); }
+        function toggleTheme() { document.documentElement.classList.toggle('dark'); localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light'); }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="showAPIKeySetup()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings"><svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg></button>
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/></svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>
+        </button>
+    </div>
+
+    <header class="bg-gradient-to-r from-purple-600 to-purple-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap gap-2 text-sm mb-2">
+                <a href="../../../../index.html" class="text-purple-200 hover:text-white">Home</a><span class="text-purple-300">/</span>
+                <a href="../../../index.html" class="text-purple-200 hover:text-white">CPCU</a><span class="text-purple-300">/</span>
+                <a href="../../index.html" class="text-purple-200 hover:text-white">530</a><span class="text-purple-300">/</span>
+                <a href="../index.html" class="text-purple-200 hover:text-white">Assignment 4</a><span class="text-purple-300">/</span>
+                <span class="text-white">Part 3</span>
+            </div>
+            <h1 class="text-3xl font-bold">Part 3: Discharge, Conditions &amp; Breach</h1>
+            <p class="text-purple-200 mt-1">Assignment 4 &mdash; Contracts: Form, Interpretation &amp; Obligations</p>
+        </div>
+    </header>
+
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-wrap gap-2 text-sm">
+                <a href="../index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Intro</a>
+                <a href="../part-1/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 1</a>
+                <a href="../part-2/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 2</a>
+                <span class="bg-purple-600 text-white px-3 py-1 rounded font-medium">Part 3</span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-5xl lg:max-w-7xl">
+
+        <!-- Start Here -->
+        <div class="bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/40 dark:to-purple-800/40 rounded-xl p-6 mb-8 border border-blue-300 dark:border-blue-700">
+            <h3 class="text-xl font-bold text-blue-800 dark:text-blue-200 mb-4">Start Here: 5 Things You MUST Know</h3>
+            <div class="grid md:grid-cols-2 gap-3">
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>Substantial performance</strong> = payment minus deductions for defects. PERFECT performance is NOT required</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>3 condition types:</strong> Precedent (triggers duty), Concurrent (same time), Subsequent (extinguishes duty)</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>Material breach</strong> = contract is over, full damages. <strong>Minor breach</strong> = offset to price, contract continues</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">4</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>Anticipatory breach</strong> lets you sue IMMEDIATELY &mdash; no need to wait until performance was due</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">5</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>Consequential damages</strong> require that the defendant KNEW about probable losses at time of contracting</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 1: Discharge of Contracts -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">1. Discharge of Contracts</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-6">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg lg:text-xl">Discharge</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">"Discharge" means the contract obligations are <strong>ended</strong>. There are several ways a contract can be discharged: performance, agreement, impossibility, or frustration of purpose.</p>
+                </div>
+
+                <!-- Discharge by Performance -->
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">A. Discharge by Performance</h3>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <p class="font-bold text-green-800 dark:text-green-300">Payment</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">The most straightforward: pay what you owe under the contract.</p>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <p class="font-bold text-green-800 dark:text-green-300">Tender of Performance</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">An <strong>offer to perform</strong>. If one party properly tenders and the other refuses, the tendering party is discharged.</p>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <p class="font-bold text-green-800 dark:text-green-300">Personal Satisfaction</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Courts interpret "satisfaction" <strong>objectively</strong>: would a reasonable person be satisfied?</p>
+                    </div>
+                </div>
+
+                <!-- Substantial Performance -->
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-2 border-amber-300 dark:border-amber-700 rounded-xl p-5 mb-6">
+                    <h4 class="text-lg font-bold text-amber-800 dark:text-amber-300 mb-3">Substantial Performance (Heavily Tested)</h4>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-3">Rather than requiring <strong>perfect</strong> performance, courts ask: was the performance <strong>substantial</strong> and done in <strong>good faith</strong>? If yes, the performing party can recover the contract price <strong>minus deductions for defects</strong>.</p>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                        <p class="font-semibold text-amber-800 dark:text-amber-300 mb-2">Real-World Scenario: Wrong Brand of Plumbing</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> A builder constructs a house but installs Brand X plumbing instead of the specified Brand Y (equivalent quality).</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> The homeowner refuses to pay, claiming the contract was not fully performed.</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> The builder has <strong>substantially performed</strong>. The homeowner must pay the full contract price <strong>minus any cost difference</strong> between the two brands. The homeowner cannot refuse to pay entirely.</p>
+                    </div>
+                </div>
+
+                <!-- Time is of the Essence -->
+                <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-4 border-l-4 border-red-500 mb-6">
+                    <p class="font-bold text-red-800 dark:text-red-300 text-lg">"Time Is of the Essence"</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-2">If a contract requires performance by a certain date AND states "time is of the essence," courts will <strong>strictly enforce</strong> that deadline. Missing it is a breach &mdash; no grace period.</p>
+                </div>
+
+                <!-- Discharge by Agreement -->
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">B. Discharge by Agreement</h3>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border-l-4 border-purple-500">
+                        <p class="font-bold text-purple-800 dark:text-purple-300">Accord and Satisfaction</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-2">Parties agree to <strong>substitute a different performance</strong> for what was originally required, and then carry it out.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> You owe $10,000 for construction work. You and the contractor agree you will instead provide $7,000 in cash plus your used truck. When you deliver both, the original debt is discharged.</p>
+                        </div>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border-l-4 border-purple-500">
+                        <p class="font-bold text-purple-800 dark:text-purple-300">Novation</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-2">An agreement to <strong>replace an original party</strong> with a new party. The original party is completely released.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> You sell your business to a buyer. The buyer agrees to take over your contract with a supplier, and the supplier agrees to release you. You are discharged via novation.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Impossibility -->
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">C. Discharge by Impossibility</h3>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 border-l-4 border-blue-500 mb-4">
+                    <p class="font-bold text-blue-800 dark:text-blue-300 text-lg mb-2">Four Causes of Impossibility</p>
+                    <div class="grid md:grid-cols-2 gap-3">
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                            <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mb-1">1</span>
+                            <p class="font-bold text-gray-700 dark:text-gray-300 text-sm">Change in Law</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-xs lg:text-sm">A new law makes performance illegal</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                            <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mb-1">2</span>
+                            <p class="font-bold text-gray-700 dark:text-gray-300 text-sm">Death or Incapacity</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-xs lg:text-sm">Of a party whose personal performance was required</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                            <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mb-1">3</span>
+                            <p class="font-bold text-gray-700 dark:text-gray-300 text-sm">Destruction of Subject Matter</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-xs lg:text-sm">The thing the contract is about is destroyed</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                            <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mb-1">4</span>
+                            <p class="font-bold text-gray-700 dark:text-gray-300 text-sm">Other Party's Act</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-xs lg:text-sm">The other party makes performance impossible</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-gray-400 mb-6">
+                    <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Scenario: Destruction of Subject Matter</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> A venue contracts to host a wedding reception for $15,000.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> A hurricane destroys the venue two weeks before the event.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> Performance is discharged by <strong>impossibility</strong> (destruction of subject matter). The deposit should be returned. Neither party is at fault.</p>
+                </div>
+
+                <!-- Frustration & Impracticability -->
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-lg border-l-4 border-indigo-500">
+                        <p class="font-bold text-indigo-800 dark:text-indigo-300">Frustration of Purpose</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-2">An unexpected event destroys the <strong>principal PURPOSE</strong> of the contract, even though performance is still technically possible.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> You rent a balcony to watch a royal parade. The parade is cancelled. You CAN still use the balcony, but the entire purpose is gone. The contract may be discharged.</p>
+                        </div>
+                    </div>
+                    <div class="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-lg border-l-4 border-indigo-500">
+                        <p class="font-bold text-indigo-800 dark:text-indigo-300">Commercial Impracticability</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-2">Increased cost CAN constitute impracticability if the increase is <strong>drastic and unforeseen</strong>. A mere increase in cost is NOT enough.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> A supplier contracts to sell steel at $500/ton. A war causes steel to jump to $5,000/ton. This drastic, unforeseen increase may qualify. A jump to $600/ton would NOT.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Temporary/Partial + Other -->
+                <div class="grid md:grid-cols-3 gap-4">
+                    <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border border-gray-200 dark:border-gray-600">
+                        <p class="font-bold text-gray-800 dark:text-gray-200">Temporary Impossibility</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm mt-1">Only <strong>suspends</strong> the duty to perform; does NOT permanently discharge it.</p>
+                    </div>
+                    <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border border-gray-200 dark:border-gray-600">
+                        <p class="font-bold text-gray-800 dark:text-gray-200">Statutes of Limitations</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm mt-1">If the time limit for a lawsuit expires, the obligation is effectively discharged.</p>
+                    </div>
+                    <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border border-gray-200 dark:border-gray-600">
+                        <p class="font-bold text-gray-800 dark:text-gray-200">Fraudulent Alteration</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm mt-1">If a party fraudulently alters contract terms, the other party may be discharged.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Conditions -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">2. Conditions in Contracts</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-6">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg lg:text-xl">Condition</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">An event that must occur (or not occur) before a <strong>duty to perform</strong> arises or is discharged. Conditions control WHEN obligations kick in or end.</p>
+                </div>
+
+                <!-- 3 Types -->
+                <div class="grid md:grid-cols-3 gap-4 mb-6">
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <p class="font-bold text-green-800 dark:text-green-300 text-lg">Condition Precedent</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-2">An event that <strong>MUST OCCUR BEFORE</strong> a duty of performance arises.</p>
+                        <p class="text-green-600 dark:text-green-400 text-sm font-bold mt-2">TRIGGERS a duty</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> "I'll buy your house IF I get mortgage approval." Getting the mortgage is a condition precedent &mdash; the purchase duty only kicks in if the loan is approved.</p>
+                        </div>
+                    </div>
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-l-4 border-blue-500">
+                        <p class="font-bold text-blue-800 dark:text-blue-300 text-lg">Condition Concurrent</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-2">An event that must occur <strong>AT THE SAME TIME</strong> as another condition.</p>
+                        <p class="text-blue-600 dark:text-blue-400 text-sm font-bold mt-2">SIMULTANEOUS duties</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> At a home closing, the buyer pays the money and the seller delivers the deed simultaneously. Neither party has to go first.</p>
+                        </div>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                        <p class="font-bold text-red-800 dark:text-red-300 text-lg">Condition Subsequent</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-2">An event that, <strong>IF IT OCCURS</strong>, discharges (ends) a duty of performance.</p>
+                        <p class="text-red-600 dark:text-red-400 text-sm font-bold mt-2">EXTINGUISHES a duty</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> An insurance policy says coverage ends if premiums are not paid within 30 days. Nonpayment is a condition subsequent that terminates coverage.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Visual Flow -->
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-5 border border-purple-200 dark:border-purple-800">
+                    <p class="font-bold text-purple-800 dark:text-purple-300 text-lg mb-3 text-center">How to Remember the 3 Conditions</p>
+                    <div class="flex items-center gap-4 flex-wrap justify-center">
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center min-w-[140px]">
+                            <p class="font-bold text-green-700 dark:text-green-300">Precedent</p>
+                            <p class="text-xs lg:text-sm text-gray-500 dark:text-gray-400">"Before" = turns ON</p>
+                        </div>
+                        <div class="text-2xl text-purple-400">then</div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center min-w-[140px]">
+                            <p class="font-bold text-blue-700 dark:text-blue-300">Concurrent</p>
+                            <p class="text-xs lg:text-sm text-gray-500 dark:text-gray-400">"At same time" = swap</p>
+                        </div>
+                        <div class="text-2xl text-purple-400">then</div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center min-w-[140px]">
+                            <p class="font-bold text-red-700 dark:text-red-300">Subsequent</p>
+                            <p class="text-xs lg:text-sm text-gray-500 dark:text-gray-400">"After" = turns OFF</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Breach of Contract -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">3. Types of Breach</h2>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                        <p class="font-bold text-red-800 dark:text-red-300 text-lg">Repudiation</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-2">A party's <strong>outright refusal</strong> to meet obligations. "I am not going to do what I promised." Flat-out refusal.</p>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                        <p class="font-bold text-red-800 dark:text-red-300 text-lg">Anticipatory Breach</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-2">A party's <strong>unequivocal indication BEFORE</strong> performance is due that they will NOT perform. Avoids "enforced idleness" &mdash; you can sue immediately.</p>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-gray-400 mb-6">
+                    <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Scenario: Anticipatory Breach</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> A caterer for a June wedding announces in March, "We will not be providing services for your event."</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> The couple wants to sue and find a replacement.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> The couple does NOT have to wait until June. The anticipatory breach allows them to <strong>immediately sue</strong> and find a replacement caterer. They also do NOT need to tender their own payment to prove the breach.</p>
+                </div>
+
+                <!-- Material vs Minor -->
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">Material vs. Minor Breach</h3>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-red-50 dark:bg-red-900/20 p-5 rounded-lg border-l-4 border-red-500">
+                        <p class="font-bold text-red-800 dark:text-red-300 text-lg mb-2">Material (Major) Breach</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-2">
+                            <li>Failure to perform a <strong>substantial part</strong> of the contract</li>
+                            <li>Non-breaching party can treat the <strong>entire contract as broken</strong></li>
+                            <li>Can sue for <strong>full damages</strong></li>
+                            <li>Non-breaching party is <strong>discharged</strong> from their own obligations</li>
+                        </ul>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> A roofer is hired to install a new roof but only completes half the job and abandons the project. This is a material breach. The homeowner can hire someone else and sue for all damages.</p>
+                        </div>
+                    </div>
+                    <div class="bg-amber-50 dark:bg-amber-900/20 p-5 rounded-lg border-l-4 border-amber-500">
+                        <p class="font-bold text-amber-800 dark:text-amber-300 text-lg mb-2">Minor Breach</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-2">
+                            <li>Failure to perform a <strong>small part</strong> of the contract</li>
+                            <li><strong>Temporarily suspends</strong> the non-breaching party's duty</li>
+                            <li>Can sue for damages as an <strong>offset to the agreed price</strong></li>
+                            <li>Does <strong>NOT</strong> give the right to treat the entire contract as broken</li>
+                        </ul>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> A painter completes the entire house but uses a slightly different shade of blue on one wall. The homeowner must still pay, minus a deduction for repainting that wall.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Remedies -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">4. Remedies for Breach</h2>
+
+                <!-- Damages Types -->
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">A. Types of Damages</h3>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-l-4 border-blue-500">
+                        <p class="font-bold text-blue-800 dark:text-blue-300">Compensatory Damages</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-2">Money to <strong>make you whole</strong> &mdash; to put you back where you would be if the contract had been performed. Reimburses actual harm.</p>
+                    </div>
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-l-4 border-blue-500">
+                        <p class="font-bold text-blue-800 dark:text-blue-300">Consequential Damages</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-2">Losses that result <strong>indirectly</strong> from a breach, such as lost profits. Only awarded when the defendant <strong>was aware</strong> of the probable occurrence at the time of contracting.</p>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border-l-4 border-purple-500">
+                        <p class="font-bold text-purple-800 dark:text-purple-300">Punitive (Exemplary) Damages</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-2">Payment to <strong>punish</strong> reckless, malicious, or deceitful conduct. Need NOT relate to actual damages. Rare in pure contract disputes.</p>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border-l-4 border-purple-500">
+                        <p class="font-bold text-purple-800 dark:text-purple-300">Extracontractual Damages</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-2">Exceeds usual contract damages. Against insurers for: (1) breach of <strong>good faith and fair dealing</strong>, or (2) <strong>intentional infliction of emotional distress</strong>.</p>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-gray-400 mb-6">
+                    <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Scenario: Consequential Damages</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> A parts supplier contracts to deliver critical components to a factory by Monday.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> The supplier delivers a week late. The factory loses $50,000 in production because it cannot operate without the parts.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> If the supplier <strong>KNEW</strong> at the time of contracting that late delivery would shut down production, consequential damages of $50,000 may be awarded. If the supplier had no idea about the factory's dependency, likely not.</p>
+                </div>
+
+                <!-- Liquidated Damages & Mitigation -->
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg border-l-4 border-amber-500">
+                        <p class="font-bold text-amber-800 dark:text-amber-300">Liquidated Damages</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-2">A <strong>reasonable estimation</strong> of actual damages, agreed to in advance and written into the contract. Must be reasonable &mdash; if it is too high, courts strike it as a <strong>penalty clause</strong>.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> A construction contract states "$500 per day for late completion." If this reasonably estimates the owner's daily losses, it is enforceable. If the owner's actual daily loss is $50, the clause is likely an unenforceable penalty.</p>
+                        </div>
+                    </div>
+                    <div class="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg border-l-4 border-amber-500">
+                        <p class="font-bold text-amber-800 dark:text-amber-300">Mitigation of Damages</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-2">The injured party has a <strong>duty to take reasonable steps</strong> to minimize losses after learning of a breach. You cannot sit back and let damages pile up.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> A tenant breaks their lease. The landlord must make reasonable efforts to find a new tenant rather than leaving the unit empty and suing for the full remaining rent.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Equitable Remedies -->
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">B. Equitable Remedies (When Money Is Not Enough)</h3>
+
+                <div class="grid md:grid-cols-3 gap-4">
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <p class="font-bold text-green-800 dark:text-green-300">Specific Performance</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-2">Court orders the breaching party to <strong>actually DO</strong> what they promised. Most common in real estate (every property is unique). Rare for personal services.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> Seller backs out of selling a historic home. Court orders the sale to proceed because the property is unique.</p>
+                        </div>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <p class="font-bold text-green-800 dark:text-green-300">Injunction</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-2">A court order requiring a party to <strong>act or refrain from acting</strong>.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> Court orders a former employee to stop violating a non-compete agreement.</p>
+                        </div>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <p class="font-bold text-green-800 dark:text-green-300">Reformation</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-2">Court <strong>modifies</strong> a written contract to reflect the parties' actual intent.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> A contract mistakenly lists the wrong property address. Court corrects it to match what was actually agreed.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cheat Sheet -->
+        <section id="cheat-sheet" class="mb-10">
+            <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 border-2 border-dashed border-gray-300 dark:border-gray-600">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100">Cheat Sheet</h2>
+                    <span class="text-sm text-gray-500 dark:text-gray-400">Print this page for quick reference</span>
+                </div>
+                <div class="grid md:grid-cols-3 gap-4">
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Discharge Methods</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>Performance (payment, tender, substantial)</li>
+                            <li>Agreement (accord/satisfaction, novation)</li>
+                            <li>Impossibility (law, death, destruction, other party)</li>
+                            <li>Frustration of purpose (principal purpose gone)</li>
+                            <li>Commercial impracticability (drastic cost)</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">3 Conditions</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>Precedent = triggers duty</li>
+                            <li>Concurrent = simultaneous</li>
+                            <li>Subsequent = extinguishes duty</li>
+                        </ul>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2 mt-3">Breach Types</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>Material = contract over, full damages</li>
+                            <li>Minor = offset, contract continues</li>
+                            <li>Anticipatory = sue immediately</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Remedies</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>Compensatory = make whole</li>
+                            <li>Consequential = indirect losses (knew at contracting)</li>
+                            <li>Punitive = punish bad conduct</li>
+                            <li>Liquidated = pre-agreed reasonable estimate</li>
+                            <li>Specific performance = do it (real estate)</li>
+                            <li>Injunction = act or stop acting</li>
+                            <li>Reformation = correct the contract</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Traps -->
+        <section class="mb-10">
+            <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-xl p-5 lg:p-6">
+                <h2 class="text-2xl font-bold text-red-800 dark:text-red-300 mb-4">Exam Trap Alerts</h2>
+                <div class="space-y-3">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">1. Material Breach vs. Minor Breach</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Material breach = entire contract is over, non-breaching party walks away with full damages. Minor breach = price offset only, the contract CONTINUES. The exam WILL test this distinction.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">2. Substantial Performance Is NOT Perfect Performance</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">If someone substantially performs in good faith, they get paid the contract price MINUS deductions. The other side cannot refuse to pay entirely just because of minor defects.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">3. Consequential Damages Require Knowledge</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The defendant must have been <strong>aware</strong> of the probable losses at the time of contracting. If they did not know, consequential damages are NOT awarded. This is a critical detail.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">4. Condition Precedent vs. Subsequent</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Precedent = must happen BEFORE duty arises (turns ON). Subsequent = if it happens, duty is discharged (turns OFF). Insurance nonpayment clauses are typically conditions subsequent.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">5. Liquidated Damages vs. Penalty</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Liquidated damages must be a <strong>reasonable estimate</strong> of actual harm. If the amount is grossly disproportionate, courts will strike it as an unenforceable penalty clause.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">6. Anticipatory Breach = No Waiting Required</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">If a party announces they will not perform, the aggrieved party can sue immediately. They do NOT have to wait until the performance date, and they do NOT need to tender their own performance first.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">7. Frustration of Purpose vs. Impossibility</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Impossibility = you literally CANNOT perform. Frustration = you CAN perform but the whole point is gone. Both can discharge, but they are different doctrines. The frustrated purpose must be the PRINCIPAL purpose of the contract.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Reference Summary -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-purple-600 to-purple-800 rounded-xl p-6 text-white">
+                <h2 class="text-2xl font-bold mb-6">Quick Reference Summary</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Substantial Performance</p>
+                        <p class="text-sm text-purple-100">Good faith effort = contract price minus deductions for defects.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Novation</p>
+                        <p class="text-sm text-purple-100">Replace an original party with a new one. Original is released.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">4 Causes of Impossibility</p>
+                        <p class="text-sm text-purple-100">Law change, death, destruction, other party's act.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">3 Conditions</p>
+                        <p class="text-sm text-purple-100">Precedent (ON), Concurrent (SWAP), Subsequent (OFF).</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Material vs. Minor Breach</p>
+                        <p class="text-sm text-purple-100">Material = contract over. Minor = offset, contract continues.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Equitable Remedies</p>
+                        <p class="text-sm text-purple-100">Specific performance, injunction, reformation &mdash; when money is not enough.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="../part-2/index.html" class="text-gray-400 hover:text-white transition-colors">&larr; Part 2: Interpretation</a>
+                <span class="text-gray-500">Part 3 of 3</span>
+                <a href="../../assignment-5/index.html" class="text-gray-400 hover:text-white transition-colors">Assignment 5: Insurance Contract Law &rarr;</a>
+            </div>
+        </div>
+    </footer>
+
+    <button onclick="openAITutor({topic: 'Discharge Conditions and Breach of Contract', concepts: ['Discharge by performance (payment, tender, substantial)', 'Time is of the essence', 'Accord and satisfaction vs novation', '4 causes of impossibility', 'Frustration of purpose vs impossibility', 'Commercial impracticability', '3 condition types (precedent concurrent subsequent)', 'Material vs minor breach', 'Anticipatory breach - sue immediately', 'Compensatory vs consequential vs punitive damages', 'Liquidated damages vs penalty clauses', 'Mitigation of damages duty', 'Specific performance injunction reformation'], keywords: ['discharge', 'substantial performance', 'tender', 'novation', 'accord and satisfaction', 'impossibility', 'frustration of purpose', 'commercial impracticability', 'condition precedent', 'condition concurrent', 'condition subsequent', 'repudiation', 'anticipatory breach', 'material breach', 'minor breach', 'compensatory damages', 'consequential damages', 'punitive damages', 'liquidated damages', 'specific performance', 'injunction', 'reformation', 'extracontractual damages', 'mitigation']})" class="fixed bottom-6 right-6 bg-purple-600 hover:bg-purple-700 text-white p-4 rounded-full shadow-xl hover:scale-110 transition-all z-50" title="AI Tutor">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+    </button>
+</body>
+</html>

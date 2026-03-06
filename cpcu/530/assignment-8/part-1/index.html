@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 1: Duty of Care &amp; Breach | Assignment 8 | CPCU 530</title>
+    <link rel="icon" type="image/svg+xml" href="../../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config = { darkMode: 'class' }</script>
+    <link rel="stylesheet" href="../../../../css/styles.css">
+    <script src="../../../../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') { document.documentElement.classList.remove('dark'); }
+        function toggleTheme() { document.documentElement.classList.toggle('dark'); localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light'); }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="showAPIKeySetup()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings"><svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg></button>
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/></svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>
+        </button>
+    </div>
+
+    <header class="bg-gradient-to-r from-purple-600 to-purple-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap gap-2 text-sm mb-2">
+                <a href="../../../../index.html" class="text-purple-200 hover:text-white">Home</a><span class="text-purple-300">/</span>
+                <a href="../../../index.html" class="text-purple-200 hover:text-white">CPCU</a><span class="text-purple-300">/</span>
+                <a href="../../index.html" class="text-purple-200 hover:text-white">530</a><span class="text-purple-300">/</span>
+                <a href="../index.html" class="text-purple-200 hover:text-white">Assignment 8</a><span class="text-purple-300">/</span>
+                <span class="text-white">Part 1</span>
+            </div>
+            <h1 class="text-3xl font-bold">Part 1: Duty of Care &amp; Breach</h1>
+            <p class="text-purple-200 mt-1">Assignment 8 &mdash; Tort Law: Negligence</p>
+        </div>
+    </header>
+
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-wrap gap-2 text-sm">
+                <a href="../index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Intro</a>
+                <span class="bg-purple-600 text-white px-3 py-1 rounded font-medium">Part 1</span>
+                <a href="../part-2/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 2</a>
+                <a href="../part-3/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 3</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-5xl lg:max-w-7xl">
+
+        <!-- Start Here -->
+        <div class="bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/40 dark:to-purple-800/40 rounded-xl p-6 mb-8 border border-blue-300 dark:border-blue-700">
+            <h3 class="text-xl font-bold text-blue-800 dark:text-blue-200 mb-4">Start Here: 5 Things You MUST Know</h3>
+            <div class="grid md:grid-cols-2 gap-3">
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
+                    <p class="text-gray-700 dark:text-gray-300">A <strong>tort</strong> is a civil wrong (not a crime or breach of contract) that causes injury. Three types: negligence, intentional, strict liability</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
+                    <p class="text-gray-700 dark:text-gray-300">Negligence has <strong>4 elements</strong> (ALL required): Legal Duty, Breach, Proximate Cause, Actual Injury &mdash; "Don't Break Cars Intentionally"</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
+                    <p class="text-gray-700 dark:text-gray-300">Duty owed increases: <strong>Trespasser &lt; Licensee &lt; Invitee</strong>. Invitees get the highest protection</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">4</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>Reckless misconduct</strong> is worse than negligence &mdash; it allows punitive damages and defeats some defenses</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">5</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>Negligence per se</strong> = statute violation IS the proof. <strong>Res ipsa loquitur</strong> = "thing speaks for itself" (shifts burden)</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 1: What is a Tort -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">1. What is a Tort?</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-6">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg lg:text-xl">Tort</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">A <strong>wrongful act or omission</strong> (other than a crime or breach of contract) that injures another person and gives rise to a civil action for money damages. The person who commits a tort is called a <strong>tortfeasor</strong>.</p>
+                </div>
+
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">Three Classifications of Torts</h3>
+                <div class="grid md:grid-cols-3 gap-4 mb-6">
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border-l-4 border-purple-500">
+                        <p class="font-bold text-purple-800 dark:text-purple-300">Negligence</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1"><strong>Unintentional</strong> harm caused by failure to exercise reasonable care. The focus of THIS assignment.</p>
+                    </div>
+                    <div class="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-lg border-l-4 border-indigo-500">
+                        <p class="font-bold text-indigo-800 dark:text-indigo-300">Intentional Torts</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1"><strong>Deliberate</strong> wrongful acts (battery, assault, defamation). Covered in Assignment 9.</p>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                        <p class="font-bold text-red-800 dark:text-red-300">Strict Liability</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Liability <strong>without fault</strong> for abnormally dangerous activities or defective products. Covered in Assignment 10.</p>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-gray-400">
+                    <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Scenario: Negligence Tort</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> A driver is texting while driving through a residential neighborhood.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> The driver runs a stop sign and hits a pedestrian, breaking their leg.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> This is a <strong>negligence</strong> tort. The driver did not INTEND to hit anyone, but failed to exercise reasonable care. The pedestrian can sue for medical bills, lost wages, and pain and suffering.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Applicable Law -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">2. Applicable Law &mdash; Which State's Rules Apply?</h2>
+
+                <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-4">When a tort involves parties from different states, the court must decide which state's law to apply. Two key terms: <strong>Forum</strong> = the court/state where the case is tried. <strong>Situs</strong> = the place where the tort occurred.</p>
+
+                <div class="grid md:grid-cols-3 gap-4 mb-6">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
+                        <p class="font-bold text-blue-800 dark:text-blue-300">Lex Loci</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Traditional rule: apply the law of the state <strong>where the tort happened</strong> (the situs).</p>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border border-green-200 dark:border-green-800">
+                        <p class="font-bold text-green-800 dark:text-green-300">Interest Analysis</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Modern approach: apply the law of the state with the <strong>greatest interest in protecting its citizens</strong>.</p>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border border-purple-200 dark:border-purple-800">
+                        <p class="font-bold text-purple-800 dark:text-purple-300">Significant Contacts</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Apply the law of the state with the <strong>most connections</strong> to the case (where parties live, where harm happened).</p>
+                    </div>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 rounded-r-lg">
+                    <p class="font-bold text-amber-800 dark:text-amber-300">Exam Tip</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">These three rules can lead to DIFFERENT state laws being applied to the SAME case. A New Jersey driver injured in Pennsylvania by a New York driver: lex loci = PA law; interest analysis = possibly NJ law; significant contacts = depends on connections.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Four Elements of Negligence -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">3. The Four Elements of Negligence</h2>
+
+                <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-lg p-4 mb-6">
+                    <p class="font-bold text-red-800 dark:text-red-300 text-lg">Critical Rule</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mt-1">The plaintiff must prove <strong>ALL FOUR</strong> elements. If any ONE element is missing, there is NO negligence.</p>
+                </div>
+
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-3 lg:gap-4 mb-6">
+                    <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded-lg text-center border-2 border-blue-300 dark:border-blue-700">
+                        <p class="text-2xl lg:text-3xl font-bold text-blue-600 dark:text-blue-400">D</p>
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300 font-bold">Legal Duty</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400 mt-1">Defendant owed a duty of care</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded-lg text-center border-2 border-green-300 dark:border-green-700">
+                        <p class="text-2xl lg:text-3xl font-bold text-green-600 dark:text-green-400">B</p>
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300 font-bold">Breach</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400 mt-1">Failed to meet that duty</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded-lg text-center border-2 border-amber-300 dark:border-amber-700">
+                        <p class="text-2xl lg:text-3xl font-bold text-amber-600 dark:text-amber-400">C</p>
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300 font-bold">Cause</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400 mt-1">Breach caused the harm</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded-lg text-center border-2 border-red-300 dark:border-red-700">
+                        <p class="text-2xl lg:text-3xl font-bold text-red-600 dark:text-red-400">I</p>
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300 font-bold">Injury</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400 mt-1">Real, measurable harm</p>
+                    </div>
+                </div>
+
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 border-l-4 border-purple-500 mb-4">
+                    <p class="font-bold text-purple-800 dark:text-purple-300">Memory Trick: D-B-C-I</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mt-1">"<strong>D</strong>on't <strong>B</strong>reak <strong>C</strong>ars <strong>I</strong>ntentionally" &mdash; Duty, Breach, Cause, Injury</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Legal Duty -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">4. Element 1: Legal Duty</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-6">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">A legal duty arises when the law recognizes a relationship between parties that requires one to exercise a certain <strong>standard of care</strong> toward the other. Duty can arise by <strong>statute</strong> (traffic laws), <strong>contract</strong> (doctor-patient agreement), or <strong>relationship</strong> (property owner to visitors).</p>
+                </div>
+
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">The Reasonable Person Test</h3>
+                <div class="bg-indigo-50 dark:bg-indigo-900/20 rounded-lg p-4 border-l-4 border-indigo-500 mb-6">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Would a <strong>reasonable, careful, prudent person</strong> have acted the same way under the same circumstances? If not, there is a breach. This is an <strong>objective</strong> standard &mdash; it does not matter what the defendant personally thought was reasonable.</p>
+                </div>
+
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">Duty Owed by Visitor Status</h3>
+                <div class="overflow-x-auto mb-6">
+                    <table class="w-full text-sm lg:text-base">
+                        <thead>
+                            <tr class="bg-purple-600 text-white">
+                                <th class="p-3 lg:p-4 text-left rounded-tl-lg">Visitor Type</th>
+                                <th class="p-3 lg:p-4 text-left">Who They Are</th>
+                                <th class="p-3 lg:p-4 text-left rounded-tr-lg">Duty Owed</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                            <tr class="bg-red-50 dark:bg-red-900/20">
+                                <td class="p-3 lg:p-4 font-bold text-red-800 dark:text-red-300">Trespasser</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">On property WITHOUT permission</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Refrain from <strong>willful/wanton injury</strong> only. No traps, but no duty to make it safe.</td>
+                            </tr>
+                            <tr class="bg-amber-50 dark:bg-amber-900/20">
+                                <td class="p-3 lg:p-4 font-bold text-amber-800 dark:text-amber-300">Licensee</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">On property WITH permission, for THEIR own benefit (friend visiting, salesperson)</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">No willful/wanton injury + <strong>warn of KNOWN hidden dangers</strong></td>
+                            </tr>
+                            <tr class="bg-green-50 dark:bg-green-900/20">
+                                <td class="p-3 lg:p-4 font-bold text-green-800 dark:text-green-300">Invitee</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">On property for MUTUAL benefit or public invitation (customer, patient)</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300"><strong>Reasonable care</strong> to keep premises safe + <strong>actively inspect</strong> for hazards</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-gray-400 mb-6">
+                    <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Scenario: Invitee vs. Licensee</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> A grocery store has a wet floor in aisle 3 after mopping. A customer (invitee) and a door-to-door vendor who walked in (licensee) are both in the store.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> Both slip on the wet floor and are injured.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> The store owes the <strong>customer</strong> (invitee) the highest duty &mdash; they should have put out a wet floor sign AND actively inspected for hazards. For the <strong>vendor</strong> (licensee), the store only needed to warn of dangers it KNEW about. The customer has a stronger negligence claim.</p>
+                </div>
+
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">Special Standards of Care</h3>
+                <div class="grid md:grid-cols-3 gap-4">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
+                        <p class="font-bold text-blue-800 dark:text-blue-300">Persons with Disabilities</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Judged by the standard of a reasonable person <strong>with that same disability</strong>. A blind person is measured against a reasonable blind person.</p>
+                    </div>
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
+                        <p class="font-bold text-blue-800 dark:text-blue-300">Professionals</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Held to a <strong>HIGHER standard</strong> &mdash; the skill/knowledge of an <strong>average member of that profession</strong> in the same community.</p>
+                    </div>
+                    <div class="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg border border-amber-200 dark:border-amber-800">
+                        <p class="font-bold text-amber-800 dark:text-amber-300">Children</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Judged by a child of similar age/intelligence. <strong>BUT</strong>: A minor doing an adult activity (like driving) is held to the <strong>ADULT standard</strong>.</p>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-gray-400 mt-4">
+                    <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Scenario: Professional Standard</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> Dr. Smith, a general practitioner, performs a routine physical exam.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> Dr. Smith fails to notice an obvious lump that any competent doctor would have detected. The patient's cancer goes undiagnosed for a year.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> Dr. Smith breached the <strong>professional standard of care</strong>. He is measured against what an average doctor in his field would have done &mdash; and missing an obvious lump falls below that standard.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Breach of Duty -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">5. Element 2: Breach of Duty</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 border-l-4 border-blue-500 mb-6">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">The defendant <strong>failed to meet the standard of care</strong> that was owed. They didn't do what a reasonable person would have done, or they did something a reasonable person would NOT have done.</p>
+                </div>
+
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">Ordinary Negligence vs. Reckless Misconduct</h3>
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg border-l-4 border-amber-500">
+                        <p class="font-bold text-amber-800 dark:text-amber-300 text-lg">Ordinary Negligence</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">Failure to exercise reasonable care. "I should have been more careful."</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> A driver glances at their phone for a moment and runs a red light.</p>
+                        </div>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                        <p class="font-bold text-red-800 dark:text-red-300 text-lg">Reckless Misconduct</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base"><strong>Conscious disregard</strong> for a known, serious risk. "I know this is dangerous but I don't care." Worse than negligence but less than intentional.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> A delivery driver goes 90 mph through a school zone during dismissal.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 border-l-4 border-purple-500">
+                    <p class="font-bold text-purple-800 dark:text-purple-300 mb-2">Why the Distinction Matters (4 Key Consequences)</p>
+                    <div class="space-y-2 text-gray-700 dark:text-gray-300 text-sm lg:text-base">
+                        <p><strong>1. Defense limitations:</strong> Contributory negligence may NOT defeat reckless misconduct claims (it CAN defeat ordinary negligence)</p>
+                        <p><strong>2. Punitive damages:</strong> Courts can award punitive damages for reckless misconduct (not typically for ordinary negligence)</p>
+                        <p><strong>3. Trespasser liability:</strong> Landowners can be liable for reckless misconduct toward trespassers, but not usually for ordinary negligence</p>
+                        <p><strong>4. Auto guest statutes:</strong> Some states bar recovery for ordinary negligence in guest-passenger cases but ALLOW it for reckless misconduct</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: Proof of Negligence -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">6. Proof of Negligence &mdash; Two Special Doctrines</h2>
+
+                <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-4">Sometimes it is hard to directly prove negligence. The law provides two doctrines to help plaintiffs.</p>
+
+                <!-- Negligence Per Se -->
+                <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-green-500 mb-6">
+                    <h3 class="font-bold text-green-800 dark:text-green-300 text-lg lg:text-xl">Negligence Per Se ("Negligence in Itself")</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">When a defendant <strong>violates a statute</strong> that was designed to protect the plaintiff's class from the type of harm that occurred, the violation IS the proof of negligence. No need to separately prove carelessness.</p>
+                    <div class="grid md:grid-cols-3 gap-3 mt-4">
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                            <span class="bg-green-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold mx-auto">1</span>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm mt-2">Defendant violated a <strong>specific statute</strong></p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                            <span class="bg-green-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold mx-auto">2</span>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm mt-2">Statute was designed to protect <strong>plaintiff's class</strong></p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                            <span class="bg-green-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold mx-auto">3</span>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm mt-2">Harm was the type the statute was designed to <strong>prevent</strong></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-green-400 mb-6">
+                    <p class="font-semibold text-green-800 dark:text-green-300 mb-2">Real-World Scenario: Negligence Per Se</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> A state law requires all construction sites to have guardrails on scaffolding above 10 feet.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> A contractor skips the guardrails on 15-foot scaffolding. A worker falls and breaks both legs.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> This is <strong>negligence per se</strong>. The statute was designed to protect workers (plaintiff's class) from falling (the type of harm). The violation IS the proof &mdash; the worker does not need to separately show the contractor was careless.</p>
+                </div>
+
+                <!-- Res Ipsa Loquitur -->
+                <div class="bg-indigo-50 dark:bg-indigo-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-indigo-500 mb-6">
+                    <h3 class="font-bold text-indigo-800 dark:text-indigo-300 text-lg lg:text-xl">Res Ipsa Loquitur ("The Thing Speaks for Itself")</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">When the plaintiff cannot prove exactly what the defendant did wrong, but circumstances strongly suggest negligence. It <strong>shifts the burden</strong> &mdash; the defendant must explain why they were NOT negligent.</p>
+                    <div class="grid md:grid-cols-2 gap-3 mt-4">
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                            <span class="bg-indigo-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold mx-auto">1</span>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm mt-2">Event <strong>probably wouldn't happen</strong> without negligence</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                            <span class="bg-indigo-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold mx-auto">2</span>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm mt-2">Defendant had <strong>exclusive control</strong> + <strong>superior knowledge</strong></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-indigo-400 mb-4">
+                    <p class="font-semibold text-indigo-800 dark:text-indigo-300 mb-2">Real-World Scenario: Res Ipsa Loquitur</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> A patient goes under general anesthesia for knee surgery.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> After surgery, the patient discovers severe burns on their arm that have nothing to do with the knee operation.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> <strong>Res ipsa loquitur</strong> applies. Burns on an arm during knee surgery do not happen without negligence. The surgical team had exclusive control and superior knowledge. The burden shifts to the medical team to explain.</p>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 rounded-r-lg">
+                    <p class="font-bold text-amber-800 dark:text-amber-300">Exam Tip</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Res ipsa loquitur does NOT automatically win the case. It only creates an <strong>inference</strong> of negligence that the defendant can <strong>rebut</strong> with evidence.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cheat Sheet -->
+        <section id="cheat-sheet" class="mb-10">
+            <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 border-2 border-dashed border-gray-300 dark:border-gray-600">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100">Cheat Sheet</h2>
+                    <span class="text-sm text-gray-500 dark:text-gray-400">Print this page for quick reference</span>
+                </div>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Four Elements of Negligence</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>Legal Duty + Breach + Proximate Cause + Actual Injury</li>
+                            <li>ALL FOUR required. Missing one = no negligence</li>
+                            <li>Memory: D-B-C-I = "Don't Break Cars Intentionally"</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Visitor Hierarchy</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>Trespasser = no willful/wanton injury only</li>
+                            <li>Licensee = warn of KNOWN hidden dangers</li>
+                            <li>Invitee = actively inspect + keep safe (HIGHEST)</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Special Standards</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>Disabled = reasonable person with same disability</li>
+                            <li>Professionals = average member of profession</li>
+                            <li>Children in adult activities = ADULT standard</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Proof Doctrines</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>Negligence per se = statute violation IS the proof</li>
+                            <li>Res ipsa loquitur = "thing speaks for itself"</li>
+                            <li>Res ipsa = inference only, NOT automatic win</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Traps -->
+        <section class="mb-10">
+            <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-xl p-5 lg:p-6">
+                <h2 class="text-2xl font-bold text-red-800 dark:text-red-300 mb-4">Exam Trap Alerts</h2>
+                <div class="space-y-3">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">1. Licensee vs. Invitee Confusion</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">A door-to-door salesperson is a <strong>LICENSEE</strong> (there for their own purpose), NOT an invitee. A customer in a store is an <strong>INVITEE</strong> (mutual benefit). The exam loves this distinction.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">2. Minors Driving = Adult Standard</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Children are normally judged by the child standard, <strong>EXCEPT</strong> when engaging in adult activities like driving a car. Then they are held to the <strong>adult standard of care</strong>.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">3. Negligence Per Se Is Not Unlimited</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">It only applies when the statute was designed to protect the <strong>plaintiff's specific class</strong> from the <strong>type of harm</strong> that occurred. Violating ANY law does NOT automatically equal negligence per se.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">4. Res Ipsa Loquitur Does NOT Mean Automatic Win</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">It creates an <strong>inference</strong> of negligence that shifts the burden. The defendant can still rebut it with evidence showing they were NOT negligent.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">5. Reckless Misconduct Changes Everything</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Contributory negligence may NOT be a defense, punitive damages become available, and landowners can be liable even to trespassers. Know the 4 consequences.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Reference Summary -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-purple-600 to-purple-800 rounded-xl p-6 text-white">
+                <h2 class="text-2xl font-bold mb-6">Quick Reference Summary</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Tort</p>
+                        <p class="text-sm text-purple-100">Civil wrong (not crime/breach of contract) causing injury. Tortfeasor = wrongdoer.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Four Elements</p>
+                        <p class="text-sm text-purple-100">Duty + Breach + Cause + Injury. ALL four required.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Reasonable Person</p>
+                        <p class="text-sm text-purple-100">Objective standard: what would a careful, prudent person do?</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Trespasser</p>
+                        <p class="text-sm text-purple-100">Lowest duty. No willful/wanton injury only.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Licensee</p>
+                        <p class="text-sm text-purple-100">Warn of KNOWN hidden dangers. No duty to inspect.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Invitee</p>
+                        <p class="text-sm text-purple-100">Highest duty. Actively inspect + keep premises safe.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Negligence Per Se</p>
+                        <p class="text-sm text-purple-100">Statute violation = automatic proof if statute protects this class from this harm.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Res Ipsa Loquitur</p>
+                        <p class="text-sm text-purple-100">"Thing speaks for itself." Exclusive control + probably negligence. Shifts burden.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Reckless Misconduct</p>
+                        <p class="text-sm text-purple-100">Conscious disregard of risk. Allows punitive damages, defeats some defenses.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="../index.html" class="text-gray-400 hover:text-white transition-colors">&larr; Assignment 8 Overview</a>
+                <span class="text-gray-500">Part 1 of 3</span>
+                <a href="../part-2/index.html" class="text-gray-400 hover:text-white transition-colors">Part 2: Causation, Damages &amp; Imputed Negligence &rarr;</a>
+            </div>
+        </div>
+    </footer>
+
+    <button onclick="openAITutor({topic: 'Duty of Care and Breach in Negligence', concepts: ['Three classifications of torts', 'Lex loci vs interest analysis vs significant contacts', 'Four elements of negligence (D-B-C-I)', 'Reasonable person test', 'Trespasser vs licensee vs invitee duty hierarchy', 'Special standards: disabilities, professionals, children', 'Breach vs reckless misconduct', 'Negligence per se', 'Res ipsa loquitur'], keywords: ['tort', 'tortfeasor', 'negligence', 'legal duty', 'breach', 'reasonable person', 'trespasser', 'licensee', 'invitee', 'reckless misconduct', 'negligence per se', 'res ipsa loquitur', 'exclusive control', 'forum', 'situs']})" class="fixed bottom-6 right-6 bg-purple-600 hover:bg-purple-700 text-white p-4 rounded-full shadow-xl hover:scale-110 transition-all z-50" title="AI Tutor">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+    </button>
+</body>
+</html>

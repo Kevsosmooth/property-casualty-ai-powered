@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 2: Corporations | Assignment 14 | CPCU 530</title>
+    <link rel="icon" type="image/svg+xml" href="../../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config = { darkMode: 'class' }</script>
+    <link rel="stylesheet" href="../../../../css/styles.css">
+    <script src="../../../../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') { document.documentElement.classList.remove('dark'); }
+        function toggleTheme() { document.documentElement.classList.toggle('dark'); localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light'); }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="showAPIKeySetup()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings"><svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg></button>
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/></svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>
+        </button>
+    </div>
+
+    <header class="bg-gradient-to-r from-purple-600 to-purple-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap gap-2 text-sm mb-2">
+                <a href="../../../../index.html" class="text-purple-200 hover:text-white">Home</a><span class="text-purple-300">/</span>
+                <a href="../../../index.html" class="text-purple-200 hover:text-white">CPCU</a><span class="text-purple-300">/</span>
+                <a href="../../index.html" class="text-purple-200 hover:text-white">530</a><span class="text-purple-300">/</span>
+                <a href="../index.html" class="text-purple-200 hover:text-white">Assignment 14</a><span class="text-purple-300">/</span>
+                <span class="text-white">Part 2</span>
+            </div>
+            <h1 class="text-3xl font-bold">Part 2: Corporations</h1>
+            <p class="text-purple-200 mt-1">Assignment 14 &mdash; Business Entities</p>
+        </div>
+    </header>
+
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-wrap gap-2 text-sm">
+                <a href="../index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Intro</a>
+                <a href="../part-1/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 1</a>
+                <span class="bg-purple-600 text-white px-3 py-1 rounded font-medium">Part 2</span>
+                <a href="../part-3/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 3</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-5xl lg:max-w-7xl">
+
+        <!-- Start Here -->
+        <div class="bg-gradient-to-r from-red-100 to-purple-100 dark:from-red-900/40 dark:to-purple-800/40 rounded-xl p-6 mb-8 border border-red-300 dark:border-red-700">
+            <h3 class="text-xl font-bold text-red-800 dark:text-red-200 mb-4">Start Here: 5 Things You MUST Know</h3>
+            <div class="grid md:grid-cols-2 gap-3">
+                <div class="flex items-start">
+                    <span class="bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
+                    <p class="text-gray-700 dark:text-gray-300">A corporation is a <strong>separate legal entity</strong> &mdash; stockholders have <strong>limited liability</strong> (they can only lose their investment)</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
+                    <p class="text-gray-700 dark:text-gray-300">Courts <strong>pierce the corporate veil</strong> when owners commingle funds, undercapitalize, or ignore formalities</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
+                    <p class="text-gray-700 dark:text-gray-300">A <strong>"foreign" corporation</strong> means incorporated in another STATE (not country) &mdash; another country = <strong>"alien" corporation</strong></p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">4</span>
+                    <p class="text-gray-700 dark:text-gray-300">Only the <strong>STATE</strong> can challenge a <strong>de facto corporation</strong> &mdash; private parties cannot</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">5</span>
+                    <p class="text-gray-700 dark:text-gray-300">Directors owe duties of <strong>care</strong> (act prudently) and <strong>loyalty</strong> (no self-dealing) &mdash; insider trading penalties up to <strong>3x profits</strong></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 1: What Is a Corporation -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">1. What Is a Corporation?</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-6">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg lg:text-xl">Corporation</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">A <strong>legal entity created under state law</strong> that exists separately from its owners (stockholders). Think of it as a "legal person" &mdash; it can own property, enter contracts, sue and be sued, all on its own. The #1 reason to incorporate is <strong>limited liability</strong>.</p>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-gray-400 mb-6">
+                    <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Scenario: Limited Liability Works</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> Sarah invests $10,000 to buy stock in ABC Corp. ABC Corp gets sued and owes $2 million in damages.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> The corporation's assets are used to pay the judgment. Sarah's personal bank account, house, and car are NOT touched.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> Sarah loses her $10,000 investment (stock becomes worthless), but her personal assets are safe. This is limited liability in action.</p>
+                </div>
+
+                <!-- Types of Corporations -->
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">Types of Corporations</h3>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border border-purple-200 dark:border-purple-800">
+                        <p class="font-bold text-purple-800 dark:text-purple-300">Publicly Held</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Stock traded on public exchanges (NYSE, NASDAQ). Many stockholders. Subject to SEC regulations.</p>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border border-purple-200 dark:border-purple-800">
+                        <p class="font-bold text-purple-800 dark:text-purple-300">Privately Held (Close)</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Stock NOT publicly traded. Small number of owners. Think family businesses that incorporated.</p>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border border-purple-200 dark:border-purple-800">
+                        <p class="font-bold text-purple-800 dark:text-purple-300">Professional Corp (PC)</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Formed by doctors, lawyers, accountants. Liable for OWN malpractice but protected from other members' malpractice.</p>
+                    </div>
+                </div>
+
+                <!-- Foreign vs Alien -->
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-2 border-amber-300 dark:border-amber-700 rounded-xl p-5 mb-4">
+                    <h4 class="text-lg font-bold text-amber-800 dark:text-amber-300 mb-3">Critical Distinction: Foreign vs. Alien</h4>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                            <p class="font-bold text-blue-800 dark:text-blue-300 mb-1">Foreign Corporation</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Incorporated in <strong>another STATE</strong>. A Delaware corporation doing business in New Jersey is "foreign" in NJ.</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                            <p class="font-bold text-red-800 dark:text-red-300 mb-1">Alien Corporation</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Incorporated in <strong>another COUNTRY</strong>. A Canadian company doing business in the US is an "alien" corporation.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-indigo-50 dark:bg-indigo-900/20 rounded-lg p-4 border-l-4 border-indigo-500">
+                    <p class="font-bold text-indigo-800 dark:text-indigo-300">Runaway Corporation Statute</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-1 text-sm lg:text-base">A state law designed to prevent corporations from incorporating in one state (like Delaware, known for lenient laws) just to avoid the stricter regulations of the state where they actually do business.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Piercing the Corporate Veil -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">2. Piercing the Corporate Veil</h2>
+
+                <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-red-500 mb-6">
+                    <h3 class="font-bold text-red-800 dark:text-red-300 text-lg lg:text-xl">When Limited Liability FAILS</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">"Piercing the corporate veil" means a court <strong>ignores the corporation's separate identity</strong> and holds stockholders <strong>personally liable</strong>. This happens when owners abuse the corporate form.</p>
+                </div>
+
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">Exceptions to Limited Liability (Exam Favorite)</h3>
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border border-red-200 dark:border-red-800">
+                        <p class="font-bold text-red-800 dark:text-red-300">Unpaid Wages</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Several states hold stockholders liable for employees' <strong>wages and unemployment benefits</strong> earned but unpaid before insolvency.</p>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border border-red-200 dark:border-red-800">
+                        <p class="font-bold text-red-800 dark:text-red-300">Wrongful Acts</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Courts hold stockholders liable when a corporation forms for an <strong>illegal purpose</strong>.</p>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border border-red-200 dark:border-red-800">
+                        <p class="font-bold text-red-800 dark:text-red-300">Ignoring Corporate Identity</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">If stockholders treat the corporation as a <strong>personal piggy bank</strong> &mdash; mixing funds, no records, no meetings &mdash; courts pierce the veil.</p>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border border-red-200 dark:border-red-800">
+                        <p class="font-bold text-red-800 dark:text-red-300">Inadequate Capitalization</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Corporation set up with <strong>laughably little money</strong> relative to its business risks. Signals it was never meant to be a real separate entity.</p>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-gray-400">
+                    <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Scenario: Veil Pierced</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> Bob forms "Bob's Construction LLC" with only $500 in capital. He uses the company bank account to pay his personal mortgage and car payments. He never holds board meetings or keeps minutes.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> A worker is injured on the job and sues. The corporation has no real assets.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> The court "pierces the corporate veil" because Bob treated the corporation as his <strong>alter ego</strong>. Bob is personally liable for the worker's injuries &mdash; his house, car, and savings are all at risk.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Formation -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">3. Corporation Formation</h2>
+
+                <!-- Three Stages -->
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">Three Stages of Forming a Corporation</h3>
+                <div class="flex flex-col md:flex-row items-stretch gap-3 md:gap-4 mb-6">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-l-4 border-blue-500 flex-1">
+                        <span class="bg-blue-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold mb-2">1</span>
+                        <p class="font-bold text-blue-800 dark:text-blue-300">Promoters</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Take initial steps: finding investors, securing space, negotiating contracts. Owe a <strong>fiduciary duty</strong> to the future corporation. Personally liable on pre-incorporation contracts unless the other party agreed to look solely to the corporation.</p>
+                    </div>
+                    <div class="text-2xl text-gray-400 hidden md:flex items-center">&rarr;</div>
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500 flex-1">
+                        <span class="bg-green-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold mb-2">2</span>
+                        <p class="font-bold text-green-800 dark:text-green-300">Incorporation</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">The <strong>incorporator</strong> files articles of incorporation with the state. The state issues a <strong>certificate of incorporation</strong>. The corporation is legally born.</p>
+                    </div>
+                    <div class="text-2xl text-gray-400 hidden md:flex items-center">&rarr;</div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border-l-4 border-purple-500 flex-1">
+                        <span class="bg-purple-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold mb-2">3</span>
+                        <p class="font-bold text-purple-800 dark:text-purple-300">Organizational Meeting</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">First meeting after formation: adopt bylaws, elect officers, issue stock, open bank accounts, handle initial business.</p>
+                    </div>
+                </div>
+
+                <!-- De Jure vs De Facto -->
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <p class="font-bold text-green-800 dark:text-green-300 text-lg">De Jure Corporation ("in law")</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">Formed in <strong>full compliance</strong> with all legal requirements. Its validity <strong>cannot be challenged</strong> by anyone.</p>
+                    </div>
+                    <div class="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg border-l-4 border-amber-500">
+                        <p class="font-bold text-amber-800 dark:text-amber-300 text-lg">De Facto Corporation ("in fact")</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">Has <strong>minor defects</strong> in its formation process. Only the <strong>STATE</strong> (not private parties) can challenge its validity. A private party who dealt with it cannot escape obligations by claiming it was improperly formed.</p>
+                    </div>
+                </div>
+
+                <!-- Articles of Incorporation -->
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 border-l-4 border-blue-500 mb-4">
+                    <p class="font-bold text-blue-800 dark:text-blue-300 text-lg">Articles of Incorporation (Corporate Charter)</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">The corporation's "birth certificate." Typically contains:</p>
+                    <div class="grid md:grid-cols-3 gap-2 mt-3">
+                        <div class="bg-white dark:bg-gray-700 p-2 rounded text-sm text-gray-700 dark:text-gray-300">Corporate name</div>
+                        <div class="bg-white dark:bg-gray-700 p-2 rounded text-sm text-gray-700 dark:text-gray-300">Duration (can be perpetual)</div>
+                        <div class="bg-white dark:bg-gray-700 p-2 rounded text-sm text-gray-700 dark:text-gray-300">Purpose ("any lawful purpose")</div>
+                        <div class="bg-white dark:bg-gray-700 p-2 rounded text-sm text-gray-700 dark:text-gray-300">Shares: number, classes, par value</div>
+                        <div class="bg-white dark:bg-gray-700 p-2 rounded text-sm text-gray-700 dark:text-gray-300">Preemptive rights provisions</div>
+                        <div class="bg-white dark:bg-gray-700 p-2 rounded text-sm text-gray-700 dark:text-gray-300">Stock transfer restrictions</div>
+                        <div class="bg-white dark:bg-gray-700 p-2 rounded text-sm text-gray-700 dark:text-gray-300">Registered office &amp; agent</div>
+                        <div class="bg-white dark:bg-gray-700 p-2 rounded text-sm text-gray-700 dark:text-gray-300">Initial board of directors</div>
+                        <div class="bg-white dark:bg-gray-700 p-2 rounded text-sm text-gray-700 dark:text-gray-300">Incorporators' names &amp; addresses</div>
+                    </div>
+                </div>
+
+                <!-- Ultra Vires -->
+                <div class="bg-indigo-50 dark:bg-indigo-900/20 rounded-lg p-4 border-l-4 border-indigo-500">
+                    <p class="font-bold text-indigo-800 dark:text-indigo-300">Ultra Vires ("Beyond the Powers")</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-1 text-sm lg:text-base">Acts a corporation takes that go <strong>beyond what its charter or state law allows</strong>. If a charter says "manufacture furniture" but the board invests in crypto speculation, a stockholder could challenge this as ultra vires. Most modern charters avoid this by stating purpose as "any lawful purpose."</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Corporate Ownership -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">4. Corporate Ownership &amp; Stock</h2>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-l-4 border-blue-500">
+                        <p class="font-bold text-blue-800 dark:text-blue-300 text-lg">Debt Security (Bond)</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">A <strong>loan</strong> to the corporation. Bondholder is a <strong>creditor</strong>, NOT an owner. Gets fixed interest and money back at maturity.</p>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <p class="font-bold text-green-800 dark:text-green-300 text-lg">Equity Security (Stock)</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">An <strong>ownership share</strong> in the corporation. Stockholders ARE owners. Value depends on company performance.</p>
+                    </div>
+                </div>
+
+                <!-- Common vs Preferred -->
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
+                        <p class="font-bold text-blue-800 dark:text-blue-300">Common Stock</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Basic ownership. <strong>Voting rights</strong>. Dividends not guaranteed. <strong>Last in line</strong> if the company dissolves.</p>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border border-purple-200 dark:border-purple-800">
+                        <p class="font-bold text-purple-800 dark:text-purple-300">Preferred Stock</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1"><strong>Priority</strong> over common stock for dividends and capital distribution upon dissolution. Often <strong>no voting rights</strong>. A hybrid between bond and common stock.</p>
+                    </div>
+                </div>
+
+                <!-- Key Terms -->
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">Key Stock Terms</h3>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-3 mb-6">
+                    <div class="bg-gray-50 dark:bg-gray-700 p-3 rounded-lg border border-gray-200 dark:border-gray-600">
+                        <p class="font-bold text-gray-800 dark:text-gray-200 text-sm">Par Value</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-xs lg:text-sm">Minimum price for initial issuance (legal concept, NOT market value)</p>
+                    </div>
+                    <div class="bg-gray-50 dark:bg-gray-700 p-3 rounded-lg border border-gray-200 dark:border-gray-600">
+                        <p class="font-bold text-gray-800 dark:text-gray-200 text-sm">Stated Capital</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-xs lg:text-sm">Total par value of all issued shares &mdash; protected floor for creditors</p>
+                    </div>
+                    <div class="bg-gray-50 dark:bg-gray-700 p-3 rounded-lg border border-gray-200 dark:border-gray-600">
+                        <p class="font-bold text-gray-800 dark:text-gray-200 text-sm">Capital Surplus</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-xs lg:text-sm">Money received ABOVE par value when stock is sold</p>
+                    </div>
+                    <div class="bg-gray-50 dark:bg-gray-700 p-3 rounded-lg border border-gray-200 dark:border-gray-600">
+                        <p class="font-bold text-gray-800 dark:text-gray-200 text-sm">Preemptive Right</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-xs lg:text-sm">Right to buy proportionate share of NEW stock to maintain ownership %</p>
+                    </div>
+                    <div class="bg-gray-50 dark:bg-gray-700 p-3 rounded-lg border border-gray-200 dark:border-gray-600">
+                        <p class="font-bold text-gray-800 dark:text-gray-200 text-sm">Treasury Stock</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-xs lg:text-sm">Issued then repurchased by corp. No voting rights, no dividends</p>
+                    </div>
+                    <div class="bg-gray-50 dark:bg-gray-700 p-3 rounded-lg border border-gray-200 dark:border-gray-600">
+                        <p class="font-bold text-gray-800 dark:text-gray-200 text-sm">Stock Split</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-xs lg:text-sm">Divide existing shares into more shares (2-for-1 doubles shares, halves price)</p>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-gray-400">
+                    <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Scenario: Preemptive Rights</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> You own 10% of XYZ Corp (100 out of 1,000 shares). XYZ decides to issue 500 new shares.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> If you have preemptive rights, you get the chance to buy 50 of the new shares (10% of 500) before they are offered to others.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> You maintain your 10% ownership stake. Without preemptive rights, your ownership could be diluted to 6.67% (100/1,500).</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Stockholders -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">5. Stockholders' Rights &amp; Actions</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 border-l-4 border-blue-500 mb-6">
+                    <p class="font-bold text-blue-800 dark:text-blue-300 text-lg">Stockholder Powers</p>
+                    <ul class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base space-y-1">
+                        <li>Elect and remove board of directors</li>
+                        <li>Approve changes to articles of incorporation</li>
+                        <li>Make or amend bylaws</li>
+                        <li>Approve mergers, consolidations, and dissolution</li>
+                        <li>Sue directors for mismanagement (derivative suit)</li>
+                        <li>Inspect corporate financial statements and books</li>
+                    </ul>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-3 mb-6">
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-3 rounded-lg border border-purple-200 dark:border-purple-800">
+                        <p class="font-bold text-purple-800 dark:text-purple-300 text-sm">Proxy</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-xs lg:text-sm mt-1">Written authorization for someone else to vote your shares at a meeting</p>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-3 rounded-lg border border-purple-200 dark:border-purple-800">
+                        <p class="font-bold text-purple-800 dark:text-purple-300 text-sm">Quorum</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-xs lg:text-sm mt-1">Minimum shares represented at a meeting for it to be valid (typically majority)</p>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-3 rounded-lg border border-purple-200 dark:border-purple-800">
+                        <p class="font-bold text-purple-800 dark:text-purple-300 text-sm">Cumulative Voting</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-xs lg:text-sm mt-1">Pool all votes on fewer candidates &mdash; helps minority stockholders elect at least one director</p>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-3 rounded-lg border border-purple-200 dark:border-purple-800">
+                        <p class="font-bold text-purple-800 dark:text-purple-300 text-sm">Voting Trust</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-xs lg:text-sm mt-1">Transfer shares to a trustee who votes them &mdash; consolidates voting control</p>
+                    </div>
+                </div>
+
+                <!-- Direct vs Derivative -->
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <p class="font-bold text-green-800 dark:text-green-300">Direct Action</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">A suit by a stockholder for damage to <strong>their own individual rights</strong>. Recovery goes to the stockholder.</p>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                        <p class="font-bold text-red-800 dark:text-red-300">Shareholder Derivative Suit</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">A suit brought on BEHALF of the corporation against those who harmed it. Any recovery goes to the <strong>CORPORATION</strong>, not the individual stockholder.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: Directors & Officers -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">6. Directors &amp; Officers</h2>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
+                        <p class="font-bold text-blue-800 dark:text-blue-300">Inside Director</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Also an officer or employee of the corporation (e.g., CEO who sits on the board).</p>
+                    </div>
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
+                        <p class="font-bold text-blue-800 dark:text-blue-300">Outside Director</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">NOT an employee or officer. Brings independent perspective and is more credible in oversight roles.</p>
+                    </div>
+                </div>
+
+                <!-- Two Fundamental Duties -->
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">Two Fundamental Duties</h3>
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <p class="font-bold text-green-800 dark:text-green-300 text-lg">Duty of Care</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">Act with the care a <strong>reasonably prudent person</strong> would use. Be informed, make careful decisions. No rubber-stamping.</p>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                        <p class="font-bold text-red-800 dark:text-red-300 text-lg">Duty of Loyalty</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">Put the corporation's interests <strong>above your own</strong>. No self-dealing, no competing with the corporation, no taking corporate opportunities for personal gain.</p>
+                    </div>
+                </div>
+
+                <!-- Insider Trading -->
+                <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-lg p-4 mb-6">
+                    <p class="font-bold text-red-800 dark:text-red-300 text-lg">Insider Trading Penalties</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-1 text-sm lg:text-base">Directors and officers with material non-public information CANNOT use it to buy/sell stock. Penalties include:</p>
+                    <div class="grid grid-cols-3 gap-3 mt-3">
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                            <p class="text-lg font-bold text-red-600 dark:text-red-400">Damages</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-xs lg:text-sm">To stockholders harmed by the trades</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                            <p class="text-lg font-bold text-red-600 dark:text-red-400">Profit Seizure</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-xs lg:text-sm">Corporation can take the profit</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                            <p class="text-2xl font-bold text-red-600 dark:text-red-400">3x</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-xs lg:text-sm">Treasury can take up to treble damages</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Director Self-Dealing -->
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 border-l-4 border-purple-500 mb-4">
+                    <p class="font-bold text-purple-800 dark:text-purple-300">When Can a Director Contract with the Corporation?</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-1 text-sm lg:text-base">A director CAN enter into a contract with the corporation if ANY of these is true:</p>
+                    <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-2 space-y-1">
+                        <li>Material facts disclosed to and approved by the <strong>board</strong></li>
+                        <li>Material facts disclosed to and approved by the <strong>stockholders</strong></li>
+                        <li>The contract was <strong>fair</strong> to the corporation</li>
+                    </ul>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-gray-400">
+                    <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Scenario: Officer Criminal Liability</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> Carol is president of X Corporation, a food business. The FDA finds rodent infestation at a warehouse and orders compliance.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> Carol instructs subordinates to fix the problem. After two more inspections, the violations persist. The FDA files criminal charges against both Carol and the corporation.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> Both Carol and the corporation are criminally liable. Officers are responsible for crimes they commit AND for <strong>failing to ensure subordinate compliance</strong> &mdash; even if they gave the right instructions.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 7: Dividends, Mergers, Dissolution -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">7. Dividends, Mergers &amp; Dissolution</h2>
+
+                <!-- Dividends -->
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">Types of Dividends</h3>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-3 mb-6">
+                    <div class="bg-green-50 dark:bg-green-900/20 p-3 rounded-lg border border-green-200 dark:border-green-800">
+                        <p class="font-bold text-green-800 dark:text-green-300 text-sm">Property Dividend</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-xs lg:text-sm mt-1">Distribution of corporate property (not cash)</p>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/20 p-3 rounded-lg border border-green-200 dark:border-green-800">
+                        <p class="font-bold text-green-800 dark:text-green-300 text-sm">Stock Dividend</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-xs lg:text-sm mt-1">More shares issued (no cash leaves corp)</p>
+                    </div>
+                    <div class="bg-amber-50 dark:bg-amber-900/20 p-3 rounded-lg border border-amber-200 dark:border-amber-800">
+                        <p class="font-bold text-amber-800 dark:text-amber-300 text-sm">Liquidating Dividend</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-xs lg:text-sm mt-1">Return of capital, NOT from earnings</p>
+                    </div>
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-3 rounded-lg border border-blue-200 dark:border-blue-800">
+                        <p class="font-bold text-blue-800 dark:text-blue-300 text-sm">Capital Gains</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-xs lg:text-sm mt-1">Stockholder's profit from selling stock (NOT a dividend)</p>
+                    </div>
+                </div>
+
+                <!-- Mergers -->
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-lg border-l-4 border-indigo-500">
+                        <p class="font-bold text-indigo-800 dark:text-indigo-300">Merger</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-1 text-sm lg:text-base">Two or more corporations combine into <strong>one surviving entity</strong>. The others cease to exist. Insurance mergers require state regulator approval.</p>
+                    </div>
+                    <div class="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-lg border-l-4 border-indigo-500">
+                        <p class="font-bold text-indigo-800 dark:text-indigo-300">Tender Offer / Hostile Takeover</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-1 text-sm lg:text-base">Acquirer goes <strong>directly to stockholders</strong>, offering to buy shares at a premium. Bypasses the target's board. This is how hostile takeovers work.</p>
+                    </div>
+                </div>
+
+                <!-- Dissolution -->
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">Dissolution</h3>
+                <div class="grid md:grid-cols-2 gap-4 mb-4">
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <p class="font-bold text-green-800 dark:text-green-300">Voluntary Dissolution</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-1 text-sm lg:text-base">Board and stockholders decide to end the business.</p>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                        <p class="font-bold text-red-800 dark:text-red-300">Involuntary Dissolution</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-1 text-sm lg:text-base">Forced by the state or court. Occurs when:</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-xs lg:text-sm mt-1 space-y-1">
+                            <li>Directors are deadlocked, causing irreparable injury</li>
+                            <li>Directors' acts are illegal, oppressive, or fraudulent</li>
+                            <li>Stockholders deadlocked for two successive meetings</li>
+                            <li>Corporate assets are wasted or misapplied</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cheat Sheet -->
+        <section id="cheat-sheet" class="mb-10">
+            <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 border-2 border-dashed border-gray-300 dark:border-gray-600">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100">Cheat Sheet</h2>
+                    <span class="text-sm text-gray-500 dark:text-gray-400">Print this page for quick reference</span>
+                </div>
+                <div class="grid md:grid-cols-3 gap-4">
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Formation</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>Promoters &rarr; Incorporation &rarr; Org Meeting</li>
+                            <li>Promoters personally liable on pre-inc contracts</li>
+                            <li>De jure = perfect. De facto = minor defects</li>
+                            <li>Only STATE attacks de facto corps</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Piercing the Veil</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>Commingling personal/corporate funds</li>
+                            <li>Inadequate capitalization</li>
+                            <li>Ignoring formalities (no meetings/records)</li>
+                            <li>Formed for illegal purpose</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Directors &amp; Officers</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>Duty of care + duty of loyalty</li>
+                            <li>Insider trading = up to 3x profit penalty</li>
+                            <li>Derivative suit recovery goes to CORP</li>
+                            <li>Officers liable for subordinate noncompliance</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Traps -->
+        <section class="mb-10">
+            <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-xl p-5 lg:p-6">
+                <h2 class="text-2xl font-bold text-red-800 dark:text-red-300 mb-4">Exam Trap Alerts</h2>
+                <div class="space-y-3">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">1. Foreign vs. Alien Corporation</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">"Foreign" does NOT mean from another country! A Delaware company doing business in NJ is "foreign" in NJ. A Canadian company in the US is an "alien" corporation. The exam loves this mix-up.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">2. De Facto Corporation Challenge</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Only the STATE can challenge a de facto corporation's existence. A private party who contracted with the de facto corporation cannot claim it was improperly formed to escape their own obligations.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">3. Derivative Suit Recovery</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">In a shareholder derivative suit, any recovery goes to the CORPORATION, not the individual stockholder who brought the suit. Direct action recovery goes to the stockholder.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">4. Dividends vs. Asset Distribution</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Dividends come from EARNINGS. A return of invested capital is a "liquidating distribution," not a true dividend. The exam tests this distinction.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">5. Officer Criminal Liability</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Officers can be criminally liable even when they instructed subordinates to comply. The duty is to <strong>ensure</strong> compliance, not merely request it. Giving orders is not enough if you do not follow up.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">6. Promoter Liability</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The corporation is NOT automatically bound by promoter contracts. It must ADOPT them after formation. Promoters remain personally liable unless the other party agreed to look solely to the corporation.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Reference Summary -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-purple-600 to-purple-800 rounded-xl p-6 text-white">
+                <h2 class="text-2xl font-bold mb-6">Quick Reference Summary</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Corporation</p>
+                        <p class="text-sm text-purple-100">Separate legal entity created under state law. Limited liability for stockholders.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Piercing the Veil</p>
+                        <p class="text-sm text-purple-100">Court ignores entity. Caused by commingling, undercapitalization, ignoring formalities.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">De Jure vs. De Facto</p>
+                        <p class="text-sm text-purple-100">De jure = fully compliant. De facto = minor defects, only STATE can challenge.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Duty of Care &amp; Loyalty</p>
+                        <p class="text-sm text-purple-100">Act prudently + put corporation first. No self-dealing or insider trading.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Derivative Suit</p>
+                        <p class="text-sm text-purple-100">Stockholder sues on behalf of corp. Recovery goes to the corporation, not the stockholder.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Tender Offer</p>
+                        <p class="text-sm text-purple-100">Buy shares directly from stockholders at a premium. Hostile takeover mechanism.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="../part-1/index.html" class="text-gray-400 hover:text-white transition-colors">&larr; Part 1: Sole Proprietorships &amp; Partnerships</a>
+                <span class="text-gray-500">Part 2 of 3</span>
+                <a href="../part-3/index.html" class="text-gray-400 hover:text-white transition-colors">Part 3: LLCs &amp; Other Entities &rarr;</a>
+            </div>
+        </div>
+    </footer>
+
+    <button onclick="openAITutor({topic: 'Corporations', concepts: ['Limited liability and piercing the corporate veil', 'Foreign vs alien corporations', 'De jure vs de facto corporations', 'Promoters incorporators and formation stages', 'Articles of incorporation and ultra vires', 'Common vs preferred stock', 'Preemptive rights and par value', 'Stockholder rights and derivative suits', 'Directors duty of care and duty of loyalty', 'Insider trading penalties up to 3x', 'Dividends types and mergers', 'Voluntary vs involuntary dissolution'], keywords: ['corporation', 'piercing the veil', 'limited liability', 'foreign corporation', 'alien corporation', 'de jure', 'de facto', 'ultra vires', 'promoter', 'derivative suit', 'insider trading', 'preemptive right', 'tender offer']})" class="fixed bottom-6 right-6 bg-purple-600 hover:bg-purple-700 text-white p-4 rounded-full shadow-xl hover:scale-110 transition-all z-50" title="AI Tutor">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+    </button>
+</body>
+</html>

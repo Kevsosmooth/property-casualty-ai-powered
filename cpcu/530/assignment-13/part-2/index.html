@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 2: Workplace Safety &amp; Benefits | Assignment 13 | CPCU 530</title>
+    <link rel="icon" type="image/svg+xml" href="../../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config = { darkMode: 'class' }</script>
+    <link rel="stylesheet" href="../../../../css/styles.css">
+    <script src="../../../../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') { document.documentElement.classList.remove('dark'); }
+        function toggleTheme() { document.documentElement.classList.toggle('dark'); localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light'); }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="showAPIKeySetup()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings"><svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg></button>
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/></svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>
+        </button>
+    </div>
+
+    <header class="bg-gradient-to-r from-purple-600 to-purple-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap gap-2 text-sm mb-2">
+                <a href="../../../../index.html" class="text-purple-200 hover:text-white">Home</a><span class="text-purple-300">/</span>
+                <a href="../../../index.html" class="text-purple-200 hover:text-white">CPCU</a><span class="text-purple-300">/</span>
+                <a href="../../index.html" class="text-purple-200 hover:text-white">530</a><span class="text-purple-300">/</span>
+                <a href="../index.html" class="text-purple-200 hover:text-white">Assignment 13</a><span class="text-purple-300">/</span>
+                <span class="text-white">Part 2</span>
+            </div>
+            <h1 class="text-3xl font-bold">Part 2: Workplace Safety &amp; Benefits</h1>
+            <p class="text-purple-200 mt-1">Assignment 13 &mdash; Employment Law</p>
+        </div>
+    </header>
+
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-wrap gap-2 text-sm">
+                <a href="../index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Intro</a>
+                <a href="../part-1/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 1</a>
+                <span class="bg-purple-600 text-white px-3 py-1 rounded font-medium">Part 2</span>
+                <a href="../part-3/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 3</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-5xl lg:max-w-7xl">
+
+        <!-- Start Here -->
+        <div class="bg-gradient-to-r from-green-100 to-blue-100 dark:from-green-900/40 dark:to-blue-800/40 rounded-xl p-6 mb-8 border border-green-300 dark:border-green-700">
+            <h3 class="text-xl font-bold text-green-800 dark:text-green-200 mb-4">Start Here: 5 Things You MUST Know</h3>
+            <div class="grid md:grid-cols-2 gap-3">
+                <div class="flex items-start">
+                    <span class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
+                    <p class="text-gray-700 dark:text-gray-300">OSHA's <strong>general duty clause</strong> requires employers to keep workplaces free from recognized hazards &mdash; even without a specific standard</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>FMLA</strong>: 12 weeks <strong>unpaid</strong> leave for employers with <strong>50+ employees</strong> &mdash; job protection, not wage replacement</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>ERISA</strong> does NOT require employers to provide benefits &mdash; it only regulates plans that already exist</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">4</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>COBRA</strong>: 18 months health coverage continuation after termination. <strong>Employee pays full premium</strong>. Employers with <strong>20+ employees</strong></p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">5</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>FLSA overtime</strong>: 1.5x regular rate for hours over <strong>40 per week</strong>. <strong>Exempt</strong> employees do NOT get overtime</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 1: OSHA -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">1. Occupational Safety &amp; Health Act (OSH Act)</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-6">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg lg:text-xl">Purpose</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">Ensure <strong>safe and healthy working conditions</strong> for all employees. Works alongside workers' compensation &mdash; OSHA <strong>prevents</strong> injuries; workers' comp <strong>compensates</strong> after injuries occur.</p>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-2 border-amber-300 dark:border-amber-700 rounded-xl p-5 mb-6">
+                    <h4 class="text-lg font-bold text-amber-800 dark:text-amber-300 mb-3">The General Duty Clause (Critical for Exam)</h4>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Even if there is <strong>no specific OSHA standard</strong> covering a particular hazard, employers must STILL keep the workplace free from <strong>recognized hazards</strong> that could cause death or serious harm. This is the catch-all provision.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <p class="font-bold text-green-800 dark:text-green-300">Employer Duties</p>
+                        <ul class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base space-y-1">
+                            <li>Comply with all OSHA safety and health standards</li>
+                            <li>Keep workplaces free from <strong>recognized hazards</strong></li>
+                            <li>Maintain records of employee injuries and illnesses</li>
+                        </ul>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border-l-4 border-purple-500">
+                        <p class="font-bold text-purple-800 dark:text-purple-300">Employee Duties</p>
+                        <ul class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base space-y-1">
+                            <li>Comply with all OSHA standards, regulations, and orders</li>
+                            <li>Follow workplace safety rules</li>
+                        </ul>
+                        <p class="text-gray-700 dark:text-gray-300 mt-3 text-sm lg:text-base"><strong>Enforcement:</strong> OSHA conducts workplace inspections <strong>without advance notice</strong>. Penalties range from fines to criminal prosecution for willful violations causing death.</p>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-gray-400">
+                    <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Scenario: General Duty Clause</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> A garment factory stores flammable materials near work areas and has no fire exits on upper floors.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> An employee reports the conditions to OSHA and requests an inspection.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> Even if there is no specific OSHA standard for this exact configuration, the <strong>general duty clause</strong> requires the employer to eliminate recognized fire hazards. OSHA can issue citations and fines. The employees cannot be punished for reporting.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Labor-Management Relations -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">2. Labor-Management Relations</h2>
+
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 border-l-4 border-purple-500 mb-6">
+                    <p class="font-bold text-purple-800 dark:text-purple-300 text-lg">Key Federal Labor Laws (Know the Evolution)</p>
+                    <div class="space-y-3 mt-3">
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-bold text-gray-800 dark:text-gray-200">Norris-LaGuardia Act (1932)</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Limited courts' power to issue injunctions in labor disputes. <strong>Outlawed yellow dog contracts</strong> (agreements where employees promise not to join unions).</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-bold text-gray-800 dark:text-gray-200">Wagner Act / NLRA (1935)</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Established the <strong>right to organize and bargain collectively</strong>. Created the <strong>National Labor Relations Board (NLRB)</strong>.</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-bold text-gray-800 dark:text-gray-200">Taft-Hartley Act (1947)</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Balanced power by also restricting <strong>union practices</strong>. Listed unfair labor practices by unions (not just employers).</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-bold text-gray-800 dark:text-gray-200">Landrum-Griffin Act (1959)</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Regulated <strong>internal union affairs</strong>. Required financial transparency from unions.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Collective Bargaining Process -->
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">Collective Bargaining Process</h3>
+                <div class="flex flex-wrap items-center gap-3 mb-6">
+                    <div class="bg-blue-100 dark:bg-blue-900/40 p-3 rounded-lg text-center flex-1 min-w-[140px]">
+                        <p class="font-bold text-blue-800 dark:text-blue-300 text-sm">1. Authorization Cards</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Workers sign cards</p>
+                    </div>
+                    <div class="text-2xl text-gray-400 hidden md:block">&rarr;</div>
+                    <div class="bg-blue-100 dark:bg-blue-900/40 p-3 rounded-lg text-center flex-1 min-w-[140px]">
+                        <p class="font-bold text-blue-800 dark:text-blue-300 text-sm">2. Request to Bargain</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Or file NLRB petition</p>
+                    </div>
+                    <div class="text-2xl text-gray-400 hidden md:block">&rarr;</div>
+                    <div class="bg-blue-100 dark:bg-blue-900/40 p-3 rounded-lg text-center flex-1 min-w-[140px]">
+                        <p class="font-bold text-blue-800 dark:text-blue-300 text-sm">3. NLRB Election</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Majority vote certifies</p>
+                    </div>
+                    <div class="text-2xl text-gray-400 hidden md:block">&rarr;</div>
+                    <div class="bg-green-100 dark:bg-green-900/40 p-3 rounded-lg text-center flex-1 min-w-[140px]">
+                        <p class="font-bold text-green-800 dark:text-green-300 text-sm">4. Negotiate Agreement</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Wages, hours, conditions</p>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <p class="font-bold text-green-800 dark:text-green-300">Mandatory Subjects (MUST Discuss)</p>
+                        <ul class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base space-y-1">
+                            <li>Wages, hours, conditions of employment</li>
+                            <li>Merit wage increases</li>
+                            <li>Pensions and seniority rights</li>
+                            <li>Grievance procedures</li>
+                            <li>Management function clauses</li>
+                        </ul>
+                    </div>
+                    <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-gray-400">
+                        <p class="font-bold text-gray-800 dark:text-gray-200">Nonmandatory Subjects (Optional)</p>
+                        <ul class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base space-y-1">
+                            <li>Right to subcontract work (outsourcing)</li>
+                            <li>Ballot clause requiring secret employee vote before strike</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Economic Pressure -->
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">Economic Pressure Tools</h3>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-l-4 border-blue-500">
+                        <p class="font-bold text-blue-800 dark:text-blue-300">Employee Weapons</p>
+                        <ul class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base space-y-1">
+                            <li><strong>Strikes</strong> &mdash; refuse to work (most powerful tool)</li>
+                            <li><strong>Boycotts</strong> &mdash; encourage public not to buy employer's products</li>
+                            <li><strong>Picketing</strong> &mdash; march outside business with signs</li>
+                        </ul>
+                        <div class="bg-red-50 dark:bg-red-900/30 p-2 rounded mt-3 border border-red-200 dark:border-red-800">
+                            <p class="text-sm text-red-700 dark:text-red-300"><strong>Sit-down strike</strong> (occupying workplace) = generally <strong>ILLEGAL</strong></p>
+                        </div>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                        <p class="font-bold text-red-800 dark:text-red-300">Employer Weapons</p>
+                        <ul class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base space-y-1">
+                            <li><strong>Replacement workers</strong> &mdash; hire temporary or permanent replacements during strike</li>
+                            <li><strong>Lockouts</strong> &mdash; shut down operations, prevent workers from working</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Wages and Hours -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">3. Regulation of Wages &amp; Hours (FLSA)</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-6">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg lg:text-xl">Fair Labor Standards Act (FLSA)</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">Establishes three major requirements: <strong>minimum wage</strong>, <strong>overtime compensation</strong> (1.5x regular rate for hours over 40/week), and <strong>equal pay</strong> for men and women.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <p class="font-bold text-green-800 dark:text-green-300 text-lg">Nonexempt Employee</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base"><strong>IS covered</strong> by FLSA minimum wage and overtime rules. Typically hourly workers. <strong>MUST receive overtime pay</strong> for hours over 40/week.</p>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                        <p class="font-bold text-red-800 dark:text-red-300 text-lg">Exempt Employee</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base"><strong>NOT covered</strong> by overtime rules. Typically salaried professionals, executives, and administrators who meet specific <strong>duties tests AND salary thresholds</strong>.</p>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-gray-400 mb-6">
+                    <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Scenario: FLSA Violations</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> A garment company pays employees $4.50/hour after mandatory fee deductions. Workers put in 10-12 hour days with only a half-hour lunch and two 10-minute breaks.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> Employees report to the Department of Labor.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> Multiple FLSA violations. The $4.50/hour after deductions is <strong>below minimum wage</strong> ($7.25 federal). Hours over 40/week must be paid at <strong>1.5x the regular rate</strong>. Mandatory deductions that push wages below minimum wage are illegal.</p>
+                </div>
+
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 border-l-4 border-purple-500">
+                    <p class="font-bold text-purple-800 dark:text-purple-300">Other Federal Wage Acts</p>
+                    <div class="grid md:grid-cols-2 gap-3 mt-2">
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-bold text-gray-800 dark:text-gray-200 text-sm">Davis-Bacon Act</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm">Requires prevailing wages on <strong>federal construction</strong> projects</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-bold text-gray-800 dark:text-gray-200 text-sm">Walsh-Healey Act</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm">Sets wage/hour standards for <strong>federal supply contracts</strong></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: FMLA -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">4. Family and Medical Leave Act (FMLA)</h2>
+
+                <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-green-500 mb-6">
+                    <h3 class="font-bold text-green-800 dark:text-green-300 text-lg lg:text-xl">FMLA at a Glance</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">Provides up to <strong>12 weeks of UNPAID leave</strong> per year for qualifying reasons. Key benefit is <strong>job protection, NOT wage compensation</strong>. Applies to employers with <strong>50+ employees</strong> within 75 miles.</p>
+                </div>
+
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">Qualifying Reasons for FMLA Leave</h3>
+                <div class="grid md:grid-cols-3 gap-3 mb-6">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg border border-gray-200 dark:border-gray-600 text-center">
+                        <p class="font-bold text-green-700 dark:text-green-400 mb-1">New Child</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm">Birth, adoption, or foster care placement</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg border border-gray-200 dark:border-gray-600 text-center">
+                        <p class="font-bold text-green-700 dark:text-green-400 mb-1">Family Care</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm">Care for spouse, child, or parent with serious health condition</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg border border-gray-200 dark:border-gray-600 text-center">
+                        <p class="font-bold text-green-700 dark:text-green-400 mb-1">Own Health</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm">Employee's own serious health condition</p>
+                    </div>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 rounded-r-lg mb-6">
+                    <p class="font-bold text-amber-800 dark:text-amber-300">Key FMLA Rules</p>
+                    <ul class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base space-y-1">
+                        <li>Leave is <strong>UNPAID</strong> (employer can require use of accrued paid leave)</li>
+                        <li>Employee must be restored to the <strong>same or equivalent position</strong></li>
+                        <li>Employer must continue <strong>group health insurance</strong> during leave</li>
+                    </ul>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-gray-400">
+                    <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Scenario: FMLA Leave</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> Sarah works for a company with 200 employees. She just had a baby.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> Sarah requests 12 weeks off to care for her newborn.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> The employer <strong>MUST</strong> grant the leave. Sarah's job (or equivalent) must be waiting when she returns, and her health insurance continues. The leave is unpaid unless she has accrued PTO to use.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: ERISA & COBRA -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">5. Employee Benefits: ERISA &amp; COBRA</h2>
+
+                <!-- ERISA -->
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-6">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg lg:text-xl">ERISA (Employee Retirement Income Security Act)</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg"><strong>Critical point:</strong> ERISA does <strong>NOT</strong> require employers to provide benefits. It only regulates benefits <strong>IF</strong> the employer chooses to offer them.</p>
+                    <div class="grid md:grid-cols-2 gap-3 mt-4">
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-bold text-gray-800 dark:text-gray-200 text-sm">Fiduciary Duty</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm">Plan managers must act solely in participants' interest</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-bold text-gray-800 dark:text-gray-200 text-sm">Reporting &amp; Disclosure</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm">Regular reports to participants and government</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-bold text-gray-800 dark:text-gray-200 text-sm">Vesting Requirements</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm">Employees gain ownership rights over time</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-bold text-gray-800 dark:text-gray-200 text-sm">Funding Standards</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm">Pension plans must be adequately funded</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- COBRA -->
+                <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-green-500 mb-6">
+                    <h3 class="font-bold text-green-800 dark:text-green-300 text-lg lg:text-xl">COBRA (Consolidated Omnibus Budget Reconciliation Act)</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">Allows employees and dependents to <strong>continue group health insurance</strong> after losing their job. Applies to employers with <strong>20+ employees</strong>.</p>
+                </div>
+
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
+                    <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded-lg text-center border border-gray-200 dark:border-gray-600">
+                        <p class="text-2xl lg:text-3xl font-bold text-green-600 dark:text-green-400">18</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Months standard continuation</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded-lg text-center border border-gray-200 dark:border-gray-600">
+                        <p class="text-2xl lg:text-3xl font-bold text-blue-600 dark:text-blue-400">36</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Months for some events (divorce, death)</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded-lg text-center border border-gray-200 dark:border-gray-600">
+                        <p class="text-2xl lg:text-3xl font-bold text-purple-600 dark:text-purple-400">20+</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Employees for COBRA to apply</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded-lg text-center border border-gray-200 dark:border-gray-600">
+                        <p class="text-2xl lg:text-3xl font-bold text-red-600 dark:text-red-400">102%</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Max premium (full cost + 2% admin)</p>
+                    </div>
+                </div>
+
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 border-l-4 border-purple-500 mb-6">
+                    <p class="font-bold text-purple-800 dark:text-purple-300">COBRA Key Terms</p>
+                    <div class="grid md:grid-cols-2 gap-3 mt-2">
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-bold text-gray-800 dark:text-gray-200 text-sm">Qualified Beneficiary</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm">Employee, spouse, or dependent child who was covered under the plan</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-bold text-gray-800 dark:text-gray-200 text-sm">Qualifying Event</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm">Event causing loss of coverage: termination, death, divorce, dependent aging out</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-gray-400">
+                    <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Scenario: COBRA Continuation</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> Ed is fired from a plumbing company with 25 employees that provides group health insurance.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> Ed loses his job and wants to keep his health coverage.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> Under COBRA, Ed can remain on the group health policy for <strong>18 months</strong> after termination &mdash; but he must pay the <strong>full premium</strong> himself (up to 102% of cost). The company has 25 employees, meeting the 20+ threshold for COBRA.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cheat Sheet -->
+        <section id="cheat-sheet" class="mb-10">
+            <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 border-2 border-dashed border-gray-300 dark:border-gray-600">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100">Cheat Sheet</h2>
+                    <span class="text-sm text-gray-500 dark:text-gray-400">Print this page for quick reference</span>
+                </div>
+                <div class="grid md:grid-cols-3 gap-4">
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">OSHA / Safety</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>General duty clause = catch-all for recognized hazards</li>
+                            <li>Inspections without advance notice</li>
+                            <li>OSHA prevents; workers' comp compensates</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Wages &amp; Leave</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>FLSA: minimum wage + overtime (1.5x over 40 hrs)</li>
+                            <li>Exempt = no overtime; Nonexempt = gets overtime</li>
+                            <li>FMLA: 12 weeks unpaid, 50+ employees</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Benefits</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>ERISA: regulates, does NOT mandate benefits</li>
+                            <li>COBRA: 18 months, 20+ employees, employee pays full</li>
+                            <li>Yellow dog contracts = ILLEGAL</li>
+                            <li>Sit-down strikes = ILLEGAL</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Traps -->
+        <section class="mb-10">
+            <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-xl p-5 lg:p-6">
+                <h2 class="text-2xl font-bold text-red-800 dark:text-red-300 mb-4">Exam Trap Alerts</h2>
+                <div class="space-y-3">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">1. ERISA Does NOT Mandate Benefits</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">ERISA only regulates plans that already exist. An employer is NOT required to offer a pension or health plan. This is a favorite exam trick.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">2. COBRA Duration Is 18 Months, Not 12 or 24</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Standard COBRA continuation after termination = 18 months. Some qualifying events (death, divorce) extend to 36 months. Do NOT confuse with 12 months (FMLA leave length).</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">3. FMLA Is UNPAID Leave</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">FMLA provides job protection, NOT wage compensation. The employee may use accrued PTO concurrently, but FMLA itself is unpaid.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">4. Salary Does NOT Automatically Mean Exempt</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Being paid a salary does NOT automatically make an employee exempt from overtime. They must meet specific <strong>duties tests AND salary thresholds</strong>.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">5. Sit-Down Strikes Are ILLEGAL</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Regular strikes are legal. Sit-down strikes (workers occupy the workplace but refuse to work) are generally illegal because they involve trespass on employer property.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">6. FMLA Threshold Is 50 Employees</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Much larger than Title VII (15) or COBRA (20). The exam tests these different thresholds.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Numbers -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">Key Numbers to Memorize</h2>
+                <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-3 lg:gap-4">
+                    <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded-lg text-center border border-gray-200 dark:border-gray-600">
+                        <p class="text-2xl lg:text-3xl font-bold text-green-600 dark:text-green-400">12</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Weeks FMLA leave</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded-lg text-center border border-gray-200 dark:border-gray-600">
+                        <p class="text-2xl lg:text-3xl font-bold text-blue-600 dark:text-blue-400">18</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Months COBRA (standard)</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded-lg text-center border border-gray-200 dark:border-gray-600">
+                        <p class="text-2xl lg:text-3xl font-bold text-purple-600 dark:text-purple-400">36</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Months COBRA (extended)</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded-lg text-center border border-gray-200 dark:border-gray-600">
+                        <p class="text-2xl lg:text-3xl font-bold text-red-600 dark:text-red-400">40</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Hours/week overtime threshold</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded-lg text-center border border-gray-200 dark:border-gray-600">
+                        <p class="text-2xl lg:text-3xl font-bold text-amber-600 dark:text-amber-400">1.5x</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Overtime pay rate</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Reference Summary -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-purple-600 to-purple-800 rounded-xl p-6 text-white">
+                <h2 class="text-2xl font-bold mb-6">Quick Reference Summary</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">OSH Act</p>
+                        <p class="text-sm text-purple-100">General duty clause. OSHA prevents injuries; workers' comp compensates.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">FLSA</p>
+                        <p class="text-sm text-purple-100">Minimum wage, overtime (1.5x over 40 hrs), exempt vs. nonexempt.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">FMLA</p>
+                        <p class="text-sm text-purple-100">12 weeks unpaid leave. 50+ employees. Job protection + health insurance.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">ERISA</p>
+                        <p class="text-sm text-purple-100">Regulates but does NOT mandate benefits. Fiduciary duty, vesting, funding.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">COBRA</p>
+                        <p class="text-sm text-purple-100">18 months health continuation. 20+ employees. Employee pays full premium.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Labor Laws</p>
+                        <p class="text-sm text-purple-100">Wagner Act = right to organize. Yellow dog contracts = ILLEGAL. Sit-down strikes = ILLEGAL.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="../part-1/index.html" class="text-gray-400 hover:text-white transition-colors">&larr; Part 1: Discrimination Laws</a>
+                <span class="text-gray-500">Part 2 of 3</span>
+                <a href="../part-3/index.html" class="text-gray-400 hover:text-white transition-colors">Part 3: Privacy &amp; Other Laws &rarr;</a>
+            </div>
+        </div>
+    </footer>
+
+    <button onclick="openAITutor({topic: 'Workplace Safety, Benefits & Labor Law', concepts: ['OSHA general duty clause', 'OSH Act employer vs employee duties', 'FLSA overtime rules', 'Exempt vs nonexempt employees', 'FMLA 12 weeks unpaid leave', 'ERISA does not mandate benefits', 'COBRA 18 months continuation', 'Collective bargaining process', 'Strikes boycotts picketing', 'Sit-down strikes illegal'], keywords: ['OSHA', 'general duty clause', 'FLSA', 'exempt', 'nonexempt', 'overtime', 'FMLA', 'ERISA', 'COBRA', 'qualified beneficiary', 'qualifying event', 'NLRB', 'collective bargaining', 'yellow dog contract', 'sit-down strike']})" class="fixed bottom-6 right-6 bg-purple-600 hover:bg-purple-700 text-white p-4 rounded-full shadow-xl hover:scale-110 transition-all z-50" title="AI Tutor">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+    </button>
+</body>
+</html>

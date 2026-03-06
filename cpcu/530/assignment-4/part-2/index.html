@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 2: Contract Interpretation & Third-Party Rights | Assignment 4 | CPCU 530</title>
+    <link rel="icon" type="image/svg+xml" href="../../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config = { darkMode: 'class' }</script>
+    <link rel="stylesheet" href="../../../../css/styles.css">
+    <script src="../../../../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') { document.documentElement.classList.remove('dark'); }
+        function toggleTheme() { document.documentElement.classList.toggle('dark'); localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light'); }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="showAPIKeySetup()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings"><svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg></button>
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/></svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>
+        </button>
+    </div>
+
+    <header class="bg-gradient-to-r from-purple-600 to-purple-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap gap-2 text-sm mb-2">
+                <a href="../../../../index.html" class="text-purple-200 hover:text-white">Home</a><span class="text-purple-300">/</span>
+                <a href="../../../index.html" class="text-purple-200 hover:text-white">CPCU</a><span class="text-purple-300">/</span>
+                <a href="../../index.html" class="text-purple-200 hover:text-white">530</a><span class="text-purple-300">/</span>
+                <a href="../index.html" class="text-purple-200 hover:text-white">Assignment 4</a><span class="text-purple-300">/</span>
+                <span class="text-white">Part 2</span>
+            </div>
+            <h1 class="text-3xl font-bold">Part 2: Contract Interpretation &amp; Third-Party Rights</h1>
+            <p class="text-purple-200 mt-1">Assignment 4 &mdash; Contracts: Form, Interpretation &amp; Obligations</p>
+        </div>
+    </header>
+
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-wrap gap-2 text-sm">
+                <a href="../index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Intro</a>
+                <a href="../part-1/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 1</a>
+                <span class="bg-purple-600 text-white px-3 py-1 rounded font-medium">Part 2</span>
+                <a href="../part-3/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 3</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-5xl lg:max-w-7xl">
+
+        <!-- Start Here -->
+        <div class="bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/40 dark:to-purple-800/40 rounded-xl p-6 mb-8 border border-blue-300 dark:border-blue-700">
+            <h3 class="text-xl font-bold text-blue-800 dark:text-blue-200 mb-4">Start Here: 5 Things You MUST Know</h3>
+            <div class="grid md:grid-cols-2 gap-3">
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>Contra proferentem</strong> &mdash; ambiguous language is interpreted AGAINST the drafter. In insurance, that means against the insurer</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
+                    <p class="text-gray-700 dark:text-gray-300">Contradictory terms priority: <strong>Handwriting &gt; Typewriting &gt; Printing</strong> and <strong>Words &gt; Figures</strong></p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>6 situations</strong> where rights are NOT assignable &mdash; legal restrictions, contract restrictions, personal contracts, alteration, personal satisfaction, personal injury damages</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">4</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>Incidental beneficiaries</strong> have NO rights and CANNOT sue. Only <strong>intended/creditor/donee</strong> beneficiaries can enforce</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">5</span>
+                    <p class="text-gray-700 dark:text-gray-300">UCC priority for conflicts: <strong>Express Terms &gt; Course of Performance &gt; Course of Dealing &gt; Trade Usage</strong></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 1: Contract Interpretation -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">1. Rules of Contract Interpretation</h2>
+
+                <!-- Plain Meaning -->
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-6">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg lg:text-xl">Plain Meaning Rule</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">Courts first look at the <strong>plain, ordinary meaning</strong> of the words. If the language is clear and unambiguous, courts enforce it as written. The goal is always to <strong>determine the intentions of the parties</strong>.</p>
+                </div>
+
+                <!-- Effectuation of Intent + Entire/Divisible -->
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <p class="font-bold text-green-800 dark:text-green-300 text-lg">Effectuation of Intent</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-2">Courts try to give effect to <strong>every provision</strong> and avoid interpretations that make any part meaningless. Every clause should mean something.</p>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <p class="font-bold text-green-800 dark:text-green-300 text-lg">Entire vs. Divisible Contracts</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-2"><strong>Entire</strong>: all parts interdependent; one failure affects the whole. <strong>Divisible</strong>: separate parts; completing one part earns immediate payment for that part.</p>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-gray-400 mb-6">
+                    <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Scenario: Divisible Contract</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> A contractor agrees to build a 3-phase project with separate payment for each phase. Phase 1 is the foundation, Phase 2 the structure, Phase 3 the finishing work.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> The contractor completes Phase 1 but disputes arise about Phase 2.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> Because the contract is <strong>divisible</strong>, the contractor gets paid for Phase 1 regardless of the Phase 2 dispute. Each phase stands on its own.</p>
+                </div>
+
+                <!-- Contradictory Terms -->
+                <h3 class="text-lg lg:text-xl font-bold text-gray-800 dark:text-gray-100 mb-3">Contradictory Terms &mdash; Priority System</h3>
+
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 border-l-4 border-purple-500 mb-4">
+                    <p class="font-bold text-purple-800 dark:text-purple-300 text-lg mb-3">When terms contradict each other, "most specific and recent wins"</p>
+                    <div class="flex items-center gap-4 flex-wrap justify-center mb-4">
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center min-w-[120px]">
+                            <p class="font-bold text-purple-700 dark:text-purple-300">Handwriting</p>
+                            <p class="text-xs lg:text-sm text-gray-500 dark:text-gray-400">Most recent intent</p>
+                        </div>
+                        <div class="text-2xl text-purple-400 font-bold">&gt;</div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center min-w-[120px]">
+                            <p class="font-bold text-purple-700 dark:text-purple-300">Typewriting</p>
+                            <p class="text-xs lg:text-sm text-gray-500 dark:text-gray-400">More specific</p>
+                        </div>
+                        <div class="text-2xl text-purple-400 font-bold">&gt;</div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center min-w-[120px]">
+                            <p class="font-bold text-purple-700 dark:text-purple-300">Printing</p>
+                            <p class="text-xs lg:text-sm text-gray-500 dark:text-gray-400">Pre-printed form</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4 flex-wrap justify-center">
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center min-w-[120px]">
+                            <p class="font-bold text-purple-700 dark:text-purple-300">Words</p>
+                            <p class="text-xs lg:text-sm text-gray-500 dark:text-gray-400">"Five hundred"</p>
+                        </div>
+                        <div class="text-2xl text-purple-400 font-bold">&gt;</div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center min-w-[120px]">
+                            <p class="font-bold text-purple-700 dark:text-purple-300">Figures</p>
+                            <p class="text-xs lg:text-sm text-gray-500 dark:text-gray-400">"$50"</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-gray-400 mb-6">
+                    <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Scenario: Contradictory Terms on an Insurance Form</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> A pre-printed insurance form states the deductible is "$500." But the agent handwrites "Deductible: $1,000" in the margin at the insured's request.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> A claim is filed and both amounts appear on the policy.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> The <strong>handwritten $1,000</strong> prevails because handwriting beats printing. It reflects the most recent, specific intent of the parties.</p>
+                </div>
+
+                <!-- Ambiguity / Contra Proferentem -->
+                <h3 class="text-lg lg:text-xl font-bold text-gray-800 dark:text-gray-100 mb-3">Ambiguity &amp; Contra Proferentem</h3>
+
+                <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-lg p-5 mb-6">
+                    <p class="font-bold text-red-800 dark:text-red-300 text-lg mb-2">Contra Proferentem &mdash; Critical for Insurance Law</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">If a provision has more than one reasonable meaning, courts adopt the interpretation <strong>least favorable to the party who drafted it</strong> and most favorable to the party who accepted it.</p>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>Why this matters in insurance:</strong> The insurer drafts the policy, so any genuinely ambiguous language will be interpreted <strong>in favor of the insured</strong>. If a coverage term is unclear, the insured wins.</p>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-gray-400 mb-6">
+                    <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Scenario: Ambiguous Policy Language</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> A homeowner's policy excludes "damage caused by water." A pipe bursts inside the home, flooding the first floor.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> The insurer denies the claim, arguing "water damage" is excluded. The homeowner argues "water" means flood water from outside, not burst pipes.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> Because the term "water" is ambiguous (it could mean flood, pipe burst, or rain), the court applies <strong>contra proferentem</strong> and interprets it against the insurer. The homeowner's interpretation wins &mdash; burst pipes are covered.</p>
+                </div>
+
+                <!-- Other Interpretation Rules -->
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
+                        <p class="font-bold text-blue-800 dark:text-blue-300">Parties' Own Interpretation</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">If both parties understood a term to mean something specific, courts honor that <strong>shared understanding</strong>.</p>
+                    </div>
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
+                        <p class="font-bold text-blue-800 dark:text-blue-300">Legal &amp; Fair Interpretations</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Courts prefer interpretations that make the contract <strong>legal and fair</strong> rather than illegal or unfair. Clerical errors can be corrected.</p>
+                    </div>
+                </div>
+
+                <!-- Trade Usage / Course of Dealing -->
+                <h3 class="text-lg lg:text-xl font-bold text-gray-800 dark:text-gray-100 mb-3">Trade Usage, Course of Dealing &amp; Course of Performance</h3>
+
+                <div class="bg-indigo-50 dark:bg-indigo-900/20 rounded-lg p-4 border-l-4 border-indigo-500 mb-4">
+                    <p class="font-bold text-indigo-800 dark:text-indigo-300 text-lg mb-3">UCC Priority for Resolving Conflicts</p>
+                    <div class="flex items-center gap-3 flex-wrap justify-center">
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                            <p class="text-2xl font-bold text-indigo-600 dark:text-indigo-400">1</p>
+                            <p class="font-bold text-gray-700 dark:text-gray-300 text-sm">Express Terms</p>
+                            <p class="text-xs lg:text-sm text-gray-500 dark:text-gray-400">Highest</p>
+                        </div>
+                        <div class="text-xl text-indigo-400">&gt;</div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                            <p class="text-2xl font-bold text-indigo-600 dark:text-indigo-400">2</p>
+                            <p class="font-bold text-gray-700 dark:text-gray-300 text-sm">Course of Performance</p>
+                            <p class="text-xs lg:text-sm text-gray-500 dark:text-gray-400">THIS contract</p>
+                        </div>
+                        <div class="text-xl text-indigo-400">&gt;</div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                            <p class="text-2xl font-bold text-indigo-600 dark:text-indigo-400">3</p>
+                            <p class="font-bold text-gray-700 dark:text-gray-300 text-sm">Course of Dealing</p>
+                            <p class="text-xs lg:text-sm text-gray-500 dark:text-gray-400">PREVIOUS contracts</p>
+                        </div>
+                        <div class="text-xl text-indigo-400">&gt;</div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                            <p class="text-2xl font-bold text-indigo-600 dark:text-indigo-400">4</p>
+                            <p class="font-bold text-gray-700 dark:text-gray-300 text-sm">Trade Usage</p>
+                            <p class="text-xs lg:text-sm text-gray-500 dark:text-gray-400">Industry custom</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-gray-400 mb-4">
+                    <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Scenario: Trade Usage Fills the Gaps</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> A contract calls for "300 barrels of furniture oil." The buyer claims specifications were required. The seller says no specs were mentioned.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> Both sides want to introduce evidence about what "furniture oil" means in the trade and what their prior dealings looked like.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> The UCC allows prior <strong>course of dealings</strong> and <strong>trade usage</strong> as evidence. If the industry standard for "furniture oil" means a specific grade, that fills the gap. Express terms still take top priority.</p>
+                </div>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 border border-blue-200 dark:border-blue-800">
+                    <p class="font-bold text-blue-800 dark:text-blue-300">UCC: Missing Price Terms</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">If parties fail to state a price for goods, the court assumes the contract implies a <strong>reasonable price</strong>. The UCC keeps deals alive when possible.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Assignments -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">2. Contract Assignments</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-6">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg lg:text-xl">Assignment</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">The transfer of rights or property from one party (the <strong>assignor</strong>) to another (the <strong>assignee</strong>). Most contract rights CAN be assigned. Under the UCC, the right to receive payment is almost always assignable.</p>
+                </div>
+
+                <!-- 6 Non-Assignable -->
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">6 Situations Where Rights Are NOT Assignable</h3>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                        <span class="bg-red-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold mb-2">1</span>
+                        <p class="font-bold text-red-800 dark:text-red-300">Legal Restrictions</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Statutes prohibit the assignment</p>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                        <span class="bg-red-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold mb-2">2</span>
+                        <p class="font-bold text-red-800 dark:text-red-300">Contract Restrictions</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">The contract itself says "no assignment allowed"</p>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                        <span class="bg-red-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold mb-2">3</span>
+                        <p class="font-bold text-red-800 dark:text-red-300">Personal Contracts</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Services depend on a specific person (e.g., portrait artist)</p>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                        <span class="bg-red-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold mb-2">4</span>
+                        <p class="font-bold text-red-800 dark:text-red-300">Alteration of Performance</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Assignment would significantly change what the other party must do</p>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                        <span class="bg-red-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold mb-2">5</span>
+                        <p class="font-bold text-red-800 dark:text-red-300">Personal Satisfaction</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Performance depends on one party's personal taste</p>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                        <span class="bg-red-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold mb-2">6</span>
+                        <p class="font-bold text-red-800 dark:text-red-300">Personal Injury Damages</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Cannot assign your right to personal injury damages</p>
+                    </div>
+                </div>
+
+                <!-- Assignment Rules -->
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 border-l-4 border-purple-500 mb-6">
+                    <p class="font-bold text-purple-800 dark:text-purple-300 text-lg mb-2">Key Rules About Assignments</p>
+                    <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-2">
+                        <li><strong>Form:</strong> Can be oral or written. No specific form required. No consideration needed (can be a gift).</li>
+                        <li><strong>Assignee's Rights:</strong> Gets whatever rights the assignor had &mdash; no more, no less.</li>
+                        <li><strong>Assignee's Duties:</strong> Takes on the duties that go with the assigned rights.</li>
+                        <li><strong>Notice:</strong> The assignee should <strong>immediately notify the obligor</strong> to ensure the obligor pays the assignee, not the assignor.</li>
+                    </ul>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-gray-400">
+                    <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Scenario: Failure to Notify</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> Alice has a contract with Bob where Bob owes her $10,000. Alice assigns her right to that payment to Carol.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> Carol does NOT notify Bob of the assignment. Bob pays Alice directly, not knowing about the assignment.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> Bob's payment to Alice <strong>may discharge his obligation</strong>. Carol should have notified Bob immediately so Bob would know to pay Carol instead. This is why notice is critical.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Third-Party Beneficiaries -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">3. Third-Party Beneficiaries</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-6">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg lg:text-xl">Third-Party Beneficiary Contract</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">A contract between two parties that <strong>benefits a third party</strong> who is not a party to the contract. Whether the third party can enforce the contract depends on what type of beneficiary they are.</p>
+                </div>
+
+                <!-- 4 Types -->
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <p class="font-bold text-green-800 dark:text-green-300 text-lg">Creditor Beneficiary</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-2">A third party <strong>owed a debt</strong> that is to be satisfied by the contract's performance. <strong>CAN sue.</strong></p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> Dad owes $5,000 to the bank. Dad's employer agrees to pay the bank directly. The bank is a creditor beneficiary and can enforce the agreement.</p>
+                        </div>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <p class="font-bold text-green-800 dark:text-green-300 text-lg">Donee Beneficiary</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-2">A third party who receives benefits as a <strong>gift</strong> from the promisor. <strong>CAN sue.</strong></p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> Mom buys a life insurance policy naming her son as beneficiary. The son is a donee beneficiary. If the insurer refuses to pay after Mom dies, the son can sue.</p>
+                        </div>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <p class="font-bold text-green-800 dark:text-green-300 text-lg">Intended Beneficiary</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-2">A third party the contracting parties <strong>actually intended to benefit</strong>. <strong>Generally CAN enforce.</strong></p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> A couple hires a caterer for their daughter's wedding. The daughter is an intended beneficiary of the catering contract.</p>
+                        </div>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                        <p class="font-bold text-red-800 dark:text-red-300 text-lg">Incidental Beneficiary</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-2">A third party who benefits but was <strong>NOT intended to</strong>. Has <strong>NO contractual rights</strong> and <strong>CANNOT sue</strong>.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> A city hires a contractor to repave a road. Businesses on that road benefit from increased traffic, but they are only incidental beneficiaries and cannot sue if the contractor fails.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cutting off rights -->
+                <div class="bg-amber-50 dark:bg-amber-900/30 border border-amber-200 dark:border-amber-800 rounded-lg p-4 mb-4">
+                    <p class="font-bold text-amber-800 dark:text-amber-300 mb-2">Can Original Parties Cut Off Beneficiary Rights?</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The modern trend is: <strong>Yes</strong>, UNLESS the beneficiary can prove their position has <strong>changed materially in reasonable reliance</strong> on the contract. A binding contract must exist, and the parties must have <strong>intended</strong> to benefit the third party.</p>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-gray-400">
+                    <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Scenario: Subcontractors as Third-Party Beneficiaries</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> Jerry contracts with X Bank for financing to build a building for Maggie. Jerry hires subcontractors to do the work.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> X Bank refuses to lend, so Jerry cannot pay the subcontractors. The subcontractors sue X Bank as third-party beneficiaries.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> This is arguable. The subcontractors may be <strong>creditor beneficiaries</strong> (they are owed money from the financing), but the bank might argue it only owes performance to Jerry, making subcontractors merely incidental. The outcome depends on whether the bank knew the financing was specifically intended to pay subcontractors.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cheat Sheet -->
+        <section id="cheat-sheet" class="mb-10">
+            <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 border-2 border-dashed border-gray-300 dark:border-gray-600">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100">Cheat Sheet</h2>
+                    <span class="text-sm text-gray-500 dark:text-gray-400">Print this page for quick reference</span>
+                </div>
+                <div class="grid md:grid-cols-3 gap-4">
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Interpretation Rules</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>Plain meaning first</li>
+                            <li>Give effect to every clause</li>
+                            <li>Handwriting &gt; Typewriting &gt; Printing</li>
+                            <li>Words &gt; Figures</li>
+                            <li>Ambiguity = against drafter</li>
+                            <li>Missing price = reasonable price (UCC)</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">6 Non-Assignable Rights</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>Legal restrictions</li>
+                            <li>Contract restrictions</li>
+                            <li>Personal contracts</li>
+                            <li>Alteration of performance</li>
+                            <li>Personal satisfaction</li>
+                            <li>Personal injury damages</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Beneficiary Types</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>Creditor = owed debt = CAN sue</li>
+                            <li>Donee = gift = CAN sue</li>
+                            <li>Intended = meant to benefit = CAN sue</li>
+                            <li>Incidental = unintended = CANNOT sue</li>
+                        </ul>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2 mt-3">UCC Priority</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>Express &gt; Performance &gt; Dealing &gt; Trade</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Traps -->
+        <section class="mb-10">
+            <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-xl p-5 lg:p-6">
+                <h2 class="text-2xl font-bold text-red-800 dark:text-red-300 mb-4">Exam Trap Alerts</h2>
+                <div class="space-y-3">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">1. Contra Proferentem = Against the Drafter</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">In insurance, the insurer writes the policy. If policy language is genuinely ambiguous, the insured wins. This is the single most tested interpretation rule in insurance law.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">2. Course of Performance vs. Course of Dealing</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Performance = how parties acted under THIS contract. Dealing = how parties acted in PREVIOUS contracts. Performance ranks higher. Do not confuse them.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">3. Incidental Beneficiaries Have NO Rights</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Just because you benefit from a contract does NOT mean you can enforce it. Only creditor, donee, and intended beneficiaries can sue. The road businesses example is classic &mdash; they benefit but cannot sue.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">4. Assignee Must Notify the Obligor</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">If the assignee fails to notify the person who owes performance, that person may pay the original assignor and be discharged. The assignee loses out due to their own failure to give notice.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">5. Handwriting Always Wins</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">When contradictory terms appear on the same document: handwriting beats typewriting, typewriting beats pre-printed text. This reflects the "most recent specific intent." Written-out words also beat numerical figures.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Reference Summary -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-purple-600 to-purple-800 rounded-xl p-6 text-white">
+                <h2 class="text-2xl font-bold mb-6">Quick Reference Summary</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Contra Proferentem</p>
+                        <p class="text-sm text-purple-100">Ambiguity interpreted against the drafter (insurer in insurance).</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Contradictory Terms</p>
+                        <p class="text-sm text-purple-100">Hand &gt; Type &gt; Print. Words &gt; Figures.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">UCC Priority</p>
+                        <p class="text-sm text-purple-100">Express &gt; Performance &gt; Dealing &gt; Trade Usage.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Assignment</p>
+                        <p class="text-sm text-purple-100">Transfer of rights. Assignee gets assignor's rights, no more.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Creditor/Donee Beneficiary</p>
+                        <p class="text-sm text-purple-100">Intended to benefit and CAN enforce the contract.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Incidental Beneficiary</p>
+                        <p class="text-sm text-purple-100">Benefits accidentally. Has NO rights and CANNOT sue.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="../part-1/index.html" class="text-gray-400 hover:text-white transition-colors">&larr; Part 1: Statute of Frauds</a>
+                <span class="text-gray-500">Part 2 of 3</span>
+                <a href="../part-3/index.html" class="text-gray-400 hover:text-white transition-colors">Part 3: Discharge, Conditions &amp; Breach &rarr;</a>
+            </div>
+        </div>
+    </footer>
+
+    <button onclick="openAITutor({topic: 'Contract Interpretation and Third-Party Rights', concepts: ['Plain meaning rule', 'Contra proferentem - against the drafter', 'Contradictory terms priority (hand > type > print)', 'Words prevail over figures', 'Entire vs divisible contracts', 'UCC priority: express > performance > dealing > trade usage', '6 non-assignable rights', 'Assignee must notify obligor', 'Creditor vs donee vs incidental vs intended beneficiaries', 'Incidental beneficiaries have NO rights'], keywords: ['contra proferentem', 'assignment', 'assignor', 'assignee', 'creditor beneficiary', 'donee beneficiary', 'incidental beneficiary', 'intended beneficiary', 'trade usage', 'course of dealing', 'course of performance', 'divisible contract']})" class="fixed bottom-6 right-6 bg-purple-600 hover:bg-purple-700 text-white p-4 rounded-full shadow-xl hover:scale-110 transition-all z-50" title="AI Tutor">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+    </button>
+</body>
+</html>

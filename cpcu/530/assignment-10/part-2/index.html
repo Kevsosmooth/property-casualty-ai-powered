@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 2: Vicarious Liability &amp; Joint Tortfeasors | Assignment 10 | CPCU 530</title>
+    <link rel="icon" type="image/svg+xml" href="../../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config = { darkMode: 'class' }</script>
+    <link rel="stylesheet" href="../../../../css/styles.css">
+    <script src="../../../../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') { document.documentElement.classList.remove('dark'); }
+        function toggleTheme() { document.documentElement.classList.toggle('dark'); localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light'); }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="showAPIKeySetup()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings"><svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg></button>
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/></svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>
+        </button>
+    </div>
+
+    <header class="bg-gradient-to-r from-purple-600 to-purple-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap gap-2 text-sm mb-2">
+                <a href="../../../../index.html" class="text-purple-200 hover:text-white">Home</a><span class="text-purple-300">/</span>
+                <a href="../../../index.html" class="text-purple-200 hover:text-white">CPCU</a><span class="text-purple-300">/</span>
+                <a href="../../index.html" class="text-purple-200 hover:text-white">530</a><span class="text-purple-300">/</span>
+                <a href="../index.html" class="text-purple-200 hover:text-white">Assignment 10</a><span class="text-purple-300">/</span>
+                <span class="text-white">Part 2</span>
+            </div>
+            <h1 class="text-3xl font-bold">Part 2: Vicarious Liability &amp; Joint Tortfeasors</h1>
+            <p class="text-purple-200 mt-1">Assignment 10 &mdash; Special Liability &amp; Tort Litigation</p>
+        </div>
+    </header>
+
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-wrap gap-2 text-sm">
+                <a href="../index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Intro</a>
+                <a href="../part-1/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 1</a>
+                <span class="bg-purple-600 text-white px-3 py-1 rounded font-medium">Part 2</span>
+                <a href="../part-3/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 3</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-5xl lg:max-w-7xl">
+
+        <!-- Start Here -->
+        <div class="bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/40 dark:to-purple-800/40 rounded-xl p-6 mb-8 border border-blue-300 dark:border-blue-700">
+            <h3 class="text-xl font-bold text-blue-800 dark:text-blue-200 mb-4">Start Here: 5 Things You MUST Know</h3>
+            <div class="grid md:grid-cols-2 gap-3">
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>Vicarious liability</strong> = holding one person liable for another's torts based on their relationship (3 key relationships)</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>Respondeat superior</strong> = "let the master answer." Employers are liable for employees' torts committed within the scope of employment</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>Common law</strong>: release one joint tortfeasor = release ALL. <strong>UCAJTFA</strong>: can release one without releasing others</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">4</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>Market-share liability</strong> = each manufacturer pays damages proportional to its market share when the specific maker cannot be identified</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">5</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>Good Samaritan statutes</strong> protect emergency helpers from liability if they act in good faith without gross negligence</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 1: Vicarious Liability -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">1. Vicarious Liability</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-6">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg lg:text-xl">Vicarious Liability</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg"><strong>Holding one person liable for the torts of another</strong>, based on their relationship. The person being held liable did not personally commit the wrongful act -- but the law says their relationship with the wrongdoer makes them responsible.</p>
+                </div>
+
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">Three Relationships That Create Vicarious Liability</h3>
+                <div class="grid md:grid-cols-3 gap-4 mb-6">
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border-l-4 border-purple-500">
+                        <p class="font-bold text-purple-800 dark:text-purple-300 text-lg">1. Principal &amp; Agent</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">A principal can be liable for their agent's torts committed <strong>within the scope of the agency</strong>.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> A real estate broker (principal) is liable when their agent misrepresents a property's condition to a buyer during an authorized showing.</p>
+                        </div>
+                    </div>
+                    <div class="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-lg border-l-4 border-indigo-500">
+                        <p class="font-bold text-indigo-800 dark:text-indigo-300 text-lg">2. Employer &amp; Employee</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">Under <strong>respondeat superior</strong> ("let the master answer"), employers are liable for employees' torts committed <strong>within the scope of employment</strong>.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> A delivery driver runs a red light while making deliveries and hits a pedestrian. The employer is vicariously liable.</p>
+                        </div>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <p class="font-bold text-green-800 dark:text-green-300 text-lg">3. Parent &amp; Child</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">Under the <strong>family purpose doctrine</strong>, a parent who provides a car for family use can be liable for a family member's negligent driving.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> A father buys a car for the family. His 17-year-old son causes an accident while driving to school. The father may be vicariously liable.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-gray-400">
+                    <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Scenario: Pizza Delivery Gone Wrong</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> A pizza delivery driver (employee) runs a red light while delivering pizzas and hits a pedestrian.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> The pedestrian is seriously injured and sues.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> The pedestrian can sue BOTH the driver AND the pizza company. The company is vicariously liable under <strong>respondeat superior</strong> because the driver was acting within the scope of employment (making deliveries). If the driver had been on a personal errand, the company would NOT be liable.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Joint Tortfeasors -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">2. Joint Tortfeasors &amp; Contribution</h2>
+
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 border-l-4 border-purple-500 mb-6">
+                    <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg">Joint Tortfeasors</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg"><strong>Two or more people whose combined actions cause a single injury</strong> to the plaintiff. The key question: how do you divide liability among them?</p>
+                </div>
+
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">Common Law vs. UCAJTFA</h3>
+                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                    <div class="bg-red-50 dark:bg-red-900/20 p-5 rounded-lg border-l-4 border-red-500">
+                        <p class="font-bold text-red-800 dark:text-red-300 text-lg mb-2">Common Law (Old Rule)</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-2">
+                            <li>Each tortfeasor is <strong>jointly and severally liable</strong> for the FULL amount</li>
+                            <li>You can sue ANY ONE of them for the entire damages</li>
+                            <li>Releasing one tortfeasor <strong>released ALL</strong> -- even if the release said otherwise</li>
+                        </ul>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Problem:</strong> Settle with one defendant for $5,000 on a $100,000 claim? You just lost your right to sue the others for the remaining $95,000.</p>
+                        </div>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/20 p-5 rounded-lg border-l-4 border-green-500">
+                        <p class="font-bold text-green-800 dark:text-green-300 text-lg mb-2">UCAJTFA (Modern Rule)</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-2">
+                            <li>A plaintiff <strong>CAN release one defendant</strong> without releasing the others</li>
+                            <li>A tortfeasor who pays more than their <strong>pro rata share</strong> has a right of contribution</li>
+                            <li>Contribution is divided <strong>equally</strong> among tortfeasors</li>
+                        </ul>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Improvement:</strong> Settle with one defendant and still pursue the others for their shares.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-gray-400 mb-6">
+                    <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Scenario: Assault by Three Attackers</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> Jack, Carol, and Joe assault Tom in the dark. Tom suffers a fractured skull and $35,000 in damages. He cannot tell which of the three struck the blow.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> Tom sues only Jack (Carol moved away, Joe is hard to find).</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> Tom CAN sue only Jack. Under <strong>common law</strong>, Jack could be liable for the entire $35,000 (joint and several). Under <strong>UCAJTFA</strong>, Jack pays his 1/3 share and can seek contribution from Carol and Joe for the remaining amount, split equally between them.</p>
+                </div>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 border-l-4 border-blue-500 mb-4">
+                    <p class="font-bold text-blue-800 dark:text-blue-300">Contribution</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">The right of a tortfeasor who has paid <strong>more than their fair share</strong> to collect the excess from the other tortfeasors. Under UCAJTFA, this is divided equally (not prorated by fault).</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Special Liability Theories -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">3. Special Liability Theories</h2>
+
+                <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-4">When a plaintiff cannot identify which specific defendant caused their harm, courts have developed special theories to address the problem.</p>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-lg border-l-4 border-indigo-500">
+                        <p class="font-bold text-indigo-800 dark:text-indigo-300 text-lg">Enterprise / Industry-Wide Liability</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">When multiple companies in an industry produced the <strong>same defective product</strong> and the plaintiff cannot identify which specific company made the one that hurt them.</p>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border-l-4 border-purple-500">
+                        <p class="font-bold text-purple-800 dark:text-purple-300 text-lg">Alternative Liability</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">Two or more defendants acted negligently but only one caused harm. The burden shifts to the <strong>DEFENDANTS</strong> to prove they did not cause it.</p>
+                    </div>
+                    <div class="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg border-l-4 border-amber-500">
+                        <p class="font-bold text-amber-800 dark:text-amber-300 text-lg">Market-Share Liability</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">Each manufacturer pays damages based on its <strong>percentage share of the market</strong>. Used when the specific manufacturer's product cannot be identified.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> A woman took DES during pregnancy. Decades later, her daughter develops cancer. Dozens of manufacturers made DES with identical formulas. If Company A had 30% of the market, it pays 30% of damages.</p>
+                        </div>
+                    </div>
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-l-4 border-blue-500">
+                        <p class="font-bold text-blue-800 dark:text-blue-300 text-lg">Concert of Action / Conspiracy</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base"><strong>Concert of action:</strong> Multiple parties act together in a common plan that results in harm -- all are liable. <strong>Conspiracy:</strong> An agreement to commit an unlawful act -- all conspirators are liable for resulting harm.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Good Samaritan Statutes -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">4. Good Samaritan Statutes</h2>
+
+                <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-green-500 mb-6">
+                    <h3 class="font-bold text-green-800 dark:text-green-300 text-lg lg:text-xl">Good Samaritan Statutes</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">Laws that <strong>protect from liability any person who gives emergency assistance</strong> to someone in need. Purpose: encourage people to help in emergencies without fear of being sued.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
+                        <p class="font-bold text-blue-800 dark:text-blue-300">Most States</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Protect <strong>any person</strong> who provides emergency aid</p>
+                    </div>
+                    <div class="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg border border-amber-200 dark:border-amber-800">
+                        <p class="font-bold text-amber-800 dark:text-amber-300">Some States</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Limit protection to <strong>medical personnel only</strong></p>
+                    </div>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 rounded-r-lg mb-6">
+                    <p class="font-bold text-amber-800 dark:text-amber-300">Key Limitations</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-1 text-sm lg:text-base">Protection generally applies only if the helper acts in <strong>good faith</strong> and without <strong>gross negligence</strong>. Reckless or intentionally harmful actions are NOT protected.</p>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-gray-400">
+                    <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Scenario: CPR at a Restaurant</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> A nurse is eating at a restaurant when another customer collapses from an apparent heart attack. The nurse rushes over and performs CPR, accidentally breaking two of the customer's ribs.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> The customer survives but sues the nurse for the broken ribs.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> The Good Samaritan statute <strong>protects the nurse</strong> from liability. She acted in good faith, provided emergency aid, and used reasonable care (broken ribs are a known risk of CPR). Without this protection, bystanders might hesitate to help, leading to more deaths.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cheat Sheet -->
+        <section id="cheat-sheet" class="mb-10">
+            <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 border-2 border-dashed border-gray-300 dark:border-gray-600">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100">Cheat Sheet</h2>
+                    <span class="text-sm text-gray-500 dark:text-gray-400">Print this page for quick reference</span>
+                </div>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">3 Vicarious Liability Relationships</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>Principal-Agent: liable for agent's torts within scope</li>
+                            <li>Employer-Employee: respondeat superior</li>
+                            <li>Parent-Child: family purpose doctrine</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Joint Tortfeasors</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>Common law: joint + several, release one = release all</li>
+                            <li>UCAJTFA: can release individually, equal contribution</li>
+                            <li>Contribution: right to recover excess from co-tortfeasors</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Special Theories</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>Enterprise liability: entire industry liable</li>
+                            <li>Alternative liability: burden shifts to defendants</li>
+                            <li>Market-share: pay proportional to market share</li>
+                            <li>Concert of action: common plan = all liable</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Good Samaritan</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>Protects emergency helpers from liability</li>
+                            <li>Most states: any person. Some: medical only</li>
+                            <li>Requires: good faith + no gross negligence</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Traps -->
+        <section class="mb-10">
+            <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-xl p-5 lg:p-6">
+                <h2 class="text-2xl font-bold text-red-800 dark:text-red-300 mb-4">Exam Trap Alerts</h2>
+                <div class="space-y-3">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">1. Common Law Release = Release ALL</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Under <strong>common law</strong>, releasing one joint tortfeasor releases ALL of them -- even if the release specifically says otherwise. Under UCAJTFA, this harsh rule was eliminated. Know which rule applies!</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">2. Respondeat Superior Requires "Scope of Employment"</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">An employer is NOT liable for everything an employee does. The tort must occur <strong>within the scope of employment</strong>. A delivery driver causing an accident while running a personal errand is NOT within scope.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">3. Do Not Confuse the Special Theories</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>Alternative liability</strong> shifts burden to defendants. <strong>Market-share liability</strong> divides by market percentage. <strong>Enterprise liability</strong> holds the whole industry liable. <strong>Concert of action</strong> requires a common plan. These are distinct concepts the exam tests separately.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">4. Good Samaritan Protection Is Not Absolute</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Good Samaritan statutes do NOT protect against <strong>gross negligence</strong> or intentional harm. Also, some states limit protection to <strong>medical personnel only</strong>. Watch for jurisdiction-specific questions.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">5. Family Purpose Doctrine Applies to Family Cars</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The parent must have <strong>provided the car for family use</strong>. If the child bought their own car, the family purpose doctrine does NOT apply.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Reference Summary -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-purple-600 to-purple-800 rounded-xl p-6 text-white">
+                <h2 class="text-2xl font-bold mb-6">Quick Reference Summary</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Vicarious Liability</p>
+                        <p class="text-sm text-purple-100">Liable for another's torts based on relationship.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Respondeat Superior</p>
+                        <p class="text-sm text-purple-100">Employer liable for employee torts within scope of employment.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Family Purpose Doctrine</p>
+                        <p class="text-sm text-purple-100">Parent liable for family member's negligent driving of family car.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Common Law vs. UCAJTFA</p>
+                        <p class="text-sm text-purple-100">CL: release one = release all. UCAJTFA: release individually.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Market-Share Liability</p>
+                        <p class="text-sm text-purple-100">Pay damages proportional to market share when maker unknown.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Good Samaritan</p>
+                        <p class="text-sm text-purple-100">Protects emergency helpers acting in good faith.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="../part-1/index.html" class="text-gray-400 hover:text-white transition-colors">&larr; Part 1: Strict &amp; Products Liability</a>
+                <span class="text-gray-500">Part 2 of 3</span>
+                <a href="../part-3/index.html" class="text-gray-400 hover:text-white transition-colors">Part 3: Tort Litigation &rarr;</a>
+            </div>
+        </div>
+    </footer>
+
+    <button onclick="openAITutor({topic: 'Vicarious Liability and Joint Tortfeasors', concepts: ['Vicarious liability and 3 relationships', 'Respondeat superior', 'Family purpose doctrine', 'Joint and several liability', 'UCAJTFA and contribution', 'Enterprise liability', 'Alternative liability', 'Market-share liability', 'Concert of action and conspiracy', 'Good Samaritan statutes'], keywords: ['vicarious liability', 'respondeat superior', 'family purpose doctrine', 'joint tortfeasors', 'UCAJTFA', 'contribution', 'market-share liability', 'alternative liability', 'concert of action', 'Good Samaritan']})" class="fixed bottom-6 right-6 bg-purple-600 hover:bg-purple-700 text-white p-4 rounded-full shadow-xl hover:scale-110 transition-all z-50" title="AI Tutor">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+    </button>
+</body>
+</html>

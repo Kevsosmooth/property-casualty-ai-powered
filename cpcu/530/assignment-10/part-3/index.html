@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 3: Tort Litigation | Assignment 10 | CPCU 530</title>
+    <link rel="icon" type="image/svg+xml" href="../../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config = { darkMode: 'class' }</script>
+    <link rel="stylesheet" href="../../../../css/styles.css">
+    <script src="../../../../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') { document.documentElement.classList.remove('dark'); }
+        function toggleTheme() { document.documentElement.classList.toggle('dark'); localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light'); }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="showAPIKeySetup()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings"><svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg></button>
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/></svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>
+        </button>
+    </div>
+
+    <header class="bg-gradient-to-r from-purple-600 to-purple-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap gap-2 text-sm mb-2">
+                <a href="../../../../index.html" class="text-purple-200 hover:text-white">Home</a><span class="text-purple-300">/</span>
+                <a href="../../../index.html" class="text-purple-200 hover:text-white">CPCU</a><span class="text-purple-300">/</span>
+                <a href="../../index.html" class="text-purple-200 hover:text-white">530</a><span class="text-purple-300">/</span>
+                <a href="../index.html" class="text-purple-200 hover:text-white">Assignment 10</a><span class="text-purple-300">/</span>
+                <span class="text-white">Part 3</span>
+            </div>
+            <h1 class="text-3xl font-bold">Part 3: Tort Litigation</h1>
+            <p class="text-purple-200 mt-1">Assignment 10 &mdash; Special Liability &amp; Tort Litigation</p>
+        </div>
+    </header>
+
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-wrap gap-2 text-sm">
+                <a href="../index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Intro</a>
+                <a href="../part-1/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 1</a>
+                <a href="../part-2/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 2</a>
+                <span class="bg-purple-600 text-white px-3 py-1 rounded font-medium">Part 3</span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-5xl lg:max-w-7xl">
+
+        <!-- Start Here -->
+        <div class="bg-gradient-to-r from-green-100 to-blue-100 dark:from-green-900/40 dark:to-blue-800/40 rounded-xl p-6 mb-8 border border-green-300 dark:border-green-700">
+            <h3 class="text-xl font-bold text-green-800 dark:text-green-200 mb-4">Start Here: 5 Things You MUST Know</h3>
+            <div class="grid md:grid-cols-2 gap-3">
+                <div class="flex items-start">
+                    <span class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>Compensatory damages</strong> = special (economic: medical bills, lost wages) + general (non-economic: pain, suffering, emotional distress)</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>Nominal damages</strong> = token amount ($1) proving a right was violated. <strong>Punitive damages</strong> = punishment for oppressive/malicious/fraudulent conduct</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>Survival</strong> = the dead person's OWN claim continues. <strong>Wrongful death</strong> = a NEW claim by SURVIVORS for THEIR losses</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">4</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>Statute of limitations</strong> = deadline from discovery. <strong>Statute of repose</strong> = absolute deadline from date product was sold</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">5</span>
+                    <p class="text-gray-700 dark:text-gray-300">For <strong>minors</strong>, the statute of limitations does NOT start running until they reach the <strong>age of majority</strong></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 1: Compensatory Damages -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">1. Compensatory Damages</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-6">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Compensatory damages are meant to make the plaintiff <strong>"whole"</strong> -- to put them back (financially) where they were before the tort. They come in two types.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                    <div class="bg-green-50 dark:bg-green-900/20 p-5 rounded-lg border-l-4 border-green-500">
+                        <p class="font-bold text-green-800 dark:text-green-300 text-lg mb-2">Special Damages (Economic)</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mb-2">Specific, <strong>quantifiable</strong> monetary losses:</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li><strong>Medical expenses</strong> (past and future)</li>
+                            <li><strong>Loss of wages and earnings</strong> (past and future)</li>
+                            <li><strong>Property damage</strong> repair or replacement costs</li>
+                            <li>Other out-of-pocket costs</li>
+                        </ul>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> After a car accident, Maria has $50,000 in medical bills, $20,000 in lost wages while recovering, and $15,000 to repair her car. These are all special damages -- specific dollar amounts with receipts.</p>
+                        </div>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-5 rounded-lg border-l-4 border-purple-500">
+                        <p class="font-bold text-purple-800 dark:text-purple-300 text-lg mb-2">General Damages (Non-Economic)</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mb-2">Losses that are real but <strong>hard to quantify</strong>:</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li><strong>Pain and suffering</strong> -- physical pain endured</li>
+                            <li><strong>Emotional distress</strong> -- anxiety, depression</li>
+                            <li><strong>Loss of consortium</strong> -- loss of companionship</li>
+                            <li><strong>Disfigurement</strong> -- scarring, visible injuries</li>
+                            <li><strong>Loss of enjoyment of life</strong></li>
+                        </ul>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> Maria also suffers chronic back pain, nightmares about the accident, and can no longer play tennis -- her favorite hobby. These are general damages -- real losses but no exact dollar amount.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Nominal and Punitive Damages -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">2. Nominal &amp; Punitive Damages</h2>
+
+                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-l-4 border-blue-500">
+                        <p class="font-bold text-blue-800 dark:text-blue-300 text-lg">Nominal Damages</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">A <strong>token amount</strong> (like $1) awarded when a legal right has been violated but <strong>no actual loss occurred</strong>. Establishes the defendant was wrong.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="font-semibold text-blue-800 dark:text-blue-300 mb-2">Scenario: Technical Trespass</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> Your neighbor walks across your property every day without permission.</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> You sue for trespass.</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> Court awards <strong>$1 in nominal damages</strong>. You proved the trespass happened but suffered no real harm. It establishes the legal principle that your neighbor was wrong.</p>
+                        </div>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                        <p class="font-bold text-red-800 dark:text-red-300 text-lg">Punitive Damages (Bad-Faith Damages)</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">Go beyond compensation -- meant to <strong>punish</strong> the defendant and <strong>deter</strong> similar behavior. Awarded when conduct was:</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-2 space-y-1">
+                            <li><strong>Oppressive</strong></li>
+                            <li><strong>Malicious</strong></li>
+                            <li><strong>Fraudulent</strong></li>
+                            <li>Intended to cause harm</li>
+                        </ul>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="font-semibold text-red-800 dark:text-red-300 mb-2">Scenario: Exploding Gas Tanks</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> An auto manufacturer discovers gas tanks explode in rear-end collisions. An internal memo shows a $11/car fix but the company decides not to because it would hurt profits.</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> Jury awards compensatory damages PLUS <strong>millions in punitive damages</strong> because the manufacturer knowingly chose profits over safety.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Survival Statutes and Wrongful Death -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">3. Survival Statutes &amp; Wrongful Death</h2>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-2 border-amber-300 dark:border-amber-700 rounded-lg p-4 mb-6">
+                    <p class="font-bold text-amber-800 dark:text-amber-300 text-lg">Critical Exam Distinction</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-1 text-base lg:text-lg">These are two <strong>completely different</strong> legal actions that compensate <strong>different people</strong> for <strong>different losses</strong>. Both can be filed in the same case.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-5 rounded-lg border-l-4 border-blue-500">
+                        <p class="font-bold text-blue-800 dark:text-blue-300 text-lg mb-2">Survival Statute</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mb-2">The deceased person's <strong>OWN claim continues</strong>. Their estate pursues what <strong>THEY suffered</strong> before dying.</p>
+                        <p class="font-bold text-blue-700 dark:text-blue-300 text-sm mt-3 mb-1">What Can Be Recovered:</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>Medical expenses incurred before death</li>
+                            <li>Pain and suffering before death</li>
+                            <li>Lost wages between injury and death</li>
+                            <li>Property damage claims</li>
+                        </ul>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> Tom is injured by a defective elevator. He incurs $200,000 in medical bills and suffers months of pain. He later dies of an unrelated heart attack. His estate CAN continue the elevator lawsuit for Tom's medical expenses and pain before death.</p>
+                        </div>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/20 p-5 rounded-lg border-l-4 border-green-500">
+                        <p class="font-bold text-green-800 dark:text-green-300 text-lg mb-2">Wrongful Death</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mb-2">A <strong>NEW claim by SURVIVORS</strong> for <strong>THEIR losses</strong>. Did not exist at common law -- created by statute.</p>
+                        <p class="font-bold text-green-700 dark:text-green-300 text-sm mt-3 mb-1">What Can Be Recovered:</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>Loss of deceased's future earnings/support</li>
+                            <li>Loss of companionship/consortium</li>
+                            <li>Loss of parental guidance</li>
+                            <li>Funeral and burial expenses</li>
+                            <li>Survivors' emotional suffering (some states)</li>
+                        </ul>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> Sarah (35, mother of two, earning $80,000/year) is killed by a drunk driver. Her family sues for THEIR losses: lost income, loss of companionship, lost parental guidance, funeral costs.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-indigo-50 dark:bg-indigo-900/20 rounded-lg p-4 border-l-4 border-indigo-500">
+                    <p class="font-bold text-indigo-800 dark:text-indigo-300 text-lg">Key Distinction to Memorize</p>
+                    <div class="flex items-center gap-4 flex-wrap mt-3">
+                        <div class="bg-blue-100 dark:bg-blue-900/40 p-4 rounded-lg text-center flex-1 min-w-[150px]">
+                            <p class="font-bold text-blue-800 dark:text-blue-300">Survival</p>
+                            <p class="text-sm text-gray-700 dark:text-gray-300">Dead person's OWN claim</p>
+                            <p class="text-xs lg:text-sm text-gray-500 dark:text-gray-400 mt-1">What THEY suffered</p>
+                        </div>
+                        <div class="text-2xl text-gray-400 font-bold">vs.</div>
+                        <div class="bg-green-100 dark:bg-green-900/40 p-4 rounded-lg text-center flex-1 min-w-[150px]">
+                            <p class="font-bold text-green-800 dark:text-green-300">Wrongful Death</p>
+                            <p class="text-sm text-gray-700 dark:text-gray-300">NEW claim by SURVIVORS</p>
+                            <p class="text-xs lg:text-sm text-gray-500 dark:text-gray-400 mt-1">What THEY lost</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Mass Tort Litigation -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">4. Mass Tort Litigation</h2>
+
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 border-l-4 border-purple-500 mb-6">
+                    <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg">Mass Tort Litigation</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">Cases where a <strong>large number of plaintiffs</strong> are injured by the same product or event. Examples: asbestos exposure, pharmaceutical drugs with widespread side effects, environmental contamination.</p>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 rounded-r-lg mb-4">
+                    <p class="font-bold text-amber-800 dark:text-amber-300">Key Challenges</p>
+                    <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-2 space-y-1">
+                        <li>Thousands or millions of potential plaintiffs</li>
+                        <li>Difficult proof of causation across different exposures and time periods</li>
+                        <li>Coordinating litigation across multiple jurisdictions</li>
+                        <li>Often handled through <strong>multidistrict litigation (MDL)</strong> procedures</li>
+                    </ul>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-gray-400">
+                    <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Scenario: Asbestos Litigation</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> Thousands of workers at factories, shipyards, and construction sites were exposed to asbestos over decades. Many developed mesothelioma and other cancers years or decades later.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> Workers file lawsuits against asbestos manufacturers, but many manufacturers have gone bankrupt, exposure occurred at many different times, and causation is hard to prove for any individual plaintiff.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> Courts consolidate cases into mass tort proceedings. Bankruptcy trusts are established. This remains one of the largest mass tort litigations in history, demonstrating the challenges of coordinating thousands of claims across multiple jurisdictions and time periods.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Statutes of Limitations and Repose -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">5. Statutes of Limitations &amp; Repose</h2>
+
+                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-5 rounded-lg border-l-4 border-blue-500">
+                        <p class="font-bold text-blue-800 dark:text-blue-300 text-lg mb-2">Statute of Limitations</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Sets a <strong>deadline for filing a lawsuit</strong>. Miss it and you lose your right to sue forever.</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-2"><strong>When does the clock start?</strong> A cause of action <strong>accrues</strong> when:</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1 space-y-1">
+                            <li>The wrongful act occurred, AND</li>
+                            <li>The plaintiff knew or should have known about the injury</li>
+                        </ul>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> A 2-year statute of limitations for personal injury. You discover your chronic headaches are caused by a defective chemical in 2024. The clock starts in 2024 when you discover it, not when you were first exposed.</p>
+                        </div>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 p-5 rounded-lg border-l-4 border-red-500">
+                        <p class="font-bold text-red-800 dark:text-red-300 text-lg mb-2">Statute of Repose</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Sets an <strong>absolute outer deadline</strong> measured from a specific event (when a product was sold or a building completed), <strong>regardless of when injury was discovered</strong>.</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-2">In plain English: "Sue within X years of the product being sold, period -- even if you did not know about the injury yet."</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> A 10-year statute of repose for construction defects. A building is completed in 2015. In 2026, you discover a foundation defect. You are OUT OF TIME -- the 10-year repose period expired in 2025, even though you just found the defect.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-4 flex-wrap mb-6">
+                    <div class="bg-blue-100 dark:bg-blue-900/40 p-4 rounded-lg text-center flex-1 min-w-[200px]">
+                        <p class="font-bold text-blue-800 dark:text-blue-300">Statute of Limitations</p>
+                        <p class="text-sm text-gray-700 dark:text-gray-300">Clock starts at <strong>discovery</strong></p>
+                    </div>
+                    <div class="text-2xl text-gray-400 font-bold">vs.</div>
+                    <div class="bg-red-100 dark:bg-red-900/40 p-4 rounded-lg text-center flex-1 min-w-[200px]">
+                        <p class="font-bold text-red-800 dark:text-red-300">Statute of Repose</p>
+                        <p class="text-sm text-gray-700 dark:text-gray-300">Clock starts at <strong>sale/completion</strong></p>
+                    </div>
+                </div>
+
+                <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 border-l-4 border-green-500">
+                    <p class="font-bold text-green-800 dark:text-green-300 text-lg">Tolling for Minors</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">A statute of limitations <strong>begins to run for a minor from the date they reach the age of majority</strong>. The clock does NOT start while they are a child.</p>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                        <p class="text-sm lg:text-base"><strong>Example:</strong> A 5-year-old is injured by a defective toy. In a state with a 2-year statute of limitations and age of majority at 18, the child has until age 20 to file suit -- the clock starts at 18, not at age 5.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cheat Sheet -->
+        <section id="cheat-sheet" class="mb-10">
+            <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 border-2 border-dashed border-gray-300 dark:border-gray-600">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100">Cheat Sheet</h2>
+                    <span class="text-sm text-gray-500 dark:text-gray-400">Print this page for quick reference</span>
+                </div>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Damages</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>Compensatory: Special (economic) + General (non-economic)</li>
+                            <li>Nominal: $1 token -- right violated, no real harm</li>
+                            <li>Punitive: punishment for oppressive/malicious/fraudulent acts</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Survival vs. Wrongful Death</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>Survival: dead person's claim continues (their losses)</li>
+                            <li>Wrongful death: new claim by survivors (their losses)</li>
+                            <li>Both can be filed in the same case</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Time Limits</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>Limitations: deadline from discovery of injury</li>
+                            <li>Repose: absolute deadline from sale/completion</li>
+                            <li>Minors: clock starts at age of majority</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Special Damages Examples</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>Medical bills, lost wages, property damage</li>
+                            <li>General: pain, suffering, emotional distress, consortium</li>
+                            <li>Punitive: requires oppressive/malicious/fraudulent conduct</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Traps -->
+        <section class="mb-10">
+            <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-xl p-5 lg:p-6">
+                <h2 class="text-2xl font-bold text-red-800 dark:text-red-300 mb-4">Exam Trap Alerts</h2>
+                <div class="space-y-3">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">1. Nominal vs. Punitive Damages</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Do NOT confuse these. <strong>Nominal</strong> = tiny amount ($1) proving a right was violated with no real harm. <strong>Punitive</strong> = large amount meant to punish egregious behavior. They serve completely different purposes.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">2. Survival vs. Wrongful Death</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Survival = the DEAD PERSON's claim. Wrongful death = the SURVIVORS' claim. They compensate different people for different losses. The exam loves testing whether you can distinguish which is which.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">3. Statute of Limitations vs. Statute of Repose</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>Limitations</strong> = clock starts when injury is discovered (or should have been discovered). <strong>Repose</strong> = clock starts when product is sold or building is completed (absolute deadline regardless of discovery). Do not mix them up.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">4. Minor's Statute of Limitations Starts at Age of Majority</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The clock does NOT start running for a minor at the time of injury. It starts when they <strong>reach the age of majority</strong>. This means injuries to young children can be sued on many years later.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">5. Wrongful Death Did NOT Exist at Common Law</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Wrongful death actions were <strong>created by statute</strong>. At common law, if the injured person died, the claim died with them. Survival statutes and wrongful death statutes were both legislative fixes to this harsh common-law rule.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Reference Summary -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-purple-600 to-purple-800 rounded-xl p-6 text-white">
+                <h2 class="text-2xl font-bold mb-6">Quick Reference Summary</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Special Damages</p>
+                        <p class="text-sm text-purple-100">Quantifiable losses: medical bills, lost wages, property damage.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">General Damages</p>
+                        <p class="text-sm text-purple-100">Hard-to-quantify losses: pain, suffering, emotional distress, consortium.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Nominal Damages</p>
+                        <p class="text-sm text-purple-100">Token $1 award. Right violated, no actual harm.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Punitive Damages</p>
+                        <p class="text-sm text-purple-100">Punishment for oppressive, malicious, or fraudulent conduct.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Survival Statute</p>
+                        <p class="text-sm text-purple-100">Dead person's OWN claim continues through their estate.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Wrongful Death</p>
+                        <p class="text-sm text-purple-100">NEW claim by survivors for THEIR losses from the death.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Statute of Limitations</p>
+                        <p class="text-sm text-purple-100">Filing deadline from discovery of injury.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Statute of Repose</p>
+                        <p class="text-sm text-purple-100">Absolute deadline from sale/completion, regardless of discovery.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Tolling for Minors</p>
+                        <p class="text-sm text-purple-100">Clock starts at age of majority, not at time of injury.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="../part-2/index.html" class="text-gray-400 hover:text-white transition-colors">&larr; Part 2: Vicarious Liability &amp; Joint Tortfeasors</a>
+                <span class="text-gray-500">Part 3 of 3</span>
+                <a href="../../assignment-11/index.html" class="text-gray-400 hover:text-white transition-colors">Assignment 11 &rarr;</a>
+            </div>
+        </div>
+    </footer>
+
+    <button onclick="openAITutor({topic: 'Tort Litigation: Damages Survival and Statutes', concepts: ['Compensatory damages special vs general', 'Nominal damages', 'Punitive bad-faith damages', 'Survival statutes vs wrongful death', 'Mass tort litigation', 'Statute of limitations vs statute of repose', 'Tolling for minors', 'When cause of action accrues'], keywords: ['special damages', 'general damages', 'nominal damages', 'punitive damages', 'survival statute', 'wrongful death', 'mass tort', 'statute of limitations', 'statute of repose', 'tolling', 'accrual']})" class="fixed bottom-6 right-6 bg-purple-600 hover:bg-purple-700 text-white p-4 rounded-full shadow-xl hover:scale-110 transition-all z-50" title="AI Tutor">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+    </button>
+</body>
+</html>

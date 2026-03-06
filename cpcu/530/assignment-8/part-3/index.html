@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 3: Defenses to Negligence | Assignment 8 | CPCU 530</title>
+    <link rel="icon" type="image/svg+xml" href="../../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config = { darkMode: 'class' }</script>
+    <link rel="stylesheet" href="../../../../css/styles.css">
+    <script src="../../../../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') { document.documentElement.classList.remove('dark'); }
+        function toggleTheme() { document.documentElement.classList.toggle('dark'); localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light'); }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="showAPIKeySetup()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings"><svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg></button>
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/></svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>
+        </button>
+    </div>
+
+    <header class="bg-gradient-to-r from-purple-600 to-purple-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap gap-2 text-sm mb-2">
+                <a href="../../../../index.html" class="text-purple-200 hover:text-white">Home</a><span class="text-purple-300">/</span>
+                <a href="../../../index.html" class="text-purple-200 hover:text-white">CPCU</a><span class="text-purple-300">/</span>
+                <a href="../../index.html" class="text-purple-200 hover:text-white">530</a><span class="text-purple-300">/</span>
+                <a href="../index.html" class="text-purple-200 hover:text-white">Assignment 8</a><span class="text-purple-300">/</span>
+                <span class="text-white">Part 3</span>
+            </div>
+            <h1 class="text-3xl font-bold">Part 3: Defenses to Negligence</h1>
+            <p class="text-purple-200 mt-1">Assignment 8 &mdash; Tort Law: Negligence</p>
+        </div>
+    </header>
+
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-wrap gap-2 text-sm">
+                <a href="../index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Intro</a>
+                <a href="../part-1/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 1</a>
+                <a href="../part-2/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 2</a>
+                <span class="bg-purple-600 text-white px-3 py-1 rounded font-medium">Part 3</span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-5xl lg:max-w-7xl">
+
+        <!-- Start Here -->
+        <div class="bg-gradient-to-r from-red-100 to-amber-100 dark:from-red-900/40 dark:to-amber-800/40 rounded-xl p-6 mb-8 border border-red-300 dark:border-red-700">
+            <h3 class="text-xl font-bold text-red-800 dark:text-red-200 mb-4">Start Here: 5 Things You MUST Know</h3>
+            <div class="grid md:grid-cols-2 gap-3">
+                <div class="flex items-start">
+                    <span class="bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>Contributory negligence</strong> = ANY plaintiff fault bars ALL recovery (harsh old rule, only a few states)</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>50% rule</strong> = recover at 50% fault or less. <strong>49% rule</strong> = recover at under 50% ONLY. At exactly 50%: recover under 50% rule, get NOTHING under 49% rule</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>Assumption of risk</strong> requires BOTH: full knowledge of the risk AND voluntary choice to face it</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">4</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>Interspousal immunity</strong> has been abolished in ALL states (in whole or in part). This is a "know it" test point</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">5</span>
+                    <p class="text-gray-700 dark:text-gray-300">Independent contractor torts: generally NOT liable EXCEPT for 3 exceptions (negligent employment, nondelegable duties, inherently dangerous work)</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 1: Contributory Negligence -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">1. Contributory Negligence</h2>
+
+                <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-red-500 mb-6">
+                    <h3 class="font-bold text-red-800 dark:text-red-300 text-lg lg:text-xl">The Old, Harsh Rule</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">If the <strong>plaintiff was negligent AT ALL</strong> &mdash; even 1% at fault &mdash; the plaintiff gets <strong>NOTHING</strong>. Total bar to recovery. Only a few states still follow this rule (Alabama, Maryland, North Carolina, Virginia, and D.C.).</p>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-red-400 mb-4">
+                    <p class="font-semibold text-red-800 dark:text-red-300 mb-2">Real-World Scenario: Contributory Negligence</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> A pedestrian jaywalks across a busy street at night wearing dark clothing.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> A driver who is texting hits the pedestrian.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> In a <strong>contributory negligence</strong> state, the pedestrian gets <strong>NOTHING</strong>. Even though the driver was texting, the pedestrian was also negligent by jaywalking. ANY fault by the plaintiff = zero recovery.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Comparative Negligence -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">2. Comparative Negligence</h2>
+
+                <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 border-l-4 border-green-500 mb-6">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">A <strong>fairer system</strong> that replaced contributory negligence in most states. Instead of barring ALL recovery, the plaintiff's damages are <strong>reduced</strong> by their percentage of fault. There are several variations.</p>
+                </div>
+
+                <div class="space-y-4 mb-6">
+                    <!-- Pure -->
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-l-4 border-blue-500">
+                        <p class="font-bold text-blue-800 dark:text-blue-300 text-lg">Pure Comparative Negligence</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">Plaintiff can recover damages reduced by their fault, <strong>NO MATTER HOW MUCH</strong> at fault. Even at 99% fault, they still recover 1%.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> Plaintiff is 90% at fault, defendant is 10%. Damages = $100,000. Plaintiff recovers <strong>$10,000</strong> (10% of damages).</p>
+                        </div>
+                        <p class="text-amber-700 dark:text-amber-300 text-sm mt-2"><strong>Criticism:</strong> A party whose negligence was the MAJOR factor in causing the harm can still recover from the less negligent party.</p>
+                    </div>
+
+                    <!-- 50% Rule -->
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <p class="font-bold text-green-800 dark:text-green-300 text-lg">50 Percent Rule ("Not Greater Than")</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">Plaintiff recovers ONLY if their negligence is <strong>NOT GREATER THAN</strong> (50% or less of) the defendant's.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>At 50% fault:</strong> Damages = $100,000. Plaintiff recovers <strong>$50,000</strong>. At 51% fault: plaintiff gets <strong>NOTHING</strong>.</p>
+                        </div>
+                    </div>
+
+                    <!-- 49% Rule -->
+                    <div class="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg border-l-4 border-amber-500">
+                        <p class="font-bold text-amber-800 dark:text-amber-300 text-lg">49 Percent Rule ("Less Than")</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">Plaintiff recovers ONLY if their negligence is <strong>LESS THAN</strong> (strictly under 50% of) the defendant's.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>At 49% fault:</strong> Damages = $100,000. Plaintiff recovers <strong>$51,000</strong>. At 50% fault (even though equally at fault): plaintiff gets <strong>NOTHING</strong>.</p>
+                        </div>
+                    </div>
+
+                    <!-- Slight vs Gross -->
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border-l-4 border-purple-500">
+                        <p class="font-bold text-purple-800 dark:text-purple-300 text-lg">Slight Versus Gross Rule</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">Plaintiff recovers only if their negligence was <strong>"slight"</strong> compared to the defendant's <strong>"gross"</strong> negligence. The narrowest form, rarely used.</p>
+                    </div>
+                </div>
+
+                <!-- Critical Comparison -->
+                <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-lg p-4 mb-4">
+                    <p class="font-bold text-red-800 dark:text-red-300 text-lg mb-3">The Critical 50% vs. 49% Distinction (FAVORITE EXAM TRICK)</p>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm lg:text-base">
+                            <thead>
+                                <tr class="bg-red-600 text-white">
+                                    <th class="p-3 text-left rounded-tl-lg">Plaintiff's Fault</th>
+                                    <th class="p-3 text-center">Pure Comparative</th>
+                                    <th class="p-3 text-center">50% Rule</th>
+                                    <th class="p-3 text-center rounded-tr-lg">49% Rule</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                                <tr class="bg-white dark:bg-gray-700">
+                                    <td class="p-3 font-bold">30% at fault</td>
+                                    <td class="p-3 text-center text-green-700 dark:text-green-400 font-bold">Recovers 70%</td>
+                                    <td class="p-3 text-center text-green-700 dark:text-green-400 font-bold">Recovers 70%</td>
+                                    <td class="p-3 text-center text-green-700 dark:text-green-400 font-bold">Recovers 70%</td>
+                                </tr>
+                                <tr class="bg-gray-50 dark:bg-gray-600">
+                                    <td class="p-3 font-bold">49% at fault</td>
+                                    <td class="p-3 text-center text-green-700 dark:text-green-400 font-bold">Recovers 51%</td>
+                                    <td class="p-3 text-center text-green-700 dark:text-green-400 font-bold">Recovers 51%</td>
+                                    <td class="p-3 text-center text-green-700 dark:text-green-400 font-bold">Recovers 51%</td>
+                                </tr>
+                                <tr class="bg-amber-50 dark:bg-amber-900/30">
+                                    <td class="p-3 font-bold">50% at fault</td>
+                                    <td class="p-3 text-center text-green-700 dark:text-green-400 font-bold">Recovers 50%</td>
+                                    <td class="p-3 text-center text-green-700 dark:text-green-400 font-bold">Recovers 50%</td>
+                                    <td class="p-3 text-center text-red-700 dark:text-red-400 font-bold">NOTHING</td>
+                                </tr>
+                                <tr class="bg-white dark:bg-gray-700">
+                                    <td class="p-3 font-bold">51% at fault</td>
+                                    <td class="p-3 text-center text-green-700 dark:text-green-400 font-bold">Recovers 49%</td>
+                                    <td class="p-3 text-center text-red-700 dark:text-red-400 font-bold">NOTHING</td>
+                                    <td class="p-3 text-center text-red-700 dark:text-red-400 font-bold">NOTHING</td>
+                                </tr>
+                                <tr class="bg-gray-50 dark:bg-gray-600">
+                                    <td class="p-3 font-bold">90% at fault</td>
+                                    <td class="p-3 text-center text-green-700 dark:text-green-400 font-bold">Recovers 10%</td>
+                                    <td class="p-3 text-center text-red-700 dark:text-red-400 font-bold">NOTHING</td>
+                                    <td class="p-3 text-center text-red-700 dark:text-red-400 font-bold">NOTHING</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Last Clear Chance -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">3. Last Clear Chance Doctrine</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 border-l-4 border-blue-500 mb-6">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Designed to <strong>soften the harsh results of contributory negligence</strong>. Even if the plaintiff was negligent, if the <strong>DEFENDANT</strong> had the "last clear chance" to avoid the injury and did not take it, the defendant is still liable.</p>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-blue-400 mb-4">
+                    <p class="font-semibold text-blue-800 dark:text-blue-300 mb-2">Real-World Scenario: Last Clear Chance</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> A pedestrian negligently crosses the street without looking.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> A driver sees the pedestrian from 200 feet away but is looking at their phone and does not brake.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> Even though the pedestrian was negligent, the driver had the <strong>LAST clear opportunity</strong> to avoid the accident (saw from 200 feet away) and failed to act. The driver is liable despite the pedestrian's own negligence.</p>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 rounded-r-lg">
+                    <p class="font-bold text-amber-800 dark:text-amber-300">Exam Tip</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">This doctrine is mainly used in <strong>contributory negligence</strong> states to avoid the "total bar" result. In comparative negligence states, it is less important because fault is already shared.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Assumption of Risk -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">4. Assumption of Risk</h2>
+
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 border-l-4 border-purple-500 mb-6">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">The plaintiff <strong>voluntarily chose to face a known danger</strong>. If the plaintiff knew about the risk and voluntarily took it on, they cannot complain when the risk materializes.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg text-center border-2 border-purple-300 dark:border-purple-700">
+                        <span class="bg-purple-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mx-auto">1</span>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg font-bold mt-2">Full Knowledge</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">Plaintiff had <strong>full knowledge</strong> of the specific risk</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg text-center border-2 border-purple-300 dark:border-purple-700">
+                        <span class="bg-purple-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mx-auto">2</span>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg font-bold mt-2">Voluntary Choice</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">Plaintiff <strong>voluntarily chose</strong> to incur the risk</p>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-purple-400 mb-4">
+                    <p class="font-semibold text-purple-800 dark:text-purple-300 mb-2">Real-World Scenario: Assumption of Risk</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> A skier reads and signs a waiver at a ski resort stating skiing involves risks of falls, collisions, and icy conditions.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> The skier hits an icy patch on an intermediate trail and breaks their leg.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> The skier <strong>assumed the risk</strong>. They had full knowledge (signed the waiver, icy conditions are a known hazard) and voluntarily chose to ski. The resort can use this defense.</p>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 rounded-r-lg">
+                    <p class="font-bold text-amber-800 dark:text-amber-300">Important Limitation</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">If the injury was caused by the resort's <strong>SEPARATE negligence</strong> (broken chairlift, unmarked cliff), assumption of risk may NOT apply because the skier did not assume THAT specific risk.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Release of Liability & Immunities -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">5. Release of Liability &amp; Immunities</h2>
+
+                <!-- Release -->
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 border-l-4 border-blue-500 mb-6">
+                    <p class="font-bold text-blue-800 dark:text-blue-300 text-lg">Release of Liability</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">A contractual agreement where one party <strong>gives up their right to sue</strong> for negligence. Common in sporting events, gym memberships, and adventure activities. Can bar recovery even for negligence, but courts may refuse to enforce if unconscionable, against public policy, or involving gross negligence.</p>
+                </div>
+
+                <!-- Sovereign Immunity -->
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">Immunities</h3>
+
+                <div class="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-lg border-l-4 border-indigo-500 mb-4">
+                    <p class="font-bold text-indigo-800 dark:text-indigo-300 text-lg">Sovereign (Governmental) Immunity</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">"The king can do no wrong" &mdash; governments cannot be sued without consent. Most states have <strong>partially waived</strong> this.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border border-red-200 dark:border-red-800">
+                        <p class="font-bold text-red-800 dark:text-red-300">STILL IMMUNE</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-2"><strong>Governmental functions:</strong> Activities ONLY government can do (police, fire, courts). Also <strong>discretionary/administrative acts</strong> involving judgment and policy-making.</p>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border border-green-200 dark:border-green-800">
+                        <p class="font-bold text-green-800 dark:text-green-300">NOT IMMUNE</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-2"><strong>Proprietary functions:</strong> Activities that COULD be done by private entities (bus system, swimming pool, parking garage). Also <strong>ministerial acts</strong> (routine tasks like filling potholes).</p>
+                    </div>
+                </div>
+
+                <!-- Other Immunities -->
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <p class="font-bold text-green-800 dark:text-green-300 text-lg">Interspousal Immunity</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">Old rule that spouses could NOT sue each other. <strong>ALL states have abolished this</strong> in whole or in part. Spouses CAN now sue each other.</p>
+                        <p class="text-green-600 dark:text-green-400 text-sm font-bold mt-2">FREQUENTLY TESTED POINT</p>
+                    </div>
+                    <div class="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg border-l-4 border-amber-500">
+                        <p class="font-bold text-amber-800 dark:text-amber-300 text-lg">Parent-Child Immunity</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">Old rule that children could NOT sue parents for negligence. <strong>Most states have modified or limited</strong> this, but some retain it for parental authority decisions.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: Independent Contractors & Contractual Liability -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">6. Independent Contractors &amp; Contractual Liability</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 border-l-4 border-blue-500 mb-6">
+                    <p class="font-bold text-blue-800 dark:text-blue-300">General Rule</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">A person who hires an independent contractor is generally <strong>NOT liable</strong> for the contractor's torts. This is because the hiring party does not control HOW the work is done.</p>
+                </div>
+
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">Three Exceptions (When You ARE Liable)</h3>
+                <div class="grid md:grid-cols-3 gap-4 mb-6">
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                        <p class="font-bold text-red-800 dark:text-red-300">1. Negligent Employment</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">You <strong>knew or should have known</strong> the contractor was incompetent.</p>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                        <p class="font-bold text-red-800 dark:text-red-300">2. Nondelegable Duties</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">You delegated a duty the <strong>law says you CANNOT delegate</strong> (certain safety obligations).</p>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                        <p class="font-bold text-red-800 dark:text-red-300">3. Inherently Dangerous Work</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">The work itself is <strong>inherently dangerous</strong> (demolition, blasting, hazardous materials).</p>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-gray-400 mb-6">
+                    <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Scenario: Inherently Dangerous Work</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> A general contractor hires a subcontractor for demolition work on an old building.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> The subcontractor uses too much explosive, damaging neighboring buildings.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> The general contractor IS liable even though the subcontractor is independent. Demolition with explosives is <strong>inherently dangerous work</strong>. You cannot avoid liability by delegating inherently dangerous work.</p>
+                </div>
+
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">Three Types of Contractual Liability Agreements</h3>
+                <div class="space-y-4 mb-6">
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border-l-4 border-purple-500">
+                        <p class="font-bold text-purple-800 dark:text-purple-300 text-lg">Liquidated Damages Agreement</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">A clause specifying a <strong>predetermined amount</strong> to be paid if a party breaches. Enforceable when damages would be hard to calculate and the amount is reasonable. NOT enforceable if the amount is actually a "penalty."</p>
+                    </div>
+
+                    <div class="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-lg border-l-4 border-indigo-500">
+                        <p class="font-bold text-indigo-800 dark:text-indigo-300 text-lg">Hold-Harmless (Indemnity) Agreement</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">One party agrees to <strong>protect the other from liability</strong> for certain losses.</p>
+                        <div class="grid md:grid-cols-3 gap-2 mt-3">
+                            <div class="bg-white dark:bg-gray-700 p-2 rounded text-center">
+                                <p class="font-bold text-sm text-gray-800 dark:text-gray-200">Limited Form</p>
+                                <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Covers indemnitor's OWN negligence only</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-2 rounded text-center">
+                                <p class="font-bold text-sm text-gray-800 dark:text-gray-200">Intermediate Form</p>
+                                <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Covers BOTH parties' negligence</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-2 rounded text-center">
+                                <p class="font-bold text-sm text-gray-800 dark:text-gray-200">Broad Form</p>
+                                <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Covers ALL losses, even indemnitee's sole negligence</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg border-l-4 border-amber-500">
+                        <p class="font-bold text-amber-800 dark:text-amber-300 text-lg">Exculpatory Agreement</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">One party agrees in advance <strong>NOT to hold the other liable</strong> for future negligence. Valid when ALL three conditions are met:</p>
+                        <div class="grid md:grid-cols-3 gap-3 mt-3">
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                                <span class="bg-amber-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold mx-auto">1</span>
+                                <p class="text-gray-700 dark:text-gray-300 text-sm mt-2">Not <strong>adverse to public interest</strong></p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                                <span class="bg-amber-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold mx-auto">2</span>
+                                <p class="text-gray-700 dark:text-gray-300 text-sm mt-2">Party is NOT under a <strong>duty to perform</strong></p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                                <span class="bg-amber-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold mx-auto">3</span>
+                                <p class="text-gray-700 dark:text-gray-300 text-sm mt-2">No <strong>unequal bargaining power</strong></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 7: Landowner Liability -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">7. Landowner &amp; Occupier Liability</h2>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <p class="font-bold text-green-800 dark:text-green-300 text-lg">Natural Conditions</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">Generally <strong>NO duty</strong> to protect from natural conditions (fallen trees, ice, animal burrows). <strong>EXCEPTION:</strong> In urban areas, a duty may exist if natural hazards endanger people on adjacent public sidewalks and the owner knows about them.</p>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                        <p class="font-bold text-red-800 dark:text-red-300 text-lg">Artificial Conditions</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">Things built by humans create <strong>greater liability</strong>. Hidden artificial dangers can create liability. Landowners must keep adjacent sidewalks/streets safe from hazards created by artificial conditions.</p>
+                    </div>
+                </div>
+
+                <!-- Attractive Nuisance -->
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-2 border-amber-300 dark:border-amber-700 rounded-xl p-5 mb-6">
+                    <h3 class="text-lg font-bold text-amber-800 dark:text-amber-300 mb-3">Attractive Nuisance Doctrine</h3>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mb-3">A special rule for <strong>protecting children</strong>. If a landowner has an artificial condition likely to <strong>attract children who are too young to understand the danger</strong>, the landowner may be liable even if the child was technically a trespasser.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>Classic examples:</strong> Unfenced swimming pools, construction sites, abandoned machinery, trampolines.</p>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                        <p class="font-semibold text-amber-800 dark:text-amber-300 mb-2">Example</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> A homeowner has an unfenced pool bordering a neighborhood with young children. A 5-year-old wanders in and nearly drowns. Despite the child being a trespasser, the homeowner may be liable because the pool is an artificial condition certain to attract children who cannot appreciate the danger.</p>
+                    </div>
+                </div>
+
+                <!-- Landlord duties -->
+                <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-l-4 border-blue-500">
+                    <p class="font-bold text-blue-800 dark:text-blue-300 text-lg">Landlord Liability</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">Landlords must maintain <strong>common areas</strong> (hallways, stairways, parking lots) in safe condition. Individual unit duty shifts to tenant UNLESS: the landlord knew of a hidden defect, agreed to make repairs and failed, or negligently made repairs.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cheat Sheet -->
+        <section id="cheat-sheet" class="mb-10">
+            <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 border-2 border-dashed border-gray-300 dark:border-gray-600">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100">Cheat Sheet</h2>
+                    <span class="text-sm text-gray-500 dark:text-gray-400">Print this page for quick reference</span>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Negligence Defenses</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>Contributory = ANY fault bars ALL recovery</li>
+                            <li>Pure comparative = always recover (even 99%)</li>
+                            <li>50% rule = recover at 50% or less</li>
+                            <li>49% rule = recover UNDER 50% only</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Other Defenses</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>Last clear chance = softens contributory negligence</li>
+                            <li>Assumption of risk = knowledge + voluntary choice</li>
+                            <li>Release of liability = contractual waiver</li>
+                            <li>Interspousal immunity = ABOLISHED everywhere</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Independent Contractors</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>Generally NOT liable for contractor's torts</li>
+                            <li>Exception 1: Negligent employment</li>
+                            <li>Exception 2: Nondelegable duties</li>
+                            <li>Exception 3: Inherently dangerous work</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Sovereign Immunity</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>Governmental functions = STILL immune</li>
+                            <li>Proprietary functions = NOT immune</li>
+                            <li>Discretionary acts = immune</li>
+                            <li>Ministerial acts = NOT immune</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Landowner Liability</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>Natural conditions = generally no duty</li>
+                            <li>Artificial conditions = greater liability</li>
+                            <li>Attractive nuisance = protects child trespassers</li>
+                            <li>Landlords = must maintain common areas</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Contractual Agreements</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>Liquidated damages = preset breach amount</li>
+                            <li>Hold-harmless = indemnity (3 forms)</li>
+                            <li>Exculpatory = waive future negligence claims</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Traps -->
+        <section class="mb-10">
+            <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-xl p-5 lg:p-6">
+                <h2 class="text-2xl font-bold text-red-800 dark:text-red-300 mb-4">Exam Trap Alerts</h2>
+                <div class="space-y-3">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">1. The 50% vs. 49% Rule Trap</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">At EXACTLY 50% fault: plaintiff <strong>RECOVERS</strong> under the 50% rule but gets <strong>NOTHING</strong> under the 49% rule. This ONE percentage point difference is a favorite exam trick.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">2. Contributory Negligence Is NOT the Majority Rule</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Most states have moved to <strong>comparative negligence</strong>. Only a few states still use pure contributory negligence. Do not assume all states bar recovery for any plaintiff fault.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">3. Assumption of Risk Requires BOTH Elements</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">If the plaintiff did not know about the <strong>specific risk</strong>, the defense fails even if they voluntarily participated. Knowledge of general risks is not enough &mdash; it must be the specific risk that caused harm.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">4. Interspousal Immunity = ABOLISHED</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">ALL states have abolished interspousal immunity in whole or in part. Spouses CAN sue each other. This is a simple "know it" exam point &mdash; do not say it still exists anywhere.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">5. Independent Contractor Liability Has Three Exceptions</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Do NOT think a person is <strong>NEVER</strong> liable for an independent contractor's torts. There are three clear exceptions: negligent employment, nondelegable duties, and inherently dangerous work.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">6. Natural Conditions vs. Urban Areas</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Generally no duty for natural conditions, but in <strong>urban areas</strong> there CAN be a duty if natural hazards endanger people on adjacent public paths and the owner knows about them.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Reference Summary -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-purple-600 to-purple-800 rounded-xl p-6 text-white">
+                <h2 class="text-2xl font-bold mb-6">Quick Reference Summary</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Contributory Negligence</p>
+                        <p class="text-sm text-purple-100">ANY plaintiff fault = ZERO recovery. Old, harsh rule. Few states.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Pure Comparative</p>
+                        <p class="text-sm text-purple-100">Always recover, even at 99% fault. Reduced by fault percentage.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">50% vs. 49% Rule</p>
+                        <p class="text-sm text-purple-100">50% = recover at 50% fault. 49% = NOTHING at 50% fault. Key trap.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Last Clear Chance</p>
+                        <p class="text-sm text-purple-100">Softens contributory negligence. Defendant had last chance to avoid harm.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Assumption of Risk</p>
+                        <p class="text-sm text-purple-100">Full knowledge + voluntary choice. Both required.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Sovereign Immunity</p>
+                        <p class="text-sm text-purple-100">Governmental functions = immune. Proprietary functions = NOT immune.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Interspousal Immunity</p>
+                        <p class="text-sm text-purple-100">ABOLISHED in all states. Spouses CAN sue each other.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Independent Contractors</p>
+                        <p class="text-sm text-purple-100">Generally not liable. 3 exceptions: negligent hire, nondelegable, dangerous work.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Attractive Nuisance</p>
+                        <p class="text-sm text-purple-100">Artificial condition + attracts children + kids can't understand danger.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="../part-2/index.html" class="text-gray-400 hover:text-white transition-colors">&larr; Part 2: Causation, Damages &amp; Imputed Negligence</a>
+                <span class="text-gray-500">Part 3 of 3</span>
+                <a href="../../assignment-9/index.html" class="text-gray-400 hover:text-white transition-colors">Assignment 9: Intentional Torts &rarr;</a>
+            </div>
+        </div>
+    </footer>
+
+    <button onclick="openAITutor({topic: 'Defenses to Negligence', concepts: ['Contributory negligence', 'Pure comparative negligence', '50 percent comparative negligence rule', '49 percent comparative negligence rule', 'Slight versus gross rule', 'Last clear chance doctrine', 'Assumption of risk', 'Release of liability', 'Sovereign immunity', 'Governmental vs proprietary functions', 'Discretionary vs ministerial acts', 'Interspousal immunity abolished', 'Parent-child immunity', 'Independent contractor exceptions', 'Liquidated damages', 'Hold-harmless agreement', 'Exculpatory agreement', 'Attractive nuisance', 'Landowner liability'], keywords: ['contributory negligence', 'comparative negligence', 'pure comparative', '50 percent rule', '49 percent rule', 'last clear chance', 'assumption of risk', 'sovereign immunity', 'proprietary function', 'governmental function', 'interspousal immunity', 'independent contractor', 'nondelegable duty', 'inherently dangerous', 'liquidated damages', 'hold-harmless', 'exculpatory', 'attractive nuisance']})" class="fixed bottom-6 right-6 bg-purple-600 hover:bg-purple-700 text-white p-4 rounded-full shadow-xl hover:scale-110 transition-all z-50" title="AI Tutor">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+    </button>
+</body>
+</html>

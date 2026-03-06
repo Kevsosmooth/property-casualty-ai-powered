@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 1: UCC &amp; Sales Contracts | Assignment 6 | CPCU 530</title>
+    <link rel="icon" type="image/svg+xml" href="../../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config = { darkMode: 'class' }</script>
+    <link rel="stylesheet" href="../../../../css/styles.css">
+    <script src="../../../../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') { document.documentElement.classList.remove('dark'); }
+        function toggleTheme() { document.documentElement.classList.toggle('dark'); localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light'); }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="showAPIKeySetup()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings"><svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg></button>
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/></svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>
+        </button>
+    </div>
+
+    <header class="bg-gradient-to-r from-purple-600 to-purple-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap gap-2 text-sm mb-2">
+                <a href="../../../../index.html" class="text-purple-200 hover:text-white">Home</a><span class="text-purple-300">/</span>
+                <a href="../../../index.html" class="text-purple-200 hover:text-white">CPCU</a><span class="text-purple-300">/</span>
+                <a href="../../index.html" class="text-purple-200 hover:text-white">530</a><span class="text-purple-300">/</span>
+                <a href="../index.html" class="text-purple-200 hover:text-white">Assignment 6</a><span class="text-purple-300">/</span>
+                <span class="text-white">Part 1</span>
+            </div>
+            <h1 class="text-3xl font-bold">Part 1: UCC &amp; Sales Contracts</h1>
+            <p class="text-purple-200 mt-1">Assignment 6 &mdash; Commercial Law: UCC &amp; Sales</p>
+        </div>
+    </header>
+
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-wrap gap-2 text-sm">
+                <a href="../index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Intro</a>
+                <span class="bg-purple-600 text-white px-3 py-1 rounded font-medium">Part 1</span>
+                <a href="../part-2/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 2</a>
+                <a href="../part-3/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 3</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-5xl lg:max-w-7xl">
+
+        <!-- Start Here -->
+        <div class="bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/40 dark:to-purple-800/40 rounded-xl p-6 mb-8 border border-blue-300 dark:border-blue-700">
+            <h3 class="text-xl font-bold text-blue-800 dark:text-blue-200 mb-4">Start Here: 5 Things You MUST Know</h3>
+            <div class="grid md:grid-cols-2 gap-3">
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>UCC Article 2</strong> governs sales of <strong>goods</strong> (tangible, movable things) &mdash; NOT services, real estate, or stocks</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
+                    <p class="text-gray-700 dark:text-gray-300">UCC acceptance can include <strong>additional terms</strong> &mdash; no mirror image rule like common law</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>FOB Shipment</strong> = buyer's risk once on the truck. <strong>FOB Destination</strong> = seller's risk until arrival</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">4</span>
+                    <p class="text-gray-700 dark:text-gray-300">Nonconforming goods shipped as an <strong>accommodation</strong> are NOT a breach of contract</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">5</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>COD</strong> sales = buyer pays on delivery with <strong>no right to inspect</strong> before paying</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 1: What is UCC Article 2 -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">1. What is UCC Article 2?</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-6">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg lg:text-xl">Uniform Commercial Code (UCC)</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">A set of <strong>standardized laws adopted by all 50 states</strong> to govern commercial transactions. <strong>Article 2</strong> specifically covers the <strong>sale of goods</strong> &mdash; tangible, movable things like cars, furniture, and electronics. It does NOT cover services, real estate, or stocks.</p>
+                </div>
+
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 border-l-4 border-purple-500 mb-6">
+                    <p class="font-bold text-purple-800 dark:text-purple-300 text-lg">Why Does Article 2 Matter?</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">Think of Article 2 as the <strong>"rulebook" for buying and selling physical stuff</strong>. When a sales contract is silent on certain terms (like delivery time or what happens if goods are damaged in shipping), UCC Article 2 fills in the blanks automatically.</p>
+                </div>
+
+                <!-- UCC vs Common Law -->
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">UCC Article 2 vs. Common Law Contracts</h3>
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <p class="font-bold text-green-800 dark:text-green-300 text-lg">UCC Article 2 (Goods)</p>
+                        <ul class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base space-y-2">
+                            <li>Acceptance can include <strong>additional or different terms</strong></li>
+                            <li>Between merchants, additional terms can become part of the contract</li>
+                            <li>More <strong>flexible</strong> approach to contract formation</li>
+                            <li>Gap-filling provisions when terms are missing</li>
+                        </ul>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                        <p class="font-bold text-red-800 dark:text-red-300 text-lg">Common Law (Services/Real Estate)</p>
+                        <ul class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base space-y-2">
+                            <li>Strict <strong>"mirror image" rule</strong> &mdash; acceptance must match offer exactly</li>
+                            <li>Any change in terms = counteroffer, not acceptance</li>
+                            <li>More <strong>rigid</strong> approach</li>
+                            <li>No automatic gap-filling</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-gray-400">
+                    <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Scenario: UCC Flexible Acceptance</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> MegaCorp sends a purchase order to SteelCo for 500 tons of steel at $200/ton.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> SteelCo sends back an acceptance that adds "Delivery within 60 days" &mdash; a term not in the original order.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> Under UCC Article 2, this IS a valid acceptance (not a counteroffer). Since both are merchants, the 60-day delivery term likely becomes part of the contract unless MegaCorp objects within a reasonable time.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Nonconforming Goods -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">2. Nonconforming Goods &mdash; When It Is NOT a Breach</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-6">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">A shipment of <strong>nonconforming goods</strong> (goods that do not match the order) does NOT automatically constitute a breach in two key situations:</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border border-green-200 dark:border-green-800">
+                        <p class="font-bold text-green-800 dark:text-green-300">Accommodation Shipment</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">The seller <strong>notifies the buyer</strong> that the shipment is only an accommodation &mdash; meaning "I am trying to help; here is what I have; take it or leave it."</p>
+                        <p class="text-green-600 dark:text-green-400 text-sm font-bold mt-2">NOT A BREACH</p>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border border-green-200 dark:border-green-800">
+                        <p class="font-bold text-green-800 dark:text-green-300">Seller's Right to Cure</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">If the buyer rejects goods before the contractual performance time expires, the seller can <strong>notify the buyer of intent to cure</strong> by delivering conforming goods.</p>
+                        <p class="text-green-600 dark:text-green-400 text-sm font-bold mt-2">NOT A BREACH (IF CURED)</p>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-gray-400">
+                    <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Scenario: Accommodation Shipment</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> A restaurant orders 100 cases of Coca-Cola from a distributor.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> The distributor is out of Coke and ships 100 cases of Pepsi instead, with a note saying "This is an accommodation &mdash; we are out of Coke, sending Pepsi as a substitute."</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> This is NOT a breach. The restaurant can accept or reject the Pepsi. If rejected, the distributor owes nothing more.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Types of Sales Contracts & Shipping Terms -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">3. Shipping Terms &mdash; Who Bears the Risk?</h2>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 rounded-r-lg mb-6">
+                    <p class="font-bold text-amber-800 dark:text-amber-300">Exam Alert!</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-1 text-base lg:text-lg">Shipping terms determine <strong>when ownership (title) and risk of loss shift</strong> from seller to buyer. This is the #1 tested concept in this assignment.</p>
+                </div>
+
+                <!-- FOB Comparison -->
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">FOB (Free on Board) &mdash; The Big Two</h3>
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-l-4 border-blue-500">
+                        <p class="font-bold text-blue-800 dark:text-blue-300 text-lg">FOB Place of Shipment</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">Seller delivers goods to the <strong>carrier at the seller's location</strong>. Risk and expense shift to the <strong>buyer</strong> once goods are given to the carrier.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Plain English:</strong> "Once I put it on the truck at my warehouse, it is YOUR problem."</p>
+                        </div>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                        <p class="font-bold text-red-800 dark:text-red-300 text-lg">FOB Place of Destination</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">Ownership passes when the carrier <strong>delivers goods to the buyer's location</strong>. Seller bears all risk during transit.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Plain English:</strong> "It is MY problem until it arrives at YOUR door."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Visual Flow: FOB Shipment -->
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg mb-6">
+                    <p class="font-bold text-gray-800 dark:text-gray-200 mb-3">FOB Shipment &mdash; Risk Transfer Flow</p>
+                    <div class="flex items-center gap-3 flex-wrap justify-center">
+                        <div class="bg-blue-100 dark:bg-blue-900/40 p-3 rounded-lg text-center min-w-[120px]">
+                            <p class="font-bold text-blue-800 dark:text-blue-300 text-sm">Seller's Warehouse</p>
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Seller's risk</p>
+                        </div>
+                        <div class="text-2xl text-gray-400 dark:text-gray-500 font-bold">&rarr;</div>
+                        <div class="bg-amber-100 dark:bg-amber-900/40 p-3 rounded-lg text-center min-w-[120px] border-2 border-amber-500">
+                            <p class="font-bold text-amber-800 dark:text-amber-300 text-sm">Handed to Carrier</p>
+                            <p class="text-xs lg:text-sm text-amber-700 dark:text-amber-400 font-bold">RISK SHIFTS HERE</p>
+                        </div>
+                        <div class="text-2xl text-gray-400 dark:text-gray-500 font-bold">&rarr;</div>
+                        <div class="bg-red-100 dark:bg-red-900/40 p-3 rounded-lg text-center min-w-[120px]">
+                            <p class="font-bold text-red-800 dark:text-red-300 text-sm">In Transit</p>
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Buyer's risk</p>
+                        </div>
+                        <div class="text-2xl text-gray-400 dark:text-gray-500 font-bold">&rarr;</div>
+                        <div class="bg-red-100 dark:bg-red-900/40 p-3 rounded-lg text-center min-w-[120px]">
+                            <p class="font-bold text-red-800 dark:text-red-300 text-sm">Buyer's Location</p>
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Buyer's risk</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Other Shipping Terms -->
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">Other Key Shipping Terms</h3>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+                    <div class="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-lg border border-indigo-200 dark:border-indigo-800">
+                        <p class="font-bold text-indigo-800 dark:text-indigo-300">CIF (Cost-Insurance-Freight)</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Seller pays for <strong>insurance AND freight charges</strong> for delivery. Risk shifts once goods reach the carrier.</p>
+                    </div>
+                    <div class="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-lg border border-indigo-200 dark:border-indigo-800">
+                        <p class="font-bold text-indigo-800 dark:text-indigo-300">CAF (Cost and Freight)</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Seller pays <strong>freight charges but NOT insurance</strong>. Same as CIF minus the insurance.</p>
+                    </div>
+                    <div class="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-lg border border-indigo-200 dark:border-indigo-800">
+                        <p class="font-bold text-indigo-800 dark:text-indigo-300">COD (Collect on Delivery)</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Buyer pays when goods are delivered. <strong>No right to inspect</strong> goods before payment.</p>
+                    </div>
+                    <div class="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-lg border border-indigo-200 dark:border-indigo-800">
+                        <p class="font-bold text-indigo-800 dark:text-indigo-300">FAS (Free Alongside) Vessel</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Risk shifts when seller delivers goods <strong>alongside the ship</strong> for loading. Used in maritime shipping.</p>
+                    </div>
+                    <div class="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-lg border border-indigo-200 dark:border-indigo-800">
+                        <p class="font-bold text-indigo-800 dark:text-indigo-300">FOB Vessel</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Goods loaded <strong>on board the vessel</strong> at seller's risk. One step further than FAS &mdash; seller pays for loading too.</p>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-gray-400">
+                    <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Scenario: FOB Shipment Disaster</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> A furniture manufacturer in North Carolina ships a $50,000 order of custom office furniture to a buyer in New York. The contract says "FOB Shipment Point."</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> The delivery truck overturns on the highway in New Jersey. All furniture is destroyed.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> The <strong>buyer bears the loss</strong>. Under FOB Shipment, risk shifted to the buyer as soon as the goods were handed to the carrier in North Carolina. The buyer must still pay and should have purchased transit insurance.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Inspection & Delivery Time -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">4. Inspection &amp; Delivery Time</h2>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <p class="font-bold text-green-800 dark:text-green-300">Buyer's Right to Inspect</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">The buyer generally has the right to <strong>inspect goods before accepting and paying</strong>.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Exception:</strong> COD sales &mdash; buyer must pay first, then inspect.</p>
+                        </div>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border-l-4 border-purple-500">
+                        <p class="font-bold text-purple-800 dark:text-purple-300">Time for Delivery</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">If no delivery time is specified in the contract, delivery must occur within a <strong>reasonable time</strong>. What counts as "reasonable" depends on the circumstances.</p>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-gray-400">
+                    <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Scenario: COD No-Inspection Trap</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> A small business orders 50 custom phone cases from an online wholesaler. The terms are COD.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> The delivery arrives. The business owner wants to open the boxes and check quality before paying the driver, but the driver refuses.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> The driver is correct. Under COD terms, the buyer has <strong>no right to inspect before paying</strong>. The business must pay first, then check the goods. If the cases are defective, the buyer can pursue remedies afterward but must pay upfront.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cheat Sheet -->
+        <section id="cheat-sheet" class="mb-10">
+            <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 border-2 border-dashed border-gray-300 dark:border-gray-600">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100">Cheat Sheet</h2>
+                    <span class="text-sm text-gray-500 dark:text-gray-400">Print this page for quick reference</span>
+                </div>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">UCC Article 2 Basics</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>Covers sales of GOODS only (tangible, movable)</li>
+                            <li>More flexible than common law (no mirror image rule)</li>
+                            <li>Between merchants, additional terms can become part of contract</li>
+                            <li>Accommodation shipments are NOT a breach</li>
+                            <li>Seller has right to cure nonconforming goods before deadline</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Shipping Terms Quick Guide</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>FOB Shipment = buyer's risk at seller's location</li>
+                            <li>FOB Destination = seller's risk until buyer's location</li>
+                            <li>CIF = seller pays cost + insurance + freight</li>
+                            <li>CAF = seller pays cost + freight (no insurance)</li>
+                            <li>COD = buyer pays on delivery, no inspection right</li>
+                            <li>FAS Vessel = risk shifts alongside the ship</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Traps -->
+        <section class="mb-10">
+            <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-xl p-5 lg:p-6">
+                <h2 class="text-2xl font-bold text-red-800 dark:text-red-300 mb-4">Exam Trap Alerts</h2>
+                <div class="space-y-3">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">1. FOB Shipment vs. FOB Destination</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">This is the #1 tested shipping concept. FOB Shipment = risk shifts at seller's location when goods reach the carrier. FOB Destination = risk stays with seller until goods reach the buyer. Do NOT confuse them.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">2. UCC Acceptance Is NOT Like Common Law</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Under UCC, an acceptance with additional terms is STILL a valid acceptance (not a counteroffer). This is the opposite of common law's mirror image rule. Between merchants, additional terms can become part of the deal.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">3. Accommodation Shipment Is NOT a Breach</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">When a seller ships substitute goods with a notice that it is an accommodation, this is NOT a breach and NOT an acceptance of the offer. The buyer can simply reject the substitutes.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">4. CIF vs. CAF &mdash; One Letter, Big Difference</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">CIF includes insurance. CAF does NOT include insurance. The "I" in CIF stands for Insurance. If the exam asks who pays for insurance during transit, the answer depends on whether the contract says CIF or CAF.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">5. COD = No Inspection Before Payment</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">In a COD sale, the buyer MUST pay before inspecting. This is a major exception to the general rule that buyers can inspect before paying.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Reference Summary -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-purple-600 to-purple-800 rounded-xl p-6 text-white">
+                <h2 class="text-2xl font-bold mb-6">Quick Reference Summary</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">UCC Article 2</p>
+                        <p class="text-sm text-purple-100">Governs sales of goods. All 50 states. More flexible than common law.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Mirror Image Rule</p>
+                        <p class="text-sm text-purple-100">Does NOT apply under UCC. Acceptance with additional terms is valid.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Accommodation</p>
+                        <p class="text-sm text-purple-100">Substitute goods shipped with notice. Not a breach. Buyer can reject.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">FOB Shipment</p>
+                        <p class="text-sm text-purple-100">Risk shifts to buyer at seller's location when carrier receives goods.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">FOB Destination</p>
+                        <p class="text-sm text-purple-100">Risk stays with seller until goods arrive at buyer's location.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">COD Sales</p>
+                        <p class="text-sm text-purple-100">Buyer pays on delivery. No right to inspect before payment.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="../index.html" class="text-gray-400 hover:text-white transition-colors">&larr; Assignment 6 Overview</a>
+                <span class="text-gray-500">Part 1 of 3</span>
+                <a href="../part-2/index.html" class="text-gray-400 hover:text-white transition-colors">Part 2: Risk of Loss &amp; Warranties &rarr;</a>
+            </div>
+        </div>
+    </footer>
+
+    <button onclick="openAITutor({topic: 'UCC Article 2 and Sales Contracts', concepts: ['UCC Article 2 scope (goods only)', 'UCC vs common law acceptance', 'Mirror image rule not applicable', 'Merchant additional terms', 'Nonconforming goods and accommodation', 'Seller right to cure', 'FOB Shipment vs FOB Destination', 'CIF vs CAF shipping terms', 'COD no inspection rule', 'FAS Vessel and FOB Vessel'], keywords: ['UCC', 'Article 2', 'FOB', 'CIF', 'CAF', 'COD', 'FAS', 'accommodation', 'nonconforming goods', 'mirror image rule', 'merchant']})" class="fixed bottom-6 right-6 bg-purple-600 hover:bg-purple-700 text-white p-4 rounded-full shadow-xl hover:scale-110 transition-all z-50" title="AI Tutor">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+    </button>
+</body>
+</html>

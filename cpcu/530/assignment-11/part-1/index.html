@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 1: Agency Creation | Assignment 11 | CPCU 530</title>
+    <link rel="icon" type="image/svg+xml" href="../../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config = { darkMode: 'class' }</script>
+    <link rel="stylesheet" href="../../../../css/styles.css">
+    <script src="../../../../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') { document.documentElement.classList.remove('dark'); }
+        function toggleTheme() { document.documentElement.classList.toggle('dark'); localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light'); }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="showAPIKeySetup()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings"><svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg></button>
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/></svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>
+        </button>
+    </div>
+
+    <header class="bg-gradient-to-r from-purple-600 to-purple-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap gap-2 text-sm mb-2">
+                <a href="../../../../index.html" class="text-purple-200 hover:text-white">Home</a><span class="text-purple-300">/</span>
+                <a href="../../../index.html" class="text-purple-200 hover:text-white">CPCU</a><span class="text-purple-300">/</span>
+                <a href="../../index.html" class="text-purple-200 hover:text-white">530</a><span class="text-purple-300">/</span>
+                <a href="../index.html" class="text-purple-200 hover:text-white">Assignment 11</a><span class="text-purple-300">/</span>
+                <span class="text-white">Part 1</span>
+            </div>
+            <h1 class="text-3xl font-bold">Part 1: Agency Creation</h1>
+            <p class="text-purple-200 mt-1">Assignment 11 &mdash; Agency Law</p>
+        </div>
+    </header>
+
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-wrap gap-2 text-sm">
+                <a href="../index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Intro</a>
+                <span class="bg-purple-600 text-white px-3 py-1 rounded font-medium">Part 1</span>
+                <a href="../part-2/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 2</a>
+                <a href="../part-3/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 3</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-5xl lg:max-w-7xl">
+
+        <!-- Start Here -->
+        <div class="bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/40 dark:to-purple-800/40 rounded-xl p-6 mb-8 border border-blue-300 dark:border-blue-700">
+            <h3 class="text-xl font-bold text-blue-800 dark:text-blue-200 mb-4">Start Here: 5 Things You MUST Know</h3>
+            <div class="grid md:grid-cols-2 gap-3">
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
+                    <p class="text-gray-700 dark:text-gray-300">There are <strong>3 ways</strong> to create an agency: <strong>Appointment</strong>, <strong>Estoppel</strong>, and <strong>Ratification</strong></p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>Appointment</strong> is the most common method &mdash; the principal directly authorizes the agent</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>Estoppel</strong> creates an agency from the principal's <strong>conduct</strong>, not their intent &mdash; a third party just has to reasonably believe it exists</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">4</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>Ratification</strong> requires <strong>4 conditions</strong> and must cover the <strong>entire transaction</strong> &mdash; no cherry-picking</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">5</span>
+                    <p class="text-gray-700 dark:text-gray-300">An agency contract must be <strong>in writing</strong> if it lasts <strong>beyond one year</strong> (Statute of Frauds)</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 1: Key Definitions -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">1. What is Agency?</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-6">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg lg:text-xl">Agency</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">A relationship in which one party (the <strong>agent</strong>) is authorized to act on behalf of another party (the <strong>principal</strong>). In plain English: "I'm giving you permission to make deals for me."</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border border-purple-200 dark:border-purple-800">
+                        <p class="font-bold text-purple-800 dark:text-purple-300">Principal</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">The person who gives authority to another to act on their behalf. Think of them as "the boss."</p>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border border-purple-200 dark:border-purple-800">
+                        <p class="font-bold text-purple-800 dark:text-purple-300">Agent</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">The person authorized to act for the principal. They represent the principal in dealings with others.</p>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border border-purple-200 dark:border-purple-800">
+                        <p class="font-bold text-purple-800 dark:text-purple-300">Power of Attorney</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">A written document that formally grants an agent authority to act for the principal. Spells out exactly what the agent can do.</p>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border border-purple-200 dark:border-purple-800">
+                        <p class="font-bold text-purple-800 dark:text-purple-300">Statute of Frauds</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Requires agency contracts lasting <strong>beyond one year</strong> to be in writing to be enforceable.</p>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-gray-400">
+                    <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Scenario: Insurance Agency</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> State Farm (principal) authorizes Lisa (agent) to sell auto insurance policies on its behalf.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> Lisa meets with a customer and writes a policy. The customer pays the premium to Lisa.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> The contract is between the customer and State Farm &mdash; not the customer and Lisa. Lisa acted as State Farm's agent, so State Farm is bound by the policy Lisa wrote within her authority.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Agency by Appointment -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">2. Agency by Appointment (The Normal Way)</h2>
+
+                <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-green-500 mb-6">
+                    <h3 class="font-bold text-green-800 dark:text-green-300 text-lg">Express Appointment</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">The principal directly tells the agent: <strong>"You are authorized to act for me."</strong> This is the most common and straightforward way to create an agency. The principal explicitly states what the agent can and cannot do.</p>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 rounded-r-lg mb-6">
+                    <p class="font-bold text-amber-800 dark:text-amber-300">Key Rule: Statute of Frauds</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-1 text-sm lg:text-base">If the agency is meant to last <strong>beyond one year</strong>, the agency contract <strong>must be in writing</strong> to be enforceable. Oral agreements for agencies under one year are still valid.</p>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-blue-400">
+                    <p class="font-semibold text-blue-800 dark:text-blue-300 mb-2">Real-World Scenario: Express Appointment</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> Sarah owns a real estate company. She hires Jake and says, "You are authorized to list and sell properties on behalf of my company."</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> Jake is now Sarah's agent by express appointment. He begins listing and selling properties.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> Any contracts Jake enters within his authorized scope are binding on Sarah. If Jake sells a house for $300,000, Sarah is bound by that deal because she expressly authorized Jake to make sales.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Agency by Estoppel -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">3. Agency by Estoppel</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-6">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg">Estoppel = "You Can't Deny It Now"</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">Even though the principal <strong>never officially appointed</strong> someone as their agent, the principal's words or behavior made a third party <strong>reasonably believe</strong> an agency existed. The principal is then <strong>"estopped"</strong> (legally blocked) from denying the agency.</p>
+                </div>
+
+                <div class="bg-red-50 dark:bg-red-900/20 border-l-4 border-red-500 p-4 rounded-r-lg mb-6">
+                    <p class="font-bold text-red-800 dark:text-red-300">Critical Concept</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-1 text-sm lg:text-base">The principal does <strong>NOT</strong> have to deliberately create the agency. Their conduct just needs to give a third party a <strong>reasonable basis</strong> to believe the agency exists. Intent does not matter &mdash; conduct does.</p>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-blue-400 mb-6">
+                    <p class="font-semibold text-blue-800 dark:text-blue-300 mb-2">Real-World Scenario: Car Dealership Estoppel</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> Bob owns a car dealership. He lets his friend Mike sit at a sales desk, wear a company polo, and talk to customers &mdash; even though Mike is not actually an employee.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> A customer walks in, sees Mike at the desk in company gear, and reasonably believes Mike works there. Mike sells the customer a car.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> Bob is "estopped" from denying Mike was his agent. The sale is binding on Bob because <strong>Bob's own conduct</strong> created the reasonable appearance of an agency. Bob cannot later say "Mike wasn't my agent."</p>
+                </div>
+
+                <div class="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-lg border-l-4 border-indigo-500">
+                    <p class="font-semibold text-indigo-800 dark:text-indigo-300 mb-2">Insurance Example: Estoppel</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> An insurance company lets a former agent continue using company letterhead, business cards, and office space after their contract expired.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> The former agent sells a policy to a new customer using the company materials.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> The insurer is estopped from denying the agency. By allowing the former agent to keep using company materials, the insurer created a reasonable appearance of continued authority. The customer's policy is binding.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Agency by Ratification -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">4. Agency by Ratification</h2>
+
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-purple-500 mb-6">
+                    <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg">Ratification = After-the-Fact Approval</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">Someone acts as your agent <strong>without your authorization</strong>, and after the fact you say <strong>"OK, I approve what they did."</strong> By approving (ratifying) the unauthorized act, you retroactively create an agency.</p>
+                </div>
+
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">The 4 Conditions for Ratification</h3>
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg border border-purple-200 dark:border-purple-700">
+                        <span class="bg-purple-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold mb-2">1</span>
+                        <p class="font-bold text-gray-800 dark:text-gray-200">Agent Purported to Act for Principal</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">The person must have <strong>claimed to be acting on behalf</strong> of the principal (not for themselves).</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg border border-purple-200 dark:border-purple-700">
+                        <span class="bg-purple-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold mb-2">2</span>
+                        <p class="font-bold text-gray-800 dark:text-gray-200">Entire Transaction Ratified</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">The principal must ratify <strong>the entire deal</strong> &mdash; it is all or nothing. No cherry-picking the good parts.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg border border-purple-200 dark:border-purple-700">
+                        <span class="bg-purple-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold mb-2">3</span>
+                        <p class="font-bold text-gray-800 dark:text-gray-200">Before Third Party Withdraws</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">The principal must ratify <strong>before the third party backs out</strong>. If the third party withdraws first, it is too late.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg border border-purple-200 dark:border-purple-700">
+                        <span class="bg-purple-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold mb-2">4</span>
+                        <p class="font-bold text-gray-800 dark:text-gray-200">Principal Has All Material Facts</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">The principal must have <strong>all material facts available</strong> before ratification is binding. You cannot approve what you do not understand.</p>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-purple-400 mb-6">
+                    <p class="font-semibold text-purple-800 dark:text-purple-300 mb-2">Real-World Scenario: Unauthorized Widget Order</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> Carlos tells a supplier, "I'm ordering 500 widgets on behalf of Acme Corp," even though Acme never authorized Carlos to do this.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> Acme's CEO finds out about the order and says, "Actually, we do need those widgets. I approve the order."</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> By ratifying the order, Acme retroactively creates an agency. The contract is now binding on Acme as if Carlos had been authorized all along. All 4 conditions are met: Carlos claimed to act for Acme, the CEO approved the whole deal, the supplier had not withdrawn, and the CEO understood the terms.</p>
+                </div>
+
+                <!-- Comparison of 3 Methods -->
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">Comparing the 3 Methods</h3>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm lg:text-base">
+                        <thead>
+                            <tr class="bg-purple-600 text-white">
+                                <th class="p-3 lg:p-4 text-left rounded-tl-lg">Method</th>
+                                <th class="p-3 lg:p-4 text-left">When It Happens</th>
+                                <th class="p-3 lg:p-4 text-left">Key Feature</th>
+                                <th class="p-3 lg:p-4 text-left rounded-tr-lg">Principal's Intent?</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-bold text-blue-700 dark:text-blue-300">Appointment</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Before the agent acts</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Principal directly authorizes</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Yes &mdash; intentional</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <td class="p-3 lg:p-4 font-bold text-green-700 dark:text-green-300">Estoppel</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">When third party relies</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Principal's conduct creates appearance</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">No &mdash; not required</td>
+                            </tr>
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-bold text-purple-700 dark:text-purple-300">Ratification</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">After the agent already acted</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Principal approves retroactively</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Yes &mdash; after the fact</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cheat Sheet -->
+        <section id="cheat-sheet" class="mb-10">
+            <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 border-2 border-dashed border-gray-300 dark:border-gray-600">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100">Cheat Sheet</h2>
+                    <span class="text-sm text-gray-500 dark:text-gray-400">Print this page for quick reference</span>
+                </div>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Agency Creation Methods</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li><strong>Appointment:</strong> Principal directly authorizes agent (most common)</li>
+                            <li><strong>Estoppel:</strong> Principal's conduct creates reasonable belief in third party</li>
+                            <li><strong>Ratification:</strong> Principal approves unauthorized act after the fact</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Ratification Requirements (All 4 Needed)</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>1. Agent purported to act for principal</li>
+                            <li>2. Entire transaction ratified (all or nothing)</li>
+                            <li>3. Ratified before third party withdraws</li>
+                            <li>4. Principal has all material facts</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Key Rules</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>Written contract required if agency lasts beyond 1 year</li>
+                            <li>Power of attorney = formal written grant of authority</li>
+                            <li>Estoppel does NOT require principal's intent</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Key Definitions</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li><strong>Principal:</strong> The boss who authorizes</li>
+                            <li><strong>Agent:</strong> The one who acts on behalf</li>
+                            <li><strong>Estoppel:</strong> Legally blocked from denying</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Traps -->
+        <section class="mb-10">
+            <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-xl p-5 lg:p-6">
+                <h2 class="text-2xl font-bold text-red-800 dark:text-red-300 mb-4">Exam Trap Alerts</h2>
+                <div class="space-y-3">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">1. Estoppel Does NOT Require Intent</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The exam may say "the principal never intended to create an agency." That does not matter for estoppel. Estoppel arises from the principal's <strong>conduct</strong>, not their intent. If a third party reasonably believed the agency existed because of the principal's behavior, the principal is estopped.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">2. Ratification Must Be ALL or NOTHING</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">A principal cannot ratify the profitable parts of a deal and reject the unprofitable parts. If the exam describes a principal saying "I'll take the good deal but reject the bad one" &mdash; that is NOT valid ratification.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">3. Timing Matters for Ratification</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">If the third party withdraws from the deal <strong>before</strong> the principal ratifies, it is too late. Ratification must happen while the third party is still committed to the deal.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">4. Oral Agencies Under One Year Are Valid</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The Statute of Frauds only requires a <strong>written</strong> agency agreement if it is meant to last <strong>beyond one year</strong>. An oral appointment for a 6-month project is perfectly valid.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Reference Summary -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-purple-600 to-purple-800 rounded-xl p-6 text-white">
+                <h2 class="text-2xl font-bold mb-6">Quick Reference Summary</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Agency</p>
+                        <p class="text-sm text-purple-100">One person authorized to act on behalf of another.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Appointment</p>
+                        <p class="text-sm text-purple-100">Most common method. Principal directly authorizes agent.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Estoppel</p>
+                        <p class="text-sm text-purple-100">Principal's conduct creates reasonable belief. Intent not required.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Ratification</p>
+                        <p class="text-sm text-purple-100">After-the-fact approval. 4 conditions. All or nothing.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Power of Attorney</p>
+                        <p class="text-sm text-purple-100">Formal written document granting authority.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Statute of Frauds</p>
+                        <p class="text-sm text-purple-100">Written contract needed if agency lasts beyond 1 year.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="../index.html" class="text-gray-400 hover:text-white transition-colors">&larr; Assignment 11 Overview</a>
+                <span class="text-gray-500">Part 1 of 3</span>
+                <a href="../part-2/index.html" class="text-gray-400 hover:text-white transition-colors">Part 2: Authority &rarr;</a>
+            </div>
+        </div>
+    </footer>
+
+    <button onclick="openAITutor({topic: 'Agency Creation in Agency Law', concepts: ['Agency definition', 'Principal and agent roles', 'Agency by appointment', 'Agency by estoppel', 'Agency by ratification', '4 conditions for ratification', 'Power of attorney', 'Statute of Frauds'], keywords: ['agency', 'principal', 'agent', 'appointment', 'estoppel', 'ratification', 'power of attorney', 'statute of frauds']})" class="fixed bottom-6 right-6 bg-purple-600 hover:bg-purple-700 text-white p-4 rounded-full shadow-xl hover:scale-110 transition-all z-50" title="AI Tutor">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+    </button>
+</body>
+</html>

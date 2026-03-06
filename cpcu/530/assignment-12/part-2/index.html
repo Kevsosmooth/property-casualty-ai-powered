@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 2: Brokers, Surplus Lines &amp; Liability | Assignment 12 | CPCU 530</title>
+    <link rel="icon" type="image/svg+xml" href="../../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config = { darkMode: 'class' }</script>
+    <link rel="stylesheet" href="../../../../css/styles.css">
+    <script src="../../../../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') { document.documentElement.classList.remove('dark'); }
+        function toggleTheme() { document.documentElement.classList.toggle('dark'); localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light'); }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="showAPIKeySetup()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings"><svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg></button>
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/></svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>
+        </button>
+    </div>
+
+    <header class="bg-gradient-to-r from-purple-600 to-purple-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap gap-2 text-sm mb-2">
+                <a href="../../../../index.html" class="text-purple-200 hover:text-white">Home</a><span class="text-purple-300">/</span>
+                <a href="../../../index.html" class="text-purple-200 hover:text-white">CPCU</a><span class="text-purple-300">/</span>
+                <a href="../../index.html" class="text-purple-200 hover:text-white">530</a><span class="text-purple-300">/</span>
+                <a href="../index.html" class="text-purple-200 hover:text-white">Assignment 12</a><span class="text-purple-300">/</span>
+                <span class="text-white">Part 2</span>
+            </div>
+            <h1 class="text-3xl font-bold">Part 2: Brokers, Surplus Lines &amp; Liability</h1>
+            <p class="text-purple-200 mt-1">Assignment 12 &mdash; Agency Law: Insurance Applications</p>
+        </div>
+    </header>
+
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-wrap gap-2 text-sm">
+                <a href="../index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Intro</a>
+                <a href="../part-1/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 1</a>
+                <span class="bg-purple-600 text-white px-3 py-1 rounded font-medium">Part 2</span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-5xl lg:max-w-7xl">
+
+        <!-- Start Here -->
+        <div class="bg-gradient-to-r from-red-100 to-purple-100 dark:from-red-900/40 dark:to-purple-800/40 rounded-xl p-6 mb-8 border border-red-300 dark:border-red-700">
+            <h3 class="text-xl font-bold text-red-800 dark:text-red-200 mb-4">Start Here: 5 Things You MUST Know</h3>
+            <div class="grid md:grid-cols-2 gap-3">
+                <div class="flex items-start">
+                    <span class="bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>Broker = represents the CUSTOMER</strong>, not the insurer. But a broker CAN become the insurer's agent by estoppel.</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>"We'll handle your claim"</strong> does NOT mean "we'll pay." It is only an acknowledgment of processing.</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>Reservation of rights letter</strong> = unilateral, prevents waiver. <strong>Nonwaiver agreement</strong> = signed by both parties.</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">4</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>First-party bad faith damages</strong> can include compensatory, emotional distress, attorney fees, and sometimes PUNITIVE.</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">5</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>Unfair claim practices acts</strong> target the INSURER, not individual adjusters (exception: willful/reckless conduct).</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 1: Brokers -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">1. Brokers &mdash; Representing the Customer</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-6">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg lg:text-xl">Insurance Broker</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">An independent intermediary who shops the insurance market <strong>on behalf of the customer</strong> (the insurance buyer). The broker's loyalty is to the customer, not to any particular insurer. This is the fundamental difference from an agent.</p>
+                </div>
+
+                <!-- Agent vs Broker Comparison -->
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <p class="font-bold text-green-800 dark:text-green-300 text-lg">Insurance Agent</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">Represents the <strong>INSURER</strong> (principal). Acts on the insurer's behalf. Insurer is responsible for agent's actions within scope of authority.</p>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border-l-4 border-purple-500">
+                        <p class="font-bold text-purple-800 dark:text-purple-300 text-lg">Insurance Broker</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">Represents the <strong>CUSTOMER</strong> (buyer). Shops the market for the best coverage and price. Loyalty runs to the customer.</p>
+                    </div>
+                </div>
+
+                <!-- Agency by Estoppel -->
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-2 border-amber-300 dark:border-amber-700 rounded-lg p-4 mb-4">
+                    <p class="font-bold text-amber-800 dark:text-amber-300 text-lg">The Tricky Part: Broker as Insurer's Agent by Estoppel</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">A broker can sometimes act as the insurer's agent through <strong>agency by estoppel</strong>. This happens when an insurer's conduct makes it appear the broker has authority to act on the insurer's behalf.</p>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-gray-400">
+                    <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Scenario: Broker Becomes the Insurer's Agent</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Jane is an insurance broker. XYZ Insurance sends her blank policy forms, rate manuals, and regularly accepts the policies she writes on their paper.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Jane writes a homeowners policy for a customer on XYZ's forms. XYZ later tries to deny the policy, saying "Jane is just a broker, not our agent."</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> A court would likely find <strong>agency by estoppel</strong>. By providing blank forms and consistently accepting Jane's business, XYZ made it look like Jane was their agent. <strong>XYZ is bound.</strong></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Surplus Lines -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">2. Surplus Lines Brokers</h2>
+
+                <div class="bg-indigo-50 dark:bg-indigo-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-indigo-500 mb-6">
+                    <h3 class="font-bold text-indigo-800 dark:text-indigo-300 text-lg lg:text-xl">Surplus Lines Broker</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">A specialized broker licensed to place coverage with <strong>non-admitted (unlicensed) insurers</strong> when coverage is not available in the standard admitted market. They must typically demonstrate that coverage was declined by admitted insurers before placing it with a surplus lines carrier.</p>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-gray-400 mb-4">
+                    <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Scenario: Surplus Lines Placement</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> A fireworks manufacturer needs liability insurance, but no admitted insurer will write the policy due to the extreme risk.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> A surplus lines broker places coverage with a non-admitted insurer (like a Lloyd's syndicate) that specializes in unusual risks.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> The manufacturer gets coverage through the surplus lines market. The broker handles additional filing and tax requirements that come with non-admitted placements.</p>
+                    </div>
+                </div>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
+                    <p class="font-bold text-blue-800 dark:text-blue-300 mb-2">Key Surplus Lines Requirements</p>
+                    <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                        <li>Must hold a <strong>special surplus lines license</strong></li>
+                        <li>Must demonstrate coverage was <strong>declined by admitted insurers</strong> first</li>
+                        <li>Subject to additional <strong>filing and tax obligations</strong></li>
+                        <li>Under the NRRA (2010), the <strong>home state</strong> of the insured controls taxation and regulation</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: E&O Coverage -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">3. Errors &amp; Omissions (E&amp;O) Coverage</h2>
+
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-purple-500 mb-6">
+                    <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg lg:text-xl">E&amp;O Liability Policy</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">A professional liability insurance policy that protects insurance producers against claims arising from their <strong>mistakes or failures</strong> in performing professional duties. Think of it as <strong>"malpractice insurance" for insurance agents and brokers</strong>.</p>
+                </div>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800 mb-6">
+                    <p class="font-bold text-blue-800 dark:text-blue-300 mb-2">What E&amp;O Covers</p>
+                    <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                        <li>Failing to procure requested coverage</li>
+                        <li>Placing coverage with an insolvent insurer</li>
+                        <li>Failing to advise about coverage gaps</li>
+                        <li>Making misrepresentations about policy terms</li>
+                    </ul>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-gray-400 mb-6">
+                    <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Scenario: E&amp;O Claim</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> A business owner asks their agent to add an umbrella policy with $2M in coverage. The agent says "I'll take care of it" but forgets to submit the application.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Three months later, a delivery truck causes a multi-vehicle accident with $1.8M in damages. The underlying auto policy only covers $500K.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> The business is exposed for $1.3M. The owner sues the agent for negligence. The agent's <strong>E&amp;O policy responds</strong> to cover the agent's liability for the gap the agent negligently created.</p>
+                    </div>
+                </div>
+
+                <!-- Insurer's Liability for Producer -->
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-2 border-amber-300 dark:border-amber-700 rounded-lg p-4">
+                    <p class="font-bold text-amber-800 dark:text-amber-300 text-lg mb-2">Insurer's Liability for Producer's Acts</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mb-3">Sometimes the <strong>insurer</strong> becomes liable for the producer's mistakes. Under <strong>respondeat superior</strong>, if the producer is the insurer's agent acting within the scope of authority, the insurer is vicariously liable.</p>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>Example:</strong> Agent Tom, acting within his authority as ABC Insurance's agent, incorrectly tells a customer that flood damage is covered under their homeowners policy. A flood occurs and ABC denies the claim. The customer sues ABC directly &mdash; and may win because Tom (ABC's agent) misrepresented coverage while acting on ABC's behalf.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Claim Representatives -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">4. Claim Representatives (Adjusters)</h2>
+
+                <div class="grid md:grid-cols-3 gap-4 mb-6">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-l-4 border-blue-500">
+                        <p class="font-bold text-blue-800 dark:text-blue-300 text-lg">Staff Claim Rep</p>
+                        <p class="text-blue-600 dark:text-blue-400 text-sm font-bold mt-1">Insurer's EMPLOYEE</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">Works exclusively for one insurer. Most common type for routine claims. Direct employee of the insurance company.</p>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <p class="font-bold text-green-800 dark:text-green-300 text-lg">Independent Adjuster</p>
+                        <p class="text-green-600 dark:text-green-400 text-sm font-bold mt-1">Works for MULTIPLE Insurers</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">Self-employed or employee of an adjusting firm. Handles claims on contract for various insurers. Often used for catastrophes or remote areas. Self-insured companies would use this type.</p>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                        <p class="font-bold text-red-800 dark:text-red-300 text-lg">Public Adjuster</p>
+                        <p class="text-red-600 dark:text-red-400 text-sm font-bold mt-1">Hired by the INSURED</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">Represents the <strong>policyholder's</strong> interests in a claim against the insurer. Takes a percentage of the settlement as a fee. Works for the customer, NOT the insurance company.</p>
+                    </div>
+                </div>
+
+                <!-- Claim Settlement Authority -->
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">Claim Settlement Authority</h3>
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border-l-4 border-purple-500">
+                        <p class="font-bold text-purple-800 dark:text-purple-300">Express Authority</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">Comes from employment agreements, company manuals, insurer memoranda, or supervisor instructions. Example: "You can settle claims up to $10,000."</p>
+                    </div>
+                    <div class="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-lg border-l-4 border-indigo-500">
+                        <p class="font-bold text-indigo-800 dark:text-indigo-300">Implied Authority</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">When the adjuster reasonably believes the insurer wants them to take a certain action, <strong>despite the lack of specific instructions</strong>. Based on reasonable judgment.</p>
+                    </div>
+                </div>
+
+                <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-lg p-4">
+                    <p class="font-bold text-red-800 dark:text-red-300 text-lg">"We'll Handle Your Claim" Does NOT Mean "We'll Pay"</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">A claim adjuster telling an insured motorist "We'll handle your claim" is <strong>NOT a promise to pay</strong>. It is simply an acknowledgment that the claim will be processed. This is a <strong>frequently tested distinction</strong>.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Waiver & Estoppel -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">5. Waiver &amp; Estoppel in Claims</h2>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg border-l-4 border-amber-500">
+                        <p class="font-bold text-amber-800 dark:text-amber-300 text-lg">Waiver</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">The insurer <strong>voluntarily gives up a known right</strong>. Example: investigating a claim for 6 months without reserving rights when there is a clear coverage defense. The insurer may be deemed to have <strong>waived that defense</strong>.</p>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border-l-4 border-purple-500">
+                        <p class="font-bold text-purple-800 dark:text-purple-300 text-lg">Estoppel</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">The insurer's <strong>conduct causes the insured to rely</strong> on a representation. Example: telling the insured "don't worry, you're covered" when there is actually an exclusion. The insurer may be <strong>estopped from denying coverage</strong>.</p>
+                    </div>
+                </div>
+
+                <!-- Protection Tools -->
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">Protection Tools (Memorize These)</h3>
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <p class="font-bold text-green-800 dark:text-green-300 text-lg">Reservation of Rights Letter</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base"><strong>Unilateral</strong> written notice from the insurer to the insured. States the insurer will investigate/defend but <strong>reserves the right to later deny coverage</strong> based on specific policy provisions. Prevents waiver. No insured signature needed.</p>
+                    </div>
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-l-4 border-blue-500">
+                        <p class="font-bold text-blue-800 dark:text-blue-300 text-lg">Nonwaiver Agreement</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base"><strong>Signed by both parties</strong>. The insured acknowledges that the insurer's investigation does not waive any policy defenses. <strong>Requires the insured's signature</strong> (unlike the reservation of rights letter, which is unilateral).</p>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-gray-400">
+                    <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Scenario: Failure to Reserve Rights</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> A claim comes in that may involve an excluded peril.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> The adjuster investigates for 6 months <strong>without sending a reservation of rights letter</strong>.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> A court may rule the insurer <strong>waived the exclusion defense</strong> &mdash; even if the exclusion clearly applies. By failing to reserve rights promptly, the insurer loses the ability to deny coverage. The reservation of rights letter is the insurer's <strong>most important protective tool</strong>.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: Unfair Claims & Bad Faith -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">6. Unfair Claim Practices &amp; Bad Faith</h2>
+
+                <!-- Unfair Claim Settlement Practices -->
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-purple-500 mb-6">
+                    <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg lg:text-xl">Unfair Claim Settlement Practices Act</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">A state law (based on the NAIC model act) that sets rules for how <strong>insurers</strong> and their claim representatives must handle claims. Enforced by the <strong>state department of insurance</strong>.</p>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-2 border-amber-300 dark:border-amber-700 rounded-lg p-4 mb-6">
+                    <p class="font-bold text-amber-800 dark:text-amber-300 text-lg">Who Gets Sued?</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">These acts regulate <strong>insurers' conduct</strong>. The proper defendant is the <strong>insurer, not the individual claim representative</strong>. The claim rep is NOT a party to the insurance agreement. <strong>Exception:</strong> A claim representative CAN face personal liability if their actions were <strong>willful, intentional, or reckless</strong>.</p>
+                </div>
+
+                <!-- First-Party Bad Faith -->
+                <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-4 border-l-4 border-red-500 mb-6">
+                    <p class="font-bold text-red-800 dark:text-red-300 text-lg">First-Party Bad Faith Lawsuit</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">A lawsuit by an <strong>insured against their OWN insurer</strong> for unreasonably denying, delaying, or underpaying a legitimate claim. "First-party" means the insured is suing their own insurer (not a third party).</p>
+                </div>
+
+                <!-- Damages Grid -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
+                    <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded-lg text-center border border-gray-200 dark:border-gray-600">
+                        <p class="text-lg lg:text-xl font-bold text-red-600 dark:text-red-400">Compensatory</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Actual losses suffered</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded-lg text-center border border-gray-200 dark:border-gray-600">
+                        <p class="text-lg lg:text-xl font-bold text-red-600 dark:text-red-400">Emotional Distress</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Mental suffering damages</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded-lg text-center border border-gray-200 dark:border-gray-600">
+                        <p class="text-lg lg:text-xl font-bold text-red-600 dark:text-red-400">Attorney Fees</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Legal costs recovered</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded-lg text-center border border-amber-300 dark:border-amber-600">
+                        <p class="text-lg lg:text-xl font-bold text-amber-600 dark:text-amber-400">Punitive</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">SOMETIMES awarded</p>
+                    </div>
+                </div>
+
+                <!-- Excess Liability -->
+                <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500 mb-4">
+                    <p class="font-bold text-red-800 dark:text-red-300 text-lg">Excess Liability</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">When an insurer is held liable for an amount <strong>exceeding policy limits</strong> because the claim representative or insurer acted in <strong>bad faith</strong> by refusing to settle within policy limits.</p>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-gray-400">
+                    <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Scenario: Excess Liability from Bad Faith</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Insured has a $100,000 liability policy. A claimant offers to settle for $95,000 (within policy limits). The adjuster unreasonably refuses.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> The case goes to trial and the verdict is $500,000.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> The insurer may be liable for the <strong>full $500,000</strong> (not just $100,000) because of the adjuster's bad faith failure to settle within limits.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 7: Adjuster Duties -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">7. Claim Representative Duties</h2>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
+                        <p class="font-bold text-blue-800 dark:text-blue-300">Duties to the Insurer</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-2 space-y-1">
+                            <li>Act within granted authority</li>
+                            <li>Follow company procedures and manuals</li>
+                            <li>Exercise reasonable care and skill</li>
+                            <li>Follow supervisor instructions</li>
+                        </ul>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border border-green-200 dark:border-green-800">
+                        <p class="font-bold text-green-800 dark:text-green-300">Duties to Insureds &amp; Third Parties</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-2 space-y-1">
+                            <li>Act in good faith</li>
+                            <li>Investigate claims promptly and thoroughly</li>
+                            <li>Do not misrepresent policy provisions</li>
+                            <li>Make fair settlement offers</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border-l-4 border-purple-500">
+                    <p class="font-bold text-purple-800 dark:text-purple-300">Company Manuals &amp; the Duty to Follow Instructions</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">An insurer's manual that sets appropriate procedures for claim management relates to the adjuster's <strong>duty to follow instructions</strong>. If the adjuster deviates from established procedures, the adjuster (and the insurer) may face liability.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cheat Sheet -->
+        <section id="cheat-sheet" class="mb-10">
+            <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 border-2 border-dashed border-gray-300 dark:border-gray-600">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100">Cheat Sheet</h2>
+                    <span class="text-sm text-gray-500 dark:text-gray-400">Print this page for quick reference</span>
+                </div>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Brokers &amp; E&amp;O</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>Broker = represents the CUSTOMER, not the insurer</li>
+                            <li>Broker can become insurer's agent by estoppel</li>
+                            <li>Surplus lines = non-admitted insurers, special license required</li>
+                            <li>E&amp;O = malpractice insurance for producers</li>
+                            <li>Insurer vicariously liable for agent's acts within scope</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Claims &amp; Liability</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>3 adjuster types: Staff (employee), Independent (contract), Public (insured hires)</li>
+                            <li>"We'll handle it" is NOT "we'll pay"</li>
+                            <li>Reservation of rights = unilateral, prevents waiver</li>
+                            <li>Nonwaiver agreement = signed by both parties</li>
+                            <li>Bad faith damages: compensatory + emotional + attorney fees + punitive</li>
+                            <li>Unfair claim acts target the INSURER, not the adjuster</li>
+                            <li>Excess liability = bad faith refusal to settle within limits</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Traps -->
+        <section class="mb-10">
+            <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-xl p-5 lg:p-6">
+                <h2 class="text-2xl font-bold text-red-800 dark:text-red-300 mb-4">Exam Trap Alerts</h2>
+                <div class="space-y-3">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">1. Agent vs. Broker &mdash; Who Represents Whom?</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Agent = represents the INSURER. Broker = represents the CUSTOMER. But a broker CAN become the insurer's agent by estoppel if the insurer treats them like one (sending blank forms, accepting their business).</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">2. "We'll Handle Your Claim" Is NOT a Promise to Pay</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">This is only an acknowledgment that the claim will be processed. It does NOT bind the insurer to pay. This is a frequently tested distinction.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">3. Reservation of Rights vs. Nonwaiver Agreement</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Reservation of rights = UNILATERAL (insurer sends it, no signature needed). Nonwaiver agreement = BILATERAL (requires the insured's signature). Send the reservation of rights letter IMMEDIATELY when a coverage question arises &mdash; delay can mean waiver.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">4. Who Can Be Sued Under Unfair Claim Practices Acts?</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The INSURER, not the individual claim representative. The claim rep is not a party to the insurance contract. Exception: personal liability applies if the claim rep's actions were willful, intentional, or reckless.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">5. First-Party Bad Faith Can Include PUNITIVE Damages</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">"First-party" = the insured suing their OWN insurer. Damages include compensatory, emotional distress, attorney fees, and SOMETIMES punitive damages. The word "sometimes" matters &mdash; punitive is not guaranteed.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">6. Self-Insured Companies Use Independent Adjusters</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">A self-insured company most likely works with an independent adjuster (not a staff adjuster) because self-insured companies do not have their own claims department.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Reference Summary -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-purple-600 to-purple-800 rounded-xl p-6 text-white">
+                <h2 class="text-2xl font-bold mb-6">Quick Reference Summary</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Broker</p>
+                        <p class="text-sm text-purple-100">Represents the CUSTOMER. Can become insurer's agent by estoppel.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Surplus Lines Broker</p>
+                        <p class="text-sm text-purple-100">Places coverage with non-admitted insurers. Special license required.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">E&amp;O Coverage</p>
+                        <p class="text-sm text-purple-100">Malpractice insurance for producers. Covers professional mistakes.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">3 Adjuster Types</p>
+                        <p class="text-sm text-purple-100">Staff (employee), Independent (contract), Public (hired by insured).</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Reservation of Rights</p>
+                        <p class="text-sm text-purple-100">Unilateral letter preserving insurer's right to deny. Send IMMEDIATELY.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Nonwaiver Agreement</p>
+                        <p class="text-sm text-purple-100">Signed by both parties. Investigation does not waive defenses.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">First-Party Bad Faith</p>
+                        <p class="text-sm text-purple-100">Insured vs. own insurer. Compensatory + emotional + fees + punitive.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Excess Liability</p>
+                        <p class="text-sm text-purple-100">Bad faith refusal to settle within limits = insurer pays above limits.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Unfair Claims Acts</p>
+                        <p class="text-sm text-purple-100">Target the INSURER. Enforced by state DOI. Not individual adjusters.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="../part-1/index.html" class="text-gray-400 hover:text-white transition-colors">&larr; Part 1: Insurer-Agent Relationship</a>
+                <span class="text-gray-500">Part 2 of 2</span>
+                <a href="../../assignment-13/index.html" class="text-gray-400 hover:text-white transition-colors">Assignment 13: Employment Law &rarr;</a>
+            </div>
+        </div>
+    </footer>
+
+    <button onclick="openAITutor({topic: 'Brokers, Surplus Lines and Liability in Insurance', concepts: ['Broker vs agent distinction', 'Agency by estoppel for brokers', 'Surplus lines brokers and non-admitted insurers', 'E&O coverage for producers', 'Insurer vicarious liability for producer acts', 'Staff vs independent vs public adjusters', 'Claim settlement authority (express and implied)', 'Waiver and estoppel in claims', 'Reservation of rights letter vs nonwaiver agreement', 'Unfair claim settlement practices act', 'First-party bad faith lawsuit', 'Excess liability'], keywords: ['broker', 'surplus lines', 'E&O', 'errors and omissions', 'staff adjuster', 'independent adjuster', 'public adjuster', 'reservation of rights', 'nonwaiver agreement', 'waiver', 'estoppel', 'bad faith', 'excess liability', 'unfair claim settlement']})" class="fixed bottom-6 right-6 bg-purple-600 hover:bg-purple-700 text-white p-4 rounded-full shadow-xl hover:scale-110 transition-all z-50" title="AI Tutor">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+    </button>
+</body>
+</html>

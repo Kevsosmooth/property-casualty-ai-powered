@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 3: LLCs &amp; Other Entities | Assignment 14 | CPCU 530</title>
+    <link rel="icon" type="image/svg+xml" href="../../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config = { darkMode: 'class' }</script>
+    <link rel="stylesheet" href="../../../../css/styles.css">
+    <script src="../../../../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') { document.documentElement.classList.remove('dark'); }
+        function toggleTheme() { document.documentElement.classList.toggle('dark'); localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light'); }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="showAPIKeySetup()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings"><svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg></button>
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/></svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>
+        </button>
+    </div>
+
+    <header class="bg-gradient-to-r from-purple-600 to-purple-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap gap-2 text-sm mb-2">
+                <a href="../../../../index.html" class="text-purple-200 hover:text-white">Home</a><span class="text-purple-300">/</span>
+                <a href="../../../index.html" class="text-purple-200 hover:text-white">CPCU</a><span class="text-purple-300">/</span>
+                <a href="../../index.html" class="text-purple-200 hover:text-white">530</a><span class="text-purple-300">/</span>
+                <a href="../index.html" class="text-purple-200 hover:text-white">Assignment 14</a><span class="text-purple-300">/</span>
+                <span class="text-white">Part 3</span>
+            </div>
+            <h1 class="text-3xl font-bold">Part 3: LLCs &amp; Other Entities</h1>
+            <p class="text-purple-200 mt-1">Assignment 14 &mdash; Business Entities</p>
+        </div>
+    </header>
+
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-wrap gap-2 text-sm">
+                <a href="../index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Intro</a>
+                <a href="../part-1/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 1</a>
+                <a href="../part-2/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 2</a>
+                <span class="bg-purple-600 text-white px-3 py-1 rounded font-medium">Part 3</span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-5xl lg:max-w-7xl">
+
+        <!-- Start Here -->
+        <div class="bg-gradient-to-r from-green-100 to-purple-100 dark:from-green-900/40 dark:to-purple-800/40 rounded-xl p-6 mb-8 border border-green-300 dark:border-green-700">
+            <h3 class="text-xl font-bold text-green-800 dark:text-green-200 mb-4">Start Here: 5 Things You MUST Know</h3>
+            <div class="grid md:grid-cols-2 gap-3">
+                <div class="flex items-start">
+                    <span class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
+                    <p class="text-gray-700 dark:text-gray-300">An <strong>LLC</strong> combines corporate-style <strong>limited liability</strong> with partnership-style <strong>pass-through taxation</strong> and minimal formalities</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
+                    <p class="text-gray-700 dark:text-gray-300">In a <strong>limited partnership</strong>, limited partners who <strong>participate in management</strong> may LOSE their liability protection</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
+                    <p class="text-gray-700 dark:text-gray-300">An <strong>LLP</strong> shields partners from other partners' <strong>malpractice</strong> &mdash; popular with law and accounting firms</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">4</span>
+                    <p class="text-gray-700 dark:text-gray-300">LLC members can ALL manage (<strong>member-managed</strong>) or appoint managers (<strong>manager-managed</strong>) &mdash; unlike limited partnerships</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">5</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>Unincorporated associations</strong> (clubs, unions, churches) have NO separate legal identity &mdash; members may be personally liable</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 1: LLCs -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">1. Limited Liability Companies (LLCs)</h2>
+
+                <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-green-500 mb-6">
+                    <h3 class="font-bold text-green-800 dark:text-green-300 text-lg lg:text-xl">LLC = The Best of Both Worlds</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">A hybrid business entity that combines <strong>corporate-style limited liability</strong> with <strong>partnership-style tax flexibility</strong>. Members' personal assets are protected from business debts, while profits pass through to personal tax returns without "double taxation." LLCs have become the <strong>#1 choice for new businesses</strong> because of this combination.</p>
+                </div>
+
+                <!-- Formation -->
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">LLC Formation</h3>
+                <div class="flex flex-col md:flex-row items-stretch gap-3 md:gap-4 mb-6">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-l-4 border-blue-500 flex-1">
+                        <span class="bg-blue-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold mb-2">1</span>
+                        <p class="font-bold text-blue-800 dark:text-blue-300">File Articles of Organization</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Also called a Certificate of Formation. Filed with the state to create the LLC.</p>
+                    </div>
+                    <div class="text-2xl text-gray-400 hidden md:flex items-center">&rarr;</div>
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500 flex-1">
+                        <span class="bg-green-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold mb-2">2</span>
+                        <p class="font-bold text-green-800 dark:text-green-300">Create Operating Agreement</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">The internal rulebook: member rights, profit sharing, management structure, what happens if a member leaves.</p>
+                    </div>
+                    <div class="text-2xl text-gray-400 hidden md:flex items-center">&rarr;</div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border-l-4 border-purple-500 flex-1">
+                        <span class="bg-purple-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold mb-2">3</span>
+                        <p class="font-bold text-purple-800 dark:text-purple-300">Pay State Filing Fees</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Fees vary by state. Far fewer formalities than corporations &mdash; no required annual meetings, no board of directors.</p>
+                    </div>
+                </div>
+
+                <!-- Member-Managed vs Manager-Managed -->
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">Management Structure</h3>
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-l-4 border-blue-500">
+                        <p class="font-bold text-blue-800 dark:text-blue-300 text-lg">Member-Managed</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">ALL members participate in running the business. Each member has authority to bind the LLC in ordinary business.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>Best for:</strong> Small businesses where all owners are actively involved. Example: Three friends open a restaurant as an LLC and all three make decisions together.</p>
+                        </div>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border-l-4 border-purple-500">
+                        <p class="font-bold text-purple-800 dark:text-purple-300 text-lg">Manager-Managed</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">Members appoint one or more managers (who may or may not be members) to run the business. Non-manager members are passive investors.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>Best for:</strong> Larger LLCs or those with passive investors. Example: A real estate LLC with 10 investors appoints one member as manager for day-to-day operations.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Single Member LLC -->
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 rounded-r-lg mb-6">
+                    <p class="font-bold text-amber-800 dark:text-amber-300">Single-Member LLCs</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-1 text-sm lg:text-base">An LLC with only one owner. Provides liability protection while being treated as a <strong>"disregarded entity"</strong> for federal taxes (reported on Schedule C). Courts are <strong>more willing to pierce the veil</strong> of single-member LLCs if the owner does not maintain separation between personal and business finances. <strong>Commingling funds is the #1 risk.</strong></p>
+                </div>
+
+                <!-- Tax Treatment -->
+                <div class="bg-indigo-50 dark:bg-indigo-900/20 rounded-lg p-4 border-l-4 border-indigo-500 mb-6">
+                    <p class="font-bold text-indigo-800 dark:text-indigo-300 text-lg">LLC Tax Flexibility</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">LLCs can choose how they are taxed &mdash; no other entity type offers this range:</p>
+                    <div class="grid md:grid-cols-3 gap-3 mt-3">
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                            <p class="font-bold text-gray-800 dark:text-gray-200">1 Member (Default)</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-xs lg:text-sm">Disregarded entity &mdash; taxed as sole proprietorship</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                            <p class="font-bold text-gray-800 dark:text-gray-200">2+ Members (Default)</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-xs lg:text-sm">Taxed as partnership &mdash; pass-through to members</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                            <p class="font-bold text-gray-800 dark:text-gray-200">Elective</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-xs lg:text-sm">Can elect S-Corp or C-Corp taxation (IRS Form 8832)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-gray-400">
+                    <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Scenario: LLC Liability Protection</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> Maria forms "Maria's Bakery LLC" with a separate bank account, operating agreement, and adequate capitalization. A customer slips on a wet floor and suffers a broken hip.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> The customer sues and wins a $500,000 judgment. Maria's Bakery LLC only has $100,000 in assets.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> The customer collects $100,000 from the LLC's assets, but Maria's personal assets (home, car, savings) are <strong>protected</strong>. The customer cannot go after Maria personally &mdash; because she properly maintained the LLC as a separate entity.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Comparing LLCs to Other Entities -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">2. LLC vs. Other Entities</h2>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm lg:text-base">
+                        <thead>
+                            <tr class="bg-purple-600 text-white">
+                                <th class="p-3 lg:p-4 text-left rounded-tl-lg">Feature</th>
+                                <th class="p-3 lg:p-4 text-left">LLC</th>
+                                <th class="p-3 lg:p-4 text-left">Corporation</th>
+                                <th class="p-3 lg:p-4 text-left">General Partnership</th>
+                                <th class="p-3 lg:p-4 text-left rounded-tr-lg">Limited Partnership</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-bold text-gray-800 dark:text-gray-200">Liability</td>
+                                <td class="p-3 lg:p-4 text-green-700 dark:text-green-400">Limited for ALL members</td>
+                                <td class="p-3 lg:p-4 text-green-700 dark:text-green-400">Limited for stockholders</td>
+                                <td class="p-3 lg:p-4 text-red-700 dark:text-red-400">UNLIMITED for all partners</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">General = unlimited; Limited = limited</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <td class="p-3 lg:p-4 font-bold text-gray-800 dark:text-gray-200">Tax</td>
+                                <td class="p-3 lg:p-4 text-green-700 dark:text-green-400">Pass-through (default) or elective</td>
+                                <td class="p-3 lg:p-4 text-red-700 dark:text-red-400">Double taxation (C-Corp)</td>
+                                <td class="p-3 lg:p-4 text-green-700 dark:text-green-400">Pass-through</td>
+                                <td class="p-3 lg:p-4 text-green-700 dark:text-green-400">Pass-through</td>
+                            </tr>
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-bold text-gray-800 dark:text-gray-200">Formalities</td>
+                                <td class="p-3 lg:p-4 text-green-700 dark:text-green-400">Minimal</td>
+                                <td class="p-3 lg:p-4 text-red-700 dark:text-red-400">Board, meetings, minutes required</td>
+                                <td class="p-3 lg:p-4 text-green-700 dark:text-green-400">None required</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Filing required</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <td class="p-3 lg:p-4 font-bold text-gray-800 dark:text-gray-200">Management</td>
+                                <td class="p-3 lg:p-4 text-green-700 dark:text-green-400">Flexible (member or manager)</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Board + officers</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">All partners</td>
+                                <td class="p-3 lg:p-4 text-red-700 dark:text-red-400">Limited partners CANNOT manage</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Limited Partnerships -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">3. Limited Partnerships</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-6">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg lg:text-xl">Limited Partnership</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">Has at least one <strong>general partner</strong> (unlimited liability, runs the business) and one or more <strong>limited partners</strong> (liability limited to their investment, passive investors). Must <strong>file a certificate with the state</strong> (unlike general partnerships).</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                        <p class="font-bold text-red-800 dark:text-red-300 text-lg">General Partner</p>
+                        <ul class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base space-y-1">
+                            <li><strong>Unlimited</strong> personal liability</li>
+                            <li>Runs the day-to-day business</li>
+                            <li>Makes management decisions</li>
+                            <li>Can bind the partnership</li>
+                        </ul>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <p class="font-bold text-green-800 dark:text-green-300 text-lg">Limited Partner</p>
+                        <ul class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base space-y-1">
+                            <li>Liability <strong>limited to investment</strong></li>
+                            <li>Passive investor only</li>
+                            <li>CANNOT participate in management</li>
+                            <li>If they manage, they may <strong>LOSE limited liability</strong></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 rounded-r-lg mb-4">
+                    <p class="font-bold text-amber-800 dark:text-amber-300">Best Suited For</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-1 text-sm lg:text-base"><strong>Temporary enterprises requiring large amounts of capital</strong> with general partners who are good managers. Common in real estate development, film production, and private equity.</p>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-gray-400">
+                    <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Scenario: Limited Partner Loses Protection</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> A real estate limited partnership has one general partner (the developer) and five limited partners (investors). Limited Partner Lisa starts attending every meeting, signing contracts with subcontractors, and making design decisions.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> A subcontractor is injured on the job site and sues the partnership. The general partner's assets are insufficient to cover the $1 million judgment.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> Lisa may be treated as a <strong>general partner</strong> because she actively participated in management. Her personal assets are now at risk. The other four limited partners who stayed passive retain their limited liability protection.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: LLPs -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">4. Limited Liability Partnerships (LLPs)</h2>
+
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-purple-500 mb-6">
+                    <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg lg:text-xl">LLP = Partnership with Malpractice Shield</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">A general partnership where partners have <strong>limited liability for the wrongful acts of OTHER partners</strong>. Each partner is still personally liable for their <strong>own</strong> malpractice, but they are shielded from liability for other partners' negligence. Partnership assets remain at risk for all claims.</p>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-gray-400 mb-6">
+                    <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Scenario: LLP in Action</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> Three accountants &mdash; Amy, Ben, and Carol &mdash; form an LLP. Ben commits malpractice by failing to detect a client's fraud, causing the client's investors $2 million in losses.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> The investors sue the LLP and all three partners.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> <strong>Ben</strong> is personally liable for his own malpractice. <strong>Amy and Carol's personal assets are protected</strong> &mdash; the LLP structure shields them from Ben's wrongful acts. However, the partnership's assets (firm bank accounts, equipment) ARE still at risk.</p>
+                </div>
+
+                <div class="bg-indigo-50 dark:bg-indigo-900/20 rounded-lg p-4 border-l-4 border-indigo-500">
+                    <p class="font-bold text-indigo-800 dark:text-indigo-300">Why LLPs Are Popular with Professional Firms</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-1 text-sm lg:text-base">Law firms and accounting firms love LLPs because professionals can <strong>all participate in management</strong> (unlike limited partnerships) while being <strong>shielded from each other's malpractice</strong> (unlike general partnerships). It is the best of both worlds for professional practices.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Joint Ventures -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">5. Joint Ventures</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-6">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg lg:text-xl">Joint Venture</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">A <strong>partnership-like arrangement for a SINGLE business transaction or project</strong>, not an ongoing business. The same legal rules as partnerships apply, but the scope is limited to the specific venture.</p>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-gray-400">
+                    <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Scenario: Joint Venture</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> A construction company and an architecture firm form a joint venture to build a single office tower. They agree to split costs and profits 60/40.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> During construction, a worker is injured due to negligence by the construction company's crew.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> Both the construction company and the architecture firm can be held liable for the worker's injuries &mdash; the same joint and several liability rules apply as in a partnership. After the project is complete, the joint venture dissolves.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: Unincorporated Associations -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">6. Unincorporated Associations</h2>
+
+                <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-red-500 mb-6">
+                    <h3 class="font-bold text-red-800 dark:text-red-300 text-lg lg:text-xl">No Separate Legal Identity</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">A group of people joined for a <strong>common purpose other than making a profit</strong>. Unlike corporations and LLCs, unincorporated associations do <strong>NOT have a separate legal identity</strong>. Members may be <strong>personally liable</strong> for the association's debts.</p>
+                </div>
+
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">Six Types</h3>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-3 mb-6">
+                    <div class="bg-gray-50 dark:bg-gray-700 p-3 rounded-lg border border-gray-200 dark:border-gray-600">
+                        <p class="font-bold text-gray-800 dark:text-gray-200 text-sm">Trade Associations</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-xs lg:text-sm">Industry groups that represent businesses in a sector</p>
+                    </div>
+                    <div class="bg-gray-50 dark:bg-gray-700 p-3 rounded-lg border border-gray-200 dark:border-gray-600">
+                        <p class="font-bold text-gray-800 dark:text-gray-200 text-sm">Labor Unions</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-xs lg:text-sm">Organizations representing workers' interests</p>
+                    </div>
+                    <div class="bg-gray-50 dark:bg-gray-700 p-3 rounded-lg border border-gray-200 dark:border-gray-600">
+                        <p class="font-bold text-gray-800 dark:text-gray-200 text-sm">Benevolent &amp; Fraternal</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-xs lg:text-sm">Elks, Rotary, fraternal orders</p>
+                    </div>
+                    <div class="bg-gray-50 dark:bg-gray-700 p-3 rounded-lg border border-gray-200 dark:border-gray-600">
+                        <p class="font-bold text-gray-800 dark:text-gray-200 text-sm">Religious Organizations</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-xs lg:text-sm">Churches, temples, religious groups</p>
+                    </div>
+                    <div class="bg-gray-50 dark:bg-gray-700 p-3 rounded-lg border border-gray-200 dark:border-gray-600">
+                        <p class="font-bold text-gray-800 dark:text-gray-200 text-sm">Clubs</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-xs lg:text-sm">Social clubs, country clubs</p>
+                    </div>
+                    <div class="bg-gray-50 dark:bg-gray-700 p-3 rounded-lg border border-gray-200 dark:border-gray-600">
+                        <p class="font-bold text-gray-800 dark:text-gray-200 text-sm">Condo Owners' Associations</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-xs lg:text-sm">HOAs and condo associations</p>
+                    </div>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 rounded-r-lg">
+                    <p class="font-bold text-amber-800 dark:text-amber-300">Key Difference from Corps/LLCs</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-1 text-sm lg:text-base">Members of unincorporated associations may be <strong>personally liable</strong> for the association's debts and obligations, depending on state law. This is a KEY distinction from corporations and LLCs where owners enjoy limited liability.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cheat Sheet -->
+        <section id="cheat-sheet" class="mb-10">
+            <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 border-2 border-dashed border-gray-300 dark:border-gray-600">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100">Cheat Sheet</h2>
+                    <span class="text-sm text-gray-500 dark:text-gray-400">Print this page for quick reference</span>
+                </div>
+                <div class="grid md:grid-cols-3 gap-4">
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">LLC</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>Limited liability + pass-through tax</li>
+                            <li>File Articles of Organization</li>
+                            <li>Operating Agreement = internal rulebook</li>
+                            <li>Member-managed OR manager-managed</li>
+                            <li>Single-member = disregarded entity (Schedule C)</li>
+                            <li>Can elect S-Corp or C-Corp tax treatment</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Limited Partnership</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>General partner = unlimited liability + management</li>
+                            <li>Limited partner = limited liability + passive only</li>
+                            <li>Limited partner who manages may LOSE protection</li>
+                            <li>Must file certificate with state</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">LLP &amp; Other</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>LLP: shielded from other partners' malpractice</li>
+                            <li>LLP: own malpractice = still personally liable</li>
+                            <li>Joint venture = partnership for single project</li>
+                            <li>Unincorporated associations: no separate legal identity</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Traps -->
+        <section class="mb-10">
+            <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-xl p-5 lg:p-6">
+                <h2 class="text-2xl font-bold text-red-800 dark:text-red-300 mb-4">Exam Trap Alerts</h2>
+                <div class="space-y-3">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">1. Limited Partner Managing = Losing Protection</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">In a limited partnership, a limited partner who participates in management may be treated as a general partner and LOSE their limited liability. This is a huge exam topic. LLCs do NOT have this problem &mdash; all members can manage without losing protection.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">2. LLC vs. Limited Partnership on Management</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The KEY advantage of LLCs over limited partnerships is that ALL LLC members can participate in management without losing liability protection. In a limited partnership, only the general partner can manage.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">3. LLP = Malpractice Shield Only</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">In an LLP, you are shielded from other partners' wrongful acts, but partnership assets are STILL at risk. It is not total protection. And you are ALWAYS liable for your own malpractice.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">4. Single-Member LLC Veil Piercing</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Courts are MORE willing to pierce the veil of single-member LLCs. The #1 reason: commingling personal and business funds. Always keep a separate bank account!</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">5. Joint Venture = Partnership Rules</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">A joint venture follows the same liability rules as a partnership (including joint and several liability for torts), but it is limited to a single project or transaction. Do not confuse it with a limited partnership.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">6. Unincorporated Associations = Personal Liability Risk</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Unlike corporations and LLCs, unincorporated associations do NOT have separate legal identity. Members may be personally liable, depending on state law. This includes clubs, unions, and HOAs.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Reference Summary -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-purple-600 to-purple-800 rounded-xl p-6 text-white">
+                <h2 class="text-2xl font-bold mb-6">Quick Reference Summary</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">LLC</p>
+                        <p class="text-sm text-purple-100">Limited liability + pass-through tax + flexible management. #1 entity choice today.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Operating Agreement</p>
+                        <p class="text-sm text-purple-100">LLC's internal rulebook: member rights, profits, management, exit terms.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Limited Partnership</p>
+                        <p class="text-sm text-purple-100">General partner manages (unlimited liability). Limited partners invest only (limited liability).</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">LLP</p>
+                        <p class="text-sm text-purple-100">Partners shielded from each other's malpractice. Popular with professional firms.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Joint Venture</p>
+                        <p class="text-sm text-purple-100">Partnership for a single project. Same liability rules as general partnership.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Unincorporated Association</p>
+                        <p class="text-sm text-purple-100">No separate legal identity. Members may be personally liable. Includes clubs, unions, HOAs.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="../part-2/index.html" class="text-gray-400 hover:text-white transition-colors">&larr; Part 2: Corporations</a>
+                <span class="text-gray-500">Part 3 of 3</span>
+                <a href="../../assignment-15/index.html" class="text-gray-400 hover:text-white transition-colors">Assignment 15: International Legal Environment &rarr;</a>
+            </div>
+        </div>
+    </footer>
+
+    <button onclick="openAITutor({topic: 'LLCs and Other Business Entities', concepts: ['LLC formation and articles of organization', 'Operating agreements', 'Member-managed vs manager-managed LLCs', 'Single-member LLC veil piercing risk', 'LLC tax flexibility', 'Limited partnerships general vs limited partners', 'Limited partner loses protection by managing', 'LLP malpractice shield', 'Joint ventures as single-project partnerships', 'Unincorporated associations and personal liability'], keywords: ['LLC', 'limited liability company', 'operating agreement', 'member-managed', 'manager-managed', 'limited partnership', 'general partner', 'limited partner', 'LLP', 'joint venture', 'unincorporated association']})" class="fixed bottom-6 right-6 bg-purple-600 hover:bg-purple-700 text-white p-4 rounded-full shadow-xl hover:scale-110 transition-all z-50" title="AI Tutor">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+    </button>
+</body>
+</html>

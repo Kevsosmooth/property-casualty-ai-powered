@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 2: Risk of Loss &amp; Warranties | Assignment 6 | CPCU 530</title>
+    <link rel="icon" type="image/svg+xml" href="../../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config = { darkMode: 'class' }</script>
+    <link rel="stylesheet" href="../../../../css/styles.css">
+    <script src="../../../../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') { document.documentElement.classList.remove('dark'); }
+        function toggleTheme() { document.documentElement.classList.toggle('dark'); localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light'); }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="showAPIKeySetup()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings"><svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg></button>
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/></svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>
+        </button>
+    </div>
+
+    <header class="bg-gradient-to-r from-purple-600 to-purple-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap gap-2 text-sm mb-2">
+                <a href="../../../../index.html" class="text-purple-200 hover:text-white">Home</a><span class="text-purple-300">/</span>
+                <a href="../../../index.html" class="text-purple-200 hover:text-white">CPCU</a><span class="text-purple-300">/</span>
+                <a href="../../index.html" class="text-purple-200 hover:text-white">530</a><span class="text-purple-300">/</span>
+                <a href="../index.html" class="text-purple-200 hover:text-white">Assignment 6</a><span class="text-purple-300">/</span>
+                <span class="text-white">Part 2</span>
+            </div>
+            <h1 class="text-3xl font-bold">Part 2: Risk of Loss &amp; Warranties</h1>
+            <p class="text-purple-200 mt-1">Assignment 6 &mdash; Commercial Law: UCC &amp; Sales</p>
+        </div>
+    </header>
+
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-wrap gap-2 text-sm">
+                <a href="../index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Intro</a>
+                <a href="../part-1/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 1</a>
+                <span class="bg-purple-600 text-white px-3 py-1 rounded font-medium">Part 2</span>
+                <a href="../part-3/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 3</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-5xl lg:max-w-7xl">
+
+        <!-- Start Here -->
+        <div class="bg-gradient-to-r from-green-100 to-blue-100 dark:from-green-900/40 dark:to-blue-800/40 rounded-xl p-6 mb-8 border border-green-300 dark:border-green-700">
+            <h3 class="text-xl font-bold text-green-800 dark:text-green-200 mb-4">Start Here: 5 Things You MUST Know</h3>
+            <div class="grid md:grid-cols-2 gap-3">
+                <div class="flex items-start">
+                    <span class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
+                    <p class="text-gray-700 dark:text-gray-300">UCC <strong>separates risk of loss from title</strong> &mdash; do NOT just say "risk follows title"</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>Merchant seller</strong> retains risk until buyer actually <strong>receives</strong> the goods (no carrier involved)</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>Implied warranty of merchantability</strong> applies ONLY to sales by <strong>merchants</strong></p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">4</span>
+                    <p class="text-gray-700 dark:text-gray-300">Selling goods <strong>"as is"</strong> disclaims ALL implied warranties</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">5</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>Express warranties cannot be disclaimed</strong> if they were part of the basis of the bargain</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 1: Risk of Loss Rules -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">1. Risk of Loss Under the UCC</h2>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 rounded-r-lg mb-6">
+                    <p class="font-bold text-amber-800 dark:text-amber-300">Critical Concept!</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-1 text-base lg:text-lg">While title and risk of loss are related, the UCC deliberately <strong>separates risk of loss from title</strong> in many situations. Under UCC 2-509 and 2-510, risk depends on <strong>contract terms, shipping arrangements, and merchant status</strong> &mdash; not simply who holds title.</p>
+                </div>
+
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">Key Rules for Risk of Loss</h3>
+
+                <div class="space-y-4 mb-6">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-l-4 border-blue-500">
+                        <p class="font-bold text-blue-800 dark:text-blue-300">(a) Carrier Involved (Shipment Contract)</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-1 text-sm lg:text-base">Risk passes to buyer when goods are <strong>delivered to the carrier</strong>. Example: FOB Shipping Point.</p>
+                    </div>
+
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border-l-4 border-purple-500">
+                        <p class="font-bold text-purple-800 dark:text-purple-300">(b) Goods Held by a Bailee</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-1 text-sm lg:text-base">Risk passes when the buyer receives the <strong>document of title</strong> (like a warehouse receipt).</p>
+                    </div>
+
+                    <div class="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-lg border-l-4 border-indigo-500">
+                        <p class="font-bold text-indigo-800 dark:text-indigo-300">(c) All Other Cases &mdash; Merchant Status Matters</p>
+                        <div class="grid md:grid-cols-2 gap-3 mt-3">
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                                <p class="font-bold text-green-700 dark:text-green-400 text-sm">Seller IS a Merchant</p>
+                                <p class="text-gray-700 dark:text-gray-300 text-sm mt-1">Risk does NOT pass until the buyer actually <strong>receives</strong> the goods</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                                <p class="font-bold text-red-700 dark:text-red-400 text-sm">Seller is NOT a Merchant</p>
+                                <p class="text-gray-700 dark:text-gray-300 text-sm mt-1">Risk passes when the seller <strong>tenders delivery</strong> (makes goods available)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-gray-400 mb-6">
+                    <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Scenario: Merchant Risk of Loss</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> Wanda buys furniture from Selma's store. The furniture is marked with Wanda's name and set aside. Wanda is to pick it up within a week.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> A fire destroys Selma's store (NOT caused by Selma's negligence) and the furniture is destroyed before Wanda picks it up.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> Title likely passed to Wanda (goods were identified and marked). BUT since <strong>Selma is a merchant</strong>, risk of loss does NOT pass until the buyer actually receives the goods. <strong>Wanda does NOT have to pay</strong> for the destroyed furniture.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Breach & Remedies -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">2. Breach of Sales Contracts &amp; Remedies</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 border-l-4 border-blue-500 mb-6">
+                    <p class="font-bold text-blue-800 dark:text-blue-300">Revocation of Acceptance</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">A buyer can revoke acceptance of goods if there is a <strong>substantial nonconformity</strong> that impairs the value of the goods.</p>
+                </div>
+
+                <!-- Excuses for Nonperformance -->
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">Three Excuses for Nonperformance</h3>
+                <div class="grid md:grid-cols-3 gap-4 mb-6">
+                    <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border border-gray-200 dark:border-gray-600">
+                        <p class="font-bold text-gray-800 dark:text-gray-200">Loss of Identified Goods</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm mt-1">The specific goods designated in the contract are destroyed without fault of either party.</p>
+                    </div>
+                    <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border border-gray-200 dark:border-gray-600">
+                        <p class="font-bold text-gray-800 dark:text-gray-200">Unavailable Shipping</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm mt-1">The agreed transportation method becomes unavailable.</p>
+                    </div>
+                    <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border border-gray-200 dark:border-gray-600">
+                        <p class="font-bold text-gray-800 dark:text-gray-200">Failed Presupposed Condition</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm mt-1">A basic assumption underlying the contract turns out to be false.</p>
+                    </div>
+                </div>
+
+                <!-- Seller's vs Buyer's Remedies -->
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                        <p class="font-bold text-red-800 dark:text-red-300 text-lg mb-2">Seller's Remedies (Buyer Breaches)</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li><strong>Withhold delivery</strong> of goods</li>
+                            <li><strong>Stop delivery</strong> if goods are in transit and buyer is insolvent</li>
+                            <li><strong>Resell</strong> goods and recover damages</li>
+                            <li><strong>Recover the price</strong> if goods cannot be resold</li>
+                            <li><strong>Cancel</strong> the contract</li>
+                        </ul>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <p class="font-bold text-green-800 dark:text-green-300 text-lg mb-2">Buyer's Remedies (Seller Breaches)</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li><strong>Reject</strong> nonconforming goods</li>
+                            <li><strong>Revoke acceptance</strong> for substantial nonconformity</li>
+                            <li><strong>Cover</strong> &mdash; buy substitutes elsewhere, recover price difference</li>
+                            <li><strong>Recover damages</strong> for non-delivery</li>
+                            <li><strong>Specific performance</strong> (force delivery of unique goods)</li>
+                            <li><strong>Deduct damages</strong> from price still owed</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-gray-400">
+                    <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Scenario: Seller Stops Delivery</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> A seller delivers goods to a carrier for shipment to a buyer.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> The seller discovers the buyer is <strong>insolvent</strong> (cannot pay debts).</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> The seller can <strong>stop delivery</strong> of the goods in transit. The seller can withhold the goods and demand cash payment before releasing them.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Express Warranties -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">3. Express Warranties</h2>
+
+                <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-green-500 mb-6">
+                    <h3 class="font-bold text-green-800 dark:text-green-300 text-lg lg:text-xl">Express Warranty</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">Any <strong>statement of fact, description, or sample/model</strong> that becomes the <strong>basis of the bargain</strong> creates an express warranty. The seller does NOT need to use the word "warranty" or "guarantee."</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border border-green-200 dark:border-green-800">
+                        <p class="font-bold text-green-800 dark:text-green-300">IS an Express Warranty</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-2">"This car gets <strong>35 MPG</strong>." &mdash; A specific, measurable factual claim that becomes part of the deal.</p>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border border-red-200 dark:border-red-800">
+                        <p class="font-bold text-red-800 dark:text-red-300">NOT an Express Warranty (Puffery)</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-2">"This is the <strong>best car on the market!</strong>" &mdash; Just sales talk. No specific, verifiable claim.</p>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-gray-400">
+                    <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Scenario: Breach of Express Warranty</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> A salesperson tells a buyer, "This industrial generator will run continuously for 10,000 hours without maintenance."</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> The generator breaks down after 2,000 hours.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> The buyer can claim <strong>breach of express warranty</strong>. The specific claim about 10,000 hours became the basis of the bargain. The seller is liable even without the word "warranty."</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Implied Warranties -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">4. Implied Warranties</h2>
+
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 border-l-4 border-purple-500 mb-6">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Implied warranties exist <strong>automatically by operation of law</strong> &mdash; nobody has to say anything. They are built into every applicable sale unless properly disclaimed.</p>
+                </div>
+
+                <!-- Merchantability -->
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-4">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg lg:text-xl">Implied Warranty of Merchantability</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">Only arises in sales <strong>by a merchant</strong> (someone who regularly deals in goods of that kind). Means the goods are fit for their <strong>ordinary purpose</strong>.</p>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300">A toaster must toast. A car must drive. Shoes must be wearable. If a merchant sells goods that cannot do what they are supposed to do, the warranty is breached.</p>
+                    </div>
+                </div>
+
+                <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-lg p-4 mb-6">
+                    <p class="font-bold text-red-800 dark:text-red-300">Critical Distinction!</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-1 text-base lg:text-lg">The implied warranty of merchantability is implied in a sale by a <strong>MERCHANT</strong> but <strong>NOT</strong> in a sale by a <strong>nonmerchant</strong>. If your neighbor sells you their old lawnmower at a garage sale, there is no merchantability warranty.</p>
+                </div>
+
+                <!-- Fitness for Particular Purpose -->
+                <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-green-500 mb-4">
+                    <h3 class="font-bold text-green-800 dark:text-green-300 text-lg lg:text-xl">Implied Warranty of Fitness for a Particular Purpose</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">Arises when the <strong>buyer relies on the seller's expertise</strong> in selecting a product for a <strong>specific</strong> (not ordinary) purpose. Two requirements:</p>
+                    <div class="grid md:grid-cols-2 gap-3 mt-3">
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                            <p class="font-bold text-green-700 dark:text-green-400 text-sm">Requirement 1</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm mt-1">The seller must <strong>know</strong> the buyer's particular purpose</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                            <p class="font-bold text-green-700 dark:text-green-400 text-sm">Requirement 2</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm mt-1">The seller must know the buyer is <strong>relying on the seller's judgment</strong></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-gray-400 mb-6">
+                    <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Scenario: Fitness for a Particular Purpose</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> A customer walks into a paint store and says, "I need paint that can withstand constant exposure to saltwater on my boat hull."</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> The paint store employee recommends a specific paint. The customer buys it, but it peels off after one month in saltwater.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> Breach of the <strong>implied warranty of fitness for a particular purpose</strong>. The seller knew the purpose (boat hull/saltwater), the buyer relied on the seller's expertise, and the product failed that purpose.</p>
+                </div>
+
+                <!-- Third-Party Beneficiaries -->
+                <div class="bg-indigo-50 dark:bg-indigo-900/20 rounded-lg p-4 border-l-4 border-indigo-500 mb-6">
+                    <p class="font-bold text-indigo-800 dark:text-indigo-300 text-lg">Third-Party Beneficiaries of Warranties</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">A seller's warranty extends beyond just the buyer to cover:</p>
+                    <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-2 space-y-1">
+                        <li>The buyer's <strong>family</strong></li>
+                        <li>Members of the buyer's <strong>household</strong></li>
+                        <li>Any <strong>guest</strong> in the buyer's home who suffers injury from breach of warranty</li>
+                    </ul>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                        <p class="text-sm lg:text-base"><strong>Example:</strong> Tom buys a defective space heater from HomeStore. Tom's dinner guest, Sarah, is burned when the heater explodes. Sarah can sue HomeStore for breach of warranty even though she did not buy the heater.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Disclaiming Warranties -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">5. Disclaiming Warranties</h2>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 rounded-r-lg mb-6">
+                    <p class="font-bold text-amber-800 dark:text-amber-300">Key Rule</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-1 text-base lg:text-lg">Sellers can limit or exclude warranties under UCC 2-316, but each warranty type has different disclaimer requirements.</p>
+                </div>
+
+                <div class="space-y-4 mb-6">
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border-l-4 border-purple-500">
+                        <p class="font-bold text-purple-800 dark:text-purple-300">Disclaiming Merchantability</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-1 text-sm lg:text-base">Must <strong>mention the word "merchantability"</strong> and, if in writing, must be <strong>conspicuous</strong> (bold, capitalized, or otherwise noticeable).</p>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border-l-4 border-purple-500">
+                        <p class="font-bold text-purple-800 dark:text-purple-300">Disclaiming Fitness for a Particular Purpose</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-1 text-sm lg:text-base">Must be <strong>in writing</strong> and <strong>conspicuous</strong>.</p>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <p class="font-bold text-green-800 dark:text-green-300">Easiest Way: Sell "As Is"</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-1 text-sm lg:text-base">Selling goods <strong>"as is"</strong> or <strong>"with all faults"</strong> disclaims ALL implied warranties at once.</p>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                        <p class="font-bold text-red-800 dark:text-red-300">Express Warranties: Generally CANNOT Be Disclaimed</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-1 text-sm lg:text-base">If a specific promise was part of the basis of the bargain, you cannot disclaim it after the fact.</p>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-gray-400">
+                    <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Scenario: "As-Is" Disclaimer</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> A used car dealer sells a car with a sign on the dashboard reading "SOLD AS-IS, NO WARRANTIES EXPRESS OR IMPLIED."</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> The transmission fails two days later.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> The buyer likely has NO warranty claim. The "as-is" language effectively disclaimed all implied warranties. However, if the dealer verbally promised "this car will run great for years," that <strong>express warranty may survive</strong> despite the disclaimer.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cheat Sheet -->
+        <section id="cheat-sheet" class="mb-10">
+            <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 border-2 border-dashed border-gray-300 dark:border-gray-600">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100">Cheat Sheet</h2>
+                    <span class="text-sm text-gray-500 dark:text-gray-400">Print this page for quick reference</span>
+                </div>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Risk of Loss Rules</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>Risk does NOT simply follow title under UCC</li>
+                            <li>Carrier involved: risk passes at delivery to carrier</li>
+                            <li>Bailee: risk passes when buyer gets document of title</li>
+                            <li>Merchant seller (no carrier): risk stays until buyer receives</li>
+                            <li>Non-merchant seller: risk passes at tender of delivery</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Warranty Quick Guide</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>Express: specific factual claims = warranty (no magic words needed)</li>
+                            <li>Merchantability: MERCHANTS only, goods fit for ordinary use</li>
+                            <li>Fitness: buyer relies on seller for specific purpose</li>
+                            <li>"As is" = disclaims ALL implied warranties</li>
+                            <li>Express warranties generally CANNOT be disclaimed</li>
+                            <li>Warranties extend to family, household, guests</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Traps -->
+        <section class="mb-10">
+            <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-xl p-5 lg:p-6">
+                <h2 class="text-2xl font-bold text-red-800 dark:text-red-300 mb-4">Exam Trap Alerts</h2>
+                <div class="space-y-3">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">1. Risk Does NOT Follow Title</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The UCC intentionally separates risk of loss from title. When goods are at a merchant seller's location waiting for buyer pickup, the merchant retains risk even if title has passed. Do NOT default to "risk follows title."</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">2. Merchantability = Merchants ONLY</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The implied warranty of merchantability applies ONLY when the seller is a merchant who regularly deals in goods of that kind. Your neighbor's garage sale has no merchantability warranty.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">3. Puffery Is NOT an Express Warranty</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">"Best product ever!" is puffery (sales talk). "Gets 35 MPG" is an express warranty (specific claim). The exam will test this distinction with tricky wording.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">4. "As Is" Kills Implied Warranties, Not Express Ones</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Selling "as is" disclaims all implied warranties. But if the seller made a specific factual promise (express warranty), that promise may survive the "as is" disclaimer.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">5. Fitness vs. Merchantability</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Merchantability = fit for ORDINARY purpose (a toaster toasts). Fitness for a particular purpose = buyer relies on seller for a SPECIFIC, unusual use (paint for saltwater boat hull). They are different warranties with different triggers.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">6. Buyer's "Cover" Remedy</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">When a seller breaches, the buyer can "cover" by buying substitute goods elsewhere. The buyer recovers the DIFFERENCE in price, not the full cost of the substitutes.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Reference Summary -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-purple-600 to-purple-800 rounded-xl p-6 text-white">
+                <h2 class="text-2xl font-bold mb-6">Quick Reference Summary</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Risk of Loss (Merchant)</p>
+                        <p class="text-sm text-purple-100">Stays with merchant seller until buyer actually receives goods.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Risk of Loss (Non-Merchant)</p>
+                        <p class="text-sm text-purple-100">Passes when seller tenders delivery (makes goods available).</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Express Warranty</p>
+                        <p class="text-sm text-purple-100">Specific factual claim that becomes basis of the bargain. Cannot be disclaimed.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Merchantability</p>
+                        <p class="text-sm text-purple-100">Goods fit for ordinary purpose. Merchants only. Disclaimer must say "merchantability."</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Fitness for Particular Purpose</p>
+                        <p class="text-sm text-purple-100">Buyer relies on seller's expertise for specific use. Written disclaimer required.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">"As Is" Sales</p>
+                        <p class="text-sm text-purple-100">Disclaims ALL implied warranties. Express warranties may survive.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="../part-1/index.html" class="text-gray-400 hover:text-white transition-colors">&larr; Part 1: UCC &amp; Sales Contracts</a>
+                <span class="text-gray-500">Part 2 of 3</span>
+                <a href="../part-3/index.html" class="text-gray-400 hover:text-white transition-colors">Part 3: Product Liability &rarr;</a>
+            </div>
+        </div>
+    </footer>
+
+    <button onclick="openAITutor({topic: 'Risk of Loss and Warranties under UCC', concepts: ['Risk of loss separated from title', 'Merchant vs non-merchant risk rules', 'Carrier-involved risk transfer', 'Express warranties (factual claims)', 'Implied warranty of merchantability (merchants only)', 'Implied warranty of fitness for a particular purpose', 'Third-party warranty beneficiaries', 'Disclaiming warranties (as-is, merchantability word)', 'Seller remedies vs buyer remedies', 'Revocation of acceptance', 'Cover remedy'], keywords: ['risk of loss', 'title', 'merchantability', 'fitness for particular purpose', 'express warranty', 'puffery', 'as is', 'disclaimer', 'cover', 'revocation', 'merchant', 'nonmerchant']})" class="fixed bottom-6 right-6 bg-purple-600 hover:bg-purple-700 text-white p-4 rounded-full shadow-xl hover:scale-110 transition-all z-50" title="AI Tutor">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+    </button>
+</body>
+</html>

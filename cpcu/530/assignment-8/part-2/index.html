@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 2: Causation, Damages &amp; Imputed Negligence | Assignment 8 | CPCU 530</title>
+    <link rel="icon" type="image/svg+xml" href="../../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config = { darkMode: 'class' }</script>
+    <link rel="stylesheet" href="../../../../css/styles.css">
+    <script src="../../../../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') { document.documentElement.classList.remove('dark'); }
+        function toggleTheme() { document.documentElement.classList.toggle('dark'); localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light'); }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="showAPIKeySetup()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings"><svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg></button>
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/></svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>
+        </button>
+    </div>
+
+    <header class="bg-gradient-to-r from-purple-600 to-purple-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap gap-2 text-sm mb-2">
+                <a href="../../../../index.html" class="text-purple-200 hover:text-white">Home</a><span class="text-purple-300">/</span>
+                <a href="../../../index.html" class="text-purple-200 hover:text-white">CPCU</a><span class="text-purple-300">/</span>
+                <a href="../../index.html" class="text-purple-200 hover:text-white">530</a><span class="text-purple-300">/</span>
+                <a href="../index.html" class="text-purple-200 hover:text-white">Assignment 8</a><span class="text-purple-300">/</span>
+                <span class="text-white">Part 2</span>
+            </div>
+            <h1 class="text-3xl font-bold">Part 2: Causation, Damages &amp; Imputed Negligence</h1>
+            <p class="text-purple-200 mt-1">Assignment 8 &mdash; Tort Law: Negligence</p>
+        </div>
+    </header>
+
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-wrap gap-2 text-sm">
+                <a href="../index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Intro</a>
+                <a href="../part-1/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 1</a>
+                <span class="bg-purple-600 text-white px-3 py-1 rounded font-medium">Part 2</span>
+                <a href="../part-3/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 3</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-5xl lg:max-w-7xl">
+
+        <!-- Start Here -->
+        <div class="bg-gradient-to-r from-green-100 to-blue-100 dark:from-green-900/40 dark:to-blue-800/40 rounded-xl p-6 mb-8 border border-green-300 dark:border-green-700">
+            <h3 class="text-xl font-bold text-green-800 dark:text-green-200 mb-4">Start Here: 5 Things You MUST Know</h3>
+            <div class="grid md:grid-cols-2 gap-3">
+                <div class="flex items-start">
+                    <span class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>"But for"</strong> test: But for the defendant's act, would the harm have occurred? If no, causation exists</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>Foreseeability</strong> limits liability &mdash; defendants are only liable for <strong>reasonably foreseeable</strong> consequences</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
+                    <p class="text-gray-700 dark:text-gray-300">A foreseeable <strong>intervening act</strong> does NOT break the chain. Only an unforeseeable <strong>superseding cause</strong> does</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">4</span>
+                    <p class="text-gray-700 dark:text-gray-300">Negligence REQUIRES <strong>actual injury or damage</strong> &mdash; you cannot sue just because someone COULD have hurt you</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">5</span>
+                    <p class="text-gray-700 dark:text-gray-300"><strong>Vicarious liability</strong> holds one person liable for another's negligence due to their relationship (employer-employee)</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 1: Proximate Cause -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">1. Element 3: Proximate Cause</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-6">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg lg:text-xl">Proximate Cause</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">There must be a <strong>close enough causal connection</strong> between the defendant's breach and the plaintiff's injury. The injury cannot be too remote or unforeseeable.</p>
+                </div>
+
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">Four Rules for Determining Proximate Cause</h3>
+
+                <div class="space-y-4 mb-6">
+                    <!-- But For Rule -->
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <p class="font-bold text-green-800 dark:text-green-300 text-lg">1. "But For" Rule</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">The most basic test. Ask: "<strong>BUT FOR</strong> the defendant's action, would the injury have occurred?" If the answer is NO (the injury would NOT have happened), then causation exists.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> But for the driver running the red light, the pedestrian would not have been hit. Causation established.</p>
+                        </div>
+                    </div>
+
+                    <!-- Substantial Factor -->
+                    <div class="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-lg border-l-4 border-indigo-500">
+                        <p class="font-bold text-indigo-800 dark:text-indigo-300 text-lg">2. Substantial Factor Rule</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">Used when <strong>MULTIPLE causes</strong> contribute to an injury. Was the defendant's conduct a "substantial factor" in producing the harm? Even if other factors contributed, the defendant can be liable.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> Two factories both dump chemicals into a river. A downstream landowner's crops are destroyed. Each factory's dumping was a "substantial factor" in the damage &mdash; both are liable.</p>
+                        </div>
+                    </div>
+
+                    <!-- Proof of Responsibility -->
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border-l-4 border-purple-500">
+                        <p class="font-bold text-purple-800 dark:text-purple-300 text-lg">3. Proof of Defendant's Responsibility</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">The plaintiff must present proof connecting <strong>THIS specific defendant's</strong> actions to the harm. You cannot just say "someone was negligent" &mdash; you must show WHO.</p>
+                    </div>
+
+                    <!-- Foreseeability -->
+                    <div class="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg border-l-4 border-amber-500">
+                        <p class="font-bold text-amber-800 dark:text-amber-300 text-lg">4. Foreseeability Rule</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">The defendant is only liable for consequences that were <strong>reasonably foreseeable</strong>. If the harm was completely bizarre and unforeseeable, there is no proximate cause even if the defendant was negligent.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> A driver negligently rear-ends a car. The car turns out to be carrying dynamite (unknown to anyone) and explodes, damaging buildings a block away. The driver may NOT be liable for the explosion &mdash; carrying dynamite in a regular car was not foreseeable.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Intervening Acts & Concurrent Causation -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">2. Intervening Acts &amp; Concurrent Causation</h2>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-l-4 border-blue-500">
+                        <p class="font-bold text-blue-800 dark:text-blue-300 text-lg">Intervening Act</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">A new, independent act that occurs <strong>AFTER</strong> the defendant's negligence and contributes to the harm.</p>
+                        <div class="mt-3 space-y-2">
+                            <div class="bg-green-50 dark:bg-green-800/30 p-2 rounded">
+                                <p class="text-sm text-green-800 dark:text-green-300"><strong>Foreseeable intervening act:</strong> Defendant STILL liable. Does NOT break the chain.</p>
+                            </div>
+                            <div class="bg-red-50 dark:bg-red-800/30 p-2 rounded">
+                                <p class="text-sm text-red-800 dark:text-red-300"><strong>Unforeseeable "superseding cause":</strong> BREAKS the chain. Defendant NOT liable.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border-l-4 border-purple-500">
+                        <p class="font-bold text-purple-800 dark:text-purple-300 text-lg">Concurrent Causation</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">When two or more causes combine at the <strong>SAME TIME</strong> to produce harm. <strong>Both parties</strong> can be held liable.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> Two drivers simultaneously run red lights from different directions and collide, injuring a pedestrian. Both are concurrently liable.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border-l-4 border-gray-400">
+                    <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Scenario: Foreseeable Intervening Act</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> A contractor negligently leaves a gas line exposed during construction work.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> A month later, an unrelated electrician accidentally sparks near the exposed gas line, causing an explosion.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> The contractor is STILL liable. An accidental ignition of an exposed gas line is a <strong>foreseeable</strong> consequence. The electrician's spark is a foreseeable <strong>intervening act</strong>, not a superseding cause. Both the contractor AND the electrician may be liable.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Actual Injury -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">3. Element 4: Actual Injury or Damage</h2>
+
+                <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-lg p-4 mb-6">
+                    <p class="font-bold text-red-800 dark:text-red-300 text-lg">Critical Rule</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mt-1">The plaintiff must have suffered <strong>REAL, measurable harm</strong> &mdash; physical injury, property damage, or financial loss. Without actual damages, there is <strong>no negligence claim</strong>, even if the defendant was careless.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-4">
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border border-green-200 dark:border-green-800">
+                        <p class="font-bold text-green-800 dark:text-green-300">NEGLIGENCE (actual harm)</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-2">A driver runs a red light and hits you, breaking your arm. You have actual damages: medical bills, lost wages, pain and suffering. You CAN sue for negligence.</p>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border border-red-200 dark:border-red-800">
+                        <p class="font-bold text-red-800 dark:text-red-300">NOT NEGLIGENCE (no harm)</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-2">A driver runs a red light and barely misses you. You are scared but unhurt. No actual damages, so you CANNOT sue for negligence even though the driver was careless.</p>
+                    </div>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 rounded-r-lg">
+                    <p class="font-bold text-amber-800 dark:text-amber-300">Key Distinction</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Unlike some <strong>intentional torts</strong> (like battery, where even offensive touching without injury counts), negligence <strong>REQUIRES</strong> actual damage. No harm, no claim.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Imputed Negligence -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">4. Imputed Negligence</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-6">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Holding one person legally responsible for the negligence of <strong>ANOTHER person</strong>, even though the first person did nothing wrong personally. The negligence is "imputed" (attributed) because of their <strong>relationship</strong>.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border-l-4 border-purple-500">
+                        <p class="font-bold text-purple-800 dark:text-purple-300 text-lg">Imputed Contributory Negligence</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">The <strong>plaintiff's</strong> own claim is weakened because someone else's negligence is attributed TO the plaintiff.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> A passenger is injured in a crash. If the driver of THEIR car was also negligent, the driver's negligence may be imputed to the passenger, reducing their recovery.</p>
+                        </div>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                        <p class="font-bold text-red-800 dark:text-red-300 text-lg">Vicarious Liability</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">One person is held liable for another's negligent acts because of their relationship. Most common: <strong>employer liable for employee's negligence</strong> within the scope of employment.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> A delivery driver causes an accident while making deliveries. The employer is vicariously liable for the driver's negligence.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="text-lg font-bold text-gray-800 dark:text-gray-100 mb-3">Three Key Vicarious Liability Doctrines</h3>
+                <div class="space-y-4 mb-6">
+                    <div class="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg border-l-4 border-amber-500">
+                        <p class="font-bold text-amber-800 dark:text-amber-300 text-lg">Negligent Entrustment</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">Entrusting a <strong>dangerous instrument</strong> (car, weapon, tool) to someone you know or should know is <strong>incompetent, inexperienced, or reckless</strong>. If that person causes harm, YOU are liable.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> Letting a friend who you know has seizures borrow your car. If they have a seizure while driving and hit someone, you are liable for negligent entrustment.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-lg border-l-4 border-indigo-500">
+                        <p class="font-bold text-indigo-800 dark:text-indigo-300 text-lg">Dangerous Instrumentality Doctrine</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">In some states, the <strong>OWNER</strong> of a dangerous instrument (like a car) is automatically liable for injuries caused by <strong>anyone operating it with the owner's permission</strong>, regardless of whether the owner was negligent in lending it.</p>
+                    </div>
+
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <p class="font-bold text-green-800 dark:text-green-300 text-lg">Negligent Supervision</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">Failing to properly supervise someone you have a <strong>duty to supervise</strong> (parent supervising a minor child, employer supervising an employee).</p>
+                    </div>
+                </div>
+
+                <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-lg p-4">
+                    <p class="font-bold text-red-800 dark:text-red-300 text-lg mb-2">Classic Exam Scenario</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> A mother gives car keys to her 15-year-old son who does not have a driver's license.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> The son drives negligently and hits a pedestrian.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> The mother is liable under <strong>BOTH</strong> negligent entrustment (she gave a dangerous instrument to a known incompetent) AND negligent supervision (she failed in her parental duty). The son is also liable &mdash; minors driving are held to the <strong>adult standard of care</strong>.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cheat Sheet -->
+        <section id="cheat-sheet" class="mb-10">
+            <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 border-2 border-dashed border-gray-300 dark:border-gray-600">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100">Cheat Sheet</h2>
+                    <span class="text-sm text-gray-500 dark:text-gray-400">Print this page for quick reference</span>
+                </div>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Proximate Cause Rules</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>"But for" = Would harm have occurred without defendant's act?</li>
+                            <li>Substantial factor = Used for multiple causes</li>
+                            <li>Proof of responsibility = Must identify THIS defendant</li>
+                            <li>Foreseeability = Only liable for foreseeable consequences</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Causation Concepts</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>Foreseeable intervening act = does NOT break the chain</li>
+                            <li>Unforeseeable superseding cause = BREAKS the chain</li>
+                            <li>Concurrent causation = multiple causes at same time, both liable</li>
+                            <li>Actual injury REQUIRED for negligence (not just "could have")</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Imputed Negligence</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>Imputed contributory = someone else's fault attributed to plaintiff</li>
+                            <li>Vicarious liability = employer liable for employee's acts</li>
+                            <li>Negligent entrustment = lending dangerous item to incompetent</li>
+                            <li>Negligent supervision = failing to supervise someone you must</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Classic Exam Scenario</p>
+                        <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>Mother gives car keys to 15-year-old son = BOTH apply</li>
+                            <li>Negligent entrustment + negligent supervision simultaneously</li>
+                            <li>Minor driving = held to ADULT standard of care</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Traps -->
+        <section class="mb-10">
+            <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-xl p-5 lg:p-6">
+                <h2 class="text-2xl font-bold text-red-800 dark:text-red-300 mb-4">Exam Trap Alerts</h2>
+                <div class="space-y-3">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">1. Foreseeable vs. Unforeseeable Intervening Acts</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">A foreseeable intervening act does NOT break the chain of causation &mdash; the defendant is STILL liable. Only a truly unforeseeable "superseding cause" breaks the chain. The exam tests whether you know the difference.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">2. No Actual Injury = No Negligence Claim</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Even if someone was careless and COULD have hurt you, if you were not actually harmed, you have no negligence claim. This differs from intentional torts like battery.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">3. Negligent Entrustment vs. Negligent Supervision</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">These are <strong>different doctrines</strong> and can apply simultaneously. The mother/son car scenario tests BOTH. Entrustment = lending the dangerous item. Supervision = failing to supervise the person.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">4. Dangerous Instrumentality Is State-Specific</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The dangerous instrumentality doctrine (automatic owner liability) only applies in <strong>some states</strong>. It is different from negligent entrustment, which requires knowledge of incompetence.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">5. "But For" vs. Substantial Factor</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">"But for" works for single-cause scenarios. When MULTIPLE causes contribute to harm, use the <strong>substantial factor</strong> rule instead. Know when to apply each test.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Reference Summary -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-purple-600 to-purple-800 rounded-xl p-6 text-white">
+                <h2 class="text-2xl font-bold mb-6">Quick Reference Summary</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">"But For" Rule</p>
+                        <p class="text-sm text-purple-100">Basic causation test. Would harm have occurred without defendant's act?</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Substantial Factor</p>
+                        <p class="text-sm text-purple-100">For multiple causes. Was defendant's conduct a substantial factor?</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Foreseeability</p>
+                        <p class="text-sm text-purple-100">Defendant only liable for reasonably foreseeable consequences.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Intervening Act</p>
+                        <p class="text-sm text-purple-100">Foreseeable = no break. Unforeseeable "superseding" = breaks chain.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Actual Injury</p>
+                        <p class="text-sm text-purple-100">Negligence REQUIRES real harm. No damage = no claim.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Vicarious Liability</p>
+                        <p class="text-sm text-purple-100">Liable for another's acts due to relationship. Employer-employee most common.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Negligent Entrustment</p>
+                        <p class="text-sm text-purple-100">Lending dangerous item to someone known to be incompetent.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Negligent Supervision</p>
+                        <p class="text-sm text-purple-100">Failing to supervise someone you have a duty to supervise.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Concurrent Causation</p>
+                        <p class="text-sm text-purple-100">Multiple causes at same time. Both parties liable.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="../part-1/index.html" class="text-gray-400 hover:text-white transition-colors">&larr; Part 1: Duty of Care &amp; Breach</a>
+                <span class="text-gray-500">Part 2 of 3</span>
+                <a href="../part-3/index.html" class="text-gray-400 hover:text-white transition-colors">Part 3: Defenses to Negligence &rarr;</a>
+            </div>
+        </div>
+    </footer>
+
+    <button onclick="openAITutor({topic: 'Causation, Damages and Imputed Negligence', concepts: ['But for rule', 'Substantial factor rule', 'Foreseeability rule', 'Intervening act vs superseding cause', 'Concurrent causation', 'Actual injury requirement', 'Imputed contributory negligence', 'Vicarious liability', 'Negligent entrustment', 'Dangerous instrumentality doctrine', 'Negligent supervision'], keywords: ['proximate cause', 'but for', 'substantial factor', 'foreseeability', 'intervening act', 'superseding cause', 'concurrent causation', 'actual injury', 'imputed negligence', 'vicarious liability', 'negligent entrustment', 'negligent supervision', 'dangerous instrumentality']})" class="fixed bottom-6 right-6 bg-purple-600 hover:bg-purple-700 text-white p-4 rounded-full shadow-xl hover:scale-110 transition-all z-50" title="AI Tutor">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+    </button>
+</body>
+</html>
