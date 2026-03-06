@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment 2 Part 3: Third-Party Claimants &amp; Modern Claims | CPCU 520</title>
+    <link rel="icon" type="image/svg+xml" href="../../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <link rel="stylesheet" href="../../../../css/styles.css">
+    <script src="../../../../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+        }
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <!-- Settings & Theme Toggle Buttons -->
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="showAPIKeySetup()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings">
+            <svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+        </button>
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/>
+            </svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-red-600 to-red-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap gap-2 text-sm mb-2">
+                <a href="../../../../index.html" class="text-red-200 hover:text-white">Home</a>
+                <span class="text-red-300">/</span>
+                <a href="../../../index.html" class="text-red-200 hover:text-white">CPCU</a>
+                <span class="text-red-300">/</span>
+                <a href="../../index.html" class="text-red-200 hover:text-white">520</a>
+                <span class="text-red-300">/</span>
+                <a href="../index.html" class="text-red-200 hover:text-white">Assignment 2</a>
+                <span class="text-red-300">/</span>
+                <span class="text-white">Part 3</span>
+            </div>
+            <h1 class="text-3xl font-bold">Assignment 2 Part 3: Third-Party Claimants &amp; Modern Claims Practices</h1>
+            <p class="text-red-200 mt-1">Working with third-party claimants, social inflation, modern technology, ADR, subrogation, and salvage</p>
+        </div>
+    </header>
+
+    <!-- Part Navigation -->
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-wrap gap-2 text-sm">
+                <a href="../index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Overview</a>
+                <a href="../part-1/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 1</a>
+                <a href="../part-2/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 2</a>
+                <span class="bg-red-600 text-white px-3 py-1 rounded font-medium">Part 3</span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-5xl lg:max-w-7xl">
+
+        <!-- Start Here: 5 Things You MUST Know -->
+        <div class="bg-gradient-to-r from-red-100 to-red-200 dark:from-red-900/40 dark:to-red-800/40 rounded-xl p-6 mb-8 border border-red-300 dark:border-red-700">
+            <h3 class="text-xl lg:text-2xl font-bold text-red-800 dark:text-red-200 mb-4">Start Here: 5 Things You MUST Know</h3>
+            <div class="grid md:grid-cols-2 gap-3">
+                <div class="flex items-start">
+                    <span class="bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>First-party claims</strong> = insured claims under their OWN policy. <strong>Third-party claims</strong> = someone ELSE claims against the insured's liability coverage. The relationship dynamics are completely different.</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">The <strong>duty to defend</strong> and <strong>duty to indemnify</strong> are SEPARATE obligations. The duty to defend is broader &mdash; it is triggered if ANY allegation in the complaint COULD be covered.</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Social inflation</strong> is NOT economic inflation. It is rising claims costs driven by nuclear verdicts, litigation funding, anti-corporate juries, and expanding liability theories.</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">4</span>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Straight-through processing (STP)</strong> handles simple claims with zero human intervention &mdash; AI estimates, approves, and pays without an adjuster ever touching the file.</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">5</span>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Subrogation</strong> = insurer recovers from the at-fault party AFTER paying the insured. <strong>Salvage</strong> = insurer takes ownership of damaged property after paying a total loss.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 1: Overview / Introduction -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">Introduction: The Other Side of Claims</h2>
+
+                <div class="bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-800 rounded-lg p-4 lg:p-5 mb-6">
+                    <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300">Parts 1 and 2 covered the claims process from the insurer-insured perspective. But there is another entire dimension to claims work: <strong>third-party claimants</strong>. When someone OTHER than the policyholder gets hurt or suffers damage, the insurer must juggle two competing interests &mdash; defending its insured while treating the injured party fairly. This part also covers the modern forces reshaping claims: social inflation, technology, dispute resolution, and cost recovery through subrogation and salvage.</p>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 lg:p-5 rounded-r-lg">
+                    <p class="font-bold text-amber-800 dark:text-amber-300 text-base lg:text-lg">Exam Alert</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mt-1">This part covers <strong>new content</strong> from the updated CPCU 520 edition. Social inflation, modern claims technology, and third-party litigation funding are heavily tested. Know the difference between duty to defend and duty to indemnify &mdash; this is a classic exam question.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: First-Party vs. Third-Party Claims -->
+        <section id="first-vs-third" class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">1. First-Party vs. Third-Party Claims</h2>
+
+                <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300 mb-6">Every claim falls into one of two categories based on <strong>who is making the claim</strong>. The category changes everything about how the claim is handled.</p>
+
+                <!-- Side-by-side grid -->
+                <div class="grid lg:grid-cols-2 gap-6 mb-6">
+                    <!-- First-Party -->
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500">
+                        <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg lg:text-xl mb-3">First-Party Claims</h3>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mb-3">The insured files a claim under their <strong>own</strong> policy for a loss they suffered.</p>
+                        <div class="space-y-3">
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                                <p class="font-bold text-blue-700 dark:text-blue-300 text-sm lg:text-base">Relationship</p>
+                                <p class="text-gray-600 dark:text-gray-400 text-xs lg:text-sm">Contractual &mdash; insurer and insured are on the same team. The insurer owes a duty of good faith and fair dealing.</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                                <p class="font-bold text-blue-700 dark:text-blue-300 text-sm lg:text-base">Insurer's Role</p>
+                                <p class="text-gray-600 dark:text-gray-400 text-xs lg:text-sm">Investigate the claim, verify coverage, and pay what is owed under the policy terms.</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                                <p class="font-bold text-blue-700 dark:text-blue-300 text-sm lg:text-base">Tone</p>
+                                <p class="text-gray-600 dark:text-gray-400 text-xs lg:text-sm">Cooperative. The insured is the insurer's customer.</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                                <p class="font-bold text-blue-700 dark:text-blue-300 text-sm lg:text-base">Example</p>
+                                <p class="text-gray-600 dark:text-gray-400 text-xs lg:text-sm">A homeowner's kitchen catches fire. They file a claim under their HO-3 policy for the damage to their own house.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Third-Party -->
+                    <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-red-500">
+                        <h3 class="font-bold text-red-800 dark:text-red-300 text-lg lg:text-xl mb-3">Third-Party Claims</h3>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mb-3">Someone <strong>other than the insured</strong> claims against the insured's liability coverage.</p>
+                        <div class="space-y-3">
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                                <p class="font-bold text-red-700 dark:text-red-300 text-sm lg:text-base">Relationship</p>
+                                <p class="text-gray-600 dark:text-gray-400 text-xs lg:text-sm">Adversarial &mdash; the claimant is NOT the insurer's customer. Their interests conflict with the insured's.</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                                <p class="font-bold text-red-700 dark:text-red-300 text-sm lg:text-base">Insurer's Role</p>
+                                <p class="text-gray-600 dark:text-gray-400 text-xs lg:text-sm">TWO obligations: (1) Defend the insured against the claim, AND (2) Indemnify (pay) if the insured is legally liable.</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                                <p class="font-bold text-red-700 dark:text-red-300 text-sm lg:text-base">Tone</p>
+                                <p class="text-gray-600 dark:text-gray-400 text-xs lg:text-sm">Adversarial but must still be fair. The claimant may be hostile, have an attorney, or not understand insurance.</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                                <p class="font-bold text-red-700 dark:text-red-300 text-sm lg:text-base">Example</p>
+                                <p class="text-gray-600 dark:text-gray-400 text-xs lg:text-sm">A pedestrian is hit by the insured driver. The pedestrian (third-party claimant) sues for medical bills and pain/suffering against the driver's auto liability coverage.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Real-World Scenario -->
+                <div class="bg-gray-50 dark:bg-gray-700/50 p-4 lg:p-5 rounded-lg border-l-4 border-red-500">
+                    <p class="font-semibold text-red-800 dark:text-red-300 mb-2 text-base lg:text-lg">Real-World Scenario: The Slip-and-Fall at the Store</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Maria slips on a wet floor at Dave's hardware store and breaks her wrist. Dave has a Commercial General Liability (CGL) policy.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Maria (the third-party claimant) files a claim against Dave's CGL policy. Dave's insurer must now do TWO things simultaneously: (1) defend Dave against Maria's claim (hire a lawyer, investigate whether Dave was negligent), and (2) if Dave IS found legally liable, pay Maria's damages (medical bills, lost wages, pain and suffering) up to the policy limit.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> The claims rep investigates, gets Maria's recorded statement and medical authorization, and discovers the floor had no "wet floor" sign. The insurer settles with Maria for $45,000. Dave never pays a dime out of pocket &mdash; his liability coverage handles it. But notice: the insurer is simultaneously protecting Dave AND negotiating with someone adverse to Dave. That is the complexity of third-party claims.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Working with Third-Party Claimants -->
+        <section id="third-party-work" class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">2. Working with Third-Party Claimants</h2>
+
+                <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300 mb-6">Third-party claims require a delicate balance. The claims rep must protect the insured's interests while treating the claimant fairly and ethically. Here are the key tools and challenges.</p>
+
+                <!-- Key Tools Grid -->
+                <div class="grid md:grid-cols-2 gap-4 lg:gap-5 mb-6">
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 lg:p-5 rounded-lg border-l-4 border-purple-500">
+                        <h4 class="font-bold text-purple-800 dark:text-purple-300 text-base lg:text-lg mb-2">Recorded Statements</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Getting the claimant's version of events on record. This is critical for investigating facts, establishing liability, and locking in testimony before memories fade or stories change.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>Example:</strong> The claims rep calls Maria and asks her to describe exactly how she fell, where the wet spot was, what shoes she was wearing, and whether she saw any warning signs. This statement may be used later in negotiation or trial.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 lg:p-5 rounded-lg border-l-4 border-purple-500">
+                        <h4 class="font-bold text-purple-800 dark:text-purple-300 text-base lg:text-lg mb-2">Medical Authorization</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Obtaining the claimant's written permission to review their medical records related to the injury. This lets the insurer verify the injury is real, assess severity, and check for pre-existing conditions.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>Example:</strong> Maria signs a medical authorization allowing the insurer to request her ER records, X-rays, and follow-up treatment notes for the broken wrist.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-amber-50 dark:bg-amber-900/20 p-4 lg:p-5 rounded-lg border-l-4 border-amber-500">
+                        <h4 class="font-bold text-amber-800 dark:text-amber-300 text-base lg:text-lg mb-2">Reservation of Rights (ROR)</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">When the insurer is <strong>unsure about coverage</strong>, it sends a written Reservation of Rights letter. This allows the insurer to investigate the claim while reserving the right to deny coverage later if it turns out the loss is not covered.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>Example:</strong> Dave is sued for allegedly punching a customer (assault). The insurer is not sure if this was an "accident" (covered) or intentional act (excluded). It sends Dave an ROR letter saying: "We will defend you for now, but if we determine this was intentional, coverage may not apply."</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-amber-50 dark:bg-amber-900/20 p-4 lg:p-5 rounded-lg border-l-4 border-amber-500">
+                        <h4 class="font-bold text-amber-800 dark:text-amber-300 text-base lg:text-lg mb-2">Communication Challenges</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Third-party claimants may be angry, scared, or confused. They may have hired an attorney (in which case the claims rep can only communicate through the attorney). They may not understand insurance at all.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>Example:</strong> Maria hires a personal injury lawyer. From that point on, the claims rep cannot contact Maria directly &mdash; all communication must go through her attorney.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Duty to Defend vs. Duty to Indemnify -->
+                <div class="bg-indigo-50 dark:bg-indigo-900/20 rounded-lg p-4 lg:p-5 border border-indigo-200 dark:border-indigo-800 mb-6">
+                    <h3 class="font-bold text-indigo-800 dark:text-indigo-300 text-lg lg:text-xl mb-4">Critical Distinction: Duty to Defend vs. Duty to Indemnify</h3>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-4">These are <strong>two separate obligations</strong> that do NOT always apply together.</p>
+
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border border-green-200 dark:border-green-800">
+                            <p class="font-bold text-green-800 dark:text-green-300 text-base lg:text-lg mb-2">Duty to Defend</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>BROADER.</strong> Triggered if ANY allegation in the lawsuit COULD potentially be covered under the policy &mdash; even if most allegations are not covered.</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-2">The insurer must hire a lawyer and pay defense costs, even if it later turns out there is no coverage.</p>
+                        </div>
+                        <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
+                            <p class="font-bold text-blue-800 dark:text-blue-300 text-base lg:text-lg mb-2">Duty to Indemnify</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>NARROWER.</strong> Only applies if the insured is actually found legally liable for a loss that is covered under the policy.</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-2">The insurer pays the damages (up to policy limits) on behalf of the insured.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Example for Duty distinction -->
+                <div class="bg-gray-50 dark:bg-gray-700/50 p-4 lg:p-5 rounded-lg border-l-4 border-indigo-500">
+                    <p class="font-semibold text-indigo-800 dark:text-indigo-300 mb-2 text-base lg:text-lg">Real-World Scenario: Duty to Defend Without Duty to Indemnify</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> A contractor is sued by a homeowner. The lawsuit alleges TWO things: (1) the contractor's employee negligently damaged the homeowner's driveway (potentially covered under CGL), and (2) the contractor committed fraud by using substandard materials and charging for premium ones (fraud is excluded from CGL coverage).</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> The insurer's <strong>duty to defend</strong> is triggered because allegation #1 (negligent damage) COULD be covered. So the insurer must hire a lawyer and defend the contractor against the entire lawsuit &mdash; including the fraud allegation. However, at the end of the trial, the jury finds the contractor liable ONLY for the fraud, not negligence.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> The insurer had a <strong>duty to defend</strong> (because one allegation potentially fell within coverage), but NO <strong>duty to indemnify</strong> (because the only thing the contractor was found liable for &mdash; fraud &mdash; is excluded). The insurer paid the defense costs but does not pay the damages judgment. The contractor must pay the fraud damages out of pocket.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Social Inflation -->
+        <section id="social-inflation" class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">3. Social Inflation and Its Impact on Claims</h2>
+
+                <div class="bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-800 rounded-lg p-4 lg:p-5 mb-6">
+                    <h3 class="font-bold text-red-800 dark:text-red-300 text-lg lg:text-xl mb-2">What Is Social Inflation?</h3>
+                    <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300"><strong>Social inflation</strong> = rising claims costs driven by <strong>societal and legal factors</strong>, NOT economic inflation. While regular inflation might increase the cost of auto parts by 5%, social inflation can increase a jury verdict from $2 million to $20 million for the same injury. It is about changing attitudes, legal strategies, and court behavior &mdash; not the price of goods.</p>
+                </div>
+
+                <!-- Social Inflation Drivers - Visual -->
+                <h3 class="font-bold text-gray-800 dark:text-gray-100 text-lg lg:text-xl mb-4">Key Drivers of Social Inflation</h3>
+                <div class="grid md:grid-cols-2 gap-4 lg:gap-5 mb-6">
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 lg:p-5 rounded-lg border-l-4 border-red-500">
+                        <div class="flex items-center mb-2">
+                            <span class="bg-red-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-3">1</span>
+                            <h4 class="font-bold text-red-800 dark:text-red-300 text-base lg:text-lg">Nuclear Verdicts</h4>
+                        </div>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Jury awards exceeding <strong>$10 million</strong> that have become increasingly common since 2018. Plaintiff attorneys use "reptile theory" and emotional appeals to drive massive verdicts, especially in trucking, medical malpractice, and product liability cases.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm text-gray-700 dark:text-gray-300"><strong>Example:</strong> A trucking accident that might have settled for $3 million in 2010 now results in a $35 million jury verdict because the plaintiff's attorney convinces the jury that the trucking company's "corporate greed" endangered the community.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-amber-50 dark:bg-amber-900/20 p-4 lg:p-5 rounded-lg border-l-4 border-amber-500">
+                        <div class="flex items-center mb-2">
+                            <span class="bg-amber-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-3">2</span>
+                            <h4 class="font-bold text-amber-800 dark:text-amber-300 text-base lg:text-lg">Third-Party Litigation Funding</h4>
+                        </div>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Hedge funds and investors <strong>finance plaintiffs' lawsuits</strong> in exchange for a share of the settlement or verdict. This removes the plaintiff's financial pressure to settle early &mdash; they can afford to wait years for a bigger payout.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm text-gray-700 dark:text-gray-300"><strong>Example:</strong> An investment firm gives a plaintiff $200K to cover living expenses and legal fees during a 3-year lawsuit. Without the funding, the plaintiff would have accepted a $500K settlement. With it, they hold out and win $4 million at trial. The investment firm takes $1.2 million.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 lg:p-5 rounded-lg border-l-4 border-purple-500">
+                        <div class="flex items-center mb-2">
+                            <span class="bg-purple-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-3">3</span>
+                            <h4 class="font-bold text-purple-800 dark:text-purple-300 text-base lg:text-lg">Anti-Corporate Sentiment</h4>
+                        </div>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Juries are increasingly sympathetic to individual plaintiffs and skeptical of large corporations and insurers. Social media amplifies narratives about corporate wrongdoing, influencing jury pools before they ever enter the courtroom.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm text-gray-700 dark:text-gray-300"><strong>Example:</strong> A jury sees a billion-dollar insurer as a faceless corporation and awards $15 million for a back injury that medical evidence suggests is worth $1.5 million, because "they can afford it."</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 lg:p-5 rounded-lg border-l-4 border-blue-500">
+                        <div class="flex items-center mb-2">
+                            <span class="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-3">4</span>
+                            <h4 class="font-bold text-blue-800 dark:text-blue-300 text-base lg:text-lg">Broader Definitions of Liability</h4>
+                        </div>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Courts are expanding what insurers must cover. Judicial interpretations are broadening coverage obligations, creating liability where none existed before. New theories of liability emerge regularly.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm text-gray-700 dark:text-gray-300"><strong>Example:</strong> A court rules that a social media company's failure to prevent cyberbullying constitutes "negligent supervision," creating a new category of liability that CGL policies were never priced to cover.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Impact on Claims Function -->
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 lg:p-5 rounded-r-lg mb-6">
+                    <h3 class="font-bold text-amber-800 dark:text-amber-300 text-base lg:text-lg mb-3">Impact on the Claims Function</h3>
+                    <div class="grid md:grid-cols-2 gap-3">
+                        <div class="flex items-start">
+                            <span class="text-amber-500 mr-3 text-xl font-bold">!</span>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>Higher reserves</strong> &mdash; claims reps must set aside more money for potential payouts</p>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="text-amber-500 mr-3 text-xl font-bold">!</span>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>More litigation</strong> &mdash; fewer claims settle early when litigation funding removes pressure</p>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="text-amber-500 mr-3 text-xl font-bold">!</span>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>Longer cycle times</strong> &mdash; claims take longer to resolve due to protracted litigation</p>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="text-amber-500 mr-3 text-xl font-bold">!</span>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>Pressure on combined ratios</strong> &mdash; rising loss costs squeeze insurer profitability</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lines Most Affected -->
+                <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-4 lg:p-5 border border-red-200 dark:border-red-800">
+                    <h3 class="font-bold text-red-800 dark:text-red-300 text-base lg:text-lg mb-3">Lines Most Affected by Social Inflation</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                            <p class="font-bold text-red-600 dark:text-red-400 text-base lg:text-lg">Commercial Auto</p>
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Trucking accidents, nuclear verdicts</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                            <p class="font-bold text-red-600 dark:text-red-400 text-base lg:text-lg">General Liability</p>
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Premises liability, product liability</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                            <p class="font-bold text-red-600 dark:text-red-400 text-base lg:text-lg">Professional Liability</p>
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">E&amp;O, D&amp;O lawsuits</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                            <p class="font-bold text-red-600 dark:text-red-400 text-base lg:text-lg">Medical Malpractice</p>
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Sympathetic plaintiffs, high damages</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Modern Claims Technology -->
+        <section id="modern-tech" class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">4. Modern Claims Technology</h2>
+
+                <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300 mb-6">Technology has transformed claims handling from a slow, paper-based process to one where many claims can be resolved in minutes. Here are the key innovations.</p>
+
+                <div class="space-y-4 lg:space-y-5 mb-6">
+                    <!-- Photo-based estimation -->
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 lg:p-5 rounded-lg border-l-4 border-blue-500">
+                        <h4 class="font-bold text-blue-800 dark:text-blue-300 text-base lg:text-lg mb-2">Photo-Based Damage Estimation</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The insured takes photos of their damaged vehicle or property with their phone. AI analyzes the images and generates a repair cost estimate in <strong>seconds</strong> &mdash; no adjuster visit needed.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>Example:</strong> After a fender bender, Sarah opens her insurer's app, takes 8 photos of the dented bumper. AI identifies the make/model, assesses the damage, and produces a $2,300 repair estimate within 90 seconds. Companies like Tractable and CCC Intelligent Solutions power this technology.</p>
+                        </div>
+                    </div>
+
+                    <!-- Virtual adjusting -->
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 lg:p-5 rounded-lg border-l-4 border-green-500">
+                        <h4 class="font-bold text-green-800 dark:text-green-300 text-base lg:text-lg mb-2">Virtual / Remote Adjusting</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Video call adjusting became standard after 2020 and now handles the <strong>majority</strong> of property and auto claims without an in-person inspection. The adjuster guides the insured through a video walkthrough of the damage.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>Example:</strong> A homeowner reports hail damage to their roof. Instead of sending an adjuster to climb the roof, the insurer schedules a video call. The adjuster watches the homeowner's phone camera as they walk around the property, zooming in on damaged shingles and gutters. The adjuster writes the estimate remotely.</p>
+                        </div>
+                    </div>
+
+                    <!-- STP -->
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 lg:p-5 rounded-lg border-l-4 border-purple-500">
+                        <h4 class="font-bold text-purple-800 dark:text-purple-300 text-base lg:text-lg mb-2">Straight-Through Processing (STP)</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Simple claims handled <strong>end-to-end with no human intervention</strong>. The system receives the claim, verifies coverage, estimates the loss, approves payment, and sends the check &mdash; all automatically.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>Example:</strong> A rock cracks a windshield. The policyholder files a glass claim via the app. The system confirms the policy has glass coverage, the deductible is $0 for glass, and the replacement cost is $450 from the preferred vendor. Payment is issued automatically in 3 minutes. No human adjuster ever touches the file.</p>
+                        </div>
+                    </div>
+
+                    <!-- Predictive analytics -->
+                    <div class="bg-amber-50 dark:bg-amber-900/20 p-4 lg:p-5 rounded-lg border-l-4 border-amber-500">
+                        <h4 class="font-bold text-amber-800 dark:text-amber-300 text-base lg:text-lg mb-2">Predictive Analytics for Fraud Detection</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Machine learning models analyze claims data and flag suspicious patterns. The system scores each claim for fraud risk based on hundreds of variables, routing high-risk claims to special investigation units (SIU).</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>Example:</strong> A claimant files an auto theft claim. The ML model flags it because: the policy was purchased 45 days ago, it includes maximum coverage, the vehicle was reported stolen from a low-crime area, and the claimant has a history of gap coverage on prior vehicles. The claim is routed to SIU for investigation.</p>
+                        </div>
+                    </div>
+
+                    <!-- Drones and self-service in a grid -->
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="bg-indigo-50 dark:bg-indigo-900/20 p-4 lg:p-5 rounded-lg border-l-4 border-indigo-500">
+                            <h4 class="font-bold text-indigo-800 dark:text-indigo-300 text-base lg:text-lg mb-2">Drones</h4>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Used for catastrophe damage assessment and roof inspections. After a hurricane, drones can survey hundreds of properties in hours instead of days.</p>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                                <p class="text-sm text-gray-700 dark:text-gray-300"><strong>Example:</strong> After Hurricane Ian, an insurer deploys drones over a subdivision. High-resolution photos identify which homes have roof damage, prioritizing adjuster visits and accelerating the claims process.</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-indigo-50 dark:bg-indigo-900/20 p-4 lg:p-5 rounded-lg border-l-4 border-indigo-500">
+                            <h4 class="font-bold text-indigo-800 dark:text-indigo-300 text-base lg:text-lg mb-2">Customer Self-Service</h4>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Policyholders can track claim status, upload documents, schedule inspections, and communicate with adjusters through the insurer's app or portal &mdash; 24/7.</p>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                                <p class="text-sm text-gray-700 dark:text-gray-300"><strong>Example:</strong> At 11 PM, a policyholder uploads photos of water damage to the app, selects a preferred contractor from the insurer's network, and schedules an inspection for the next morning &mdash; all without calling anyone.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: Alternative Dispute Resolution (ADR) -->
+        <section id="adr" class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">5. Alternative Dispute Resolution (ADR)</h2>
+
+                <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300 mb-6">Not every claim dispute needs to go to a full trial. ADR provides faster, cheaper alternatives. Here are five methods, ranked from <strong>least formal to most formal</strong>.</p>
+
+                <!-- ADR Comparison Grid -->
+                <div class="overflow-x-auto mb-6">
+                    <table class="w-full text-sm lg:text-base">
+                        <thead>
+                            <tr class="bg-red-600 text-white">
+                                <th class="p-3 lg:p-4 text-left rounded-tl-lg">Method</th>
+                                <th class="p-3 lg:p-4 text-left">How It Works</th>
+                                <th class="p-3 lg:p-4 text-left">Binding?</th>
+                                <th class="p-3 lg:p-4 text-left rounded-tr-lg">Best Used For</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-bold text-gray-800 dark:text-gray-200">1. Negotiation</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Direct discussion between parties &mdash; no third party involved</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">No</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">First attempt at resolution; most claims start here</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <td class="p-3 lg:p-4 font-bold text-gray-800 dark:text-gray-200">2. Mediation</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">A neutral third party <strong>facilitates</strong> discussion and helps parties reach agreement &mdash; mediator does NOT make a decision</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">No (non-binding)</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">When parties need help communicating but want control over the outcome</td>
+                            </tr>
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-bold text-gray-800 dark:text-gray-200">3. Arbitration</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">A neutral third party hears both sides and <strong>makes a decision</strong> &mdash; like a private judge</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Can be binding OR non-binding (depends on agreement)</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">When parties want a decision without full trial expense</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <td class="p-3 lg:p-4 font-bold text-gray-800 dark:text-gray-200">4. Appraisal</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Each party selects an appraiser; the two appraisers select an umpire. They determine the <strong>amount</strong> of the loss</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Generally binding on amount</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Disputes about HOW MUCH a loss is worth (NOT whether it is covered)</td>
+                            </tr>
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-bold text-gray-800 dark:text-gray-200">5. Mini-Trial / Pretrial</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Abbreviated trial-like proceedings presented to decision-makers to encourage settlement</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Non-binding</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Complex cases where parties want a "reality check" before committing to full trial</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Key distinction for appraisal -->
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 lg:p-5 rounded-r-lg mb-6">
+                    <p class="font-bold text-amber-800 dark:text-amber-300 text-base lg:text-lg">Exam Alert: Appraisal vs. Arbitration</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mt-1">Appraisal resolves disputes about the <strong>AMOUNT</strong> of a loss. Arbitration can resolve disputes about <strong>coverage</strong> or <strong>liability</strong>. If the insurer and insured agree the loss is covered but disagree on whether the damage is worth $50K or $100K, that goes to <strong>appraisal</strong>. If they disagree about whether the loss is covered at all, that goes to <strong>arbitration</strong> or court.</p>
+                </div>
+
+                <!-- ADR Example -->
+                <div class="bg-gray-50 dark:bg-gray-700/50 p-4 lg:p-5 rounded-lg border-l-4 border-purple-500">
+                    <p class="font-semibold text-purple-800 dark:text-purple-300 mb-2 text-base lg:text-lg">Real-World Scenario: The Roof Damage Dispute</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> After a hailstorm, Tom files a claim under his homeowners policy. The insurer agrees hail damage is covered. But Tom's contractor says the repairs will cost $85,000. The insurer's adjuster estimates $35,000.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> This is a dispute about <strong>amount</strong>, not coverage. Tom invokes the <strong>appraisal clause</strong> in his policy. Tom selects an appraiser. The insurer selects an appraiser. The two appraisers select a neutral umpire. They inspect the property together.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Tom's appraiser values the damage at $80,000. The insurer's appraiser values it at $40,000. The umpire breaks the tie at $62,000. Two of the three agree (umpire + Tom's appraiser), so $62,000 becomes the binding amount. Faster and cheaper than a lawsuit.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 7: Subrogation and Salvage -->
+        <section id="subrogation-salvage" class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">6. Subrogation and Salvage</h2>
+
+                <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300 mb-6">After paying a claim, the insurer has two ways to <strong>recover money</strong> and reduce the net cost of the loss.</p>
+
+                <!-- Side-by-side -->
+                <div class="grid lg:grid-cols-2 gap-6 mb-6">
+                    <!-- Subrogation -->
+                    <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-green-500">
+                        <h3 class="font-bold text-green-800 dark:text-green-300 text-lg lg:text-xl mb-3">Subrogation</h3>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mb-3">The insurer's right to <strong>recover from a third party</strong> who caused the loss. After paying the insured, the insurer "steps into the shoes" of the insured and pursues the at-fault party.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                            <p class="font-bold text-green-700 dark:text-green-300 text-sm lg:text-base">"Made Whole" Doctrine</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-xs lg:text-sm mt-1">The insured must be <strong>fully compensated</strong> before the insurer can subrogate. The insured's recovery comes first.</p>
+                        </div>
+                    </div>
+
+                    <!-- Salvage -->
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500">
+                        <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg lg:text-xl mb-3">Salvage</h3>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mb-3">The insurer's right to <strong>damaged property</strong> after paying a total loss. The insurer takes ownership and sells whatever remains to recover some of the payout.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                            <p class="font-bold text-blue-700 dark:text-blue-300 text-sm lg:text-base">When Does It Apply?</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-xs lg:text-sm mt-1">Only after the insurer pays a <strong>total loss</strong>. If the insurer pays for repairs (partial loss), the insured keeps the property.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Subrogation Flow Diagram -->
+                <h3 class="font-bold text-gray-800 dark:text-gray-100 text-lg lg:text-xl mb-4">How Subrogation Works: Step by Step</h3>
+                <div class="bg-gray-50 dark:bg-gray-700/50 rounded-lg p-4 lg:p-5 mb-6">
+                    <div class="flex flex-wrap items-center justify-center gap-3 lg:gap-4">
+                        <div class="bg-red-100 dark:bg-red-900/40 p-3 lg:p-4 rounded-lg text-center min-w-[140px]">
+                            <p class="font-bold text-red-800 dark:text-red-300 text-sm lg:text-base">Step 1</p>
+                            <p class="text-xs lg:text-sm text-gray-700 dark:text-gray-300 mt-1">At-fault party causes loss to the insured</p>
+                        </div>
+                        <div class="text-2xl text-gray-400 dark:text-gray-500 font-bold">&#8594;</div>
+                        <div class="bg-blue-100 dark:bg-blue-900/40 p-3 lg:p-4 rounded-lg text-center min-w-[140px]">
+                            <p class="font-bold text-blue-800 dark:text-blue-300 text-sm lg:text-base">Step 2</p>
+                            <p class="text-xs lg:text-sm text-gray-700 dark:text-gray-300 mt-1">Insured files claim under own policy</p>
+                        </div>
+                        <div class="text-2xl text-gray-400 dark:text-gray-500 font-bold">&#8594;</div>
+                        <div class="bg-green-100 dark:bg-green-900/40 p-3 lg:p-4 rounded-lg text-center min-w-[140px]">
+                            <p class="font-bold text-green-800 dark:text-green-300 text-sm lg:text-base">Step 3</p>
+                            <p class="text-xs lg:text-sm text-gray-700 dark:text-gray-300 mt-1">Insurer pays the insured</p>
+                        </div>
+                        <div class="text-2xl text-gray-400 dark:text-gray-500 font-bold">&#8594;</div>
+                        <div class="bg-purple-100 dark:bg-purple-900/40 p-3 lg:p-4 rounded-lg text-center min-w-[140px]">
+                            <p class="font-bold text-purple-800 dark:text-purple-300 text-sm lg:text-base">Step 4</p>
+                            <p class="text-xs lg:text-sm text-gray-700 dark:text-gray-300 mt-1">Insurer "steps into shoes" of insured</p>
+                        </div>
+                        <div class="text-2xl text-gray-400 dark:text-gray-500 font-bold">&#8594;</div>
+                        <div class="bg-amber-100 dark:bg-amber-900/40 p-3 lg:p-4 rounded-lg text-center min-w-[140px]">
+                            <p class="font-bold text-amber-800 dark:text-amber-300 text-sm lg:text-base">Step 5</p>
+                            <p class="text-xs lg:text-sm text-gray-700 dark:text-gray-300 mt-1">Insurer pursues at-fault party (or their insurer) for reimbursement</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Subrogation Example -->
+                <div class="bg-gray-50 dark:bg-gray-700/50 p-4 lg:p-5 rounded-lg border-l-4 border-green-500 mb-6">
+                    <p class="font-semibold text-green-800 dark:text-green-300 mb-2 text-base lg:text-lg">Real-World Scenario: Subrogation in Auto Claims</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Lisa is rear-ended by Mike at a red light. Lisa's car has $50,000 in damage. Lisa carries collision coverage with a $1,000 deductible. Mike is clearly at fault.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Lisa files a claim under her OWN collision coverage (first-party claim). Her insurer pays her $49,000 ($50K minus the $1K deductible). Now Lisa's insurer pursues <strong>subrogation</strong> against Mike's liability insurer to recover the $49,000 it paid, PLUS Lisa's $1,000 deductible.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Mike's insurer agrees Mike was at fault and pays $50,000 to Lisa's insurer. Lisa's insurer keeps $49,000 (recovering its payout) and returns the $1,000 deductible to Lisa. Everyone is made whole. Lisa did not have to sue Mike herself &mdash; her insurer handled everything.</p>
+                    </div>
+                </div>
+
+                <!-- Salvage Example -->
+                <div class="bg-gray-50 dark:bg-gray-700/50 p-4 lg:p-5 rounded-lg border-l-4 border-blue-500">
+                    <p class="font-semibold text-blue-800 dark:text-blue-300 mb-2 text-base lg:text-lg">Real-World Scenario: Salvage After a Total Loss</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Kevin's car is worth $30,000. A tree falls on it during a storm, causing $25,000 in damage. The insurer determines it is a total loss (repair cost exceeds a threshold percentage of the car's value).</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> The insurer pays Kevin $30,000 (the actual cash value of the car). Kevin signs over the title to the insurer. The insurer now owns the wrecked car.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> The insurer sells the wreck at a salvage auction for $5,000. The insurer's net cost of the claim is $25,000 ($30K paid minus $5K salvage recovered). Without salvage, the insurer would have eaten the full $30,000.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cheat Sheet -->
+        <section id="cheat-sheet" class="mb-8 lg:mb-10">
+            <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-5 lg:p-6 border-2 border-dashed border-gray-300 dark:border-gray-600">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100">Cheat Sheet</h2>
+                    <span class="text-sm text-gray-500 dark:text-gray-400">Print this page for quick reference</span>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4 lg:gap-6">
+                    <!-- First vs Third Party -->
+                    <div>
+                        <h3 class="font-bold text-red-700 dark:text-red-300 text-base lg:text-lg mb-2">First-Party vs. Third-Party</h3>
+                        <ul class="list-disc list-inside space-y-1 text-gray-700 dark:text-gray-300 text-sm lg:text-base">
+                            <li><strong>First-party</strong> = insured claims under own policy (cooperative)</li>
+                            <li><strong>Third-party</strong> = someone else claims against insured's liability (adversarial)</li>
+                            <li>Third-party = insurer has duty to defend AND duty to indemnify</li>
+                        </ul>
+                    </div>
+
+                    <!-- Defend vs Indemnify -->
+                    <div>
+                        <h3 class="font-bold text-indigo-700 dark:text-indigo-300 text-base lg:text-lg mb-2">Duty to Defend vs. Indemnify</h3>
+                        <ul class="list-disc list-inside space-y-1 text-gray-700 dark:text-gray-300 text-sm lg:text-base">
+                            <li><strong>Defend</strong> = BROADER, triggered if any allegation COULD be covered</li>
+                            <li><strong>Indemnify</strong> = NARROWER, only if insured is actually liable for covered claim</li>
+                            <li>Can have duty to defend WITHOUT duty to indemnify</li>
+                        </ul>
+                    </div>
+
+                    <!-- Social Inflation -->
+                    <div>
+                        <h3 class="font-bold text-amber-700 dark:text-amber-300 text-base lg:text-lg mb-2">Social Inflation Drivers</h3>
+                        <ol class="list-decimal list-inside space-y-1 text-gray-700 dark:text-gray-300 text-sm lg:text-base">
+                            <li>Nuclear verdicts (over $10M)</li>
+                            <li>Third-party litigation funding</li>
+                            <li>Anti-corporate sentiment</li>
+                            <li>Broader liability definitions</li>
+                        </ol>
+                        <p class="text-xs lg:text-sm text-gray-500 dark:text-gray-400 mt-2">NOT economic inflation &mdash; societal/legal factors</p>
+                    </div>
+
+                    <!-- ADR Methods -->
+                    <div>
+                        <h3 class="font-bold text-purple-700 dark:text-purple-300 text-base lg:text-lg mb-2">ADR (Least to Most Formal)</h3>
+                        <ol class="list-decimal list-inside space-y-1 text-gray-700 dark:text-gray-300 text-sm lg:text-base">
+                            <li>Negotiation (direct, no third party)</li>
+                            <li>Mediation (facilitator, non-binding)</li>
+                            <li>Arbitration (decision-maker, binding or not)</li>
+                            <li>Appraisal (amount disputes ONLY)</li>
+                            <li>Mini-trial (abbreviated proceedings)</li>
+                        </ol>
+                    </div>
+
+                    <!-- Tech -->
+                    <div>
+                        <h3 class="font-bold text-blue-700 dark:text-blue-300 text-base lg:text-lg mb-2">Modern Claims Tech</h3>
+                        <ul class="list-disc list-inside space-y-1 text-gray-700 dark:text-gray-300 text-sm lg:text-base">
+                            <li>Photo-based AI estimation</li>
+                            <li>Virtual / remote adjusting</li>
+                            <li>Straight-through processing (STP) &mdash; zero human touch</li>
+                            <li>Predictive analytics for fraud</li>
+                            <li>Drones for CAT and roof inspections</li>
+                            <li>Customer self-service apps</li>
+                        </ul>
+                    </div>
+
+                    <!-- Subrogation & Salvage -->
+                    <div>
+                        <h3 class="font-bold text-green-700 dark:text-green-300 text-base lg:text-lg mb-2">Subrogation &amp; Salvage</h3>
+                        <ul class="list-disc list-inside space-y-1 text-gray-700 dark:text-gray-300 text-sm lg:text-base">
+                            <li><strong>Subrogation</strong> = recover from at-fault third party</li>
+                            <li><strong>Salvage</strong> = sell damaged property after total loss</li>
+                            <li>"Made whole" doctrine = insured gets paid first</li>
+                            <li>Both reduce the insurer's net cost of claims</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Trap Alerts -->
+        <section id="exam-traps" class="mb-8 lg:mb-10">
+            <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-xl p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-red-800 dark:text-red-300 mb-4">Exam Trap Alerts</h2>
+                <div class="space-y-3">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2 text-base lg:text-lg">1. Duty to Defend Is BROADER Than Duty to Indemnify</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">This is the #1 tested concept. If even ONE allegation in a lawsuit COULD fall within coverage, the insurer must defend the ENTIRE suit. But the insurer only has to pay damages for claims that are actually covered. You can have a duty to defend without a duty to indemnify.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2 text-base lg:text-lg">2. Social Inflation Is NOT Economic Inflation</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">If the exam mentions "rising claims costs due to societal factors" or "changing jury attitudes," the answer is <strong>social inflation</strong>. If it mentions "rising cost of materials" or "CPI increases," that is regular economic inflation. Do not confuse them.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2 text-base lg:text-lg">3. Appraisal = Amount Only, NOT Coverage</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Appraisal resolves disputes about <strong>how much</strong> a covered loss is worth. It does NOT resolve disputes about <strong>whether</strong> the loss is covered. If the exam gives you a scenario where insurer and insured disagree on the dollar value, the answer is appraisal. If they disagree on whether it is covered, the answer is arbitration or litigation.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2 text-base lg:text-lg">4. Mediator Facilitates, Arbitrator Decides</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">In <strong>mediation</strong>, the neutral third party helps the parties talk but makes NO decision. In <strong>arbitration</strong>, the neutral third party hears evidence and MAKES a decision. If the question says "the neutral party rendered a judgment," that is arbitration, not mediation.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2 text-base lg:text-lg">5. "Made Whole" Applies to Subrogation, Not Salvage</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The "made whole" doctrine says the insured must be fully compensated BEFORE the insurer can pursue subrogation recovery. This does not apply to salvage. In salvage, the insurer takes ownership of the property after paying a total loss &mdash; the insured has already been paid the full value.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2 text-base lg:text-lg">6. Third-Party Litigation Funding Reduces Settlement Pressure</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">When outside investors fund a plaintiff's lawsuit, the plaintiff no longer needs to settle early for financial reasons. This means claims take <strong>longer</strong> to resolve and tend to result in <strong>higher</strong> payouts. If the exam asks why settlements are rising even without changes in injury severity, litigation funding is likely the answer.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2 text-base lg:text-lg">7. STP = Simple Claims ONLY</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Straight-through processing works for simple, low-value, straightforward claims (glass replacement, minor dents). It does NOT handle complex claims like bodily injury, large property losses, or disputed liability. If the exam describes a complex claim being processed with "no human involvement," that is incorrect &mdash; complex claims still require human adjusters.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Reference Summary -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-gradient-to-r from-red-600 to-red-800 rounded-xl p-5 lg:p-6 text-white">
+                <h2 class="text-xl lg:text-2xl font-bold mb-6">Quick Reference Summary</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">First-Party Claims</p>
+                        <p class="text-sm text-red-100">Insured claims under own policy; cooperative relationship; duty of good faith</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Third-Party Claims</p>
+                        <p class="text-sm text-red-100">Someone else claims against insured's liability; adversarial; insurer defends AND indemnifies</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Duty to Defend</p>
+                        <p class="text-sm text-red-100">Broader; triggered if ANY allegation COULD be covered; insurer pays defense costs</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Duty to Indemnify</p>
+                        <p class="text-sm text-red-100">Narrower; only if insured is actually liable for a covered loss; insurer pays damages</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Social Inflation</p>
+                        <p class="text-sm text-red-100">Rising claims costs from nuclear verdicts, litigation funding, anti-corporate juries, broader liability</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Reservation of Rights</p>
+                        <p class="text-sm text-red-100">Insurer investigates while reserving right to deny coverage later if not covered</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">STP</p>
+                        <p class="text-sm text-red-100">Straight-through processing; simple claims handled end-to-end with zero human touch</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Subrogation</p>
+                        <p class="text-sm text-red-100">Insurer recovers from at-fault third party after paying the insured; "made whole" doctrine applies</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Salvage</p>
+                        <p class="text-sm text-red-100">Insurer takes ownership of damaged property after total loss; sells remains to offset cost</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">ADR Methods (5)</p>
+                        <p class="text-sm text-red-100">Negotiation, Mediation, Arbitration, Appraisal, Mini-trial (least to most formal)</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Appraisal</p>
+                        <p class="text-sm text-red-100">Resolves AMOUNT disputes only; each side picks appraiser, they pick umpire; majority rules</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Nuclear Verdicts</p>
+                        <p class="text-sm text-red-100">Jury awards exceeding $10M; driven by reptile theory and emotional appeals; most affect commercial auto, GL</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Navigation -->
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="../part-2/index.html" class="text-red-300 hover:text-red-100 transition-colors">&larr; Part 2: Claims Process</a>
+                <span class="text-gray-400">Part 3 of 3</span>
+                <a href="../../assignment-3/index.html" class="text-red-300 hover:text-red-100 transition-colors">Assignment 3: Commercial Underwriting &rarr;</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AI Tutor Button -->
+    <button onclick="openAITutor({topic: 'Third-Party Claimants and Modern Claims Practices', context: 'CPCU 520 Assignment 2 Part 3: Third-Party Claimants and Modern Claims. Key concepts: First-party claims (insured claims under own policy, cooperative, duty of good faith) vs Third-party claims (someone else claims against insureds liability, adversarial, insurer defends AND indemnifies). Duty to defend is BROADER than duty to indemnify - triggered if ANY allegation COULD be covered. Duty to indemnify only if insured is actually liable for covered claim. Can have duty to defend WITHOUT duty to indemnify. Reservation of Rights (ROR) - insurer investigates while reserving right to deny. Social inflation = rising claims costs from societal/legal factors NOT economic inflation. Drivers: nuclear verdicts (over $10M), third-party litigation funding (hedge funds finance plaintiffs), anti-corporate sentiment, broader liability definitions. Lines most affected: commercial auto, general liability, professional liability, medical malpractice. Modern tech: photo-based AI estimation, virtual adjusting, straight-through processing (STP) for simple claims with no human, predictive analytics for fraud, drones for CAT, customer self-service. ADR methods least to most formal: Negotiation, Mediation (facilitator non-binding), Arbitration (decision-maker binding or not), Appraisal (AMOUNT disputes only not coverage), Mini-trial. Subrogation = insurer recovers from at-fault third party after paying insured. Made whole doctrine = insured must be fully compensated first. Salvage = insurer takes damaged property after total loss and sells it.'})" class="fixed bottom-6 right-6 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full p-4 shadow-lg z-50 transition-colors">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+        </svg>
+    </button>
+
+</body>
+</html>

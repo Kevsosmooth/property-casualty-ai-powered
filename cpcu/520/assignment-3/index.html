@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment 3: Leveraging Commercial Underwriting Strategy | CPCU 520</title>
+    <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <link rel="stylesheet" href="../../../css/styles.css">
+    <script src="../../../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+        }
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <!-- Settings & Theme Toggle -->
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="showAPIKeySetup()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings">
+            <svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+        </button>
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/>
+            </svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-amber-600 to-amber-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap gap-2 text-sm mb-2">
+                <a href="../../../index.html" class="text-amber-200 hover:text-white">Home</a>
+                <span class="text-amber-300">/</span>
+                <a href="../../index.html" class="text-amber-200 hover:text-white">CPCU</a>
+                <span class="text-amber-300">/</span>
+                <a href="../index.html" class="text-amber-200 hover:text-white">520</a>
+                <span class="text-amber-300">/</span>
+                <span class="text-white">Assignment 3</span>
+            </div>
+            <h1 class="text-3xl lg:text-4xl font-bold">Assignment 3: Leveraging Commercial Underwriting Strategy</h1>
+            <p class="text-amber-200 mt-2">How underwriters select, price, and manage commercial risks to build a profitable book of business</p>
+            <p class="text-sm text-amber-300 mt-1">3 Parts &bull; ~45 minutes total study time</p>
+        </div>
+    </header>
+
+    <!-- Part Navigation -->
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-wrap gap-2 text-sm">
+                <span class="bg-amber-600 text-white px-3 py-1 rounded font-medium">Intro</span>
+                <a href="part-1/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 1</a>
+                <a href="part-2/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 2</a>
+                <a href="part-3/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 3</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-5xl lg:max-w-7xl">
+
+        <!-- Overview -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-4">What This Assignment Covers</h2>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border border-amber-200 dark:border-amber-800 rounded-lg p-5 lg:p-6 mb-6">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Underwriting is the <strong>gatekeeper</strong> of profitability. Every policy the insurer writes starts with an underwriting decision &mdash; who to insure, at what price, and under what conditions. This assignment focuses on <strong>commercial lines underwriting</strong>: the process, the metrics used to measure success, how to read insurer financial statements, and the internal and external forces that shape underwriting strategy.</p>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 lg:p-5 rounded-r-lg mb-6">
+                    <p class="font-bold text-amber-800 dark:text-amber-300 text-lg">Exam Alert</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">Know the difference between line and staff underwriters, the 6-step underwriting process, and how to calculate and interpret the combined ratio. The new edition adds financial statement analysis (vertical and trend analysis) and re-underwriting &mdash; expect questions on these.</p>
+                </div>
+
+                <!-- Educational Objectives -->
+                <h3 class="text-xl font-bold text-gray-800 dark:text-gray-100 mb-4">After this assignment, you will be able to:</h3>
+                <div class="space-y-3">
+                    <div class="flex items-start bg-amber-50 dark:bg-amber-900/20 rounded-lg p-4">
+                        <span class="bg-amber-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Describe the <strong>underwriting function</strong>, the underwriting process, and the role of line vs. staff underwriters</p>
+                    </div>
+                    <div class="flex items-start bg-indigo-50 dark:bg-indigo-900/20 rounded-lg p-4">
+                        <span class="bg-indigo-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Calculate and interpret <strong>underwriting performance metrics</strong> and apply <strong>vertical and trend analysis</strong> to insurer financial statements</p>
+                    </div>
+                    <div class="flex items-start bg-green-50 dark:bg-green-900/20 rounded-lg p-4">
+                        <span class="bg-green-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Explain how <strong>internal and external constraints</strong> shape commercial underwriting strategy, including the underwriting cycle, regulation, and social inflation</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Part Cards -->
+        <section class="mb-10">
+            <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">Study Parts</h2>
+            <div class="grid md:grid-cols-3 gap-6">
+
+                <a href="part-1/index.html" class="group">
+                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border-l-4 border-amber-500 h-full">
+                        <div class="p-6">
+                            <span class="bg-amber-100 dark:bg-amber-900 text-amber-800 dark:text-amber-200 text-sm font-semibold px-3 py-1 rounded-full">Part 1 &bull; ~15 min</span>
+                            <h3 class="text-xl font-bold text-gray-800 dark:text-gray-100 mt-3 group-hover:text-amber-600 dark:group-hover:text-amber-400 transition-colors">The Underwriting Function and Process</h3>
+                            <p class="text-gray-600 dark:text-gray-400 mt-2 text-sm lg:text-base">Adverse selection, line vs. staff underwriters, the 6-step process, sources of information, underwriting guidelines, and policy modifications.</p>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="part-2/index.html" class="group">
+                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border-l-4 border-yellow-500 h-full">
+                        <div class="p-6">
+                            <span class="bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200 text-sm font-semibold px-3 py-1 rounded-full">Part 2 &bull; ~15 min</span>
+                            <h3 class="text-xl font-bold text-gray-800 dark:text-gray-100 mt-3 group-hover:text-yellow-600 dark:group-hover:text-yellow-400 transition-colors">Measuring Results and Financial Analysis</h3>
+                            <p class="text-gray-600 dark:text-gray-400 mt-2 text-sm lg:text-base">Combined ratio calculations, retention and hit ratios, financial statement analysis, vertical and trend analysis, and re-underwriting.</p>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="part-3/index.html" class="group">
+                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border-l-4 border-orange-500 h-full">
+                        <div class="p-6">
+                            <span class="bg-orange-100 dark:bg-orange-900 text-orange-800 dark:text-orange-200 text-sm font-semibold px-3 py-1 rounded-full">Part 3 &bull; ~15 min</span>
+                            <h3 class="text-xl font-bold text-gray-800 dark:text-gray-100 mt-3 group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors">Underwriting Constraints and Commercial Lines</h3>
+                            <p class="text-gray-600 dark:text-gray-400 mt-2 text-sm lg:text-base">Internal and external constraints, commercial lines evaluation factors, large account underwriting, and how underwriting connects to the value chain.</p>
+                        </div>
+                    </div>
+                </a>
+
+            </div>
+        </section>
+
+        <!-- Quick Reference -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-amber-600 to-amber-800 rounded-xl p-6 lg:p-8 text-white">
+                <h2 class="text-2xl font-bold mb-4">Assignment 3 Quick Reference</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Underwriting Goal</p>
+                        <p class="text-sm text-amber-100">Write and maintain profitable business by selecting risks whose losses won't exceed pricing assumptions</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Combined Ratio</p>
+                        <p class="text-sm text-amber-100">Loss Ratio + Expense Ratio. Under 100% = underwriting profit.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Line vs. Staff</p>
+                        <p class="text-sm text-amber-100">Line = individual risk decisions. Staff = guidelines, policies, procedures.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Re-Underwriting</p>
+                        <p class="text-sm text-amber-100">Reviewing an existing book to improve quality and profitability at renewal</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 dark:bg-gray-950 text-gray-300 py-6">
+        <div class="container mx-auto px-4 text-center text-sm">
+            <div class="flex justify-between items-center max-w-2xl mx-auto">
+                <a href="../assignment-2/index.html" class="hover:text-white">&larr; Assignment 2: Claims</a>
+                <span class="text-gray-500">Assignment 3 of 7</span>
+                <a href="part-1/index.html" class="hover:text-white">Start Part 1 &rarr;</a>
+            </div>
+            <p class="mt-4 text-gray-500">For educational purposes only. Not an official exam resource.</p>
+        </div>
+    </footer>
+
+    <!-- AI Tutor -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof createFloatingAIButton === 'function') {
+                createFloatingAIButton({
+                    topic: 'CPCU 520 Assignment 3: Leveraging Commercial Underwriting Strategy',
+                    context: `This assignment covers commercial underwriting. Key topics: (1) Underwriting goal - write profitable business, combat adverse selection. (2) Line underwriters make individual risk decisions; staff underwriters create guidelines/policies. (3) 6-step underwriting process: evaluate submission, gather info, make decision, determine price, implement, monitor. (4) Sources of underwriting info: applications, agent reports, loss history, financials, inspections, government records, external databases. (5) Performance metrics: loss ratio (incurred losses/earned premiums), expense ratio (expenses/written premiums), combined ratio (loss + expense), retention ratio, hit ratio. (6) Financial statement analysis: vertical analysis (composition as % of total) and trend analysis (same item across years). (7) Re-underwriting: reviewing existing book to improve profitability. (8) Internal constraints: financial capacity, reinsurance, staffing, IT, company appetite. (9) External constraints: regulation, underwriting cycle, competition, economic conditions, social inflation. (10) Commercial lines factors: business operations, financial stability, management quality, loss history, contractual obligations. (11) Large account: schedule rating, experience rating, retrospective rating, loss-sensitive programs.`
+                });
+            }
+        });
+    </script>
+</body>
+</html>

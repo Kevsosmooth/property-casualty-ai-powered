@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment 4 Part 2: Underwriting Decisions & Technology | CPCU 520</title>
+    <link rel="icon" type="image/svg+xml" href="../../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <link rel="stylesheet" href="../../../../css/styles.css">
+    <script src="../../../../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+        }
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <!-- Settings & Theme Toggle Buttons -->
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="showAPIKeySetup()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings">
+            <svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+        </button>
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/>
+            </svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-teal-600 to-teal-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap gap-2 text-sm mb-2">
+                <a href="../../../../index.html" class="text-teal-200 hover:text-white">Home</a>
+                <span class="text-teal-300">/</span>
+                <a href="../../../index.html" class="text-teal-200 hover:text-white">CPCU</a>
+                <span class="text-teal-300">/</span>
+                <a href="../../index.html" class="text-teal-200 hover:text-white">520</a>
+                <span class="text-teal-300">/</span>
+                <a href="../index.html" class="text-teal-200 hover:text-white">Assignment 4</a>
+                <span class="text-teal-300">/</span>
+                <span class="text-white">Part 2</span>
+            </div>
+            <h1 class="text-3xl font-bold">Assignment 4 Part 2: Underwriting Decisions & Technology</h1>
+            <p class="text-teal-200 mt-1">How automation, tiered rating, and emerging tech are reshaping personal lines underwriting</p>
+        </div>
+    </header>
+
+    <!-- Part Navigation -->
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-wrap gap-2 text-sm">
+                <a href="../index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Overview</a>
+                <a href="../part-1/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 1</a>
+                <span class="bg-teal-600 text-white px-3 py-1 rounded font-medium">Part 2</span>
+                <a href="../part-3/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 3</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-5xl lg:max-w-7xl">
+
+        <!-- Start Here: 5 Things You MUST Know -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-teal-100 to-cyan-200 dark:from-teal-900/40 dark:to-cyan-800/40 rounded-xl p-6 border border-teal-300 dark:border-teal-700">
+                <h3 class="text-xl lg:text-2xl font-bold text-teal-800 dark:text-teal-200 mb-4">Start Here: 5 Things You MUST Know</h3>
+                <div class="grid md:grid-cols-2 gap-3">
+                    <div class="flex items-start">
+                        <span class="bg-teal-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Straight-through processing (STP)</strong> means the application goes from submission to policy issuance with zero human underwriter involvement.</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-teal-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Tiered rating</strong> sorts applicants into risk buckets (preferred, standard, nonstandard) -- each tier has its own rate structure.</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-teal-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Credit-based insurance scores</strong> are used in most states but banned or restricted in California, Hawaii, Massachusetts, and Maryland.</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-teal-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">4</span>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Telematics/UBI</strong> uses actual driving data to price auto insurance -- discounts typically range from 5-30%.</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-teal-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">5</span>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Portfolio management</strong> is about managing ALL risks together -- geographic concentration, line mix, and loss ratio by segment.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Overview Section -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-4">Overview: Why Personal Lines Underwriting Is Different</h2>
+
+                <div class="bg-teal-50 dark:bg-teal-900/30 border border-teal-200 dark:border-teal-800 rounded-lg p-4 lg:p-5 mb-6">
+                    <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300">Personal lines underwriting handles <strong>millions</strong> of individual policies -- homes, cars, renters. The sheer volume makes it impossible for human underwriters to touch every application. Instead, the industry has built automated systems that score, tier, and price applicants in seconds. This part covers how those systems work, what rating factors drive pricing, and the technologies transforming the field.</p>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 lg:p-5 rounded-r-lg">
+                    <p class="font-bold text-amber-800 dark:text-amber-300 text-lg">Exam Alert</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mt-1">Expect questions about what makes personal lines underwriting different from commercial lines (volume + automation), what STP means, and which states restrict credit-based insurance scores. Know the difference between rules-based systems and predictive models.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 1: The STP Process -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">1. Straight-Through Processing (STP)</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-6">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg lg:text-xl">What Is STP?</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">Straight-through processing means an insurance application is submitted, automatically scored, priced, and issued as a policy -- all without a human underwriter ever looking at it. The system handles everything from start to finish.</p>
+                </div>
+
+                <!-- Visual Flow Diagram -->
+                <h3 class="font-bold text-gray-800 dark:text-gray-100 text-lg mb-3">How STP Works: The Flow</h3>
+                <div class="bg-gray-50 dark:bg-gray-700/50 rounded-lg p-4 lg:p-6 mb-6">
+                    <div class="flex flex-col lg:flex-row items-center gap-3 lg:gap-4">
+                        <div class="bg-teal-100 dark:bg-teal-900/40 p-4 rounded-lg text-center min-w-[140px]">
+                            <p class="font-bold text-teal-800 dark:text-teal-300 text-sm lg:text-base">Application Submitted</p>
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400 mt-1">Online or via agent</p>
+                        </div>
+                        <div class="text-2xl text-gray-400 rotate-90 lg:rotate-0">&#8594;</div>
+                        <div class="bg-blue-100 dark:bg-blue-900/40 p-4 rounded-lg text-center min-w-[140px]">
+                            <p class="font-bold text-blue-800 dark:text-blue-300 text-sm lg:text-base">Data Prefill</p>
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400 mt-1">MVR, CLUE, credit pulled automatically</p>
+                        </div>
+                        <div class="text-2xl text-gray-400 rotate-90 lg:rotate-0">&#8594;</div>
+                        <div class="bg-purple-100 dark:bg-purple-900/40 p-4 rounded-lg text-center min-w-[140px]">
+                            <p class="font-bold text-purple-800 dark:text-purple-300 text-sm lg:text-base">System Scores Risk</p>
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400 mt-1">Rules + predictive models</p>
+                        </div>
+                        <div class="text-2xl text-gray-400 rotate-90 lg:rotate-0">&#8594;</div>
+                        <div class="bg-green-100 dark:bg-green-900/40 p-4 rounded-lg text-center min-w-[140px]">
+                            <p class="font-bold text-green-800 dark:text-green-300 text-sm lg:text-base">Tier Assigned</p>
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400 mt-1">Preferred, Standard, etc.</p>
+                        </div>
+                        <div class="text-2xl text-gray-400 rotate-90 lg:rotate-0">&#8594;</div>
+                        <div class="bg-emerald-100 dark:bg-emerald-900/40 p-4 rounded-lg text-center min-w-[140px] border-2 border-emerald-400 dark:border-emerald-600">
+                            <p class="font-bold text-emerald-800 dark:text-emerald-300 text-sm lg:text-base">Policy Issued</p>
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400 mt-1">No human touch</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- When Humans Get Involved -->
+                <div class="bg-amber-50 dark:bg-amber-900/30 border border-amber-200 dark:border-amber-800 rounded-lg p-4 lg:p-5 mb-6">
+                    <h3 class="font-bold text-amber-800 dark:text-amber-300 text-lg mb-2">When Does a Human Underwriter Step In?</h3>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-3">Most applications sail through STP. A human underwriter only gets involved when the system flags something unusual:</p>
+                    <ul class="space-y-2 text-gray-700 dark:text-gray-300 text-base lg:text-lg">
+                        <li class="flex items-start"><span class="text-amber-500 mr-2 font-bold">--</span> <strong>Referrals</strong>: The risk score lands in a gray zone -- not clearly accept or reject</li>
+                        <li class="flex items-start"><span class="text-amber-500 mr-2 font-bold">--</span> <strong>Exceptions</strong>: Unusual property type, exotic vehicle, prior cancellation history</li>
+                        <li class="flex items-start"><span class="text-amber-500 mr-2 font-bold">--</span> <strong>Complex risks</strong>: High-value home, multiple claims in short period, mixed-use property</li>
+                        <li class="flex items-start"><span class="text-amber-500 mr-2 font-bold">--</span> <strong>Conflicting data</strong>: Prefill data contradicts what the applicant reported</li>
+                    </ul>
+                </div>
+
+                <!-- Example -->
+                <div class="bg-teal-50 dark:bg-teal-900/20 p-4 lg:p-5 rounded-lg border-l-4 border-teal-500">
+                    <p class="font-semibold text-teal-800 dark:text-teal-300 mb-2">Real-World Scenario: STP in Action</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Sarah visits a direct-writer's website at 10 PM on a Sunday. She enters her name, address, DOB, and vehicle info for a new auto policy.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> The system instantly pulls her driving record (clean -- no violations in 5 years), CLUE report (no claims in 3 years), and credit-based insurance score (740). The rules engine checks: clean record? Yes. Good credit? Yes. No claims? Yes. Score = preferred tier.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Sarah gets a quote for $680/6 months, clicks "Buy Now," and her policy documents land in her email by 10:07 PM. No human underwriter was ever involved. This is STP.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Automated Underwriting Systems -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">2. Automated Underwriting: Rules vs. Predictive Models</h2>
+
+                <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300 mb-6">Automated underwriting uses two main approaches. Most modern systems combine both.</p>
+
+                <!-- Comparison Grid -->
+                <div class="grid md:grid-cols-2 gap-4 lg:gap-6 mb-6">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500">
+                        <h4 class="font-bold text-blue-800 dark:text-blue-300 text-lg mb-2">Rules-Based Systems</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-3">Simple if/then logic that mirrors what a human underwriter would do -- just faster.</p>
+                        <ul class="space-y-2 text-gray-700 dark:text-gray-300 text-sm lg:text-base">
+                            <li><strong>How it works:</strong> IF credit score > 700 AND no claims in 3 years AND no violations THEN auto-approve at preferred tier</li>
+                            <li><strong>Strengths:</strong> Transparent, easy to audit, regulators can see the logic</li>
+                            <li><strong>Weaknesses:</strong> Can't capture complex interactions between variables</li>
+                        </ul>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> "If applicant is under 25 AND drives a sports car AND has a speeding ticket, decline." This is clear and simple but might miss that this particular 24-year-old completed a defensive driving course.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-purple-500">
+                        <h4 class="font-bold text-purple-800 dark:text-purple-300 text-lg mb-2">Predictive Models</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-3">Statistical models that analyze hundreds of variables simultaneously to produce a risk score.</p>
+                        <ul class="space-y-2 text-gray-700 dark:text-gray-300 text-sm lg:text-base">
+                            <li><strong>How it works:</strong> Model weighs hundreds of data points -- age, credit, claim patterns, vehicle type, geography -- and produces a numeric score</li>
+                            <li><strong>Strengths:</strong> Finds hidden patterns, more accurate risk segmentation</li>
+                            <li><strong>Weaknesses:</strong> "Black box" -- harder to explain why someone was declined</li>
+                        </ul>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> The model discovers that homeowners who also bundle auto insurance AND have a credit score above 720 AND live in suburban ZIP codes file 40% fewer claims. It automatically gives this group better pricing.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Real-Time Data Prefill -->
+                <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-green-500 mb-6">
+                    <h3 class="font-bold text-green-800 dark:text-green-300 text-lg lg:text-xl mb-2">Real-Time Data Prefill</h3>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-3">Instead of asking customers 50 questions, the system pulls data automatically from external databases:</p>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                            <p class="font-bold text-green-700 dark:text-green-300">MVR</p>
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Motor Vehicle Record -- driving history, violations, suspensions</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                            <p class="font-bold text-green-700 dark:text-green-300">CLUE</p>
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Claims history for auto AND property -- past 5-7 years</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                            <p class="font-bold text-green-700 dark:text-green-300">Credit Score</p>
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Credit-based insurance score from bureaus</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                            <p class="font-bold text-green-700 dark:text-green-300">Property Data</p>
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Year built, sq footage, roof type, construction</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                            <p class="font-bold text-green-700 dark:text-green-300">Vehicle Data</p>
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">VIN decode -- safety ratings, theft rates, repair costs</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                            <p class="font-bold text-green-700 dark:text-green-300">Geo Data</p>
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Flood zone, wildfire risk, crime rate for the address</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Before/After Speed -->
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border border-red-200 dark:border-red-800">
+                        <p class="font-bold text-red-800 dark:text-red-300 text-lg mb-2">BEFORE: Manual Process</p>
+                        <ul class="space-y-1 text-gray-700 dark:text-gray-300 text-sm lg:text-base">
+                            <li>-- Agent fills out paper application</li>
+                            <li>-- Mailed to home office</li>
+                            <li>-- Underwriter orders reports manually</li>
+                            <li>-- Reviews, decides, sets price</li>
+                            <li>-- Policy mailed back to agent</li>
+                            <li class="font-bold text-red-700 dark:text-red-400 mt-2">Timeline: 3-7 business days</li>
+                        </ul>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border border-green-200 dark:border-green-800">
+                        <p class="font-bold text-green-800 dark:text-green-300 text-lg mb-2">AFTER: STP with Automation</p>
+                        <ul class="space-y-1 text-gray-700 dark:text-gray-300 text-sm lg:text-base">
+                            <li>-- Customer enters basic info online</li>
+                            <li>-- System prefills data instantly</li>
+                            <li>-- Predictive model scores risk</li>
+                            <li>-- Price calculated, policy issued</li>
+                            <li>-- Documents emailed immediately</li>
+                            <li class="font-bold text-green-700 dark:text-green-400 mt-2">Timeline: 3-7 minutes</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Tiered Rating Systems -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">3. Tiered Rating Systems</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-6">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Instead of setting a unique price for every single applicant (impossible at personal lines volume), insurers sort applicants into <strong>tiers</strong> -- groups of similar risk. Each tier has its own rate table. The better the tier, the lower the price.</p>
+                </div>
+
+                <!-- Tier Comparison Grid -->
+                <div class="grid md:grid-cols-3 gap-4 lg:gap-6 mb-6">
+                    <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-green-500">
+                        <h4 class="font-bold text-green-800 dark:text-green-300 text-lg mb-2">Preferred Tier</h4>
+                        <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400 mb-3">Best risks, lowest rates</p>
+                        <ul class="space-y-1 text-gray-700 dark:text-gray-300 text-sm lg:text-base">
+                            <li>-- Clean driving record (0 violations)</li>
+                            <li>-- High credit score (700+)</li>
+                            <li>-- No claims in 3+ years</li>
+                            <li>-- New or well-maintained home</li>
+                            <li>-- Continuous prior insurance</li>
+                        </ul>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> Maria, age 42, credit score 780, no accidents ever, drives a Honda CR-V, owns her home. She qualifies for the best tier and pays $520/6 months for auto.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500">
+                        <h4 class="font-bold text-blue-800 dark:text-blue-300 text-lg mb-2">Standard Tier</h4>
+                        <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400 mb-3">Average risks, standard rates</p>
+                        <ul class="space-y-1 text-gray-700 dark:text-gray-300 text-sm lg:text-base">
+                            <li>-- Minor violation (1 speeding ticket)</li>
+                            <li>-- Average credit score (620-700)</li>
+                            <li>-- Maybe 1 small claim</li>
+                            <li>-- Older home, acceptable condition</li>
+                            <li>-- Some lapse in prior coverage</li>
+                        </ul>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> Dave, age 35, credit score 660, one speeding ticket 2 years ago, drives a Ford F-150. Standard tier -- pays $780/6 months for auto.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-red-500">
+                        <h4 class="font-bold text-red-800 dark:text-red-300 text-lg mb-2">Nonstandard / High-Risk Tier</h4>
+                        <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400 mb-3">Worse-than-average, highest rates</p>
+                        <ul class="space-y-1 text-gray-700 dark:text-gray-300 text-sm lg:text-base">
+                            <li>-- Multiple violations or at-fault accidents</li>
+                            <li>-- Poor credit (below 600)</li>
+                            <li>-- Multiple claims in recent years</li>
+                            <li>-- Lapse in coverage</li>
+                            <li>-- DUI/DWI on record</li>
+                        </ul>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> Kevin, age 23, credit score 540, DUI last year, two at-fault accidents. Nonstandard tier -- pays $2,400/6 months for auto (if he can find coverage at all).</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-purple-500">
+                    <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg mb-2">Fine-Grained Tiers</h3>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Many insurers go well beyond three tiers. Some companies use <strong>5 to 10+ tiers</strong> for even finer segmentation. For example: Super Preferred, Preferred, Preferred Standard, Standard, Standard Non-Standard, Non-Standard. More tiers = more accurate pricing = competitive advantage for the best risks while still writing borderline ones.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Rating Factors - Auto -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">4. Rating Factors: Personal Auto</h2>
+
+                <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300 mb-4">These are the variables that determine your auto insurance premium. Each one moves your price up or down.</p>
+
+                <div class="overflow-x-auto mb-6">
+                    <table class="w-full text-sm lg:text-base">
+                        <thead>
+                            <tr class="bg-teal-600 text-white">
+                                <th class="p-3 lg:p-4 text-left rounded-tl-lg">Category</th>
+                                <th class="p-3 lg:p-4 text-left">Factor</th>
+                                <th class="p-3 lg:p-4 text-left rounded-tr-lg">Impact on Premium</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-bold text-blue-700 dark:text-blue-300" rowspan="5">Driver</td>
+                                <td class="p-3 lg:p-4">Age</td>
+                                <td class="p-3 lg:p-4">Young (16-25) and elderly drivers pay more</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <td class="p-3 lg:p-4">Marital status</td>
+                                <td class="p-3 lg:p-4">Married drivers statistically file fewer claims</td>
+                            </tr>
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4">Driving record</td>
+                                <td class="p-3 lg:p-4">Violations and accidents = higher premium</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <td class="p-3 lg:p-4">Years licensed</td>
+                                <td class="p-3 lg:p-4">More experience = lower risk</td>
+                            </tr>
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4">Gender (where permitted)</td>
+                                <td class="p-3 lg:p-4">Some states ban gender as a rating factor</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <td class="p-3 lg:p-4 font-bold text-green-700 dark:text-green-300" rowspan="4">Vehicle</td>
+                                <td class="p-3 lg:p-4">Year, make, model</td>
+                                <td class="p-3 lg:p-4">Expensive/sporty cars cost more to insure</td>
+                            </tr>
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4">Safety features</td>
+                                <td class="p-3 lg:p-4">Airbags, ABS, backup cameras = discounts</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <td class="p-3 lg:p-4">Anti-theft devices</td>
+                                <td class="p-3 lg:p-4">Alarms, GPS tracking = lower comp premium</td>
+                            </tr>
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4">Vehicle use / mileage</td>
+                                <td class="p-3 lg:p-4">Pleasure < commute < business. More miles = more risk</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <td class="p-3 lg:p-4 font-bold text-purple-700 dark:text-purple-300" rowspan="3">Other</td>
+                                <td class="p-3 lg:p-4">Territory (ZIP code)</td>
+                                <td class="p-3 lg:p-4">Urban = higher theft/accidents. Rural = lower</td>
+                            </tr>
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4">Credit-based insurance score</td>
+                                <td class="p-3 lg:p-4">Strong predictor of claims. Used in most states</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <td class="p-3 lg:p-4">Prior insurance</td>
+                                <td class="p-3 lg:p-4">Continuous coverage = positive factor. Lapse = red flag</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Credit Score Alert -->
+                <div class="bg-red-50 dark:bg-red-900/30 border-l-4 border-red-500 p-4 lg:p-5 rounded-r-lg mb-6">
+                    <h3 class="font-bold text-red-800 dark:text-red-300 text-lg mb-2">Credit-Based Insurance Scores: State Restrictions</h3>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-3">Credit-based insurance scores are one of the strongest predictors of claims frequency, but some states restrict or ban their use:</p>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                            <p class="font-bold text-red-600 dark:text-red-400">California</p>
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Banned for auto</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                            <p class="font-bold text-red-600 dark:text-red-400">Hawaii</p>
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Restricted</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                            <p class="font-bold text-red-600 dark:text-red-400">Massachusetts</p>
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Restricted</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                            <p class="font-bold text-red-600 dark:text-red-400">Maryland</p>
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Restricted</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Example -->
+                <div class="bg-teal-50 dark:bg-teal-900/20 p-4 lg:p-5 rounded-lg border-l-4 border-teal-500">
+                    <p class="font-semibold text-teal-800 dark:text-teal-300 mb-2">Real-World Scenario: Same Driver, Different Factors</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> James, 30, clean driving record, credit score 750, drives a 2023 Toyota Camry for his 10-mile commute. He lives in suburban New Jersey.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> His brother Mike, also 30 with the same credit and clean record, drives the same car -- but lives in Newark (higher-crime ZIP code) and uses his car for DoorDash deliveries (business use, 25,000 miles/year).</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> James pays $640/6 months. Mike pays $1,050/6 months. Same car, same age, same credit -- but territory and vehicle use alone create a 64% premium difference.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Rating Factors - Homeowners -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">5. Rating Factors: Homeowners</h2>
+
+                <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300 mb-4">Homeowners rating is more complex than auto because the property itself introduces dozens of variables.</p>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6 mb-6">
+                    <!-- Property Factors -->
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 border-l-4 border-blue-500">
+                        <h4 class="font-bold text-blue-800 dark:text-blue-300 mb-2">Property Factors</h4>
+                        <ul class="space-y-1 text-gray-700 dark:text-gray-300 text-sm lg:text-base">
+                            <li>-- Construction type (frame, masonry, etc.)</li>
+                            <li>-- Age of home</li>
+                            <li>-- Square footage</li>
+                            <li>-- Roof type and age</li>
+                            <li>-- Heating / electrical / plumbing systems</li>
+                        </ul>
+                    </div>
+
+                    <!-- Protection Factors -->
+                    <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 border-l-4 border-green-500">
+                        <h4 class="font-bold text-green-800 dark:text-green-300 mb-2">Protection Factors</h4>
+                        <ul class="space-y-1 text-gray-700 dark:text-gray-300 text-sm lg:text-base">
+                            <li>-- Fire protection class (1-10 scale)</li>
+                            <li>-- Distance to fire station</li>
+                            <li>-- Smoke detectors / sprinklers</li>
+                            <li>-- Security system</li>
+                            <li>-- Smart home devices</li>
+                        </ul>
+                    </div>
+
+                    <!-- Location Factors -->
+                    <div class="bg-amber-50 dark:bg-amber-900/20 rounded-lg p-4 border-l-4 border-amber-500">
+                        <h4 class="font-bold text-amber-800 dark:text-amber-300 mb-2">Location Factors</h4>
+                        <ul class="space-y-1 text-gray-700 dark:text-gray-300 text-sm lg:text-base">
+                            <li>-- ZIP code</li>
+                            <li>-- Wildfire zone</li>
+                            <li>-- Hail zone</li>
+                            <li>-- Coastal proximity (hurricane)</li>
+                            <li>-- Flood zone designation</li>
+                        </ul>
+                    </div>
+
+                    <!-- Policyholder Factors -->
+                    <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 border-l-4 border-purple-500">
+                        <h4 class="font-bold text-purple-800 dark:text-purple-300 mb-2">Policyholder Factors</h4>
+                        <ul class="space-y-1 text-gray-700 dark:text-gray-300 text-sm lg:text-base">
+                            <li>-- Credit-based insurance score</li>
+                            <li>-- CLUE claims history</li>
+                            <li>-- Age of insured</li>
+                            <li>-- Insurance score</li>
+                        </ul>
+                    </div>
+
+                    <!-- Coverage Factors -->
+                    <div class="bg-indigo-50 dark:bg-indigo-900/20 rounded-lg p-4 border-l-4 border-indigo-500">
+                        <h4 class="font-bold text-indigo-800 dark:text-indigo-300 mb-2">Coverage Factors</h4>
+                        <ul class="space-y-1 text-gray-700 dark:text-gray-300 text-sm lg:text-base">
+                            <li>-- Deductible amount chosen</li>
+                            <li>-- Coverage limits selected</li>
+                            <li>-- Endorsements added</li>
+                            <li>-- Bundling with auto</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Example -->
+                <div class="bg-teal-50 dark:bg-teal-900/20 p-4 lg:p-5 rounded-lg border-l-4 border-teal-500">
+                    <p class="font-semibold text-teal-800 dark:text-teal-300 mb-2">Real-World Scenario: Roof Age Matters</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Two identical 2,000 sq ft colonial homes on the same street in suburban Ohio. Same credit score, same owner age, same coverage limits.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Home A has a 3-year-old architectural shingle roof. Home B has a 22-year-old roof that's past its expected lifespan. The insurer's aerial imagery confirms Home B has visible wear.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Home A: $1,200/year. Home B: $1,750/year -- and the insurer requires a roof inspection before renewal. If the roof isn't replaced, they may non-renew the policy. That old roof is a ticking time bomb for hail and wind claims.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: Technology Transforming Personal Lines -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">6. Technology Transforming Personal Lines</h2>
+
+                <!-- Telematics / UBI -->
+                <div class="bg-teal-50 dark:bg-teal-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-teal-500 mb-6">
+                    <h3 class="font-bold text-teal-800 dark:text-teal-300 text-lg lg:text-xl mb-2">Telematics & Usage-Based Insurance (UBI)</h3>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-3">Instead of guessing how someone drives based on age and ZIP code, telematics <strong>measures actual driving behavior</strong> using a plug-in device or smartphone app.</p>
+
+                    <div class="grid md:grid-cols-3 gap-3 mb-4">
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                            <p class="font-bold text-teal-700 dark:text-teal-300">Progressive Snapshot</p>
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Plug-in OBD device or app</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                            <p class="font-bold text-teal-700 dark:text-teal-300">State Farm Drive Safe & Save</p>
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Smartphone app-based</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                            <p class="font-bold text-teal-700 dark:text-teal-300">Allstate Drivewise</p>
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Smartphone app-based</p>
+                        </div>
+                    </div>
+
+                    <h4 class="font-bold text-gray-800 dark:text-gray-100 mb-2">What Telematics Tracks:</h4>
+                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2 mb-4">
+                        <div class="bg-white dark:bg-gray-700 p-2 rounded text-center">
+                            <p class="text-sm font-bold text-gray-700 dark:text-gray-300">Hard Braking</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-2 rounded text-center">
+                            <p class="text-sm font-bold text-gray-700 dark:text-gray-300">Rapid Acceleration</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-2 rounded text-center">
+                            <p class="text-sm font-bold text-gray-700 dark:text-gray-300">Speed</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-2 rounded text-center">
+                            <p class="text-sm font-bold text-gray-700 dark:text-gray-300">Time of Day</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-2 rounded text-center">
+                            <p class="text-sm font-bold text-gray-700 dark:text-gray-300">Total Mileage</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-2 rounded text-center">
+                            <p class="text-sm font-bold text-gray-700 dark:text-gray-300">Phone Use</p>
+                        </div>
+                    </div>
+
+                    <!-- Before/After Telematics -->
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border border-red-200 dark:border-red-800">
+                            <p class="font-bold text-red-800 dark:text-red-300 mb-2">WITHOUT Telematics</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Jake, 22, male, drives a Mustang GT. Based on demographics alone, the system assumes high risk. Premium: <strong>$2,100/6 months</strong>.</p>
+                        </div>
+                        <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border border-green-200 dark:border-green-800">
+                            <p class="font-bold text-green-800 dark:text-green-300 mb-2">WITH Telematics</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Jake enrolls in Snapshot. After 90 days, data shows: no hard braking, drives only 6,000 mi/year, rarely drives after 11 PM. Actual behavior = low risk. Premium drops to <strong>$1,470/6 months (30% discount)</strong>.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded mt-4">
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>Key number:</strong> Telematics discounts typically range from <strong>5% to 30%</strong> based on driving behavior.</p>
+                    </div>
+                </div>
+
+                <!-- Smart Home -->
+                <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-green-500 mb-6">
+                    <h3 class="font-bold text-green-800 dark:text-green-300 text-lg lg:text-xl mb-2">Smart Home Integration</h3>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-3">Connected home devices reduce claims frequency, so insurers offer premium discounts for using them.</p>
+                    <div class="grid md:grid-cols-3 gap-3 mb-4">
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                            <p class="font-bold text-green-700 dark:text-green-300">Water Shut-Off Devices</p>
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Flo by Moen, Phyn -- detect leaks and automatically shut off water. Prevents $10,000+ water damage claims.</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                            <p class="font-bold text-green-700 dark:text-green-300">Security Systems</p>
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Ring, SimpliSafe, ADT -- reduce burglary claims. Some insurers partner directly with these companies.</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                            <p class="font-bold text-green-700 dark:text-green-300">Smart Smoke Detectors</p>
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Nest Protect -- alerts you AND the fire department instantly. Early detection = smaller fire losses.</p>
+                        </div>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>Key number:</strong> Smart home device discounts typically range from <strong>5% to 15%</strong> on homeowners premiums.</p>
+                    </div>
+                </div>
+
+                <!-- Aerial Imagery -->
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-6">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg lg:text-xl mb-2">Aerial / Satellite Imagery</h3>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-3">Insurers use aerial photos and satellite images to assess properties without sending a physical inspector. The system can identify:</p>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                            <p class="font-bold text-blue-700 dark:text-blue-300">Roof Condition</p>
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Missing shingles, wear patterns</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                            <p class="font-bold text-blue-700 dark:text-blue-300">Property Size</p>
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Accurate square footage</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                            <p class="font-bold text-blue-700 dark:text-blue-300">Pool Presence</p>
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Undisclosed liability risk</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                            <p class="font-bold text-blue-700 dark:text-blue-300">Tree Overhang</p>
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Risk of falling branches on roof</p>
+                        </div>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                        <p class="text-sm lg:text-base"><strong>Example:</strong> An applicant says their roof is in "good condition." The insurer's aerial imagery system flags that 15% of shingles are missing and there's significant moss growth. The underwriter orders an inspection before binding coverage -- this would have been missed without the technology.</p>
+                    </div>
+                </div>
+
+                <!-- Emerging Tech -->
+                <div class="grid md:grid-cols-2 gap-4 lg:gap-6">
+                    <div class="bg-indigo-50 dark:bg-indigo-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-indigo-500">
+                        <h4 class="font-bold text-indigo-800 dark:text-indigo-300 text-lg mb-2">Parametric Insurance</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mb-3">Pays out automatically when a triggering event occurs -- no claims adjuster needed.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> A parametric earthquake policy pays $10,000 automatically if an earthquake measuring 6.0+ hits within 50 miles of the insured's home. No need to prove damage -- the seismometer reading IS the trigger. Also emerging for hurricanes (wind speed trigger) and flight delays (departure time data).</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-purple-500">
+                        <h4 class="font-bold text-purple-800 dark:text-purple-300 text-lg mb-2">Embedded Insurance</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mb-3">Insurance sold at the point of sale of another product -- seamlessly bundled in.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> You buy a Tesla -- Tesla offers its own auto insurance at checkout, priced using the car's own telematics data. Or you book a flight on Expedia and get offered travel insurance for $12 with one click. Or you buy an iPhone and Apple offers AppleCare+ insurance at purchase. The insurance is embedded in the buying experience.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 7: Portfolio Management -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">7. Portfolio Management</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-6">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg lg:text-xl">The Big Picture View</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">Underwriters don't just evaluate one application at a time -- they manage the <strong>entire portfolio</strong>. A policy that looks good individually might create a concentration problem when combined with thousands of other similar policies.</p>
+                </div>
+
+                <div class="overflow-x-auto mb-6">
+                    <table class="w-full text-sm lg:text-base">
+                        <thead>
+                            <tr class="bg-teal-600 text-white">
+                                <th class="p-3 lg:p-4 text-left rounded-tl-lg">Portfolio Concern</th>
+                                <th class="p-3 lg:p-4 text-left">What It Means</th>
+                                <th class="p-3 lg:p-4 text-left rounded-tr-lg">Real-World Example</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-bold text-red-700 dark:text-red-400">Geographic Concentration</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Too many policies in one area = massive catastrophe exposure</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">An insurer has 40% of its homeowners book in coastal Florida. One Category 4 hurricane could bankrupt them.</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <td class="p-3 lg:p-4 font-bold text-blue-700 dark:text-blue-400">Line of Business Mix</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Balance between auto, home, umbrella to diversify risk</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">A company that writes only homeowners in tornado-prone states has no diversification. Adding auto helps balance volatility.</td>
+                            </tr>
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-bold text-amber-700 dark:text-amber-400">Loss Ratio by Segment</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Which tiers, territories, or products are profitable vs. bleeding money?</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Preferred tier auto: 55% loss ratio (great). Nonstandard auto in urban NJ: 92% loss ratio (barely breaking even). Need to raise rates or tighten underwriting.</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <td class="p-3 lg:p-4 font-bold text-green-700 dark:text-green-400">Rate Adequacy</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Are current rates sufficient given inflation, loss trends, and claim severity?</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Auto repair costs jumped 15% due to supply chain issues. If rates aren't adjusted, combined ratio exceeds 100%.</td>
+                            </tr>
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-bold text-purple-700 dark:text-purple-400">Reinsurance</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Catastrophe reinsurance protects the portfolio from massive events</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">The insurer buys a cat reinsurance treaty: "If total hurricane losses exceed $50M, the reinsurer covers 80% of losses above that." This protects the personal lines portfolio.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Example -->
+                <div class="bg-teal-50 dark:bg-teal-900/20 p-4 lg:p-5 rounded-lg border-l-4 border-teal-500">
+                    <p class="font-semibold text-teal-800 dark:text-teal-300 mb-2">Real-World Scenario: Portfolio Concentration Problem</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Sunshine Mutual writes personal lines in Florida. Their agents are excellent -- they've grown the homeowners book to 85,000 policies. But 60,000 of those policies are within 20 miles of the Gulf Coast.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Hurricane season arrives. A Category 3 storm makes landfall near Tampa. 12,000 of those 60,000 coastal homes file claims. Average claim: $45,000.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Total losses: $540 million from one event. Without adequate catastrophe reinsurance, Sunshine Mutual faces insolvency. This is why portfolio management -- monitoring geographic concentration and buying reinsurance -- is just as important as underwriting individual risks correctly.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cheat Sheet -->
+        <section id="cheat-sheet" class="mb-10">
+            <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 border-2 border-dashed border-gray-300 dark:border-gray-600">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100">Cheat Sheet</h2>
+                    <span class="text-sm text-gray-500 dark:text-gray-400">Print this page for quick reference</span>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div>
+                        <h3 class="font-bold text-teal-700 dark:text-teal-300 mb-2">STP & Automation</h3>
+                        <ul class="space-y-1 text-sm text-gray-700 dark:text-gray-300">
+                            <li>-- STP = application to policy, zero human touch</li>
+                            <li>-- Rules-based = if/then logic (transparent)</li>
+                            <li>-- Predictive models = statistical scoring (black box)</li>
+                            <li>-- Data prefill: MVR, CLUE, credit, property, VIN, geo</li>
+                            <li>-- Human referral only for exceptions/gray zones</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3 class="font-bold text-teal-700 dark:text-teal-300 mb-2">Tiered Rating</h3>
+                        <ul class="space-y-1 text-sm text-gray-700 dark:text-gray-300">
+                            <li>-- Preferred = best risk, lowest rate</li>
+                            <li>-- Standard = average risk, standard rate</li>
+                            <li>-- Nonstandard = worst risk, highest rate</li>
+                            <li>-- Some insurers use 5-10+ tiers</li>
+                            <li>-- Each tier = its own rate structure</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3 class="font-bold text-teal-700 dark:text-teal-300 mb-2">Auto Rating Factors</h3>
+                        <ul class="space-y-1 text-sm text-gray-700 dark:text-gray-300">
+                            <li>-- Driver: age, marital, record, years licensed</li>
+                            <li>-- Vehicle: make/model, safety, anti-theft, use, mileage</li>
+                            <li>-- Territory: ZIP-code based</li>
+                            <li>-- Credit score: banned in CA (auto), restricted in HI, MA, MD</li>
+                            <li>-- Prior insurance: continuous = good</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3 class="font-bold text-teal-700 dark:text-teal-300 mb-2">Homeowners Rating Factors</h3>
+                        <ul class="space-y-1 text-sm text-gray-700 dark:text-gray-300">
+                            <li>-- Property: construction, age, roof, systems</li>
+                            <li>-- Protection: fire class, alarms, sprinklers</li>
+                            <li>-- Location: wildfire, hail, coastal, flood zone</li>
+                            <li>-- Policyholder: credit, CLUE, age</li>
+                            <li>-- Coverage: deductible, limits, endorsements</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3 class="font-bold text-teal-700 dark:text-teal-300 mb-2">Key Technology</h3>
+                        <ul class="space-y-1 text-sm text-gray-700 dark:text-gray-300">
+                            <li>-- Telematics/UBI: 5-30% discount</li>
+                            <li>-- Smart home devices: 5-15% discount</li>
+                            <li>-- Aerial imagery: roof, pools, tree overhang</li>
+                            <li>-- Parametric: auto-payout on trigger event</li>
+                            <li>-- Embedded: insurance at point of sale</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3 class="font-bold text-teal-700 dark:text-teal-300 mb-2">Portfolio Management</h3>
+                        <ul class="space-y-1 text-sm text-gray-700 dark:text-gray-300">
+                            <li>-- Geographic concentration = cat risk</li>
+                            <li>-- Line mix diversifies volatility</li>
+                            <li>-- Monitor loss ratio by segment</li>
+                            <li>-- Rate adequacy vs. loss trends</li>
+                            <li>-- Cat reinsurance protects portfolio</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Trap Alerts -->
+        <section class="mb-10">
+            <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-xl p-5 lg:p-6">
+                <h2 class="text-2xl font-bold text-red-800 dark:text-red-300 mb-4">Exam Trap Alerts</h2>
+                <div class="space-y-3">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">1. STP Does NOT Mean No Underwriting</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">STP means no <strong>human</strong> underwriter is involved. The underwriting still happens -- it's just done by the automated system. The rules, the scoring, the tier assignment -- that's all underwriting. Don't confuse "automated" with "no underwriting."</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">2. Credit Score vs. Insurance Score</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">A credit-based <strong>insurance</strong> score is NOT the same as a regular credit score (FICO). Insurance scores weigh factors differently -- they're optimized to predict <strong>claims likelihood</strong>, not creditworthiness. Same data, different model, different purpose.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">3. California Bans Credit for Auto, Not Homeowners</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">California bans credit-based insurance scores for <strong>auto</strong> insurance. The exam may try to trick you into thinking it's banned for all lines. Other states (HI, MA, MD) have various restrictions but not complete bans across all lines.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">4. Tiered Rating Is Not Cherry-Picking</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Tiered rating sorts applicants into risk groups and prices accordingly -- every tier gets a rate. Cherry-picking means only writing preferred risks and declining everyone else. An insurer using tiered rating writes <strong>all</strong> tiers, just at different prices.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">5. Parametric Insurance Has No Claims Process</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">With parametric insurance, the payout is triggered by a measurable event (earthquake magnitude, wind speed), NOT by proof of actual loss. This means you could receive a payout even if you had minimal damage -- or get nothing if the event didn't meet the threshold even though you had damage.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">6. Portfolio Management vs. Individual Underwriting</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">An individually profitable policy can still be bad for the portfolio. If you already have too many coastal homeowners, writing one more excellent coastal risk still increases your catastrophe concentration. Portfolio thinking overrides individual-risk analysis.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Reference Summary -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-teal-600 to-teal-800 rounded-xl p-6 text-white">
+                <h2 class="text-2xl font-bold mb-6">Quick Reference Summary</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Straight-Through Processing</p>
+                        <p class="text-sm text-teal-100">Application to policy issuance with no human underwriter involvement</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Rules-Based Systems</p>
+                        <p class="text-sm text-teal-100">If/then logic -- transparent and auditable but limited in complexity</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Predictive Models</p>
+                        <p class="text-sm text-teal-100">Statistical scoring using hundreds of variables -- powerful but less transparent</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Tiered Rating</p>
+                        <p class="text-sm text-teal-100">Preferred (best risk/lowest rate) to Nonstandard (worst risk/highest rate)</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Telematics / UBI</p>
+                        <p class="text-sm text-teal-100">Actual driving behavior data -- 5-30% discounts for safe drivers</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Smart Home Discounts</p>
+                        <p class="text-sm text-teal-100">Connected devices (water sensors, security) -- 5-15% premium reduction</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Aerial Imagery</p>
+                        <p class="text-sm text-teal-100">Satellite/aerial photos to assess roof condition, pools, tree risk remotely</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Parametric Insurance</p>
+                        <p class="text-sm text-teal-100">Auto-pays on triggering event (earthquake magnitude, wind speed) -- no claims process</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Portfolio Management</p>
+                        <p class="text-sm text-teal-100">Geographic concentration, line mix, loss ratios, rate adequacy, reinsurance</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Navigation -->
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="../part-1/index.html" class="text-teal-400 hover:text-teal-300 transition-colors">&larr; Part 1: Personal Lines Overview</a>
+                <span class="text-gray-400">Part 2 of 3</span>
+                <a href="../part-3/index.html" class="text-teal-400 hover:text-teal-300 transition-colors">Part 3: Risk Modeling &rarr;</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AI Tutor Button -->
+    <button onclick="openAITutor()" class="fixed bottom-6 right-6 bg-teal-600 hover:bg-teal-700 text-white p-4 rounded-full shadow-xl hover:scale-110 transition-transform z-40" title="AI Study Tutor">
+        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+        </svg>
+    </button>
+
+    <script>
+        function openAITutor() {
+            const context = `Topic: Personal Lines Underwriting Decisions & Technology (CPCU 520, Assignment 4, Part 2).
+Key concepts:
+- Straight-Through Processing (STP): automated underwriting from application to policy issuance with no human involvement
+- Rules-based systems vs. predictive models for automated underwriting
+- Real-time data prefill: MVR, CLUE, credit, property data, VIN decode, geo data
+- Tiered rating: Preferred (best risk, lowest rate), Standard, Nonstandard (worst risk, highest rate)
+- Auto rating factors: driver (age, record, marital), vehicle (make/model, safety, use, mileage), territory (ZIP), credit score, prior insurance
+- Homeowners rating factors: property (construction, roof, age), protection (fire class, alarms), location (wildfire, flood, coastal), policyholder (credit, CLUE)
+- Credit-based insurance scores: banned in California for auto, restricted in Hawaii, Massachusetts, Maryland
+- Telematics/UBI: Progressive Snapshot, State Farm Drive Safe & Save, Allstate Drivewise -- 5-30% discounts
+- Smart home integration: water shut-off, security, smoke detectors -- 5-15% discounts
+- Aerial/satellite imagery for property assessment
+- Parametric insurance: auto-payout on triggering event, no claims process
+- Embedded insurance: sold at point of sale (Tesla auto, travel at booking, phone at purchase)
+- Portfolio management: geographic concentration, line mix, loss ratio by segment, rate adequacy, cat reinsurance
+Common confusions:
+- STP still involves underwriting -- just automated, not human
+- Credit-based insurance score is NOT the same as a FICO credit score
+- California bans credit for AUTO, not necessarily all lines
+- Tiered rating is NOT cherry-picking -- all tiers get rates
+- Parametric pays on event trigger, not on proof of actual damage
+- A good individual risk can be bad for the portfolio if it increases concentration`;
+            window.aiTutorContext = context;
+            if (typeof showAITutor === 'function') showAITutor(context);
+        }
+    </script>
+</body>
+</html>

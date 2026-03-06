@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment 4 Part 1: Personal Lines Loss Exposures and Hazards | CPCU 520</title>
+    <link rel="icon" type="image/svg+xml" href="../../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <link rel="stylesheet" href="../../../../css/styles.css">
+    <script src="../../../../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+        }
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <!-- Settings & Theme Toggle Buttons -->
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="showAPIKeySetup()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings">
+            <svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+        </button>
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/>
+            </svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-teal-600 to-teal-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap gap-2 text-sm mb-2">
+                <a href="../../../../index.html" class="text-teal-200 hover:text-white">Home</a>
+                <span class="text-teal-300">/</span>
+                <a href="../../../index.html" class="text-teal-200 hover:text-white">CPCU</a>
+                <span class="text-teal-300">/</span>
+                <a href="../../index.html" class="text-teal-200 hover:text-white">520</a>
+                <span class="text-teal-300">/</span>
+                <a href="../index.html" class="text-teal-200 hover:text-white">Assignment 4</a>
+                <span class="text-teal-300">/</span>
+                <span class="text-white">Part 1</span>
+            </div>
+            <h1 class="text-3xl font-bold">Assignment 4 Part 1: Personal Lines Loss Exposures and Hazards</h1>
+            <p class="text-teal-200 mt-1">Understanding the unique risks that individuals and families face &mdash; and the data underwriters use to evaluate them</p>
+        </div>
+    </header>
+
+    <!-- Part Navigation -->
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-wrap gap-2 text-sm">
+                <a href="../index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Overview</a>
+                <span class="bg-teal-600 text-white px-3 py-1 rounded font-medium">Part 1</span>
+                <a href="../part-2/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 2</a>
+                <a href="../part-3/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 3</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-5xl lg:max-w-7xl">
+
+        <!-- Start Here: 5 Things You MUST Know -->
+        <div class="bg-gradient-to-r from-teal-100 to-teal-200 dark:from-teal-900/40 dark:to-teal-800/40 rounded-xl p-6 mb-8 border border-teal-300 dark:border-teal-700">
+            <h3 class="text-xl lg:text-2xl font-bold text-teal-800 dark:text-teal-200 mb-4">Start Here: 5 Things You MUST Know</h3>
+            <div class="grid md:grid-cols-2 gap-3">
+                <div class="flex items-start">
+                    <span class="bg-teal-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Personal lines</strong> insures individuals and families (auto, home, renters, umbrella) while <strong>commercial lines</strong> insures businesses &mdash; personal lines has far more policies and far more automation.</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-teal-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Personal auto has <strong>4 coverage parts</strong>: Liability (Part A), Medical Payments (Part B), Uninsured/Underinsured Motorist (Part C), and Physical Damage (Part D &mdash; Collision + Comprehensive).</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-teal-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Homeowners has <strong>6 coverages</strong> (A through F) spanning dwelling, other structures, personal property, loss of use, liability, and medical payments. The <strong>HO-3</strong> is the most common form.</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-teal-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">4</span>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Key auto hazards: <strong>driver age/record, vehicle type, territory, mileage, and credit score</strong>. Key home hazards: <strong>construction, location/fire protection class, age, occupancy, and attractive nuisances</strong>.</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-teal-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">5</span>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Modern data sources &mdash; <strong>telematics, credit scores, aerial imagery, IoT devices, and CLUE reports</strong> &mdash; are transforming how personal lines underwriters assess risk.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 1: Overview / Introduction -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">Introduction: Why Personal Lines Underwriting Matters</h2>
+
+                <div class="bg-teal-50 dark:bg-teal-900/30 border border-teal-200 dark:border-teal-800 rounded-lg p-4 lg:p-5 mb-6">
+                    <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300">Personal lines insurance protects the things people care about most &mdash; their cars, their homes, and their families. Before an underwriter can decide whether to write a policy (and at what price), they need to understand the <strong>loss exposures</strong> (what could go wrong) and the <strong>hazards</strong> (factors that increase the chance or severity of loss). This part walks you through every major personal lines exposure and the specific hazards underwriters evaluate for each one.</p>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 lg:p-5 rounded-r-lg">
+                    <p class="font-bold text-amber-800 dark:text-amber-300 text-base lg:text-lg">Exam Alert</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mt-1">This is a <strong>brand new chapter</strong> in the updated CPCU 520 textbook. Expect exam questions that test your ability to <strong>match hazards to the correct line of business</strong> (auto vs. homeowners) and to distinguish between the four auto coverage parts. Do not confuse collision with comprehensive &mdash; this is the most common trap.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Personal Lines vs. Commercial Lines -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">1. What Makes Personal Lines Different from Commercial</h2>
+
+                <div class="bg-teal-50 dark:bg-teal-900/30 border-l-4 border-teal-500 p-4 lg:p-5 rounded-r-lg mb-6">
+                    <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300"><strong>Personal lines</strong> = insurance for individuals and families (auto, homeowners, renters, umbrella). <strong>Commercial lines</strong> = insurance for businesses. They require fundamentally different underwriting approaches because of volume, standardization, regulation, and data availability.</p>
+                </div>
+
+                <!-- Comparison Grid -->
+                <div class="overflow-x-auto mb-6">
+                    <table class="w-full text-sm lg:text-base">
+                        <thead>
+                            <tr class="bg-teal-600 text-white">
+                                <th class="p-3 lg:p-4 text-left rounded-tl-lg">Factor</th>
+                                <th class="p-3 lg:p-4 text-left">Personal Lines</th>
+                                <th class="p-3 lg:p-4 text-left rounded-tr-lg">Commercial Lines</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Volume</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Millions of policies &mdash; massive scale</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Thousands of policies &mdash; smaller, more complex</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Standardization</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Highly standardized forms (ISO HO, PP)</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">More customized, manuscript policies common</td>
+                            </tr>
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Automation</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Heavy automation &mdash; many policies auto-issued</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">More human judgment required per account</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Insured Entity</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Individual person or family</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Business entity with complex operations</td>
+                            </tr>
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Regulation</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">More heavily regulated (especially auto)</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Less rate regulation, more pricing freedom</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Data Availability</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Massive data (credit, MVR, CLUE, telematics)</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Less standardized data, more site inspections</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Real-World Example -->
+                <div class="bg-teal-50 dark:bg-teal-900/20 p-4 lg:p-5 rounded-lg border-l-4 border-teal-500">
+                    <p class="font-semibold text-teal-800 dark:text-teal-300 mb-2">Real-World Scenario: Volume Changes Everything</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> State Farm has roughly 80 million auto and home policies in force. A commercial insurer like Zurich might have 50,000 commercial accounts.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> State Farm cannot have a human underwriter review every single policy renewal. They use automated scoring models that pull credit scores, driving records, and claims history to instantly tier and price each policy. Zurich, by contrast, might assign a dedicated underwriter to a single large manufacturer account worth $2 million in premium.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Personal lines depends on <strong>data and algorithms</strong> to handle volume. Commercial lines depends on <strong>human expertise and judgment</strong> to handle complexity. Both are underwriting &mdash; but the approach is radically different.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Personal Auto Loss Exposures -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">2. Personal Auto Loss Exposures</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/30 border-l-4 border-blue-500 p-4 lg:p-5 rounded-r-lg mb-6">
+                    <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300">The Personal Auto Policy (PAP) is divided into <strong>four distinct coverage parts</strong>. Each part addresses a different type of loss exposure. Understanding what each part covers &mdash; and what it does NOT cover &mdash; is fundamental to personal lines underwriting.</p>
+                </div>
+
+                <!-- Four Coverage Parts Table -->
+                <div class="overflow-x-auto mb-6">
+                    <table class="w-full text-sm lg:text-base">
+                        <thead>
+                            <tr class="bg-blue-600 text-white">
+                                <th class="p-3 lg:p-4 text-left rounded-tl-lg">Part</th>
+                                <th class="p-3 lg:p-4 text-left">Coverage Name</th>
+                                <th class="p-3 lg:p-4 text-left">What It Pays For</th>
+                                <th class="p-3 lg:p-4 text-left rounded-tr-lg">Key Detail</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-bold text-blue-700 dark:text-blue-300">A</td>
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Liability</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Bodily injury and property damage the insured causes to <strong>others</strong></td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Split limits (100/300/100) or combined single limit. Required in most states.</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <td class="p-3 lg:p-4 font-bold text-blue-700 dark:text-blue-300">B</td>
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Medical Payments</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Medical expenses for the insured and passengers, <strong>regardless of fault</strong></td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">No-fault coverage. Pays even if the insured caused the accident.</td>
+                            </tr>
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-bold text-blue-700 dark:text-blue-300">C</td>
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Uninsured / Underinsured Motorist</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Covers the insured when hit by a driver with <strong>no or insufficient insurance</strong></td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Protects you when the at-fault driver cannot pay. Required in many states.</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <td class="p-3 lg:p-4 font-bold text-blue-700 dark:text-blue-300">D</td>
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Physical Damage</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Damage to the <strong>insured's own vehicle</strong></td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Two sub-parts: <strong>Collision</strong> (hitting objects) and <strong>Other Than Collision / Comprehensive</strong> (theft, weather, animals, glass).</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Collision vs Comprehensive Comparison -->
+                <h3 class="text-lg lg:text-xl font-bold text-gray-800 dark:text-gray-100 mb-3">Part D Deep Dive: Collision vs. Comprehensive</h3>
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 lg:p-5 rounded-lg border-l-4 border-blue-500">
+                        <h4 class="font-bold text-blue-800 dark:text-blue-300 mb-2">Collision</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mb-2">Damage from your vehicle <strong>hitting another object</strong> &mdash; regardless of who is at fault.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-2">
+                            <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>Examples:</strong> Rear-ending another car, hitting a guardrail, backing into a pole, rolling over in a ditch.</p>
+                        </div>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 lg:p-5 rounded-lg border-l-4 border-green-500">
+                        <h4 class="font-bold text-green-800 dark:text-green-300 mb-2">Other Than Collision (Comprehensive)</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mb-2">Damage from <strong>everything else</strong> that is not a collision event.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-2">
+                            <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>Examples:</strong> Theft, vandalism, hail damage, a tree falling on the car, hitting a deer, a cracked windshield from a rock.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Real-World Example: Auto -->
+                <div class="bg-blue-50 dark:bg-blue-900/20 p-4 lg:p-5 rounded-lg border-l-4 border-blue-500 mb-6">
+                    <p class="font-semibold text-blue-800 dark:text-blue-300 mb-2">Real-World Scenario: Which Coverage Pays?</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Maria is driving home from work when an uninsured driver runs a red light and T-bones her car. Maria is injured, her passenger is injured, and her car is totaled.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> The at-fault driver has no insurance and no assets. Maria has full coverage on her PAP with 100/300/100 liability, $5,000 med pay, 100/300 UM/UIM, and collision/comprehensive with a $500 deductible.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong></p>
+                        <ul class="list-disc ml-6 text-gray-700 dark:text-gray-300 space-y-1">
+                            <li><strong>Part A (Liability)</strong> &mdash; Not triggered. Maria did not cause the accident.</li>
+                            <li><strong>Part B (Med Pay)</strong> &mdash; Pays Maria's and her passenger's medical bills up to $5,000 each, regardless of fault.</li>
+                            <li><strong>Part C (UM)</strong> &mdash; Pays for Maria's injuries beyond med pay, up to $100,000 per person / $300,000 per accident, because the at-fault driver is uninsured.</li>
+                            <li><strong>Part D (Collision)</strong> &mdash; Pays to repair or replace Maria's totaled car, minus her $500 deductible.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Auto Hazards -->
+                <h3 class="text-lg lg:text-xl font-bold text-gray-800 dark:text-gray-100 mb-3">Key Hazards for Auto Underwriting</h3>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border border-red-200 dark:border-red-800">
+                        <h4 class="font-bold text-red-800 dark:text-red-300 mb-2">Driver Characteristics</h4>
+                        <ul class="text-sm lg:text-base text-gray-700 dark:text-gray-300 space-y-1">
+                            <li><strong>Age</strong> &mdash; Teen drivers = highest risk</li>
+                            <li><strong>Gender</strong> &mdash; Statistically different loss patterns</li>
+                            <li><strong>Driving record (MVR)</strong> &mdash; Tickets, accidents, DUIs</li>
+                            <li><strong>Experience</strong> &mdash; Years licensed</li>
+                        </ul>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border border-purple-200 dark:border-purple-800">
+                        <h4 class="font-bold text-purple-800 dark:text-purple-300 mb-2">Vehicle Characteristics</h4>
+                        <ul class="text-sm lg:text-base text-gray-700 dark:text-gray-300 space-y-1">
+                            <li><strong>Make/model</strong> &mdash; Sports car vs. minivan</li>
+                            <li><strong>Safety features</strong> &mdash; ABS, airbags, backup cameras</li>
+                            <li><strong>Theft attractiveness</strong> &mdash; Some models stolen more often</li>
+                            <li><strong>Repair costs</strong> &mdash; Luxury parts cost more</li>
+                        </ul>
+                    </div>
+                    <div class="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg border border-amber-200 dark:border-amber-800">
+                        <h4 class="font-bold text-amber-800 dark:text-amber-300 mb-2">Use and Territory</h4>
+                        <ul class="text-sm lg:text-base text-gray-700 dark:text-gray-300 space-y-1">
+                            <li><strong>Commute distance</strong> &mdash; Longer = more exposure</li>
+                            <li><strong>Annual mileage</strong> &mdash; More miles = more risk</li>
+                            <li><strong>Business use</strong> &mdash; Higher than pleasure use</li>
+                            <li><strong>Territory</strong> &mdash; Urban vs. rural, weather patterns</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="bg-indigo-50 dark:bg-indigo-900/20 p-4 lg:p-5 rounded-lg border-l-4 border-indigo-500">
+                    <h4 class="font-bold text-indigo-800 dark:text-indigo-300 mb-2">Credit-Based Insurance Score</h4>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">A numerical score derived from credit history that is <strong>statistically correlated with insurance loss frequency</strong>. It is NOT a credit score &mdash; it is a separate scoring model built specifically for insurance. <strong>Controversial</strong> because critics argue it unfairly penalizes lower-income individuals. Used in most states for auto and homeowners, but some states restrict or ban its use.</p>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>Example:</strong> Two drivers, same age and car, same driving record. Driver A has excellent credit (score 780) and gets a preferred rate. Driver B has poor credit (score 520) and pays 40% more. Same risk profile on paper except for credit &mdash; but insurers have data showing Driver B is statistically more likely to file a claim.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Homeowners Loss Exposures -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">3. Homeowners Loss Exposures</h2>
+
+                <div class="bg-green-50 dark:bg-green-900/30 border-l-4 border-green-500 p-4 lg:p-5 rounded-r-lg mb-6">
+                    <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300">The homeowners policy is a <strong>package policy</strong> &mdash; it bundles property and liability coverages into a single contract. The six coverage parts are labeled A through F. Memorize what each letter covers.</p>
+                </div>
+
+                <!-- Coverages A-F Grid -->
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 lg:gap-4 mb-6">
+                    <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded-lg text-center border border-green-200 dark:border-green-800">
+                        <p class="text-2xl lg:text-3xl font-bold text-green-600 dark:text-green-400">A</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Dwelling</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded-lg text-center border border-green-200 dark:border-green-800">
+                        <p class="text-2xl lg:text-3xl font-bold text-green-600 dark:text-green-400">B</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Other Structures</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded-lg text-center border border-green-200 dark:border-green-800">
+                        <p class="text-2xl lg:text-3xl font-bold text-green-600 dark:text-green-400">C</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Personal Property</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded-lg text-center border border-green-200 dark:border-green-800">
+                        <p class="text-2xl lg:text-3xl font-bold text-green-600 dark:text-green-400">D</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Loss of Use</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded-lg text-center border border-blue-200 dark:border-blue-800">
+                        <p class="text-2xl lg:text-3xl font-bold text-blue-600 dark:text-blue-400">E</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Personal Liability</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded-lg text-center border border-blue-200 dark:border-blue-800">
+                        <p class="text-2xl lg:text-3xl font-bold text-blue-600 dark:text-blue-400">F</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Med Pay to Others</p>
+                    </div>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 rounded-r-lg mb-6">
+                    <p class="font-bold text-amber-800 dark:text-amber-300">Memory Trick</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mt-1"><strong>A-D = Property</strong> (the stuff you own). <strong>E-F = Liability</strong> (when you hurt someone or damage their stuff). Think of the alphabet: the <strong>earlier letters protect your things</strong>, the <strong>later letters protect you from lawsuits</strong>.</p>
+                </div>
+
+                <!-- HO Form Types Table -->
+                <h3 class="text-lg lg:text-xl font-bold text-gray-800 dark:text-gray-100 mb-3">The Six HO Form Types</h3>
+                <div class="overflow-x-auto mb-6">
+                    <table class="w-full text-sm lg:text-base">
+                        <thead>
+                            <tr class="bg-green-600 text-white">
+                                <th class="p-3 lg:p-4 text-left rounded-tl-lg">Form</th>
+                                <th class="p-3 lg:p-4 text-left">Name</th>
+                                <th class="p-3 lg:p-4 text-left">Who It's For</th>
+                                <th class="p-3 lg:p-4 text-left rounded-tr-lg">Dwelling Coverage Basis</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-bold text-green-700 dark:text-green-300">HO-2</td>
+                                <td class="p-3 lg:p-4 text-gray-800 dark:text-gray-200">Broad Form</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Homeowners wanting named-peril coverage</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Named perils only</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <td class="p-3 lg:p-4 font-bold text-green-700 dark:text-green-300">HO-3</td>
+                                <td class="p-3 lg:p-4 text-gray-800 dark:text-gray-200">Special Form</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Most common &mdash; typical homeowner</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300"><strong>Open peril</strong> on dwelling, named peril on personal property</td>
+                            </tr>
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-bold text-green-700 dark:text-green-300">HO-4</td>
+                                <td class="p-3 lg:p-4 text-gray-800 dark:text-gray-200">Contents Broad Form</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300"><strong>Renters</strong> &mdash; no dwelling coverage</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">N/A (no dwelling &mdash; covers personal property only)</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <td class="p-3 lg:p-4 font-bold text-green-700 dark:text-green-300">HO-5</td>
+                                <td class="p-3 lg:p-4 text-gray-800 dark:text-gray-200">Comprehensive Form</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Homeowners wanting broadest coverage</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300"><strong>Open peril</strong> on dwelling AND personal property</td>
+                            </tr>
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-bold text-green-700 dark:text-green-300">HO-6</td>
+                                <td class="p-3 lg:p-4 text-gray-800 dark:text-gray-200">Unit-Owners Form</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300"><strong>Condo owners</strong></td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Named perils (condo association covers the building)</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <td class="p-3 lg:p-4 font-bold text-green-700 dark:text-green-300">HO-8</td>
+                                <td class="p-3 lg:p-4 text-gray-800 dark:text-gray-200">Modified Coverage Form</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300"><strong>Older/historic homes</strong> where replacement cost exceeds market value</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Named perils, functional replacement cost</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Real-World Example: Homeowners -->
+                <div class="bg-green-50 dark:bg-green-900/20 p-4 lg:p-5 rounded-lg border-l-4 border-green-500 mb-6">
+                    <p class="font-semibold text-green-800 dark:text-green-300 mb-2">Real-World Scenario: HO-3 vs. HO-5 in Action</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Tom has an HO-3 policy. His neighbor Sarah has an HO-5 policy. Both experience the same mysterious event: a pipe inside the wall slowly leaks for months, ruining the hardwood floors and a $3,000 Persian rug stored in a closet.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Both file claims. For the dwelling damage (floors), both policies cover it &mdash; water damage from a plumbing failure is a covered peril under both HO-3 and HO-5 open-peril dwelling coverage. But for the rug (personal property), it is different. Tom's HO-3 covers personal property on a <strong>named-peril basis only</strong>. Sarah's HO-5 covers personal property on an <strong>open-peril basis</strong>.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Sarah's claim for the rug is covered automatically unless specifically excluded. Tom must check whether the specific cause of damage is one of the named perils listed in his policy. This is the practical difference between HO-3 and HO-5 &mdash; and why HO-5 costs more.</p>
+                    </div>
+                </div>
+
+                <!-- Homeowners Hazards -->
+                <h3 class="text-lg lg:text-xl font-bold text-gray-800 dark:text-gray-100 mb-3">Key Hazards for Homeowners Underwriting</h3>
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border border-red-200 dark:border-red-800">
+                        <h4 class="font-bold text-red-800 dark:text-red-300 mb-2">Construction Type</h4>
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300 mb-2">Frame construction = highest fire risk. Masonry is better. Fire-resistive is best.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>Example:</strong> A wood-frame house with cedar shake shingles in a wildfire zone will pay significantly more than a brick home with a tile roof in the same area.</p>
+                        </div>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border border-purple-200 dark:border-purple-800">
+                        <h4 class="font-bold text-purple-800 dark:text-purple-300 mb-2">Location / Fire Protection Class</h4>
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300 mb-2">Fire protection class runs <strong>1 to 10</strong> (1 = best, 10 = worst/unprotected). Distance to fire station and hydrants matters enormously.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>Example:</strong> A home 2 miles from a fire station with a hydrant on the block (Class 3) vs. a rural home 15 miles from the nearest volunteer fire department with no hydrants (Class 9). The rural home may pay double the premium.</p>
+                        </div>
+                    </div>
+                    <div class="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg border border-amber-200 dark:border-amber-800">
+                        <h4 class="font-bold text-amber-800 dark:text-amber-300 mb-2">Age and Condition</h4>
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300 mb-2">Older homes = higher risk. Outdated wiring (knob-and-tube), galvanized plumbing, aging roofs all increase loss potential.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>Example:</strong> A 1920s home with original electrical wiring has a much higher fire risk than a 2020 build with modern circuit breakers. The underwriter may require an electrical update before offering coverage.</p>
+                        </div>
+                    </div>
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
+                        <h4 class="font-bold text-blue-800 dark:text-blue-300 mb-2">Occupancy</h4>
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300 mb-2"><strong>Owner-occupied</strong> = lowest risk. <strong>Tenant-occupied</strong> = moderate risk. <strong>Vacant</strong> = highest risk (vandalism, undetected damage, arson).</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>Example:</strong> A vacant home sits empty for 6 months while the owner tries to sell. A pipe freezes and bursts in winter, flooding the entire first floor. Nobody is there to notice. By the time it is discovered, the damage is catastrophic &mdash; which is exactly why most HO policies restrict or exclude coverage after 60 days of vacancy.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border border-red-200 dark:border-red-800">
+                        <h4 class="font-bold text-red-800 dark:text-red-300 mb-2">Attractive Nuisances</h4>
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300 mb-2">Features that attract people (especially children) onto the property and increase liability exposure.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>Examples:</strong> Swimming pools, trampolines, certain dog breeds (pit bulls, Rottweilers). A neighbor's child drowns in an unfenced pool &mdash; the homeowner faces a massive liability claim under Coverage E.</p>
+                        </div>
+                    </div>
+                    <div class="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-lg border border-indigo-200 dark:border-indigo-800">
+                        <h4 class="font-bold text-indigo-800 dark:text-indigo-300 mb-2">Claims History (CLUE Report)</h4>
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300 mb-2">The <strong>Comprehensive Loss Underwriting Exchange</strong> (CLUE) database tracks prior claims on <strong>both the person and the property</strong>.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>Example:</strong> You buy a house that looks perfect. But the CLUE report shows 3 water damage claims in the last 5 years from the previous owner. The underwriter knows the property itself may have a recurring plumbing problem &mdash; even though you are a brand-new owner with zero claims.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Other Personal Lines -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">4. Other Personal Lines Products</h2>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <!-- Umbrella -->
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 lg:p-5 rounded-lg border-l-4 border-purple-500">
+                        <h4 class="font-bold text-purple-800 dark:text-purple-300 mb-2">Personal Umbrella Policy</h4>
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300 mb-2"><strong>Excess liability</strong> that sits on top of auto and homeowners policies. Typically $1M to $5M in coverage. Requires minimum underlying limits (e.g., 250/500 auto liability). Often covers claims that underlying policies exclude.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-2">
+                            <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>Example:</strong> A guest at your house slips on ice, breaks their back, and sues for $1.5M. Your homeowners liability limit is $300,000. Your umbrella picks up the remaining $1.2M. Without the umbrella, you would owe that out of pocket.</p>
+                        </div>
+                    </div>
+
+                    <!-- Renters -->
+                    <div class="bg-teal-50 dark:bg-teal-900/20 p-4 lg:p-5 rounded-lg border-l-4 border-teal-500">
+                        <h4 class="font-bold text-teal-800 dark:text-teal-300 mb-2">Renters Insurance (HO-4)</h4>
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300 mb-2">Covers <strong>personal property</strong> (Coverage C) and <strong>liability</strong> (Coverage E/F). Does <strong>NOT</strong> cover the dwelling &mdash; that is the landlord's responsibility.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-2">
+                            <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>Example:</strong> A fire in your apartment destroys your furniture, electronics, and clothing worth $25,000. Your landlord's policy covers the building. Your HO-4 covers your belongings. Without renters insurance, you replace everything out of pocket.</p>
+                        </div>
+                    </div>
+
+                    <!-- Flood -->
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 lg:p-5 rounded-lg border-l-4 border-blue-500">
+                        <h4 class="font-bold text-blue-800 dark:text-blue-300 mb-2">Flood Insurance</h4>
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300 mb-2">Typically purchased through the <strong>National Flood Insurance Program (NFIP)</strong>, though the private flood market is growing. Standard homeowners policies <strong>exclude flood</strong>.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-2">
+                            <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>Example:</strong> A hurricane brings storm surge that floods your home with 4 feet of water. Your HO-3 excludes flood damage. Without a separate NFIP or private flood policy, you get nothing for the $80,000 in damage.</p>
+                        </div>
+                    </div>
+
+                    <!-- Earthquake -->
+                    <div class="bg-amber-50 dark:bg-amber-900/20 p-4 lg:p-5 rounded-lg border-l-4 border-amber-500">
+                        <h4 class="font-bold text-amber-800 dark:text-amber-300 mb-2">Earthquake Insurance</h4>
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300 mb-2">Purchased as a <strong>separate policy or endorsement</strong> in most states. Standard homeowners policies exclude earthquake damage. Common in California, Pacific Northwest, and New Madrid fault zone.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-2">
+                            <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>Example:</strong> A 6.5 magnitude earthquake cracks your foundation and shifts your home off its supports. Your HO-3 pays nothing. A separate earthquake endorsement covers the structural damage, minus a percentage deductible (often 10-20% of Coverage A).</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: The Role of Data in Personal Lines -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">5. The Role of Data in Personal Lines Underwriting</h2>
+
+                <div class="bg-teal-50 dark:bg-teal-900/30 border-l-4 border-teal-500 p-4 lg:p-5 rounded-r-lg mb-6">
+                    <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300">Personal lines underwriting has been transformed by data. Because of the sheer volume of policies, insurers rely heavily on automated data sources to evaluate risk quickly and consistently. Here are the five major data tools you need to know.</p>
+                </div>
+
+                <!-- Data Sources Flow -->
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+                    <div class="bg-indigo-50 dark:bg-indigo-900/20 p-4 lg:p-5 rounded-lg border-l-4 border-indigo-500">
+                        <h4 class="font-bold text-indigo-800 dark:text-indigo-300 mb-2">Credit-Based Insurance Scores</h4>
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300">Statistical correlation between credit behavior and insurance losses. Used for both auto and homeowners in most states. Some states (California, Massachusetts, Hawaii) restrict or ban its use.</p>
+                    </div>
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 lg:p-5 rounded-lg border-l-4 border-blue-500">
+                        <h4 class="font-bold text-blue-800 dark:text-blue-300 mb-2">Telematics (Auto)</h4>
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300">Devices or smartphone apps that track actual driving behavior: speed, hard braking, mileage, time of day. Powers usage-based insurance (UBI) programs like Progressive Snapshot and State Farm Drive Safe &amp; Save.</p>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 lg:p-5 rounded-lg border-l-4 border-green-500">
+                        <h4 class="font-bold text-green-800 dark:text-green-300 mb-2">IoT / Smart Home Devices</h4>
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300">Water leak sensors, smart smoke detectors, security cameras, and connected alarm systems. Some insurers offer <strong>premium discounts</strong> for homes with these devices because they detect and prevent losses early.</p>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 lg:p-5 rounded-lg border-l-4 border-purple-500">
+                        <h4 class="font-bold text-purple-800 dark:text-purple-300 mb-2">Aerial Imagery</h4>
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300">Satellite photos and drone images used to assess roof condition, property characteristics, and proximity to hazards &mdash; <strong>without a physical inspection</strong>. Underwriters can verify square footage, roof type, and even identify trampolines or pools.</p>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 lg:p-5 rounded-lg border-l-4 border-red-500">
+                        <h4 class="font-bold text-red-800 dark:text-red-300 mb-2">CLUE Reports</h4>
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300">The Comprehensive Loss Underwriting Exchange &mdash; a database of prior claims shared among insurers. Tracks claims history for <strong>both people and properties</strong>. Up to 7 years of data. Used for both auto and homeowners.</p>
+                    </div>
+                </div>
+
+                <!-- Real-World Example: Data -->
+                <div class="bg-teal-50 dark:bg-teal-900/20 p-4 lg:p-5 rounded-lg border-l-4 border-teal-500">
+                    <p class="font-semibold text-teal-800 dark:text-teal-300 mb-2">Real-World Scenario: Telematics Changes a Driver's Premium</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Jake is 19 years old with a clean driving record. Based on traditional rating factors alone, he is in the highest-risk age group and pays $3,200/year for auto insurance. His insurer offers a telematics program where a smartphone app monitors his driving for 6 months.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> The app shows Jake drives only 8,000 miles per year (below average), rarely drives late at night, has smooth braking habits, and stays within speed limits. His actual driving behavior is far safer than what his age group would predict.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> At renewal, the insurer applies a 25% telematics discount, dropping Jake's premium to $2,400/year. The data allowed the underwriter to price Jake based on <strong>how he actually drives</strong> rather than just <strong>who he is demographically</strong>. This is the power of telematics in personal lines.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cheat Sheet -->
+        <section id="cheat-sheet" class="mb-8 lg:mb-10">
+            <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 border-2 border-dashed border-gray-300 dark:border-gray-600">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100">Cheat Sheet</h2>
+                    <span class="text-sm text-gray-500 dark:text-gray-400">Print this page for quick reference</span>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <!-- Auto Coverage Parts -->
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <h4 class="font-bold text-blue-700 dark:text-blue-300 mb-2">Auto Coverage Parts</h4>
+                        <ul class="text-sm lg:text-base text-gray-700 dark:text-gray-300 space-y-1">
+                            <li><strong>Part A</strong> = Liability (BI + PD to others)</li>
+                            <li><strong>Part B</strong> = Med Pay (regardless of fault)</li>
+                            <li><strong>Part C</strong> = UM/UIM (other driver uninsured)</li>
+                            <li><strong>Part D</strong> = Physical Damage (your car)</li>
+                            <li>Collision = hitting objects</li>
+                            <li>Comp = everything else (theft, weather, animals)</li>
+                        </ul>
+                    </div>
+
+                    <!-- HO Coverages -->
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <h4 class="font-bold text-green-700 dark:text-green-300 mb-2">Homeowners Coverages A-F</h4>
+                        <ul class="text-sm lg:text-base text-gray-700 dark:text-gray-300 space-y-1">
+                            <li><strong>A</strong> = Dwelling</li>
+                            <li><strong>B</strong> = Other Structures</li>
+                            <li><strong>C</strong> = Personal Property</li>
+                            <li><strong>D</strong> = Loss of Use</li>
+                            <li><strong>E</strong> = Personal Liability</li>
+                            <li><strong>F</strong> = Med Pay to Others</li>
+                        </ul>
+                    </div>
+
+                    <!-- HO Forms -->
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <h4 class="font-bold text-green-700 dark:text-green-300 mb-2">HO Form Types</h4>
+                        <ul class="text-sm lg:text-base text-gray-700 dark:text-gray-300 space-y-1">
+                            <li><strong>HO-2</strong> = Broad (named perils)</li>
+                            <li><strong>HO-3</strong> = Special (MOST COMMON)</li>
+                            <li><strong>HO-4</strong> = Renters</li>
+                            <li><strong>HO-5</strong> = Comprehensive (broadest)</li>
+                            <li><strong>HO-6</strong> = Condo owners</li>
+                            <li><strong>HO-8</strong> = Older/historic homes</li>
+                        </ul>
+                    </div>
+
+                    <!-- Auto Hazards -->
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <h4 class="font-bold text-red-700 dark:text-red-300 mb-2">Auto Hazards</h4>
+                        <ul class="text-sm lg:text-base text-gray-700 dark:text-gray-300 space-y-1">
+                            <li>Driver: age, gender, MVR, experience</li>
+                            <li>Vehicle: make/model, safety, theft rate</li>
+                            <li>Use: commute, mileage, business use</li>
+                            <li>Territory: urban/rural, state, weather</li>
+                            <li>Credit-based insurance score</li>
+                        </ul>
+                    </div>
+
+                    <!-- Home Hazards -->
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <h4 class="font-bold text-red-700 dark:text-red-300 mb-2">Homeowners Hazards</h4>
+                        <ul class="text-sm lg:text-base text-gray-700 dark:text-gray-300 space-y-1">
+                            <li>Construction: frame (worst) to fire-resistive (best)</li>
+                            <li>Location: fire protection class 1 (best) to 10 (worst)</li>
+                            <li>Age/condition: old wiring, plumbing, roof</li>
+                            <li>Occupancy: owner &lt; tenant &lt; vacant (worst)</li>
+                            <li>Attractive nuisances: pools, trampolines, dogs</li>
+                            <li>CLUE report + credit score</li>
+                        </ul>
+                    </div>
+
+                    <!-- Data Sources -->
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <h4 class="font-bold text-teal-700 dark:text-teal-300 mb-2">5 Key Data Sources</h4>
+                        <ul class="text-sm lg:text-base text-gray-700 dark:text-gray-300 space-y-1">
+                            <li>Credit-based insurance scores</li>
+                            <li>Telematics (driving behavior)</li>
+                            <li>IoT / smart home devices</li>
+                            <li>Aerial imagery (satellite/drone)</li>
+                            <li>CLUE reports (claims history)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Trap Alerts -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-xl p-5 lg:p-6">
+                <h2 class="text-2xl font-bold text-red-800 dark:text-red-300 mb-4">Exam Trap Alerts</h2>
+                <div class="space-y-4">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">1. Collision vs. Comprehensive &mdash; The Deer Trap</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Hitting a deer = <strong>Comprehensive (Other Than Collision)</strong>. Swerving to avoid a deer and hitting a tree = <strong>Collision</strong>. The exam loves this distinction. If the vehicle strikes an animal, it is comprehensive. If the vehicle strikes an object while reacting to an animal, it is collision.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">2. Med Pay (Part B) Is NOT Liability</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Medical Payments coverage pays <strong>regardless of fault</strong>. It is not about who caused the accident. It simply pays medical expenses for the insured and passengers. Do not confuse it with Part A Liability, which only pays when the insured is at fault.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">3. HO-3 Is Open Peril for Dwelling ONLY</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The HO-3 (Special Form) provides open-peril coverage on the <strong>dwelling</strong> but only <strong>named-peril coverage on personal property</strong>. Only the HO-5 provides open peril on both. If an exam question asks about personal property coverage under an HO-3, remember it is named perils.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">4. CLUE Tracks Properties AND People</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The CLUE report is not just about the person applying for insurance. It tracks claims on <strong>the property itself</strong>. A home with a bad claims history will affect the new buyer's premium, even if the new buyer has zero personal claims. Exam questions may test whether you know CLUE follows the property.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">5. Fire Protection Class Scale Is Backwards</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>Class 1 = best protection</strong> (lowest premium). <strong>Class 10 = worst/unprotected</strong> (highest premium). This is counterintuitive if you think "higher number = better." It does not. Lower is better for fire protection class.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">6. Credit Score Is NOT the Same as Insurance Score</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">A credit-based insurance score is a <strong>separate model</strong> built specifically for predicting insurance losses. It uses credit data but weights factors differently than a FICO score. Do not say "credit score" on the exam &mdash; say "credit-based insurance score."</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">7. HO-4 (Renters) Does NOT Cover the Dwelling</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The HO-4 covers personal property and liability only. The building is the landlord's responsibility. If an exam question asks what an HO-4 covers, the answer is <strong>Contents + Liability</strong>, never the structure.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Reference Summary -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-gradient-to-r from-teal-600 to-teal-800 rounded-xl p-6 text-white">
+                <h2 class="text-2xl font-bold mb-6">Quick Reference Summary</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Personal Lines</p>
+                        <p class="text-sm text-teal-100">Insurance for individuals/families. High volume, standardized, automated, heavily regulated.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">PAP Part A (Liability)</p>
+                        <p class="text-sm text-teal-100">Pays for BI and PD the insured causes to others. Split limits or CSL.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">PAP Part B (Med Pay)</p>
+                        <p class="text-sm text-teal-100">Medical expenses for insured and passengers. No-fault &mdash; pays regardless of who caused it.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">PAP Part C (UM/UIM)</p>
+                        <p class="text-sm text-teal-100">Covers insured when the at-fault driver has no or insufficient insurance.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">PAP Part D (Physical Damage)</p>
+                        <p class="text-sm text-teal-100">Collision (hitting objects) + Comprehensive (theft, weather, animals, glass).</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">HO Coverages A-F</p>
+                        <p class="text-sm text-teal-100">A-D = Property (dwelling, structures, contents, loss of use). E-F = Liability.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">HO-3 (Special Form)</p>
+                        <p class="text-sm text-teal-100">Most common. Open peril on dwelling, named peril on personal property.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Fire Protection Class</p>
+                        <p class="text-sm text-teal-100">Scale of 1-10. Class 1 = best protection, lowest premium. Class 10 = worst.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Key Data Sources</p>
+                        <p class="text-sm text-teal-100">Credit scores, telematics, IoT devices, aerial imagery, CLUE reports.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Personal Umbrella</p>
+                        <p class="text-sm text-teal-100">Excess liability over auto + home. Typically $1M-$5M. Requires minimum underlying limits.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Flood + Earthquake</p>
+                        <p class="text-sm text-teal-100">Both excluded from standard HO policies. Must buy separately (NFIP for flood, endorsement for quake).</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">CLUE Report</p>
+                        <p class="text-sm text-teal-100">Claims database that tracks both people AND properties. Up to 7 years of history.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Navigation -->
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="../index.html" class="text-teal-400 hover:text-teal-300 transition-colors">&larr; Assignment Index</a>
+                <span class="text-gray-400">Part 1 of 3</span>
+                <a href="../part-2/index.html" class="text-teal-400 hover:text-teal-300 transition-colors">Part 2: Underwriting Decisions &rarr;</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AI Tutor Button -->
+    <button onclick="openAITutor()" class="fixed bottom-6 right-6 bg-teal-600 hover:bg-teal-700 text-white p-4 rounded-full shadow-xl hover:scale-110 transition-transform z-40" title="Ask AI Tutor">
+        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+        </svg>
+    </button>
+
+    <script>
+        function openAITutor() {
+            const context = `Topic: CPCU 520 Assignment 4 Part 1 - Personal Lines Loss Exposures and Hazards.
+Key concepts: Personal lines vs commercial lines differences, Personal Auto Policy (PAP) four coverage parts (A=Liability, B=Med Pay, C=UM/UIM, D=Physical Damage with Collision and Comprehensive), Homeowners coverages A-F, HO form types (HO-2, HO-3, HO-4, HO-5, HO-6, HO-8), auto hazards (driver, vehicle, use, territory, credit score), homeowners hazards (construction, location/fire protection class, age, occupancy, attractive nuisances, CLUE), other personal lines (umbrella, renters, flood, earthquake), data sources (credit scores, telematics, IoT, aerial imagery, CLUE).
+Common confusions: Collision vs comprehensive (deer = comp, swerve into tree = collision). HO-3 is open peril on dwelling but named peril on personal property. Fire protection class 1 = best, 10 = worst. CLUE tracks properties AND people. Credit-based insurance score is NOT the same as a credit score. HO-4 renters does NOT cover the dwelling.`;
+            if (typeof showAIChat === 'function') {
+                showAIChat(context);
+            }
+        }
+    </script>
+</body>
+</html>

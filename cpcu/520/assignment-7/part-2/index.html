@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 2: Ratemaking Methods & Loss Reserves | CPCU 520 Assignment 7</title>
+    <link rel="icon" type="image/svg+xml" href="../../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <link rel="stylesheet" href="../../../../css/styles.css">
+    <script src="../../../../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+        }
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <!-- Settings & Theme Toggle Buttons -->
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="showAPIKeySetup()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings">
+            <svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+        </button>
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/>
+            </svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-indigo-600 to-indigo-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap gap-2 text-sm mb-2">
+                <a href="../../../../index.html" class="text-indigo-200 hover:text-white">Home</a>
+                <span class="text-indigo-300">/</span>
+                <a href="../../../index.html" class="text-indigo-200 hover:text-white">CPCU</a>
+                <span class="text-indigo-300">/</span>
+                <a href="../../index.html" class="text-indigo-200 hover:text-white">520</a>
+                <span class="text-indigo-300">/</span>
+                <a href="../index.html" class="text-indigo-200 hover:text-white">Assignment 7</a>
+                <span class="text-indigo-300">/</span>
+                <span class="text-white">Part 2</span>
+            </div>
+            <h1 class="text-3xl font-bold">Part 2: Ratemaking Methods & Loss Reserves</h1>
+            <p class="text-indigo-200 mt-1">The three ratemaking methods, advisory organizations, and the four types of loss reserves</p>
+        </div>
+    </header>
+
+    <!-- Sticky Navigation -->
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-wrap gap-2 text-sm">
+                <a href="../index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Overview</a>
+                <a href="../part-1/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 1</a>
+                <span class="bg-purple-600 text-white px-3 py-1 rounded font-medium">Part 2</span>
+                <a href="../part-3/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 3</a>
+            </div>
+            <div class="flex flex-wrap gap-2 text-xs mt-2 text-gray-500 dark:text-gray-400">
+                <a href="#pure-premium" class="hover:text-purple-600 dark:hover:text-purple-400">Pure Premium</a>
+                <span>|</span>
+                <a href="#loss-ratio" class="hover:text-purple-600 dark:hover:text-purple-400">Loss Ratio</a>
+                <span>|</span>
+                <a href="#judgment" class="hover:text-purple-600 dark:hover:text-purple-400">Judgment</a>
+                <span>|</span>
+                <a href="#comparison" class="hover:text-purple-600 dark:hover:text-purple-400">Method Comparison</a>
+                <span>|</span>
+                <a href="#advisory-orgs" class="hover:text-purple-600 dark:hover:text-purple-400">Advisory Orgs</a>
+                <span>|</span>
+                <a href="#loss-reserves" class="hover:text-purple-600 dark:hover:text-purple-400">Loss Reserves</a>
+                <span>|</span>
+                <a href="#loss-development" class="hover:text-purple-600 dark:hover:text-purple-400">Loss Development</a>
+                <span>|</span>
+                <a href="#cheat-sheet" class="hover:text-purple-600 dark:hover:text-purple-400">Cheat Sheet</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-5xl lg:max-w-7xl">
+
+        <!-- Start Here: 5 Things You MUST Know -->
+        <div class="bg-gradient-to-r from-purple-100 to-indigo-100 dark:from-purple-900/40 dark:to-indigo-900/40 rounded-xl p-6 mb-8 border border-purple-300 dark:border-purple-700">
+            <h3 class="text-xl lg:text-2xl font-bold text-purple-800 dark:text-purple-200 mb-4">Start Here: 5 Things You MUST Know</h3>
+            <div class="grid md:grid-cols-2 gap-3">
+                <div class="flex items-start">
+                    <span class="bg-purple-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Pure Premium Method</strong> builds a rate from scratch. Loss Ratio Method adjusts an existing rate.</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-purple-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Advisory orgs file loss costs</strong>, NOT final rates. Each insurer adds its own expense and profit loading.</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-purple-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Loss reserves are the BIGGEST liability</strong> on an insurer's balance sheet -- often 60-70% of total liabilities.</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-purple-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">4</span>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>IBNR</strong> = losses that happened but the insurer doesn't know yet. <strong>IBNER</strong> = reported but reserved too low.</p>
+                </div>
+                <div class="flex items-start md:col-span-2">
+                    <span class="bg-purple-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">5</span>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Under-reserving</strong> makes an insurer look falsely profitable and can lead to insolvency. <strong>Over-reserving</strong> makes them look less profitable and overcharge.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 1: Pure Premium Method -->
+        <section id="pure-premium" class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">1. Pure Premium Method</h2>
+
+                <!-- Definition -->
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-purple-500 mb-6">
+                    <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg lg:text-xl">When to Use</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">Use this method when you are <strong>building a rate from scratch</strong> -- or when you have reliable historical loss data but no existing rate to compare against. Think of it as starting with a blank slate.</p>
+                </div>
+
+                <!-- The Formula -->
+                <div class="bg-indigo-50 dark:bg-indigo-900/20 rounded-lg p-4 lg:p-5 border border-indigo-200 dark:border-indigo-800 mb-6">
+                    <h3 class="font-bold text-indigo-800 dark:text-indigo-300 text-lg lg:text-xl mb-3">The Formula</h3>
+                    <div class="bg-white dark:bg-gray-700 rounded-lg p-4 text-center">
+                        <p class="text-xl lg:text-2xl font-mono font-bold text-indigo-700 dark:text-indigo-300">
+                            Gross Rate = Pure Premium / (1 - Expense Ratio - Profit Factor)
+                        </p>
+                    </div>
+                    <p class="text-gray-700 dark:text-gray-300 mt-3 text-base lg:text-lg">Where <strong>Pure Premium</strong> = Adjusted Losses / Exposure Units. The denominator accounts for the insurer's expenses and profit margin.</p>
+                </div>
+
+                <!-- 5 Steps -->
+                <div class="mb-6">
+                    <h3 class="font-bold text-gray-800 dark:text-gray-100 text-lg lg:text-xl mb-3">The 5 Steps</h3>
+                    <div class="flex flex-col gap-3">
+                        <div class="flex items-center gap-3">
+                            <div class="bg-purple-100 dark:bg-purple-900/40 p-3 lg:p-4 rounded-lg text-center min-w-[80px]">
+                                <p class="text-lg font-bold text-purple-700 dark:text-purple-300">Step 1</p>
+                            </div>
+                            <div class="text-xl text-gray-400 hidden md:block">--</div>
+                            <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Collect historical loss data</strong> (typically 5+ years to smooth out anomalies)</p>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="bg-purple-100 dark:bg-purple-900/40 p-3 lg:p-4 rounded-lg text-center min-w-[80px]">
+                                <p class="text-lg font-bold text-purple-700 dark:text-purple-300">Step 2</p>
+                            </div>
+                            <div class="text-xl text-gray-400 hidden md:block">--</div>
+                            <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Adjust for development</strong> -- losses grow as claims mature, so you "develop" old data to its ultimate value</p>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="bg-purple-100 dark:bg-purple-900/40 p-3 lg:p-4 rounded-lg text-center min-w-[80px]">
+                                <p class="text-lg font-bold text-purple-700 dark:text-purple-300">Step 3</p>
+                            </div>
+                            <div class="text-xl text-gray-400 hidden md:block">--</div>
+                            <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Trend the data forward</strong> -- account for inflation, frequency changes, and legal environment shifts</p>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="bg-purple-100 dark:bg-purple-900/40 p-3 lg:p-4 rounded-lg text-center min-w-[80px]">
+                                <p class="text-lg font-bold text-purple-700 dark:text-purple-300">Step 4</p>
+                            </div>
+                            <div class="text-xl text-gray-400 hidden md:block">--</div>
+                            <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Calculate pure premium</strong> = Adjusted Losses / Exposure Units</p>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="bg-purple-100 dark:bg-purple-900/40 p-3 lg:p-4 rounded-lg text-center min-w-[80px]">
+                                <p class="text-lg font-bold text-purple-700 dark:text-purple-300">Step 5</p>
+                            </div>
+                            <div class="text-xl text-gray-400 hidden md:block">--</div>
+                            <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Load for expenses and profit</strong> -- apply the formula to get the final gross rate</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Worked Example -->
+                <div class="bg-green-50 dark:bg-green-900/20 p-5 lg:p-6 rounded-lg border-l-4 border-green-500">
+                    <p class="font-semibold text-green-800 dark:text-green-300 text-lg lg:text-xl mb-3">Worked Example: Homeowners in State X</p>
+                    <div class="space-y-3 text-base lg:text-lg">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> An insurer is entering the homeowners market in State X for the first time. They have no existing rate, but they have industry loss data.</p>
+
+                        <div class="bg-white dark:bg-gray-700 rounded-lg p-4 space-y-2">
+                            <p class="font-bold text-gray-800 dark:text-gray-200 mb-2">Given Data:</p>
+                            <p class="text-gray-700 dark:text-gray-300">Historical losses (trended and developed): <strong>$32,000,000</strong> over 5 years</p>
+                            <p class="text-gray-700 dark:text-gray-300">Total exposure: <strong>50,000 house-years</strong></p>
+                            <p class="text-gray-700 dark:text-gray-300">Expense ratio: <strong>30%</strong></p>
+                            <p class="text-gray-700 dark:text-gray-300">Profit factor: <strong>5%</strong></p>
+                        </div>
+
+                        <div class="bg-white dark:bg-gray-700 rounded-lg p-4 space-y-3">
+                            <p class="font-bold text-gray-800 dark:text-gray-200 mb-2">Step-by-Step Calculation:</p>
+
+                            <div class="border-b border-gray-200 dark:border-gray-600 pb-2">
+                                <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base font-medium">Step 1: Pure Premium</p>
+                                <p class="font-mono text-gray-800 dark:text-gray-200 text-lg">$32,000,000 / 50,000 = <strong class="text-purple-700 dark:text-purple-300">$640 per house-year</strong></p>
+                                <p class="text-gray-500 dark:text-gray-400 text-sm lg:text-base">This is the average expected loss cost per home per year -- no expenses, no profit, just losses.</p>
+                            </div>
+
+                            <div class="border-b border-gray-200 dark:border-gray-600 pb-2">
+                                <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base font-medium">Step 2: Calculate the Denominator</p>
+                                <p class="font-mono text-gray-800 dark:text-gray-200 text-lg">1 - 0.30 - 0.05 = <strong class="text-purple-700 dark:text-purple-300">0.65</strong></p>
+                                <p class="text-gray-500 dark:text-gray-400 text-sm lg:text-base">35% of every premium dollar goes to expenses (30%) and profit (5%). Only 65 cents of each dollar covers losses.</p>
+                            </div>
+
+                            <div>
+                                <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base font-medium">Step 3: Gross Rate</p>
+                                <p class="font-mono text-gray-800 dark:text-gray-200 text-lg">$640 / 0.65 = <strong class="text-green-700 dark:text-green-300">$984.62</strong></p>
+                                <p class="text-gray-500 dark:text-gray-400 text-sm lg:text-base">Each homeowner should pay approximately <strong>$985 per year</strong>. Of that, $640 covers expected losses, $295 covers expenses, and $49 is profit.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: Loss Ratio Method -->
+        <section id="loss-ratio" class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">2. Loss Ratio Method</h2>
+
+                <!-- Definition -->
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-6">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg lg:text-xl">When to Use</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">Use this method when you <strong>already have an existing rate</strong> and want to know if it needs to go up or down. Instead of building from scratch, you compare your actual loss experience to what you expected.</p>
+                </div>
+
+                <!-- The Formula -->
+                <div class="bg-indigo-50 dark:bg-indigo-900/20 rounded-lg p-4 lg:p-5 border border-indigo-200 dark:border-indigo-800 mb-6">
+                    <h3 class="font-bold text-indigo-800 dark:text-indigo-300 text-lg lg:text-xl mb-3">The Formula</h3>
+                    <div class="bg-white dark:bg-gray-700 rounded-lg p-4 text-center">
+                        <p class="text-xl lg:text-2xl font-mono font-bold text-indigo-700 dark:text-indigo-300">
+                            Rate Change = (Actual Loss Ratio / Expected Loss Ratio) - 1
+                        </p>
+                    </div>
+                    <p class="text-gray-700 dark:text-gray-300 mt-3 text-base lg:text-lg">If the result is positive, rates need to increase. If negative, rates could decrease. The expected loss ratio is the one built into the current rate structure.</p>
+                </div>
+
+                <!-- Worked Example -->
+                <div class="bg-green-50 dark:bg-green-900/20 p-5 lg:p-6 rounded-lg border-l-4 border-green-500 mb-6">
+                    <p class="font-semibold text-green-800 dark:text-green-300 text-lg lg:text-xl mb-3">Worked Example: Auto Insurance Rate Adjustment</p>
+                    <div class="space-y-3 text-base lg:text-lg">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> An insurer charges $1,000/year for auto insurance. When they set that rate, they expected 65% of each dollar to go toward losses (expected loss ratio = 65%). After a year of experience, actual losses came in at 72%.</p>
+
+                        <div class="bg-white dark:bg-gray-700 rounded-lg p-4 space-y-2">
+                            <p class="font-bold text-gray-800 dark:text-gray-200 mb-2">Given Data:</p>
+                            <p class="text-gray-700 dark:text-gray-300">Current rate: <strong>$1,000</strong></p>
+                            <p class="text-gray-700 dark:text-gray-300">Expected loss ratio: <strong>65%</strong></p>
+                            <p class="text-gray-700 dark:text-gray-300">Actual loss ratio: <strong>72%</strong></p>
+                        </div>
+
+                        <div class="bg-white dark:bg-gray-700 rounded-lg p-4 space-y-3">
+                            <p class="font-bold text-gray-800 dark:text-gray-200 mb-2">Step-by-Step Calculation:</p>
+
+                            <div class="border-b border-gray-200 dark:border-gray-600 pb-2">
+                                <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base font-medium">Step 1: Calculate the Rate Change Factor</p>
+                                <p class="font-mono text-gray-800 dark:text-gray-200 text-lg">72% / 65% = <strong class="text-purple-700 dark:text-purple-300">1.1077</strong></p>
+                                <p class="text-gray-500 dark:text-gray-400 text-sm lg:text-base">Losses are running 1.1077 times what was expected.</p>
+                            </div>
+
+                            <div class="border-b border-gray-200 dark:border-gray-600 pb-2">
+                                <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base font-medium">Step 2: Convert to Percentage Change</p>
+                                <p class="font-mono text-gray-800 dark:text-gray-200 text-lg">1.1077 - 1 = <strong class="text-purple-700 dark:text-purple-300">+0.1077 = +10.77%</strong></p>
+                                <p class="text-gray-500 dark:text-gray-400 text-sm lg:text-base">Rates need to increase by 10.77%.</p>
+                            </div>
+
+                            <div>
+                                <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base font-medium">Step 3: Apply to Current Rate</p>
+                                <p class="font-mono text-gray-800 dark:text-gray-200 text-lg">$1,000 x 1.1077 = <strong class="text-green-700 dark:text-green-300">$1,107.70</strong></p>
+                                <p class="text-gray-500 dark:text-gray-400 text-sm lg:text-base">Losses are running 10.8% higher than expected, so rates need to increase by 10.8% to stay adequate.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Logic Check -->
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 lg:p-5 rounded-r-lg">
+                    <p class="font-bold text-amber-800 dark:text-amber-300 text-base lg:text-lg">Quick Logic Check</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">If actual loss ratio = expected loss ratio, the formula gives (65/65) - 1 = <strong>0% change</strong>. The rate is perfectly adequate. If actual is LOWER than expected, you get a negative number (rate decrease). Makes sense!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: Judgment Method -->
+        <section id="judgment" class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">3. Judgment Method</h2>
+
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-purple-500 mb-6">
+                    <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg lg:text-xl">When to Use</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">Use when there is <strong>insufficient statistical data</strong> for actuarial analysis. This is the method of last resort -- less precise, but sometimes the only option. Common for <strong>new lines, unique risks, and emerging risks</strong> like cyber insurance.</p>
+                </div>
+
+                <div class="mb-6">
+                    <h3 class="font-bold text-gray-800 dark:text-gray-100 text-lg mb-3">What the Actuary Relies On:</h3>
+                    <div class="grid md:grid-cols-2 gap-3">
+                        <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border border-gray-200 dark:border-gray-600">
+                            <p class="font-bold text-gray-800 dark:text-gray-200">Similar Lines of Business</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base mt-1">Using aviation liability data to help price drone insurance</p>
+                        </div>
+                        <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border border-gray-200 dark:border-gray-600">
+                            <p class="font-bold text-gray-800 dark:text-gray-200">Industry Data</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base mt-1">Pooled data from advisory organizations even if limited</p>
+                        </div>
+                        <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border border-gray-200 dark:border-gray-600">
+                            <p class="font-bold text-gray-800 dark:text-gray-200">Expert Opinion</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base mt-1">Engineers, scientists, and risk consultants assess the hazard</p>
+                        </div>
+                        <div class="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg border border-gray-200 dark:border-gray-600">
+                            <p class="font-bold text-gray-800 dark:text-gray-200">Engineering Studies</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base mt-1">Technical failure rate analysis, stress testing results</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Example -->
+                <div class="bg-blue-50 dark:bg-blue-900/20 p-4 lg:p-5 rounded-lg border-l-4 border-blue-500">
+                    <p class="font-semibold text-blue-800 dark:text-blue-300 mb-2 text-base lg:text-lg">Real-World Scenario: Drone Delivery Insurance</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> A startup launches a drone delivery service. They need liability insurance. No historical drone delivery loss data exists anywhere.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> The actuary pieces together data from aviation liability, product liability, and tech E&O policies. They consult engineering assessments of drone failure rates, battery fire risks, and collision probabilities.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> A rate is estimated using professional judgment informed by analogous data. The rate will likely be high (reflecting uncertainty) and will be refined as actual loss data emerges over time.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: Method Comparison -->
+        <section id="comparison" class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">4. When to Use Which Method</h2>
+
+                <div class="grid md:grid-cols-3 gap-4 lg:gap-6">
+                    <!-- Pure Premium -->
+                    <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-purple-500">
+                        <h4 class="font-bold text-purple-800 dark:text-purple-300 text-lg mb-3">Pure Premium</h4>
+                        <div class="space-y-2 text-sm lg:text-base text-gray-700 dark:text-gray-300">
+                            <p><strong>Situation:</strong> New line, no existing rate</p>
+                            <p><strong>Data needed:</strong> Plenty of historical loss data</p>
+                            <p><strong>Output:</strong> A brand-new rate from scratch</p>
+                            <p><strong>Precision:</strong> High (data-driven)</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Think:</strong> "I have data but no rate"</p>
+                        </div>
+                    </div>
+
+                    <!-- Loss Ratio -->
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500">
+                        <h4 class="font-bold text-blue-800 dark:text-blue-300 text-lg mb-3">Loss Ratio</h4>
+                        <div class="space-y-2 text-sm lg:text-base text-gray-700 dark:text-gray-300">
+                            <p><strong>Situation:</strong> Existing rate needs adjustment</p>
+                            <p><strong>Data needed:</strong> Recent actual loss experience</p>
+                            <p><strong>Output:</strong> Percentage increase or decrease</p>
+                            <p><strong>Precision:</strong> High (data-driven)</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Think:</strong> "I have a rate -- is it still right?"</p>
+                        </div>
+                    </div>
+
+                    <!-- Judgment -->
+                    <div class="bg-amber-50 dark:bg-amber-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-amber-500">
+                        <h4 class="font-bold text-amber-800 dark:text-amber-300 text-lg mb-3">Judgment</h4>
+                        <div class="space-y-2 text-sm lg:text-base text-gray-700 dark:text-gray-300">
+                            <p><strong>Situation:</strong> No data, emerging or unique risk</p>
+                            <p><strong>Data needed:</strong> Analogous data, expert opinion</p>
+                            <p><strong>Output:</strong> Best estimate based on judgment</p>
+                            <p><strong>Precision:</strong> Low (subjective)</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Think:</strong> "I have no data -- best guess"</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: Advisory Organizations -->
+        <section id="advisory-orgs" class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">5. Advisory Organizations</h2>
+
+                <div class="bg-indigo-50 dark:bg-indigo-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-indigo-500 mb-6">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Advisory organizations <strong>pool loss data</strong> from many insurers and develop <strong>prospective loss costs</strong> (pure premiums without expense loading). They file these with regulators. Insurers can then adopt, modify, or ignore them and add their own expense and profit loading.</p>
+                </div>
+
+                <!-- The Big Three -->
+                <div class="grid md:grid-cols-3 gap-4 lg:gap-6 mb-6">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border border-blue-200 dark:border-blue-800">
+                        <h4 class="font-bold text-blue-800 dark:text-blue-300 text-lg mb-2">ISO / Verisk</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mb-2">The largest advisory organization. Collects data from thousands of insurers.</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base"><strong>Focus:</strong> Commercial and personal lines loss costs, policy forms, and classification systems</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base mt-1"><strong>Key fact:</strong> Most insurers use ISO forms and rates as a starting point</p>
+                    </div>
+
+                    <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 lg:p-5 border border-green-200 dark:border-green-800">
+                        <h4 class="font-bold text-green-800 dark:text-green-300 text-lg mb-2">NCCI</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mb-2">National Council on Compensation Insurance. Specializes in one line only.</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base"><strong>Focus:</strong> Workers' compensation data, rates, and classification system</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base mt-1"><strong>Key fact:</strong> Operates in approximately 38 states</p>
+                    </div>
+
+                    <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 lg:p-5 border border-purple-200 dark:border-purple-800">
+                        <h4 class="font-bold text-purple-800 dark:text-purple-300 text-lg mb-2">AAIS</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mb-2">American Association of Insurance Services. A smaller alternative to ISO.</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base"><strong>Focus:</strong> Serves small and regional insurers who need an alternative to ISO</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base mt-1"><strong>Key fact:</strong> Same concept as ISO but smaller scale</p>
+                    </div>
+                </div>
+
+                <!-- How It Works Flow -->
+                <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 lg:p-5">
+                    <h3 class="font-bold text-gray-800 dark:text-gray-200 text-lg mb-3">How the Process Works</h3>
+                    <div class="flex flex-wrap items-center gap-3 lg:gap-4 justify-center">
+                        <div class="bg-blue-100 dark:bg-blue-900/40 p-3 lg:p-4 rounded-lg text-center min-w-[120px]">
+                            <p class="font-bold text-blue-800 dark:text-blue-300 text-sm lg:text-base">Insurers Report</p>
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Loss data submitted</p>
+                        </div>
+                        <div class="text-2xl text-gray-400 font-bold">--></div>
+                        <div class="bg-purple-100 dark:bg-purple-900/40 p-3 lg:p-4 rounded-lg text-center min-w-[120px]">
+                            <p class="font-bold text-purple-800 dark:text-purple-300 text-sm lg:text-base">Advisory Org Pools</p>
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Data aggregated</p>
+                        </div>
+                        <div class="text-2xl text-gray-400 font-bold">--></div>
+                        <div class="bg-green-100 dark:bg-green-900/40 p-3 lg:p-4 rounded-lg text-center min-w-[120px]">
+                            <p class="font-bold text-green-800 dark:text-green-300 text-sm lg:text-base">Loss Costs Filed</p>
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">With regulators</p>
+                        </div>
+                        <div class="text-2xl text-gray-400 font-bold">--></div>
+                        <div class="bg-amber-100 dark:bg-amber-900/40 p-3 lg:p-4 rounded-lg text-center min-w-[120px]">
+                            <p class="font-bold text-amber-800 dark:text-amber-300 text-sm lg:text-base">Insurers Use/Modify</p>
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Add own expenses</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Critical Distinction -->
+                <div class="bg-red-50 dark:bg-red-900/20 border-l-4 border-red-500 p-4 lg:p-5 rounded-r-lg mt-4">
+                    <p class="font-bold text-red-800 dark:text-red-300 text-base lg:text-lg">Critical Distinction for the Exam</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">Advisory organizations file <strong>LOSS COSTS</strong> (pure premiums without expense loading) -- NOT final rates. Each insurer adds its own expense and profit loading to create its final rate. This is why two insurers can use the same ISO loss costs but charge different premiums.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 6: Loss Reserves -->
+        <section id="loss-reserves" class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">6. Loss Reserves -- The Biggest Liability on the Balance Sheet</h2>
+
+                <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-red-500 mb-6">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>What are loss reserves?</strong> Money set aside to pay for losses that have <strong>already occurred</strong> but have not yet been fully paid. They represent the insurer's best estimate of what they will ultimately owe.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mt-2">Loss reserves are typically the <strong>largest single liability</strong> on an insurer's balance sheet -- often <strong>60-70% of total liabilities</strong>. Getting reserves wrong has massive consequences.</p>
+                </div>
+
+                <!-- Four Types -->
+                <h3 class="font-bold text-gray-800 dark:text-gray-100 text-lg lg:text-xl mb-4">The Four Types of Loss Reserves</h3>
+
+                <div class="grid lg:grid-cols-2 gap-4 lg:gap-6 mb-6">
+                    <!-- Case Reserves -->
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border border-blue-200 dark:border-blue-800">
+                        <div class="flex items-start mb-3">
+                            <span class="bg-blue-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">A</span>
+                            <h4 class="font-bold text-blue-800 dark:text-blue-300 text-lg">Case Reserves</h4>
+                        </div>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-2">Estimates for individual <strong>known claims</strong> that have been reported but not yet paid. Set by claims adjusters based on the specific facts of each claim.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-2">
+                            <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>Example:</strong> A car accident is reported. The adjuster reviews the damage, medical bills, and estimates the total cost at $15,000. A $15,000 case reserve is established for that specific claim.</p>
+                        </div>
+                    </div>
+
+                    <!-- IBNR -->
+                    <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-4 lg:p-5 border border-red-200 dark:border-red-800">
+                        <div class="flex items-start mb-3">
+                            <span class="bg-red-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">B</span>
+                            <h4 class="font-bold text-red-800 dark:text-red-300 text-lg">IBNR (Incurred But Not Reported)</h4>
+                        </div>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-2">Losses that have <strong>already happened</strong> but the insurer <strong>doesn't know about them yet</strong>. The insurer must estimate how many unreported claims are out there.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-2">
+                            <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>Example:</strong> A hailstorm damages a roof in October. The homeowner doesn't notice the damage until April. The loss is "incurred" in October but won't be "reported" until April -- a 6-month IBNR gap.</p>
+                        </div>
+                        <div class="bg-red-100 dark:bg-red-800/30 p-3 rounded mt-2">
+                            <p class="text-sm lg:text-base text-red-800 dark:text-red-300"><strong>Biggest IBNR risk:</strong> Long-tail lines (liability, workers comp) where claims can emerge <strong>years or even decades</strong> later. Think: asbestos exposure, sexual abuse claims.</p>
+                        </div>
+                    </div>
+
+                    <!-- IBNER -->
+                    <div class="bg-amber-50 dark:bg-amber-900/20 rounded-lg p-4 lg:p-5 border border-amber-200 dark:border-amber-800">
+                        <div class="flex items-start mb-3">
+                            <span class="bg-amber-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">C</span>
+                            <h4 class="font-bold text-amber-800 dark:text-amber-300 text-lg">IBNER (Incurred But Not Enough Reported)</h4>
+                        </div>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-2">Also called <strong>"development on known claims."</strong> Claims that HAVE been reported, but the case reserve is <strong>too low</strong>. This is the <strong>most common type of reserve adjustment</strong>.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-2">
+                            <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>Example:</strong> A workers comp claim is initially reserved at $50,000. The claimant's condition worsens and requires additional surgery. Reserve must be increased to $150,000. The $100,000 increase is IBNER.</p>
+                        </div>
+                    </div>
+
+                    <!-- Reopened Claims -->
+                    <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 lg:p-5 border border-purple-200 dark:border-purple-800">
+                        <div class="flex items-start mb-3">
+                            <span class="bg-purple-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">D</span>
+                            <h4 class="font-bold text-purple-800 dark:text-purple-300 text-lg">Reopened Claims Reserves</h4>
+                        </div>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-2">Claims that were <strong>closed</strong> (settled and paid) but later get <strong>reopened</strong> due to a change in circumstances.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-2">
+                            <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>Example:</strong> A workers comp claim is closed after the claimant returns to work. Two years later, the injury flares up and the claimant needs another surgery. The claim is reopened and a new reserve must be established.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Key Numbers -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-3 lg:gap-4">
+                    <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded-lg text-center border border-gray-200 dark:border-gray-600">
+                        <p class="text-2xl lg:text-3xl font-bold text-red-600 dark:text-red-400">60-70%</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Of total liabilities are loss reserves</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded-lg text-center border border-gray-200 dark:border-gray-600">
+                        <p class="text-2xl lg:text-3xl font-bold text-blue-600 dark:text-blue-400">Case</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Known claims, adjuster-set</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded-lg text-center border border-gray-200 dark:border-gray-600">
+                        <p class="text-2xl lg:text-3xl font-bold text-red-600 dark:text-red-400">IBNR</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Happened but unknown</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded-lg text-center border border-gray-200 dark:border-gray-600">
+                        <p class="text-2xl lg:text-3xl font-bold text-amber-600 dark:text-amber-400">IBNER</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Known but under-reserved</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 7: Loss Development -->
+        <section id="loss-development" class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">7. Loss Development</h2>
+
+                <div class="bg-indigo-50 dark:bg-indigo-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-indigo-500 mb-6">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Claims change over time -- initial estimates are almost <strong>NEVER</strong> the final cost. <strong>Loss development factors</strong> measure how much claims grow from initial report to final settlement. Actuaries use <strong>loss development triangles</strong> to track these patterns.</p>
+                </div>
+
+                <!-- Short-tail vs Long-tail -->
+                <div class="grid md:grid-cols-2 gap-4 lg:gap-6 mb-6">
+                    <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-green-500">
+                        <h4 class="font-bold text-green-800 dark:text-green-300 text-lg mb-2">Short-Tail Lines</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-2">Claims develop quickly -- typically <strong>1-2 years</strong> to final settlement.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>Examples:</strong> Property insurance, auto physical damage. A house fire is reported, inspected, and settled within months.</p>
+                        </div>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-red-500">
+                        <h4 class="font-bold text-red-800 dark:text-red-300 text-lg mb-2">Long-Tail Lines</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-2">Claims can develop for <strong>10-20+ years</strong> before final settlement.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>Examples:</strong> General liability, workers comp, medical malpractice. A child injured at birth may not file a lawsuit until age 18. Asbestos claims emerged decades after exposure.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Why Accurate Reserves Matter -->
+                <h3 class="font-bold text-gray-800 dark:text-gray-100 text-lg lg:text-xl mb-4">Why Accurate Reserves Matter</h3>
+                <div class="grid md:grid-cols-2 gap-4 lg:gap-6">
+                    <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-4 lg:p-5 border border-red-200 dark:border-red-800">
+                        <h4 class="font-bold text-red-800 dark:text-red-300 text-lg mb-2">Under-Reserving (Too Little Set Aside)</h4>
+                        <div class="space-y-2 text-sm lg:text-base text-gray-700 dark:text-gray-300">
+                            <p>The insurer <strong>looks more profitable</strong> than it really is because liabilities are understated.</p>
+                            <p>May pay <strong>excessive dividends</strong> to shareholders based on phantom profits.</p>
+                            <p>May lead to <strong>inadequate rates</strong> (if you think losses are low, you charge too little).</p>
+                            <p>Ultimate risk: <strong>insolvency</strong> when the true cost of claims is revealed.</p>
+                        </div>
+                    </div>
+                    <div class="bg-amber-50 dark:bg-amber-900/20 rounded-lg p-4 lg:p-5 border border-amber-200 dark:border-amber-800">
+                        <h4 class="font-bold text-amber-800 dark:text-amber-300 text-lg mb-2">Over-Reserving (Too Much Set Aside)</h4>
+                        <div class="space-y-2 text-sm lg:text-base text-gray-700 dark:text-gray-300">
+                            <p>The insurer <strong>looks less profitable</strong> than it really is because liabilities are overstated.</p>
+                            <p>May charge <strong>excessive premiums</strong>, losing customers to competitors.</p>
+                            <p>Tax implications: reserves are a tax deduction, so over-reserving reduces taxable income.</p>
+                            <p>Regulators watch for this too -- it can be a sign of <strong>income manipulation</strong>.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Regulatory Note -->
+                <div class="bg-purple-50 dark:bg-purple-900/20 border-l-4 border-purple-500 p-4 lg:p-5 rounded-r-lg mt-4">
+                    <p class="font-bold text-purple-800 dark:text-purple-300 text-base lg:text-lg">Regulatory Requirement</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">State regulators <strong>examine reserve adequacy annually</strong>. An appointed actuary must certify that reserves are adequate. If regulators find reserves are deficient, they can require the insurer to increase them -- which immediately reduces reported surplus and may trigger regulatory action.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CHEAT SHEET -->
+        <section id="cheat-sheet" class="mb-8 lg:mb-10">
+            <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 border-2 border-dashed border-gray-300 dark:border-gray-600">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100">Cheat Sheet</h2>
+                    <span class="text-sm text-gray-500 dark:text-gray-400">Print this page for quick reference</span>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    <!-- Formulas -->
+                    <div>
+                        <h3 class="font-bold text-purple-700 dark:text-purple-300 mb-2 text-lg">Formulas</h3>
+                        <div class="space-y-2 text-sm lg:text-base">
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                                <p class="font-mono text-gray-800 dark:text-gray-200"><strong>Pure Premium:</strong> Gross Rate = PP / (1 - Exp% - Profit%)</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                                <p class="font-mono text-gray-800 dark:text-gray-200"><strong>Loss Ratio:</strong> Rate Change = (Actual LR / Expected LR) - 1</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                                <p class="font-mono text-gray-800 dark:text-gray-200"><strong>Pure Premium:</strong> PP = Adjusted Losses / Exposure Units</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Method Selection -->
+                    <div>
+                        <h3 class="font-bold text-indigo-700 dark:text-indigo-300 mb-2 text-lg">Method Selection</h3>
+                        <div class="space-y-2 text-sm lg:text-base">
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                                <p class="text-gray-800 dark:text-gray-200"><strong>Pure Premium:</strong> Have data, no existing rate</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                                <p class="text-gray-800 dark:text-gray-200"><strong>Loss Ratio:</strong> Have existing rate, need to adjust</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                                <p class="text-gray-800 dark:text-gray-200"><strong>Judgment:</strong> No data, emerging/unique risk</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Advisory Orgs -->
+                    <div>
+                        <h3 class="font-bold text-blue-700 dark:text-blue-300 mb-2 text-lg">Advisory Orgs</h3>
+                        <div class="space-y-2 text-sm lg:text-base">
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                                <p class="text-gray-800 dark:text-gray-200"><strong>ISO/Verisk:</strong> Largest, commercial + personal lines</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                                <p class="text-gray-800 dark:text-gray-200"><strong>NCCI:</strong> Workers comp only, ~38 states</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                                <p class="text-gray-800 dark:text-gray-200"><strong>AAIS:</strong> Smaller alternative, regional insurers</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                                <p class="text-gray-800 dark:text-gray-200"><strong>Key rule:</strong> File LOSS COSTS, not final rates</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Reserve Types -->
+                    <div>
+                        <h3 class="font-bold text-red-700 dark:text-red-300 mb-2 text-lg">Four Reserve Types</h3>
+                        <div class="space-y-2 text-sm lg:text-base">
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                                <p class="text-gray-800 dark:text-gray-200"><strong>Case:</strong> Known claims, adjuster estimates each one</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                                <p class="text-gray-800 dark:text-gray-200"><strong>IBNR:</strong> Happened but insurer doesn't know yet</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                                <p class="text-gray-800 dark:text-gray-200"><strong>IBNER:</strong> Reported but reserved too low (most common adjustment)</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                                <p class="text-gray-800 dark:text-gray-200"><strong>Reopened:</strong> Closed claims that get reopened</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- EXAM TRAP ALERTS -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-xl p-5 lg:p-6">
+                <h2 class="text-2xl font-bold text-red-800 dark:text-red-300 mb-4">Exam Trap Alerts</h2>
+                <div class="space-y-3">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">1. Pure Premium vs. Loss Ratio -- Don't Mix Up When to Use Each</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Pure Premium = building from scratch (no existing rate). Loss Ratio = adjusting an existing rate. If the question says "an insurer wants to determine if its current rates are adequate," that is the Loss Ratio Method. If it says "developing a rate for a new market," that is the Pure Premium Method.</p>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">2. Advisory Orgs File LOSS COSTS, Not Rates</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">A question might say "ISO files rates that all insurers must use." This is FALSE. ISO files prospective loss costs (pure premiums). Each insurer adds its own expense and profit loading. Insurers can also develop their own independent rates.</p>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">3. IBNR vs. IBNER -- The Name Tells You</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">IBNR = "Not Reported" -- the insurer doesn't even know the claim exists yet. IBNER = "Not ENOUGH Reported" -- the insurer knows about the claim but has set aside too little money. If a question describes a known claim that grows, that is IBNER, not IBNR.</p>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">4. Under-Reserving Makes You Look PROFITABLE (Not Poor)</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">This is counterintuitive. If you don't set aside enough for losses, your liabilities are understated, which makes your net income look higher. The danger is false profitability leading to excessive dividends and eventual insolvency.</p>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">5. The Denominator in Pure Premium Formula is NOT Just Expenses</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The formula divides by (1 - Expense Ratio - Profit Factor). Students sometimes forget the profit factor. If expense ratio is 30% and profit is 5%, the denominator is 0.65, not 0.70. This makes a significant difference in the final rate.</p>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">6. NCCI is Workers Comp ONLY</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Don't confuse NCCI with ISO. NCCI handles workers compensation exclusively (in ~38 states). ISO handles commercial and personal lines broadly. If a question mentions workers comp classification codes or experience modification, think NCCI.</p>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">7. Loss Development Applies to ALL Methods</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Whether using Pure Premium or Loss Ratio, the historical data must be developed to ultimate. A claim reported 6 months ago has not finished developing. Failing to adjust for development means your rates are based on incomplete data and will be too low.</p>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">8. Long-Tail vs. Short-Tail Affects EVERYTHING</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Long-tail lines have more IBNR, higher development factors, greater reserve uncertainty, and more investment income on reserves. Property = short tail (1-2 years). Liability/WC/Med Mal = long tail (10-20+ years). This distinction shows up in multiple exam contexts.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- QUICK REFERENCE SUMMARY -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-gradient-to-r from-indigo-600 to-purple-700 rounded-xl p-6 text-white">
+                <h2 class="text-2xl font-bold mb-6">Quick Reference Summary</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Pure Premium Method</p>
+                        <p class="text-sm text-indigo-100">Builds rate from scratch: PP / (1 - Exp% - Profit%)</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Loss Ratio Method</p>
+                        <p class="text-sm text-indigo-100">Adjusts existing rate: (Actual LR / Expected LR) - 1</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Judgment Method</p>
+                        <p class="text-sm text-indigo-100">Expert opinion when no statistical data exists</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">ISO / Verisk</p>
+                        <p class="text-sm text-indigo-100">Largest advisory org, files loss costs (not rates)</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">NCCI</p>
+                        <p class="text-sm text-indigo-100">Workers comp only, ~38 states</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Case Reserves</p>
+                        <p class="text-sm text-indigo-100">Individual known claims, adjuster-set estimates</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">IBNR</p>
+                        <p class="text-sm text-indigo-100">Losses happened but insurer doesn't know yet</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">IBNER</p>
+                        <p class="text-sm text-indigo-100">Known claims reserved too low (most common adjustment)</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Loss Reserves</p>
+                        <p class="text-sm text-indigo-100">60-70% of total liabilities, annually examined</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Under-Reserving</p>
+                        <p class="text-sm text-indigo-100">False profit, excessive dividends, insolvency risk</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Short-Tail Lines</p>
+                        <p class="text-sm text-indigo-100">Property, auto PD -- develop in 1-2 years</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Long-Tail Lines</p>
+                        <p class="text-sm text-indigo-100">Liability, WC, med mal -- develop 10-20+ years</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Navigation Footer -->
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="../part-1/index.html" class="text-gray-300 hover:text-white flex items-center">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                    </svg>
+                    Part 1: Fundamentals
+                </a>
+                <span class="text-gray-400">Part 2 of 3</span>
+                <a href="../part-3/index.html" class="text-gray-300 hover:text-white flex items-center">
+                    Part 3: Rate Filing & Modern Practice
+                    <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AI Tutor Button -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            createFloatingAIButton(`Part 2: Ratemaking Methods & Loss Reserves
+
+Key Topics:
+- Three ratemaking methods: Pure Premium, Loss Ratio, Judgment
+- Pure Premium formula: Gross Rate = Pure Premium / (1 - Expense Ratio - Profit Factor)
+- Loss Ratio formula: Rate Change = (Actual LR / Expected LR) - 1
+- Judgment method: used when no statistical data available (new/emerging risks)
+- Advisory orgs (ISO, NCCI, AAIS) file LOSS COSTS, not final rates
+- Four reserve types: Case, IBNR, IBNER, Reopened Claims
+- Loss reserves = 60-70% of total liabilities (largest balance sheet item)
+- Loss development: short-tail (1-2 yrs) vs long-tail (10-20+ yrs)
+- Under-reserving = false profitability risk; Over-reserving = competitive/tax issues
+
+Key Numbers:
+- Pure Premium example: $640 PP / 0.65 = $984.62 gross rate
+- Loss Ratio example: (72%/65%) - 1 = +10.77% rate increase
+- NCCI operates in ~38 states
+- Reserves = 60-70% of insurer liabilities
+
+Common Confusions:
+- IBNR = insurer doesn't know claim exists; IBNER = claim known but under-reserved
+- Advisory orgs file loss costs, NOT final rates
+- Under-reserving makes insurer look MORE profitable (not less)
+- Pure Premium builds from scratch; Loss Ratio adjusts existing rates`);
+        });
+    </script>
+</body>
+</html>

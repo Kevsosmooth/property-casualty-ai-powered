@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment 4 Part 3: Portfolio Analysis & Risk Modeling | CPCU 520</title>
+    <link rel="icon" type="image/svg+xml" href="../../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <link rel="stylesheet" href="../../../../css/styles.css">
+    <script src="../../../../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+        }
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <!-- Settings & Theme Toggle Buttons -->
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="showAPIKeySetup()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings">
+            <svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+        </button>
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/>
+            </svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-teal-600 to-teal-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap gap-2 text-sm mb-2">
+                <a href="../../../../index.html" class="text-teal-200 hover:text-white">Home</a>
+                <span class="text-teal-300">/</span>
+                <a href="../../../index.html" class="text-teal-200 hover:text-white">CPCU</a>
+                <span class="text-teal-300">/</span>
+                <a href="../../index.html" class="text-teal-200 hover:text-white">520</a>
+                <span class="text-teal-300">/</span>
+                <a href="../index.html" class="text-teal-200 hover:text-white">Assignment 4</a>
+                <span class="text-teal-300">/</span>
+                <span class="text-white">Part 3</span>
+            </div>
+            <h1 class="text-3xl font-bold">Assignment 4 Part 3: Portfolio Analysis & Risk Modeling</h1>
+            <p class="text-teal-200 mt-1">How insurers manage their entire book of business, model catastrophes, and use predictive analytics to stay profitable</p>
+        </div>
+    </header>
+
+    <!-- Part Navigation -->
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-wrap gap-2 text-sm">
+                <a href="../index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Overview</a>
+                <a href="../part-1/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 1</a>
+                <a href="../part-2/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 2</a>
+                <span class="bg-teal-600 text-white px-3 py-1 rounded font-medium">Part 3</span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-5xl lg:max-w-7xl">
+
+        <!-- Overview Section -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">Portfolio Analysis & Risk Modeling</h2>
+
+                <div class="bg-teal-50 dark:bg-teal-900/30 border border-teal-200 dark:border-teal-800 rounded-lg p-5 lg:p-6 mb-6">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Saying yes or no to individual risks is only half the underwriting job. The other half is managing the <strong>portfolio</strong> -- the entire collection of policies the insurer has on its books. A portfolio loaded with coastal Florida homes might contain perfectly underwritten individual risks, but one hurricane could wipe out the entire book. This part covers how insurers analyze their portfolios, model catastrophe scenarios, use predictive analytics for pricing, and navigate the increasingly challenging personal lines environment.</p>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 lg:p-5 rounded-r-lg">
+                    <p class="font-bold text-amber-800 dark:text-amber-300 text-lg">Exam Alert!</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">Expect questions about <strong>geographic diversification</strong>, the three components of <strong>catastrophe models</strong>, the difference between <strong>GLMs and GBMs</strong>, the concept of <strong>proxy discrimination</strong>, and what happens when <strong>rate adequacy</strong> breaks down. Current market challenges (insurer withdrawals, FAIR Plans, climate change) are heavily tested.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Start Here: 5 Things You MUST Know -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-teal-100 to-cyan-200 dark:from-teal-900/40 dark:to-cyan-800/40 rounded-xl p-6 border border-teal-300 dark:border-teal-700">
+                <h3 class="text-xl lg:text-2xl font-bold text-teal-800 dark:text-teal-200 mb-4">Start Here: 5 Things You MUST Know</h3>
+                <div class="grid md:grid-cols-2 gap-3">
+                    <div class="flex items-start">
+                        <span class="bg-teal-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">A portfolio of <strong>individually well-underwritten risks</strong> can still produce catastrophic losses if there is <strong>geographic concentration</strong> -- diversification across regions is essential.</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-teal-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Catastrophe models have <strong>three components</strong>: Hazard (what events could happen), Vulnerability (how much damage), and Financial (what it costs the insurer).</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-teal-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>GLMs</strong> (Generalized Linear Models) are the industry standard for personal lines pricing. They produce <strong>relativities</strong> that show how each rating variable affects expected losses.</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-teal-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">4</span>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Proxy discrimination</strong> occurs when a facially neutral variable (like ZIP code) correlates with a protected class (like race) -- regulators are cracking down on this.</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-teal-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">5</span>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">The <strong>actuarial indication</strong> is the recommended rate change. The <strong>selected change</strong> is what management actually files -- often less than the indication for competitive reasons.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 1: Why Portfolio Management Matters -->
+        <section id="portfolio-management" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">1. Why Portfolio Management Matters</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-6">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg lg:text-xl">The Portfolio Mindset</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">An underwriter's job is not just saying yes or no to <strong>individual risks</strong>. The <strong>portfolio</strong> -- the entire collection of policies on the insurer's books -- is what determines overall profitability. A perfectly underwritten individual risk can still contribute to a bad portfolio if there is <strong>concentration risk</strong> (too many similar exposures in one area).</p>
+                </div>
+
+                <!-- Individual vs Portfolio Thinking -->
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border border-green-200 dark:border-green-800">
+                        <p class="font-bold text-green-800 dark:text-green-300 mb-2">Individual Risk View</p>
+                        <ul class="space-y-2 text-gray-700 dark:text-gray-300 text-sm lg:text-base">
+                            <li>-- Is this one home properly rated?</li>
+                            <li>-- Does this one driver meet guidelines?</li>
+                            <li>-- Is the premium adequate for this risk?</li>
+                            <li>-- Does this risk meet underwriting standards?</li>
+                        </ul>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400"><strong>Limitation:</strong> Each risk looks fine on its own, but you cannot see the big picture.</p>
+                        </div>
+                    </div>
+                    <div class="bg-teal-50 dark:bg-teal-900/20 p-4 rounded-lg border border-teal-200 dark:border-teal-800">
+                        <p class="font-bold text-teal-800 dark:text-teal-300 mb-2">Portfolio View</p>
+                        <ul class="space-y-2 text-gray-700 dark:text-gray-300 text-sm lg:text-base">
+                            <li>-- How concentrated are we in hurricane zones?</li>
+                            <li>-- Which segments are profitable vs. losing money?</li>
+                            <li>-- What is our worst-case loss in a single event?</li>
+                            <li>-- Are we growing in the right places?</li>
+                        </ul>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400"><strong>Advantage:</strong> Reveals concentration risk, identifies profitable growth opportunities.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Real-World Example -->
+                <div class="bg-red-50 dark:bg-red-900/20 p-4 lg:p-5 rounded-lg border-l-4 border-red-500">
+                    <p class="font-semibold text-red-800 dark:text-red-300 mb-2">Real-World Scenario: Concentration Risk Disaster</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Sunshine Insurance writes 50,000 homeowners policies in coastal Florida. Every single policy was properly underwritten -- good construction, up-to-date roofs, proper wind mitigation. Individually, each risk is solid.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> A Category 4 hurricane makes landfall, damaging 30,000 of those 50,000 homes. Average claim: $120,000.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Total losses: $3.6 billion from a single event. Sunshine's surplus is wiped out. The company becomes insolvent -- not because of bad underwriting on any one risk, but because the <strong>portfolio was dangerously concentrated</strong> in one catastrophe-prone region. This is exactly why portfolio-level thinking is essential.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Geographic Diversification -->
+        <section id="geographic-diversification" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">2. Geographic Diversification</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-6">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Geographic diversification</strong> means spreading risk across different regions so that no single catastrophe can devastate the entire portfolio. The goal: if a hurricane hits Florida, the insurer's Midwest and Northeast books keep the company profitable overall.</p>
+                </div>
+
+                <!-- Catastrophe Exposure Map/Grid -->
+                <h3 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">U.S. Catastrophe Exposure by Region</h3>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border border-red-200 dark:border-red-800">
+                        <div class="flex items-center mb-2">
+                            <span class="bg-red-600 text-white text-xs font-bold px-2 py-1 rounded mr-2">SOUTHEAST</span>
+                            <span class="text-red-700 dark:text-red-300 font-bold text-sm">Extreme Risk</span>
+                        </div>
+                        <p class="font-bold text-red-800 dark:text-red-300">Hurricanes</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">FL, TX coast, LA, MS, AL, SC, NC. Wind + storm surge + flooding. Season: June-November.</p>
+                    </div>
+                    <div class="bg-orange-50 dark:bg-orange-900/20 p-4 rounded-lg border border-orange-200 dark:border-orange-800">
+                        <div class="flex items-center mb-2">
+                            <span class="bg-orange-600 text-white text-xs font-bold px-2 py-1 rounded mr-2">WEST COAST</span>
+                            <span class="text-orange-700 dark:text-orange-300 font-bold text-sm">High Risk</span>
+                        </div>
+                        <p class="font-bold text-orange-800 dark:text-orange-300">Earthquakes</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">CA, OR, WA. San Andreas, Cascadia faults. Also New Madrid (MO/TN/AR). No seasonal pattern.</p>
+                    </div>
+                    <div class="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg border border-amber-200 dark:border-amber-800">
+                        <div class="flex items-center mb-2">
+                            <span class="bg-amber-600 text-white text-xs font-bold px-2 py-1 rounded mr-2">WEST</span>
+                            <span class="text-amber-700 dark:text-amber-300 font-bold text-sm">Growing Risk</span>
+                        </div>
+                        <p class="font-bold text-amber-800 dark:text-amber-300">Wildfire</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">CA, CO, OR, WA, MT. Wildland-Urban Interface (WUI) expansion. Year-round in some areas.</p>
+                    </div>
+                    <div class="bg-yellow-50 dark:bg-yellow-900/20 p-4 rounded-lg border border-yellow-200 dark:border-yellow-800">
+                        <div class="flex items-center mb-2">
+                            <span class="bg-yellow-600 text-white text-xs font-bold px-2 py-1 rounded mr-2">MIDWEST</span>
+                            <span class="text-yellow-700 dark:text-yellow-300 font-bold text-sm">High Risk</span>
+                        </div>
+                        <p class="font-bold text-yellow-800 dark:text-yellow-300">Tornadoes</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">TX, OK, KS, NE, IA, IL, IN. "Tornado Alley" + expanding "Dixie Alley." Season: March-June.</p>
+                    </div>
+                    <div class="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-lg border border-indigo-200 dark:border-indigo-800">
+                        <div class="flex items-center mb-2">
+                            <span class="bg-indigo-600 text-white text-xs font-bold px-2 py-1 rounded mr-2">GREAT PLAINS</span>
+                            <span class="text-indigo-700 dark:text-indigo-300 font-bold text-sm">High Frequency</span>
+                        </div>
+                        <p class="font-bold text-indigo-800 dark:text-indigo-300">Hail</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">TX, CO, NE, KS, SD. Convective storms produce baseball-sized hail. #1 cause of homeowners roof claims.</p>
+                    </div>
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
+                        <div class="flex items-center mb-2">
+                            <span class="bg-blue-600 text-white text-xs font-bold px-2 py-1 rounded mr-2">NATIONWIDE</span>
+                            <span class="text-blue-700 dark:text-blue-300 font-bold text-sm">Expanding Risk</span>
+                        </div>
+                        <p class="font-bold text-blue-800 dark:text-blue-300">Flooding</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">All 50 states. Inland flooding from heavy rain now rivals coastal flooding. NFIP covers most flood risk.</p>
+                    </div>
+                </div>
+
+                <!-- Tools for Managing Geographic Risk -->
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-purple-500 mb-6">
+                    <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg lg:text-xl mb-3">Tools for Managing Geographic Concentration</h3>
+                    <div class="grid md:grid-cols-2 gap-3">
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-bold text-gray-800 dark:text-gray-200">Geographic Mapping</p>
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400">Plot all policies on a map to visualize concentration. Cluster analysis reveals danger zones.</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-bold text-gray-800 dark:text-gray-200">PML Analysis</p>
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400"><strong>Probable Maximum Loss</strong> -- the worst-case loss from a single event at a given probability level.</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-bold text-gray-800 dark:text-gray-200">Aggregate Limits by ZIP Code</p>
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400">Cap total insured value in any single ZIP code. Once the cap is hit, stop writing new business there.</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-bold text-gray-800 dark:text-gray-200">New Business Moratoriums</p>
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400">Temporarily stop writing in over-concentrated areas. State Farm and Allstate used this in California.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAIR Plans -->
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 lg:p-5 rounded-r-lg mb-6">
+                    <p class="font-bold text-amber-800 dark:text-amber-300 text-lg">What Happens When Insurers Leave: FAIR Plans</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">When private insurers withdraw from high-cat areas, homeowners turn to state <strong>FAIR Plans</strong> (Fair Access to Insurance Requirements). These are residual market plans that provide basic coverage when the private market will not. FAIR Plans are growing rapidly in California, Florida, and Louisiana as private insurers reduce their exposure.</p>
+                </div>
+
+                <!-- Real-World Example -->
+                <div class="bg-teal-50 dark:bg-teal-900/20 p-4 lg:p-5 rounded-lg border-l-4 border-teal-500">
+                    <p class="font-semibold text-teal-800 dark:text-teal-300 mb-2">Real-World Scenario: Insurer Withdrawal</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> State Farm is the largest homeowners insurer in California. After years of wildfire losses (Camp Fire 2018, multiple events 2020-2023) and difficulty getting rate increases approved by regulators, the company announces in May 2023 that it will stop accepting new homeowners applications in California.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Allstate, USAA, and other insurers also reduce or exit the California market. Homeowners who cannot find private coverage turn to the California FAIR Plan, which grows from 270,000 policies to over 400,000.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> The FAIR Plan now has over $300 billion in exposure -- a massive concentration of risk in the state's insurer of last resort. This is a textbook example of what happens when the private market cannot achieve <strong>rate adequacy</strong> due to regulatory constraints, forcing geographic concentration into the residual market.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Catastrophe Modeling -->
+        <section id="cat-modeling" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">3. Catastrophe Modeling</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-6">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Catastrophe models</strong> are computer simulations that generate thousands of possible catastrophe scenarios to estimate potential losses. Unlike traditional actuarial analysis (which relies on historical loss data), cat models simulate events that <strong>haven't happened yet</strong> but could. This is critical because major catastrophes are rare -- you cannot wait for enough data points to price them historically.</p>
+                </div>
+
+                <!-- Three Components Diagram -->
+                <h3 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">The Three Components of a Cat Model</h3>
+                <div class="flex flex-col lg:flex-row items-stretch gap-4 mb-6">
+                    <!-- Hazard Module -->
+                    <div class="flex-1 bg-red-50 dark:bg-red-900/20 rounded-lg p-5 border-2 border-red-300 dark:border-red-700">
+                        <div class="flex items-center mb-3">
+                            <span class="bg-red-600 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold mr-3">1</span>
+                            <h4 class="font-bold text-red-800 dark:text-red-300 text-lg">Hazard Module</h4>
+                        </div>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mb-3"><strong>Question:</strong> What events could happen?</p>
+                        <ul class="space-y-1 text-gray-700 dark:text-gray-300 text-sm lg:text-base">
+                            <li>-- Hurricane category, path, and landfall location</li>
+                            <li>-- Earthquake magnitude, fault line, depth</li>
+                            <li>-- Wildfire ignition points, spread patterns</li>
+                            <li>-- Frequency: how often does each scenario occur?</li>
+                        </ul>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400"><strong>Data sources:</strong> NOAA, USGS, historical records, climate science</p>
+                        </div>
+                    </div>
+
+                    <!-- Arrow -->
+                    <div class="hidden lg:flex items-center justify-center text-3xl text-gray-400 dark:text-gray-500 font-bold">&#8594;</div>
+                    <div class="lg:hidden flex justify-center text-3xl text-gray-400 dark:text-gray-500 font-bold">&#8595;</div>
+
+                    <!-- Vulnerability Module -->
+                    <div class="flex-1 bg-amber-50 dark:bg-amber-900/20 rounded-lg p-5 border-2 border-amber-300 dark:border-amber-700">
+                        <div class="flex items-center mb-3">
+                            <span class="bg-amber-600 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold mr-3">2</span>
+                            <h4 class="font-bold text-amber-800 dark:text-amber-300 text-lg">Vulnerability Module</h4>
+                        </div>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mb-3"><strong>Question:</strong> How much damage would each event cause?</p>
+                        <ul class="space-y-1 text-gray-700 dark:text-gray-300 text-sm lg:text-base">
+                            <li>-- Construction type (wood frame vs. masonry vs. steel)</li>
+                            <li>-- Age and condition of structures</li>
+                            <li>-- Building code compliance</li>
+                            <li>-- Elevation, proximity to coast/fault lines</li>
+                        </ul>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400"><strong>Data sources:</strong> Policy records, building databases, inspection data</p>
+                        </div>
+                    </div>
+
+                    <!-- Arrow -->
+                    <div class="hidden lg:flex items-center justify-center text-3xl text-gray-400 dark:text-gray-500 font-bold">&#8594;</div>
+                    <div class="lg:hidden flex justify-center text-3xl text-gray-400 dark:text-gray-500 font-bold">&#8595;</div>
+
+                    <!-- Financial Module -->
+                    <div class="flex-1 bg-green-50 dark:bg-green-900/20 rounded-lg p-5 border-2 border-green-300 dark:border-green-700">
+                        <div class="flex items-center mb-3">
+                            <span class="bg-green-600 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold mr-3">3</span>
+                            <h4 class="font-bold text-green-800 dark:text-green-300 text-lg">Financial Module</h4>
+                        </div>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mb-3"><strong>Question:</strong> What would each event cost the insurer?</p>
+                        <ul class="space-y-1 text-gray-700 dark:text-gray-300 text-sm lg:text-base">
+                            <li>-- Policy terms (limits, deductibles, sub-limits)</li>
+                            <li>-- Reinsurance recoveries</li>
+                            <li>-- Demand surge (post-cat price inflation)</li>
+                            <li>-- Net cost to the insurer after all offsets</li>
+                        </ul>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400"><strong>Output:</strong> Expected loss, PML at various return periods (100-yr, 250-yr)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cat Model Uses -->
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-purple-500 mb-6">
+                    <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg lg:text-xl mb-3">What Cat Models Are Used For</h3>
+                    <div class="grid md:grid-cols-2 gap-3">
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-bold text-gray-800 dark:text-gray-200">Pricing</p>
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400">Setting adequate catastrophe loads in premiums. Without cat models, premiums would be guesses.</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-bold text-gray-800 dark:text-gray-200">Reinsurance Purchasing</p>
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400">Determining how much reinsurance to buy and at what attachment point.</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-bold text-gray-800 dark:text-gray-200">Portfolio Optimization</p>
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400">Deciding where to grow and where to limit new business based on concentration risk.</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-bold text-gray-800 dark:text-gray-200">Regulatory Compliance</p>
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400">Demonstrating solvency to regulators. Many states require cat model results in rate filings.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Major Firms -->
+                <div class="bg-indigo-50 dark:bg-indigo-900/20 rounded-lg p-4 border border-indigo-200 dark:border-indigo-800 mb-6">
+                    <h3 class="font-bold text-indigo-800 dark:text-indigo-300 mb-2">Major Cat Modeling Firms</h3>
+                    <div class="grid grid-cols-3 gap-3 text-center">
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-bold text-gray-800 dark:text-gray-200">AIR Worldwide</p>
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">(Verisk)</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-bold text-gray-800 dark:text-gray-200">CoreLogic</p>
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">(formerly RMS)</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-bold text-gray-800 dark:text-gray-200">Moody's RMS</p>
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">(Risk Management Solutions)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Climate Change Warning -->
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 lg:p-5 rounded-r-lg mb-6">
+                    <p class="font-bold text-amber-800 dark:text-amber-300 text-lg">Climate Change is Breaking the Models</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">Cat models traditionally rely on <strong>historical data</strong> to predict future events. But climate change is making historical patterns unreliable. Wildfire seasons are longer. Convective storms (hail/wind) are more frequent. Hurricanes are intensifying faster. This means cat models may <strong>underestimate</strong> future losses if they rely too heavily on the past.</p>
+                </div>
+
+                <!-- Real-World Example -->
+                <div class="bg-teal-50 dark:bg-teal-900/20 p-4 lg:p-5 rounded-lg border-l-4 border-teal-500">
+                    <p class="font-semibold text-teal-800 dark:text-teal-300 mb-2">Real-World Scenario: Cat Model in Action</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Coastal Mutual runs its Florida homeowners portfolio through AIR Worldwide's hurricane model. The model simulates 100,000 possible hurricane seasons. The results show a 1-in-100-year event (the "100-year PML") would cost the company $800 million. Coastal Mutual has $500 million in surplus.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> The $800M PML exceeds surplus by $300M. Without reinsurance, a major hurricane could make Coastal Mutual insolvent. The company buys a catastrophe excess-of-loss reinsurance treaty: it retains the first $200M in losses and reinsurers cover the next $600M.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Now even the 100-year event only costs Coastal Mutual $200M out of its $500M surplus. The cat model directly informed both the <strong>reinsurance purchase decision</strong> and the <strong>maximum retention level</strong>. Without the model, Coastal Mutual would have been flying blind.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Loss Ratio Analysis by Segment -->
+        <section id="loss-ratio-analysis" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">4. Loss Ratio Analysis by Segment</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-6">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Looking at the overall portfolio loss ratio tells you if the book is profitable. But <strong>segment-level analysis</strong> tells you <em>where</em> the profit and loss is coming from. You break the portfolio into slices and analyze each one separately to find the winners and losers.</p>
+                </div>
+
+                <!-- Segmentation Approaches -->
+                <div class="overflow-x-auto mb-6">
+                    <table class="w-full text-sm lg:text-base">
+                        <thead>
+                            <tr class="bg-teal-600 text-white">
+                                <th class="p-3 lg:p-4 text-left rounded-tl-lg">Segment By</th>
+                                <th class="p-3 lg:p-4 text-left">What It Reveals</th>
+                                <th class="p-3 lg:p-4 text-left rounded-tr-lg">Example Finding</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-bold text-gray-800 dark:text-gray-200">Territory (ZIP/state/region)</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Geographic hot spots of profit or loss</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">ZIP codes 33101-33199 (Miami) have 85% loss ratio vs. 55% statewide</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <td class="p-3 lg:p-4 font-bold text-gray-800 dark:text-gray-200">Tier (preferred/standard/nonstandard)</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Which risk quality segments perform</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Preferred auto: 48% LR. Standard: 62%. Nonstandard: 91%.</td>
+                            </tr>
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-bold text-gray-800 dark:text-gray-200">Product (auto/home/umbrella)</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Which lines are making vs. losing money</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Auto: 68% LR. Home: 78% LR. Umbrella: 35% LR.</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <td class="p-3 lg:p-4 font-bold text-gray-800 dark:text-gray-200">Vintage (time on books)</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Are newer or older policies performing better?</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Policies 5+ years: 52% LR. New business (year 1): 75% LR.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Actions Based on Findings -->
+                <h3 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">Actions Based on Segment Analysis</h3>
+                <div class="flex flex-col md:flex-row items-stretch gap-4 mb-6">
+                    <div class="flex-1 bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                        <p class="font-bold text-red-800 dark:text-red-300 mb-2">Unprofitable Segments</p>
+                        <ul class="space-y-1 text-gray-700 dark:text-gray-300 text-sm lg:text-base">
+                            <li>-- File for rate increases</li>
+                            <li>-- Tighten underwriting guidelines</li>
+                            <li>-- Increase deductibles</li>
+                            <li>-- Non-renew worst-performing risks</li>
+                            <li>-- Stop writing new business in that area</li>
+                        </ul>
+                    </div>
+                    <div class="flex-1 bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <p class="font-bold text-green-800 dark:text-green-300 mb-2">Profitable Segments</p>
+                        <ul class="space-y-1 text-gray-700 dark:text-gray-300 text-sm lg:text-base">
+                            <li>-- Grow aggressively (more marketing)</li>
+                            <li>-- Competitive pricing to gain market share</li>
+                            <li>-- Relax underwriting slightly to capture more</li>
+                            <li>-- Offer multi-policy discounts to retain</li>
+                            <li>-- Invest in agent relationships in that territory</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Real-World Example -->
+                <div class="bg-teal-50 dark:bg-teal-900/20 p-4 lg:p-5 rounded-lg border-l-4 border-teal-500">
+                    <p class="font-semibold text-teal-800 dark:text-teal-300 mb-2">Real-World Scenario: Segment Analysis Reveals Hidden Problem</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Atlantic Auto's overall auto portfolio has a 65% loss ratio, which looks fine. But the underwriting manager runs a segment analysis by tier and territory.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> The analysis reveals that the <strong>preferred tier in suburban areas</strong> has a 42% loss ratio (very profitable), while the <strong>nonstandard tier in urban areas</strong> has a 105% loss ratio (losing money on every policy). The profitable segment is masking the unprofitable one in the overall average.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Atlantic Auto files for a 15% rate increase in the nonstandard urban tier, tightens underwriting (no more drivers with 3+ at-fault accidents), and redirects marketing spend to grow the profitable suburban preferred segment. Within 18 months, the overall loss ratio drops to 58%.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Predictive Modeling in Personal Lines -->
+        <section id="predictive-modeling" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">5. Predictive Modeling in Personal Lines</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-6">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Predictive models use statistical and machine learning techniques to analyze the relationship between <strong>rating variables</strong> (age, location, credit score, vehicle type) and <strong>expected losses</strong>. The goal: price each risk as accurately as possible so that low-risk customers pay less and high-risk customers pay more.</p>
+                </div>
+
+                <!-- Comparison Table: Modeling Techniques -->
+                <h3 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">Predictive Modeling Techniques Compared</h3>
+                <div class="overflow-x-auto mb-6">
+                    <table class="w-full text-sm lg:text-base">
+                        <thead>
+                            <tr class="bg-teal-600 text-white">
+                                <th class="p-3 lg:p-4 text-left rounded-tl-lg">Technique</th>
+                                <th class="p-3 lg:p-4 text-left">How It Works</th>
+                                <th class="p-3 lg:p-4 text-left">Strengths</th>
+                                <th class="p-3 lg:p-4 text-left">Limitations</th>
+                                <th class="p-3 lg:p-4 text-left rounded-tr-lg">Industry Use</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-bold text-gray-800 dark:text-gray-200">GLMs (Generalized Linear Models)</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Mathematical formula linking rating variables to expected losses. Produces "relativities" for each variable.</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Transparent, explainable, accepted by regulators. Easy to audit.</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Assumes linear relationships. May miss complex interactions between variables.</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Industry standard for pricing. Used by nearly every personal lines insurer.</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <td class="p-3 lg:p-4 font-bold text-gray-800 dark:text-gray-200">GBMs (Gradient Boosted Machines)</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Machine learning algorithm that builds many decision trees, each correcting the errors of the previous one.</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Captures complex, non-linear patterns. Often more accurate than GLMs.</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">"Black box" -- harder to explain to regulators. Risk of overfitting.</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Used for risk segmentation, underwriting triage, claims fraud detection.</td>
+                            </tr>
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-bold text-gray-800 dark:text-gray-200">Neural Networks</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Layers of interconnected nodes that learn patterns from data, inspired by the human brain.</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Excellent at finding hidden patterns in massive datasets. Handles unstructured data (images, text).</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Least transparent. Requires huge data. Regulators skeptical for pricing.</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Emerging use: aerial imagery for roof condition, telematics driving scores.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- GLM Relativities Example -->
+                <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-green-500 mb-6">
+                    <h3 class="font-bold text-green-800 dark:text-green-300 text-lg lg:text-xl mb-3">How GLM Relativities Work</h3>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-3">A GLM produces a <strong>relativity</strong> (multiplier) for each level of each rating variable. A relativity of <strong>1.00</strong> means average risk. Above 1.00 means higher risk; below 1.00 means lower risk.</p>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                            <p class="text-xs lg:text-sm text-gray-500 dark:text-gray-400">Driver Age 19-24</p>
+                            <p class="text-2xl lg:text-3xl font-bold text-red-600 dark:text-red-400">1.85</p>
+                            <p class="text-xs lg:text-sm text-gray-500 dark:text-gray-400">85% more than average</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                            <p class="text-xs lg:text-sm text-gray-500 dark:text-gray-400">Driver Age 45-54</p>
+                            <p class="text-2xl lg:text-3xl font-bold text-green-600 dark:text-green-400">0.78</p>
+                            <p class="text-xs lg:text-sm text-gray-500 dark:text-gray-400">22% less than average</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                            <p class="text-xs lg:text-sm text-gray-500 dark:text-gray-400">Sports Car</p>
+                            <p class="text-2xl lg:text-3xl font-bold text-red-600 dark:text-red-400">1.40</p>
+                            <p class="text-xs lg:text-sm text-gray-500 dark:text-gray-400">40% more than average</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                            <p class="text-xs lg:text-sm text-gray-500 dark:text-gray-400">Minivan</p>
+                            <p class="text-2xl lg:text-3xl font-bold text-green-600 dark:text-green-400">0.85</p>
+                            <p class="text-xs lg:text-sm text-gray-500 dark:text-gray-400">15% less than average</p>
+                        </div>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded mt-4">
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>Combined effect:</strong> A 21-year-old with a sports car = 1.85 x 1.40 = <strong>2.59 relativity</strong>. That driver's expected loss is 2.59x the average -- their premium should reflect this.</p>
+                    </div>
+                </div>
+
+                <!-- Proxy Discrimination -->
+                <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-red-500 mb-6">
+                    <h3 class="font-bold text-red-800 dark:text-red-300 text-lg lg:text-xl mb-3">Regulatory Concern: Proxy Discrimination</h3>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-3">A rating variable may appear neutral but actually <strong>correlate with a protected class</strong>. This is <strong>proxy discrimination</strong> -- the variable is a proxy for race, ethnicity, or income even though it does not mention those categories directly.</p>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded">
+                            <p class="font-bold text-gray-800 dark:text-gray-200 mb-2">The Classic Example: ZIP Code</p>
+                            <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300">ZIP code is a powerful predictor of loss. But ZIP codes also correlate with race and income due to historical housing segregation. Using ZIP code in pricing may result in <strong>systematically higher rates</strong> for minority neighborhoods -- even if the insurer never intended discrimination.</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded">
+                            <p class="font-bold text-gray-800 dark:text-gray-200 mb-2">Regulatory Response</p>
+                            <ul class="space-y-1 text-sm lg:text-base text-gray-700 dark:text-gray-300">
+                                <li>-- <strong>Colorado SB 21-169</strong>: Requires insurers to test algorithms for proxy discrimination</li>
+                                <li>-- <strong>NAIC Model Bulletin on AI (Dec 2023)</strong>: Guidelines for responsible use of AI/ML in insurance</li>
+                                <li>-- Some states limit or ban credit score use in auto/home pricing</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Real-World Example -->
+                <div class="bg-teal-50 dark:bg-teal-900/20 p-4 lg:p-5 rounded-lg border-l-4 border-teal-500">
+                    <p class="font-semibold text-teal-800 dark:text-teal-300 mb-2">Real-World Scenario: GLM Reveals Hidden Risk Factor</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Pinnacle Insurance builds a GLM for its personal auto book. Traditional rating used just age, gender, territory, and driving record. The new GLM adds credit-based insurance score, vehicle use (commute distance), and years of continuous coverage.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> The model reveals that <strong>years of continuous coverage</strong> is one of the strongest predictors of future loss. Drivers who have maintained coverage for 5+ years without a lapse have 35% fewer claims than drivers who let coverage lapse -- regardless of age or driving record. The relativity for "lapse in last 3 years" is 1.52 (52% higher expected loss).</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Pinnacle adds "continuous coverage" as a rating factor. Loyal, continuously insured customers get lower rates, while lapsed-coverage applicants are surcharged appropriately. The loss ratio improves by 4 points in the first year. However, Pinnacle must also test whether "coverage lapse" is a <strong>proxy for income</strong>, since lower-income individuals may be more likely to let coverage lapse.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: Rate Adequacy and Profitability -->
+        <section id="rate-adequacy" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">6. Rate Adequacy & the Pricing Balancing Act</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-6">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Personal lines pricing must balance three competing demands: rates must be <strong>adequate</strong> (enough to pay claims and expenses), <strong>competitive</strong> (not so high that customers leave), and <strong>compliant</strong> (not excessive, inadequate, or unfairly discriminatory under state law).</p>
+                </div>
+
+                <!-- Rate Adequacy Process Flow -->
+                <h3 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">The Rate Adequacy Process</h3>
+                <div class="flex flex-col gap-3 mb-6">
+                    <!-- Step 1 -->
+                    <div class="flex items-center gap-4">
+                        <div class="bg-teal-100 dark:bg-teal-900/40 p-4 rounded-lg text-center min-w-[160px]">
+                            <span class="bg-teal-600 text-white rounded-full w-7 h-7 inline-flex items-center justify-center font-bold text-sm mb-1">1</span>
+                            <p class="font-bold text-teal-800 dark:text-teal-300 text-sm">Analyze Loss Trends</p>
+                        </div>
+                        <div class="text-xl text-gray-400 hidden md:block">&#8594;</div>
+                        <div class="flex-1 bg-gray-50 dark:bg-gray-700 p-3 rounded">
+                            <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300">Are losses increasing or decreasing? At what rate? <strong>Loss trend</strong> projects current losses into the future to ensure premiums match where losses are going, not where they have been.</p>
+                        </div>
+                    </div>
+                    <!-- Step 2 -->
+                    <div class="flex items-center gap-4">
+                        <div class="bg-teal-100 dark:bg-teal-900/40 p-4 rounded-lg text-center min-w-[160px]">
+                            <span class="bg-teal-600 text-white rounded-full w-7 h-7 inline-flex items-center justify-center font-bold text-sm mb-1">2</span>
+                            <p class="font-bold text-teal-800 dark:text-teal-300 text-sm">Analyze Expense Trends</p>
+                        </div>
+                        <div class="text-xl text-gray-400 hidden md:block">&#8594;</div>
+                        <div class="flex-1 bg-gray-50 dark:bg-gray-700 p-3 rounded">
+                            <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300">Is it getting more or less expensive to acquire, service, and adjust claims? Commissions, technology costs, staffing -- all factor in.</p>
+                        </div>
+                    </div>
+                    <!-- Step 3 -->
+                    <div class="flex items-center gap-4">
+                        <div class="bg-teal-100 dark:bg-teal-900/40 p-4 rounded-lg text-center min-w-[160px]">
+                            <span class="bg-teal-600 text-white rounded-full w-7 h-7 inline-flex items-center justify-center font-bold text-sm mb-1">3</span>
+                            <p class="font-bold text-teal-800 dark:text-teal-300 text-sm">Calculate Indication</p>
+                        </div>
+                        <div class="text-xl text-gray-400 hidden md:block">&#8594;</div>
+                        <div class="flex-1 bg-gray-50 dark:bg-gray-700 p-3 rounded">
+                            <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300">The <strong>actuarial indication</strong> is the mathematically recommended rate change. Example: "The indication is +8%" means rates need to go up 8% to be adequate.</p>
+                        </div>
+                    </div>
+                    <!-- Step 4 -->
+                    <div class="flex items-center gap-4">
+                        <div class="bg-teal-100 dark:bg-teal-900/40 p-4 rounded-lg text-center min-w-[160px]">
+                            <span class="bg-teal-600 text-white rounded-full w-7 h-7 inline-flex items-center justify-center font-bold text-sm mb-1">4</span>
+                            <p class="font-bold text-teal-800 dark:text-teal-300 text-sm">Management Selects</p>
+                        </div>
+                        <div class="text-xl text-gray-400 hidden md:block">&#8594;</div>
+                        <div class="flex-1 bg-gray-50 dark:bg-gray-700 p-3 rounded">
+                            <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300">The <strong>selected change</strong> is what management actually decides to file. Often less than the indication for competitive reasons. "Indication is +8%, but we will file +5% to avoid losing customers."</p>
+                        </div>
+                    </div>
+                    <!-- Step 5 -->
+                    <div class="flex items-center gap-4">
+                        <div class="bg-teal-100 dark:bg-teal-900/40 p-4 rounded-lg text-center min-w-[160px]">
+                            <span class="bg-teal-600 text-white rounded-full w-7 h-7 inline-flex items-center justify-center font-bold text-sm mb-1">5</span>
+                            <p class="font-bold text-teal-800 dark:text-teal-300 text-sm">File & Get Approval</p>
+                        </div>
+                        <div class="text-xl text-gray-400 hidden md:block">&#8594;</div>
+                        <div class="flex-1 bg-gray-50 dark:bg-gray-700 p-3 rounded">
+                            <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300">Must go through the state's <strong>rate regulation process</strong>. Prior approval states require DOI sign-off before rates take effect. File-and-use states allow implementation while review is pending.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Key Terms -->
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 border-l-4 border-purple-500">
+                        <h4 class="font-bold text-purple-800 dark:text-purple-300 mb-2">Indication vs. Selected Change</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>Indication</strong> = what the math says is needed. <strong>Selected</strong> = what management files. These are often different because management considers competitive pressure, customer retention, and political optics. Filing less than the indication means the insurer is <strong>knowingly underpricing</strong> to maintain market position.</p>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 border-l-4 border-purple-500">
+                        <h4 class="font-bold text-purple-800 dark:text-purple-300 mb-2">Loss Trend vs. Expense Trend</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>Loss trend</strong> = how fast claim costs are growing (driven by inflation, medical costs, litigation). <strong>Expense trend</strong> = how fast operating costs change (technology may reduce costs; staffing may increase them). Both must be projected forward to set adequate future rates.</p>
+                    </div>
+                </div>
+
+                <!-- Real-World Example -->
+                <div class="bg-teal-50 dark:bg-teal-900/20 p-4 lg:p-5 rounded-lg border-l-4 border-teal-500">
+                    <p class="font-semibold text-teal-800 dark:text-teal-300 mb-2">Real-World Scenario: Rate Inadequacy Spiral</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Bayview Home Insurance writes homeowners in a prior-approval state. Their actuaries calculate an indication of +18% due to rising wildfire losses and construction cost inflation. Management files +18%.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> The state DOI approves only +7%, citing consumer affordability concerns. The remaining 11% gap means Bayview is now charging less than it costs to provide coverage. The next year, losses increase further. The new indication is +25%. The DOI approves +10%. The gap widens.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> After three years of rate inadequacy, Bayview announces it will stop writing new homeowners policies in the state and begins non-renewing existing policies in the highest-risk areas. Thousands of homeowners are forced into the state FAIR Plan. The "consumer protection" of limited rate increases actually <strong>harmed consumers</strong> by driving insurers out of the market entirely.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 7: Challenges in Personal Lines Today -->
+        <section id="challenges" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">7. Current Challenges in Personal Lines</h2>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 lg:p-5 rounded-r-lg mb-6">
+                    <p class="font-bold text-amber-800 dark:text-amber-300 text-lg">Exam Alert!</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">The exam increasingly tests <strong>current industry challenges</strong>. You need to understand not just what is happening, but <strong>why</strong> and <strong>how these challenges connect</strong> to each other. Climate change drives insurer withdrawals, which overload FAIR Plans, which creates systemic risk.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <!-- Climate Change -->
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border border-red-200 dark:border-red-800">
+                        <p class="font-bold text-red-800 dark:text-red-300 mb-2">Climate Change</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Increasing frequency and severity of catastrophes -- especially wildfire, convective storms (hail/wind), and flooding. Historical data no longer reliably predicts future losses.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm text-gray-600 dark:text-gray-400"><strong>Impact:</strong> Cat model results are rising. Reinsurers are charging more. Premiums must increase -- but regulatory approval is slow.</p>
+                        </div>
+                    </div>
+
+                    <!-- Insurer Withdrawals -->
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border border-red-200 dark:border-red-800">
+                        <p class="font-bold text-red-800 dark:text-red-300 mb-2">Insurer Withdrawals</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">State Farm, Allstate, and others have reduced or stopped writing new home policies in California, Florida, and Louisiana due to catastrophe losses and rate inadequacy.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm text-gray-600 dark:text-gray-400"><strong>Impact:</strong> Fewer choices for consumers. Remaining insurers face adverse selection. FAIR Plans absorb the overflow.</p>
+                        </div>
+                    </div>
+
+                    <!-- FAIR Plan Growth -->
+                    <div class="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg border border-amber-200 dark:border-amber-800">
+                        <p class="font-bold text-amber-800 dark:text-amber-300 mb-2">FAIR Plan Growth</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">State residual market plans are growing as private insurers withdraw. California FAIR Plan exposure exceeds $300 billion. If a major wildfire hits, the FAIR Plan may not have enough reserves.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm text-gray-600 dark:text-gray-400"><strong>Impact:</strong> FAIR Plans can levy assessments on all insurers in the state to cover shortfalls -- a systemic risk.</p>
+                        </div>
+                    </div>
+
+                    <!-- Social Inflation -->
+                    <div class="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg border border-amber-200 dark:border-amber-800">
+                        <p class="font-bold text-amber-800 dark:text-amber-300 mb-2">Social Inflation</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Nuclear verdicts ($10M+ jury awards) are increasingly common in personal auto liability. Litigation funding and anti-corporate jury sentiment drive claim costs beyond what traditional trends predict.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm text-gray-600 dark:text-gray-400"><strong>Impact:</strong> Auto liability loss trends are accelerating. BI severity is outpacing medical inflation.</p>
+                        </div>
+                    </div>
+
+                    <!-- Technology Disruption -->
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
+                        <p class="font-bold text-blue-800 dark:text-blue-300 mb-2">Technology Disruption</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Telematics (usage-based insurance) rewards good drivers. Autonomous vehicles may reduce frequency but increase severity. Ride-sharing creates coverage gaps between personal and commercial use.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm text-gray-600 dark:text-gray-400"><strong>Impact:</strong> New products needed. Traditional rating factors may become obsolete. First-movers gain competitive advantage.</p>
+                        </div>
+                    </div>
+
+                    <!-- Rate Inadequacy & Reinsurance -->
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
+                        <p class="font-bold text-blue-800 dark:text-blue-300 mb-2">Rate Inadequacy & Reinsurance Costs</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Many states have lengthy approval processes, causing rates to lag behind loss trends. Meanwhile, catastrophe reinsurance pricing has increased significantly since 2020, squeezing insurer margins from both sides.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm text-gray-600 dark:text-gray-400"><strong>Impact:</strong> Insurers caught between rising costs and capped revenue. Withdrawal becomes the only option for some.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Connection Diagram -->
+                <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-5 border border-gray-200 dark:border-gray-600">
+                    <h3 class="font-bold text-gray-800 dark:text-gray-200 text-lg mb-3">How These Challenges Connect (The Vicious Cycle)</h3>
+                    <div class="flex flex-wrap items-center justify-center gap-3 text-center">
+                        <div class="bg-red-100 dark:bg-red-900/40 p-3 rounded-lg">
+                            <p class="font-bold text-red-800 dark:text-red-300 text-sm">Climate Change</p>
+                            <p class="text-xs text-gray-600 dark:text-gray-400">More cat losses</p>
+                        </div>
+                        <div class="text-2xl text-gray-400">&#8594;</div>
+                        <div class="bg-amber-100 dark:bg-amber-900/40 p-3 rounded-lg">
+                            <p class="font-bold text-amber-800 dark:text-amber-300 text-sm">Reinsurance Costs Rise</p>
+                            <p class="text-xs text-gray-600 dark:text-gray-400">Reinsurers charge more</p>
+                        </div>
+                        <div class="text-2xl text-gray-400">&#8594;</div>
+                        <div class="bg-orange-100 dark:bg-orange-900/40 p-3 rounded-lg">
+                            <p class="font-bold text-orange-800 dark:text-orange-300 text-sm">Rates Need to Rise</p>
+                            <p class="text-xs text-gray-600 dark:text-gray-400">Indication goes up</p>
+                        </div>
+                        <div class="text-2xl text-gray-400">&#8594;</div>
+                        <div class="bg-purple-100 dark:bg-purple-900/40 p-3 rounded-lg">
+                            <p class="font-bold text-purple-800 dark:text-purple-300 text-sm">Regulators Limit Increases</p>
+                            <p class="text-xs text-gray-600 dark:text-gray-400">Approved &lt; needed</p>
+                        </div>
+                        <div class="text-2xl text-gray-400">&#8594;</div>
+                        <div class="bg-red-100 dark:bg-red-900/40 p-3 rounded-lg">
+                            <p class="font-bold text-red-800 dark:text-red-300 text-sm">Insurers Withdraw</p>
+                            <p class="text-xs text-gray-600 dark:text-gray-400">Can't operate at a loss</p>
+                        </div>
+                        <div class="text-2xl text-gray-400">&#8594;</div>
+                        <div class="bg-indigo-100 dark:bg-indigo-900/40 p-3 rounded-lg">
+                            <p class="font-bold text-indigo-800 dark:text-indigo-300 text-sm">FAIR Plans Overloaded</p>
+                            <p class="text-xs text-gray-600 dark:text-gray-400">Systemic risk grows</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cheat Sheet -->
+        <section id="cheat-sheet" class="mb-10">
+            <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 border-2 border-dashed border-gray-300 dark:border-gray-600">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100">Cheat Sheet</h2>
+                    <span class="text-sm text-gray-500 dark:text-gray-400">Print this page for quick reference</span>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div>
+                        <h3 class="font-bold text-gray-800 dark:text-gray-200 mb-2">Portfolio Management</h3>
+                        <ul class="space-y-1 text-sm lg:text-base text-gray-700 dark:text-gray-300">
+                            <li>-- Individual risk OK does NOT mean portfolio OK</li>
+                            <li>-- Geographic concentration = catastrophe risk</li>
+                            <li>-- Tools: mapping, PML, ZIP code caps, moratoriums</li>
+                            <li>-- FAIR Plans = residual market when private exits</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-gray-800 dark:text-gray-200 mb-2">Cat Model Components</h3>
+                        <ul class="space-y-1 text-sm lg:text-base text-gray-700 dark:text-gray-300">
+                            <li>-- Hazard: what events could happen?</li>
+                            <li>-- Vulnerability: how much damage?</li>
+                            <li>-- Financial: what does it cost the insurer?</li>
+                            <li>-- Firms: AIR, CoreLogic, Moody's RMS</li>
+                            <li>-- Uses: pricing, reinsurance, optimization, regulation</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-gray-800 dark:text-gray-200 mb-2">Predictive Modeling</h3>
+                        <ul class="space-y-1 text-sm lg:text-base text-gray-700 dark:text-gray-300">
+                            <li>-- GLMs: industry standard, transparent, relativities</li>
+                            <li>-- GBMs: more accurate, "black box" risk</li>
+                            <li>-- Neural networks: emerging, least transparent</li>
+                            <li>-- Proxy discrimination: neutral var + protected class correlation</li>
+                            <li>-- CO SB 21-169 + NAIC AI Bulletin (Dec 2023)</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-gray-800 dark:text-gray-200 mb-2">Rate Adequacy</h3>
+                        <ul class="space-y-1 text-sm lg:text-base text-gray-700 dark:text-gray-300">
+                            <li>-- Indication = actuarial recommendation</li>
+                            <li>-- Selected = what management files (often less)</li>
+                            <li>-- Must be: adequate + competitive + compliant</li>
+                            <li>-- Prior approval states slow the process</li>
+                            <li>-- Rate lag drives insurer withdrawals</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-gray-800 dark:text-gray-200 mb-2">Segment Analysis</h3>
+                        <ul class="space-y-1 text-sm lg:text-base text-gray-700 dark:text-gray-300">
+                            <li>-- Segment by: territory, tier, product, vintage</li>
+                            <li>-- Profitable segments: grow aggressively</li>
+                            <li>-- Unprofitable: rate increases, tighten UW</li>
+                            <li>-- Overall averages hide segment problems</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-gray-800 dark:text-gray-200 mb-2">Current Challenges</h3>
+                        <ul class="space-y-1 text-sm lg:text-base text-gray-700 dark:text-gray-300">
+                            <li>-- Climate change: wildfire, convective storms, flooding</li>
+                            <li>-- Insurer exits: CA, FL, LA markets shrinking</li>
+                            <li>-- Social inflation: nuclear verdicts in auto BI</li>
+                            <li>-- Reinsurance costs up sharply since 2020</li>
+                            <li>-- Telematics + autonomous vehicles = disruption</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Trap Alerts -->
+        <section class="mb-10">
+            <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-xl p-5 lg:p-6">
+                <h2 class="text-2xl lg:text-3xl font-bold text-red-800 dark:text-red-300 mb-4">Exam Trap Alerts</h2>
+                <div class="space-y-3">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">1. Individual Risk vs. Portfolio Risk -- They Are NOT the Same</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The exam may describe a perfectly underwritten risk and ask if the insurer should write it. The answer depends on the <strong>portfolio context</strong>. If the insurer already has 40,000 homes in that hurricane zone, adding one more "good" risk still increases concentration. Always ask: "What does the portfolio need?"</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">2. Cat Models Simulate -- They Do NOT Predict</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">A cat model does <strong>not</strong> predict that a Category 4 hurricane will hit Miami next year. It simulates <strong>thousands of possible scenarios</strong> and estimates the probability and cost of each. The output is a distribution of possible losses, not a forecast. Do not confuse simulation with prediction.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">3. GLMs vs. GBMs -- Know the Regulatory Difference</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>GLMs</strong> are transparent and explainable -- regulators accept them for pricing. <strong>GBMs and neural networks</strong> are more accurate but harder to explain (the "black box" problem). The exam may ask which model type is most appropriate for a <strong>rate filing</strong> -- the answer is GLM because regulators require explainability.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">4. Proxy Discrimination is NOT Intentional Discrimination</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">An insurer using ZIP code in its model may have <strong>no intent</strong> to discriminate by race. But if the ZIP code variable produces systematically higher rates for minority neighborhoods, it is still proxy discrimination. <strong>Intent does not matter</strong> -- the effect does. The exam tests this distinction.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">5. Indication vs. Selected -- Management Often Files LESS</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Do not assume the filed rate change equals the actuarial indication. Management routinely selects a <strong>lower number</strong> than the indication for competitive reasons. If the exam says "the indication is +12% and the company files +7%," the company is <strong>knowingly underpricing by 5 points</strong>. This is a business decision, not an actuarial error.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">6. FAIR Plans Are NOT a Long-Term Solution</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">FAIR Plans provide coverage when the private market will not, but they are designed as a <strong>temporary safety net</strong>, not a permanent replacement. FAIR Plans typically offer less coverage, higher premiums, and higher deductibles than private market policies. Their rapid growth signals a market in distress, not a working system.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">7. Social Inflation is NOT Regular Inflation</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>Economic inflation</strong> raises the cost of materials and labor. <strong>Social inflation</strong> increases claim costs through changing <strong>jury attitudes, litigation funding, and expanded liability theories</strong>. A $50M nuclear verdict for an auto accident is social inflation -- the medical bills did not cost $50M. These are fundamentally different forces on loss trends.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Reference Summary -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-teal-600 to-teal-800 rounded-xl p-6 text-white">
+                <h2 class="text-2xl lg:text-3xl font-bold mb-6">Quick Reference Summary</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Portfolio vs. Individual</p>
+                        <p class="text-sm text-teal-100">Good individual risks can create bad portfolios through concentration risk</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Geographic Diversification</p>
+                        <p class="text-sm text-teal-100">Spread risk across regions; use mapping, PML, ZIP caps, moratoriums</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Cat Model: Hazard</p>
+                        <p class="text-sm text-teal-100">What events could happen? (type, path, frequency, intensity)</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Cat Model: Vulnerability</p>
+                        <p class="text-sm text-teal-100">How much damage? (construction, age, codes, elevation)</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Cat Model: Financial</p>
+                        <p class="text-sm text-teal-100">What does it cost? (policy terms, deductibles, reinsurance recoveries)</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">GLMs</p>
+                        <p class="text-sm text-teal-100">Industry standard pricing models -- transparent, produce relativities</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">GBMs / Neural Networks</p>
+                        <p class="text-sm text-teal-100">More accurate but "black box" -- used for segmentation, not rate filings</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Proxy Discrimination</p>
+                        <p class="text-sm text-teal-100">Neutral variable correlating with protected class -- intent doesn't matter</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Indication vs. Selected</p>
+                        <p class="text-sm text-teal-100">Actuarial recommendation vs. what management files (often less)</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">FAIR Plans</p>
+                        <p class="text-sm text-teal-100">Residual market when private insurers withdraw -- growing rapidly in CA, FL, LA</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Social Inflation</p>
+                        <p class="text-sm text-teal-100">Nuclear verdicts + litigation funding -- NOT the same as economic inflation</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">The Vicious Cycle</p>
+                        <p class="text-sm text-teal-100">Climate change -> costs rise -> rates lag -> insurers exit -> FAIR Plans overloaded</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Navigation Footer -->
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="../part-2/index.html" class="text-gray-300 hover:text-white flex items-center">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                    </svg>
+                    Part 2
+                </a>
+                <span class="text-gray-400">Part 3 of 3</span>
+                <a href="../../assignment-5/index.html" class="text-gray-300 hover:text-white flex items-center">
+                    Assignment 5: Marketing
+                    <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AI Tutor Button -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            createFloatingAIButton(`CPCU 520 Assignment 4 Part 3: Portfolio Analysis & Risk Modeling
+
+PORTFOLIO MANAGEMENT:
+- Individual risk quality does NOT guarantee portfolio quality
+- Concentration risk: too many similar exposures in one area = catastrophic loss from one event
+- Example: 50,000 coastal FL homes, each properly underwritten, but one hurricane wipes out the portfolio
+- Geographic diversification is essential -- spread across regions
+
+GEOGRAPHIC DIVERSIFICATION:
+- Hurricane risk: Southeast (FL, TX coast, LA, MS, AL, SC, NC)
+- Earthquake risk: West Coast (CA, OR, WA) + New Madrid (MO/TN/AR)
+- Wildfire risk: West (CA, CO, OR, WA, MT) -- expanding WUI
+- Tornado risk: Midwest (TX, OK, KS, NE, IA, IL, IN) -- Tornado Alley + Dixie Alley
+- Hail risk: Great Plains (TX, CO, NE, KS, SD) -- #1 cause of roof claims
+- Tools: geographic mapping, PML analysis, ZIP code aggregate caps, new business moratoriums
+- FAIR Plans absorb risks when private market withdraws
+
+CATASTROPHE MODELING (3 COMPONENTS):
+1. Hazard Module -- what events could happen? (type, path, frequency, intensity)
+2. Vulnerability Module -- how much damage? (construction, age, codes, elevation)
+3. Financial Module -- what does it cost? (policy terms, deductibles, reinsurance)
+- Major firms: AIR Worldwide (Verisk), CoreLogic, Moody's RMS
+- Uses: pricing, reinsurance purchasing, portfolio optimization, regulatory compliance
+- Climate change is making historical data unreliable -- models may underestimate future losses
+
+LOSS RATIO ANALYSIS BY SEGMENT:
+- Segment by: territory (ZIP/state), tier (preferred/standard/nonstandard), product (auto/home), vintage (years on books)
+- Overall averages can hide profitable and unprofitable segments
+- Actions: rate increases for unprofitable, growth for profitable, tighten UW for problem areas
+
+PREDICTIVE MODELING:
+- GLMs (Generalized Linear Models): industry standard for pricing, transparent, produces relativities
+  - Relativity = multiplier vs. average (1.00 = average, >1.00 = higher risk, <1.00 = lower risk)
+  - Combined effect: multiply relativities together
+- GBMs (Gradient Boosted Machines): more accurate, black box risk, used for segmentation
+- Neural Networks: emerging, least transparent, used for aerial imagery and telematics
+- Proxy Discrimination: neutral variable correlates with protected class (ZIP code <-> race)
+  - Intent does NOT matter -- effect does
+  - Colorado SB 21-169: requires testing for proxy discrimination
+  - NAIC Model Bulletin on AI (December 2023): guidelines for responsible AI use
+
+RATE ADEQUACY:
+- Three demands: adequate + competitive + compliant
+- Indication = actuarial recommendation for rate change
+- Selected change = what management files (often less than indication)
+- Loss trend: how fast claims are growing
+- Expense trend: how fast operating costs change
+- Prior approval states slow the process -- rates lag behind loss trends
+- Rate inadequacy drives insurer withdrawals
+
+CURRENT CHALLENGES:
+- Climate change: more frequent/severe cats, especially wildfire and convective storms
+- Insurer withdrawals: State Farm, Allstate reducing/exiting CA, FL, LA
+- FAIR Plan growth: CA FAIR Plan over $300B exposure -- systemic risk
+- Social inflation: nuclear verdicts in auto BI (NOT the same as economic inflation)
+- Technology: telematics (UBI), autonomous vehicles (future), ride-sharing gaps
+- Reinsurance costs: significant increases since 2020
+- The Vicious Cycle: climate change -> costs rise -> rates need to rise -> regulators limit -> insurers exit -> FAIR Plans overloaded
+
+KEY EXAM TRAPS:
+- Individual risk OK does NOT mean portfolio OK (concentration risk)
+- Cat models SIMULATE, they do NOT PREDICT
+- GLMs for rate filings (transparent); GBMs for segmentation (black box)
+- Proxy discrimination: intent does NOT matter, effect does
+- Indication != selected change (management often files less)
+- FAIR Plans are temporary safety nets, NOT long-term solutions
+- Social inflation != economic inflation (jury attitudes vs price increases)`);
+        });
+    </script>
+</body>
+</html>

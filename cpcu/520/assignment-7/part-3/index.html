@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 3: Rate Filing &amp; Modern Actuarial Practice | CPCU 520 Assignment 7</title>
+    <link rel="icon" type="image/svg+xml" href="../../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <link rel="stylesheet" href="../../../../css/styles.css">
+    <script src="../../../../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+        }
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <!-- Settings & Theme Toggle Buttons -->
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="showAPIKeySetup()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings">
+            <svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+        </button>
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/>
+            </svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-indigo-600 to-indigo-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap gap-2 text-sm mb-2">
+                <a href="../../../../index.html" class="text-indigo-200 hover:text-white">Home</a>
+                <span class="text-indigo-300">/</span>
+                <a href="../../../index.html" class="text-indigo-200 hover:text-white">CPCU</a>
+                <span class="text-indigo-300">/</span>
+                <a href="../../index.html" class="text-indigo-200 hover:text-white">520</a>
+                <span class="text-indigo-300">/</span>
+                <a href="../index.html" class="text-indigo-200 hover:text-white">Assignment 7</a>
+                <span class="text-indigo-300">/</span>
+                <span class="text-white">Part 3</span>
+            </div>
+            <h1 class="text-3xl font-bold">Part 3: Rate Filing &amp; Modern Actuarial Practice</h1>
+            <p class="text-indigo-200 mt-1">Five types of rate regulation, the filing process, credibility, and cutting-edge actuarial techniques</p>
+        </div>
+    </header>
+
+    <!-- Sticky Navigation -->
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-wrap gap-2 text-sm">
+                <a href="../index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Overview</a>
+                <a href="../part-1/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 1</a>
+                <a href="../part-2/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 2</a>
+                <span class="bg-indigo-600 text-white px-3 py-1 rounded font-medium">Part 3</span>
+            </div>
+            <div class="flex flex-wrap gap-2 text-xs mt-2 text-gray-500 dark:text-gray-400">
+                <a href="#rate-regulation" class="hover:text-teal-600 dark:hover:text-teal-400">5 Regulation Types</a>
+                <span>|</span>
+                <a href="#filing-process" class="hover:text-teal-600 dark:hover:text-teal-400">Filing Process</a>
+                <span>|</span>
+                <a href="#credibility" class="hover:text-teal-600 dark:hover:text-teal-400">Credibility</a>
+                <span>|</span>
+                <a href="#large-loss" class="hover:text-teal-600 dark:hover:text-teal-400">Large Losses</a>
+                <span>|</span>
+                <a href="#modern-techniques" class="hover:text-teal-600 dark:hover:text-teal-400">Modern Techniques</a>
+                <span>|</span>
+                <a href="#regulatory-concerns" class="hover:text-teal-600 dark:hover:text-teal-400">Regulatory Concerns</a>
+                <span>|</span>
+                <a href="#expanding-role" class="hover:text-teal-600 dark:hover:text-teal-400">Expanding Role</a>
+                <span>|</span>
+                <a href="#cheat-sheet" class="hover:text-teal-600 dark:hover:text-teal-400">Cheat Sheet</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-5xl lg:max-w-7xl">
+
+        <!-- Start Here: 5 Things You MUST Know -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-teal-100 to-indigo-100 dark:from-teal-900/40 dark:to-indigo-800/40 rounded-xl p-6 border border-teal-300 dark:border-teal-700">
+                <h3 class="text-xl lg:text-2xl font-bold text-teal-800 dark:text-teal-200 mb-4">Start Here: 5 Things You MUST Know</h3>
+                <div class="grid md:grid-cols-2 gap-3">
+                    <div class="flex items-start">
+                        <span class="bg-teal-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Five types of rate regulation</strong> from most to least restrictive: Prior Approval, File-and-Use, Use-and-File, Flex Rating, No Filing (Open Competition)</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-teal-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Credibility formula</strong>: New Rate = Z x (Own Data) + (1 - Z) x (Industry Data), where Z ranges from 0 to 1</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-teal-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Large losses must be capped</strong> (truncated) so one giant claim does not distort the rate for everyone</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-teal-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">4</span>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>GLMs</strong> are the standard modern rating tool; <strong>GBMs/ML</strong> are more powerful but face "black box" regulatory pushback</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-teal-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">5</span>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Proxy discrimination</strong> is the top regulatory concern -- using allowed factors (credit, ZIP) that correlate with prohibited factors (race, income)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 1: Five Types of Rate Regulation -->
+        <section id="rate-regulation" class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4 flex items-center">
+                    <span class="bg-teal-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-3">1</span>
+                    Five Types of Rate Regulation
+                </h2>
+
+                <div class="bg-teal-50 dark:bg-teal-900/30 border border-teal-200 dark:border-teal-800 rounded-lg p-4 lg:p-5 mb-6">
+                    <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300">State regulators control how insurance rates are approved. The five regulatory approaches range from <strong>extremely strict</strong> (Prior Approval) to <strong>completely hands-off</strong> (Open Competition). This is one of the most heavily tested topics on the exam.</p>
+                </div>
+
+                <!-- Spectrum Diagram -->
+                <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 lg:p-5 mb-6">
+                    <p class="text-sm lg:text-base font-bold text-gray-700 dark:text-gray-300 mb-3 text-center">Restrictiveness Spectrum</p>
+                    <div class="flex items-center justify-between flex-wrap gap-2">
+                        <div class="bg-red-100 dark:bg-red-900/40 px-3 py-2 rounded-lg text-center flex-1 min-w-[100px]">
+                            <p class="font-bold text-red-800 dark:text-red-300 text-sm lg:text-base">Prior Approval</p>
+                            <p class="text-xs lg:text-sm text-red-600 dark:text-red-400">Most Restrictive</p>
+                        </div>
+                        <div class="text-gray-400 text-xl hidden md:block">--</div>
+                        <div class="bg-orange-100 dark:bg-orange-900/40 px-3 py-2 rounded-lg text-center flex-1 min-w-[100px]">
+                            <p class="font-bold text-orange-800 dark:text-orange-300 text-sm lg:text-base">File-and-Use</p>
+                            <p class="text-xs lg:text-sm text-orange-600 dark:text-orange-400">Moderate</p>
+                        </div>
+                        <div class="text-gray-400 text-xl hidden md:block">--</div>
+                        <div class="bg-yellow-100 dark:bg-yellow-900/40 px-3 py-2 rounded-lg text-center flex-1 min-w-[100px]">
+                            <p class="font-bold text-yellow-800 dark:text-yellow-300 text-sm lg:text-base">Use-and-File</p>
+                            <p class="text-xs lg:text-sm text-yellow-600 dark:text-yellow-400">Less Restrictive</p>
+                        </div>
+                        <div class="text-gray-400 text-xl hidden md:block">--</div>
+                        <div class="bg-blue-100 dark:bg-blue-900/40 px-3 py-2 rounded-lg text-center flex-1 min-w-[100px]">
+                            <p class="font-bold text-blue-800 dark:text-blue-300 text-sm lg:text-base">Flex Rating</p>
+                            <p class="text-xs lg:text-sm text-blue-600 dark:text-blue-400">Flexible</p>
+                        </div>
+                        <div class="text-gray-400 text-xl hidden md:block">--</div>
+                        <div class="bg-green-100 dark:bg-green-900/40 px-3 py-2 rounded-lg text-center flex-1 min-w-[100px]">
+                            <p class="font-bold text-green-800 dark:text-green-300 text-sm lg:text-base">No Filing</p>
+                            <p class="text-xs lg:text-sm text-green-600 dark:text-green-400">Least Restrictive</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- a) Prior Approval -->
+                <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-red-500 mb-4">
+                    <h3 class="font-bold text-red-800 dark:text-red-300 text-lg lg:text-xl mb-2">a) Prior Approval</h3>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-3">Insurer must file rates <strong>AND get explicit approval</strong> from the state regulator <strong>BEFORE</strong> using them. Most restrictive type.</p>
+                    <div class="grid md:grid-cols-2 gap-3 mb-3">
+                        <div class="bg-green-50 dark:bg-green-900/20 p-3 rounded-lg border border-green-200 dark:border-green-800">
+                            <p class="font-bold text-green-800 dark:text-green-300 text-sm">Advantage</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Strong consumer protection -- regulator reviews every change</p>
+                        </div>
+                        <div class="bg-red-50 dark:bg-red-900/20 p-3 rounded-lg border border-red-200 dark:border-red-800">
+                            <p class="font-bold text-red-800 dark:text-red-300 text-sm">Disadvantage</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Slow -- can take months. Rates may be outdated by approval date</p>
+                        </div>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded mt-2">
+                        <p class="font-semibold text-gray-700 dark:text-gray-300 mb-1">Real-World Scenario:</p>
+                        <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400"><strong>The Setup:</strong> Insurer files a 12% auto rate increase in January.</p>
+                        <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400"><strong>What Happens:</strong> State DOI reviews for 6 months. Approved in July.</p>
+                        <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400"><strong>The Result:</strong> By July, loss trends have worsened, and the 12% is already insufficient. The insurer must file again.</p>
+                    </div>
+                    <p class="text-sm lg:text-base text-gray-500 dark:text-gray-400 mt-2 italic">Common in: Personal lines (auto, homeowners) in many states.</p>
+                </div>
+
+                <!-- b) File-and-Use -->
+                <div class="bg-orange-50 dark:bg-orange-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-orange-500 mb-4">
+                    <h3 class="font-bold text-orange-800 dark:text-orange-300 text-lg lg:text-xl mb-2">b) File-and-Use</h3>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-3">Insurer files rates with the regulator and can <strong>use them immediately</strong>, but the regulator can <strong>disapprove them later</strong>.</p>
+                    <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-3 mb-3">
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>Key risk:</strong> The insurer takes the chance that rates may be ordered withdrawn after they are already in use.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded">
+                        <p class="font-semibold text-gray-700 dark:text-gray-300 mb-1">Real-World Scenario:</p>
+                        <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400"><strong>The Setup:</strong> Insurer files new homeowners rates on March 1 and starts using them immediately.</p>
+                        <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400"><strong>What Happens:</strong> In May, the regulator reviews and says "the 15% increase is too high."</p>
+                        <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400"><strong>The Result:</strong> Regulator orders a rollback to 10%. Insurer may need to issue refunds for the overcharge from March to May.</p>
+                    </div>
+                </div>
+
+                <!-- c) Use-and-File -->
+                <div class="bg-yellow-50 dark:bg-yellow-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-yellow-500 mb-4">
+                    <h3 class="font-bold text-yellow-800 dark:text-yellow-300 text-lg lg:text-xl mb-2">c) Use-and-File</h3>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-3">Insurer uses rates <strong>FIRST</strong>, then files them with the regulator within a specified period (typically <strong>15-30 days</strong>).</p>
+                    <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded">
+                        <p class="font-semibold text-gray-700 dark:text-gray-300 mb-1">Real-World Scenario:</p>
+                        <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400"><strong>The Setup:</strong> Sudden spike in auto theft hits the metro area.</p>
+                        <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400"><strong>What Happens:</strong> Insurer raises comprehensive rates immediately to reflect the new risk.</p>
+                        <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400"><strong>The Result:</strong> Insurer files the rate change with the state within 30 days. Fast response keeps the insurer solvent.</p>
+                    </div>
+                </div>
+
+                <!-- d) Flex Rating -->
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-4">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg lg:text-xl mb-2">d) Flex Rating (Band Rating)</h3>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-3">Insurer can change rates within a <strong>pre-approved range (band)</strong> without filing. Changes <strong>outside</strong> the band require a full filing.</p>
+                    <div class="bg-blue-100 dark:bg-blue-900/40 rounded-lg p-4 mb-3 text-center">
+                        <p class="text-sm lg:text-base font-bold text-blue-800 dark:text-blue-300 mb-2">Example: State allows +/- 7% band</p>
+                        <div class="flex items-center justify-center gap-4 flex-wrap">
+                            <div class="bg-green-200 dark:bg-green-800 px-4 py-2 rounded-lg">
+                                <p class="font-bold text-green-800 dark:text-green-200">+5%</p>
+                                <p class="text-xs text-green-700 dark:text-green-300">No filing needed</p>
+                            </div>
+                            <div class="text-gray-500 dark:text-gray-400 text-lg font-bold">vs</div>
+                            <div class="bg-red-200 dark:bg-red-800 px-4 py-2 rounded-lg">
+                                <p class="font-bold text-red-800 dark:text-red-200">+12%</p>
+                                <p class="text-xs text-red-700 dark:text-red-300">Full filing required</p>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400 italic">Combines speed (within band) with oversight (outside band).</p>
+                </div>
+
+                <!-- e) No Filing Required -->
+                <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-green-500 mb-6">
+                    <h3 class="font-bold text-green-800 dark:text-green-300 text-lg lg:text-xl mb-2">e) No Filing Required (Open Competition)</h3>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-3">No rate filing needed. <strong>Market competition</strong> is trusted to keep rates fair. Least restrictive approach.</p>
+                    <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded">
+                        <p class="font-semibold text-gray-700 dark:text-gray-300 mb-1">Real-World Scenario:</p>
+                        <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400"><strong>The Setup:</strong> A large manufacturer needs commercial property insurance.</p>
+                        <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400"><strong>What Happens:</strong> The buyer is sophisticated, shops multiple insurers, and negotiates terms.</p>
+                        <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400"><strong>The Result:</strong> Competition among insurers keeps pricing fair. No regulator involvement needed.</p>
+                    </div>
+                    <p class="text-sm lg:text-base text-gray-500 dark:text-gray-400 mt-2 italic">Common in: Commercial lines in many states. Illinois is a notable example.</p>
+                </div>
+
+                <!-- Comparison Table -->
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm lg:text-base">
+                        <thead>
+                            <tr class="bg-teal-600 text-white">
+                                <th class="p-3 lg:p-4 text-left rounded-tl-lg">Type</th>
+                                <th class="p-3 lg:p-4 text-left">When Insurer Files</th>
+                                <th class="p-3 lg:p-4 text-left">When Insurer Can Use</th>
+                                <th class="p-3 lg:p-4 text-left">Regulator Power</th>
+                                <th class="p-3 lg:p-4 text-left rounded-tr-lg">Best For</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                            <tr class="bg-red-50 dark:bg-red-900/10">
+                                <td class="p-3 lg:p-4 font-bold text-red-800 dark:text-red-300">Prior Approval</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Before using rates</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Only after approval</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Must approve first</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Personal lines, consumer protection</td>
+                            </tr>
+                            <tr class="bg-orange-50 dark:bg-orange-900/10">
+                                <td class="p-3 lg:p-4 font-bold text-orange-800 dark:text-orange-300">File-and-Use</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">At same time as using</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Immediately on filing</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Can disapprove later</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Moderate regulation states</td>
+                            </tr>
+                            <tr class="bg-yellow-50 dark:bg-yellow-900/10">
+                                <td class="p-3 lg:p-4 font-bold text-yellow-800 dark:text-yellow-300">Use-and-File</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Within 15-30 days after use</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Immediately, before filing</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Can disapprove after review</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Responsive markets</td>
+                            </tr>
+                            <tr class="bg-blue-50 dark:bg-blue-900/10">
+                                <td class="p-3 lg:p-4 font-bold text-blue-800 dark:text-blue-300">Flex Rating</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Only if outside band</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Immediately if within band</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Sets the band limits</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Balancing speed + oversight</td>
+                            </tr>
+                            <tr class="bg-green-50 dark:bg-green-900/10">
+                                <td class="p-3 lg:p-4 font-bold text-green-800 dark:text-green-300">No Filing</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Never</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Anytime</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Market competition only</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Commercial lines, sophisticated buyers</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Memory Trick -->
+                <div class="bg-purple-50 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-800 rounded-lg p-4 lg:p-5 mt-5">
+                    <h4 class="font-bold text-purple-800 dark:text-purple-300 text-base lg:text-lg mb-2">Memory Trick: "Please File Usually For Nothing"</h4>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>P</strong>rior Approval -- <strong>F</strong>ile-and-Use -- <strong>U</strong>se-and-File -- <strong>F</strong>lex Rating -- <strong>N</strong>o Filing. That is the order from most to least restrictive. The first letters spell <strong>PFUFN</strong> -- "Please File, Usually For Nothing."</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: The Rate Filing Process -->
+        <section id="filing-process" class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4 flex items-center">
+                    <span class="bg-teal-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-3">2</span>
+                    The Rate Filing Process
+                </h2>
+
+                <!-- Flow Diagram -->
+                <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 lg:p-5 mb-5">
+                    <p class="font-bold text-gray-700 dark:text-gray-300 mb-3 text-center text-base lg:text-lg">Rate Filing Flow</p>
+                    <div class="flex items-center gap-3 flex-wrap justify-center">
+                        <div class="bg-blue-100 dark:bg-blue-900/40 p-3 lg:p-4 rounded-lg text-center min-w-[120px]">
+                            <p class="font-bold text-blue-800 dark:text-blue-300 text-sm lg:text-base">Insurer or Advisory Org</p>
+                            <p class="text-xs lg:text-sm text-blue-600 dark:text-blue-400">Prepares filing</p>
+                        </div>
+                        <div class="text-2xl text-gray-400">-></div>
+                        <div class="bg-indigo-100 dark:bg-indigo-900/40 p-3 lg:p-4 rounded-lg text-center min-w-[120px]">
+                            <p class="font-bold text-indigo-800 dark:text-indigo-300 text-sm lg:text-base">SERFF Submission</p>
+                            <p class="text-xs lg:text-sm text-indigo-600 dark:text-indigo-400">Electronic filing</p>
+                        </div>
+                        <div class="text-2xl text-gray-400">-></div>
+                        <div class="bg-purple-100 dark:bg-purple-900/40 p-3 lg:p-4 rounded-lg text-center min-w-[120px]">
+                            <p class="font-bold text-purple-800 dark:text-purple-300 text-sm lg:text-base">State DOI Review</p>
+                            <p class="text-xs lg:text-sm text-purple-600 dark:text-purple-400">Actuaries evaluate</p>
+                        </div>
+                        <div class="text-2xl text-gray-400">-></div>
+                        <div class="bg-teal-100 dark:bg-teal-900/40 p-3 lg:p-4 rounded-lg text-center min-w-[120px]">
+                            <p class="font-bold text-teal-800 dark:text-teal-300 text-sm lg:text-base">Approved or Objected</p>
+                            <p class="text-xs lg:text-sm text-teal-600 dark:text-teal-400">Hearing if disputed</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-l-4 border-blue-500">
+                        <h4 class="font-bold text-blue-800 dark:text-blue-300 mb-2">Who Files?</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The insurer itself, or an <strong>advisory organization</strong> on its behalf (ISO for property/liability, NCCI for workers' comp). Advisory orgs collect industry-wide data and file reference rates that individual insurers can adopt or modify.</p>
+                    </div>
+                    <div class="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-lg border-l-4 border-indigo-500">
+                        <h4 class="font-bold text-indigo-800 dark:text-indigo-300 mb-2">What Is Included?</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Supporting loss data, actuarial analysis, justification for the rate change, expense projections, and trend factors. The filing must demonstrate the rate is <strong>adequate, not excessive, and not unfairly discriminatory</strong>.</p>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border-l-4 border-purple-500">
+                        <h4 class="font-bold text-purple-800 dark:text-purple-300 mb-2">How Is It Filed?</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>SERFF</strong> (System for Electronic Rate and Form Filing) -- the electronic platform used by most states. Standardizes the filing process and speeds up review times.</p>
+                    </div>
+                    <div class="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg border-l-4 border-amber-500">
+                        <h4 class="font-bold text-amber-800 dark:text-amber-300 mb-2">What If the Regulator Objects?</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The insurer can request a <strong>formal hearing</strong> to defend its rate. State DOI actuaries test for adequacy, excessiveness, and unfair discrimination. The burden of proof depends on the state.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Credibility -->
+        <section id="credibility" class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4 flex items-center">
+                    <span class="bg-teal-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-3">3</span>
+                    Credibility
+                </h2>
+
+                <div class="bg-teal-50 dark:bg-teal-900/30 border border-teal-200 dark:border-teal-800 rounded-lg p-4 lg:p-5 mb-5">
+                    <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300"><strong>Credibility</strong> is a statistical measure of how reliable an insurer's own loss data is. The more data you have, the more you can trust it. Think of it as a "confidence dial" from 0 (no trust) to 1 (full trust).</p>
+                </div>
+
+                <!-- Formula Box -->
+                <div class="bg-indigo-50 dark:bg-indigo-900/30 border-2 border-indigo-300 dark:border-indigo-700 rounded-xl p-5 lg:p-6 mb-5 text-center">
+                    <p class="text-lg lg:text-xl font-bold text-indigo-800 dark:text-indigo-300 mb-3">The Credibility Formula</p>
+                    <div class="bg-white dark:bg-gray-700 rounded-lg p-4 lg:p-5 inline-block">
+                        <p class="text-xl lg:text-2xl font-mono font-bold text-gray-800 dark:text-gray-100">New Rate = Z x (Own Experience) + (1 - Z) x (Industry Data)</p>
+                    </div>
+                    <div class="grid grid-cols-3 gap-4 mt-4 max-w-lg mx-auto">
+                        <div class="bg-teal-100 dark:bg-teal-900/40 p-3 rounded-lg">
+                            <p class="font-bold text-teal-800 dark:text-teal-300 text-lg">Z = 1</p>
+                            <p class="text-xs lg:text-sm text-teal-700 dark:text-teal-400">Full credibility. Use own data entirely.</p>
+                        </div>
+                        <div class="bg-amber-100 dark:bg-amber-900/40 p-3 rounded-lg">
+                            <p class="font-bold text-amber-800 dark:text-amber-300 text-lg">Z = 0.5</p>
+                            <p class="text-xs lg:text-sm text-amber-700 dark:text-amber-400">50/50 blend of own + industry.</p>
+                        </div>
+                        <div class="bg-red-100 dark:bg-red-900/40 p-3 rounded-lg">
+                            <p class="font-bold text-red-800 dark:text-red-300 text-lg">Z = 0</p>
+                            <p class="text-xs lg:text-sm text-red-700 dark:text-red-400">No credibility. Use industry data entirely.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- What determines credibility -->
+                <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 lg:p-5 mb-5">
+                    <h4 class="font-bold text-gray-800 dark:text-gray-200 text-base lg:text-lg mb-3">What Determines Z?</h4>
+                    <div class="grid md:grid-cols-3 gap-3">
+                        <div class="bg-white dark:bg-gray-600 p-3 rounded-lg text-center">
+                            <p class="text-2xl lg:text-3xl font-bold text-teal-600 dark:text-teal-400">Volume</p>
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-300">More policies = higher Z</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-600 p-3 rounded-lg text-center">
+                            <p class="text-2xl lg:text-3xl font-bold text-teal-600 dark:text-teal-400">Homogeneity</p>
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-300">Similar risks = higher Z</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-600 p-3 rounded-lg text-center">
+                            <p class="text-2xl lg:text-3xl font-bold text-teal-600 dark:text-teal-400">Time</p>
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-300">Longer experience period = higher Z</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Worked Example -->
+                <div class="bg-teal-50 dark:bg-teal-900/20 p-4 lg:p-5 rounded-lg border-l-4 border-teal-500">
+                    <p class="font-semibold text-teal-800 dark:text-teal-300 mb-2 text-base lg:text-lg">Worked Example: Two Insurers, Same State</p>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                            <p class="font-bold text-gray-800 dark:text-gray-200 mb-2">Big National Insurer</p>
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400"><strong>Policies:</strong> 200,000 auto policies in the state</p>
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400"><strong>Z = 0.95</strong> (nearly full credibility)</p>
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400"><strong>Own experience says:</strong> Rates need +8%</p>
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400"><strong>Industry data says:</strong> +6%</p>
+                            <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300 mt-2 font-bold">Result: 0.95 x 8% + 0.05 x 6% = 7.6% + 0.3% = <span class="text-teal-700 dark:text-teal-300">+7.9%</span></p>
+                            <p class="text-xs lg:text-sm text-gray-500 dark:text-gray-400 italic">Almost entirely driven by own data.</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                            <p class="font-bold text-gray-800 dark:text-gray-200 mb-2">Small Regional Insurer</p>
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400"><strong>Policies:</strong> 500 auto policies in the state</p>
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400"><strong>Z = 0.15</strong> (low credibility)</p>
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400"><strong>Own experience says:</strong> Rates need +8%</p>
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400"><strong>Industry data says:</strong> +6%</p>
+                            <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300 mt-2 font-bold">Result: 0.15 x 8% + 0.85 x 6% = 1.2% + 5.1% = <span class="text-teal-700 dark:text-teal-300">+6.3%</span></p>
+                            <p class="text-xs lg:text-sm text-gray-500 dark:text-gray-400 italic">Heavily reliant on ISO industry data.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Large Loss Limitations -->
+        <section id="large-loss" class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4 flex items-center">
+                    <span class="bg-teal-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-3">4</span>
+                    Large Loss Limitations
+                </h2>
+
+                <div class="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-4 lg:p-5 mb-5">
+                    <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300">A single massive loss can <strong>distort the entire dataset</strong>. Actuaries must cap or truncate large losses to prevent one outlier from unfairly spiking rates for everyone.</p>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700 p-4 lg:p-5 rounded-lg border-l-4 border-red-500 mb-5">
+                    <p class="font-semibold text-red-800 dark:text-red-300 mb-2 text-base lg:text-lg">Real-World Scenario: The Mansion Fire</p>
+                    <div class="space-y-2">
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Setup:</strong> Typical homeowners claims in a state average $20,000-$50,000.</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What Happens:</strong> One mansion burns down -- $2 million claim. If included at full value, it spikes the average claim for all 50,000 homeowners policies.</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>The Result:</strong> The actuary truncates (caps) that claim at $250,000 for ratemaking purposes. The excess above $250K is analyzed separately in an excess layer.</p>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-l-4 border-blue-500">
+                        <h4 class="font-bold text-blue-800 dark:text-blue-300 mb-2">Truncation</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Cap each loss at a threshold (e.g., $250K). Any amount above the cap is excluded from the base rate calculation. Simple and widely used.</p>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border-l-4 border-purple-500">
+                        <h4 class="font-bold text-purple-800 dark:text-purple-300 mb-2">Separate Excess Layer Analysis</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The amounts above the cap are pooled and analyzed separately, often using industry-wide data because individual insurer data is too sparse at high loss levels.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Modern Actuarial Techniques -->
+        <section id="modern-techniques" class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4 flex items-center">
+                    <span class="bg-teal-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-3">5</span>
+                    Modern Actuarial Techniques
+                </h2>
+
+                <div class="bg-indigo-50 dark:bg-indigo-900/30 border border-indigo-200 dark:border-indigo-800 rounded-lg p-4 lg:p-5 mb-6">
+                    <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300">The actuarial profession has moved far beyond simple averages and manual calculations. Modern tools use advanced statistics, machine learning, and real-time data to price risk more accurately than ever before.</p>
+                </div>
+
+                <!-- Comparison Grid: Modern Techniques -->
+                <div class="grid md:grid-cols-2 gap-4 mb-5">
+                    <!-- GLMs -->
+                    <div class="bg-teal-50 dark:bg-teal-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-teal-500">
+                        <h4 class="font-bold text-teal-800 dark:text-teal-300 text-base lg:text-lg mb-2">Generalized Linear Models (GLMs)</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mb-2">The <strong>standard modern rating tool</strong>. Analyzes multiple rating factors simultaneously and detects interactions between variables. Replaced the old one-variable-at-a-time approach.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-2">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> GLM discovers that credit score, driving record, and vehicle type interact to predict risk better than looking at each variable in isolation.</p>
+                        </div>
+                        <div class="flex gap-2 mt-3 flex-wrap">
+                            <span class="bg-green-200 dark:bg-green-800 text-green-800 dark:text-green-200 text-xs px-2 py-1 rounded">Transparent</span>
+                            <span class="bg-green-200 dark:bg-green-800 text-green-800 dark:text-green-200 text-xs px-2 py-1 rounded">Explainable</span>
+                            <span class="bg-green-200 dark:bg-green-800 text-green-800 dark:text-green-200 text-xs px-2 py-1 rounded">Regulator-friendly</span>
+                        </div>
+                    </div>
+
+                    <!-- GBMs / ML -->
+                    <div class="bg-indigo-50 dark:bg-indigo-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-indigo-500">
+                        <h4 class="font-bold text-indigo-800 dark:text-indigo-300 text-base lg:text-lg mb-2">GBMs &amp; Machine Learning</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mb-2">Even more powerful than GLMs -- can find complex, non-linear patterns in data. But the <strong>"black box" problem</strong> makes them harder to explain to regulators.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-2">
+                            <p class="text-sm lg:text-base"><strong>Usage:</strong> More common for internal pricing sophistication scores, less common in filed rates because regulators demand explainability.</p>
+                        </div>
+                        <div class="flex gap-2 mt-3 flex-wrap">
+                            <span class="bg-green-200 dark:bg-green-800 text-green-800 dark:text-green-200 text-xs px-2 py-1 rounded">Powerful</span>
+                            <span class="bg-red-200 dark:bg-red-800 text-red-800 dark:text-red-200 text-xs px-2 py-1 rounded">Black box</span>
+                            <span class="bg-red-200 dark:bg-red-800 text-red-800 dark:text-red-200 text-xs px-2 py-1 rounded">Hard to file</span>
+                        </div>
+                    </div>
+
+                    <!-- Telematics -->
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500">
+                        <h4 class="font-bold text-blue-800 dark:text-blue-300 text-base lg:text-lg mb-2">Telematics-Based Rating (UBI)</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mb-2"><strong>Usage-Based Insurance</strong> rates drivers on actual behavior: speed, braking, acceleration, time of day, and miles driven.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-2">
+                            <p class="text-sm lg:text-base"><strong>Programs:</strong> Progressive Snapshot, State Farm Drive Safe &amp; Save, Root Insurance. Data collected via phone app or OBD-II plug-in device.</p>
+                        </div>
+                        <div class="flex gap-2 mt-3 flex-wrap">
+                            <span class="bg-green-200 dark:bg-green-800 text-green-800 dark:text-green-200 text-xs px-2 py-1 rounded">Accurate</span>
+                            <span class="bg-amber-200 dark:bg-amber-800 text-amber-800 dark:text-amber-200 text-xs px-2 py-1 rounded">Privacy concerns</span>
+                        </div>
+                    </div>
+
+                    <!-- Climate Modeling -->
+                    <div class="bg-amber-50 dark:bg-amber-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-amber-500">
+                        <h4 class="font-bold text-amber-800 dark:text-amber-300 text-base lg:text-lg mb-2">Climate Modeling</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mb-2">Catastrophe models from <strong>AIR, RMS, and CoreLogic</strong> estimate hurricane, earthquake, wildfire, and flood risk. Climate change means <strong>historical data alone is no longer enough</strong>.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-2">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> Traditional model shows Florida hurricane risk based on last 100 years. Climate-adjusted model shows <strong>20-30% higher risk</strong> due to warming oceans.</p>
+                        </div>
+                        <div class="flex gap-2 mt-3 flex-wrap">
+                            <span class="bg-green-200 dark:bg-green-800 text-green-800 dark:text-green-200 text-xs px-2 py-1 rounded">Forward-looking</span>
+                            <span class="bg-amber-200 dark:bg-amber-800 text-amber-800 dark:text-amber-200 text-xs px-2 py-1 rounded">Uncertain assumptions</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: Regulatory Concerns with Modern Techniques -->
+        <section id="regulatory-concerns" class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4 flex items-center">
+                    <span class="bg-teal-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-3">6</span>
+                    Regulatory Concerns with Modern Techniques
+                </h2>
+
+                <div class="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-4 lg:p-5 mb-5">
+                    <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300">More powerful tools create more powerful concerns. Regulators are increasingly focused on <strong>fairness, transparency, and privacy</strong> in algorithmic rating.</p>
+                </div>
+
+                <div class="space-y-4">
+                    <!-- Proxy Discrimination -->
+                    <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-red-500">
+                        <h4 class="font-bold text-red-800 dark:text-red-300 text-base lg:text-lg mb-2">Proxy Discrimination</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mb-2">When a <strong>permitted</strong> rating factor (credit score, ZIP code) correlates with a <strong>prohibited</strong> factor (race, income). The algorithm is technically legal but produces discriminatory outcomes.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> Using ZIP code as a rating factor may effectively charge more to minority neighborhoods, even though race is never explicitly used. The ZIP code acts as a proxy for race.</p>
+                        </div>
+                    </div>
+
+                    <!-- Algorithmic Bias -->
+                    <div class="bg-amber-50 dark:bg-amber-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-amber-500">
+                        <h4 class="font-bold text-amber-800 dark:text-amber-300 text-base lg:text-lg mb-2">Algorithmic Bias</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">ML models trained on <strong>biased historical data</strong> will perpetuate and even amplify that bias. If past underwriting unfairly penalized certain groups, the algorithm learns to do the same thing -- automatically and at scale.</p>
+                    </div>
+
+                    <!-- Explainability -->
+                    <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-purple-500">
+                        <h4 class="font-bold text-purple-800 dark:text-purple-300 text-base lg:text-lg mb-2">Explainability</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Regulators increasingly demand that insurers can explain <strong>WHY</strong> a rate is what it is. "The algorithm said so" is not an acceptable answer. This is why GLMs (explainable) are preferred over GBMs (black box) for filed rates.</p>
+                    </div>
+
+                    <!-- Data Privacy -->
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500">
+                        <h4 class="font-bold text-blue-800 dark:text-blue-300 text-base lg:text-lg mb-2">Data Privacy</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">GDPR (Europe), state privacy laws (CCPA in California), and emerging frameworks limit what data can be collected and used in rating. Telematics data is a particular flashpoint.</p>
+                    </div>
+
+                    <!-- Colorado Law -->
+                    <div class="bg-indigo-50 dark:bg-indigo-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-indigo-500">
+                        <h4 class="font-bold text-indigo-800 dark:text-indigo-300 text-base lg:text-lg mb-2">Colorado SB 21-169: Leading the Way</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Colorado now requires insurers to <strong>test their algorithms for unfair discrimination</strong> before using them. Other states are watching closely and considering similar legislation. This is a landmark piece of insurance regulation for the AI age.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 7: The Actuary's Expanding Role -->
+        <section id="expanding-role" class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4 flex items-center">
+                    <span class="bg-teal-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-3">7</span>
+                    The Actuary's Expanding Role Across the Value Chain
+                </h2>
+
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="bg-gray-100 dark:bg-gray-700 rounded-lg p-4 lg:p-5 border-l-4 border-gray-400">
+                        <h4 class="font-bold text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-3">Traditional Role</h4>
+                        <ul class="space-y-2 text-sm lg:text-base text-gray-600 dark:text-gray-400">
+                            <li class="flex items-start"><span class="text-gray-400 mr-2">--</span>Ratemaking (setting premiums)</li>
+                            <li class="flex items-start"><span class="text-gray-400 mr-2">--</span>Reserving (setting aside funds for claims)</li>
+                        </ul>
+                        <p class="text-sm text-gray-500 dark:text-gray-400 mt-3 italic">Just two functions -- relatively narrow scope.</p>
+                    </div>
+                    <div class="bg-teal-50 dark:bg-teal-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-teal-500">
+                        <h4 class="font-bold text-teal-800 dark:text-teal-300 text-base lg:text-lg mb-3">Modern Role (2024-2026)</h4>
+                        <ul class="space-y-2 text-sm lg:text-base text-gray-700 dark:text-gray-300">
+                            <li class="flex items-start"><span class="text-teal-500 mr-2 font-bold">+</span><strong>Pricing strategy</strong> and product development</li>
+                            <li class="flex items-start"><span class="text-teal-500 mr-2 font-bold">+</span><strong>Underwriting strategy</strong> optimization</li>
+                            <li class="flex items-start"><span class="text-teal-500 mr-2 font-bold">+</span><strong>Claims analytics</strong>: fraud detection, severity estimation</li>
+                            <li class="flex items-start"><span class="text-teal-500 mr-2 font-bold">+</span><strong>Catastrophe modeling</strong> and climate risk</li>
+                            <li class="flex items-start"><span class="text-teal-500 mr-2 font-bold">+</span><strong>Capital allocation</strong> and surplus modeling (links to CPCU 540)</li>
+                            <li class="flex items-start"><span class="text-teal-500 mr-2 font-bold">+</span><strong>Enterprise Risk Management</strong> (ERM)</li>
+                            <li class="flex items-start"><span class="text-teal-500 mr-2 font-bold">+</span><strong>Predictive analytics</strong> across the entire value chain</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 mt-4">
+                    <p class="font-bold text-amber-800 dark:text-amber-300 mb-1">Exam Alert!</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The exam may ask about the actuary's role beyond traditional ratemaking. Know that predictive analytics in claims (fraud detection, severity estimation, reserve optimization) is a major growth area. Capital modeling ties directly to CPCU 540 content.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cheat Sheet -->
+        <section id="cheat-sheet" class="mb-10">
+            <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 border-2 border-dashed border-gray-300 dark:border-gray-600">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100">Cheat Sheet</h2>
+                    <span class="text-sm text-gray-500 dark:text-gray-400">Print this page for quick reference</span>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                        <p class="font-bold text-gray-800 dark:text-gray-200 text-sm">Prior Approval</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">File first, wait for approval, THEN use. Most restrictive.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                        <p class="font-bold text-gray-800 dark:text-gray-200 text-sm">File-and-Use</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">File and use immediately. Regulator can disapprove later.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                        <p class="font-bold text-gray-800 dark:text-gray-200 text-sm">Use-and-File</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Use first, file within 15-30 days.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                        <p class="font-bold text-gray-800 dark:text-gray-200 text-sm">Flex Rating</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Free within the band. File only if exceeding band limits.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                        <p class="font-bold text-gray-800 dark:text-gray-200 text-sm">No Filing / Open Competition</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">No filing. Market forces regulate. Commercial lines.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                        <p class="font-bold text-gray-800 dark:text-gray-200 text-sm">Credibility Formula</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Z x Own + (1-Z) x Industry. Z = 0 to 1.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                        <p class="font-bold text-gray-800 dark:text-gray-200 text-sm">Large Loss Limitation</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Truncate big losses at a cap. Analyze excess separately.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                        <p class="font-bold text-gray-800 dark:text-gray-200 text-sm">GLMs vs GBMs</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">GLMs = standard, explainable. GBMs = powerful, black box.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                        <p class="font-bold text-gray-800 dark:text-gray-200 text-sm">SERFF</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">System for Electronic Rate and Form Filing. Most states use it.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                        <p class="font-bold text-gray-800 dark:text-gray-200 text-sm">Proxy Discrimination</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Allowed factor (ZIP) correlates with prohibited factor (race).</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                        <p class="font-bold text-gray-800 dark:text-gray-200 text-sm">Telematics / UBI</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Rate on actual driving behavior. Progressive Snapshot, Root.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                        <p class="font-bold text-gray-800 dark:text-gray-200 text-sm">Colorado SB 21-169</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Requires testing algorithms for unfair discrimination.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Trap Alerts -->
+        <section id="exam-traps" class="mb-10">
+            <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-xl p-5 lg:p-6">
+                <h2 class="text-2xl font-bold text-red-800 dark:text-red-300 mb-4">Exam Trap Alerts</h2>
+                <div class="space-y-3">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">1. File-and-Use vs. Use-and-File -- Do NOT Mix These Up</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>File-and-Use:</strong> File and use at the same time. <strong>Use-and-File:</strong> Use FIRST, file LATER. The exam loves switching these two. Remember: the first word tells you what comes first. "File-and-Use" = filing comes first. "Use-and-File" = using comes first.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">2. Flex Rating Is NOT No Filing</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Flex rating still requires filing for changes OUTSIDE the band. Only "No Filing / Open Competition" has zero filing requirements. If the exam describes a +/- percentage band, that is flex rating, not open competition.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">3. Credibility Z = 0 Means Industry Data, NOT Zero Rate</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">When Z = 0, the formula becomes: New Rate = 0 x Own + 1 x Industry = Industry data entirely. It does NOT mean the insurer charges nothing. Z = 0 just means the insurer's own data is too thin to rely on.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">4. GLMs Are the Standard -- Not GBMs</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">If the exam asks what is the "standard modern rating tool" or "most widely used in filed rates," the answer is <strong>GLMs</strong>. GBMs are more powerful but not the standard for filed rates because they lack explainability.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">5. Proxy Discrimination vs. Unfair Discrimination</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Proxy discrimination uses a <strong>permitted factor that correlates with a prohibited one</strong>. The factor itself (e.g., credit score) is legal. The issue is the disparate impact. Direct unfair discrimination explicitly uses prohibited factors. Proxy discrimination is the sneakier, harder-to-detect problem.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">6. Advisory Orgs File REFERENCE Rates, Not Final Rates</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">ISO and NCCI file <strong>reference (advisory) rates</strong>. Individual insurers can adopt, modify, or deviate from these rates. Advisory orgs do NOT set the final rate that consumers pay. The insurer always makes the final pricing decision.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">7. Large Loss Truncation Does NOT Ignore the Loss</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Truncation caps the loss at a threshold for base rate calculation, but the excess amount is still analyzed in a <strong>separate excess layer</strong>. The loss is not thrown away -- it is just handled differently to avoid distorting the average.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">8. Prior Approval's Biggest Flaw Is TIMING, Not Fairness</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Prior approval provides strong consumer protection. Its weakness is that rates can become <strong>outdated before they are approved</strong>. The exam may frame this as a trade-off question: protection vs. responsiveness.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Reference Summary -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-indigo-600 to-indigo-800 rounded-xl p-6 text-white">
+                <h2 class="text-2xl font-bold mb-6">Quick Reference Summary</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Prior Approval</p>
+                        <p class="text-sm text-indigo-100">Most restrictive. File, wait, then use. Common in personal lines.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">File-and-Use</p>
+                        <p class="text-sm text-indigo-100">File and use simultaneously. Regulator reviews after the fact.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Use-and-File</p>
+                        <p class="text-sm text-indigo-100">Use first, file within 15-30 days. Fastest response to market.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Flex Rating</p>
+                        <p class="text-sm text-indigo-100">Free within band (e.g., +/-7%). File only outside the band.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Open Competition</p>
+                        <p class="text-sm text-indigo-100">No filing. Market forces regulate. For sophisticated commercial buyers.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Credibility (Z)</p>
+                        <p class="text-sm text-indigo-100">0 to 1 scale. More data = higher Z = more weight on own experience.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Large Loss Truncation</p>
+                        <p class="text-sm text-indigo-100">Cap outlier claims. Analyze excess separately. Prevents rate distortion.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">GLMs</p>
+                        <p class="text-sm text-indigo-100">Standard modern tool. Multi-variable. Transparent. Regulator-approved.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">GBMs / Machine Learning</p>
+                        <p class="text-sm text-indigo-100">More powerful but black box. Used internally, hard to file.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Telematics / UBI</p>
+                        <p class="text-sm text-indigo-100">Rates based on actual driving. Privacy vs. accuracy trade-off.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Proxy Discrimination</p>
+                        <p class="text-sm text-indigo-100">Legal factor correlates with illegal factor. Top regulatory concern.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Actuary's Modern Role</p>
+                        <p class="text-sm text-indigo-100">Beyond ratemaking: claims, UW, cat modeling, ERM, capital allocation.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Navigation Footer -->
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="../part-2/index.html" class="text-gray-300 hover:text-white flex items-center">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                    </svg>
+                    Part 2: Methods &amp; Reserves
+                </a>
+                <span class="text-gray-400">Part 3 of 3</span>
+                <a href="../../index.html" class="text-gray-300 hover:text-white flex items-center">
+                    Back to CPCU 520 Overview
+                    <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AI Tutor Button -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            createFloatingAIButton(`Part 3: Rate Filing & Modern Actuarial Practice
+
+Key Topics:
+- Five types of rate regulation (most to least restrictive): Prior Approval, File-and-Use, Use-and-File, Flex Rating, No Filing (Open Competition)
+- Prior Approval = file first, wait for approval. File-and-Use = file and use simultaneously. Use-and-File = use first, file within 15-30 days.
+- Flex Rating = free within a band (e.g., +/-7%), must file outside band
+- SERFF = System for Electronic Rate and Form Filing (electronic platform used by most states)
+- Credibility formula: New Rate = Z x Own + (1-Z) x Industry. Z = 0 to 1. More data = higher Z.
+- Large loss truncation: cap outlier claims to prevent distortion, analyze excess separately
+- GLMs = standard modern rating tool (explainable). GBMs = more powerful but black box.
+- Telematics/UBI = rates based on actual driving behavior (Progressive Snapshot, Root)
+- Climate modeling: cat models from AIR, RMS, CoreLogic. Historical data alone is insufficient.
+- Proxy discrimination: permitted factor (ZIP code) correlates with prohibited factor (race)
+- Colorado SB 21-169: requires algorithm testing for unfair discrimination
+
+Common Confusions:
+- File-and-Use vs Use-and-File: first word = what happens first
+- Flex rating still requires filing outside the band (it is NOT open competition)
+- Z = 0 means use industry data, NOT zero premium
+- GLMs are the standard for filed rates, not GBMs
+- Advisory orgs (ISO, NCCI) file reference rates, not final consumer rates`);
+        });
+    </script>
+</body>
+</html>

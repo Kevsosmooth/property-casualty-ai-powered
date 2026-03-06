@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment 1 Part 2: Harnessing the Insurance Value Chain's Power | CPCU 520</title>
+    <link rel="icon" type="image/svg+xml" href="../../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <link rel="stylesheet" href="../../../../css/styles.css">
+    <script src="../../../../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+        }
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <!-- Settings & Theme Toggle Buttons -->
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="showAPIKeySetup()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings">
+            <svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+        </button>
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/>
+            </svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap gap-2 text-sm mb-2">
+                <a href="../../../../index.html" class="text-blue-200 hover:text-white">Home</a>
+                <span class="text-blue-300">/</span>
+                <a href="../../../index.html" class="text-blue-200 hover:text-white">CPCU</a>
+                <span class="text-blue-300">/</span>
+                <a href="../../index.html" class="text-blue-200 hover:text-white">520</a>
+                <span class="text-blue-300">/</span>
+                <a href="../index.html" class="text-blue-200 hover:text-white">Assignment 1</a>
+                <span class="text-blue-300">/</span>
+                <span class="text-white">Part 2</span>
+            </div>
+            <h1 class="text-3xl font-bold">Assignment 1 Part 2: Harnessing the Insurance Value Chain's Power</h1>
+            <p class="text-blue-200 mt-1">Insurer types, performance metrics, financial statements, and the underwriting cycle</p>
+        </div>
+    </header>
+
+    <!-- Part Navigation -->
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-wrap gap-2 text-sm">
+                <a href="../index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Overview</a>
+                <a href="../part-1/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 1</a>
+                <span class="bg-blue-600 text-white px-3 py-1 rounded font-medium">Part 2</span>
+                <a href="../part-3/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 3</a>
+                <a href="../part-4/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 4</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-5xl lg:max-w-7xl">
+
+        <!-- Start Here: 5 Things You MUST Know -->
+        <div class="bg-gradient-to-r from-blue-100 to-blue-200 dark:from-blue-900/40 dark:to-blue-800/40 rounded-xl p-6 mb-8 border border-blue-300 dark:border-blue-700">
+            <h3 class="text-xl lg:text-2xl font-bold text-blue-800 dark:text-blue-200 mb-4">Start Here: 5 Things You MUST Know</h3>
+            <div class="grid md:grid-cols-2 gap-3">
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Combined Ratio = Loss Ratio + Expense Ratio.</strong> Under 100% = underwriting profit. Over 100% = underwriting loss.</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Written vs. Earned Premiums</strong> -- written is the full amount; earned is only the portion where coverage has been provided.</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Loss Ratio uses EARNED premiums</strong> but Expense Ratio uses WRITTEN premiums -- mixing them up is the #1 exam trap.</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">4</span>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Policyholders' Surplus = Assets - Liabilities.</strong> This is the insurer's "net worth" and safety cushion.</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">5</span>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>The underwriting cycle</strong> swings between soft markets (cheap, easy) and hard markets (expensive, strict) every 5-10 years.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 0: Overview / Introduction -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-4">Overview: Measuring the Value Chain</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-800 rounded-lg p-4 lg:p-5 mb-6">
+                    <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300">In Part 1, you learned what the insurance value chain is. Now the question becomes: <strong>how do we know if it is working?</strong> This part teaches you the scorecard. You will learn how different types of insurers are organized, the formulas they use to measure success, how to read their financial statements, and how the underwriting cycle forces every department to adapt. Think of this as the "dashboard" of the insurance business.</p>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 lg:p-5 rounded-r-lg">
+                    <p class="font-bold text-amber-800 dark:text-amber-300 text-lg">Exam Alert!</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mt-1">This part is <strong>formula-heavy</strong>. The combined ratio, loss ratio, and expense ratio appear on almost every CPCU 520 exam. You also need to know the difference between written and earned premiums -- the exam loves to test whether you use the right denominator.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 1: Insurer Classifications -->
+        <section id="classifications" class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">1. Insurer Classifications</h2>
+                <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300 mb-6">Insurers can be classified three ways: by who <strong>owns</strong> them, by their <strong>licensing status</strong>, and by how they <strong>sell</strong> their products. These matter because ownership determines where profits go, licensing determines regulatory protection, and distribution determines how customers buy policies.</p>
+
+                <!-- 1A: By Legal Form of Ownership -->
+                <h3 class="text-lg lg:text-xl font-bold text-blue-800 dark:text-blue-300 mb-3">1A. By Legal Form of Ownership</h3>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <!-- Stock Insurers -->
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500">
+                        <h4 class="font-bold text-blue-800 dark:text-blue-300 text-base lg:text-lg mb-2">Stock Insurers</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mb-2">Owned by <strong>shareholders</strong> who buy stock. Primary goal is to generate <strong>profit for shareholders</strong>. Most common type in the U.S.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-2">
+                            <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>Think:</strong> Just like owning shares of Apple or Google -- stockholders invest money and expect returns.</p>
+                        </div>
+                    </div>
+
+                    <!-- Mutual Insurers -->
+                    <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-green-500">
+                        <h4 class="font-bold text-green-800 dark:text-green-300 text-base lg:text-lg mb-2">Mutual Insurers</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mb-2">Owned by <strong>policyholders</strong>. No stock is issued. Profits may be returned to policyholders as <strong>dividends</strong>.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-2">
+                            <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>Think:</strong> A credit union for insurance -- the customers ARE the owners. State Farm and Liberty Mutual are examples.</p>
+                        </div>
+                    </div>
+
+                    <!-- Reciprocal Exchanges -->
+                    <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-purple-500">
+                        <h4 class="font-bold text-purple-800 dark:text-purple-300 text-base lg:text-lg mb-2">Reciprocal Exchanges</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mb-2"><strong>Subscribers</strong> exchange insurance with each other. Managed by an <strong>attorney-in-fact</strong> (not a lawyer -- just the management company). Unincorporated.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-2">
+                            <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>Think:</strong> A group of neighbors agreeing to cover each other's losses, with a hired manager running the operation. USAA started as a reciprocal.</p>
+                        </div>
+                    </div>
+
+                    <!-- Lloyds -->
+                    <div class="bg-indigo-50 dark:bg-indigo-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-indigo-500">
+                        <h4 class="font-bold text-indigo-800 dark:text-indigo-300 text-base lg:text-lg mb-2">Lloyds</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mb-2"><strong>Syndicates</strong> of individual investors (called "Names") who pool capital and assume risk. Lloyd's of London is a <strong>marketplace</strong>, not an insurer itself.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-2">
+                            <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>Think:</strong> Like a farmers' market -- Lloyd's provides the building, but individual syndicates are the vendors selling insurance.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ownership Example -->
+                <div class="bg-gray-50 dark:bg-gray-700/50 p-4 lg:p-5 rounded-lg border-l-4 border-blue-500 mb-8">
+                    <p class="font-semibold text-blue-800 dark:text-blue-300 mb-2">Real-World Scenario: Where Do the Profits Go?</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Two insurers both collect $10 million in premiums and only pay $6 million in claims. Each has $4 million left over.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Insurer A is a stock company. Its board declares a $2 million dividend to shareholders. Insurer B is a mutual. Its board returns $1.5 million to policyholders as policyholder dividends, effectively reducing what they paid for coverage.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> At a stock insurer, profits flow to Wall Street investors. At a mutual, profits flow back to the people who bought the policies. Same money, completely different destinations.</p>
+                    </div>
+                </div>
+
+                <!-- 1B: By Licensing Status -->
+                <h3 class="text-lg lg:text-xl font-bold text-blue-800 dark:text-blue-300 mb-3">1B. By Licensing Status</h3>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-green-500">
+                        <h4 class="font-bold text-green-800 dark:text-green-300 text-base lg:text-lg mb-2">Admitted / Licensed</h4>
+                        <ul class="space-y-1 text-sm lg:text-base text-gray-700 dark:text-gray-300">
+                            <li>-- Meets all state regulatory requirements</li>
+                            <li>-- Rates and forms approved by state</li>
+                            <li>-- Backed by state <strong>guaranty funds</strong> (if insurer goes broke, guaranty fund pays claims)</li>
+                            <li>-- Where most standard insurance is written</li>
+                        </ul>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-red-500">
+                        <h4 class="font-bold text-red-800 dark:text-red-300 text-base lg:text-lg mb-2">Non-admitted / Surplus Lines</h4>
+                        <ul class="space-y-1 text-sm lg:text-base text-gray-700 dark:text-gray-300">
+                            <li>-- NOT licensed in the state</li>
+                            <li>-- More flexibility in rates and forms</li>
+                            <li>-- <strong>NO guaranty fund</strong> backing (buyer beware)</li>
+                            <li>-- Used for hard-to-place risks the standard market won't cover</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700/50 p-4 lg:p-5 rounded-lg border-l-4 border-green-500 mb-8">
+                    <p class="font-semibold text-green-800 dark:text-green-300 mb-2">Real-World Scenario: Why Surplus Lines Exist</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> A concert promoter needs $20 million in event cancellation coverage for a music festival in hurricane-prone Florida.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Every admitted insurer in Florida says "no thanks -- too risky." A surplus lines broker finds a Lloyd's syndicate willing to write the coverage at a higher premium.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> The promoter gets coverage, but with no guaranty fund safety net. If the Lloyd's syndicate went bankrupt, the promoter would be out of luck. That is the trade-off: coverage availability vs. reduced consumer protection.</p>
+                    </div>
+                </div>
+
+                <!-- 1C: By Distribution System -->
+                <h3 class="text-lg lg:text-xl font-bold text-blue-800 dark:text-blue-300 mb-3">1C. By Distribution System</h3>
+
+                <div class="overflow-x-auto mb-6">
+                    <table class="w-full text-sm lg:text-base">
+                        <thead>
+                            <tr class="bg-blue-600 text-white">
+                                <th class="p-3 lg:p-4 text-left rounded-tl-lg">Feature</th>
+                                <th class="p-3 lg:p-4 text-left">Independent Agency</th>
+                                <th class="p-3 lg:p-4 text-left">Exclusive / Captive Agency</th>
+                                <th class="p-3 lg:p-4 text-left rounded-tr-lg">Direct Writer</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Who sells?</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Independent agents</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Captive agents</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Insurer employees or website</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Represents how many insurers?</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300"><strong>Multiple</strong></td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300"><strong>One</strong></td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300"><strong>One</strong> (itself)</td>
+                            </tr>
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Who owns the book of business?</td>
+                                <td class="p-3 lg:p-4 text-green-700 dark:text-green-400 font-bold">Agent owns it</td>
+                                <td class="p-3 lg:p-4 text-red-700 dark:text-red-400 font-bold">Insurer owns it</td>
+                                <td class="p-3 lg:p-4 text-red-700 dark:text-red-400 font-bold">Insurer owns it</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Customer loyalty to...</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">The agent (can move you elsewhere)</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">The insurer brand</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">The insurer brand / price</td>
+                            </tr>
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Example</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Your local agency that quotes you with 5 different companies</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Allstate agent, State Farm agent</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">GEICO (online/phone, no agent)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700/50 p-4 lg:p-5 rounded-lg border-l-4 border-blue-500">
+                    <p class="font-semibold text-blue-800 dark:text-blue-300 mb-2">Real-World Scenario: Book Ownership Matters</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Maria is an independent agent with 2,000 clients. She has contracts with Hartford, Travelers, and CNA. Dave is a captive Allstate agent with 2,000 clients.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Both agents decide to retire. Maria can sell her book of business to another independent agent because she owns it. Dave cannot sell his book -- Allstate owns those customer relationships.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Maria's book is worth $500,000+ as a sellable asset. Dave walks away with nothing but his final commission check. This is why book ownership is the single most important difference between distribution systems.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Earned vs. Written Premiums -->
+        <section id="earned-vs-written" class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">2. Earned vs. Written Premiums (Critical Distinction)</h2>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 lg:p-5 rounded-r-lg mb-6">
+                    <p class="font-bold text-amber-800 dark:text-amber-300 text-lg">Why This Matters</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mt-1">You <strong>cannot understand the formulas</strong> in the next section without understanding this distinction. The exam WILL test whether you know which premium type to use as the denominator.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500">
+                        <h4 class="font-bold text-blue-800 dark:text-blue-300 text-base lg:text-lg mb-2">Written Premiums</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The <strong>total dollar amount</strong> on all policies written (sold) during a period. It represents a promise: the customer agreed to pay this much for a full policy term.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>Analogy:</strong> You buy a 12-month gym membership for $1,200 on July 1. The gym "wrote" $1,200 in revenue that day.</p>
+                        </div>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-green-500">
+                        <h4 class="font-bold text-green-800 dark:text-green-300 text-base lg:text-lg mb-2">Earned Premiums</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The portion of written premiums that the insurer has <strong>actually earned</strong> by providing coverage over time. It "unlocks" day by day as coverage is provided.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>Analogy:</strong> By Dec 31, the gym has provided 6 months of access. It has "earned" $600. The other $600 is still "unearned."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Visual timeline -->
+                <div class="bg-gray-50 dark:bg-gray-700/50 rounded-lg p-4 lg:p-5 mb-6">
+                    <p class="font-bold text-gray-800 dark:text-gray-200 mb-3 text-base lg:text-lg">Visual: $1,200 Policy Written on July 1</p>
+                    <div class="flex flex-col md:flex-row items-center gap-4">
+                        <div class="bg-blue-100 dark:bg-blue-900/40 p-4 rounded-lg text-center flex-1">
+                            <p class="text-2xl lg:text-3xl font-bold text-blue-600 dark:text-blue-400">$1,200</p>
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400">Written Premium</p>
+                            <p class="text-xs lg:text-sm text-gray-500 dark:text-gray-400">Booked on July 1</p>
+                        </div>
+                        <div class="text-2xl text-gray-400">--></div>
+                        <div class="bg-green-100 dark:bg-green-900/40 p-4 rounded-lg text-center flex-1">
+                            <p class="text-2xl lg:text-3xl font-bold text-green-600 dark:text-green-400">$600</p>
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400">Earned Premium</p>
+                            <p class="text-xs lg:text-sm text-gray-500 dark:text-gray-400">By Dec 31 (6 months)</p>
+                        </div>
+                        <div class="text-2xl text-gray-400">+</div>
+                        <div class="bg-amber-100 dark:bg-amber-900/40 p-4 rounded-lg text-center flex-1">
+                            <p class="text-2xl lg:text-3xl font-bold text-amber-600 dark:text-amber-400">$600</p>
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400">Unearned Premium</p>
+                            <p class="text-xs lg:text-sm text-gray-500 dark:text-gray-400">Jan-June (still owed)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-red-50 dark:bg-red-900/20 border-l-4 border-red-500 p-4 lg:p-5 rounded-r-lg">
+                    <p class="font-bold text-red-800 dark:text-red-300 text-base lg:text-lg">Key Rule</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mt-1">Unearned premiums are a <strong>liability</strong> on the insurer's balance sheet. Why? Because if the customer cancels tomorrow, the insurer owes that money back. The insurer hasn't "earned" the right to keep it yet.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Performance Metrics / The Big Formulas -->
+        <section id="performance-metrics" class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">3. Performance Metrics: The Big Five Formulas</h2>
+
+                <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300 mb-6">These five ratios are the insurance industry's scorecard. Each tells you something different about the insurer's health. Learn these formulas cold -- they WILL be on the exam.</p>
+
+                <!-- Formula Cards -->
+                <div class="space-y-4 mb-8">
+
+                    <!-- Loss Ratio -->
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500">
+                        <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg lg:text-xl mb-2">Formula 1: Loss Ratio</h3>
+                        <div class="bg-white dark:bg-gray-700 rounded-lg p-4 text-center mb-3">
+                            <p class="text-xl lg:text-2xl font-bold text-blue-700 dark:text-blue-300">Loss Ratio = Incurred Losses / <span class="underline">Earned</span> Premiums</p>
+                        </div>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What it tells you:</strong> How many cents of every premium dollar go to paying claims. A 65% loss ratio means 65 cents of every dollar earned goes to claims.</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1"><strong>Memory trick:</strong> "Losses are what you've EARNED the right to compare" -- loss ratio uses <strong>earned</strong> premiums.</p>
+                    </div>
+
+                    <!-- Expense Ratio -->
+                    <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-purple-500">
+                        <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg lg:text-xl mb-2">Formula 2: Expense Ratio</h3>
+                        <div class="bg-white dark:bg-gray-700 rounded-lg p-4 text-center mb-3">
+                            <p class="text-xl lg:text-2xl font-bold text-purple-700 dark:text-purple-300">Expense Ratio = Underwriting Expenses / <span class="underline">Written</span> Premiums</p>
+                        </div>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What it tells you:</strong> How much it costs to run the business per premium dollar. A 30% expense ratio means 30 cents of each dollar goes to commissions, salaries, marketing, rent, etc.</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1"><strong>Memory trick:</strong> "Expenses happen when you WRITE the policy" (agent commissions, paperwork) -- expense ratio uses <strong>written</strong> premiums.</p>
+                    </div>
+
+                    <!-- Combined Ratio -->
+                    <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-green-500">
+                        <h3 class="font-bold text-green-800 dark:text-green-300 text-lg lg:text-xl mb-2">Formula 3: Combined Ratio</h3>
+                        <div class="bg-white dark:bg-gray-700 rounded-lg p-4 text-center mb-3">
+                            <p class="text-xl lg:text-2xl font-bold text-green-700 dark:text-green-300">Combined Ratio = Loss Ratio + Expense Ratio</p>
+                        </div>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What it tells you:</strong> The total underwriting picture. Is the insurer making or losing money on the insurance side of the business (before investments)?</p>
+                        <div class="grid grid-cols-2 gap-3 mt-3">
+                            <div class="bg-green-100 dark:bg-green-800/30 p-3 rounded-lg text-center">
+                                <p class="text-lg font-bold text-green-700 dark:text-green-300">Under 100%</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">Underwriting PROFIT</p>
+                            </div>
+                            <div class="bg-red-100 dark:bg-red-800/30 p-3 rounded-lg text-center">
+                                <p class="text-lg font-bold text-red-700 dark:text-red-300">Over 100%</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">Underwriting LOSS</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Investment Income Ratio -->
+                    <div class="bg-indigo-50 dark:bg-indigo-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-indigo-500">
+                        <h3 class="font-bold text-indigo-800 dark:text-indigo-300 text-lg lg:text-xl mb-2">Formula 4: Investment Income Ratio</h3>
+                        <div class="bg-white dark:bg-gray-700 rounded-lg p-4 text-center mb-3">
+                            <p class="text-xl lg:text-2xl font-bold text-indigo-700 dark:text-indigo-300">Investment Income Ratio = Net Investment Income / <span class="underline">Earned</span> Premiums</p>
+                        </div>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What it tells you:</strong> How much money the insurer earns by investing premiums while waiting to pay claims. This is the "other side" of the business -- many insurers actually lose money on underwriting but make it up through investments.</p>
+                    </div>
+
+                    <!-- Overall Operating Ratio -->
+                    <div class="bg-amber-50 dark:bg-amber-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-amber-500">
+                        <h3 class="font-bold text-amber-800 dark:text-amber-300 text-lg lg:text-xl mb-2">Formula 5: Overall Operating Ratio</h3>
+                        <div class="bg-white dark:bg-gray-700 rounded-lg p-4 text-center mb-3">
+                            <p class="text-xl lg:text-2xl font-bold text-amber-700 dark:text-amber-300">Overall Operating Ratio = Combined Ratio - Investment Income Ratio</p>
+                        </div>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What it tells you:</strong> The insurer's total financial picture -- underwriting AND investments combined. Below 100% = the company is overall profitable.</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1"><strong>Note:</strong> We <strong>subtract</strong> investment income because it is a positive (income), while the combined ratio captures costs. Subtracting a gain lowers the ratio, which is good.</p>
+                    </div>
+                </div>
+
+                <!-- COMPLETE WORKED EXAMPLE -->
+                <div class="bg-gray-100 dark:bg-gray-700/50 rounded-xl p-5 lg:p-6 border-2 border-blue-300 dark:border-blue-700 mb-6">
+                    <h3 class="text-xl lg:text-2xl font-bold text-blue-800 dark:text-blue-200 mb-4">Complete Worked Example: Lighthouse Insurance Co.</h3>
+                    <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300 mb-4">Let's walk through all five formulas with one fictional company. Here are Lighthouse Insurance's numbers for the year:</p>
+
+                    <!-- Raw Numbers -->
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-3 mb-6">
+                        <div class="bg-white dark:bg-gray-800 p-3 lg:p-4 rounded-lg text-center border border-gray-200 dark:border-gray-600">
+                            <p class="text-xl lg:text-2xl font-bold text-blue-600 dark:text-blue-400">$80M</p>
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Written Premiums</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-800 p-3 lg:p-4 rounded-lg text-center border border-gray-200 dark:border-gray-600">
+                            <p class="text-xl lg:text-2xl font-bold text-green-600 dark:text-green-400">$75M</p>
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Earned Premiums</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-800 p-3 lg:p-4 rounded-lg text-center border border-gray-200 dark:border-gray-600">
+                            <p class="text-xl lg:text-2xl font-bold text-red-600 dark:text-red-400">$50M</p>
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Incurred Losses</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-800 p-3 lg:p-4 rounded-lg text-center border border-gray-200 dark:border-gray-600">
+                            <p class="text-xl lg:text-2xl font-bold text-purple-600 dark:text-purple-400">$24M</p>
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Underwriting Expenses</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-800 p-3 lg:p-4 rounded-lg text-center border border-gray-200 dark:border-gray-600">
+                            <p class="text-xl lg:text-2xl font-bold text-indigo-600 dark:text-indigo-400">$8M</p>
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Net Investment Income</p>
+                        </div>
+                    </div>
+
+                    <!-- Step-by-step calculations -->
+                    <div class="space-y-4">
+                        <div class="bg-white dark:bg-gray-800 p-4 rounded-lg border-l-4 border-blue-500">
+                            <p class="font-bold text-blue-800 dark:text-blue-300">Step 1: Loss Ratio</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">= $50M incurred losses / $75M <strong>earned</strong> premiums</p>
+                            <p class="text-xl font-bold text-blue-700 dark:text-blue-300 mt-1">= 66.7%</p>
+                            <p class="text-gray-500 dark:text-gray-400 text-sm mt-1">Translation: 67 cents of every earned dollar went to claims. That is typical for P&C.</p>
+                        </div>
+
+                        <div class="bg-white dark:bg-gray-800 p-4 rounded-lg border-l-4 border-purple-500">
+                            <p class="font-bold text-purple-800 dark:text-purple-300">Step 2: Expense Ratio</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">= $24M underwriting expenses / $80M <strong>written</strong> premiums</p>
+                            <p class="text-xl font-bold text-purple-700 dark:text-purple-300 mt-1">= 30.0%</p>
+                            <p class="text-gray-500 dark:text-gray-400 text-sm mt-1">Translation: 30 cents of every written dollar went to overhead (commissions, admin, marketing).</p>
+                        </div>
+
+                        <div class="bg-white dark:bg-gray-800 p-4 rounded-lg border-l-4 border-green-500">
+                            <p class="font-bold text-green-800 dark:text-green-300">Step 3: Combined Ratio</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">= 66.7% + 30.0%</p>
+                            <p class="text-xl font-bold text-green-700 dark:text-green-300 mt-1">= 96.7%</p>
+                            <p class="text-gray-500 dark:text-gray-400 text-sm mt-1">Translation: Under 100%, so Lighthouse is making an underwriting profit. For every dollar, 96.7 cents go to losses and expenses, leaving 3.3 cents of profit on underwriting alone.</p>
+                        </div>
+
+                        <div class="bg-white dark:bg-gray-800 p-4 rounded-lg border-l-4 border-indigo-500">
+                            <p class="font-bold text-indigo-800 dark:text-indigo-300">Step 4: Investment Income Ratio</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">= $8M investment income / $75M <strong>earned</strong> premiums</p>
+                            <p class="text-xl font-bold text-indigo-700 dark:text-indigo-300 mt-1">= 10.7%</p>
+                            <p class="text-gray-500 dark:text-gray-400 text-sm mt-1">Translation: For every premium dollar earned, Lighthouse made an additional 10.7 cents from investing.</p>
+                        </div>
+
+                        <div class="bg-white dark:bg-gray-800 p-4 rounded-lg border-l-4 border-amber-500">
+                            <p class="font-bold text-amber-800 dark:text-amber-300">Step 5: Overall Operating Ratio</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">= 96.7% - 10.7%</p>
+                            <p class="text-xl font-bold text-amber-700 dark:text-amber-300 mt-1">= 86.0%</p>
+                            <p class="text-gray-500 dark:text-gray-400 text-sm mt-1">Translation: Well under 100%. Lighthouse is solidly profitable overall -- making money on both underwriting AND investments.</p>
+                        </div>
+                    </div>
+
+                    <!-- Summary verdict -->
+                    <div class="bg-green-100 dark:bg-green-900/30 rounded-lg p-4 mt-4 border border-green-300 dark:border-green-700">
+                        <p class="font-bold text-green-800 dark:text-green-300 text-base lg:text-lg">The Verdict on Lighthouse Insurance:</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">This is a healthy insurer. Their underwriting is profitable (96.7% combined ratio) AND their investments add another 10.7% of income. Overall operating ratio of 86% means they keep about 14 cents of profit on every dollar. Not bad at all.</p>
+                    </div>
+                </div>
+
+                <!-- What if combined is over 100? -->
+                <div class="bg-red-50 dark:bg-red-900/20 p-4 lg:p-5 rounded-lg border-l-4 border-red-500">
+                    <p class="font-semibold text-red-800 dark:text-red-300 mb-2">Real-World Scenario: When Underwriting Loses Money</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Stormfront Insurance has a loss ratio of 78% and an expense ratio of 28%. Their combined ratio is 106%.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> They are losing 6 cents on every underwriting dollar. But their investment income ratio is 12%.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Overall operating ratio = 106% - 12% = 94%. Despite losing money on underwriting, Stormfront is still profitable overall because investment gains more than offset the underwriting loss. This is extremely common in the insurance industry -- many insurers survive on investment income.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Financial Statements for Insurers -->
+        <section id="financial-statements" class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">4. Financial Statements for Insurers</h2>
+
+                <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300 mb-6">Insurance financial statements work like any company's, but with some unique twists. The biggest difference: insurers collect money <strong>before</strong> they know what they owe (claims can take years to settle), so their liabilities are estimates.</p>
+
+                <!-- Balance Sheet -->
+                <h3 class="text-lg lg:text-xl font-bold text-blue-800 dark:text-blue-300 mb-3">4A. The Balance Sheet</h3>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-4">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>The fundamental equation:</strong> Assets = Liabilities + Policyholders' Surplus</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-2">Policyholders' surplus is the insurance version of "net worth" or "equity." It is the safety cushion that protects policyholders if claims exceed expectations.</p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-4 mb-6">
+                    <!-- Assets -->
+                    <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-green-500">
+                        <h4 class="font-bold text-green-800 dark:text-green-300 text-base lg:text-lg mb-2">Key Assets</h4>
+                        <ul class="space-y-2 text-sm lg:text-base text-gray-700 dark:text-gray-300">
+                            <li><strong>Investments</strong> (bonds, stocks) -- the BIGGEST asset, often 60-70% of total assets</li>
+                            <li><strong>Premiums receivable</strong> -- money owed by policyholders/agents</li>
+                            <li><strong>Reinsurance recoverables</strong> -- money owed by reinsurers</li>
+                            <li><strong>Cash and equivalents</strong></li>
+                        </ul>
+                    </div>
+
+                    <!-- Liabilities -->
+                    <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-red-500">
+                        <h4 class="font-bold text-red-800 dark:text-red-300 text-base lg:text-lg mb-2">Key Liabilities</h4>
+                        <ul class="space-y-2 text-sm lg:text-base text-gray-700 dark:text-gray-300">
+                            <li><strong>Loss reserves</strong> -- the BIGGEST liability; estimated cost of claims already reported + claims incurred but not yet reported (IBNR)</li>
+                            <li><strong>Unearned premium reserves</strong> -- premiums collected but not yet earned</li>
+                            <li><strong>Loss adjustment expense reserves</strong></li>
+                        </ul>
+                    </div>
+
+                    <!-- Surplus -->
+                    <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-purple-500">
+                        <h4 class="font-bold text-purple-800 dark:text-purple-300 text-base lg:text-lg mb-2">Policyholders' Surplus</h4>
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>= Assets - Liabilities</strong></p>
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300 mt-2">The insurer's "net worth." A larger surplus means the insurer can write more business and absorb larger losses. Regulators watch this number closely.</p>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700/50 p-4 lg:p-5 rounded-lg border-l-4 border-blue-500 mb-8">
+                    <p class="font-semibold text-blue-800 dark:text-blue-300 mb-2">Real-World Scenario: Why Loss Reserves Matter</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Harbor Insurance reports $500M in assets and $400M in liabilities, giving it a surplus of $100M. But their actuary realizes the loss reserves were underestimated by $60M.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Loss reserves (a liability) increase by $60M. Liabilities jump to $460M. Surplus drops from $100M to just $40M -- a 60% decline from a single accounting adjustment.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Regulators flag Harbor as potentially at risk. The company may need to stop writing new policies until surplus recovers. This is why loss reserves are the most important -- and most scrutinized -- number on an insurer's balance sheet.</p>
+                    </div>
+                </div>
+
+                <!-- Income Statement -->
+                <h3 class="text-lg lg:text-xl font-bold text-blue-800 dark:text-blue-300 mb-3">4B. The Income Statement</h3>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-green-500">
+                        <h4 class="font-bold text-green-800 dark:text-green-300 text-base lg:text-lg mb-2">Revenue (Money Coming In)</h4>
+                        <ul class="space-y-2 text-sm lg:text-base text-gray-700 dark:text-gray-300">
+                            <li><strong>Earned premiums</strong> -- the main revenue source</li>
+                            <li><strong>Net investment income</strong> -- interest, dividends, capital gains from invested assets</li>
+                            <li><strong>Other income</strong> -- fees, service charges</li>
+                        </ul>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-red-500">
+                        <h4 class="font-bold text-red-800 dark:text-red-300 text-base lg:text-lg mb-2">Expenses (Money Going Out)</h4>
+                        <ul class="space-y-2 text-sm lg:text-base text-gray-700 dark:text-gray-300">
+                            <li><strong>Incurred losses</strong> -- claims paid + change in loss reserves</li>
+                            <li><strong>Loss adjustment expenses (LAE)</strong> -- cost of investigating and settling claims</li>
+                            <li><strong>Underwriting expenses</strong> -- commissions, salaries, marketing, overhead</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Analysis Types -->
+                <h3 class="text-lg lg:text-xl font-bold text-blue-800 dark:text-blue-300 mb-3">4C. How to Analyze Financial Statements</h3>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-indigo-50 dark:bg-indigo-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-indigo-500">
+                        <h4 class="font-bold text-indigo-800 dark:text-indigo-300 text-base lg:text-lg mb-2">Vertical Analysis</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mb-2">Each line item expressed as a <strong>percentage of the total</strong>. Shows <strong>composition</strong> -- what makes up the whole.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-2">
+                            <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>Example:</strong> "Bonds are 55% of total assets, stocks are 20%, cash is 10%..." This tells you how the company allocates its money right now.</p>
+                        </div>
+                    </div>
+                    <div class="bg-indigo-50 dark:bg-indigo-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-indigo-500">
+                        <h4 class="font-bold text-indigo-800 dark:text-indigo-300 text-base lg:text-lg mb-2">Trend Analysis</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mb-2">Compare the <strong>same line item across multiple years</strong>. Shows <strong>direction</strong> -- are things getting better or worse?</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-2">
+                            <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>Example:</strong> "Loss reserves were $200M in 2022, $240M in 2023, $290M in 2024..." This upward trend signals growing claims exposure.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700/50 p-4 lg:p-5 rounded-lg border-l-4 border-indigo-500">
+                    <p class="font-semibold text-indigo-800 dark:text-indigo-300 mb-2">Real-World Scenario: Using Both Together</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> An analyst reviewing Coastal Insurance notices loss reserves are 65% of total liabilities (vertical analysis). She also sees loss reserves grew 18% per year for 3 straight years (trend analysis).</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> She digs deeper and discovers Coastal expanded aggressively into hurricane-prone Florida. More policies in risky areas = more expected claims = rising loss reserves.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Vertical analysis told her WHAT dominates the balance sheet (loss reserves). Trend analysis told her the reserves are GROWING. Together, they reveal the story: Coastal is taking on more risk over time, and regulators should pay attention.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: The Underwriting Cycle -->
+        <section id="underwriting-cycle" class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">5. The Underwriting Cycle</h2>
+
+                <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300 mb-6">The insurance industry swings between two extremes in a predictable (but hard to time) pattern. Understanding this cycle is critical because it affects every single department in the value chain.</p>
+
+                <!-- Visual Cycle Diagram -->
+                <div class="bg-gray-50 dark:bg-gray-700/50 rounded-xl p-5 lg:p-6 mb-6">
+                    <h3 class="text-lg font-bold text-gray-800 dark:text-gray-200 mb-4 text-center">The Underwriting Cycle (repeats every 5-10 years)</h3>
+                    <div class="flex flex-col md:flex-row items-center justify-center gap-3 lg:gap-4">
+                        <!-- Soft Market -->
+                        <div class="bg-green-100 dark:bg-green-900/40 p-4 lg:p-5 rounded-lg text-center flex-1 max-w-xs">
+                            <p class="text-lg lg:text-xl font-bold text-green-700 dark:text-green-300">SOFT MARKET</p>
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400 mt-2">Lots of competition</p>
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400">Low premiums</p>
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400">Relaxed underwriting</p>
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400">Easy to get coverage</p>
+                        </div>
+
+                        <div class="text-2xl text-gray-400 font-bold">--></div>
+
+                        <!-- Trigger -->
+                        <div class="bg-amber-100 dark:bg-amber-900/40 p-4 lg:p-5 rounded-lg text-center flex-1 max-w-xs">
+                            <p class="text-lg lg:text-xl font-bold text-amber-700 dark:text-amber-300">TRIGGER</p>
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400 mt-2">Major catastrophe</p>
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400">Rising claims costs</p>
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400">Investment losses</p>
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400">Surplus declines</p>
+                        </div>
+
+                        <div class="text-2xl text-gray-400 font-bold">--></div>
+
+                        <!-- Hard Market -->
+                        <div class="bg-red-100 dark:bg-red-900/40 p-4 lg:p-5 rounded-lg text-center flex-1 max-w-xs">
+                            <p class="text-lg lg:text-xl font-bold text-red-700 dark:text-red-300">HARD MARKET</p>
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400 mt-2">Less competition</p>
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400">High premiums</p>
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400">Strict underwriting</p>
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400">Hard to get coverage</p>
+                        </div>
+
+                        <div class="text-2xl text-gray-400 font-bold">--></div>
+
+                        <!-- Recovery -->
+                        <div class="bg-blue-100 dark:bg-blue-900/40 p-4 lg:p-5 rounded-lg text-center flex-1 max-w-xs">
+                            <p class="text-lg lg:text-xl font-bold text-blue-700 dark:text-blue-300">RECOVERY</p>
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400 mt-2">Profits improve</p>
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400">New capital enters</p>
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400">Competition returns</p>
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400">Cycle restarts...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Soft vs Hard Comparison -->
+                <div class="overflow-x-auto mb-6">
+                    <table class="w-full text-sm lg:text-base">
+                        <thead>
+                            <tr class="bg-blue-600 text-white">
+                                <th class="p-3 lg:p-4 text-left rounded-tl-lg">Factor</th>
+                                <th class="p-3 lg:p-4 text-left">Soft Market</th>
+                                <th class="p-3 lg:p-4 text-left rounded-tr-lg">Hard Market</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Premiums</td>
+                                <td class="p-3 lg:p-4 text-green-700 dark:text-green-400">Low / declining</td>
+                                <td class="p-3 lg:p-4 text-red-700 dark:text-red-400">High / increasing</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Underwriting Standards</td>
+                                <td class="p-3 lg:p-4 text-green-700 dark:text-green-400">Relaxed (easy approval)</td>
+                                <td class="p-3 lg:p-4 text-red-700 dark:text-red-400">Strict (many declined)</td>
+                            </tr>
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Availability</td>
+                                <td class="p-3 lg:p-4 text-green-700 dark:text-green-400">Abundant coverage options</td>
+                                <td class="p-3 lg:p-4 text-red-700 dark:text-red-400">Limited; some risks uninsurable</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Profitability</td>
+                                <td class="p-3 lg:p-4 text-red-700 dark:text-red-400">Declining (cutting prices too much)</td>
+                                <td class="p-3 lg:p-4 text-green-700 dark:text-green-400">Improving (higher rates + fewer claims)</td>
+                            </tr>
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Customer Experience</td>
+                                <td class="p-3 lg:p-4 text-green-700 dark:text-green-400">Great (cheap, easy to buy)</td>
+                                <td class="p-3 lg:p-4 text-red-700 dark:text-red-400">Painful (expensive, hard to find)</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Combined Ratio Trend</td>
+                                <td class="p-3 lg:p-4 text-red-700 dark:text-red-400">Rising toward / over 100%</td>
+                                <td class="p-3 lg:p-4 text-green-700 dark:text-green-400">Falling below 100%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Impact on Value Chain -->
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 lg:p-5 rounded-r-lg mb-6">
+                    <p class="font-bold text-amber-800 dark:text-amber-300 text-base lg:text-lg">Why the Cycle Matters for the Value Chain</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-2">The underwriting cycle does not just affect one department -- it ripples through the ENTIRE value chain:</p>
+                    <ul class="mt-2 space-y-1 text-sm lg:text-base text-gray-700 dark:text-gray-300">
+                        <li><strong>Underwriting:</strong> Standards tighten or loosen depending on the phase</li>
+                        <li><strong>Actuarial:</strong> Must adjust rates to match the changing loss environment</li>
+                        <li><strong>Claims:</strong> Costs rise during soft markets (relaxed standards = worse risks accepted)</li>
+                        <li><strong>Marketing:</strong> Shifts from "come one, come all" (soft) to "we are selective" (hard)</li>
+                        <li><strong>Investments:</strong> May need to liquidate investments to pay larger-than-expected claims</li>
+                    </ul>
+                </div>
+
+                <!-- Recent Context -->
+                <div class="bg-blue-50 dark:bg-blue-900/20 p-4 lg:p-5 rounded-lg border-l-4 border-blue-500 mb-6">
+                    <p class="font-bold text-blue-800 dark:text-blue-300 text-base lg:text-lg">Current Context: The 2020-2024 Hard Market</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-2">The market hardened significantly starting around 2020, driven by three forces:</p>
+                    <ul class="mt-2 space-y-1 text-sm lg:text-base text-gray-700 dark:text-gray-300">
+                        <li><strong>Catastrophe losses</strong> -- record hurricanes, wildfires, winter storms, and convective storm seasons</li>
+                        <li><strong>Economic inflation</strong> -- replacement costs for damaged property and vehicles surged</li>
+                        <li><strong>Social inflation</strong> -- rising jury awards, litigation funding, and "nuclear verdicts" drove up liability costs</li>
+                    </ul>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-2">Result: Commercial insurance rates increased 20%+ in many lines. Some insurers pulled out of entire states (Florida homeowners, California wildfire zones).</p>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700/50 p-4 lg:p-5 rounded-lg border-l-4 border-amber-500">
+                    <p class="font-semibold text-amber-800 dark:text-amber-300 mb-2">Real-World Scenario: Living Through the Cycle</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> In 2018 (soft market), a restaurant owner in Florida paid $8,000/year for property insurance. Every insurer was competing for her business.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Hurricanes Michael (2018), Dorian (2019), and several costly storms drive massive losses. By 2022, her insurer exits Florida entirely. She scrambles to find replacement coverage.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Her new policy costs $24,000/year (3x increase) with a higher deductible and fewer covered perils. That is the hard market in action. Eventually, high premiums attract new capital and competitors, premiums stabilize, and the soft market returns -- but it takes years.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cheat Sheet -->
+        <section id="cheat-sheet" class="mb-8 lg:mb-10">
+            <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-5 lg:p-6 border-2 border-dashed border-gray-300 dark:border-gray-600">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100">Cheat Sheet</h2>
+                    <span class="text-sm text-gray-500 dark:text-gray-400">Print this page for quick reference</span>
+                </div>
+
+                <!-- Formulas -->
+                <h3 class="font-bold text-gray-800 dark:text-gray-200 text-base lg:text-lg mb-3">The Five Formulas</h3>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-3 mb-6">
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg border border-gray-200 dark:border-gray-600">
+                        <p class="font-bold text-blue-700 dark:text-blue-300 text-sm lg:text-base">Loss Ratio</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">Incurred Losses / EARNED Premiums</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg border border-gray-200 dark:border-gray-600">
+                        <p class="font-bold text-purple-700 dark:text-purple-300 text-sm lg:text-base">Expense Ratio</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">UW Expenses / WRITTEN Premiums</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg border border-gray-200 dark:border-gray-600">
+                        <p class="font-bold text-green-700 dark:text-green-300 text-sm lg:text-base">Combined Ratio</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">Loss Ratio + Expense Ratio</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg border border-gray-200 dark:border-gray-600">
+                        <p class="font-bold text-indigo-700 dark:text-indigo-300 text-sm lg:text-base">Investment Income Ratio</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">Net Inv. Income / EARNED Premiums</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg border border-gray-200 dark:border-gray-600">
+                        <p class="font-bold text-amber-700 dark:text-amber-300 text-sm lg:text-base">Overall Operating Ratio</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">Combined Ratio - Inv. Income Ratio</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg border border-gray-200 dark:border-gray-600">
+                        <p class="font-bold text-red-700 dark:text-red-300 text-sm lg:text-base">Key Threshold</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm">Under 100% = profitable</p>
+                    </div>
+                </div>
+
+                <!-- Insurer Types -->
+                <h3 class="font-bold text-gray-800 dark:text-gray-200 text-base lg:text-lg mb-3">Insurer Ownership Types</h3>
+                <div class="grid md:grid-cols-2 gap-3 mb-6">
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg border border-gray-200 dark:border-gray-600">
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>Stock</strong> = Shareholders own, profits to investors</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg border border-gray-200 dark:border-gray-600">
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>Mutual</strong> = Policyholders own, dividends to policyholders</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg border border-gray-200 dark:border-gray-600">
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>Reciprocal</strong> = Subscribers exchange, attorney-in-fact manages</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg border border-gray-200 dark:border-gray-600">
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>Lloyds</strong> = Syndicates of investors, marketplace model</p>
+                    </div>
+                </div>
+
+                <!-- Key Balance Sheet Facts -->
+                <h3 class="font-bold text-gray-800 dark:text-gray-200 text-base lg:text-lg mb-3">Balance Sheet Quick Facts</h3>
+                <div class="grid md:grid-cols-3 gap-3 mb-4">
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg border border-gray-200 dark:border-gray-600">
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>Biggest asset:</strong> Investments (bonds, stocks)</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg border border-gray-200 dark:border-gray-600">
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>Biggest liability:</strong> Loss reserves</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg border border-gray-200 dark:border-gray-600">
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>Surplus</strong> = Assets - Liabilities (net worth)</p>
+                    </div>
+                </div>
+
+                <!-- Underwriting Cycle -->
+                <h3 class="font-bold text-gray-800 dark:text-gray-200 text-base lg:text-lg mb-3">Underwriting Cycle</h3>
+                <div class="grid md:grid-cols-2 gap-3">
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg border border-gray-200 dark:border-gray-600">
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>Soft market:</strong> Low prices, easy coverage, declining profits</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg border border-gray-200 dark:border-gray-600">
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>Hard market:</strong> High prices, strict UW, improving profits</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Trap Alerts -->
+        <section id="exam-traps" class="mb-8 lg:mb-10">
+            <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-xl p-5 lg:p-6">
+                <h2 class="text-2xl lg:text-3xl font-bold text-red-800 dark:text-red-300 mb-4">Exam Trap Alerts</h2>
+                <div class="space-y-4">
+
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">1. Loss Ratio vs. Expense Ratio Denominators</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The #1 trap: Loss Ratio uses <strong>EARNED</strong> premiums. Expense Ratio uses <strong>WRITTEN</strong> premiums. If the exam gives you both numbers and asks you to calculate, using the wrong denominator gives you the wrong answer. Remember: "Losses match what you've Earned; Expenses match what you've Written."</p>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">2. Combined Ratio Over 100% Does NOT Mean the Company Is Failing</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Many successful insurers run combined ratios of 101-105% for years. They lose money on underwriting but make it up through investment income. Check the overall operating ratio before judging.</p>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">3. Overall Operating Ratio SUBTRACTS Investment Income</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">It is Combined Ratio <strong>minus</strong> Investment Income Ratio, not plus. Investments are income, so subtracting them makes the ratio go DOWN (which is good). Don't accidentally add them.</p>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">4. Unearned Premiums Are a LIABILITY, Not an Asset</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Even though the insurer already collected the money, unearned premiums represent coverage still owed. If the policy is cancelled, that money must be returned. This is why it sits on the liability side of the balance sheet.</p>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">5. Stock Dividends vs. Mutual Dividends</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Stock insurer dividends go to <strong>shareholders</strong> (investors). Mutual insurer dividends go to <strong>policyholders</strong> (customers). The exam will phrase this to confuse you -- read carefully whether they are asking about a stock or mutual company.</p>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">6. Attorney-in-Fact Is NOT a Lawyer</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">In a reciprocal exchange, the attorney-in-fact is the <strong>management company</strong> that runs day-to-day operations. The name is misleading -- it has nothing to do with legal practice.</p>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">7. Soft Market = BAD for Insurers, GOOD for Customers</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The names are counterintuitive. "Soft" sounds gentle, but it means declining profitability for insurers. "Hard" sounds bad, but insurers' profits improve during hard markets. Think of it from the insurer's perspective: a soft market is soft on customers, hard on the insurer.</p>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">8. Non-admitted Insurers Have NO Guaranty Fund</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">If a non-admitted (surplus lines) insurer goes bankrupt, policyholders have no state guaranty fund safety net. This is the key trade-off: you get coverage the standard market will not offer, but you lose the government backstop.</p>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">9. Vertical vs. Trend Analysis</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Vertical = "What percentage of the total is this?" (snapshot of composition). Trend = "How has this number changed over time?" (direction). The exam may describe an analysis without naming it and ask you to identify the type.</p>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">10. Independent Agent Owns the Book of Business</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The agent -- not the insurer -- owns the customer relationships and can move policies to a different insurer. In exclusive/captive agency and direct writer systems, the <strong>insurer</strong> owns the book. This is the most tested distribution system fact.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Reference Summary -->
+        <section id="summary" class="mb-8 lg:mb-10">
+            <div class="bg-gradient-to-r from-blue-600 to-blue-800 rounded-xl p-6 text-white">
+                <h2 class="text-2xl lg:text-3xl font-bold mb-6">Quick Reference Summary</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Stock Insurer</p>
+                        <p class="text-sm text-blue-100">Owned by shareholders; profits to investors</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Mutual Insurer</p>
+                        <p class="text-sm text-blue-100">Owned by policyholders; dividends to customers</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Reciprocal Exchange</p>
+                        <p class="text-sm text-blue-100">Subscribers + attorney-in-fact; unincorporated</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Loss Ratio</p>
+                        <p class="text-sm text-blue-100">Incurred Losses / EARNED Premiums</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Expense Ratio</p>
+                        <p class="text-sm text-blue-100">UW Expenses / WRITTEN Premiums</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Combined Ratio</p>
+                        <p class="text-sm text-blue-100">Loss + Expense ratio; under 100% = UW profit</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Overall Operating Ratio</p>
+                        <p class="text-sm text-blue-100">Combined - Investment Income; under 100% = profitable</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Policyholders' Surplus</p>
+                        <p class="text-sm text-blue-100">Assets - Liabilities = insurer net worth</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Underwriting Cycle</p>
+                        <p class="text-sm text-blue-100">Soft (cheap/easy) to Hard (expensive/strict); 5-10 yrs</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Earned vs. Written</p>
+                        <p class="text-sm text-blue-100">Earned = coverage provided; Written = total booked</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Biggest Asset</p>
+                        <p class="text-sm text-blue-100">Investments (bonds and stocks)</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Biggest Liability</p>
+                        <p class="text-sm text-blue-100">Loss reserves (estimated future claim payments)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Navigation Footer -->
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="../part-1/index.html" class="text-gray-300 hover:text-white flex items-center">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                    </svg>
+                    Part 1: Understanding the Value Chain
+                </a>
+                <span class="text-gray-400">Part 2 of 4</span>
+                <a href="../part-3/index.html" class="text-gray-300 hover:text-white flex items-center">
+                    Part 3: Innovating the Value Chain
+                    <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AI Tutor Button -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            createFloatingAIButton(`Assignment 1 Part 2: Harnessing the Insurance Value Chain's Power
+
+INSURER CLASSIFICATIONS:
+By Ownership:
+- Stock: Owned by shareholders, profits to investors
+- Mutual: Owned by policyholders, dividends to customers
+- Reciprocal: Subscribers exchange insurance, attorney-in-fact manages (NOT a lawyer)
+- Lloyds: Syndicates of investors; Lloyd's of London is a MARKETPLACE, not an insurer
+
+By Licensing:
+- Admitted/Licensed: Meets state requirements, backed by guaranty funds
+- Non-admitted/Surplus Lines: More flexibility, NO guaranty fund protection
+
+By Distribution:
+- Independent agency: Agent reps multiple insurers, AGENT owns the book
+- Exclusive/Captive agency: Agent reps ONE insurer, INSURER owns the book
+- Direct writer: Insurer sells directly, no agents
+
+THE FIVE KEY FORMULAS:
+1. Loss Ratio = Incurred Losses / EARNED Premiums (how much goes to claims)
+2. Expense Ratio = UW Expenses / WRITTEN Premiums (how much goes to overhead)
+3. Combined Ratio = Loss Ratio + Expense Ratio (under 100% = UW profit)
+4. Investment Income Ratio = Net Inv Income / EARNED Premiums
+5. Overall Operating Ratio = Combined Ratio - Inv Income Ratio (under 100% = overall profit)
+
+CRITICAL: Loss ratio uses EARNED premiums; Expense ratio uses WRITTEN premiums
+
+EARNED vs WRITTEN PREMIUMS:
+- Written = total on policies sold during period
+- Earned = portion where coverage has been provided
+- Unearned premiums = LIABILITY (owed back if cancelled)
+
+FINANCIAL STATEMENTS:
+Balance Sheet: Assets = Liabilities + Policyholders' Surplus
+- Biggest asset: Investments (bonds, stocks)
+- Biggest liability: Loss reserves
+- Surplus = net worth / safety cushion
+
+Income Statement: Revenue (earned premiums + investment income) minus Expenses (losses + LAE + UW expenses)
+
+Analysis Types:
+- Vertical: Each item as % of total (composition)
+- Trend: Same item across years (direction)
+
+THE UNDERWRITING CYCLE (5-10 years):
+- Soft market: Low premiums, relaxed UW, easy coverage, declining profits
+- Hard market: High premiums, strict UW, limited coverage, improving profits
+- 2020-2024 hard market driven by: catastrophes, inflation, social inflation
+
+EXAM TRAPS:
+- Loss ratio = EARNED; Expense ratio = WRITTEN
+- Combined over 100% doesn't mean failure (investment income can save it)
+- Operating ratio SUBTRACTS investment income (don't add)
+- Unearned premiums are a LIABILITY
+- Soft market = bad for insurers, good for customers
+- Independent agent owns the book; captive/direct = insurer owns it`);
+        });
+    </script>
+</body>
+</html>

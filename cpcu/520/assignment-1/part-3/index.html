@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment 1 Part 3: Innovating Across the Insurance Value Chain | CPCU 520</title>
+    <link rel="icon" type="image/svg+xml" href="../../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <link rel="stylesheet" href="../../../../css/styles.css">
+    <script src="../../../../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+        }
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <!-- Settings & Theme Toggle Buttons -->
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="showAPIKeySetup()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings">
+            <svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+        </button>
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/>
+            </svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap gap-2 text-sm mb-2">
+                <a href="../../../../index.html" class="text-blue-200 hover:text-white">Home</a>
+                <span class="text-blue-300">/</span>
+                <a href="../../../index.html" class="text-blue-200 hover:text-white">CPCU</a>
+                <span class="text-blue-300">/</span>
+                <a href="../../index.html" class="text-blue-200 hover:text-white">520</a>
+                <span class="text-blue-300">/</span>
+                <a href="../index.html" class="text-blue-200 hover:text-white">Assignment 1</a>
+                <span class="text-blue-300">/</span>
+                <span class="text-white">Part 3</span>
+            </div>
+            <h1 class="text-3xl font-bold">Assignment 1 Part 3: Innovating Across the Insurance Value Chain</h1>
+            <p class="text-blue-200 mt-1">How technology is transforming every department from underwriting to claims</p>
+        </div>
+    </header>
+
+    <!-- Part Navigation -->
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-wrap gap-2 text-sm">
+                <a href="../index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Overview</a>
+                <a href="../part-1/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 1</a>
+                <a href="../part-2/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 2</a>
+                <span class="bg-blue-600 text-white px-3 py-1 rounded font-medium">Part 3</span>
+                <a href="../part-4/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 4</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-5xl lg:max-w-7xl">
+
+        <!-- Start Here: 5 Things You MUST Know -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-blue-100 to-blue-200 dark:from-blue-900/40 dark:to-blue-800/40 rounded-xl p-6 border border-blue-300 dark:border-blue-700">
+                <h3 class="text-xl lg:text-2xl font-bold text-blue-800 dark:text-blue-200 mb-4">Start Here: 5 Things You MUST Know</h3>
+                <div class="grid md:grid-cols-2 gap-3">
+                    <div class="flex items-start">
+                        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Insurtech</strong> has shifted from "disrupt insurers" to "partner with insurers" - most successful insurtechs now work WITH traditional carriers</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Embedded insurance</strong> (sold at point of sale) is the biggest growth area - think Tesla selling auto insurance when you buy the car</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">The <strong>4 levels of analytics</strong>: Descriptive (what happened) to Diagnostic (why) to Predictive (what will happen) to Prescriptive (what to do)</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">4</span>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Straight-through processing</strong> means simple risks (renters, basic auto) can be quoted, bound, and even have claims paid with zero human involvement</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">5</span>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>IoT sensors</strong> (water leak detectors, telematics, wearables) are shifting insurance from "pay after the loss" to "prevent the loss"</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Overview / Introduction -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-4">Overview: Why Innovation Matters</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-800 rounded-lg p-4 lg:p-5 mb-6">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Insurance has historically been one of the slowest industries to adopt technology. Paper applications, manual underwriting, phone-tag with adjusters - that was the norm for decades. But the digital transformation that started accelerating around 2015 has fundamentally changed how every department in the insurance value chain operates. This part walks through exactly how technology is reshaping underwriting, claims, marketing, actuarial, and risk control - and what the exam expects you to know about it.</p>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 lg:p-5 rounded-r-lg">
+                    <p class="font-bold text-amber-800 dark:text-amber-300 text-lg">Exam Alert!</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mt-1">The exam loves to test whether you understand which technology applies to which department. You need to know the difference between telematics (underwriting) vs. IoT sensors (risk control) vs. photo-based estimation (claims). Mixing these up is a common mistake.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 1: Digital Transformation -->
+        <section id="digital-transformation" class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">1. Digital Transformation of Insurance</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-6">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg lg:text-xl">What Is Digital Transformation?</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">The shift from paper-based, manual insurance operations to technology-driven processes across every department. It is not just "going paperless" - it means fundamentally rethinking how insurance is sold, underwritten, serviced, and paid.</p>
+                </div>
+
+                <!-- Before vs After Grid -->
+                <h3 class="font-bold text-gray-800 dark:text-gray-100 text-lg mb-3">The Old Way vs. The New Way</h3>
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border border-red-200 dark:border-red-800">
+                        <p class="font-bold text-red-800 dark:text-red-300 mb-3">THE OLD WAY</p>
+                        <ul class="space-y-2 text-gray-700 dark:text-gray-300 text-sm lg:text-base">
+                            <li class="flex items-start"><span class="text-red-500 mr-2 font-bold">X</span> Paper applications mailed or faxed</li>
+                            <li class="flex items-start"><span class="text-red-500 mr-2 font-bold">X</span> Underwriter manually reviews every risk</li>
+                            <li class="flex items-start"><span class="text-red-500 mr-2 font-bold">X</span> Claims adjuster drives to every property</li>
+                            <li class="flex items-start"><span class="text-red-500 mr-2 font-bold">X</span> Quote takes days or weeks</li>
+                            <li class="flex items-start"><span class="text-red-500 mr-2 font-bold">X</span> Customer calls agent for any change</li>
+                        </ul>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border border-green-200 dark:border-green-800">
+                        <p class="font-bold text-green-800 dark:text-green-300 mb-3">THE NEW WAY</p>
+                        <ul class="space-y-2 text-gray-700 dark:text-gray-300 text-sm lg:text-base">
+                            <li class="flex items-start"><span class="text-green-500 mr-2 font-bold">+</span> Digital applications completed online in minutes</li>
+                            <li class="flex items-start"><span class="text-green-500 mr-2 font-bold">+</span> AI models auto-approve simple risks</li>
+                            <li class="flex items-start"><span class="text-green-500 mr-2 font-bold">+</span> Photo/video estimation from the customer's phone</li>
+                            <li class="flex items-start"><span class="text-green-500 mr-2 font-bold">+</span> Instant or same-day quotes</li>
+                            <li class="flex items-start"><span class="text-green-500 mr-2 font-bold">+</span> Self-service portals and mobile apps</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- The New Competitive Battleground -->
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-purple-500 mb-6">
+                    <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg">Customer Experience: The New Competitive Battleground</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">Price used to be the main differentiator. Now, <strong>customer experience</strong> is equally important. Customers expect the same seamless digital experience from their insurer that they get from Amazon or their banking app. Self-service portals, instant quoting, mobile-first design, and 24/7 chatbot support are no longer "nice to have" - they are table stakes.</p>
+                </div>
+
+                <!-- Example -->
+                <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-l-4 border-blue-500">
+                    <p class="font-semibold text-blue-800 dark:text-blue-300 mb-2">Real-World Scenario: The Renters Insurance Revolution</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Sarah, 26, moves into a new apartment. Her landlord requires proof of renters insurance before she gets the keys tomorrow.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> At 11 PM, she downloads an insurer's app, answers 5 questions, gets an instant quote for $15/month, pays with Apple Pay, and receives her proof of insurance via email - all in under 4 minutes.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> No agent involved, no phone call, no waiting for business hours. This is <strong>straight-through processing</strong> - the entire transaction happened digitally with zero human involvement. Ten years ago, Sarah would have had to call an agent during business hours and wait days for a paper binder.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Technology Impact by Department -->
+        <section id="tech-by-department" class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">2. Technology Impact by Department</h2>
+
+                <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-6">Each link in the value chain is being transformed by different technologies. Here is what is changing in each department and why it matters.</p>
+
+                <!-- Master Table: Tech by Department -->
+                <div class="overflow-x-auto mb-8">
+                    <table class="w-full text-sm lg:text-base">
+                        <thead>
+                            <tr class="bg-blue-600 text-white">
+                                <th class="p-3 lg:p-4 text-left rounded-tl-lg">Department</th>
+                                <th class="p-3 lg:p-4 text-left">Key Technologies</th>
+                                <th class="p-3 lg:p-4 text-left rounded-tr-lg">What Changed</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-bold text-blue-700 dark:text-blue-300">Underwriting</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Predictive analytics, AI models, telematics, aerial imagery, real-time data feeds</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">From "gut feel + paper apps" to data-driven risk selection</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <td class="p-3 lg:p-4 font-bold text-green-700 dark:text-green-300">Claims</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Photo-based estimation, virtual adjusting, straight-through processing, fraud detection AI, drones</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">From "adjuster visits every loss" to remote/automated handling</td>
+                            </tr>
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-bold text-purple-700 dark:text-purple-300">Marketing & Distribution</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Embedded insurance, digital-first carriers, aggregators, omnichannel, mobile-first</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">From "agent sells face-to-face" to insurance sold where customers already are</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <td class="p-3 lg:p-4 font-bold text-indigo-700 dark:text-indigo-300">Actuarial</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">GLMs, machine learning, real-time rate adjustments, climate-integrated cat models</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">From annual rate filings to dynamic, granular pricing</td>
+                            </tr>
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-bold text-amber-700 dark:text-amber-300">Risk Control</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">IoT sensors, wearables, virtual inspections, predictive analytics</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">From "react to losses" to "prevent losses before they happen"</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- 2A: Underwriting -->
+                <div class="mb-8">
+                    <h3 class="text-lg lg:text-xl font-bold text-blue-800 dark:text-blue-300 mb-4 border-b-2 border-blue-300 dark:border-blue-700 pb-2">2A. Underwriting Technology</h3>
+
+                    <div class="grid lg:grid-cols-2 gap-4 mb-4">
+                        <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
+                            <p class="font-bold text-blue-800 dark:text-blue-300 mb-2">Predictive Analytics & AI Models</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Instead of an underwriter manually scoring each risk, AI models analyze hundreds of data points simultaneously - credit-based insurance scores, claims history, property characteristics, even weather patterns - to predict the likelihood of a future claim.</p>
+                        </div>
+                        <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
+                            <p class="font-bold text-blue-800 dark:text-blue-300 mb-2">Straight-Through Processing</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">For simple, low-risk policies (renters, basic auto), the entire underwriting process is automated. Application comes in, AI evaluates, policy is issued - no human touches it. This works for maybe 40-60% of personal lines submissions.</p>
+                        </div>
+                        <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
+                            <p class="font-bold text-blue-800 dark:text-blue-300 mb-2">Telematics</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Devices or smartphone apps that track actual driving behavior - speed, braking habits, time of day, mileage. Replaces blunt proxies like age and zip code with real data about how someone actually drives.</p>
+                        </div>
+                        <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
+                            <p class="font-bold text-blue-800 dark:text-blue-300 mb-2">Aerial Imagery & Satellite Data</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Satellite and drone photos let underwriters see a property's roof condition, proximity to brush (wildfire risk), pool presence, and more - without sending an inspector. Updated after storms to check for pre-existing damage.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <p class="font-semibold text-green-800 dark:text-green-300 mb-2">Real-World Scenario: Telematics in Auto Underwriting</p>
+                        <div class="space-y-2 text-sm lg:text-base">
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Progressive's Snapshot program asks new auto customers to plug in a device or use the app for 6 months. Two customers, both 22-year-old males in the same zip code, sign up.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Driver A commutes 60 miles daily, brakes hard frequently, and drives late at night. Driver B works from home, drives 15 miles/week, brakes smoothly, and avoids rush hour.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Without telematics, both drivers would pay the same rate (same age, gender, zip code). With telematics, Driver B gets a 30% discount because the data shows he is actually a much lower risk. The underwriting is now based on <strong>actual behavior</strong>, not demographic proxies.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2B: Claims -->
+                <div class="mb-8">
+                    <h3 class="text-lg lg:text-xl font-bold text-green-800 dark:text-green-300 mb-4 border-b-2 border-green-300 dark:border-green-700 pb-2">2B. Claims Technology</h3>
+
+                    <div class="grid lg:grid-cols-2 gap-4 mb-4">
+                        <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border border-green-200 dark:border-green-800">
+                            <p class="font-bold text-green-800 dark:text-green-300 mb-2">Photo-Based Damage Estimation</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Customer takes photos of vehicle damage with their phone. AI compares the images against millions of prior repairs to estimate parts needed and repair costs - often within minutes, not days.</p>
+                        </div>
+                        <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border border-green-200 dark:border-green-800">
+                            <p class="font-bold text-green-800 dark:text-green-300 mb-2">Virtual/Remote Adjusting</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Instead of driving to a property, the adjuster joins a video call. The homeowner walks through the damage with their phone camera while the adjuster documents and estimates remotely.</p>
+                        </div>
+                        <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border border-green-200 dark:border-green-800">
+                            <p class="font-bold text-green-800 dark:text-green-300 mb-2">Straight-Through Claims Processing</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">For small, simple claims (cracked windshield, minor fender bender), AI reviews the claim, validates coverage, estimates damage, and issues payment - all with zero human involvement.</p>
+                        </div>
+                        <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border border-green-200 dark:border-green-800">
+                            <p class="font-bold text-green-800 dark:text-green-300 mb-2">Fraud Detection & Drone Assessment</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Predictive models flag suspicious claims by analyzing patterns (same body shop, staged accidents, claim timing). After catastrophes, drones fly over disaster zones to assess roof and structural damage at scale.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <p class="font-semibold text-green-800 dark:text-green-300 mb-2">Real-World Scenario: AI Claims After a Fender Bender</p>
+                        <div class="space-y-2 text-sm lg:text-base">
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Mike rear-ends someone at a stop sign going 5 mph. Damage is a cracked bumper cover on his car. His insurer uses AI-powered claims handling.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Mike files a claim on the app, takes 4 photos of the bumper damage. The AI identifies the damage as a cracked bumper cover on a 2022 Honda Civic, matches it against repair databases, and calculates the repair cost at $1,850.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Within 2 hours, Mike receives payment of $1,350 ($1,850 minus his $500 deductible) via direct deposit. No adjuster visited. No phone call needed. This is <strong>straight-through claims processing</strong> - the entire claim was handled by AI because it was simple and below the complexity threshold.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2C: Marketing & Distribution -->
+                <div class="mb-8">
+                    <h3 class="text-lg lg:text-xl font-bold text-purple-800 dark:text-purple-300 mb-4 border-b-2 border-purple-300 dark:border-purple-700 pb-2">2C. Marketing & Distribution Technology</h3>
+
+                    <div class="grid lg:grid-cols-2 gap-4 mb-4">
+                        <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border border-purple-200 dark:border-purple-800">
+                            <p class="font-bold text-purple-800 dark:text-purple-300 mb-2">Embedded Insurance</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Insurance sold at the point of sale of another product. You buy a Tesla and get offered Tesla Insurance at checkout. You book a flight and get offered travel insurance. You buy a phone and get offered device protection. The <strong>biggest growth area</strong> in insurance distribution.</p>
+                        </div>
+                        <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border border-purple-200 dark:border-purple-800">
+                            <p class="font-bold text-purple-800 dark:text-purple-300 mb-2">Digital-First Carriers</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Companies like Lemonade, Root, and Hippo built their entire operations around technology from day one. Lesson learned: great tech alone does not guarantee profitability - underwriting discipline still matters.</p>
+                        </div>
+                        <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border border-purple-200 dark:border-purple-800">
+                            <p class="font-bold text-purple-800 dark:text-purple-300 mb-2">Comparison/Aggregator Platforms</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Websites and apps that show quotes from multiple carriers side by side. Customers compare price, coverage, and reviews in one place - like how Kayak works for flights.</p>
+                        </div>
+                        <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border border-purple-200 dark:border-purple-800">
+                            <p class="font-bold text-purple-800 dark:text-purple-300 mb-2">Omnichannel Distribution</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Same customer can start a quote on their phone, ask questions via chat, finalize with an agent, and manage the policy on a web portal. All channels share the same data and provide a seamless experience.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border-l-4 border-purple-500">
+                        <p class="font-semibold text-purple-800 dark:text-purple-300 mb-2">Real-World Scenario: Embedded Insurance at Point of Sale</p>
+                        <div class="space-y-2 text-sm lg:text-base">
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> James buys a new Tesla Model 3 online. During the checkout process, after selecting his color and options, a screen appears offering Tesla Insurance.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Tesla already has James's driving data from his previous Tesla. The quote is $140/month - 20% less than his current insurer. He clicks "Add Insurance" and it becomes part of his monthly car payment. He never visits an insurance website, never talks to an agent.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> This is <strong>embedded insurance</strong> - the coverage is sold seamlessly inside another transaction. The customer does not have to go looking for insurance; it comes to them at the exact moment of need. The friction of buying insurance drops to almost zero.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2D: Actuarial -->
+                <div class="mb-8">
+                    <h3 class="text-lg lg:text-xl font-bold text-indigo-800 dark:text-indigo-300 mb-4 border-b-2 border-indigo-300 dark:border-indigo-700 pb-2">2D. Actuarial Technology</h3>
+
+                    <div class="grid lg:grid-cols-2 gap-4 mb-4">
+                        <div class="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-lg border border-indigo-200 dark:border-indigo-800">
+                            <p class="font-bold text-indigo-800 dark:text-indigo-300 mb-2">Generalized Linear Models (GLMs)</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The industry standard for insurance pricing. GLMs analyze how multiple rating factors (age, location, vehicle type, claims history) interact to predict expected losses. Think of it as a sophisticated formula that weighs dozens of variables at once instead of looking at each one separately.</p>
+                        </div>
+                        <div class="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-lg border border-indigo-200 dark:border-indigo-800">
+                            <p class="font-bold text-indigo-800 dark:text-indigo-300 mb-2">Machine Learning for Pricing</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Goes beyond GLMs by finding complex, non-obvious patterns in data. Can identify pricing segments that traditional models miss - like discovering that customers who pay annually instead of monthly also have 15% fewer claims.</p>
+                        </div>
+                        <div class="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-lg border border-indigo-200 dark:border-indigo-800">
+                            <p class="font-bold text-indigo-800 dark:text-indigo-300 mb-2">Real-Time Rate Adjustments</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Instead of filing new rates once a year, some carriers can adjust pricing much more frequently based on emerging loss data, competitive intelligence, and market conditions.</p>
+                        </div>
+                        <div class="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-lg border border-indigo-200 dark:border-indigo-800">
+                            <p class="font-bold text-indigo-800 dark:text-indigo-300 mb-2">Cat Modeling + Climate Change</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Catastrophe models now integrate climate change projections - rising sea levels, increased hurricane intensity, wildfire risk expansion. Historical data alone is no longer sufficient because the climate of the past does not predict the climate of the future.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-lg border-l-4 border-indigo-500">
+                        <p class="font-semibold text-indigo-800 dark:text-indigo-300 mb-2">Real-World Scenario: Climate-Enhanced Cat Modeling</p>
+                        <div class="space-y-2 text-sm lg:text-base">
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> A homeowners insurer writes policies along the Gulf Coast. Their traditional cat model uses 100 years of hurricane data to estimate expected losses.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Their actuaries upgrade to a climate-enhanced cat model that factors in rising sea surface temperatures and changing storm tracks. The new model shows that Category 4+ hurricanes are now 30% more likely than historical data alone would suggest.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> The insurer raises rates 15% in coastal zones and tightens underwriting within 5 miles of the coast. A competitor that still relies only on historical data keeps lower rates, attracts the coastal risk, and gets hammered when a Cat 4 hurricane hits. The lesson: <strong>backward-looking models are dangerously insufficient</strong> for pricing climate-sensitive risks.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2E: Risk Control -->
+                <div>
+                    <h3 class="text-lg lg:text-xl font-bold text-amber-800 dark:text-amber-300 mb-4 border-b-2 border-amber-300 dark:border-amber-700 pb-2">2E. Risk Control Technology</h3>
+
+                    <div class="grid lg:grid-cols-2 gap-4 mb-4">
+                        <div class="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg border border-amber-200 dark:border-amber-800">
+                            <p class="font-bold text-amber-800 dark:text-amber-300 mb-2">IoT Sensors</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Internet of Things devices installed in homes and businesses: water leak detectors that shut off the main valve automatically, smart smoke detectors that alert both the homeowner and fire department, temperature sensors in commercial freezers. The goal is <strong>loss prevention, not just loss payment</strong>.</p>
+                        </div>
+                        <div class="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg border border-amber-200 dark:border-amber-800">
+                            <p class="font-bold text-amber-800 dark:text-amber-300 mb-2">Wearable Technology</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">In workers' compensation, wearable devices can detect unsafe lifting posture, alert workers to ergonomic risks, and monitor fatigue levels. Some devices vibrate when a worker bends incorrectly, training safer habits in real time.</p>
+                        </div>
+                        <div class="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg border border-amber-200 dark:border-amber-800">
+                            <p class="font-bold text-amber-800 dark:text-amber-300 mb-2">Virtual Safety Inspections</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Risk control engineers conduct inspections remotely via video, reviewing safety protocols, equipment conditions, and fire protection systems without traveling. Especially useful for geographically remote or hazardous locations.</p>
+                        </div>
+                        <div class="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg border border-amber-200 dark:border-amber-800">
+                            <p class="font-bold text-amber-800 dark:text-amber-300 mb-2">Predictive Risk Identification</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Analytics models identify which accounts are most likely to have a large loss BEFORE it happens. Insurers can then proactively reach out with loss prevention recommendations, turning risk control from reactive to proactive.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg border-l-4 border-amber-500">
+                        <p class="font-semibold text-amber-800 dark:text-amber-300 mb-2">Real-World Scenario: Smart Water Sensor Prevents $80,000 Loss</p>
+                        <div class="space-y-2 text-sm lg:text-base">
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> A homeowners insurer partners with a smart home company to offer free water leak sensors to policyholders. The sensors are placed near water heaters, washing machines, and under sinks.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> At 2 AM, a pipe fitting under the kitchen sink of the Garcia family's home fails. The sensor detects moisture within 30 seconds, sends an alert to the family's phones, and automatically shuts off the main water valve.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Total damage: $300 (wet floor, minor cabinet damage). Without the sensor, water would have flooded the kitchen and seeped into the basement for 8 hours, causing an estimated $80,000 in damage. The insurer's $50 sensor investment prevented a massive claim. This is the shift from <strong>"pay after the loss" to "prevent the loss."</strong></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Insurtech -->
+        <section id="insurtech" class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">3. Insurtech: Disruption or Partnership?</h2>
+
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-purple-500 mb-6">
+                    <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg lg:text-xl">What Is Insurtech?</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg"><strong>Insurtech</strong> refers to technology-driven companies that are either disrupting traditional insurance models or enhancing them. The term became popular around 2015-2016, when billions of venture capital dollars poured into startups promising to "reinvent" insurance.</p>
+                </div>
+
+                <!-- The Big Shift -->
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 lg:p-5 rounded-r-lg mb-6">
+                    <p class="font-bold text-amber-800 dark:text-amber-300 text-lg">Key Insight: The Strategic Pivot</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mt-1">The insurtech story has two chapters. <strong>Chapter 1 (2015-2020):</strong> "We'll replace traditional insurers!" <strong>Chapter 2 (2020-present):</strong> "Actually, let's partner with them." Most successful insurtechs now provide technology and data TO traditional carriers rather than trying to compete head-to-head. Why? Because insurance requires massive capital reserves, regulatory expertise, and decades of loss data that startups simply do not have.</p>
+                </div>
+
+                <!-- Categories Grid -->
+                <h3 class="font-bold text-gray-800 dark:text-gray-100 text-lg mb-3">Insurtech Categories: Winners and Struggles</h3>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border border-green-200 dark:border-green-800">
+                        <p class="font-bold text-green-800 dark:text-green-300 mb-2">Embedded Insurance</p>
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300">Biggest growth area. Insurance woven into other purchases. Tesla auto insurance, airline travel insurance, phone protection at checkout.</p>
+                        <div class="mt-2 bg-green-100 dark:bg-green-900/40 rounded px-2 py-1 inline-block">
+                            <span class="text-green-800 dark:text-green-300 text-xs lg:text-sm font-bold">STRONG GROWTH</span>
+                        </div>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border border-green-200 dark:border-green-800">
+                        <p class="font-bold text-green-800 dark:text-green-300 mb-2">AI-Native Underwriting</p>
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300">Platforms built from scratch around AI for risk selection. Often partner with traditional carriers who provide capital and licenses.</p>
+                        <div class="mt-2 bg-green-100 dark:bg-green-900/40 rounded px-2 py-1 inline-block">
+                            <span class="text-green-800 dark:text-green-300 text-xs lg:text-sm font-bold">STRONG GROWTH</span>
+                        </div>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border border-green-200 dark:border-green-800">
+                        <p class="font-bold text-green-800 dark:text-green-300 mb-2">Claims Automation</p>
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300">Technology for faster claims handling - photo AI, document processing, fraud scoring. Sold TO insurers as a service.</p>
+                        <div class="mt-2 bg-green-100 dark:bg-green-900/40 rounded px-2 py-1 inline-block">
+                            <span class="text-green-800 dark:text-green-300 text-xs lg:text-sm font-bold">STRONG GROWTH</span>
+                        </div>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border border-green-200 dark:border-green-800">
+                        <p class="font-bold text-green-800 dark:text-green-300 mb-2">Data & Analytics Providers</p>
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300">Companies providing alternative data sources - satellite imagery, IoT data, social data, telematics - to enhance insurer decision-making.</p>
+                        <div class="mt-2 bg-green-100 dark:bg-green-900/40 rounded px-2 py-1 inline-block">
+                            <span class="text-green-800 dark:text-green-300 text-xs lg:text-sm font-bold">STRONG GROWTH</span>
+                        </div>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border border-green-200 dark:border-green-800">
+                        <p class="font-bold text-green-800 dark:text-green-300 mb-2">Climate & Cat Analytics</p>
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300">Specialized firms modeling climate risk, wildfire exposure, flood zones, and severe weather patterns. Critical as climate change makes historical data less reliable.</p>
+                        <div class="mt-2 bg-green-100 dark:bg-green-900/40 rounded px-2 py-1 inline-block">
+                            <span class="text-green-800 dark:text-green-300 text-xs lg:text-sm font-bold">STRONG GROWTH</span>
+                        </div>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border border-red-200 dark:border-red-800">
+                        <p class="font-bold text-red-800 dark:text-red-300 mb-2">Peer-to-Peer Insurance</p>
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300">Groups pool premiums and share unused funds. Concept sounded revolutionary but mostly failed - adverse selection, regulatory hurdles, and insufficient risk pooling.</p>
+                        <div class="mt-2 bg-red-100 dark:bg-red-900/40 rounded px-2 py-1 inline-block">
+                            <span class="text-red-800 dark:text-red-300 text-xs lg:text-sm font-bold">MOSTLY FAILED</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MGAs -->
+                <div class="bg-indigo-50 dark:bg-indigo-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-indigo-500 mb-6">
+                    <h3 class="font-bold text-indigo-800 dark:text-indigo-300 text-lg">Managing General Agents (MGAs) as Tech-Enabled Distribution</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">A <strong>Managing General Agent (MGA)</strong> is an organization authorized by an insurer to underwrite, bind coverage, and handle claims on the insurer's behalf. In the insurtech world, tech-enabled MGAs combine cutting-edge technology (AI underwriting, digital distribution) with the capital and licenses of a traditional carrier. The MGA provides the tech and distribution; the carrier provides the balance sheet and regulatory compliance. This is one of the most successful models to emerge from the insurtech era.</p>
+                </div>
+
+                <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border-l-4 border-purple-500">
+                    <p class="font-semibold text-purple-800 dark:text-purple-300 mb-2">Real-World Scenario: From Disruptor to Partner</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Lemonade launched in 2016 promising to "replace" traditional insurance with AI and behavioral economics. They offered instant quotes, instant claims, and a slick mobile app.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> By 2023, Lemonade had great technology and millions of customers - but their loss ratio was over 90%, meaning they were paying out almost as much in claims as they collected in premiums. The underwriting fundamentals were weak even though the tech was impressive.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> This is the lesson the industry learned: <strong>great technology does not replace underwriting discipline</strong>. The most successful insurtechs are now those that sell their technology to traditional carriers (who already have capital, data, and underwriting expertise) rather than trying to be full-stack insurers themselves. Technology enhances the value chain - it does not replace the fundamentals.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Data Analytics Evolution -->
+        <section id="analytics" class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">4. The Data Analytics Evolution</h2>
+
+                <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-6">Analytics in insurance has evolved through four distinct levels. Each level builds on the one before it. The exam expects you to know what each level does and how it applies to insurance operations.</p>
+
+                <!-- 4-Level Visual Flow -->
+                <div class="mb-8">
+                    <h3 class="font-bold text-gray-800 dark:text-gray-100 text-lg mb-4">The Four Levels of Analytics</h3>
+
+                    <div class="space-y-4">
+                        <!-- Level 1: Descriptive -->
+                        <div class="flex items-start gap-4">
+                            <div class="bg-blue-600 text-white rounded-full w-10 h-10 flex items-center justify-center text-lg font-bold flex-shrink-0">1</div>
+                            <div class="flex-1 bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-l-4 border-blue-500">
+                                <p class="font-bold text-blue-800 dark:text-blue-300 text-lg">Descriptive Analytics: "What happened?"</p>
+                                <p class="text-gray-700 dark:text-gray-300 mt-1 text-sm lg:text-base">Traditional reporting and dashboards. Looking backward at historical data.</p>
+                                <div class="bg-white dark:bg-gray-700 p-3 rounded mt-2">
+                                    <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>Insurance Example:</strong> "Last quarter, our auto line had a 72% loss ratio. Commercial property had 15% more claims than the same period last year."</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Arrow -->
+                        <div class="flex justify-center">
+                            <div class="text-3xl text-gray-400 dark:text-gray-600 font-bold">v</div>
+                        </div>
+
+                        <!-- Level 2: Diagnostic -->
+                        <div class="flex items-start gap-4">
+                            <div class="bg-purple-600 text-white rounded-full w-10 h-10 flex items-center justify-center text-lg font-bold flex-shrink-0">2</div>
+                            <div class="flex-1 bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border-l-4 border-purple-500">
+                                <p class="font-bold text-purple-800 dark:text-purple-300 text-lg">Diagnostic Analytics: "Why did it happen?"</p>
+                                <p class="text-gray-700 dark:text-gray-300 mt-1 text-sm lg:text-base">Root cause analysis. Drilling into data to find patterns explaining outcomes.</p>
+                                <div class="bg-white dark:bg-gray-700 p-3 rounded mt-2">
+                                    <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>Insurance Example:</strong> "The spike in commercial property claims was concentrated in 3 zip codes hit by hailstorms. The auto loss ratio increase was driven by a 22% rise in repair costs due to labor shortages."</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Arrow -->
+                        <div class="flex justify-center">
+                            <div class="text-3xl text-gray-400 dark:text-gray-600 font-bold">v</div>
+                        </div>
+
+                        <!-- Level 3: Predictive -->
+                        <div class="flex items-start gap-4">
+                            <div class="bg-green-600 text-white rounded-full w-10 h-10 flex items-center justify-center text-lg font-bold flex-shrink-0">3</div>
+                            <div class="flex-1 bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                                <p class="font-bold text-green-800 dark:text-green-300 text-lg">Predictive Analytics: "What will happen?"</p>
+                                <p class="text-gray-700 dark:text-gray-300 mt-1 text-sm lg:text-base">Modeling future outcomes using statistical algorithms and machine learning.</p>
+                                <div class="bg-white dark:bg-gray-700 p-3 rounded mt-2">
+                                    <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>Insurance Example:</strong> "Based on current trends, this policyholder has a 34% probability of filing a claim in the next 12 months. Our model predicts that Texas coastal losses will increase 18% next hurricane season."</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Arrow -->
+                        <div class="flex justify-center">
+                            <div class="text-3xl text-gray-400 dark:text-gray-600 font-bold">v</div>
+                        </div>
+
+                        <!-- Level 4: Prescriptive -->
+                        <div class="flex items-start gap-4">
+                            <div class="bg-red-600 text-white rounded-full w-10 h-10 flex items-center justify-center text-lg font-bold flex-shrink-0">4</div>
+                            <div class="flex-1 bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                                <p class="font-bold text-red-800 dark:text-red-300 text-lg">Prescriptive Analytics: "What should we do?"</p>
+                                <p class="text-gray-700 dark:text-gray-300 mt-1 text-sm lg:text-base">AI-recommended actions based on predictions. The system tells you the optimal decision.</p>
+                                <div class="bg-white dark:bg-gray-700 p-3 rounded mt-2">
+                                    <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>Insurance Example:</strong> "For this applicant, the model recommends: quote at $1,450 premium, require wind mitigation inspection, and add a $2,500 wind/hail deductible. This pricing optimizes our retention probability at 78% while maintaining a target loss ratio of 65%."</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Generative AI -->
+                <div class="bg-indigo-50 dark:bg-indigo-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-indigo-500 mb-6">
+                    <h3 class="font-bold text-indigo-800 dark:text-indigo-300 text-lg lg:text-xl">Generative AI: The Fifth Wave (Post-2022)</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">Generative AI (like ChatGPT, Claude, and similar tools) represents a new capability layer that enhances all four analytics levels. In insurance, it is being applied to:</p>
+                    <div class="grid md:grid-cols-2 gap-3 mt-3">
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-bold text-gray-800 dark:text-gray-200 text-sm lg:text-base">Document Analysis</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm">Reading and summarizing complex policy forms, endorsements, and legal documents in seconds</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-bold text-gray-800 dark:text-gray-200 text-sm lg:text-base">Claims Summarization</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm">Condensing a 50-page medical record or claims file into a 2-page summary for the adjuster</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-bold text-gray-800 dark:text-gray-200 text-sm lg:text-base">Customer Service Chatbots</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm">AI-powered chat that can answer complex policy questions, process endorsements, and guide customers through claims</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="font-bold text-gray-800 dark:text-gray-200 text-sm lg:text-base">Underwriting Narratives</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm">Auto-generating underwriting memos and risk assessments from structured data, saving hours of manual writing</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                    <p class="font-semibold text-green-800 dark:text-green-300 mb-2">Real-World Scenario: Analytics in Action Across All Four Levels</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> An insurer notices their workers' compensation book is underperforming. They apply all four levels of analytics to understand and fix the problem.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong></p>
+                        <ul class="list-none space-y-1 ml-4 text-gray-700 dark:text-gray-300">
+                            <li><strong>Descriptive:</strong> "Workers' comp loss ratio hit 82% last year, up from 68%."</li>
+                            <li><strong>Diagnostic:</strong> "The increase is driven by warehouse and construction accounts in 4 states, mostly slip-and-fall and repetitive strain injuries."</li>
+                            <li><strong>Predictive:</strong> "Model identifies 200 accounts with a 50%+ probability of a large claim in the next year."</li>
+                            <li><strong>Prescriptive:</strong> "Recommend deploying wearable sensors to the top 50 highest-risk warehouse accounts, offering ergonomic consulting to the next 100, and non-renewing the bottom 50 with poor safety records."</li>
+                        </ul>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> After implementing the prescriptive recommendations, the insurer reduces their workers' comp loss ratio to 71% the following year. Each analytics level built on the previous one to move from "what is the problem?" all the way to "here is exactly what to do about it."</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Cybersecurity -->
+        <section id="cybersecurity" class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">5. Cybersecurity in the Value Chain</h2>
+
+                <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-red-500 mb-6">
+                    <h3 class="font-bold text-red-800 dark:text-red-300 text-lg lg:text-xl">Why Insurers Are Prime Targets</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">Insurance companies hold some of the most sensitive data in any industry: Social Security numbers, medical records, financial information, property details, and claims history. This makes them extremely attractive targets for cybercriminals. As insurers digitize more operations, the attack surface grows.</p>
+                </div>
+
+                <!-- Key Threats and Regulations Grid -->
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border border-red-200 dark:border-red-800">
+                        <p class="font-bold text-red-800 dark:text-red-300 mb-2">Ransomware: The Dominant Threat</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Attackers encrypt an insurer's data and demand payment (usually in cryptocurrency) to unlock it. Even if the ransom is paid, recovery can take weeks. Some attacks have shut down claims operations entirely, leaving thousands of policyholders unable to file or receive payment.</p>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border border-purple-200 dark:border-purple-800">
+                        <p class="font-bold text-purple-800 dark:text-purple-300 mb-2">State Privacy Laws</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">California's CCPA was the first major state privacy law, and 15+ other states have followed with their own versions. These laws give consumers rights over their personal data: the right to know what is collected, the right to delete it, and the right to opt out of data sales.</p>
+                    </div>
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
+                        <p class="font-bold text-blue-800 dark:text-blue-300 mb-2">NAIC Insurance Data Security Model Law</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The NAIC developed a model law requiring insurers to maintain an information security program, conduct risk assessments, notify regulators of data breaches within 72 hours, and investigate cybersecurity events. States adopt this model law individually.</p>
+                    </div>
+                    <div class="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg border border-amber-200 dark:border-amber-800">
+                        <p class="font-bold text-amber-800 dark:text-amber-300 mb-2">The Innovation vs. Protection Balance</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Every new technology (IoT sensors, telematics, AI models) creates new data that must be protected. The more data an insurer collects to improve underwriting, the more data it must secure. Innovation and cybersecurity must advance together - one cannot outpace the other.</p>
+                    </div>
+                </div>
+
+                <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                    <p class="font-semibold text-red-800 dark:text-red-300 mb-2">Real-World Scenario: Ransomware Hits a Regional Carrier</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> A mid-sized regional insurer with 200,000 policyholders experiences a ransomware attack. The attackers gained access through a phishing email that an employee clicked.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> The ransomware encrypts the insurer's claims system, policy administration system, and customer database. Claims processing stops completely. Adjusters cannot access claim files. Policyholders cannot make payments or file new claims. The attackers demand $5 million in Bitcoin.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> The insurer spends 3 weeks recovering from backup systems (they chose not to pay the ransom). During that time, claims payments are delayed, policyholder trust is damaged, and the state insurance department opens an investigation. The total cost: $12 million in recovery expenses, regulatory fines, and lost business. Under the <strong>NAIC Model Law</strong>, the insurer must notify the commissioner within 72 hours and all affected consumers. The lesson: cybersecurity is not just an IT issue - it is a <strong>business survival issue</strong>.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cheat Sheet -->
+        <section id="cheat-sheet" class="mb-10">
+            <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 border-2 border-dashed border-gray-300 dark:border-gray-600">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100">Cheat Sheet</h2>
+                    <span class="text-sm text-gray-500 dark:text-gray-400">Print this page for quick reference</span>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                        <p class="font-bold text-blue-700 dark:text-blue-300 text-sm">Underwriting Tech</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Predictive analytics, AI models, telematics, aerial imagery, straight-through processing</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                        <p class="font-bold text-green-700 dark:text-green-300 text-sm">Claims Tech</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Photo estimation, virtual adjusting, straight-through claims, fraud detection AI, drones for cat</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                        <p class="font-bold text-purple-700 dark:text-purple-300 text-sm">Distribution Tech</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Embedded insurance (biggest growth), digital-first carriers, aggregators, omnichannel</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                        <p class="font-bold text-indigo-700 dark:text-indigo-300 text-sm">Actuarial Tech</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">GLMs (industry standard), machine learning, real-time rates, climate-integrated cat models</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                        <p class="font-bold text-amber-700 dark:text-amber-300 text-sm">Risk Control Tech</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">IoT sensors, wearables, virtual inspections, predictive risk ID</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                        <p class="font-bold text-gray-700 dark:text-gray-300 text-sm">4 Analytics Levels</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Descriptive (what) -> Diagnostic (why) -> Predictive (what will) -> Prescriptive (what should)</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                        <p class="font-bold text-gray-700 dark:text-gray-300 text-sm">Insurtech Pivot</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">"Disrupt" (2015-2020) -> "Partner" (2020+). Tech alone does not replace underwriting discipline.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                        <p class="font-bold text-gray-700 dark:text-gray-300 text-sm">Embedded Insurance</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Sold at point of sale of another product. Biggest insurtech growth category.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 text-sm">Cybersecurity</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Ransomware = top threat. NAIC Model Law: 72-hour breach notification. 15+ state privacy laws.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Trap Alerts -->
+        <section id="exam-traps" class="mb-10">
+            <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-xl p-5 lg:p-6">
+                <h2 class="text-2xl font-bold text-red-800 dark:text-red-300 mb-4">Exam Trap Alerts</h2>
+                <div class="space-y-3">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">1. Telematics vs. IoT Sensors - Know Which Department</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>Telematics</strong> (driving data) is an <strong>underwriting</strong> tool - it helps price auto risk. <strong>IoT sensors</strong> (water leak detectors, smart smoke detectors) are <strong>risk control</strong> tools - they help prevent losses. Do not mix these up. The exam loves testing which technology belongs to which department.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">2. Straight-Through Processing Applies to BOTH Underwriting and Claims</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Do not assume straight-through processing only applies to one department. In <strong>underwriting</strong>, it means auto-issuing simple policies. In <strong>claims</strong>, it means auto-paying simple claims. Same concept, two different applications.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">3. GLMs Are the INDUSTRY STANDARD - Not Machine Learning</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Generalized Linear Models (GLMs) are the current industry standard for actuarial pricing. Machine learning is supplemental and growing, but GLMs remain the backbone. If the exam asks what actuaries primarily use for pricing, the answer is GLMs.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">4. Embedded Insurance vs. Comparison Platforms - Different Models</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>Embedded insurance</strong> is sold INSIDE another transaction (buying a car, booking a flight). <strong>Comparison/aggregator platforms</strong> are standalone sites where you go specifically to shop for insurance. Both are digital distribution, but they are fundamentally different models.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">5. Descriptive vs. Predictive Analytics - Past vs. Future</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>Descriptive</strong> tells you what already happened (backward-looking). <strong>Predictive</strong> tells you what will happen (forward-looking). If a question describes a report showing last year's loss ratios, that is descriptive. If it describes a model forecasting next year's claims, that is predictive. Watch for the tense.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">6. Peer-to-Peer Insurance Mostly FAILED</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">If the exam asks which insurtech category struggled the most, the answer is peer-to-peer insurance. It sounded great in theory but failed due to adverse selection, insufficient risk pooling, and regulatory challenges. Do not confuse it with embedded insurance, which is the biggest growth area.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">7. NAIC Model Law - 72-Hour Rule</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Under the NAIC Insurance Data Security Model Law, insurers must notify the <strong>state insurance commissioner within 72 hours</strong> of a cybersecurity event. This is not 24 hours, not 30 days - it is 72 hours. Memorize this number.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Reference Summary -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-blue-600 to-blue-800 rounded-xl p-6 text-white">
+                <h2 class="text-2xl font-bold mb-6">Quick Reference Summary</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Digital Transformation</p>
+                        <p class="text-sm text-blue-100">Shift from paper to digital across all departments. Customer experience is the new competitive battleground.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Telematics</p>
+                        <p class="text-sm text-blue-100">Underwriting tool. Tracks actual driving behavior to replace demographic proxies for auto pricing.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Straight-Through Processing</p>
+                        <p class="text-sm text-blue-100">Zero-human automation for simple risks. Applies to both underwriting (auto-issue) and claims (auto-pay).</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Embedded Insurance</p>
+                        <p class="text-sm text-blue-100">Sold at point of sale of another product. Biggest insurtech growth area. Tesla, airlines, phone retailers.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Insurtech Evolution</p>
+                        <p class="text-sm text-blue-100">"Disrupt" shifted to "partner." Tech enhances the value chain but does not replace underwriting fundamentals.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">4 Analytics Levels</p>
+                        <p class="text-sm text-blue-100">Descriptive (what) -> Diagnostic (why) -> Predictive (what will) -> Prescriptive (what should we do).</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">GLMs</p>
+                        <p class="text-sm text-blue-100">Generalized Linear Models. Industry standard for actuarial pricing. Machine learning supplements but does not replace.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">IoT Sensors</p>
+                        <p class="text-sm text-blue-100">Risk control tool. Shifts insurance from "pay after loss" to "prevent loss." Water sensors, smoke detectors, wearables.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Cybersecurity</p>
+                        <p class="text-sm text-blue-100">Ransomware is the top threat. NAIC Model Law requires 72-hour breach notification. 15+ states have privacy laws.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Navigation -->
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="../part-2/index.html" class="text-blue-300 hover:text-white transition-colors text-sm lg:text-base">
+                    &larr; Part 2: Harnessing the Value Chain
+                </a>
+                <span class="text-gray-400 text-sm">Part 3 of 4</span>
+                <a href="../part-4/index.html" class="text-blue-300 hover:text-white transition-colors text-sm lg:text-base">
+                    Part 4: Regulatory Influence &rarr;
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AI Tutor Button -->
+    <button onclick="openAITutor()"
+        class="fixed bottom-6 right-6 bg-blue-600 hover:bg-blue-700 text-white p-4 rounded-full shadow-xl hover:scale-110 transition-transform z-40"
+        title="Ask AI Tutor">
+        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+        </svg>
+    </button>
+
+    <script>
+        function openAITutor() {
+            const context = `
+Topic: CPCU 520 Assignment 1 Part 3 - Innovating Across the Insurance Value Chain (NEW edition: Meeting Challenges Across Insurance Operations)
+
+Key Concepts:
+- Digital transformation of insurance operations
+- Technology impact by department: Underwriting (telematics, AI, aerial imagery), Claims (photo estimation, virtual adjusting, straight-through processing), Marketing (embedded insurance, digital-first carriers, aggregators), Actuarial (GLMs, machine learning, climate cat models), Risk Control (IoT sensors, wearables, virtual inspections)
+- Insurtech categories: embedded insurance (biggest growth), AI underwriting, claims automation, data providers, climate analytics. Peer-to-peer insurance mostly failed.
+- Insurtech pivot from "disrupt insurers" to "partner with insurers"
+- Managing General Agents (MGAs) as tech-enabled distribution
+- 4 levels of analytics: Descriptive (what happened), Diagnostic (why), Predictive (what will happen), Prescriptive (what should we do)
+- Generative AI applications in insurance (post-2022)
+- Cybersecurity: ransomware as dominant threat, state privacy laws, NAIC Model Law (72-hour notification)
+
+Important Numbers:
+- 72 hours: NAIC breach notification requirement
+- 15+ states with privacy laws
+- GLMs = industry standard for actuarial pricing
+
+Common Confusions:
+- Telematics = underwriting tool, IoT sensors = risk control tool
+- Straight-through processing applies to BOTH underwriting AND claims
+- Embedded insurance (sold at point of sale) vs aggregator platforms (standalone comparison sites)
+- Descriptive analytics (backward-looking) vs predictive (forward-looking)
+- Peer-to-peer insurance FAILED; embedded insurance is the GROWTH area
+            `;
+            if (typeof showAIHelper === 'function') {
+                showAIHelper(context);
+            }
+        }
+    </script>
+</body>
+</html>

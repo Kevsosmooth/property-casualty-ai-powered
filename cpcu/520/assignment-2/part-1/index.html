@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment 2 Part 1: Goals, Structure, and Personnel | CPCU 520</title>
+    <link rel="icon" type="image/svg+xml" href="../../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <link rel="stylesheet" href="../../../../css/styles.css">
+    <script src="../../../../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+        }
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <!-- Settings & Theme Toggle Buttons -->
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="showAPIKeySetup()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings">
+            <svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+        </button>
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/>
+            </svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-red-600 to-red-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap gap-2 text-sm mb-2">
+                <a href="../../../../index.html" class="text-red-200 hover:text-white">Home</a>
+                <span class="text-red-300">/</span>
+                <a href="../../../index.html" class="text-red-200 hover:text-white">CPCU</a>
+                <span class="text-red-300">/</span>
+                <a href="../../index.html" class="text-red-200 hover:text-white">520</a>
+                <span class="text-red-300">/</span>
+                <a href="../index.html" class="text-red-200 hover:text-white">Assignment 2</a>
+                <span class="text-red-300">/</span>
+                <span class="text-white">Part 1</span>
+            </div>
+            <h1 class="text-3xl font-bold">Assignment 2 Part 1: The Claims Function &mdash; Goals, Structure, and Personnel</h1>
+            <p class="text-red-200 mt-1">How the claims department is organized, who works there, and what it is trying to accomplish</p>
+        </div>
+    </header>
+
+    <!-- Part Navigation -->
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-wrap gap-2 text-sm">
+                <a href="../index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Overview</a>
+                <span class="bg-red-600 text-white px-3 py-1 rounded font-medium">Part 1</span>
+                <a href="../part-2/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 2</a>
+                <a href="../part-3/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 3</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-5xl lg:max-w-7xl">
+
+        <!-- Start Here: 5 Things You MUST Know -->
+        <div class="bg-gradient-to-r from-red-100 to-red-200 dark:from-red-900/40 dark:to-red-800/40 rounded-xl p-6 mb-8 border border-red-300 dark:border-red-700">
+            <h3 class="text-xl lg:text-2xl font-bold text-red-800 dark:text-red-200 mb-4">Start Here: 5 Things You MUST Know</h3>
+            <div class="grid md:grid-cols-2 gap-3">
+                <div class="flex items-start">
+                    <span class="bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">The claims function has <strong>two primary goals</strong>: fulfill the contractual promise to pay covered losses AND support the insurer's financial goals. These goals do NOT conflict.</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Claims feeds critical data to <strong>marketing, underwriting, and actuarial</strong> &mdash; it is not an isolated department. It is the insurer's most visible public contact.</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">There are <strong>5 types of claims personnel</strong>: staff reps, independent adjusters, TPAs, producers, and public adjusters. Know who works for the <strong>insurer</strong> vs. the <strong>insured</strong>.</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">4</span>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Public adjusters</strong> work for the INSURED, not the insurer. <strong>Independent adjusters</strong> work for the INSURER. This is a classic exam trap.</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">5</span>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">The <strong>6 activities</strong> in claims handling form a process from acknowledging the claim to concluding it &mdash; this is the roadmap for Part 2.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 1: Overview / Introduction -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">Introduction: Why Claims Is the Heart of Insurance</h2>
+
+                <div class="bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-800 rounded-lg p-4 lg:p-5 mb-6">
+                    <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300">Insurance is a <strong>promise</strong>. A customer pays premiums month after month, trusting that if disaster strikes, the insurer will be there. The claims department is where that promise either gets fulfilled or broken. Every other function in the value chain &mdash; marketing, underwriting, actuarial &mdash; depends on claims getting it right. If claims overpays, the insurer loses money. If claims underpays, the insurer loses customers and attracts regulators. The entire business hinges on the claims function striking the right balance.</p>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 lg:p-5 rounded-r-lg">
+                    <p class="font-bold text-amber-800 dark:text-amber-300 text-base lg:text-lg">Exam Alert</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mt-1">This assignment tests your understanding of the <strong>structure and goals</strong> of claims, not just what adjusters do day-to-day. Expect questions about how claims interacts with other departments, the different types of personnel, and the distinction between independent adjusters and public adjusters.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Two Primary Goals -->
+        <section id="primary-goals" class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">1. The Two Primary Goals of Claims</h2>
+
+                <div class="grid md:grid-cols-2 gap-4 lg:gap-6 mb-6">
+                    <!-- Goal 1 -->
+                    <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-green-500">
+                        <h3 class="font-bold text-green-800 dark:text-green-300 text-lg lg:text-xl">Goal 1: Fulfill the Contractual Promise</h3>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">The insurer promised to pay for covered losses. The claims department is <strong>the only department that actually delivers on that promise</strong>. Every premium dollar collected is meaningless if claims does not pay what is owed when a loss happens.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded mt-3">
+                            <p class="font-semibold text-gray-700 dark:text-gray-300">Plain English:</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base mt-1">This is the whole reason insurance exists. A customer bought a policy. Something bad happened. Now the insurer needs to write the check.</p>
+                        </div>
+                    </div>
+
+                    <!-- Goal 2 -->
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500">
+                        <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg lg:text-xl">Goal 2: Support Financial Goals</h3>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">Pay <strong>fair amounts</strong> for <strong>legitimate claims</strong>. Not too much (wastes money), not too little (invites lawsuits and regulation). Accurate payment data feeds ratemaking so future premiums are priced correctly.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded mt-3">
+                            <p class="font-semibold text-gray-700 dark:text-gray-300">Plain English:</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base mt-1">The insurer is a business. Claims must protect the company from paying fraudulent or inflated claims, while still honoring every legitimate one.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Key Insight -->
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 lg:p-5 rounded-r-lg mb-6">
+                    <p class="font-bold text-amber-800 dark:text-amber-300 text-base lg:text-lg">Key Insight: These Goals Do NOT Conflict</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mt-1">Fair claims payment = consistent loss data = accurate pricing = sustainable profit. Underpaying claims to "save money" actually <strong>hurts</strong> the insurer because it corrupts the data actuaries need and triggers regulatory action. Fair payment and financial health go hand in hand.</p>
+                </div>
+
+                <!-- Real-World Example -->
+                <div class="bg-gray-50 dark:bg-gray-700/30 p-4 lg:p-5 rounded-lg border-l-4 border-gray-400">
+                    <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2 text-base lg:text-lg">Real-World Scenario: The Two Goals in Action</p>
+                    <div class="space-y-2">
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>The Setup:</strong> Maria's house is damaged by a windstorm. Her homeowners policy covers wind damage with a $1,000 deductible. A contractor estimates $18,000 in repairs.</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>What Happens:</strong> The claims adjuster inspects the damage and confirms it is wind-related (not wear and tear). The adjuster's own estimate comes to $17,500. After applying the $1,000 deductible, the insurer pays $16,500.</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>The Result:</strong> <strong>Goal 1 met</strong> &mdash; Maria gets her covered loss paid. <strong>Goal 2 met</strong> &mdash; the insurer paid a fair amount based on actual damage (not the slightly higher contractor estimate), and the $16,500 payment becomes accurate data for future wind-damage pricing in that ZIP code.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Claims Supports Other Value Chain Functions -->
+        <section id="value-chain-support" class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">2. How Claims Supports Other Value Chain Functions</h2>
+
+                <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300 mb-6">Claims is not a silo. It feeds critical information to three other key functions, and those functions depend on claims data to do their jobs well.</p>
+
+                <!-- Flow Diagram: Claims at Center -->
+                <div class="bg-gray-50 dark:bg-gray-700/30 rounded-xl p-5 lg:p-6 mb-6 border border-gray-200 dark:border-gray-600">
+                    <h3 class="text-lg lg:text-xl font-bold text-gray-800 dark:text-gray-100 mb-4 text-center">Claims Data Flow Across the Value Chain</h3>
+                    <div class="flex flex-col items-center gap-4">
+                        <!-- Top Row: Three departments -->
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6 w-full">
+                            <div class="bg-green-50 dark:bg-green-900/30 p-4 rounded-lg border border-green-200 dark:border-green-800 text-center">
+                                <p class="font-bold text-green-800 dark:text-green-300 text-lg">Marketing</p>
+                                <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400 mt-1">Customer retention</p>
+                                <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400">Reputation management</p>
+                                <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400">Renewal rating data</p>
+                            </div>
+                            <div class="bg-purple-50 dark:bg-purple-900/30 p-4 rounded-lg border border-purple-200 dark:border-purple-800 text-center">
+                                <p class="font-bold text-purple-800 dark:text-purple-300 text-lg">Underwriting</p>
+                                <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400 mt-1">Policy compliance</p>
+                                <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400">Hazard identification</p>
+                                <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400">Systemic pattern alerts</p>
+                            </div>
+                            <div class="bg-blue-50 dark:bg-blue-900/30 p-4 rounded-lg border border-blue-200 dark:border-blue-800 text-center">
+                                <p class="font-bold text-blue-800 dark:text-blue-300 text-lg">Actuarial</p>
+                                <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400 mt-1">Incurred loss data</p>
+                                <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400">Reserve change reports</p>
+                                <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400">LAE, salvage, subrogation</p>
+                            </div>
+                        </div>
+                        <!-- Arrows pointing up from Claims -->
+                        <div class="flex items-center gap-2">
+                            <span class="text-2xl text-gray-400 dark:text-gray-500 transform rotate-180">&#8593;</span>
+                            <span class="text-2xl text-gray-400 dark:text-gray-500 transform rotate-180">&#8593;</span>
+                            <span class="text-2xl text-gray-400 dark:text-gray-500 transform rotate-180">&#8593;</span>
+                        </div>
+                        <!-- Claims Department -->
+                        <div class="bg-red-100 dark:bg-red-900/40 p-5 rounded-xl border-2 border-red-400 dark:border-red-600 text-center w-full md:w-2/3">
+                            <p class="font-bold text-red-800 dark:text-red-300 text-xl">CLAIMS DEPARTMENT</p>
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400 mt-1">Processes claims, generates data, interacts with public</p>
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400">Feeds information UP to all three departments</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Detailed Breakdown -->
+                <div class="space-y-4">
+                    <!-- Marketing -->
+                    <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-green-500">
+                        <h3 class="font-bold text-green-800 dark:text-green-300 text-lg lg:text-xl">Claims and Marketing</h3>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">Claims quality <strong>directly affects customer retention and the insurer's reputation</strong>. A customer who has a smooth claims experience renews their policy and tells their friends. A customer who gets jerked around switches carriers and posts about it online. Producers (agents) also use claims data when rating accounts for renewal.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded mt-3">
+                            <p class="font-semibold text-gray-700 dark:text-gray-300 mb-1">Real-World Scenario: Claims Kills a Marketing Campaign</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base"><strong>The Setup:</strong> An insurer spends $2 million on ads promising "We're there when you need us most."</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base"><strong>What Happens:</strong> After a major hailstorm, claims are taking 90 days to settle. Customers complain on social media. A local news station runs a story: "Insurer's promise rings hollow."</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base"><strong>The Result:</strong> The marketing budget is wasted. Slow claims handling destroyed what marketing was trying to build. This is why claims quality IS marketing.</p>
+                        </div>
+                    </div>
+
+                    <!-- Underwriting -->
+                    <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-purple-500">
+                        <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg lg:text-xl">Claims and Underwriting</h3>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">Claims reps ensure claims are paid <strong>according to the policy</strong>, which helps underwriters price correctly. Claims reps may also discover hazards that were not on the original application. Patterns of similar claims alert underwriting to systemic problems that need attention.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded mt-3">
+                            <p class="font-semibold text-gray-700 dark:text-gray-300 mb-1">Real-World Scenario: Claims Rep Spots a Hidden Hazard</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base"><strong>The Setup:</strong> A commercial property is insured as a warehouse. The application says "storage of paper goods."</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base"><strong>What Happens:</strong> A claims rep visits after a small fire and discovers the building is actually storing lithium batteries &mdash; a much higher hazard than paper goods.</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base"><strong>The Result:</strong> The claims rep flags this to underwriting. Underwriting can now re-rate the account or non-renew it. Without the claims visit, this hazard would have stayed hidden until a catastrophic loss occurred.</p>
+                        </div>
+                    </div>
+
+                    <!-- Actuarial -->
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500">
+                        <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg lg:text-xl">Claims and Actuarial</h3>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">Actuaries need <strong>accurate incurred loss data</strong> (amounts paid + amounts reserved for open claims). Reserve change reports help predict loss development over time. Actuaries also need <strong>LAE data</strong> (loss adjustment expenses), <strong>salvage</strong>, <strong>subrogation recoveries</strong>, and <strong>reinsurance recoverables</strong>.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded mt-3">
+                            <p class="font-semibold text-gray-700 dark:text-gray-300 mb-1">Real-World Scenario: Bad Reserves Cause Bad Rates</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base"><strong>The Setup:</strong> An insurer's claims team consistently under-reserves auto bodily injury claims by 20%.</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base"><strong>What Happens:</strong> Actuaries use the low reserve figures to set next year's rates. The rates come in too low, attracting more business than the insurer can profitably handle.</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base"><strong>The Result:</strong> When claims finally close for much more than reserved, the insurer faces unexpected losses. Garbage reserve data from claims = garbage rates from actuarial. The chain only works if claims data is accurate.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Claims Department Contacts -->
+        <section id="department-contacts" class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">3. Who Does the Claims Department Interact With?</h2>
+
+                <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300 mb-6">Claims reps deal with three external groups on a daily basis. Each group requires a different skill set and approach.</p>
+
+                <div class="grid md:grid-cols-3 gap-4 lg:gap-6 mb-6">
+                    <!-- The Public -->
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500">
+                        <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg lg:text-xl">The Public</h3>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">Claims reps are the insurer's <strong>most visible public contact</strong>. They interact with insureds and claimants who may be angry, depressed, or frustrated after a loss.</p>
+                        <ul class="mt-3 space-y-1 text-sm lg:text-base text-gray-600 dark:text-gray-400">
+                            <li class="flex items-start"><span class="text-blue-500 mr-2 font-bold">&bull;</span>Must show empathy</li>
+                            <li class="flex items-start"><span class="text-blue-500 mr-2 font-bold">&bull;</span>Must explain policy provisions in plain language</li>
+                            <li class="flex items-start"><span class="text-blue-500 mr-2 font-bold">&bull;</span>Represent the insurer's "brand" to the world</li>
+                        </ul>
+                    </div>
+
+                    <!-- Lawyers -->
+                    <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-purple-500">
+                        <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg lg:text-xl">Lawyers</h3>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">Legal representation can increase payment amounts but does not guarantee a higher <strong>net settlement</strong> for the claimant (legal fees eat into it).</p>
+                        <ul class="mt-3 space-y-1 text-sm lg:text-base text-gray-600 dark:text-gray-400">
+                            <li class="flex items-start"><span class="text-purple-500 mr-2 font-bold">&bull;</span>Maintain professional manner</li>
+                            <li class="flex items-start"><span class="text-purple-500 mr-2 font-bold">&bull;</span>Insurers hire defense lawyers from the claim's jurisdiction</li>
+                            <li class="flex items-start"><span class="text-purple-500 mr-2 font-bold">&bull;</span>Attorney involvement often increases total cost</li>
+                        </ul>
+                    </div>
+
+                    <!-- State Regulators -->
+                    <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-red-500">
+                        <h3 class="font-bold text-red-800 dark:text-red-300 text-lg lg:text-xl">State Regulators</h3>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">Regulators monitor claims through licensing, consumer complaints, and <strong>market conduct investigations</strong>.</p>
+                        <ul class="mt-3 space-y-1 text-sm lg:text-base text-gray-600 dark:text-gray-400">
+                            <li class="flex items-start"><span class="text-red-500 mr-2 font-bold">&bull;</span>Unfair Claims Settlement Practices Act</li>
+                            <li class="flex items-start"><span class="text-red-500 mr-2 font-bold">&bull;</span>Failure to respond = fines or license loss</li>
+                            <li class="flex items-start"><span class="text-red-500 mr-2 font-bold">&bull;</span>Regulators protect consumers from bad faith</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Example -->
+                <div class="bg-gray-50 dark:bg-gray-700/30 p-4 lg:p-5 rounded-lg border-l-4 border-gray-400">
+                    <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2 text-base lg:text-lg">Real-World Scenario: Regulator Steps In</p>
+                    <div class="space-y-2">
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>The Setup:</strong> After a hurricane, hundreds of homeowners file complaints with the state insurance department that ABC Insurance is delaying payments and making lowball offers.</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>What Happens:</strong> The state regulator launches a market conduct investigation, reviewing ABC's claim files. They find a pattern of unreasonably slow responses and offers below policy limits.</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>The Result:</strong> ABC Insurance is fined $500,000 under the Unfair Claims Settlement Practices Act and must re-open 200 claims. The claims department's failure to treat claimants fairly triggered regulatory consequences that cost far more than just paying claims properly would have.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Claims Department Structure -->
+        <section id="department-structure" class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">4. Claims Department Structure</h2>
+
+                <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300 mb-6">Claims departments follow a hierarchical structure. Understanding who reports to whom helps you see how decisions flow and how consistency is maintained across offices.</p>
+
+                <!-- Org Chart Visual -->
+                <div class="bg-gray-50 dark:bg-gray-700/30 rounded-xl p-5 lg:p-6 mb-6 border border-gray-200 dark:border-gray-600">
+                    <h3 class="text-lg lg:text-xl font-bold text-gray-800 dark:text-gray-100 mb-4 text-center">Claims Department Hierarchy</h3>
+                    <div class="flex flex-col items-center gap-2">
+                        <!-- Level 1: Senior Claims Officer -->
+                        <div class="bg-red-100 dark:bg-red-900/40 px-6 py-3 rounded-lg border-2 border-red-400 dark:border-red-600 text-center">
+                            <p class="font-bold text-red-800 dark:text-red-300 text-base lg:text-lg">Senior Claims Officer</p>
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Reports to CEO, CFO, or CUO</p>
+                        </div>
+                        <div class="text-xl text-gray-400 dark:text-gray-500">&#8595;</div>
+
+                        <!-- Level 2: Home Office -->
+                        <div class="bg-red-50 dark:bg-red-900/30 px-6 py-3 rounded-lg border border-red-300 dark:border-red-700 text-center">
+                            <p class="font-bold text-red-700 dark:text-red-300 text-base lg:text-lg">Home Office Claims</p>
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Technical advice + management guidance</p>
+                        </div>
+                        <div class="text-xl text-gray-400 dark:text-gray-500">&#8595;</div>
+
+                        <!-- Level 3: Regional/Divisional -->
+                        <div class="bg-amber-50 dark:bg-amber-900/30 px-6 py-3 rounded-lg border border-amber-300 dark:border-amber-700 text-center">
+                            <p class="font-bold text-amber-700 dark:text-amber-300 text-base lg:text-lg">Regional / Divisional Claims Officers</p>
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Oversee multiple branch offices in a geographic area</p>
+                        </div>
+                        <div class="text-xl text-gray-400 dark:text-gray-500">&#8595;</div>
+
+                        <!-- Level 4: Branch -->
+                        <div class="bg-blue-50 dark:bg-blue-900/30 px-6 py-3 rounded-lg border border-blue-300 dark:border-blue-700 text-center">
+                            <p class="font-bold text-blue-700 dark:text-blue-300 text-base lg:text-lg">Branch Claims Manager</p>
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Runs one local office</p>
+                        </div>
+                        <div class="text-xl text-gray-400 dark:text-gray-500">&#8595;</div>
+
+                        <!-- Level 5: Supervisors -->
+                        <div class="bg-green-50 dark:bg-green-900/30 px-6 py-3 rounded-lg border border-green-300 dark:border-green-700 text-center">
+                            <p class="font-bold text-green-700 dark:text-green-300 text-base lg:text-lg">Claims Supervisors</p>
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Oversee teams of claims staff</p>
+                        </div>
+                        <div class="text-xl text-gray-400 dark:text-gray-500">&#8595;</div>
+
+                        <!-- Level 6: Staff -->
+                        <div class="bg-gray-100 dark:bg-gray-600/40 px-6 py-3 rounded-lg border border-gray-300 dark:border-gray-500 text-center">
+                            <p class="font-bold text-gray-700 dark:text-gray-300 text-base lg:text-lg">Claims Staff (Reps &amp; Support)</p>
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Inside reps, field reps, administrative support</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Example -->
+                <div class="bg-gray-50 dark:bg-gray-700/30 p-4 lg:p-5 rounded-lg border-l-4 border-gray-400">
+                    <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2 text-base lg:text-lg">Real-World Scenario: Why Structure Matters</p>
+                    <div class="space-y-2">
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>The Setup:</strong> National Mutual Insurance has 40 branch offices across 15 states. A policyholder in Texas has a complex commercial liability claim worth $3 million.</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>What Happens:</strong> The local branch claims rep handles the initial investigation, but the claim exceeds their authority level. It escalates to the regional claims officer, who consults with the home office for technical guidance on coverage interpretation and reserve setting.</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>The Result:</strong> The hierarchical structure ensures that large, complex claims get the expertise they need. Branch offices handle routine claims quickly, while home office provides oversight and consistency for the difficult ones.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: Types of Claims Personnel -->
+        <section id="claims-personnel" class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">5. Types of Claims Personnel</h2>
+
+                <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300 mb-4">There are five types of people who handle claims. The critical exam distinction is <strong>who they work for</strong> &mdash; the insurer or the insured.</p>
+
+                <!-- Key Distinction Callout -->
+                <div class="bg-red-50 dark:bg-red-900/30 border-l-4 border-red-500 p-4 lg:p-5 rounded-r-lg mb-6">
+                    <p class="font-bold text-red-800 dark:text-red-300 text-base lg:text-lg">Critical Distinction</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mt-1"><strong>Independent adjusters</strong> = hired by and work FOR the <strong>insurer</strong> (on a fee basis). <strong>Public adjusters</strong> = hired by and work FOR the <strong>insured</strong>. The exam LOVES testing this difference.</p>
+                </div>
+
+                <!-- Comparison Grid -->
+                <div class="overflow-x-auto mb-6">
+                    <table class="w-full text-sm lg:text-base">
+                        <thead>
+                            <tr class="bg-red-600 text-white">
+                                <th class="p-3 lg:p-4 text-left rounded-tl-lg">Personnel Type</th>
+                                <th class="p-3 lg:p-4 text-left">Works For</th>
+                                <th class="p-3 lg:p-4 text-left">Employee?</th>
+                                <th class="p-3 lg:p-4 text-left">When Used</th>
+                                <th class="p-3 lg:p-4 text-left rounded-tr-lg">Key Detail</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                            <tr class="bg-green-50 dark:bg-green-900/20">
+                                <td class="p-3 lg:p-4 font-bold text-gray-800 dark:text-gray-200">Staff Claims Reps</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Insurer</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Yes &mdash; employees</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Day-to-day claims</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Inside reps (office) and field/outside reps (on-site)</td>
+                            </tr>
+                            <tr class="bg-blue-50 dark:bg-blue-900/20">
+                                <td class="p-3 lg:p-4 font-bold text-gray-800 dark:text-gray-200">Independent Adjusters</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Insurer</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">No &mdash; paid per fee</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Remote areas, catastrophes, specialized claims</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Used when keeping staff everywhere is uneconomical</td>
+                            </tr>
+                            <tr class="bg-purple-50 dark:bg-purple-900/20">
+                                <td class="p-3 lg:p-4 font-bold text-gray-800 dark:text-gray-200">Third-Party Administrators (TPAs)</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Self-insured business</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">No &mdash; contracted</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Self-insured employers</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Handle claims, records, statistical analysis for self-insureds</td>
+                            </tr>
+                            <tr class="bg-amber-50 dark:bg-amber-900/20">
+                                <td class="p-3 lg:p-4 font-bold text-gray-800 dark:text-gray-200">Producers (Agents/Brokers)</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Insurer</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">No &mdash; agents</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Small, simple claims</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">May pay claims up to a limit (e.g., $2,500) and issue drafts</td>
+                            </tr>
+                            <tr class="bg-red-50 dark:bg-red-900/20">
+                                <td class="p-3 lg:p-4 font-bold text-gray-800 dark:text-gray-200">Public Adjusters</td>
+                                <td class="p-3 lg:p-4 font-bold text-red-700 dark:text-red-300">INSURED</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">No &mdash; hired by insured</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Complex claims where insured wants help</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Insured pays their fee (usually % of settlement)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Detailed Cards for Each Type -->
+                <div class="space-y-4">
+                    <!-- Staff Claims Reps -->
+                    <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-green-500">
+                        <h3 class="font-bold text-green-800 dark:text-green-300 text-lg lg:text-xl">Staff Claims Representatives</h3>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">These are <strong>employees of the insurer</strong>. They come in two flavors:</p>
+                        <div class="grid md:grid-cols-2 gap-4 mt-3">
+                            <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded">
+                                <p class="font-semibold text-gray-700 dark:text-gray-300">Inside Claims Reps</p>
+                                <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base mt-1">Handle claims from the office via phone, email, and documents. Think: auto claims where photos and estimates can be reviewed remotely.</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded">
+                                <p class="font-semibold text-gray-700 dark:text-gray-300">Field / Outside Claims Reps</p>
+                                <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base mt-1">Go to the scene, meet parties, inspect damage in person. Think: a house fire where someone needs to walk through the debris.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Independent Adjusters -->
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500">
+                        <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg lg:text-xl">Independent Adjusters</h3>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">Not employees of the insurer &mdash; they work for a <strong>fee</strong> and serve multiple insurance companies. Used in three situations:</p>
+                        <ul class="mt-3 space-y-2 text-base lg:text-lg text-gray-700 dark:text-gray-300">
+                            <li class="flex items-start"><span class="bg-blue-600 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold mr-3 flex-shrink-0 mt-0.5">1</span><strong>Remote areas</strong> &mdash; uneconomical to maintain a permanent office</li>
+                            <li class="flex items-start"><span class="bg-blue-600 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold mr-3 flex-shrink-0 mt-0.5">2</span><strong>Catastrophes</strong> &mdash; staff is overwhelmed after a hurricane or earthquake</li>
+                            <li class="flex items-start"><span class="bg-blue-600 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold mr-3 flex-shrink-0 mt-0.5">3</span><strong>Specialized skills</strong> &mdash; aircraft accidents, marine losses, complex machinery</li>
+                        </ul>
+                        <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded mt-3">
+                            <p class="font-semibold text-gray-700 dark:text-gray-300 mb-1">Real-World Scenario: Hurricane Season</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base"><strong>The Setup:</strong> Hurricane hits Florida. An insurer has 50 staff adjusters in the state but receives 8,000 claims in one week.</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base"><strong>What Happens:</strong> The insurer hires 200 independent adjusters on a per-claim fee to supplement its staff.</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base"><strong>The Result:</strong> Claims get processed in weeks instead of months. The independent adjusters work FOR the insurer, investigate damage, and recommend settlements &mdash; then move on to the next catastrophe.</p>
+                        </div>
+                    </div>
+
+                    <!-- TPAs -->
+                    <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-purple-500">
+                        <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg lg:text-xl">Third-Party Administrators (TPAs)</h3>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">Provide administrative services for <strong>self-insured businesses</strong>. They handle claims, keep records, and perform statistical analyses &mdash; basically acting as an outsourced claims department.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded mt-3">
+                            <p class="font-semibold text-gray-700 dark:text-gray-300 mb-1">Real-World Scenario: Self-Insured Employer</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base"><strong>The Setup:</strong> A large trucking company with 2,000 employees self-insures its workers' compensation. They do not have the expertise to manage claims in-house.</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base"><strong>What Happens:</strong> They hire a TPA to process all workers' comp claims, set reserves, negotiate settlements, and provide quarterly loss reports.</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base"><strong>The Result:</strong> The trucking company gets professional claims handling without building an entire claims department. The TPA works for the self-insured business, not for a traditional insurer.</p>
+                        </div>
+                    </div>
+
+                    <!-- Producers -->
+                    <div class="bg-amber-50 dark:bg-amber-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-amber-500">
+                        <h3 class="font-bold text-amber-800 dark:text-amber-300 text-lg lg:text-xl">Producers (Agents / Brokers)</h3>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">Some producers are authorized to pay <strong>small claims up to a limit</strong> (e.g., $2,500). They can issue drafts directly to the insured for quick, simple claims. This speeds up the process and strengthens the agent-customer relationship.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded mt-3">
+                            <p class="font-semibold text-gray-700 dark:text-gray-300 mb-1">Real-World Scenario: Broken Window</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base"><strong>The Setup:</strong> A homeowner's window is broken by a baseball. Replacement cost: $400.</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base"><strong>What Happens:</strong> The insured calls their agent. The agent, authorized to settle claims up to $2,500, writes a draft for $400 on the spot.</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base"><strong>The Result:</strong> The insured gets paid immediately without waiting for a formal claims process. The agent reports the payment to the insurer. Everyone wins &mdash; fast service, happy customer, minimal administrative cost.</p>
+                        </div>
+                    </div>
+
+                    <!-- Public Adjusters -->
+                    <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-red-500">
+                        <h3 class="font-bold text-red-800 dark:text-red-300 text-lg lg:text-xl">Public Adjusters</h3>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">Public adjusters are hired <strong>BY the insured</strong>, not by the insurer. They prepare the insured's claim, document losses, and negotiate with the insurer on the insured's behalf. The insured pays their fee, usually a <strong>percentage of the settlement</strong>.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded mt-3">
+                            <p class="font-semibold text-gray-700 dark:text-gray-300 mb-1">Real-World Scenario: Major House Fire</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base"><strong>The Setup:</strong> A homeowner suffers a devastating house fire with $350,000 in damage. The homeowner is overwhelmed and has no idea how to document all their belongings and structural damage.</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base"><strong>What Happens:</strong> The homeowner hires a public adjuster who inventories every destroyed item, gets contractor estimates, and negotiates with the insurer's adjuster. The public adjuster charges 10% of the settlement.</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base"><strong>The Result:</strong> The insurer settles for $340,000. The public adjuster takes $34,000 as their fee. The homeowner nets $306,000 &mdash; but may have gotten less without the public adjuster's expertise in documenting the claim.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 7: Claims Performance Measures -->
+        <section id="performance-measures" class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">6. Claims Performance Measures</h2>
+
+                <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300 mb-6">How do insurers know if their claims department is doing a good job? They use five key performance measures.</p>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5 mb-6">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
+                        <p class="font-bold text-blue-800 dark:text-blue-300 text-base lg:text-lg">Best Practices</p>
+                        <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400 mt-1">Standardized procedures applied consistently across all offices. Ensures the adjuster in Montana handles a claim the same way as the adjuster in Florida.</p>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border border-purple-200 dark:border-purple-800">
+                        <p class="font-bold text-purple-800 dark:text-purple-300 text-base lg:text-lg">Claims Audits</p>
+                        <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400 mt-1">Review of both closed and open claim files for quality, accuracy, and compliance. Like a report card for individual adjusters and offices.</p>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border border-green-200 dark:border-green-800">
+                        <p class="font-bold text-green-800 dark:text-green-300 text-base lg:text-lg">Customer Satisfaction Surveys</p>
+                        <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400 mt-1">Direct feedback from insureds and claimants about their experience. The voice of the customer tells you what the audit numbers cannot.</p>
+                    </div>
+                    <div class="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg border border-amber-200 dark:border-amber-800">
+                        <p class="font-bold text-amber-800 dark:text-amber-300 text-base lg:text-lg">Claims Cycle Time</p>
+                        <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400 mt-1">How long from initial report to final settlement. Faster is usually better &mdash; but not if speed sacrifices accuracy.</p>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border border-red-200 dark:border-red-800">
+                        <p class="font-bold text-red-800 dark:text-red-300 text-base lg:text-lg">Litigation Management</p>
+                        <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400 mt-1">Controlling legal costs when claims go to court. Tracks how many claims enter litigation, defense costs, and outcomes.</p>
+                    </div>
+                </div>
+
+                <!-- Example -->
+                <div class="bg-gray-50 dark:bg-gray-700/30 p-4 lg:p-5 rounded-lg border-l-4 border-gray-400">
+                    <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2 text-base lg:text-lg">Real-World Scenario: Claims Audit Finds a Problem</p>
+                    <div class="space-y-2">
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>The Setup:</strong> An insurer runs quarterly claims audits on closed files. The audit of the Dallas branch reveals that 30% of auto liability claims were settled without obtaining a police report.</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>What Happens:</strong> Management investigates and finds the Dallas branch was skipping police reports to speed up cycle time. This made their numbers look good on cycle time but created risk of paying fraudulent claims.</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>The Result:</strong> The branch is retrained on best practices. This shows why you need MULTIPLE performance measures &mdash; optimizing one metric (speed) at the expense of another (accuracy) creates problems.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 8: Six Activities in Claims Handling (Preview) -->
+        <section id="six-activities" class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">7. The Six Activities of Claims Handling (Preview)</h2>
+
+                <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300 mb-4">Every claim follows these six steps. Part 2 covers each in detail &mdash; here is the roadmap so you know what is coming.</p>
+
+                <!-- Flow Diagram -->
+                <div class="bg-gray-50 dark:bg-gray-700/30 rounded-xl p-5 lg:p-6 mb-4 border border-gray-200 dark:border-gray-600">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 lg:gap-4">
+                        <div class="flex items-center gap-3">
+                            <span class="bg-red-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold flex-shrink-0">1</span>
+                            <div class="bg-red-50 dark:bg-red-900/30 p-3 rounded-lg border border-red-200 dark:border-red-800 flex-1">
+                                <p class="font-bold text-red-800 dark:text-red-300 text-sm lg:text-base">Acknowledge &amp; Assign</p>
+                                <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Report received, adjuster assigned</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="bg-red-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold flex-shrink-0">2</span>
+                            <div class="bg-red-50 dark:bg-red-900/30 p-3 rounded-lg border border-red-200 dark:border-red-800 flex-1">
+                                <p class="font-bold text-red-800 dark:text-red-300 text-sm lg:text-base">Identify Policy &amp; Set Reserves</p>
+                                <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Confirm coverage, estimate cost</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="bg-red-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold flex-shrink-0">3</span>
+                            <div class="bg-red-50 dark:bg-red-900/30 p-3 rounded-lg border border-red-200 dark:border-red-800 flex-1">
+                                <p class="font-bold text-red-800 dark:text-red-300 text-sm lg:text-base">Contact Insured</p>
+                                <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Reach out to policyholder or rep</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="bg-red-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold flex-shrink-0">4</span>
+                            <div class="bg-red-50 dark:bg-red-900/30 p-3 rounded-lg border border-red-200 dark:border-red-800 flex-1">
+                                <p class="font-bold text-red-800 dark:text-red-300 text-sm lg:text-base">Investigate &amp; Document</p>
+                                <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Gather facts, photos, statements</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="bg-red-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold flex-shrink-0">5</span>
+                            <div class="bg-red-50 dark:bg-red-900/30 p-3 rounded-lg border border-red-200 dark:border-red-800 flex-1">
+                                <p class="font-bold text-red-800 dark:text-red-300 text-sm lg:text-base">Determine Cause, Liability &amp; Amount</p>
+                                <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">What happened, who is liable, how much</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="bg-red-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold flex-shrink-0">6</span>
+                            <div class="bg-red-50 dark:bg-red-900/30 p-3 rounded-lg border border-red-200 dark:border-red-800 flex-1">
+                                <p class="font-bold text-red-800 dark:text-red-300 text-sm lg:text-base">Conclude the Claim</p>
+                                <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Pay, deny, or settle</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 lg:p-5 rounded-r-lg">
+                    <p class="font-bold text-amber-800 dark:text-amber-300 text-base lg:text-lg">Coming in Part 2</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mt-1">Part 2 breaks down each of these six activities in detail with examples, common pitfalls, and exam-tested scenarios. For now, just memorize the sequence &mdash; the exam may ask you to identify which step comes first or what happens at each stage.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cheat Sheet -->
+        <section id="cheat-sheet" class="mb-8 lg:mb-10">
+            <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 border-2 border-dashed border-gray-300 dark:border-gray-600">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100">Cheat Sheet</h2>
+                    <span class="text-sm text-gray-500 dark:text-gray-400">Print this page for quick reference</span>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-200 mb-2">Two Goals of Claims</p>
+                        <ul class="text-sm lg:text-base text-gray-600 dark:text-gray-400 space-y-1">
+                            <li>1. Fulfill the contractual promise (pay covered losses)</li>
+                            <li>2. Support financial goals (fair payment + accurate data)</li>
+                            <li>These do NOT conflict</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-200 mb-2">Claims Feeds Data To</p>
+                        <ul class="text-sm lg:text-base text-gray-600 dark:text-gray-400 space-y-1">
+                            <li>Marketing &rarr; retention, reputation</li>
+                            <li>Underwriting &rarr; hazards, patterns</li>
+                            <li>Actuarial &rarr; incurred losses, reserves, LAE</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-200 mb-2">Three External Contacts</p>
+                        <ul class="text-sm lg:text-base text-gray-600 dark:text-gray-400 space-y-1">
+                            <li>The Public (most visible contact)</li>
+                            <li>Lawyers (defense + claimant attorneys)</li>
+                            <li>State Regulators (UCSPA, market conduct)</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-200 mb-2">5 Types of Claims Personnel</p>
+                        <ul class="text-sm lg:text-base text-gray-600 dark:text-gray-400 space-y-1">
+                            <li>Staff reps (employees, inside + field)</li>
+                            <li>Independent adjusters (fee, FOR insurer)</li>
+                            <li>TPAs (for self-insureds)</li>
+                            <li>Producers (small claims up to limit)</li>
+                            <li>Public adjusters (FOR insured, % fee)</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-200 mb-2">5 Performance Measures</p>
+                        <ul class="text-sm lg:text-base text-gray-600 dark:text-gray-400 space-y-1">
+                            <li>Best practices (consistency)</li>
+                            <li>Claims audits (quality review)</li>
+                            <li>Customer satisfaction surveys</li>
+                            <li>Claims cycle time (speed)</li>
+                            <li>Litigation management (legal costs)</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-200 mb-2">6 Claims Handling Steps</p>
+                        <ul class="text-sm lg:text-base text-gray-600 dark:text-gray-400 space-y-1">
+                            <li>1. Acknowledge &amp; assign</li>
+                            <li>2. Identify policy &amp; set reserves</li>
+                            <li>3. Contact insured</li>
+                            <li>4. Investigate &amp; document</li>
+                            <li>5. Determine cause, liability, amount</li>
+                            <li>6. Conclude the claim</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Trap Alerts -->
+        <section id="exam-traps" class="mb-8 lg:mb-10">
+            <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-xl p-5 lg:p-6">
+                <h2 class="text-2xl font-bold text-red-800 dark:text-red-300 mb-4">Exam Trap Alerts</h2>
+                <div class="space-y-3">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">1. Independent Adjuster vs. Public Adjuster</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">This is the number one trap. <strong>Independent adjusters work FOR the insurer</strong> on a fee basis. <strong>Public adjusters work FOR the insured</strong> and charge a percentage of the settlement. The word "independent" does NOT mean they are neutral &mdash; they represent the insurer's interests.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">2. Fair Payment Is NOT Anti-Profit</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The exam may present a scenario implying that paying claims fairly hurts the insurer's bottom line. Wrong. Fair payment generates accurate data that actuaries need for correct pricing. Underpaying corrupts the data AND triggers regulatory action. The two goals work together, not against each other.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">3. Lawyers Do Not Guarantee Higher NET Settlements</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Legal representation may increase the gross settlement amount, but the claimant pays attorney fees out of that amount. The net amount the claimant actually receives may not be higher than what was offered without a lawyer. The exam tests whether you understand this distinction.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">4. TPAs Serve Self-Insured Businesses, Not Traditional Insurers</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Do not confuse TPAs with independent adjusters. TPAs provide <strong>full administrative services</strong> (claims handling, recordkeeping, statistics) for companies that self-insure. Independent adjusters handle individual claims for traditional insurance companies.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">5. Claims Reps Are the Insurer's Most Visible Public Contact</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Not agents, not underwriters, not the CEO. <strong>Claims representatives</strong> are the people the public interacts with most. The exam may ask who represents the insurer's "public face" &mdash; it is always the claims department.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">6. Producers Can Pay Small Claims Directly</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Agents and brokers are not just salespeople. They may be authorized to settle small claims (up to a dollar limit like $2,500) by issuing drafts directly to the insured. If the exam asks "which claims personnel can issue payment without formal adjuster involvement," producers is a valid answer for small claims.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Reference Summary -->
+        <section id="quick-reference" class="mb-8 lg:mb-10">
+            <div class="bg-gradient-to-r from-red-600 to-red-800 rounded-xl p-6 text-white">
+                <h2 class="text-2xl font-bold mb-6">Quick Reference Summary</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Goal 1: Contractual Promise</p>
+                        <p class="text-sm text-red-100">Pay what the policy says is covered &mdash; the reason insurance exists</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Goal 2: Financial Goals</p>
+                        <p class="text-sm text-red-100">Fair payment for legitimate claims; accurate data for ratemaking</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Claims + Marketing</p>
+                        <p class="text-sm text-red-100">Claims quality = customer retention = reputation</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Claims + Underwriting</p>
+                        <p class="text-sm text-red-100">Policy compliance, hidden hazards, systemic patterns</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Claims + Actuarial</p>
+                        <p class="text-sm text-red-100">Incurred losses, reserves, LAE, salvage, subrogation</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Staff Claims Reps</p>
+                        <p class="text-sm text-red-100">Insurer employees &mdash; inside (office) and field (on-site)</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Independent Adjusters</p>
+                        <p class="text-sm text-red-100">Work FOR insurer on fee basis &mdash; catastrophes, remote areas, specialties</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Public Adjusters</p>
+                        <p class="text-sm text-red-100">Work FOR insured &mdash; paid % of settlement by the insured</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">TPAs</p>
+                        <p class="text-sm text-red-100">Outsourced claims department for self-insured businesses</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Producers</p>
+                        <p class="text-sm text-red-100">Can pay small claims up to a limit (e.g., $2,500)</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Performance Measures</p>
+                        <p class="text-sm text-red-100">Best practices, audits, surveys, cycle time, litigation mgmt</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">6 Claims Steps</p>
+                        <p class="text-sm text-red-100">Acknowledge &rarr; Policy/Reserves &rarr; Contact &rarr; Investigate &rarr; Determine &rarr; Conclude</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Navigation -->
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="../index.html" class="text-gray-300 hover:text-white transition-colors">&larr; Assignment Index</a>
+                <span class="text-gray-400">Part 1 of 3</span>
+                <a href="../part-2/index.html" class="text-gray-300 hover:text-white transition-colors">Part 2: Claims Handling Process &rarr;</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AI Tutor Button -->
+    <button onclick="openAITutor()" class="fixed bottom-6 right-6 bg-red-600 hover:bg-red-700 text-white p-4 rounded-full shadow-xl hover:scale-110 transition-transform z-40" title="AI Study Tutor">
+        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+        </svg>
+    </button>
+
+    <script>
+        function openAITutor() {
+            const context = `Topic: The Claims Function - Goals, Structure, and Personnel (CPCU 520 Assignment 2 Part 1).
+Key concepts:
+- Two primary goals: fulfill contractual promise AND support financial goals (these do NOT conflict)
+- Claims feeds data to Marketing (retention/reputation), Underwriting (hazards/patterns), and Actuarial (incurred losses/reserves/LAE)
+- Three external contacts: The Public, Lawyers, State Regulators
+- Claims hierarchy: Senior Claims Officer > Home Office > Regional > Branch > Supervisors > Staff
+- 5 types of claims personnel: Staff reps (employees), Independent adjusters (fee, work FOR insurer), TPAs (for self-insureds), Producers (small claims up to limit), Public adjusters (work FOR insured, paid % of settlement)
+- CRITICAL: Independent adjusters = FOR insurer. Public adjusters = FOR insured.
+- 5 performance measures: best practices, claims audits, customer satisfaction surveys, claims cycle time, litigation management
+- 6 claims handling steps: Acknowledge/Assign, Identify Policy/Set Reserves, Contact Insured, Investigate/Document, Determine Cause/Liability/Amount, Conclude
+Common confusions:
+- Independent vs public adjuster (who they work for)
+- Fair payment supports (not conflicts with) financial goals
+- Lawyers increase gross but not necessarily NET settlement
+- TPAs serve self-insureds, not traditional insurers
+- Claims reps (not agents) are the most visible public contact`;
+            if (typeof showAIChat === 'function') {
+                showAIChat(context);
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment 3 Part 3: Underwriting Constraints & Commercial Lines | CPCU 520</title>
+    <link rel="icon" type="image/svg+xml" href="../../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <link rel="stylesheet" href="../../../../css/styles.css">
+    <script src="../../../../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+        }
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <!-- Settings & Theme Toggle Buttons -->
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="showAPIKeySetup()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings">
+            <svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+        </button>
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/>
+            </svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-amber-600 to-amber-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap gap-2 text-sm mb-2">
+                <a href="../../../../index.html" class="text-amber-200 hover:text-white">Home</a>
+                <span class="text-amber-300">/</span>
+                <a href="../../../index.html" class="text-amber-200 hover:text-white">CPCU</a>
+                <span class="text-amber-300">/</span>
+                <a href="../../index.html" class="text-amber-200 hover:text-white">520</a>
+                <span class="text-amber-300">/</span>
+                <a href="../index.html" class="text-amber-200 hover:text-white">Assignment 3</a>
+                <span class="text-amber-300">/</span>
+                <span class="text-white">Part 3</span>
+            </div>
+            <h1 class="text-3xl font-bold">Assignment 3 Part 3: Underwriting Constraints & Commercial Lines</h1>
+            <p class="text-amber-200 mt-1">What limits underwriters, what makes commercial risks unique, and how underwriting connects to every other function</p>
+        </div>
+    </header>
+
+    <!-- Part Navigation -->
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-wrap gap-2 text-sm">
+                <a href="../index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Overview</a>
+                <a href="../part-1/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 1</a>
+                <a href="../part-2/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 2</a>
+                <span class="bg-amber-600 text-white px-3 py-1 rounded font-medium">Part 3</span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-5xl lg:max-w-7xl">
+
+        <!-- Overview Section -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">Underwriting Constraints & Commercial Lines Considerations</h2>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border border-amber-200 dark:border-amber-800 rounded-lg p-5 lg:p-6 mb-6">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Underwriters do not operate in a vacuum. They face <strong>internal constraints</strong> (how much risk the company can handle) and <strong>external constraints</strong> (regulation, competition, and the economy). Beyond those limits, commercial lines underwriting adds another layer of complexity -- evaluating businesses instead of individuals means looking at operations, financials, management quality, and industry hazards. Finally, underwriting does not work alone; it connects to <strong>every other insurance function</strong> in a value chain.</p>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 lg:p-5 rounded-r-lg">
+                    <p class="font-bold text-amber-800 dark:text-amber-300 text-lg">Exam Alert!</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">Expect questions that test whether you can distinguish <strong>internal vs. external constraints</strong>, identify which commercial lines evaluation factor applies to a scenario, and explain how underwriting interacts with claims, actuarial, and risk control. Large account rating methods (experience, schedule, retrospective) are heavily tested.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Start Here: 5 Things You MUST Know -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-amber-100 to-orange-200 dark:from-amber-900/40 dark:to-orange-800/40 rounded-xl p-6 border border-amber-300 dark:border-amber-700">
+                <h3 class="text-xl lg:text-2xl font-bold text-amber-800 dark:text-amber-200 mb-4">Start Here: 5 Things You MUST Know</h3>
+                <div class="grid md:grid-cols-2 gap-3">
+                    <div class="flex items-start">
+                        <span class="bg-amber-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">The <strong>premium-to-surplus ratio</strong> (capacity ratio) should not exceed roughly <strong>3:1</strong> -- writing $3 of premium for every $1 of surplus is the practical ceiling.</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-amber-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Redlining</strong> (refusing coverage for entire neighborhoods based on demographics) is <strong>illegal</strong>. Unfair discrimination by race, religion, or national origin is prohibited.</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-amber-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">In <strong>soft markets</strong>, underwriters relax standards and accept marginal risks. In <strong>hard markets</strong>, they become highly selective. Know which cycle you are in.</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-amber-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">4</span>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Large accounts use <strong>experience rating</strong> (mod factor based on own losses), <strong>schedule rating</strong> (credits/debits), and <strong>retrospective rating</strong> (premium adjusts after the policy period).</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-amber-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">5</span>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Underwriting connects to <strong>every function</strong>: marketing (appetite), claims (loss data), actuarial (rates), risk control (inspections), and reinsurance (capacity).</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 1: Internal Constraints -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">1. Internal Constraints on Underwriting</h2>
+                <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-6">These are limits that come from <strong>within the insurer itself</strong> -- the company's own resources, expertise, systems, and strategic direction.</p>
+
+                <!-- Internal Constraints Grid -->
+                <div class="space-y-4 mb-6">
+                    <!-- Financial Capacity -->
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500">
+                        <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg lg:text-xl">Financial Capacity (Surplus)</h3>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg"><strong>Surplus</strong> is the insurer's net worth -- total assets minus total liabilities. It is the cushion that absorbs unexpected losses. The <strong>premium-to-surplus ratio</strong> (also called the capacity ratio) measures how much premium an insurer writes relative to its surplus. The industry benchmark is roughly <strong>3:1</strong> -- meaning $3 of premium for every $1 of surplus. Exceeding this ratio strains the insurer's ability to pay claims.</p>
+
+                        <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded mt-3">
+                            <p class="font-semibold text-blue-800 dark:text-blue-300 mb-2">Real-World Scenario: The Overextended Insurer</p>
+                            <div class="space-y-2 text-sm lg:text-base">
+                                <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Coastal Mutual has $100M in surplus. They currently write $250M in premium (2.5:1 ratio). An aggressive new VP wants to grow into commercial trucking, which would add $75M in premium.</p>
+                                <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> That would push the ratio to 3.25:1 -- beyond the safe threshold. Rating agencies flag the concern, and the state regulator sends a warning letter.</p>
+                                <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> The insurer must either raise more capital (issue surplus notes), buy more reinsurance to offload premium, or scale back the growth plan. The underwriting team is told to stop writing new trucking accounts until the ratio stabilizes.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Key Number Box -->
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-3 lg:gap-4">
+                        <div class="bg-white dark:bg-gray-800 p-3 lg:p-4 rounded-lg text-center border border-gray-200 dark:border-gray-700">
+                            <p class="text-2xl lg:text-3xl font-bold text-amber-600 dark:text-amber-400">3:1</p>
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Max premium-to-surplus ratio</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-800 p-3 lg:p-4 rounded-lg text-center border border-gray-200 dark:border-gray-700">
+                            <p class="text-2xl lg:text-3xl font-bold text-blue-600 dark:text-blue-400">Surplus</p>
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Assets minus liabilities</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-800 p-3 lg:p-4 rounded-lg text-center border border-gray-200 dark:border-gray-700">
+                            <p class="text-2xl lg:text-3xl font-bold text-green-600 dark:text-green-400">Capacity</p>
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">How much risk the insurer can take</p>
+                        </div>
+                    </div>
+
+                    <!-- Reinsurance -->
+                    <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-purple-500">
+                        <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg lg:text-xl">Reinsurance</h3>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">Reinsurance determines how much risk an underwriter can accept on any <strong>single risk</strong>. A <strong>surplus share treaty</strong> allows the insurer to cede (transfer) portions of large risks to a reinsurer, effectively expanding capacity. <strong>Facultative reinsurance</strong> handles one-off, unusual risks that fall outside treaty terms.</p>
+
+                        <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded mt-3">
+                            <p class="font-semibold text-purple-800 dark:text-purple-300 mb-2">Real-World Scenario: The Warehouse Too Big to Write Alone</p>
+                            <div class="space-y-2 text-sm lg:text-base">
+                                <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> An underwriter receives a submission for a $20M warehouse complex. The insurer's net retention (what it keeps for itself) is $2M, and it has a $5M surplus share treaty with a reinsurer (allowing up to 5 lines of $2M each, or $10M).</p>
+                                <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> The treaty covers $10M + $2M retention = $12M. The remaining $8M must be placed through facultative reinsurance or declined.</p>
+                                <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> The underwriter arranges facultative reinsurance for the $8M gap. Without the reinsurance treaties, the underwriter could only write $2M of this risk -- the reinsurance expanded capacity tenfold.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Staffing & Expertise -->
+                    <div class="bg-indigo-50 dark:bg-indigo-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-indigo-500">
+                        <h3 class="font-bold text-indigo-800 dark:text-indigo-300 text-lg lg:text-xl">Staffing and Expertise</h3>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">Underwriters need <strong>deep knowledge</strong> of the classes they write. Writing unfamiliar classes without the right expertise leads to poor risk selection, inadequate pricing, and adverse selection (attracting the worst risks because you do not know what to look for).</p>
+
+                        <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded mt-3">
+                            <p class="font-semibold text-indigo-800 dark:text-indigo-300 mb-2">Real-World Scenario: The Disastrous Class Expansion</p>
+                            <div class="space-y-2 text-sm lg:text-base">
+                                <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> A property insurer that specializes in habitational (apartments) decides to expand into manufacturing risks. None of their underwriters have manufacturing experience.</p>
+                                <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> The underwriters do not know to check for combustible dust hazards, hot work permits, or chemical storage protocols. They write 50 manufacturing accounts at competitive rates.</p>
+                                <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Within 18 months, the loss ratio on the manufacturing book is 95% -- nearly double the target. The insurer has to exit the class entirely and take a $4M write-off. Experienced manufacturing underwriters would have caught the red flags.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- IT Systems -->
+                    <div class="bg-gray-50 dark:bg-gray-700/50 rounded-lg p-4 lg:p-5 border-l-4 border-gray-500">
+                        <h3 class="font-bold text-gray-800 dark:text-gray-200 text-lg lg:text-xl">IT Systems</h3>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">Modern underwriting requires <strong>data analytics</strong>, automated workflows, and integration with third-party data sources (credit scores, telematics, aerial imagery, loss databases). Legacy systems that cannot support these capabilities constrain underwriting speed, accuracy, and competitiveness.</p>
+
+                        <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded mt-3">
+                            <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Scenario: The Legacy System Bottleneck</p>
+                            <div class="space-y-2 text-sm lg:text-base">
+                                <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Heritage Insurance still uses a mainframe from the 1990s. Competitors use AI-driven platforms that pull property data, satellite imagery, and claims history in seconds.</p>
+                                <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Heritage underwriters take 5 days to quote a commercial property risk. Competitors quote the same risk in 4 hours.</p>
+                                <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Agents stop sending submissions to Heritage because they cannot compete on turnaround time. Heritage loses market share not because of pricing, but because of <strong>system speed</strong>.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Company Appetite -->
+                    <div class="bg-amber-50 dark:bg-amber-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-amber-500">
+                        <h3 class="font-bold text-amber-800 dark:text-amber-300 text-lg lg:text-xl">Company Appetite and Strategy</h3>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">Management decides which classes to target, which to avoid, and what growth goals to pursue. Underwriters must follow the insurer's <strong>strategic direction</strong> -- even if an individual underwriter thinks a risk is good, if it falls outside company appetite, it must be declined.</p>
+
+                        <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded mt-3">
+                            <p class="font-semibold text-amber-800 dark:text-amber-300 mb-2">Real-World Scenario: The Good Risk That Does Not Fit</p>
+                            <div class="space-y-2 text-sm lg:text-base">
+                                <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> An underwriter receives a submission for a well-run restaurant with excellent loss history. However, the company recently issued a directive: "Exit all restaurant risks by year-end due to liability trend concerns."</p>
+                                <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> The underwriter believes this restaurant is a great risk, but company appetite says no.</p>
+                                <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> The underwriter declines the submission. Company strategy overrides individual judgment. The underwriter can escalate to management if they believe the strategy should change, but they cannot unilaterally write outside appetite.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: External Constraints -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">2. External Constraints on Underwriting</h2>
+                <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-6">These are forces <strong>outside the insurer's control</strong> that limit what underwriters can do -- laws, market conditions, competitors, and economic trends.</p>
+
+                <!-- Internal vs External Comparison Grid -->
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500">
+                        <h4 class="font-bold text-blue-800 dark:text-blue-300 mb-3">Internal Constraints (Company Controls)</h4>
+                        <ul class="space-y-2 text-gray-700 dark:text-gray-300 text-sm lg:text-base">
+                            <li class="flex items-start"><span class="text-blue-500 mr-2 font-bold">--</span> Financial capacity / surplus</li>
+                            <li class="flex items-start"><span class="text-blue-500 mr-2 font-bold">--</span> Reinsurance treaties</li>
+                            <li class="flex items-start"><span class="text-blue-500 mr-2 font-bold">--</span> Staff expertise</li>
+                            <li class="flex items-start"><span class="text-blue-500 mr-2 font-bold">--</span> IT systems / technology</li>
+                            <li class="flex items-start"><span class="text-blue-500 mr-2 font-bold">--</span> Company appetite / strategy</li>
+                        </ul>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400"><strong>Key idea:</strong> The insurer can change these over time (raise capital, hire experts, upgrade systems).</p>
+                        </div>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-red-500">
+                        <h4 class="font-bold text-red-800 dark:text-red-300 mb-3">External Constraints (Outside Forces)</h4>
+                        <ul class="space-y-2 text-gray-700 dark:text-gray-300 text-sm lg:text-base">
+                            <li class="flex items-start"><span class="text-red-500 mr-2 font-bold">--</span> Regulation (anti-discrimination, rates)</li>
+                            <li class="flex items-start"><span class="text-red-500 mr-2 font-bold">--</span> Underwriting cycle (soft/hard)</li>
+                            <li class="flex items-start"><span class="text-red-500 mr-2 font-bold">--</span> Competition</li>
+                            <li class="flex items-start"><span class="text-red-500 mr-2 font-bold">--</span> Economic conditions</li>
+                            <li class="flex items-start"><span class="text-red-500 mr-2 font-bold">--</span> Social inflation / nuclear verdicts</li>
+                        </ul>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400"><strong>Key idea:</strong> The insurer cannot control these -- it must <strong>adapt</strong> to them.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Regulation -->
+                <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-red-500 mb-4">
+                    <h3 class="font-bold text-red-800 dark:text-red-300 text-lg lg:text-xl mb-3">Regulation</h3>
+                    <div class="space-y-3">
+                        <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded">
+                            <p class="font-semibold text-gray-800 dark:text-gray-200">Unfair Discrimination Prohibited</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Underwriters <strong>cannot</strong> use race, religion, national origin, or gender (in most lines) to make underwriting decisions. This is different from <strong>fair discrimination</strong> -- using actuarially justified factors like driving record, claims history, or construction type is perfectly legal.</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded">
+                            <p class="font-semibold text-gray-800 dark:text-gray-200">Redlining Prohibited</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Refusing coverage for <strong>entire geographic areas</strong> based on the demographic composition of the neighborhood is illegal. An underwriter can decline a specific property in a high-crime area based on loss data, but cannot blanket-refuse all properties in a ZIP code because of its racial makeup.</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded">
+                            <p class="font-semibold text-gray-800 dark:text-gray-200">Rate Regulation</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">States regulate how insurers set and change rates: <strong>prior approval</strong> (must get permission first), <strong>file-and-use</strong> (file with the state, start using immediately), or <strong>use-and-file</strong> (start using, file later). This limits how quickly underwriters can adjust pricing.</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded">
+                            <p class="font-semibold text-gray-800 dark:text-gray-200">Cancellation and Nonrenewal Restrictions</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Most states require <strong>advance notice</strong> before cancellation or nonrenewal. Mid-term cancellations usually require <strong>cause</strong> (nonpayment, fraud, material change in risk). Underwriters cannot simply drop a policyholder because they found a more profitable account.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded mt-4">
+                        <p class="font-semibold text-red-800 dark:text-red-300 mb-2">Real-World Scenario: The Line Between Fair and Unfair Discrimination</p>
+                        <div class="space-y-2 text-sm lg:text-base">
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> An underwriter reviews two homeowners applications from the same neighborhood. Applicant A has a 20-year-old roof, no smoke detectors, and 3 water damage claims. Applicant B has a new roof, a monitored alarm, and zero claims.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> The underwriter declines Applicant A and accepts Applicant B. Both applicants happen to be different races.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> This is <strong>fair discrimination</strong> -- the decision was based on roof condition, safety features, and claims history (actuarially valid factors), not race. If the underwriter had declined Applicant A solely because of their race or neighborhood demographics, that would be <strong>unfair discrimination</strong>.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Underwriting Cycle Visual -->
+                <div class="bg-indigo-50 dark:bg-indigo-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-indigo-500 mb-4">
+                    <h3 class="font-bold text-indigo-800 dark:text-indigo-300 text-lg lg:text-xl mb-4">The Underwriting Cycle (Soft vs. Hard Markets)</h3>
+
+                    <!-- Cycle Flow Diagram -->
+                    <div class="bg-white dark:bg-gray-700 rounded-lg p-4 lg:p-6 mb-4">
+                        <div class="flex flex-col md:flex-row items-center justify-center gap-3 lg:gap-4 text-center">
+                            <div class="bg-green-100 dark:bg-green-900/40 p-3 lg:p-4 rounded-lg border border-green-300 dark:border-green-700 min-w-[140px]">
+                                <p class="font-bold text-green-800 dark:text-green-300">Profits Rise</p>
+                                <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Capital builds up</p>
+                            </div>
+                            <div class="text-2xl text-gray-400 transform md:rotate-0 rotate-90">--&gt;</div>
+                            <div class="bg-blue-100 dark:bg-blue-900/40 p-3 lg:p-4 rounded-lg border border-blue-300 dark:border-blue-700 min-w-[140px]">
+                                <p class="font-bold text-blue-800 dark:text-blue-300">New Entrants</p>
+                                <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">More competition</p>
+                            </div>
+                            <div class="text-2xl text-gray-400 transform md:rotate-0 rotate-90">--&gt;</div>
+                            <div class="bg-amber-100 dark:bg-amber-900/40 p-3 lg:p-4 rounded-lg border border-amber-300 dark:border-amber-700 min-w-[140px]">
+                                <p class="font-bold text-amber-800 dark:text-amber-300">SOFT MARKET</p>
+                                <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Low prices, easy access</p>
+                            </div>
+                            <div class="text-2xl text-gray-400 transform md:rotate-0 rotate-90">--&gt;</div>
+                            <div class="bg-red-100 dark:bg-red-900/40 p-3 lg:p-4 rounded-lg border border-red-300 dark:border-red-700 min-w-[140px]">
+                                <p class="font-bold text-red-800 dark:text-red-300">Losses Mount</p>
+                                <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Capital depleted</p>
+                            </div>
+                            <div class="text-2xl text-gray-400 transform md:rotate-0 rotate-90">--&gt;</div>
+                            <div class="bg-purple-100 dark:bg-purple-900/40 p-3 lg:p-4 rounded-lg border border-purple-300 dark:border-purple-700 min-w-[140px]">
+                                <p class="font-bold text-purple-800 dark:text-purple-300">HARD MARKET</p>
+                                <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">High prices, tight capacity</p>
+                            </div>
+                        </div>
+                        <p class="text-center text-sm lg:text-base text-gray-500 dark:text-gray-400 mt-3 italic">The cycle repeats: hard market profits attract capital, which softens the market again.</p>
+                    </div>
+
+                    <!-- Soft vs Hard Comparison -->
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border border-green-200 dark:border-green-800">
+                            <p class="font-bold text-green-800 dark:text-green-300 text-lg mb-2">Soft Market</p>
+                            <ul class="space-y-1 text-gray-700 dark:text-gray-300 text-sm lg:text-base">
+                                <li>-- Premiums are LOW (buyers' market)</li>
+                                <li>-- Competition is FIERCE</li>
+                                <li>-- Underwriting standards RELAX</li>
+                                <li>-- Marginal risks get ACCEPTED</li>
+                                <li>-- Capacity is ABUNDANT</li>
+                            </ul>
+                        </div>
+                        <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border border-red-200 dark:border-red-800">
+                            <p class="font-bold text-red-800 dark:text-red-300 text-lg mb-2">Hard Market</p>
+                            <ul class="space-y-1 text-gray-700 dark:text-gray-300 text-sm lg:text-base">
+                                <li>-- Premiums are HIGH (sellers' market)</li>
+                                <li>-- Capacity is TIGHT</li>
+                                <li>-- Underwriting standards TIGHTEN</li>
+                                <li>-- Only the best risks get ACCEPTED</li>
+                                <li>-- Some risks become UNINSURABLE</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded mt-4">
+                        <p class="font-semibold text-indigo-800 dark:text-indigo-300 mb-2">Real-World Scenario: Surviving the Cycle Swing</p>
+                        <div class="space-y-2 text-sm lg:text-base">
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> During a soft market, a mid-size insurer accepts a commercial contractor with a 75% loss ratio just to hit growth targets. The premium is $200K, but the rate is 15% below what actuaries say is adequate.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Hurricane season hits hard. The market hardens. The contractor suffers a $1.2M claim from wind damage to an active job site. Combined with the underpriced premium, the insurer takes a significant loss.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Now in a hard market, the insurer nonrenews the contractor and raises rates 35% across its construction book. The lesson: writing marginal risks at soft-market prices can devastate results when the cycle turns.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Competition, Economic, Social Inflation -->
+                <div class="grid md:grid-cols-3 gap-4">
+                    <div class="bg-amber-50 dark:bg-amber-900/20 rounded-lg p-4 border border-amber-200 dark:border-amber-800">
+                        <h4 class="font-bold text-amber-800 dark:text-amber-300 mb-2">Competition</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">If competitors offer lower rates, the insurer loses its <strong>best risks</strong> (adverse selection). Good risks leave for cheaper coverage; bad risks stay.</p>
+                        <div class="bg-white dark:bg-gray-700 p-2 rounded mt-2">
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400"><strong>Example:</strong> A competitor undercuts your auto fleet rate by 10%. Your best fleets (clean records) switch. You are left with the accident-prone fleets nobody else wants.</p>
+                        </div>
+                    </div>
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 border border-blue-200 dark:border-blue-800">
+                        <h4 class="font-bold text-blue-800 dark:text-blue-300 mb-2">Economic Conditions</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>Inflation</strong> increases loss costs (repairs, medical, materials all cost more). <strong>Interest rates</strong> affect investment income -- when rates are low, insurers cannot rely on investment returns to subsidize underwriting losses.</p>
+                        <div class="bg-white dark:bg-gray-700 p-2 rounded mt-2">
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400"><strong>Example:</strong> Construction cost inflation of 8% means a claim that cost $500K last year now costs $540K. If rates only rose 3%, the insurer is losing ground.</p>
+                        </div>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-4 border border-red-200 dark:border-red-800">
+                        <h4 class="font-bold text-red-800 dark:text-red-300 mb-2">Social Inflation</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>Nuclear verdicts</strong> (jury awards of $10M+), <strong>litigation funding</strong> (third parties bankrolling lawsuits), and expanding theories of liability are driving up commercial liability claims costs far beyond economic inflation.</p>
+                        <div class="bg-white dark:bg-gray-700 p-2 rounded mt-2">
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400"><strong>Example:</strong> A trucking company's $1M liability policy used to be adequate. Now juries routinely award $15M+ in fatal accident cases. The underwriter must increase limits and pricing to reflect this reality.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Commercial Lines Underwriting Considerations -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">3. Commercial Lines Underwriting Considerations</h2>
+                <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-6">Underwriting a business is far more complex than underwriting a personal lines policy. Beyond the basics, commercial underwriters must evaluate <strong>what the business does</strong>, <strong>how well it is managed</strong>, <strong>whether it is financially healthy</strong>, and <strong>what contractual obligations</strong> it carries.</p>
+
+                <!-- Evaluation Factors Table -->
+                <div class="overflow-x-auto mb-6">
+                    <table class="w-full text-sm lg:text-base">
+                        <thead>
+                            <tr class="bg-amber-600 text-white">
+                                <th class="p-3 lg:p-4 text-left rounded-tl-lg">Evaluation Factor</th>
+                                <th class="p-3 lg:p-4 text-left">What the Underwriter Looks At</th>
+                                <th class="p-3 lg:p-4 text-left rounded-tr-lg">Red Flag Example</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Business Operations & Industry Hazards</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">What the business does, inherent risks of the industry</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Chemical manufacturer with no spill containment plan</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Financial Stability</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Balance sheet health, cash flow, profitability</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Company has negative net worth and declining revenue for 3 years</td>
+                            </tr>
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Management Quality</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Safety commitment, industry experience, training programs</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">No safety program, high employee turnover, no management experience</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Loss History & Development</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Past claims frequency/severity, loss trends, open claims</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Increasing claims year over year with no corrective action</td>
+                            </tr>
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Contractual Obligations</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Lease requirements, certificate holders, additional insured status</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Tenant required to name landlord as additional insured but has no coverage</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Regulatory Compliance</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">OSHA violations, environmental compliance, building codes</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Multiple OSHA citations for fall protection in past 2 years</td>
+                            </tr>
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Location</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Fire protection class, crime rates, natural disaster exposure, fire station proximity</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Warehouse in Protection Class 10 (no public fire protection), flood zone</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Financial Stability Deep Dive -->
+                <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-green-500 mb-4">
+                    <h3 class="font-bold text-green-800 dark:text-green-300 text-lg lg:text-xl">Why Financial Stability Matters</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">Financially distressed businesses have <strong>higher loss frequency</strong>. When a company is struggling, it tends to defer maintenance, cut safety programs, overwork employees, and take shortcuts -- all of which increase the probability of claims.</p>
+
+                    <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded mt-3">
+                        <p class="font-semibold text-green-800 dark:text-green-300 mb-2">Real-World Scenario: The Struggling Trucking Company</p>
+                        <div class="space-y-2 text-sm lg:text-base">
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> QuickHaul Trucking has been losing money for 2 years. They have deferred brake inspections, extended driver hours, and stopped replacing worn tires to save cash.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> One of their trucks has a brake failure on a highway, causing a multi-vehicle accident with 3 injuries.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> The claim totals $2.8M. The underwriter who reviewed QuickHaul's financials and noticed the declining revenue, negative cash flow, and deferred maintenance should have <strong>declined the risk</strong> or required proof of fleet maintenance compliance before binding.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Management Quality -->
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-purple-500">
+                    <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg lg:text-xl">Management Quality: The #1 Predictor</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">Experienced underwriters often say that <strong>management quality is the single best predictor</strong> of future losses. A well-managed business with a strong safety culture will outperform a poorly managed one in the same industry, every time.</p>
+
+                    <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded mt-3">
+                        <p class="font-semibold text-purple-800 dark:text-purple-300 mb-2">Real-World Scenario: Two Restaurants, Same Class, Different Results</p>
+                        <div class="space-y-2 text-sm lg:text-base">
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Restaurant A: Owner has 20 years in the industry, conducts weekly safety meetings, maintains a certified kitchen hood suppression system, and has documented employee training. Restaurant B: Owner is a first-time restaurateur, no safety program, grease traps cleaned "when they remember," no fire extinguisher training.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Both are the same class code and same size. Same rate manual applies.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> The underwriter applies a <strong>schedule rating credit</strong> to Restaurant A (better risk) and a <strong>schedule rating debit</strong> to Restaurant B (worse risk). Over 5 years, Restaurant A has zero claims. Restaurant B has a grease fire ($180K) and a slip-and-fall lawsuit ($95K). Management quality was the difference.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Large Account Underwriting -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">4. Large Account Underwriting</h2>
+                <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-6">Large commercial accounts are fundamentally different from small commercial: <strong>higher limits</strong>, more complex exposures, more negotiation, and specialized rating methods. The underwriter becomes less of a gatekeeper and more of a <strong>deal structurer</strong>.</p>
+
+                <!-- Three Rating Methods -->
+                <div class="space-y-4 mb-6">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500">
+                        <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg lg:text-xl">Schedule Rating</h3>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg"><strong>Credits and debits</strong> applied to the manual rate based on individual risk characteristics. The underwriter evaluates specific factors (premises condition, safety programs, management quality) and adjusts the rate up or down, typically within a range like +/- 25%.</p>
+
+                        <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded mt-3">
+                            <p class="font-semibold text-blue-800 dark:text-blue-300 mb-2">Real-World Scenario: Rewarding a Safe Manufacturer</p>
+                            <div class="space-y-2 text-sm lg:text-base">
+                                <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> A plastics manufacturer has a manual premium of $400K. The underwriter inspects the plant: sprinkler system recently upgraded, dedicated safety officer, monthly safety audits, locked chemical storage, and spotless housekeeping.</p>
+                                <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> The underwriter applies a 20% schedule rating credit for superior premises and management.</p>
+                                <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Final premium = $400K x 0.80 = <strong>$320K</strong>. The credit rewards the insured's investment in loss prevention. If conditions deteriorate, the credit can be reduced or removed at renewal.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-green-500">
+                        <h3 class="font-bold text-green-800 dark:text-green-300 text-lg lg:text-xl">Experience Rating</h3>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">Uses the account's <strong>own loss history</strong> compared to the class average to calculate an <strong>experience modification factor (mod)</strong>. A mod below 1.00 means better-than-average losses (credit). A mod above 1.00 means worse-than-average (debit). Most commonly seen in <strong>workers compensation</strong>.</p>
+
+                        <div class="grid grid-cols-2 md:grid-cols-3 gap-3 mt-3">
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center border border-gray-200 dark:border-gray-600">
+                                <p class="text-2xl lg:text-3xl font-bold text-green-600 dark:text-green-400">0.75</p>
+                                <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Great losses = 25% credit</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center border border-gray-200 dark:border-gray-600">
+                                <p class="text-2xl lg:text-3xl font-bold text-amber-600 dark:text-amber-400">1.00</p>
+                                <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Average losses = no change</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center border border-gray-200 dark:border-gray-600">
+                                <p class="text-2xl lg:text-3xl font-bold text-red-600 dark:text-red-400">1.35</p>
+                                <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Poor losses = 35% surcharge</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded mt-3">
+                            <p class="font-semibold text-green-800 dark:text-green-300 mb-2">Real-World Scenario: Workers Comp Experience Mod</p>
+                            <div class="space-y-2 text-sm lg:text-base">
+                                <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> A construction company has a workers comp manual premium of $600K. Over the past 3 years, their losses are 40% below the class average. Their experience mod is 0.72.</p>
+                                <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Premium = $600K x 0.72 = <strong>$432K</strong>. They save $168K per year because their safety record is demonstrably better than similar companies.</p>
+                                <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> This motivates the company to maintain its safety programs. If they have a bad year with several claims, the mod will rise toward 1.00 or above at the next calculation. Experience rating creates a <strong>direct financial incentive</strong> for loss prevention.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-purple-500">
+                        <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg lg:text-xl">Retrospective Rating</h3>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">Premium <strong>adjusts after the policy period</strong> based on actual losses. The insured pays a <strong>deposit premium</strong> at inception, then the final premium is calculated based on what losses actually occurred. There is a <strong>minimum premium</strong> (floor) and <strong>maximum premium</strong> (ceiling) to protect both parties.</p>
+
+                        <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded mt-3">
+                            <p class="font-semibold text-purple-800 dark:text-purple-300 mb-2">Real-World Scenario: Retro Rating in Action</p>
+                            <div class="space-y-2 text-sm lg:text-base">
+                                <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> A large retailer buys a retro-rated workers comp policy. Deposit premium = $1M. Minimum premium = $700K. Maximum premium = $1.5M. The retro formula adjusts based on actual losses during the policy year.</p>
+                                <p class="text-gray-700 dark:text-gray-300"><strong>What Happens (Good Year):</strong> Actual losses are very low. The retro formula produces a final premium of $650K, but the minimum is $700K.</p>
+                                <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> The retailer pays $700K (the floor). They get a $300K refund from their $1M deposit. In a bad year with heavy losses, they could pay up to $1.5M (the ceiling). Retro rating rewards loss control but caps the downside risk.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Loss-Sensitive Programs -->
+                <div class="bg-amber-50 dark:bg-amber-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-amber-500">
+                    <h3 class="font-bold text-amber-800 dark:text-amber-300 text-lg lg:text-xl">Loss-Sensitive Programs & Collateral</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">Large accounts may also use <strong>large deductible programs</strong> or <strong>self-insured retentions (SIRs)</strong> where the insured pays the first portion of each loss. Because the insurer is trusting the insured to pay its share, the insurer requires <strong>collateral</strong> (letters of credit, trust funds, or surety bonds) to guarantee payment.</p>
+
+                    <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded mt-3">
+                        <p class="font-semibold text-amber-800 dark:text-amber-300 mb-2">Real-World Scenario: The SIR with Collateral</p>
+                        <div class="space-y-2 text-sm lg:text-base">
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> A national hotel chain buys a general liability policy with a $250K SIR per occurrence. The insurer estimates the chain will have $3M in losses within the SIR layer during the policy year.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> The insurer requires the hotel chain to post a $3M letter of credit as collateral. This guarantees that if the hotel chain goes bankrupt, the insurer can draw on the letter of credit to cover the SIR obligations.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> The hotel chain gets a significantly lower premium (because they are retaining the first $250K of each claim), but they must tie up $3M in collateral. The trade-off: lower premium in exchange for retained risk and capital commitment.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Rating Methods Comparison -->
+                <div class="overflow-x-auto mt-6">
+                    <table class="w-full text-sm lg:text-base">
+                        <thead>
+                            <tr class="bg-amber-600 text-white">
+                                <th class="p-3 lg:p-4 text-left rounded-tl-lg">Rating Method</th>
+                                <th class="p-3 lg:p-4 text-left">When Premium is Set</th>
+                                <th class="p-3 lg:p-4 text-left">Based On</th>
+                                <th class="p-3 lg:p-4 text-left rounded-tr-lg">Best For</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Schedule Rating</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">At inception (fixed)</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Individual risk characteristics (credits/debits)</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Medium to large accounts</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Experience Rating</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">At inception (fixed mod)</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Account's own loss history vs. class average</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Workers comp (most common)</td>
+                            </tr>
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Retrospective Rating</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">After the policy period</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Actual losses during the policy period</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Large accounts wanting direct loss control incentive</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Underwriting and the Value Chain -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">5. Underwriting and the Value Chain</h2>
+                <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-6">Underwriting does not operate in isolation. It is connected to <strong>every other insurance function</strong> in a value chain. Information flows in <strong>both directions</strong> -- underwriting feeds data to other departments and receives critical intelligence back.</p>
+
+                <!-- Value Chain Diagram -->
+                <div class="bg-amber-50 dark:bg-amber-900/20 rounded-xl p-4 lg:p-6 border border-amber-200 dark:border-amber-800 mb-6">
+                    <h3 class="font-bold text-amber-800 dark:text-amber-300 text-lg lg:text-xl mb-4 text-center">Underwriting Value Chain Connections</h3>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <!-- Marketing -->
+                        <div class="bg-white dark:bg-gray-700 rounded-lg p-4 border-t-4 border-blue-500">
+                            <div class="flex items-center mb-2">
+                                <span class="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">M</span>
+                                <h4 class="font-bold text-blue-800 dark:text-blue-300">Marketing</h4>
+                            </div>
+                            <div class="space-y-2 text-sm lg:text-base">
+                                <p class="text-gray-700 dark:text-gray-300"><strong>UW to Marketing:</strong> Communicates appetite clearly so producers bring the right business</p>
+                                <p class="text-gray-700 dark:text-gray-300"><strong>Marketing to UW:</strong> Provides market intelligence on competitor pricing and customer needs</p>
+                            </div>
+                        </div>
+
+                        <!-- Claims -->
+                        <div class="bg-white dark:bg-gray-700 rounded-lg p-4 border-t-4 border-red-500">
+                            <div class="flex items-center mb-2">
+                                <span class="bg-red-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">C</span>
+                                <h4 class="font-bold text-red-800 dark:text-red-300">Claims</h4>
+                            </div>
+                            <div class="space-y-2 text-sm lg:text-base">
+                                <p class="text-gray-700 dark:text-gray-300"><strong>Claims to UW:</strong> Loss data feeds back to improve risk selection and identify emerging trends</p>
+                                <p class="text-gray-700 dark:text-gray-300"><strong>UW to Claims:</strong> Shares underwriting file details so adjusters understand coverage intent</p>
+                            </div>
+                        </div>
+
+                        <!-- Actuarial -->
+                        <div class="bg-white dark:bg-gray-700 rounded-lg p-4 border-t-4 border-green-500">
+                            <div class="flex items-center mb-2">
+                                <span class="bg-green-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">A</span>
+                                <h4 class="font-bold text-green-800 dark:text-green-300">Actuarial</h4>
+                            </div>
+                            <div class="space-y-2 text-sm lg:text-base">
+                                <p class="text-gray-700 dark:text-gray-300"><strong>Actuarial to UW:</strong> Sets the rates and class rating plans underwriters apply</p>
+                                <p class="text-gray-700 dark:text-gray-300"><strong>UW to Actuarial:</strong> Provides feedback on rate adequacy from the field</p>
+                            </div>
+                        </div>
+
+                        <!-- Risk Control -->
+                        <div class="bg-white dark:bg-gray-700 rounded-lg p-4 border-t-4 border-purple-500">
+                            <div class="flex items-center mb-2">
+                                <span class="bg-purple-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">R</span>
+                                <h4 class="font-bold text-purple-800 dark:text-purple-300">Risk Control</h4>
+                            </div>
+                            <div class="space-y-2 text-sm lg:text-base">
+                                <p class="text-gray-700 dark:text-gray-300"><strong>Risk Control to UW:</strong> Inspection reports inform underwriting decisions (hazards found, recommendations)</p>
+                                <p class="text-gray-700 dark:text-gray-300"><strong>UW to Risk Control:</strong> May require risk improvements as a condition of coverage</p>
+                            </div>
+                        </div>
+
+                        <!-- Reinsurance -->
+                        <div class="bg-white dark:bg-gray-700 rounded-lg p-4 border-t-4 border-amber-500">
+                            <div class="flex items-center mb-2">
+                                <span class="bg-amber-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">Re</span>
+                                <h4 class="font-bold text-amber-800 dark:text-amber-300">Reinsurance</h4>
+                            </div>
+                            <div class="space-y-2 text-sm lg:text-base">
+                                <p class="text-gray-700 dark:text-gray-300"><strong>Reinsurance to UW:</strong> Treaty terms define what underwriters can accept (limits, classes, territories)</p>
+                                <p class="text-gray-700 dark:text-gray-300"><strong>UW to Reinsurance:</strong> Requests facultative placement for unusual or oversized risks</p>
+                            </div>
+                        </div>
+
+                        <!-- Feedback Loop -->
+                        <div class="bg-amber-100 dark:bg-amber-900/40 rounded-lg p-4 border-t-4 border-amber-700">
+                            <div class="flex items-center mb-2">
+                                <span class="bg-amber-800 text-white rounded-full w-8 h-8 flex items-center justify-center text-xs font-bold mr-3 flex-shrink-0">ALL</span>
+                                <h4 class="font-bold text-amber-900 dark:text-amber-200">The Key Insight</h4>
+                            </div>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Information flows in <strong>both directions</strong>. Underwriting is not a silo -- it is the hub that connects all functions. Poor communication between any two functions leads to worse results for the entire operation.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Value Chain Example -->
+                <div class="bg-indigo-50 dark:bg-indigo-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-indigo-500">
+                    <p class="font-semibold text-indigo-800 dark:text-indigo-300 mb-2">Real-World Scenario: The Value Chain in Action</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> An underwriter writes a large restaurant chain. After 6 months, claims notices a spike in kitchen burn injuries across the chain's newer locations.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> <strong>Claims</strong> alerts underwriting about the trend. <strong>Underwriting</strong> requests a <strong>risk control</strong> inspection of the newer locations. Risk control discovers inadequate employee training on fryer safety. Underwriting then requires the chain to implement a training program as a <strong>condition of renewal</strong>. <strong>Actuarial</strong> reviews the class data and confirms the need for a 5% rate increase on restaurant accounts without documented safety training.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> All five functions worked together: claims spotted the problem, underwriting acted on it, risk control diagnosed the cause, underwriting enforced the fix, and actuarial adjusted the pricing. Without this value chain, the burns would have continued and losses would have escalated.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cheat Sheet -->
+        <section id="cheat-sheet" class="mb-10">
+            <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 border-2 border-dashed border-gray-300 dark:border-gray-600">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100">Cheat Sheet</h2>
+                    <span class="text-sm text-gray-500 dark:text-gray-400">Print this page for quick reference</span>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <h3 class="font-bold text-gray-800 dark:text-gray-200 mb-2">Internal Constraints</h3>
+                        <ul class="space-y-1 text-sm lg:text-base text-gray-700 dark:text-gray-300">
+                            <li>-- Premium-to-surplus ratio: max ~3:1</li>
+                            <li>-- Reinsurance determines single-risk capacity</li>
+                            <li>-- Staff must have class expertise</li>
+                            <li>-- IT systems affect speed and accuracy</li>
+                            <li>-- Company appetite overrides individual judgment</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-gray-800 dark:text-gray-200 mb-2">External Constraints</h3>
+                        <ul class="space-y-1 text-sm lg:text-base text-gray-700 dark:text-gray-300">
+                            <li>-- Unfair discrimination + redlining = illegal</li>
+                            <li>-- Rate regulation limits pricing speed</li>
+                            <li>-- Cancellation requires cause + notice</li>
+                            <li>-- Soft market: low prices, relaxed standards</li>
+                            <li>-- Hard market: high prices, tight capacity</li>
+                            <li>-- Social inflation: nuclear verdicts, litigation funding</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-gray-800 dark:text-gray-200 mb-2">Commercial Evaluation Factors</h3>
+                        <ul class="space-y-1 text-sm lg:text-base text-gray-700 dark:text-gray-300">
+                            <li>-- Operations + industry hazards</li>
+                            <li>-- Financial stability (distressed = more claims)</li>
+                            <li>-- Management quality (#1 predictor)</li>
+                            <li>-- Loss history + trends</li>
+                            <li>-- Contractual obligations</li>
+                            <li>-- Regulatory compliance (OSHA, etc.)</li>
+                            <li>-- Location (fire class, flood, crime)</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-gray-800 dark:text-gray-200 mb-2">Large Account Rating</h3>
+                        <ul class="space-y-1 text-sm lg:text-base text-gray-700 dark:text-gray-300">
+                            <li>-- Schedule: credits/debits at inception</li>
+                            <li>-- Experience: mod factor (own losses vs. class)</li>
+                            <li>-- Retrospective: adjusts after policy period</li>
+                            <li>-- Mod &lt; 1.00 = credit; &gt; 1.00 = surcharge</li>
+                            <li>-- Retro has min (floor) and max (ceiling)</li>
+                            <li>-- SIRs/large deductibles require collateral</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Trap Alerts -->
+        <section class="mb-10">
+            <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-xl p-5 lg:p-6">
+                <h2 class="text-2xl lg:text-3xl font-bold text-red-800 dark:text-red-300 mb-4">Exam Trap Alerts</h2>
+                <div class="space-y-3">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">1. Internal vs. External -- Know Which is Which</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The exam loves asking "Is X an internal or external constraint?" <strong>Reinsurance</strong> is INTERNAL (the company chooses its reinsurance program). <strong>Regulation</strong> is EXTERNAL (the company cannot change the law). <strong>Company appetite</strong> is INTERNAL. <strong>The underwriting cycle</strong> is EXTERNAL. When in doubt, ask: "Can the insurer change this on its own?" If yes, it is internal.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">2. Fair Discrimination vs. Unfair Discrimination</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">ALL underwriting involves discrimination -- the question is whether it is <strong>fair</strong> (based on actuarially justified risk factors) or <strong>unfair</strong> (based on race, religion, national origin). Charging a higher rate for a building with no sprinklers = fair. Charging a higher rate because the building owner is a certain ethnicity = unfair and illegal.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">3. Schedule Rating vs. Experience Rating -- Do NOT Confuse Them</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>Schedule rating</strong> = underwriter judgment about risk characteristics (premises, management, safety features). <strong>Experience rating</strong> = mathematical calculation based on the account's own loss history vs. the class average (mod factor). Schedule is <strong>subjective</strong>. Experience is <strong>objective</strong>. The exam will try to make you mix these up.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">4. Retrospective Rating -- Premium is NOT Unlimited</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Retro rating has a <strong>minimum premium</strong> (floor) and a <strong>maximum premium</strong> (ceiling). Even in a catastrophic loss year, the insured never pays more than the maximum. Even in a zero-loss year, they still pay the minimum. The exam may present a retro scenario and ask for the final premium -- always check against the min and max.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">5. Financial Distress = More Losses, Not Fewer</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The exam may try to trick you: "A company with financial problems is a better risk because they will be more careful to avoid claims." WRONG. Financially distressed businesses <strong>defer maintenance, cut safety, and overwork staff</strong>, which INCREASES losses. Financial stability is a <strong>positive</strong> underwriting indicator.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">6. The Underwriting Cycle is NOT Controllable by Any Single Insurer</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">No individual insurer can control the cycle. It is a <strong>market-wide</strong> phenomenon driven by aggregate capital, competition, and catastrophes. An insurer can only <strong>adapt</strong> to the cycle (tighten standards in soft markets to avoid future pain, maintain discipline in hard markets to build long-term profitability). The cycle is an external constraint.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">7. Social Inflation is NOT the Same as Economic Inflation</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>Economic inflation</strong> = general price increases (materials, labor, medical costs). <strong>Social inflation</strong> = jury attitudes, litigation funding, expanded liability theories that increase claim costs <strong>beyond</strong> what economic inflation alone would predict. Nuclear verdicts of $10M+ are a social inflation phenomenon, not just rising prices.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Reference Summary -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-amber-600 to-amber-800 rounded-xl p-6 text-white">
+                <h2 class="text-2xl lg:text-3xl font-bold mb-6">Quick Reference Summary</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Premium-to-Surplus Ratio</p>
+                        <p class="text-sm text-amber-100">Max ~3:1 -- writing more strains surplus and triggers regulator concern</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Reinsurance</p>
+                        <p class="text-sm text-amber-100">Expands single-risk capacity; surplus share (treaty) and facultative (one-off)</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Unfair Discrimination</p>
+                        <p class="text-sm text-amber-100">Race, religion, national origin, gender (most lines) -- all prohibited</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Redlining</p>
+                        <p class="text-sm text-amber-100">Refusing entire neighborhoods by demographics -- illegal</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Soft Market</p>
+                        <p class="text-sm text-amber-100">Low prices, relaxed standards, abundant capacity, marginal risks accepted</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Hard Market</p>
+                        <p class="text-sm text-amber-100">High prices, tight capacity, strict underwriting, some risks uninsurable</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Schedule Rating</p>
+                        <p class="text-sm text-amber-100">Credits/debits based on risk characteristics -- subjective, set at inception</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Experience Rating</p>
+                        <p class="text-sm text-amber-100">Mod factor: own losses vs. class average -- objective, common in WC</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Retrospective Rating</p>
+                        <p class="text-sm text-amber-100">Premium adjusts after policy period based on actual losses (min/max caps)</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Financial Stability</p>
+                        <p class="text-sm text-amber-100">Distressed businesses defer maintenance -- higher loss frequency</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Management Quality</p>
+                        <p class="text-sm text-amber-100">#1 predictor of future losses -- safety culture matters most</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Value Chain</p>
+                        <p class="text-sm text-amber-100">UW connects to marketing, claims, actuarial, risk control, and reinsurance</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Navigation Footer -->
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="../part-2/index.html" class="text-gray-300 hover:text-white flex items-center">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                    </svg>
+                    Part 2
+                </a>
+                <span class="text-gray-400">Part 3 of 3</span>
+                <a href="../../assignment-4/index.html" class="text-gray-300 hover:text-white flex items-center">
+                    Assignment 4: Personal Lines Underwriting
+                    <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AI Tutor Button -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            createFloatingAIButton(`CPCU 520 Assignment 3 Part 3: Underwriting Constraints & Commercial Lines
+
+INTERNAL CONSTRAINTS (company controls these):
+1. Financial Capacity -- surplus limits total risk; premium-to-surplus ratio max ~3:1
+2. Reinsurance -- surplus share treaties expand single-risk capacity; facultative for unusual risks
+3. Staffing/Expertise -- writing unfamiliar classes leads to poor selection and adverse selection
+4. IT Systems -- legacy systems slow turnaround and limit data analytics
+5. Company Appetite -- management sets strategy; underwriters must follow even if they disagree
+
+EXTERNAL CONSTRAINTS (outside forces):
+1. Regulation -- unfair discrimination prohibited (race, religion, national origin, gender)
+   - Redlining prohibited (cannot refuse entire neighborhoods by demographics)
+   - Rate regulation: prior approval, file-and-use, use-and-file
+   - Cancellation/nonrenewal restrictions (cause + notice required)
+2. Underwriting Cycle -- soft market (low prices, relaxed standards) vs hard market (high prices, strict)
+3. Competition -- losing good risks to cheaper competitors causes adverse selection
+4. Economic Conditions -- inflation increases loss costs; low interest rates reduce investment income
+5. Social Inflation -- nuclear verdicts ($10M+), litigation funding, expanded liability theories
+
+COMMERCIAL LINES EVALUATION FACTORS:
+- Business operations & industry hazards
+- Financial stability (distressed = more losses, NOT fewer)
+- Management quality (#1 predictor of future losses)
+- Loss history & development trends
+- Contractual obligations (certificates, additional insureds)
+- Regulatory compliance (OSHA, environmental)
+- Location (fire protection class, crime, flood, fire station proximity)
+
+LARGE ACCOUNT RATING METHODS:
+1. Schedule Rating -- credits/debits based on risk characteristics (subjective, set at inception)
+2. Experience Rating -- mod factor based on own losses vs class average (objective, common in WC)
+   - Mod < 1.00 = better than average (credit)
+   - Mod > 1.00 = worse than average (surcharge)
+3. Retrospective Rating -- premium adjusts after policy period based on actual losses
+   - Has minimum premium (floor) and maximum premium (ceiling)
+4. Loss-Sensitive Programs -- large deductibles, SIRs; require collateral (LOC, trust, surety bond)
+
+UNDERWRITING VALUE CHAIN:
+- Marketing: UW communicates appetite; marketing provides competitor intelligence
+- Claims: loss data feeds back to UW; UW shares file details with adjusters
+- Actuarial: sets rates; UW provides field feedback on adequacy
+- Risk Control: inspections inform UW; UW may require improvements
+- Reinsurance: treaty terms define limits; UW requests facultative for large/unusual risks
+
+KEY EXAM TRAPS:
+- Reinsurance = INTERNAL constraint (company chooses its program)
+- Underwriting cycle = EXTERNAL constraint (market-wide, no single insurer controls it)
+- Schedule rating = subjective; Experience rating = objective (do not confuse)
+- Retro rating has min AND max (never unlimited)
+- Financial distress = MORE losses (deferred maintenance), not fewer
+- Social inflation differs from economic inflation (jury attitudes vs price increases)
+- Fair discrimination (actuarial factors) is legal; unfair discrimination (demographics) is illegal`);
+        });
+    </script>
+</body>
+</html>

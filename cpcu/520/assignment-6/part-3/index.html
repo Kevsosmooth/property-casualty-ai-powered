@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment 6 Part 3: Capital Market Alternatives and Modern Reinsurance | CPCU 520</title>
+    <link rel="icon" type="image/svg+xml" href="../../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <link rel="stylesheet" href="../../../../css/styles.css">
+    <script src="../../../../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+        }
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <!-- Settings & Theme Toggle Buttons -->
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="showAPIKeySetup()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings">
+            <svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+        </button>
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/>
+            </svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-cyan-600 to-cyan-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap gap-2 text-sm mb-2">
+                <a href="../../../../index.html" class="text-cyan-200 hover:text-white">Home</a>
+                <span class="text-cyan-300">/</span>
+                <a href="../../../index.html" class="text-cyan-200 hover:text-white">CPCU</a>
+                <span class="text-cyan-300">/</span>
+                <a href="../../index.html" class="text-cyan-200 hover:text-white">520</a>
+                <span class="text-cyan-300">/</span>
+                <a href="../index.html" class="text-cyan-200 hover:text-white">Assignment 6</a>
+                <span class="text-cyan-300">/</span>
+                <span class="text-white">Part 3</span>
+            </div>
+            <h1 class="text-3xl font-bold">Assignment 6 Part 3: Capital Market Alternatives and Modern Reinsurance</h1>
+            <p class="text-cyan-200 mt-1">Cat bonds, sidecars, ILWs, finite risk, retrocession, and the trends reshaping global reinsurance</p>
+        </div>
+    </header>
+
+    <!-- Part Navigation -->
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-wrap gap-2 text-sm">
+                <a href="../index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Overview</a>
+                <a href="../part-1/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 1</a>
+                <a href="../part-2/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 2</a>
+                <span class="bg-cyan-600 text-white px-3 py-1 rounded font-medium">Part 3</span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-5xl lg:max-w-7xl">
+
+        <!-- Start Here: 5 Things You MUST Know -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-cyan-100 to-blue-200 dark:from-cyan-900/40 dark:to-blue-800/40 rounded-xl p-6 border border-cyan-300 dark:border-cyan-700">
+                <h3 class="text-xl lg:text-2xl font-bold text-cyan-800 dark:text-cyan-200 mb-4">Start Here: 5 Things You MUST Know</h3>
+                <div class="grid md:grid-cols-2 gap-3">
+                    <div class="flex items-start">
+                        <span class="bg-cyan-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Cat bonds</strong> use a Special Purpose Vehicle (SPV) to transfer catastrophe risk from an insurer to capital market investors. Fully collateralized = zero credit risk.</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-cyan-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Four trigger types for cat bonds: <strong>indemnity</strong> (actual losses), <strong>industry index</strong> (PCS data), <strong>parametric</strong> (physical measurement), and <strong>modeled loss</strong>.</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-cyan-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">The <strong>10-10 Rule</strong> for finite risk: a contract must transfer at least a 10% chance of at least a 10% loss to qualify as reinsurance, not just a loan.</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-cyan-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">4</span>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Retrocession</strong> = reinsurance for reinsurers. Chain: Primary insurer &rarr; Reinsurer &rarr; Retrocessionaire. Spreads cat risk globally.</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-cyan-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">5</span>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Convergence capital</strong> = capital market money flowing into insurance risk. ILS now represents ~20% of global catastrophe reinsurance capacity (~$45B outstanding).</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Overview Section -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">Why Capital Markets Entered Reinsurance</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-800 rounded-lg p-5 lg:p-6 mb-6">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">After <strong>Hurricane Andrew</strong> (1992, $27B in losses) and <strong>9/11</strong> (2001, $40B+ in losses), the traditional reinsurance industry simply did not have enough money to cover the demand. The entire global reinsurance industry had roughly <strong>$700 billion</strong> in capacity. Meanwhile, global capital markets held <strong>trillions</strong>. Investors realized they could earn attractive, uncorrelated returns by taking on insurance risk. The result: <strong>Insurance-Linked Securities (ILS)</strong> &mdash; financial instruments that transfer insurance risk to Wall Street.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                        <p class="font-bold text-red-800 dark:text-red-300 mb-1">The Problem</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Mega-catastrophes wiped out reinsurers. After Andrew, 11 insurers went insolvent. Traditional reinsurance capacity was not enough for today's mega-risks.</p>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <p class="font-bold text-green-800 dark:text-green-300 mb-1">The Solution</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Tap into capital markets. Pension funds, hedge funds, and institutional investors provide risk-bearing capacity. This is called <strong>convergence capital</strong>.</p>
+                    </div>
+                </div>
+
+                <!-- Why investors want insurance risk -->
+                <div class="bg-indigo-50 dark:bg-indigo-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-indigo-500 mb-6">
+                    <p class="font-bold text-indigo-800 dark:text-indigo-300 mb-2">Why Do Investors Want Insurance Risk?</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mb-2">Insurance catastrophe risk is <strong>uncorrelated</strong> with stock markets. When stocks crash (2008 financial crisis), hurricanes do not care. When hurricanes hit, the S&amp;P 500 does not automatically drop. This makes insurance risk an excellent <strong>portfolio diversifier</strong> for institutional investors.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Plus, the returns are attractive &mdash; cat bond spreads of 5-15% above risk-free rates are common, which beats most fixed-income investments.</p>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 lg:p-5 rounded-r-lg">
+                    <p class="font-bold text-amber-800 dark:text-amber-300 text-lg">Exam Alert!</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">Know the difference between each capital market alternative. The exam loves asking: "Which ILS vehicle uses a parametric trigger?" or "What is the 10-10 rule?" Also understand <strong>basis risk</strong> &mdash; a non-indemnity trigger may not match the insurer's actual losses.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 1: Catastrophe Bonds -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">1. Catastrophe Bonds (Cat Bonds)</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-6">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg lg:text-xl">What is a Cat Bond?</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">A <strong>catastrophe bond</strong> is a debt instrument that transfers catastrophe risk from an insurer (the sponsor) to capital market investors. If no qualifying catastrophe occurs, investors earn high returns. If a catastrophe triggers the bond, investors lose some or all of their principal, and that money goes to the insurer to pay claims.</p>
+                </div>
+
+                <!-- Cat Bond Flow Diagram -->
+                <div class="bg-gray-50 dark:bg-gray-700/50 rounded-xl p-6 mb-6 border border-gray-200 dark:border-gray-600">
+                    <h3 class="font-bold text-gray-800 dark:text-gray-200 text-lg mb-4 text-center">How a Cat Bond Works</h3>
+                    <div class="flex flex-col lg:flex-row items-center justify-center gap-3 lg:gap-4">
+                        <!-- Sponsor -->
+                        <div class="bg-cyan-100 dark:bg-cyan-900/40 p-4 rounded-lg text-center min-w-[140px] border border-cyan-300 dark:border-cyan-700">
+                            <p class="font-bold text-cyan-800 dark:text-cyan-300">Sponsor</p>
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">(Insurer)</p>
+                        </div>
+                        <!-- Arrow: Premium -->
+                        <div class="flex flex-col items-center">
+                            <p class="text-xs text-gray-500 dark:text-gray-400 mb-1">Premium</p>
+                            <div class="text-2xl text-cyan-500">&rarr;</div>
+                            <div class="text-2xl text-blue-500">&larr;</div>
+                            <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Loss payment (if triggered)</p>
+                        </div>
+                        <!-- SPV -->
+                        <div class="bg-blue-100 dark:bg-blue-900/40 p-4 rounded-lg text-center min-w-[160px] border-2 border-blue-400 dark:border-blue-600">
+                            <p class="font-bold text-blue-800 dark:text-blue-300">SPV</p>
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">(Special Purpose Vehicle)</p>
+                            <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Holds collateral in trust</p>
+                        </div>
+                        <!-- Arrow: Bonds / Coupon -->
+                        <div class="flex flex-col items-center">
+                            <p class="text-xs text-gray-500 dark:text-gray-400 mb-1">Bond proceeds (principal)</p>
+                            <div class="text-2xl text-blue-500">&larr;</div>
+                            <div class="text-2xl text-green-500">&rarr;</div>
+                            <p class="text-xs text-gray-500 dark:text-gray-400 mt-1">Coupon payments (SOFR + spread)</p>
+                        </div>
+                        <!-- Investors -->
+                        <div class="bg-green-100 dark:bg-green-900/40 p-4 rounded-lg text-center min-w-[140px] border border-green-300 dark:border-green-700">
+                            <p class="font-bold text-green-800 dark:text-green-300">Investors</p>
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">(Pension funds, hedge funds)</p>
+                        </div>
+                    </div>
+                    <div class="mt-4 bg-red-50 dark:bg-red-900/20 rounded-lg p-3 text-center border border-red-200 dark:border-red-800">
+                        <p class="text-sm lg:text-base text-red-700 dark:text-red-300"><strong>If triggered:</strong> Investors lose principal &rarr; Money flows from SPV trust to Sponsor to pay catastrophe claims</p>
+                    </div>
+                </div>
+
+                <!-- Step-by-step explanation -->
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-purple-500 mb-6">
+                    <p class="font-bold text-purple-800 dark:text-purple-300 mb-2">Step-by-Step: How a Cat Bond Is Created</p>
+                    <div class="space-y-2 text-sm lg:text-base text-gray-700 dark:text-gray-300">
+                        <p><strong>Step 1:</strong> The insurer (sponsor) decides it needs catastrophe protection beyond what traditional reinsurers can provide.</p>
+                        <p><strong>Step 2:</strong> The sponsor creates a Special Purpose Vehicle (SPV) &mdash; a legal shell company, usually domiciled offshore (Bermuda, Cayman Islands).</p>
+                        <p><strong>Step 3:</strong> The SPV issues bonds to investors. Investors pay cash (the principal) which goes into a collateral trust account.</p>
+                        <p><strong>Step 4:</strong> The sponsor pays a premium to the SPV. The SPV combines this premium with interest earned on the collateral to pay investors a coupon (typically SOFR + a spread of 5-15%).</p>
+                        <p><strong>Step 5:</strong> If no qualifying event occurs during the bond term (usually 3 years), investors get their principal back at maturity plus the coupons they earned.</p>
+                        <p><strong>Step 6:</strong> If a qualifying catastrophe occurs and the trigger conditions are met, the SPV releases some or all of the collateral to the sponsor to cover losses. Investors lose that portion of their principal.</p>
+                    </div>
+                </div>
+
+                <!-- Real-World Example -->
+                <div class="bg-cyan-50 dark:bg-cyan-900/20 p-4 lg:p-5 rounded-lg border-l-4 border-cyan-500 mb-6">
+                    <p class="font-semibold text-cyan-800 dark:text-cyan-300 mb-2">Real-World Scenario: Florida Wind Cat Bond</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Florida Citizens Insurance sponsors a $500M cat bond with a parametric trigger: Category 4+ hurricane making landfall in Florida. Investors earn SOFR + 8% annual spread.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens (No Event):</strong> No major hurricane hits for 3 years. Investors collect roughly $40M per year in coupons (8% of $500M). At maturity, they get their $500M principal back. Total return: ~$120M profit on a $500M investment. Everyone wins.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens (Event Occurs):</strong> A Category 5 hurricane slams Miami in Year 2. The parametric trigger is met. Investors lose their entire $500M principal. That money goes to Florida Citizens to help pay billions in claims. Investors earned ~$40M in Year 1 coupons but lost $500M in principal &mdash; a devastating net loss of $460M.</p>
+                    </div>
+                </div>
+
+                <!-- Key Numbers -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-3 lg:gap-4 mb-6">
+                    <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded-lg text-center border border-gray-200 dark:border-gray-600">
+                        <p class="text-2xl lg:text-3xl font-bold text-blue-600 dark:text-blue-400">~$45B</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Outstanding cat bonds (2025)</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded-lg text-center border border-gray-200 dark:border-gray-600">
+                        <p class="text-2xl lg:text-3xl font-bold text-blue-600 dark:text-blue-400">~20%</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">ILS share of global cat reinsurance</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded-lg text-center border border-gray-200 dark:border-gray-600">
+                        <p class="text-2xl lg:text-3xl font-bold text-blue-600 dark:text-blue-400">$1-3M</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Setup cost per cat bond</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded-lg text-center border border-gray-200 dark:border-gray-600">
+                        <p class="text-2xl lg:text-3xl font-bold text-blue-600 dark:text-blue-400">2-5 yrs</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Typical multi-year term</p>
+                    </div>
+                </div>
+
+                <!-- Advantages vs Disadvantages -->
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border border-green-200 dark:border-green-800">
+                        <p class="font-bold text-green-800 dark:text-green-300 mb-2">Advantages</p>
+                        <ul class="space-y-1 text-sm lg:text-base text-gray-700 dark:text-gray-300">
+                            <li><strong>Multi-year coverage</strong> &mdash; locked in for 2-5 years, no annual renewal risk</li>
+                            <li><strong>Zero credit risk</strong> &mdash; fully collateralized in trust (unlike traditional reinsurance)</li>
+                            <li><strong>Diversifies sources</strong> &mdash; not dependent solely on reinsurance market</li>
+                            <li><strong>Massive capacity</strong> &mdash; taps capital markets (trillions available)</li>
+                        </ul>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border border-red-200 dark:border-red-800">
+                        <p class="font-bold text-red-800 dark:text-red-300 mb-2">Disadvantages</p>
+                        <ul class="space-y-1 text-sm lg:text-base text-gray-700 dark:text-gray-300">
+                            <li><strong>Expensive setup</strong> &mdash; $1-3M in legal, modeling, and structuring fees</li>
+                            <li><strong>Basis risk</strong> &mdash; non-indemnity triggers may not match actual losses</li>
+                            <li><strong>Slow to arrange</strong> &mdash; takes months (vs. weeks for traditional reinsurance)</li>
+                            <li><strong>Only for large risks</strong> &mdash; minimum deal size makes it impractical for small insurers</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Trigger Types Comparison -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">2. Cat Bond Trigger Types</h2>
+
+                <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-6">The trigger determines <strong>when investors lose their money</strong>. Each type trades off between accuracy for the insurer and transparency for investors. This is one of the most tested concepts in this section.</p>
+
+                <div class="overflow-x-auto mb-6">
+                    <table class="w-full text-sm lg:text-base">
+                        <thead>
+                            <tr class="bg-blue-600 text-white">
+                                <th class="p-3 lg:p-4 text-left rounded-tl-lg">Trigger Type</th>
+                                <th class="p-3 lg:p-4 text-left">Based On</th>
+                                <th class="p-3 lg:p-4 text-left">Basis Risk</th>
+                                <th class="p-3 lg:p-4 text-left">Speed</th>
+                                <th class="p-3 lg:p-4 text-left rounded-tr-lg">Best For</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-bold text-blue-700 dark:text-blue-300">Indemnity</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Sponsor's actual losses</td>
+                                <td class="p-3 lg:p-4 text-green-700 dark:text-green-300">None (perfect match)</td>
+                                <td class="p-3 lg:p-4 text-red-700 dark:text-red-300">Slowest (must wait for claims)</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Insurers wanting exact coverage</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <td class="p-3 lg:p-4 font-bold text-blue-700 dark:text-blue-300">Industry Index</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Industry-wide losses (PCS data)</td>
+                                <td class="p-3 lg:p-4 text-amber-700 dark:text-amber-300">Moderate</td>
+                                <td class="p-3 lg:p-4 text-amber-700 dark:text-amber-300">Moderate</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Insurers with typical market share</td>
+                            </tr>
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-bold text-blue-700 dark:text-blue-300">Parametric</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Physical measurement (wind speed, magnitude)</td>
+                                <td class="p-3 lg:p-4 text-red-700 dark:text-red-300">Highest</td>
+                                <td class="p-3 lg:p-4 text-green-700 dark:text-green-300">Fastest (objective data)</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Investors wanting transparency</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <td class="p-3 lg:p-4 font-bold text-blue-700 dark:text-blue-300">Modeled Loss</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Catastrophe model output (RMS, AIR)</td>
+                                <td class="p-3 lg:p-4 text-amber-700 dark:text-amber-300">Moderate</td>
+                                <td class="p-3 lg:p-4 text-amber-700 dark:text-amber-300">Moderate</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Balanced approach</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Memory trick -->
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 border-l-4 border-purple-500 mb-6">
+                    <p class="font-bold text-purple-800 dark:text-purple-300 mb-1">Memory Trick: The Basis Risk Spectrum</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Think of it as a line from <strong>insurer-friendly</strong> to <strong>investor-friendly</strong>. Indemnity is best for the insurer (zero basis risk, exact match). Parametric is best for the investor (fast, transparent, objective). Industry index and modeled loss sit in the middle. The more transparent the trigger is for investors, the more basis risk the insurer takes on.</p>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 rounded-r-lg">
+                    <p class="font-bold text-amber-800 dark:text-amber-300">Key Concept: Basis Risk</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-1 text-sm lg:text-base"><strong>Basis risk</strong> = the risk that the trigger does not match the insurer's actual losses. Example: A parametric cat bond triggers at wind speed >150mph. A hurricane hits with 140mph winds but causes $2B in storm surge damage. The bond does NOT trigger, and the insurer gets nothing. The physical measurement missed the actual loss. That gap is basis risk.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Sidecars -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">3. Sidecars</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-6">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg lg:text-xl">Definition</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">A <strong>sidecar</strong> is a separate legal entity created by a reinsurer, funded by outside investors, to take on a defined book of business. Typically structured as a <strong>quota share</strong> arrangement &mdash; investors receive a proportional share of premiums AND losses. Usually short-term (1-3 years), renewable.</p>
+                </div>
+
+                <div class="bg-cyan-50 dark:bg-cyan-900/20 p-4 lg:p-5 rounded-lg border-l-4 border-cyan-500 mb-4">
+                    <p class="font-semibold text-cyan-800 dark:text-cyan-300 mb-2">Real-World Scenario: Post-Hurricane Sidecar</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> After a devastating hurricane season, reinsurance prices spike 40%. A reinsurer sees a golden opportunity to write Florida property cat business at hardened rates, but its own capital is tied up in existing reserves.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> The reinsurer creates a sidecar called "Florida Cat Partners Ltd." and raises $200M from hedge fund investors. The sidecar writes Florida property cat business for 2 years on a quota share basis. Investors get 70% of the premiums; the reinsurer manages the book and takes a management fee plus 30% of premiums.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> If losses are low, investors earn 15-20% returns (great money). If a major hurricane hits, investors absorb their proportional share of losses. The reinsurer earns fees with limited risk to its own balance sheet.</p>
+                    </div>
+                </div>
+
+                <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border-l-4 border-purple-500">
+                    <p class="font-bold text-purple-800 dark:text-purple-300 mb-1">Why Sidecars Are Popular After Cat Events</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">After a major catastrophe, reinsurance prices spike dramatically. Investors rush in via sidecars to capture those high premiums. When prices normalize, sidecars wind down. This makes them <strong>counter-cyclical</strong> &mdash; they expand capacity exactly when the market needs it most.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: ILWs -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">4. Industry Loss Warranties (ILWs)</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-6">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg lg:text-xl">Definition</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">An <strong>Industry Loss Warranty</strong> is a binary contract that pays out if <strong>industry-wide losses</strong> from a single event exceed a specified threshold. Think of it as a simple on/off switch &mdash; either the industry loss threshold is breached and you get paid, or it is not.</p>
+                </div>
+
+                <div class="bg-cyan-50 dark:bg-cyan-900/20 p-4 lg:p-5 rounded-lg border-l-4 border-cyan-500 mb-4">
+                    <p class="font-semibold text-cyan-800 dark:text-cyan-300 mb-2">Real-World Scenario: $30B Hurricane ILW</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> An insurer buys a "$30B Hurricane ILW" with a $50M limit. The contract pays $50M if total U.S. industry hurricane losses exceed $30 billion in a single event.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> A hurricane hits causing $35B in industry-wide losses. The $30B threshold is breached.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> The insurer receives $50M regardless of its own actual losses. Even if the insurer only had $10M in losses, it still gets the full $50M. That is both the strength and the basis risk of ILWs.</p>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-3">
+                    <div class="bg-green-50 dark:bg-green-900/20 p-3 rounded-lg border border-green-200 dark:border-green-800 text-center">
+                        <p class="font-bold text-green-800 dark:text-green-300">Simple</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Standardized, easy to understand</p>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/20 p-3 rounded-lg border border-green-200 dark:border-green-800 text-center">
+                        <p class="font-bold text-green-800 dark:text-green-300">Quick</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Can execute in days, not months</p>
+                    </div>
+                    <div class="bg-amber-50 dark:bg-amber-900/20 p-3 rounded-lg border border-amber-200 dark:border-amber-800 text-center">
+                        <p class="font-bold text-amber-800 dark:text-amber-300">Top-Up Layer</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Used when traditional reinsurance runs short</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Collateralized Reinsurance -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">5. Collateralized Reinsurance</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-6">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">A <strong>traditional reinsurance contract</strong>, but with one critical difference: the reinsurer posts <strong>full collateral upfront</strong> in a trust account. This eliminates credit risk entirely &mdash; the money is already set aside before any loss occurs. Now the <strong>largest segment of the ILS market</strong>, popular with hedge funds and pension funds entering the reinsurance space.</p>
+                </div>
+
+                <div class="bg-cyan-50 dark:bg-cyan-900/20 p-4 lg:p-5 rounded-lg border-l-4 border-cyan-500 mb-4">
+                    <p class="font-semibold text-cyan-800 dark:text-cyan-300 mb-2">Real-World Scenario: Pension Fund as Reinsurer</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> A large pension fund wants uncorrelated returns (insurance losses do not track the stock market). It provides $100M in collateralized reinsurance to cover a Florida insurer's hurricane risk.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> The $100M sits in a trust. If no hurricane triggers a payout, the pension fund keeps the premium (say, 12% of $100M = $12M) and gets the collateral back at the end of the contract period.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> The insurer gets guaranteed coverage (money is already in the trust). The pension fund earns returns uncorrelated to its equity portfolio. Win-win &mdash; unless a hurricane hits, in which case the insurer draws from the trust and the pension fund loses some or all of its $100M.</p>
+                    </div>
+                </div>
+
+                <div class="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-lg border-l-4 border-indigo-500">
+                    <p class="font-bold text-indigo-800 dark:text-indigo-300 mb-1">Why It Is the Largest ILS Segment</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Collateralized reinsurance is the easiest entry point for capital market investors. It uses familiar reinsurance contract structures (no need to learn about SPVs or bond issuance), the terms are customizable, and it works for any line of business &mdash; not just catastrophe. That flexibility has made it grow rapidly past cat bonds in total market share.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: Finite Risk Reinsurance -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">6. Finite Risk Reinsurance</h2>
+
+                <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-red-500 mb-6">
+                    <h3 class="font-bold text-red-800 dark:text-red-300 text-lg lg:text-xl">Controversial Territory</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg"><strong>Finite risk reinsurance</strong> involves limited risk transfer &mdash; it is more of a financing arrangement than true risk transfer. The ceding company essentially spreads losses over time rather than transferring them to someone else. Regulators watch these closely because some companies have abused them.</p>
+                </div>
+
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-5 border-2 border-purple-300 dark:border-purple-700 mb-6">
+                    <h3 class="font-bold text-purple-800 dark:text-purple-300 text-xl lg:text-2xl mb-2">The 10-10 Rule</h3>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">To qualify as reinsurance (and not just a loan), a finite risk contract must transfer:</p>
+                    <div class="grid grid-cols-2 gap-4 mt-3">
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg text-center">
+                            <p class="text-3xl font-bold text-purple-600 dark:text-purple-400">10%</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Minimum probability of loss</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg text-center">
+                            <p class="text-3xl font-bold text-purple-600 dark:text-purple-400">10%</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Minimum loss severity</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 dark:text-gray-300 mt-3 text-sm lg:text-base"><strong>Plain English:</strong> There must be at least a 10% chance that the reinsurer will suffer at least a 10% loss on the deal. If both thresholds are not met, it is not reinsurance &mdash; it is a loan with a fancy label. Both conditions must be satisfied simultaneously.</p>
+                </div>
+
+                <div class="bg-red-50 dark:bg-red-900/20 p-4 lg:p-5 rounded-lg border-l-4 border-red-500">
+                    <p class="font-semibold text-red-800 dark:text-red-300 mb-2">Real-World Scandal: AIG (2005)</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> AIG entered into "finite reinsurance" deals with General Re that transferred virtually no risk. The deals were structured to smooth AIG's reported loss reserves &mdash; making the company look healthier than it actually was.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happened:</strong> Regulators discovered the deals were essentially loans disguised as reinsurance. No meaningful risk transfer occurred &mdash; it was pure accounting manipulation.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> AIG restated $3.9 billion in earnings. CEO Hank Greenberg was forced out. Multiple executives faced criminal charges. The scandal led to much tighter scrutiny of finite risk deals across the entire industry and strengthened the enforcement of the 10-10 rule.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 7: Retrocession -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">7. Retrocession</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-6">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg lg:text-xl">Reinsurance for Reinsurers</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg"><strong>Retrocession</strong> is when a reinsurer transfers some of its assumed risk to another reinsurer (the <strong>retrocessionaire</strong>). It creates a chain that spreads catastrophe risk across the globe.</p>
+                </div>
+
+                <!-- Retrocession Chain -->
+                <div class="bg-gray-50 dark:bg-gray-700/50 rounded-xl p-6 mb-6 border border-gray-200 dark:border-gray-600">
+                    <h3 class="font-bold text-gray-800 dark:text-gray-200 text-lg mb-4 text-center">The Retrocession Chain</h3>
+                    <div class="flex flex-col md:flex-row items-center justify-center gap-3 lg:gap-4">
+                        <div class="bg-green-100 dark:bg-green-900/40 p-4 rounded-lg text-center min-w-[140px] border border-green-300 dark:border-green-700">
+                            <p class="font-bold text-green-800 dark:text-green-300">Primary Insurer</p>
+                            <p class="text-xs text-gray-600 dark:text-gray-400">Writes the policy</p>
+                        </div>
+                        <div class="text-2xl text-gray-400">&rarr;</div>
+                        <div class="bg-blue-100 dark:bg-blue-900/40 p-4 rounded-lg text-center min-w-[140px] border border-blue-300 dark:border-blue-700">
+                            <p class="font-bold text-blue-800 dark:text-blue-300">Reinsurer</p>
+                            <p class="text-xs text-gray-600 dark:text-gray-400">Assumes risk from insurer</p>
+                        </div>
+                        <div class="text-2xl text-gray-400">&rarr;</div>
+                        <div class="bg-purple-100 dark:bg-purple-900/40 p-4 rounded-lg text-center min-w-[140px] border border-purple-300 dark:border-purple-700">
+                            <p class="font-bold text-purple-800 dark:text-purple-300">Retrocessionaire</p>
+                            <p class="text-xs text-gray-600 dark:text-gray-400">Assumes risk from reinsurer</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-cyan-50 dark:bg-cyan-900/20 p-4 lg:p-5 rounded-lg border-l-4 border-cyan-500 mb-4">
+                    <p class="font-semibold text-cyan-800 dark:text-cyan-300 mb-2">Real-World Scenario: Global Risk Spreading</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> A Florida homeowner buys a policy from State Farm. State Farm cedes some hurricane risk to Swiss Re (a reinsurer). Swiss Re then retrocedes a portion of that risk to Lloyd's syndicates in London.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> A $50B hurricane hits Florida. State Farm pays claims and is reimbursed by Swiss Re. Swiss Re is partially reimbursed by Lloyd's. The loss is distributed across three continents.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> No single entity bears the full weight of the catastrophe. The risk is spread from a U.S. insurer to a European reinsurer to a London retrocessionaire. That is the power &mdash; and the interconnectedness &mdash; of retrocession.</p>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border border-green-200 dark:border-green-800">
+                        <p class="font-bold text-green-800 dark:text-green-300 mb-1">Benefit: Global Risk Spreading</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">A Florida hurricane loss can be spread from a U.S. insurer to a Bermuda reinsurer to a European retrocessionaire. No single entity bears the full weight.</p>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border border-red-200 dark:border-red-800">
+                        <p class="font-bold text-red-800 dark:text-red-300 mb-1">Risk: Systemic Interconnectedness</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">If one major retrocessionaire fails, it creates a <strong>domino effect</strong>. The reinsurer does not get paid, which means the primary insurer does not get paid. Everyone in the chain suffers.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 8: Modern Market Trends -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">8. Modern Reinsurance Market Trends (2024-2026)</h2>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                        <p class="font-bold text-red-800 dark:text-red-300 mb-1">Hardening Market</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Rates rising due to climate change losses, social inflation (rising jury verdicts), and COVID impacts. Insurers are paying significantly more for reinsurance than five years ago.</p>
+                    </div>
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-l-4 border-blue-500">
+                        <p class="font-bold text-blue-800 dark:text-blue-300 mb-1">Cyber Reinsurance</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Fastest-growing segment, but capacity is constrained. A single ransomware attack could hit thousands of companies simultaneously &mdash; the correlated/systemic risk terrifies reinsurers.</p>
+                    </div>
+                    <div class="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg border-l-4 border-amber-500">
+                        <p class="font-bold text-amber-800 dark:text-amber-300 mb-1">Climate Retreat</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Reinsurers are pulling back from the highest-risk coastal and wildfire areas. This drives up costs for primary insurers and ultimately for policyholders in vulnerable regions.</p>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border-l-4 border-purple-500">
+                        <p class="font-bold text-purple-800 dark:text-purple-300 mb-1">Trapped Capital</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">After major cat events, ILS investors' capital gets "trapped" in loss reserves while claims are settled. This can take years, frustrating investors who expected liquidity.</p>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <p class="font-bold text-green-800 dark:text-green-300 mb-1">AI and Technology</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">AI-driven catastrophe modeling, real-time loss estimation via satellite imagery and IoT sensors. Faster, more accurate risk assessment is changing how reinsurers price deals.</p>
+                    </div>
+                    <div class="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-lg border-l-4 border-indigo-500">
+                        <p class="font-bold text-indigo-800 dark:text-indigo-300 mb-1">Consolidation</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Fewer, larger reinsurers dominate. Major mergers (Aon-WTW attempted) and the shrinking number of global reinsurers concentrates risk in fewer hands.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Capital Market Vehicles Comparison -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">All Capital Market Vehicles at a Glance</h2>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm lg:text-base">
+                        <thead>
+                            <tr class="bg-cyan-600 text-white">
+                                <th class="p-3 lg:p-4 text-left rounded-tl-lg">Vehicle</th>
+                                <th class="p-3 lg:p-4 text-left">Structure</th>
+                                <th class="p-3 lg:p-4 text-left">Credit Risk</th>
+                                <th class="p-3 lg:p-4 text-left">Term</th>
+                                <th class="p-3 lg:p-4 text-left rounded-tr-lg">Key Feature</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-bold text-cyan-700 dark:text-cyan-300">Cat Bond</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">SPV issues bonds</td>
+                                <td class="p-3 lg:p-4 text-green-700 dark:text-green-300">Zero (collateralized)</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">2-5 years</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Multiple trigger types available</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <td class="p-3 lg:p-4 font-bold text-cyan-700 dark:text-cyan-300">Sidecar</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Quota share entity</td>
+                                <td class="p-3 lg:p-4 text-amber-700 dark:text-amber-300">Low (investor funded)</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">1-3 years</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Counter-cyclical, post-cat surge</td>
+                            </tr>
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-bold text-cyan-700 dark:text-cyan-300">ILW</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Binary contract</td>
+                                <td class="p-3 lg:p-4 text-amber-700 dark:text-amber-300">Depends on counterparty</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Annual</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Simple, fast, standardized</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <td class="p-3 lg:p-4 font-bold text-cyan-700 dark:text-cyan-300">Collateralized Re</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Traditional + collateral</td>
+                                <td class="p-3 lg:p-4 text-green-700 dark:text-green-300">Zero (collateralized)</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">1-3 years</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Largest ILS segment, flexible</td>
+                            </tr>
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-bold text-cyan-700 dark:text-cyan-300">Finite Risk</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Financing arrangement</td>
+                                <td class="p-3 lg:p-4 text-red-700 dark:text-red-300">Counterparty dependent</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Multi-year</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">10-10 rule, heavily scrutinized</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cheat Sheet -->
+        <section id="cheat-sheet" class="mb-10">
+            <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 border-2 border-dashed border-gray-300 dark:border-gray-600">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100">Cheat Sheet</h2>
+                    <span class="text-sm text-gray-500 dark:text-gray-400">Print this page for quick reference</span>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-200 mb-2">Capital Market Vehicles</p>
+                        <ul class="space-y-1 text-sm lg:text-base text-gray-700 dark:text-gray-300">
+                            <li><strong>Cat Bond</strong> &mdash; SPV issues bonds, investors lose principal if cat event triggers</li>
+                            <li><strong>Sidecar</strong> &mdash; Separate entity, quota share, investors get premiums + losses</li>
+                            <li><strong>ILW</strong> &mdash; Binary payout if industry losses exceed threshold</li>
+                            <li><strong>Collateralized Re</strong> &mdash; Traditional contract + full collateral in trust (largest ILS segment)</li>
+                            <li><strong>Finite Risk</strong> &mdash; Limited risk transfer, must pass 10-10 rule</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-200 mb-2">Trigger Types (Cat Bonds)</p>
+                        <ul class="space-y-1 text-sm lg:text-base text-gray-700 dark:text-gray-300">
+                            <li><strong>Indemnity</strong> &mdash; Actual insurer losses (zero basis risk, slow)</li>
+                            <li><strong>Industry Index</strong> &mdash; PCS industry data (moderate basis risk)</li>
+                            <li><strong>Parametric</strong> &mdash; Physical measurement (high basis risk, fast)</li>
+                            <li><strong>Modeled Loss</strong> &mdash; Cat model output (balanced approach)</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-200 mb-2">Key Rules and Concepts</p>
+                        <ul class="space-y-1 text-sm lg:text-base text-gray-700 dark:text-gray-300">
+                            <li><strong>10-10 Rule</strong> &mdash; 10% chance of 10% loss = real reinsurance</li>
+                            <li><strong>Basis risk</strong> &mdash; Trigger does not match actual losses</li>
+                            <li><strong>Convergence capital</strong> &mdash; Capital market money entering insurance</li>
+                            <li><strong>Retrocession</strong> &mdash; Reinsurance for reinsurers (domino risk)</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-200 mb-2">Key Numbers</p>
+                        <ul class="space-y-1 text-sm lg:text-base text-gray-700 dark:text-gray-300">
+                            <li><strong>~$45B</strong> &mdash; Outstanding cat bonds (2025)</li>
+                            <li><strong>~20%</strong> &mdash; ILS share of global cat reinsurance</li>
+                            <li><strong>~$700B</strong> &mdash; Total reinsurance industry capacity</li>
+                            <li><strong>$1-3M</strong> &mdash; Cost to set up a cat bond</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Trap Alerts -->
+        <section class="mb-10">
+            <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-xl p-5 lg:p-6">
+                <h2 class="text-2xl font-bold text-red-800 dark:text-red-300 mb-4">Exam Trap Alerts</h2>
+                <div class="space-y-3">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">1. Parametric = Fastest but MOST Basis Risk</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Students confuse which trigger has the most basis risk. Parametric triggers are based on physical measurements (wind speed, magnitude) &mdash; they are objective and fast, but they may not match actual losses at all. The exam may give a scenario where a hurricane causes huge damage but the trigger is not met because the measurement was below the threshold.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">2. Cat Bonds Have ZERO Credit Risk</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Unlike traditional reinsurance where you hope the reinsurer can pay, cat bond proceeds sit in a trust (collateralized). There is no counterparty credit risk. The exam may ask which ILS vehicle eliminates credit risk &mdash; the answer is cat bonds (and collateralized reinsurance).</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">3. The 10-10 Rule is About Finite Risk ONLY</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The 10-10 rule applies specifically to finite risk reinsurance. Do not confuse it with cat bonds or other ILS vehicles. It exists because finite risk deals can be disguised loans. Both thresholds must be met: at least 10% probability AND at least 10% potential loss.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">4. Sidecars vs. Cat Bonds &mdash; Know the Difference</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Both involve outside investors, but they work differently. <strong>Sidecars</strong> = quota share (proportional share of premiums and losses), short-term, created by reinsurers. <strong>Cat bonds</strong> = debt instruments with triggers, created by insurers via SPV, multi-year. The exam loves mixing these up.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">5. ILWs Pay Based on INDUSTRY Losses, Not YOUR Losses</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">An ILW triggers based on total industry losses exceeding a threshold. Your company could have zero losses from an event and still get paid (if industry losses are high enough). Conversely, your company could have huge losses but get nothing if total industry losses fall below the threshold. This is a major source of basis risk.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">6. Retrocession Creates Systemic Risk, Not Basis Risk</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Retrocession spreads risk globally (good), but also creates interconnectedness (dangerous). If a major retrocessionaire fails, it cascades up the chain. The exam may ask about the "downside" or "risk" of retrocession &mdash; the answer is systemic/domino risk. Do not confuse this with basis risk, which is about triggers not matching losses.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">7. Collateralized Reinsurance is the LARGEST ILS Segment</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Students often assume cat bonds are the biggest part of the ILS market because they get the most attention. In reality, collateralized reinsurance is the largest segment by volume. Cat bonds are the most visible, but collateralized reinsurance is quietly dominant.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Reference Summary -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-cyan-600 to-cyan-800 rounded-xl p-6 text-white">
+                <h2 class="text-2xl font-bold mb-6">Quick Reference Summary</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Cat Bond</p>
+                        <p class="text-sm text-cyan-100">SPV-issued bond. Investors lose principal if cat event triggers. Zero credit risk. $45B market.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Sidecar</p>
+                        <p class="text-sm text-cyan-100">Quota share entity funded by investors. Short-term. Popular after cat events when prices spike.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">ILW</p>
+                        <p class="text-sm text-cyan-100">Binary contract. Pays if industry losses exceed threshold. Simple, fast, basis risk.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Collateralized Re</p>
+                        <p class="text-sm text-cyan-100">Traditional contract + full collateral in trust. Largest ILS segment. Zero credit risk.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Finite Risk / 10-10</p>
+                        <p class="text-sm text-cyan-100">Limited risk transfer. Must have 10% chance of 10% loss or it is a loan, not reinsurance.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Retrocession</p>
+                        <p class="text-sm text-cyan-100">Reinsurance for reinsurers. Spreads risk globally. Creates systemic/domino risk.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Basis Risk</p>
+                        <p class="text-sm text-cyan-100">Trigger does not match actual losses. Highest with parametric, zero with indemnity.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Convergence Capital</p>
+                        <p class="text-sm text-cyan-100">Capital market money entering insurance risk. ~20% of global cat reinsurance capacity.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Market Trends</p>
+                        <p class="text-sm text-cyan-100">Hardening rates, cyber growth, climate retreat, trapped capital, AI modeling, consolidation.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 dark:bg-gray-950 text-gray-300 py-6">
+        <div class="container mx-auto px-4 text-center text-sm">
+            <div class="flex justify-between items-center max-w-2xl mx-auto">
+                <a href="../part-2/index.html" class="hover:text-white">&larr; Part 2: Types of Agreements</a>
+                <span class="text-gray-500">Part 3 of 3</span>
+                <a href="../../assignment-7/index.html" class="hover:text-white">Assignment 7: Actuarial &rarr;</a>
+            </div>
+            <p class="mt-4 text-gray-500">For educational purposes only. Not an official exam resource.</p>
+        </div>
+    </footer>
+
+    <!-- AI Tutor -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof createFloatingAIButton === 'function') {
+                createFloatingAIButton({
+                    topic: 'CPCU 520 Assignment 6 Part 3: Capital Market Alternatives and Modern Reinsurance',
+                    context: `This part covers capital market alternatives to traditional reinsurance and modern trends. Key concepts: (1) After Hurricane Andrew (1992) and 9/11 (2001), traditional reinsurance capacity (~$700B) was insufficient, so capital markets stepped in with convergence capital. (2) Insurance-Linked Securities (ILS) now represent ~20% of global cat reinsurance capacity (~$45B in cat bonds outstanding). (3) Cat Bonds: Sponsor creates SPV, SPV issues bonds to investors, premium funds coupons. If qualifying cat event occurs, investors lose principal which goes to insurer. Fully collateralized = zero credit risk. (4) Four trigger types: Indemnity (actual losses, no basis risk, slow), Industry Index (PCS data, moderate basis risk), Parametric (physical measurement like wind speed, highest basis risk, fastest), Modeled Loss (cat model output, balanced). (5) Basis risk = trigger doesn't match actual losses. (6) Sidecars: Separate entity created by reinsurer, funded by investors, quota share arrangement. Short-term (1-3 years). Popular after cat events when prices spike (counter-cyclical). (7) ILWs: Binary contracts paying if industry-wide losses exceed a threshold. Simple, quick, standardized. Used as top-up layer. (8) Collateralized Reinsurance: Traditional contract with full collateral posted upfront. Largest ILS segment. Popular with hedge funds and pension funds. (9) Finite Risk Reinsurance: Limited risk transfer, more financing than true reinsurance. 10-10 Rule: must transfer at least 10% chance of at least 10% loss. AIG scandal (2005) involved finite risk deals that were essentially loans disguised as reinsurance, led to $3.9B earnings restatement. (10) Retrocession: Reinsurance for reinsurers. Chain: Primary Insurer to Reinsurer to Retrocessionaire. Spreads risk globally but creates systemic/domino risk. (11) Modern trends: hardening market, cyber reinsurance growth (systemic risk concerns), climate retreat from high-risk areas, trapped capital after cat events, AI-driven cat modeling, industry consolidation.`
+                });
+            }
+        });
+    </script>
+</body>
+</html>

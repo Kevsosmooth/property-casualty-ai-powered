@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment 3 Part 2: Measuring Underwriting Results & Financial Analysis | CPCU 520</title>
+    <link rel="icon" type="image/svg+xml" href="../../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <link rel="stylesheet" href="../../../../css/styles.css">
+    <script src="../../../../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+        }
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <!-- Settings & Theme Toggle Buttons -->
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="showAPIKeySetup()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings">
+            <svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+        </button>
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/>
+            </svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-amber-600 to-amber-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap gap-2 text-sm mb-2">
+                <a href="../../../../index.html" class="text-amber-200 hover:text-white">Home</a>
+                <span class="text-amber-300">/</span>
+                <a href="../../../index.html" class="text-amber-200 hover:text-white">CPCU</a>
+                <span class="text-amber-300">/</span>
+                <a href="../../index.html" class="text-amber-200 hover:text-white">520</a>
+                <span class="text-amber-300">/</span>
+                <a href="../index.html" class="text-amber-200 hover:text-white">Assignment 3</a>
+                <span class="text-amber-300">/</span>
+                <span class="text-white">Part 2</span>
+            </div>
+            <h1 class="text-3xl font-bold">Assignment 3 Part 2: Measuring Underwriting Results & Financial Analysis</h1>
+            <p class="text-amber-200 mt-1">The ratios, metrics, and financial tools that tell you if an insurer is winning or losing</p>
+        </div>
+    </header>
+
+    <!-- Part Navigation -->
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-wrap gap-2 text-sm">
+                <a href="../index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Overview</a>
+                <a href="../part-1/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 1</a>
+                <span class="bg-amber-600 text-white px-3 py-1 rounded font-medium">Part 2</span>
+                <a href="../part-3/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 3</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-5xl lg:max-w-7xl">
+
+        <!-- Start Here: 5 Things You MUST Know -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-amber-100 to-orange-200 dark:from-amber-900/40 dark:to-orange-800/40 rounded-xl p-6 border border-amber-300 dark:border-amber-700">
+                <h3 class="text-xl lg:text-2xl font-bold text-amber-800 dark:text-amber-200 mb-4">Start Here: 5 Things You MUST Know</h3>
+                <div class="grid md:grid-cols-2 gap-3">
+                    <div class="flex items-start">
+                        <span class="bg-amber-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Combined ratio = Loss ratio + Expense ratio.</strong> Below 100% = underwriting profit. Above 100% = underwriting loss.</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-amber-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Trade basis vs. Statutory basis</strong> differ in the denominator for the expense ratio -- written premiums (trade) vs. earned premiums (statutory).</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-amber-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Retention ratio</strong> measures renewals. Target is 80-90%+. Low retention signals pricing or service problems.</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-amber-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">4</span>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Vertical analysis</strong> shows composition (% of total). <strong>Trend analysis</strong> shows direction (change over time).</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-amber-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">5</span>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Re-underwriting</strong> means reviewing and fixing an existing book of business -- non-renewing bad accounts, re-pricing marginal ones.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Overview Section -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">Overview</h2>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border border-amber-200 dark:border-amber-800 rounded-lg p-5 lg:p-6 mb-6">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Writing insurance is one thing. Knowing whether you are <strong>making money doing it</strong> is another. This part covers the key ratios underwriters use to measure profitability, the metrics that track business health, and the financial analysis tools that let you dig into an insurer's books to find problems before they become crises. You will also learn about <strong>re-underwriting</strong> -- the process of cleaning up a book of business that has gone bad.</p>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 lg:p-5 rounded-r-lg">
+                    <p class="font-bold text-amber-800 dark:text-amber-300 text-lg">Exam Alert!</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">The combined ratio formula and the distinction between trade basis and statutory basis are <strong>heavily tested</strong>. Expect questions that give you numbers and ask you to calculate, and questions that ask which basis uses which denominator. Vertical vs. trend analysis is also a favorite comparison question.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 1: Measuring Underwriting Results -->
+        <section id="underwriting-ratios" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">1. Measuring Underwriting Results</h2>
+
+                <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-6">Three ratios tell you almost everything about underwriting performance. Think of them as a report card for the underwriting department.</p>
+
+                <!-- The Three Ratios -->
+                <div class="grid lg:grid-cols-3 gap-4 lg:gap-6 mb-8">
+                    <!-- Loss Ratio -->
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500">
+                        <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg lg:text-xl mb-2">Loss Ratio</h3>
+                        <div class="bg-white dark:bg-gray-700 rounded p-3 mb-3 text-center">
+                            <p class="text-sm text-gray-500 dark:text-gray-400">Formula</p>
+                            <p class="text-lg lg:text-xl font-bold text-blue-700 dark:text-blue-300">Incurred Losses / Earned Premiums</p>
+                        </div>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What it tells you:</strong> How much of every premium dollar goes to paying claims. A 65% loss ratio means $0.65 of every $1 in premiums goes to claims.</p>
+                    </div>
+
+                    <!-- Expense Ratio -->
+                    <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-purple-500">
+                        <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg lg:text-xl mb-2">Expense Ratio</h3>
+                        <div class="bg-white dark:bg-gray-700 rounded p-3 mb-3 text-center">
+                            <p class="text-sm text-gray-500 dark:text-gray-400">Formula (Trade Basis)</p>
+                            <p class="text-lg lg:text-xl font-bold text-purple-700 dark:text-purple-300">UW Expenses / Written Premiums</p>
+                        </div>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What it tells you:</strong> How much it costs to run the business -- agent commissions, salaries, rent, marketing. A 30% expense ratio means $0.30 of every $1 goes to operating costs.</p>
+                    </div>
+
+                    <!-- Combined Ratio -->
+                    <div class="bg-amber-50 dark:bg-amber-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-amber-500">
+                        <h3 class="font-bold text-amber-800 dark:text-amber-300 text-lg lg:text-xl mb-2">Combined Ratio</h3>
+                        <div class="bg-white dark:bg-gray-700 rounded p-3 mb-3 text-center">
+                            <p class="text-sm text-gray-500 dark:text-gray-400">Formula</p>
+                            <p class="text-lg lg:text-xl font-bold text-amber-700 dark:text-amber-300">Loss Ratio + Expense Ratio</p>
+                        </div>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What it tells you:</strong> The total picture. Below 100% = underwriting profit. Above 100% = underwriting loss. But an insurer above 100% can still be profitable from <strong>investment income</strong>.</p>
+                    </div>
+                </div>
+
+                <!-- Combined Ratio Visual -->
+                <div class="bg-gray-50 dark:bg-gray-700 rounded-xl p-5 lg:p-6 mb-8">
+                    <h3 class="text-lg lg:text-xl font-bold text-gray-800 dark:text-gray-100 mb-4">What the Combined Ratio Means</h3>
+                    <div class="grid md:grid-cols-3 gap-4">
+                        <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border border-green-200 dark:border-green-800 text-center">
+                            <p class="text-3xl lg:text-4xl font-bold text-green-600 dark:text-green-400">92%</p>
+                            <p class="font-bold text-green-800 dark:text-green-300 mt-2">Underwriting Profit</p>
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400 mt-1">For every $1 in premium, only $0.92 goes to losses + expenses. The insurer keeps $0.08 as underwriting profit.</p>
+                        </div>
+                        <div class="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg border border-amber-200 dark:border-amber-800 text-center">
+                            <p class="text-3xl lg:text-4xl font-bold text-amber-600 dark:text-amber-400">100%</p>
+                            <p class="font-bold text-amber-800 dark:text-amber-300 mt-2">Break Even</p>
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400 mt-1">Every dollar in, every dollar out. No underwriting profit, but investment income can still make the year profitable.</p>
+                        </div>
+                        <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border border-red-200 dark:border-red-800 text-center">
+                            <p class="text-3xl lg:text-4xl font-bold text-red-600 dark:text-red-400">112%</p>
+                            <p class="font-bold text-red-800 dark:text-red-300 mt-2">Underwriting Loss</p>
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400 mt-1">Paying out $1.12 for every $1 collected. Losing $0.12 per dollar on underwriting alone. Needs investment income to survive.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Trade vs Statutory Basis -->
+                <div class="bg-indigo-50 dark:bg-indigo-900/20 rounded-xl p-5 lg:p-6 border border-indigo-200 dark:border-indigo-800 mb-8">
+                    <h3 class="text-lg lg:text-xl font-bold text-indigo-800 dark:text-indigo-300 mb-4">Trade Basis vs. Statutory Basis Combined Ratio</h3>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-4">There are two ways to calculate the combined ratio. The difference is <strong>what denominator you use for the expense ratio</strong>.</p>
+
+                    <div class="grid md:grid-cols-2 gap-4 mb-4">
+                        <div class="bg-white dark:bg-gray-700 rounded-lg p-4 border-l-4 border-blue-500">
+                            <h4 class="font-bold text-blue-800 dark:text-blue-300 mb-2">Trade Basis (Industry Standard)</h4>
+                            <div class="space-y-2 text-sm lg:text-base text-gray-700 dark:text-gray-300">
+                                <p><strong>Loss Ratio:</strong> Incurred Losses / <strong>Earned</strong> Premiums</p>
+                                <p><strong>Expense Ratio:</strong> UW Expenses / <strong>Written</strong> Premiums</p>
+                                <p><strong>Combined:</strong> Add them together</p>
+                            </div>
+                            <div class="bg-blue-50 dark:bg-blue-900/30 p-3 rounded mt-3">
+                                <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>Why "written"?</strong> Expenses like agent commissions are paid when the policy is <em>written</em>, not earned. So matching expenses to written premiums is more logical.</p>
+                            </div>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 rounded-lg p-4 border-l-4 border-purple-500">
+                            <h4 class="font-bold text-purple-800 dark:text-purple-300 mb-2">Statutory Basis (NAIC/Regulatory)</h4>
+                            <div class="space-y-2 text-sm lg:text-base text-gray-700 dark:text-gray-300">
+                                <p><strong>Loss Ratio:</strong> Incurred Losses / <strong>Earned</strong> Premiums</p>
+                                <p><strong>Expense Ratio:</strong> UW Expenses / <strong>Earned</strong> Premiums</p>
+                                <p><strong>Combined:</strong> (Losses + Expenses) / Earned Premiums</p>
+                            </div>
+                            <div class="bg-purple-50 dark:bg-purple-900/30 p-3 rounded mt-3">
+                                <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>Why "earned"?</strong> Regulators want one consistent denominator. Simpler to calculate. Used in statutory (regulatory) filings.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 rounded-r-lg">
+                        <p class="font-bold text-amber-800 dark:text-amber-300">Memory Trick</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1"><strong>"Trade uses TWO denominators"</strong> (earned for losses, written for expenses). <strong>"Statutory uses SAME denominator"</strong> (earned for both). T for Trade = T for Two. S for Statutory = S for Same.</p>
+                    </div>
+                </div>
+
+                <!-- Worked Example -->
+                <div class="bg-amber-50 dark:bg-amber-900/20 rounded-xl p-5 lg:p-6 border-l-4 border-amber-500 mb-6">
+                    <h3 class="text-lg lg:text-xl font-bold text-amber-800 dark:text-amber-300 mb-4">Worked Example: Calculating Both Combined Ratios</h3>
+
+                    <div class="bg-white dark:bg-gray-700 rounded-lg p-4 mb-4">
+                        <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Given Data for Keystone Insurance Co.:</p>
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                            <div class="bg-gray-50 dark:bg-gray-600 p-3 rounded text-center">
+                                <p class="text-xs lg:text-sm text-gray-500 dark:text-gray-400">Net Written Premiums</p>
+                                <p class="text-lg font-bold text-gray-800 dark:text-gray-100">$10,000,000</p>
+                            </div>
+                            <div class="bg-gray-50 dark:bg-gray-600 p-3 rounded text-center">
+                                <p class="text-xs lg:text-sm text-gray-500 dark:text-gray-400">Net Earned Premiums</p>
+                                <p class="text-lg font-bold text-gray-800 dark:text-gray-100">$9,200,000</p>
+                            </div>
+                            <div class="bg-gray-50 dark:bg-gray-600 p-3 rounded text-center">
+                                <p class="text-xs lg:text-sm text-gray-500 dark:text-gray-400">Incurred Losses</p>
+                                <p class="text-lg font-bold text-gray-800 dark:text-gray-100">$5,980,000</p>
+                            </div>
+                            <div class="bg-gray-50 dark:bg-gray-600 p-3 rounded text-center">
+                                <p class="text-xs lg:text-sm text-gray-500 dark:text-gray-400">Underwriting Expenses</p>
+                                <p class="text-lg font-bold text-gray-800 dark:text-gray-100">$3,100,000</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Trade Basis Calculation -->
+                    <div class="bg-white dark:bg-gray-700 rounded-lg p-4 mb-4">
+                        <p class="font-bold text-blue-800 dark:text-blue-300 mb-3">Trade Basis Calculation:</p>
+                        <div class="space-y-3 text-sm lg:text-base">
+                            <div class="flex items-center flex-wrap gap-2">
+                                <span class="bg-blue-100 dark:bg-blue-900/40 px-3 py-1 rounded font-medium text-blue-800 dark:text-blue-300">Step 1</span>
+                                <span class="text-gray-700 dark:text-gray-300">Loss Ratio = $5,980,000 / $9,200,000 = <strong>65.0%</strong></span>
+                            </div>
+                            <div class="flex items-center flex-wrap gap-2">
+                                <span class="bg-blue-100 dark:bg-blue-900/40 px-3 py-1 rounded font-medium text-blue-800 dark:text-blue-300">Step 2</span>
+                                <span class="text-gray-700 dark:text-gray-300">Expense Ratio = $3,100,000 / $10,000,000 = <strong>31.0%</strong></span>
+                                <span class="text-gray-500 dark:text-gray-400 text-xs lg:text-sm">(uses WRITTEN premiums)</span>
+                            </div>
+                            <div class="flex items-center flex-wrap gap-2">
+                                <span class="bg-blue-100 dark:bg-blue-900/40 px-3 py-1 rounded font-medium text-blue-800 dark:text-blue-300">Step 3</span>
+                                <span class="text-gray-700 dark:text-gray-300">Combined Ratio = 65.0% + 31.0% = <strong class="text-green-700 dark:text-green-400 text-lg">96.0%</strong></span>
+                                <span class="text-green-600 dark:text-green-400 text-xs lg:text-sm font-medium">Underwriting Profit!</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Statutory Basis Calculation -->
+                    <div class="bg-white dark:bg-gray-700 rounded-lg p-4">
+                        <p class="font-bold text-purple-800 dark:text-purple-300 mb-3">Statutory Basis Calculation:</p>
+                        <div class="space-y-3 text-sm lg:text-base">
+                            <div class="flex items-center flex-wrap gap-2">
+                                <span class="bg-purple-100 dark:bg-purple-900/40 px-3 py-1 rounded font-medium text-purple-800 dark:text-purple-300">Step 1</span>
+                                <span class="text-gray-700 dark:text-gray-300">Loss Ratio = $5,980,000 / $9,200,000 = <strong>65.0%</strong></span>
+                                <span class="text-gray-500 dark:text-gray-400 text-xs lg:text-sm">(same as trade)</span>
+                            </div>
+                            <div class="flex items-center flex-wrap gap-2">
+                                <span class="bg-purple-100 dark:bg-purple-900/40 px-3 py-1 rounded font-medium text-purple-800 dark:text-purple-300">Step 2</span>
+                                <span class="text-gray-700 dark:text-gray-300">Expense Ratio = $3,100,000 / $9,200,000 = <strong>33.7%</strong></span>
+                                <span class="text-gray-500 dark:text-gray-400 text-xs lg:text-sm">(uses EARNED premiums)</span>
+                            </div>
+                            <div class="flex items-center flex-wrap gap-2">
+                                <span class="bg-purple-100 dark:bg-purple-900/40 px-3 py-1 rounded font-medium text-purple-800 dark:text-purple-300">Step 3</span>
+                                <span class="text-gray-700 dark:text-gray-300">Combined Ratio = 65.0% + 33.7% = <strong class="text-amber-700 dark:text-amber-400 text-lg">98.7%</strong></span>
+                                <span class="text-amber-600 dark:text-amber-400 text-xs lg:text-sm font-medium">Still profitable, but tighter!</span>
+                            </div>
+                        </div>
+                        <div class="bg-amber-50 dark:bg-amber-900/30 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>Notice:</strong> Same company, same data -- but the statutory basis produces a <strong>higher</strong> combined ratio (98.7% vs 96.0%). This is because statutory uses a <em>smaller</em> denominator (earned &lt; written) for the expense ratio, making that ratio larger.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Retention Ratio -->
+        <section id="retention-ratio" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">2. Retention Ratio</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-6">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg lg:text-xl">What is Retention Ratio?</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">The percentage of expiring policies that <strong>renew</strong>. It measures customer loyalty and book stability. If you write 1,000 policies and 850 renew, your retention ratio is 85%.</p>
+                    <div class="bg-white dark:bg-gray-700 rounded p-3 mt-3 text-center">
+                        <p class="text-sm text-gray-500 dark:text-gray-400">Formula</p>
+                        <p class="text-lg lg:text-xl font-bold text-blue-700 dark:text-blue-300">Retention Ratio = Renewed Premium / Expiring Premium</p>
+                    </div>
+                </div>
+
+                <!-- What retention tells you -->
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border border-green-200 dark:border-green-800">
+                        <p class="font-bold text-green-800 dark:text-green-300 mb-2">High Retention (85%+)</p>
+                        <ul class="space-y-2 text-sm lg:text-base text-gray-700 dark:text-gray-300">
+                            <li class="flex items-start"><span class="text-green-500 mr-2 font-bold">+</span> Stable, predictable book of business</li>
+                            <li class="flex items-start"><span class="text-green-500 mr-2 font-bold">+</span> Customers are satisfied with price and service</li>
+                            <li class="flex items-start"><span class="text-green-500 mr-2 font-bold">+</span> Lower acquisition costs (no need to replace lost policies)</li>
+                            <li class="flex items-start"><span class="text-green-500 mr-2 font-bold">+</span> More accurate pricing -- you know the risks well</li>
+                        </ul>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border border-red-200 dark:border-red-800">
+                        <p class="font-bold text-red-800 dark:text-red-300 mb-2">Low Retention (below 75%)</p>
+                        <ul class="space-y-2 text-sm lg:text-base text-gray-700 dark:text-gray-300">
+                            <li class="flex items-start"><span class="text-red-500 mr-2 font-bold">!</span> Possible pricing problem -- rates too high</li>
+                            <li class="flex items-start"><span class="text-red-500 mr-2 font-bold">!</span> Service issues -- claims handling, responsiveness</li>
+                            <li class="flex items-start"><span class="text-red-500 mr-2 font-bold">!</span> Competitors offering better terms</li>
+                            <li class="flex items-start"><span class="text-red-500 mr-2 font-bold">!</span> Higher acquisition costs to replace departing accounts</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Example -->
+                <div class="bg-amber-50 dark:bg-amber-900/20 p-4 lg:p-5 rounded-lg border-l-4 border-amber-500">
+                    <p class="font-semibold text-amber-800 dark:text-amber-300 mb-2">Real-World Scenario: Retention Red Flag</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Summit Insurance has a commercial property book with $50 million in expiring premium. At renewal, only $35 million renews.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Retention ratio = $35M / $50M = <strong>70%</strong>. They lost 30% of their book. Agents report that a competitor is offering 15% lower rates with broader coverage.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Summit must now spend heavily on marketing and new business acquisition to replace $15 million in lost premium. The new business will likely have higher loss ratios in the first year (less is known about new accounts). The 70% retention ratio was an early warning sign that Summit's pricing was uncompetitive.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Hit Ratio -->
+        <section id="hit-ratio" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">3. Hit Ratio (Conversion Rate)</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-6">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg lg:text-xl">What is Hit Ratio?</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">The percentage of quotes issued that actually convert to <strong>bound policies</strong>. It tells you how efficient your quoting process is and whether your pricing is competitive.</p>
+                    <div class="bg-white dark:bg-gray-700 rounded p-3 mt-3 text-center">
+                        <p class="text-sm text-gray-500 dark:text-gray-400">Formula</p>
+                        <p class="text-lg lg:text-xl font-bold text-blue-700 dark:text-blue-300">Hit Ratio = Policies Written / Quotes Issued</p>
+                    </div>
+                </div>
+
+                <!-- Too High vs Too Low -->
+                <div class="bg-gray-50 dark:bg-gray-700 rounded-xl p-5 lg:p-6 mb-6">
+                    <h3 class="text-lg lg:text-xl font-bold text-gray-800 dark:text-gray-100 mb-4">The Goldilocks Problem</h3>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-4">Unlike loss ratio (where lower is always better), the hit ratio has a sweet spot. Too high or too low are both warning signs.</p>
+
+                    <div class="grid md:grid-cols-3 gap-4">
+                        <div class="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg border border-amber-200 dark:border-amber-800 text-center">
+                            <p class="text-2xl lg:text-3xl font-bold text-amber-600 dark:text-amber-400">Too High</p>
+                            <p class="text-sm lg:text-base text-gray-500 dark:text-gray-400 mb-2">(e.g., 80%+)</p>
+                            <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300">Almost every quote converts. You are probably <strong>underpricing</strong>. Everyone picks you because you are the cheapest -- which means you are probably not charging enough to cover losses.</p>
+                        </div>
+                        <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border border-green-200 dark:border-green-800 text-center">
+                            <p class="text-2xl lg:text-3xl font-bold text-green-600 dark:text-green-400">Just Right</p>
+                            <p class="text-sm lg:text-base text-gray-500 dark:text-gray-400 mb-2">(varies by line)</p>
+                            <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300">Competitive pricing, winning a healthy share. You are <strong>selective enough</strong> to maintain profitability but competitive enough to grow.</p>
+                        </div>
+                        <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border border-red-200 dark:border-red-800 text-center">
+                            <p class="text-2xl lg:text-3xl font-bold text-red-600 dark:text-red-400">Too Low</p>
+                            <p class="text-sm lg:text-base text-gray-500 dark:text-gray-400 mb-2">(e.g., below 15%)</p>
+                            <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300">You are quoting many accounts but winning almost none. Possible <strong>overpricing</strong>, slow turnaround, or wasting underwriter time on accounts you will never win.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Example -->
+                <div class="bg-green-50 dark:bg-green-900/20 p-4 lg:p-5 rounded-lg border-l-4 border-green-500">
+                    <p class="font-semibold text-green-800 dark:text-green-300 mb-2">Real-World Scenario: Hit Ratio Diagnosis</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> An underwriter at Pacific Insurance issues 200 commercial auto quotes in Q1. Only 18 become bound policies.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Hit Ratio = 18 / 200 = <strong>9%</strong>. The underwriter spent significant time analyzing and pricing 200 accounts but won only 18. Investigation reveals their rates are 20% above the market average.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Management reviews pricing assumptions. They find the loss development factors are overly conservative. After adjusting, hit ratio improves to 25% the next quarter without sacrificing profitability. The underwriter's time is now better utilized.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Benchmarks Box -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">Key Benchmarks to Memorize</h2>
+                <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-3 lg:gap-4">
+                    <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded-lg text-center border border-gray-200 dark:border-gray-600">
+                        <p class="text-2xl lg:text-3xl font-bold text-amber-600 dark:text-amber-400">&lt;100%</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Combined ratio target (UW profit)</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded-lg text-center border border-gray-200 dark:border-gray-600">
+                        <p class="text-2xl lg:text-3xl font-bold text-green-600 dark:text-green-400">80-90%</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Target retention ratio</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded-lg text-center border border-gray-200 dark:border-gray-600">
+                        <p class="text-2xl lg:text-3xl font-bold text-blue-600 dark:text-blue-400">60-70%</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Typical industry loss ratio</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded-lg text-center border border-gray-200 dark:border-gray-600">
+                        <p class="text-2xl lg:text-3xl font-bold text-purple-600 dark:text-purple-400">25-35%</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Typical expense ratio</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded-lg text-center border border-gray-200 dark:border-gray-600">
+                        <p class="text-2xl lg:text-3xl font-bold text-red-600 dark:text-red-400">100%</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Base year for trend analysis</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Financial Statement Analysis -->
+        <section id="financial-statements" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">4. Financial Statement Analysis for Insurers</h2>
+
+                <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-6">Insurance company financial statements look different from regular companies. The two key statements are the <strong>balance sheet</strong> (what the company owns and owes at a point in time) and the <strong>income statement</strong> (what it earned and spent over a period).</p>
+
+                <!-- Balance Sheet -->
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-5 lg:p-6 border border-blue-200 dark:border-blue-800 mb-6">
+                    <h3 class="text-lg lg:text-xl font-bold text-blue-800 dark:text-blue-300 mb-4">Balance Sheet: What the Insurer Owns and Owes</h3>
+
+                    <div class="grid md:grid-cols-3 gap-4">
+                        <!-- Assets -->
+                        <div class="bg-white dark:bg-gray-700 rounded-lg p-4">
+                            <h4 class="font-bold text-green-800 dark:text-green-300 mb-3 text-center border-b border-green-200 dark:border-green-700 pb-2">ASSETS (What It Owns)</h4>
+                            <ul class="space-y-2 text-sm lg:text-base text-gray-700 dark:text-gray-300">
+                                <li><strong>Invested assets</strong> -- bonds (largest), stocks, real estate, cash</li>
+                                <li><strong>Premiums receivable</strong> -- premiums owed by policyholders/agents</li>
+                                <li><strong>Reinsurance recoverables</strong> -- amounts owed by reinsurers for claims they share</li>
+                            </ul>
+                        </div>
+
+                        <!-- Liabilities -->
+                        <div class="bg-white dark:bg-gray-700 rounded-lg p-4">
+                            <h4 class="font-bold text-red-800 dark:text-red-300 mb-3 text-center border-b border-red-200 dark:border-red-700 pb-2">LIABILITIES (What It Owes)</h4>
+                            <ul class="space-y-2 text-sm lg:text-base text-gray-700 dark:text-gray-300">
+                                <li><strong>Loss reserves</strong> -- the BIGGEST liability; estimated future claim payments</li>
+                                <li><strong>Unearned premium reserves</strong> -- premiums collected but not yet "earned"</li>
+                                <li><strong>Other liabilities</strong> -- taxes, accounts payable, etc.</li>
+                            </ul>
+                        </div>
+
+                        <!-- Surplus -->
+                        <div class="bg-white dark:bg-gray-700 rounded-lg p-4">
+                            <h4 class="font-bold text-amber-800 dark:text-amber-300 mb-3 text-center border-b border-amber-200 dark:border-amber-700 pb-2">POLICYHOLDERS' SURPLUS</h4>
+                            <div class="bg-amber-50 dark:bg-amber-900/30 p-3 rounded text-center mb-3">
+                                <p class="font-bold text-amber-700 dark:text-amber-300">Assets - Liabilities = Surplus</p>
+                            </div>
+                            <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300">The insurer's "net worth." This is the financial cushion that protects policyholders. Regulators watch this closely -- if surplus drops too low, the insurer may be declared insolvent.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Income Statement -->
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-xl p-5 lg:p-6 border border-purple-200 dark:border-purple-800 mb-6">
+                    <h3 class="text-lg lg:text-xl font-bold text-purple-800 dark:text-purple-300 mb-4">Income Statement: Did the Insurer Make Money?</h3>
+
+                    <!-- Visual Flow -->
+                    <div class="bg-white dark:bg-gray-700 rounded-lg p-4">
+                        <div class="space-y-4">
+                            <!-- Revenue -->
+                            <div class="flex items-center flex-wrap gap-3">
+                                <div class="bg-green-100 dark:bg-green-900/40 px-4 py-2 rounded-lg">
+                                    <p class="font-bold text-green-800 dark:text-green-300">Net Premiums Earned</p>
+                                </div>
+                                <div class="text-2xl text-gray-400">+</div>
+                                <div class="bg-green-100 dark:bg-green-900/40 px-4 py-2 rounded-lg">
+                                    <p class="font-bold text-green-800 dark:text-green-300">Net Investment Income</p>
+                                </div>
+                                <div class="text-2xl text-gray-400">=</div>
+                                <div class="bg-green-200 dark:bg-green-800/40 px-4 py-2 rounded-lg">
+                                    <p class="font-bold text-green-900 dark:text-green-200">Total Revenue</p>
+                                </div>
+                            </div>
+
+                            <!-- Minus sign -->
+                            <div class="text-center text-2xl text-gray-400 font-bold">minus</div>
+
+                            <!-- Expenses -->
+                            <div class="flex items-center flex-wrap gap-3">
+                                <div class="bg-red-100 dark:bg-red-900/40 px-4 py-2 rounded-lg">
+                                    <p class="font-bold text-red-800 dark:text-red-300">Losses Incurred</p>
+                                </div>
+                                <div class="text-2xl text-gray-400">+</div>
+                                <div class="bg-red-100 dark:bg-red-900/40 px-4 py-2 rounded-lg">
+                                    <p class="font-bold text-red-800 dark:text-red-300">LAE</p>
+                                </div>
+                                <div class="text-2xl text-gray-400">+</div>
+                                <div class="bg-red-100 dark:bg-red-900/40 px-4 py-2 rounded-lg">
+                                    <p class="font-bold text-red-800 dark:text-red-300">UW Expenses</p>
+                                </div>
+                                <div class="text-2xl text-gray-400">+</div>
+                                <div class="bg-red-100 dark:bg-red-900/40 px-4 py-2 rounded-lg">
+                                    <p class="font-bold text-red-800 dark:text-red-300">Taxes</p>
+                                </div>
+                            </div>
+
+                            <!-- Equals -->
+                            <div class="text-center text-2xl text-gray-400 font-bold">equals</div>
+
+                            <!-- Net Income -->
+                            <div class="flex justify-center">
+                                <div class="bg-amber-100 dark:bg-amber-900/40 px-6 py-3 rounded-lg border-2 border-amber-400 dark:border-amber-600">
+                                    <p class="font-bold text-amber-900 dark:text-amber-200 text-lg">Net Income</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 rounded-r-lg mt-4">
+                        <p class="font-bold text-amber-800 dark:text-amber-300">Key Insight</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">An insurer with a combined ratio of 105% (underwriting loss) can still have a <strong>positive net income</strong> if investment income is large enough to offset the underwriting loss. This is why many insurers accept small underwriting losses -- they make it up on investments from the "float" (premiums collected but not yet paid out in claims).</p>
+                    </div>
+                </div>
+
+                <!-- Example -->
+                <div class="bg-green-50 dark:bg-green-900/20 p-4 lg:p-5 rounded-lg border-l-4 border-green-500">
+                    <p class="font-semibold text-green-800 dark:text-green-300 mb-2">Real-World Scenario: Losing on Underwriting, Winning Overall</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Atlantic Mutual earns $100 million in premiums. They pay $68 million in losses and $35 million in expenses. Combined ratio = 103%.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> On underwriting alone, they lost $3 million. But their $500 million investment portfolio generated $20 million in investment income.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Net income = -$3M (underwriting) + $20M (investment) = <strong>$17 million profit</strong>. The investments saved the year. However, consistently running above 100% combined ratio is unsustainable if investment returns drop.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Vertical Analysis -->
+        <section id="vertical-analysis" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">5. Vertical Analysis</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-6">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg lg:text-xl">What is Vertical Analysis?</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">Express each line item as a <strong>percentage of a base amount</strong> to see the <strong>composition</strong> of financial results. Think of it as looking at a single snapshot and asking: "What percentage of the whole does each piece represent?"</p>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>Balance sheet:</strong> Each item as a % of <strong>total assets</strong></p>
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>Income statement:</strong> Each item as a % of <strong>net premiums earned</strong></p>
+                    </div>
+                </div>
+
+                <!-- Vertical Analysis Visual - Stacked Bar Concept -->
+                <div class="bg-gray-50 dark:bg-gray-700 rounded-xl p-5 lg:p-6 mb-6">
+                    <h3 class="text-lg lg:text-xl font-bold text-gray-800 dark:text-gray-100 mb-4">Worked Example: Vertical Analysis of Pinnacle Insurance Balance Sheet</h3>
+
+                    <div class="bg-white dark:bg-gray-600 rounded-lg p-4 mb-4">
+                        <p class="font-semibold text-gray-800 dark:text-gray-200 mb-3">Balance Sheet Data (Total Assets = $800 million)</p>
+                    </div>
+
+                    <!-- Stacked bar visual -->
+                    <div class="mb-6">
+                        <p class="text-sm lg:text-base font-bold text-gray-700 dark:text-gray-300 mb-2">Asset Composition</p>
+                        <div class="flex rounded-lg overflow-hidden h-12 lg:h-14 mb-2">
+                            <div class="bg-blue-500 flex items-center justify-center text-white text-xs lg:text-sm font-bold" style="width: 62.5%">Investments 62.5%</div>
+                            <div class="bg-green-500 flex items-center justify-center text-white text-xs lg:text-sm font-bold" style="width: 18.75%">Premiums Recv 18.8%</div>
+                            <div class="bg-purple-500 flex items-center justify-center text-white text-xs lg:text-sm font-bold" style="width: 12.5%">Reins. 12.5%</div>
+                            <div class="bg-gray-400 flex items-center justify-center text-white text-xs lg:text-sm font-bold" style="width: 6.25%">Other 6.3%</div>
+                        </div>
+
+                        <p class="text-sm lg:text-base font-bold text-gray-700 dark:text-gray-300 mb-2 mt-4">Liabilities + Surplus Composition</p>
+                        <div class="flex rounded-lg overflow-hidden h-12 lg:h-14 mb-2">
+                            <div class="bg-red-500 flex items-center justify-center text-white text-xs lg:text-sm font-bold" style="width: 50%">Loss Reserves 50%</div>
+                            <div class="bg-amber-500 flex items-center justify-center text-white text-xs lg:text-sm font-bold" style="width: 20%">Unearned Prem 20%</div>
+                            <div class="bg-gray-500 flex items-center justify-center text-white text-xs lg:text-sm font-bold" style="width: 5%"></div>
+                            <div class="bg-emerald-600 flex items-center justify-center text-white text-xs lg:text-sm font-bold" style="width: 25%">Surplus 25%</div>
+                        </div>
+                        <div class="flex text-xs text-gray-500 dark:text-gray-400 mt-1">
+                            <span style="width:75%"></span>
+                            <span style="width:5%" class="text-center">Other 5%</span>
+                        </div>
+                    </div>
+
+                    <!-- Data Table -->
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm lg:text-base">
+                            <thead>
+                                <tr class="bg-amber-600 text-white">
+                                    <th class="p-3 lg:p-4 text-left rounded-tl-lg">Line Item</th>
+                                    <th class="p-3 lg:p-4 text-right">Amount ($M)</th>
+                                    <th class="p-3 lg:p-4 text-right rounded-tr-lg">% of Total Assets</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-200 dark:divide-gray-600">
+                                <tr class="bg-blue-50 dark:bg-blue-900/20">
+                                    <td class="p-3 lg:p-4 font-medium text-gray-800 dark:text-gray-200">Invested Assets</td>
+                                    <td class="p-3 lg:p-4 text-right text-gray-700 dark:text-gray-300">$500</td>
+                                    <td class="p-3 lg:p-4 text-right font-bold text-blue-700 dark:text-blue-300">62.5%</td>
+                                </tr>
+                                <tr class="bg-green-50 dark:bg-green-900/20">
+                                    <td class="p-3 lg:p-4 font-medium text-gray-800 dark:text-gray-200">Premiums Receivable</td>
+                                    <td class="p-3 lg:p-4 text-right text-gray-700 dark:text-gray-300">$150</td>
+                                    <td class="p-3 lg:p-4 text-right font-bold text-green-700 dark:text-green-300">18.8%</td>
+                                </tr>
+                                <tr class="bg-purple-50 dark:bg-purple-900/20">
+                                    <td class="p-3 lg:p-4 font-medium text-gray-800 dark:text-gray-200">Reinsurance Recoverables</td>
+                                    <td class="p-3 lg:p-4 text-right text-gray-700 dark:text-gray-300">$100</td>
+                                    <td class="p-3 lg:p-4 text-right font-bold text-purple-700 dark:text-purple-300">12.5%</td>
+                                </tr>
+                                <tr class="bg-gray-50 dark:bg-gray-700">
+                                    <td class="p-3 lg:p-4 font-medium text-gray-800 dark:text-gray-200">Other Assets</td>
+                                    <td class="p-3 lg:p-4 text-right text-gray-700 dark:text-gray-300">$50</td>
+                                    <td class="p-3 lg:p-4 text-right font-bold text-gray-600 dark:text-gray-300">6.3%</td>
+                                </tr>
+                                <tr class="bg-amber-100 dark:bg-amber-900/30">
+                                    <td class="p-3 lg:p-4 font-bold text-gray-900 dark:text-gray-100">Total Assets</td>
+                                    <td class="p-3 lg:p-4 text-right font-bold text-gray-900 dark:text-gray-100">$800</td>
+                                    <td class="p-3 lg:p-4 text-right font-bold text-amber-700 dark:text-amber-300">100.0%</td>
+                                </tr>
+                                <tr class="bg-red-50 dark:bg-red-900/20">
+                                    <td class="p-3 lg:p-4 font-medium text-gray-800 dark:text-gray-200">Loss Reserves</td>
+                                    <td class="p-3 lg:p-4 text-right text-gray-700 dark:text-gray-300">$400</td>
+                                    <td class="p-3 lg:p-4 text-right font-bold text-red-700 dark:text-red-300">50.0%</td>
+                                </tr>
+                                <tr class="bg-amber-50 dark:bg-amber-900/20">
+                                    <td class="p-3 lg:p-4 font-medium text-gray-800 dark:text-gray-200">Unearned Premium Reserves</td>
+                                    <td class="p-3 lg:p-4 text-right text-gray-700 dark:text-gray-300">$160</td>
+                                    <td class="p-3 lg:p-4 text-right font-bold text-amber-700 dark:text-amber-300">20.0%</td>
+                                </tr>
+                                <tr class="bg-gray-50 dark:bg-gray-700">
+                                    <td class="p-3 lg:p-4 font-medium text-gray-800 dark:text-gray-200">Other Liabilities</td>
+                                    <td class="p-3 lg:p-4 text-right text-gray-700 dark:text-gray-300">$40</td>
+                                    <td class="p-3 lg:p-4 text-right font-bold text-gray-600 dark:text-gray-300">5.0%</td>
+                                </tr>
+                                <tr class="bg-emerald-50 dark:bg-emerald-900/20">
+                                    <td class="p-3 lg:p-4 font-bold text-gray-900 dark:text-gray-100">Policyholders' Surplus</td>
+                                    <td class="p-3 lg:p-4 text-right font-bold text-gray-900 dark:text-gray-100">$200</td>
+                                    <td class="p-3 lg:p-4 text-right font-bold text-emerald-700 dark:text-emerald-300">25.0%</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 rounded-r-lg mt-4">
+                        <p class="font-bold text-amber-800 dark:text-amber-300">What This Tells Us</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Loss reserves are <strong>50% of total assets</strong> -- the single biggest item. This means the accuracy of those reserves is critical. If they are 10% wrong, that is a $40 million error. The surplus at 25% of assets provides a reasonable cushion, but the heavy dependence on reserve accuracy makes this a company where actuarial judgment matters enormously.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: Trend Analysis -->
+        <section id="trend-analysis" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">6. Trend Analysis</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-6">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg lg:text-xl">What is Trend Analysis?</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">Compare the <strong>same line item across multiple periods</strong> (usually 3-5 years) to spot the <strong>direction of change</strong>. Set Year 1 as the base year (100%) and express subsequent years relative to it.</p>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>Vertical analysis</strong> = What is the COMPOSITION? (a snapshot)</p>
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>Trend analysis</strong> = What is the DIRECTION? (a movie)</p>
+                    </div>
+                </div>
+
+                <!-- Worked Example -->
+                <div class="bg-gray-50 dark:bg-gray-700 rounded-xl p-5 lg:p-6 mb-6">
+                    <h3 class="text-lg lg:text-xl font-bold text-gray-800 dark:text-gray-100 mb-4">Worked Example: 4-Year Trend for Pinnacle Insurance</h3>
+
+                    <div class="overflow-x-auto mb-4">
+                        <table class="w-full text-sm lg:text-base">
+                            <thead>
+                                <tr class="bg-amber-600 text-white">
+                                    <th class="p-3 lg:p-4 text-left rounded-tl-lg">Line Item</th>
+                                    <th class="p-3 lg:p-4 text-center">Year 1 (Base)</th>
+                                    <th class="p-3 lg:p-4 text-center">Year 2</th>
+                                    <th class="p-3 lg:p-4 text-center">Year 3</th>
+                                    <th class="p-3 lg:p-4 text-center rounded-tr-lg">Year 4</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-200 dark:divide-gray-600">
+                                <tr class="bg-white dark:bg-gray-800">
+                                    <td class="p-3 lg:p-4 font-medium text-gray-800 dark:text-gray-200" rowspan="2">Net Earned Premiums</td>
+                                    <td class="p-3 lg:p-4 text-center text-gray-700 dark:text-gray-300">$200M</td>
+                                    <td class="p-3 lg:p-4 text-center text-gray-700 dark:text-gray-300">$210M</td>
+                                    <td class="p-3 lg:p-4 text-center text-gray-700 dark:text-gray-300">$224M</td>
+                                    <td class="p-3 lg:p-4 text-center text-gray-700 dark:text-gray-300">$240M</td>
+                                </tr>
+                                <tr class="bg-green-50 dark:bg-green-900/20">
+                                    <td class="p-3 lg:p-4 text-center font-bold text-green-700 dark:text-green-300">100%</td>
+                                    <td class="p-3 lg:p-4 text-center font-bold text-green-700 dark:text-green-300">105%</td>
+                                    <td class="p-3 lg:p-4 text-center font-bold text-green-700 dark:text-green-300">112%</td>
+                                    <td class="p-3 lg:p-4 text-center font-bold text-green-700 dark:text-green-300">120%</td>
+                                </tr>
+                                <tr class="bg-white dark:bg-gray-800">
+                                    <td class="p-3 lg:p-4 font-medium text-gray-800 dark:text-gray-200" rowspan="2">Loss Reserves</td>
+                                    <td class="p-3 lg:p-4 text-center text-gray-700 dark:text-gray-300">$300M</td>
+                                    <td class="p-3 lg:p-4 text-center text-gray-700 dark:text-gray-300">$339M</td>
+                                    <td class="p-3 lg:p-4 text-center text-gray-700 dark:text-gray-300">$381M</td>
+                                    <td class="p-3 lg:p-4 text-center text-gray-700 dark:text-gray-300">$435M</td>
+                                </tr>
+                                <tr class="bg-red-50 dark:bg-red-900/20">
+                                    <td class="p-3 lg:p-4 text-center font-bold text-red-700 dark:text-red-300">100%</td>
+                                    <td class="p-3 lg:p-4 text-center font-bold text-red-700 dark:text-red-300">113%</td>
+                                    <td class="p-3 lg:p-4 text-center font-bold text-red-700 dark:text-red-300">127%</td>
+                                    <td class="p-3 lg:p-4 text-center font-bold text-red-700 dark:text-red-300">145%</td>
+                                </tr>
+                                <tr class="bg-white dark:bg-gray-800">
+                                    <td class="p-3 lg:p-4 font-medium text-gray-800 dark:text-gray-200" rowspan="2">Policyholders' Surplus</td>
+                                    <td class="p-3 lg:p-4 text-center text-gray-700 dark:text-gray-300">$150M</td>
+                                    <td class="p-3 lg:p-4 text-center text-gray-700 dark:text-gray-300">$147M</td>
+                                    <td class="p-3 lg:p-4 text-center text-gray-700 dark:text-gray-300">$141M</td>
+                                    <td class="p-3 lg:p-4 text-center text-gray-700 dark:text-gray-300">$132M</td>
+                                </tr>
+                                <tr class="bg-amber-50 dark:bg-amber-900/20">
+                                    <td class="p-3 lg:p-4 text-center font-bold text-amber-700 dark:text-amber-300">100%</td>
+                                    <td class="p-3 lg:p-4 text-center font-bold text-amber-700 dark:text-amber-300">98%</td>
+                                    <td class="p-3 lg:p-4 text-center font-bold text-amber-700 dark:text-amber-300">94%</td>
+                                    <td class="p-3 lg:p-4 text-center font-bold text-amber-700 dark:text-amber-300">88%</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Year-over-Year Visual Comparison -->
+                    <div class="bg-white dark:bg-gray-800 rounded-lg p-4 mb-4">
+                        <h4 class="font-bold text-gray-800 dark:text-gray-200 mb-3">Year 4 vs. Year 1: Growth Comparison</h4>
+                        <div class="space-y-3">
+                            <div>
+                                <div class="flex justify-between text-sm lg:text-base mb-1">
+                                    <span class="text-gray-700 dark:text-gray-300">Net Earned Premiums</span>
+                                    <span class="font-bold text-green-700 dark:text-green-300">+20%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-4">
+                                    <div class="bg-green-500 h-4 rounded-full flex items-center justify-end pr-2" style="width: 55%">
+                                        <span class="text-xs text-white font-bold">120%</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-sm lg:text-base mb-1">
+                                    <span class="text-gray-700 dark:text-gray-300">Loss Reserves</span>
+                                    <span class="font-bold text-red-700 dark:text-red-300">+45%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-4">
+                                    <div class="bg-red-500 h-4 rounded-full flex items-center justify-end pr-2" style="width: 75%">
+                                        <span class="text-xs text-white font-bold">145%</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-sm lg:text-base mb-1">
+                                    <span class="text-gray-700 dark:text-gray-300">Policyholders' Surplus</span>
+                                    <span class="font-bold text-amber-700 dark:text-amber-300">-12%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-4">
+                                    <div class="bg-amber-500 h-4 rounded-full flex items-center justify-end pr-2" style="width: 44%">
+                                        <span class="text-xs text-white font-bold">88%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-red-50 dark:bg-red-900/30 border-l-4 border-red-500 p-4 rounded-r-lg">
+                        <p class="font-bold text-red-800 dark:text-red-300">Red Flag Analysis</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1"><strong>Loss reserves grew 45%</strong> while premiums only grew 20%. Reserves are growing <strong>more than twice as fast</strong> as premium income. Meanwhile, surplus is <strong>shrinking</strong> (down 12%). This is a dangerous pattern: the company is taking on more risk (growing reserves) without enough premium growth to fund it, and its financial cushion is eroding. This insurer likely needs to re-underwrite its book, raise rates, or both.</p>
+                    </div>
+                </div>
+
+                <!-- Vertical vs Trend Comparison -->
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 border-l-4 border-blue-500">
+                        <h4 class="font-bold text-blue-800 dark:text-blue-300 mb-2">Vertical Analysis</h4>
+                        <ul class="space-y-2 text-sm lg:text-base text-gray-700 dark:text-gray-300">
+                            <li><strong>Question it answers:</strong> "What makes up this total?"</li>
+                            <li><strong>Time frame:</strong> Single period snapshot</li>
+                            <li><strong>Base:</strong> Total assets (balance sheet) or net premiums earned (income statement)</li>
+                            <li><strong>Purpose:</strong> See composition and proportions</li>
+                        </ul>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 border-l-4 border-purple-500">
+                        <h4 class="font-bold text-purple-800 dark:text-purple-300 mb-2">Trend Analysis</h4>
+                        <ul class="space-y-2 text-sm lg:text-base text-gray-700 dark:text-gray-300">
+                            <li><strong>Question it answers:</strong> "Which way is this heading?"</li>
+                            <li><strong>Time frame:</strong> Multiple periods (3-5 years)</li>
+                            <li><strong>Base:</strong> Year 1 = 100% for each line item</li>
+                            <li><strong>Purpose:</strong> Spot direction and rate of change</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 7: Re-Underwriting -->
+        <section id="re-underwriting" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">7. Re-Underwriting</h2>
+
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-purple-500 mb-6">
+                    <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg lg:text-xl">What is Re-Underwriting?</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">The process of <strong>reviewing and reassessing an existing book of business</strong> to improve its quality and profitability. Think of it as a deep clean of your portfolio -- examining every account and deciding whether to keep, fix, or remove it.</p>
+                </div>
+
+                <!-- When and Why -->
+                <div class="bg-gray-50 dark:bg-gray-700 rounded-xl p-5 lg:p-6 mb-6">
+                    <h3 class="text-lg lg:text-xl font-bold text-gray-800 dark:text-gray-100 mb-4">When Does Re-Underwriting Happen?</h3>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-3">
+                        <div class="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-600">
+                            <p class="font-bold text-amber-800 dark:text-amber-300 mb-1">Poor Results</p>
+                            <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300">A line of business or territory is consistently losing money</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-600">
+                            <p class="font-bold text-amber-800 dark:text-amber-300 mb-1">Market Changes</p>
+                            <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300">New risks emerge, regulations change, or economic shifts alter the risk landscape</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-600">
+                            <p class="font-bold text-amber-800 dark:text-amber-300 mb-1">New Management</p>
+                            <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300">New leadership wants to redirect strategy or clean up inherited problems</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-600">
+                            <p class="font-bold text-amber-800 dark:text-amber-300 mb-1">Merger / Acquisition</p>
+                            <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300">After acquiring another insurer, evaluate combined books for overlap and quality</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- What it involves - Flow -->
+                <div class="bg-amber-50 dark:bg-amber-900/20 rounded-xl p-5 lg:p-6 border border-amber-200 dark:border-amber-800 mb-6">
+                    <h3 class="text-lg lg:text-xl font-bold text-amber-800 dark:text-amber-300 mb-4">The Re-Underwriting Process</h3>
+                    <div class="flex items-center gap-3 lg:gap-4 flex-wrap justify-center">
+                        <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded-lg text-center min-w-[120px]">
+                            <p class="text-sm font-bold text-gray-800 dark:text-gray-200">Review Every Policy at Renewal</p>
+                        </div>
+                        <div class="text-2xl text-gray-400 hidden md:block">--&gt;</div>
+                        <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded-lg text-center min-w-[120px]">
+                            <p class="text-sm font-bold text-gray-800 dark:text-gray-200">Tighten Underwriting Guidelines</p>
+                        </div>
+                        <div class="text-2xl text-gray-400 hidden md:block">--&gt;</div>
+                        <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded-lg text-center min-w-[120px]">
+                            <p class="text-sm font-bold text-gray-800 dark:text-gray-200">Non-Renew Unprofitable Accounts</p>
+                        </div>
+                        <div class="text-2xl text-gray-400 hidden md:block">--&gt;</div>
+                        <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded-lg text-center min-w-[120px]">
+                            <p class="text-sm font-bold text-gray-800 dark:text-gray-200">Re-Price Marginal Accounts</p>
+                        </div>
+                        <div class="text-2xl text-gray-400 hidden md:block">--&gt;</div>
+                        <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded-lg text-center min-w-[120px]">
+                            <p class="text-sm font-bold text-gray-800 dark:text-gray-200">Add Requirements (safety, inspections)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Detailed Example -->
+                <div class="bg-amber-50 dark:bg-amber-900/20 p-4 lg:p-5 rounded-lg border-l-4 border-amber-500">
+                    <p class="font-semibold text-amber-800 dark:text-amber-300 mb-2">Real-World Scenario: Re-Underwriting a Commercial Auto Book</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Granite Insurance's commercial auto book has 2,000 policies and a 75% loss ratio -- well above the target of 60%. The book has been unprofitable for three straight years.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Management orders a re-underwriting. The underwriting team:</p>
+                        <ul class="list-disc list-inside text-gray-700 dark:text-gray-300 ml-4 space-y-1">
+                            <li>Reviews every account's loss history at renewal</li>
+                            <li><strong>Non-renews the worst 10%</strong> (200 accounts with repeated at-fault accidents)</li>
+                            <li><strong>Increases rates 15%</strong> on 500 marginal accounts</li>
+                            <li><strong>Adds safety requirements</strong> for all fleet accounts (driver training, GPS monitoring)</li>
+                            <li>Tightens new business guidelines (no fleets with drivers under 25 or with DUI history)</li>
+                        </ul>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Premium volume drops from $80M to $68M (some accounts leave, some are non-renewed). But the loss ratio improves from 75% to 58% the following year. The book is now profitable. The short-term premium loss was the price of long-term profitability.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cheat Sheet -->
+        <section id="cheat-sheet" class="mb-10">
+            <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 border-2 border-dashed border-gray-300 dark:border-gray-600">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100">Cheat Sheet</h2>
+                    <span class="text-sm text-gray-500 dark:text-gray-400">Print this page for quick reference</span>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-gray-800 dark:text-gray-200 mb-2">Underwriting Ratios</p>
+                        <ul class="space-y-1 text-sm text-gray-700 dark:text-gray-300">
+                            <li><strong>Loss Ratio</strong> = Incurred Losses / Earned Premiums</li>
+                            <li><strong>Expense Ratio (Trade)</strong> = UW Expenses / Written Premiums</li>
+                            <li><strong>Expense Ratio (Statutory)</strong> = UW Expenses / Earned Premiums</li>
+                            <li><strong>Combined</strong> = Loss Ratio + Expense Ratio</li>
+                            <li>Below 100% = profit / Above 100% = loss</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-gray-800 dark:text-gray-200 mb-2">Performance Metrics</p>
+                        <ul class="space-y-1 text-sm text-gray-700 dark:text-gray-300">
+                            <li><strong>Retention Ratio</strong> = Renewed / Expiring Premium</li>
+                            <li>Target: 80-90%+</li>
+                            <li><strong>Hit Ratio</strong> = Policies Written / Quotes Issued</li>
+                            <li>Too high = underpricing / Too low = overpricing</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-gray-800 dark:text-gray-200 mb-2">Trade vs. Statutory</p>
+                        <ul class="space-y-1 text-sm text-gray-700 dark:text-gray-300">
+                            <li><strong>Trade</strong>: TWO denominators (earned + written)</li>
+                            <li><strong>Statutory</strong>: SAME denominator (earned for both)</li>
+                            <li>Statutory combined ratio is always higher</li>
+                            <li>Memory: T=Two, S=Same</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-gray-800 dark:text-gray-200 mb-2">Balance Sheet</p>
+                        <ul class="space-y-1 text-sm text-gray-700 dark:text-gray-300">
+                            <li>Biggest asset: Invested assets (bonds)</li>
+                            <li>Biggest liability: Loss reserves</li>
+                            <li>Surplus = Assets - Liabilities</li>
+                            <li>Surplus = safety net for policyholders</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-gray-800 dark:text-gray-200 mb-2">Financial Analysis Methods</p>
+                        <ul class="space-y-1 text-sm text-gray-700 dark:text-gray-300">
+                            <li><strong>Vertical</strong> = % of total (composition, snapshot)</li>
+                            <li><strong>Trend</strong> = % of base year (direction, over time)</li>
+                            <li>Vertical: base = total assets or net earned premiums</li>
+                            <li>Trend: base = Year 1 = 100%</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-gray-800 dark:text-gray-200 mb-2">Re-Underwriting</p>
+                        <ul class="space-y-1 text-sm text-gray-700 dark:text-gray-300">
+                            <li>Review + reassess existing book</li>
+                            <li>Triggers: poor results, market change, new mgmt, M&A</li>
+                            <li>Actions: non-renew, re-price, tighten guidelines</li>
+                            <li>Short-term premium loss for long-term profit</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Trap Alerts -->
+        <section id="exam-traps" class="mb-10">
+            <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-xl p-5 lg:p-6">
+                <h2 class="text-2xl font-bold text-red-800 dark:text-red-300 mb-4">Exam Trap Alerts</h2>
+                <div class="space-y-3">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">1. Trade vs. Statutory Denominator Mix-Up</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The exam loves to test which denominator goes where. <strong>Trade basis uses written premiums for the expense ratio.</strong> Statutory uses earned premiums for both. The loss ratio denominator (earned premiums) is the SAME in both methods -- only the expense ratio denominator differs.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">2. Combined Ratio Above 100% Does NOT Mean the Insurer Loses Money</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">A combined ratio of 105% means underwriting lost money. But the insurer can still be profitable overall if investment income exceeds the underwriting loss. The exam will try to trick you into saying "the insurer is unprofitable" when only underwriting is unprofitable.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">3. Vertical vs. Trend Analysis Confusion</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Vertical = composition (what % of the whole is this piece?). Trend = direction (how has this changed over time?). If the exam asks "what percentage of total assets are loss reserves?" that is vertical analysis. If it asks "how much have loss reserves grown since Year 1?" that is trend analysis.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">4. Hit Ratio -- High Is NOT Always Good</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Unlike retention ratio (where higher is better), a very high hit ratio can signal underpricing. If you are winning 90% of quotes, you are probably too cheap. The exam may describe a high hit ratio as a positive -- but the correct answer is that it is a potential pricing problem.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">5. Statutory Basis Always Produces a Higher Combined Ratio</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Because net earned premiums are always less than or equal to net written premiums, dividing expenses by a smaller number (earned) produces a larger expense ratio. Therefore, the statutory combined ratio is always equal to or higher than the trade basis combined ratio for the same data.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">6. Re-Underwriting Reduces Premium Volume (On Purpose)</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The exam might frame premium volume dropping as a failure. But during re-underwriting, <strong>premium decline is expected and intentional</strong>. You are shedding bad business. The goal is better loss ratios, not more premium.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">7. Loss Reserves Are the Biggest Liability -- Not Unearned Premiums</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Both are major liabilities, but loss reserves are almost always the largest single liability on an insurer's balance sheet. Unearned premium reserves are second. Do not confuse them.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Reference Summary -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-amber-600 to-amber-800 rounded-xl p-6 text-white">
+                <h2 class="text-2xl font-bold mb-6">Quick Reference Summary</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Loss Ratio</p>
+                        <p class="text-sm text-amber-100">Incurred Losses / Earned Premiums -- how much goes to claims</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Expense Ratio</p>
+                        <p class="text-sm text-amber-100">UW Expenses / Written (trade) or Earned (statutory) Premiums</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Combined Ratio</p>
+                        <p class="text-sm text-amber-100">Loss + Expense Ratio. Under 100% = profit. Over = loss.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Retention Ratio</p>
+                        <p class="text-sm text-amber-100">Renewed / Expiring Premium. Target 80-90%+. Measures loyalty.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Hit Ratio</p>
+                        <p class="text-sm text-amber-100">Bound / Quoted. Too high = underpricing. Too low = overpricing.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Vertical Analysis</p>
+                        <p class="text-sm text-amber-100">Each item as % of total -- shows composition (snapshot)</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Trend Analysis</p>
+                        <p class="text-sm text-amber-100">Year 1 = 100%, track change over time -- shows direction (movie)</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Policyholders' Surplus</p>
+                        <p class="text-sm text-amber-100">Assets - Liabilities. The insurer's net worth / safety cushion.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Re-Underwriting</p>
+                        <p class="text-sm text-amber-100">Clean up a bad book: review, non-renew, re-price, tighten rules</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Navigation Footer -->
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="../part-1/index.html" class="text-gray-300 hover:text-white flex items-center">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                    </svg>
+                    Part 1
+                </a>
+                <span class="text-gray-400">Part 2 of 3</span>
+                <a href="../part-3/index.html" class="text-gray-300 hover:text-white flex items-center">
+                    Part 3: Underwriting Constraints
+                    <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AI Tutor Button -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            createFloatingAIButton(`CPCU 520 Assignment 3 Part 2: Measuring Underwriting Results & Financial Analysis
+
+KEY FORMULAS:
+- Loss Ratio = Incurred Losses / Earned Premiums
+- Expense Ratio (Trade) = UW Expenses / Written Premiums
+- Expense Ratio (Statutory) = UW Expenses / Earned Premiums
+- Combined Ratio = Loss Ratio + Expense Ratio
+  - Below 100% = underwriting profit
+  - Above 100% = underwriting loss (but insurer may still profit from investments)
+- Retention Ratio = Renewed Premium / Expiring Premium (target: 80-90%+)
+- Hit Ratio = Policies Written / Quotes Issued (too high = underpricing, too low = overpricing)
+
+TRADE vs STATUTORY:
+- Trade: TWO denominators (earned for losses, written for expenses)
+- Statutory: SAME denominator (earned for both)
+- Statutory always produces higher combined ratio
+- Memory: T=Two, S=Same
+
+FINANCIAL STATEMENTS:
+- Balance sheet: Assets (investments biggest) - Liabilities (loss reserves biggest) = Surplus
+- Income statement: Net Premiums Earned + Investment Income - Losses - LAE - Expenses - Taxes = Net Income
+- Insurer with >100% combined ratio can still be profitable from investment income
+
+ANALYSIS METHODS:
+- Vertical: each item as % of total (composition, snapshot)
+- Trend: Year 1=100%, track change over time (direction, movie)
+- Red flag: if reserves grow faster than premiums while surplus shrinks
+
+RE-UNDERWRITING:
+- Review and reassess existing book of business
+- Triggers: poor results, market changes, new management, M&A
+- Actions: non-renew worst accounts, re-price marginal, tighten guidelines, add safety requirements
+- Expect short-term premium drop for long-term profitability
+
+EXAM TRAPS:
+1. Trade vs statutory denominator mix-up (only expense ratio differs)
+2. Combined ratio >100% does NOT mean insurer is unprofitable overall
+3. Vertical (composition) vs trend (direction) confusion
+4. High hit ratio = potential underpricing problem, not always good
+5. Statutory basis always gives higher combined ratio than trade
+6. Re-underwriting intentionally reduces premium volume
+7. Loss reserves are biggest liability, not unearned premiums`);
+        });
+    </script>
+</body>
+</html>

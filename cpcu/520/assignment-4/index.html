@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment 4: Adding Value Through Personal Lines Underwriting | CPCU 520</title>
+    <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <link rel="stylesheet" href="../../../css/styles.css">
+    <script src="../../../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+        }
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <!-- Settings & Theme Toggle -->
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="showAPIKeySetup()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings">
+            <svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+        </button>
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/>
+            </svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-teal-600 to-teal-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap gap-2 text-sm mb-2">
+                <a href="../../../index.html" class="text-teal-200 hover:text-white">Home</a>
+                <span class="text-teal-300">/</span>
+                <a href="../../index.html" class="text-teal-200 hover:text-white">CPCU</a>
+                <span class="text-teal-300">/</span>
+                <a href="../index.html" class="text-teal-200 hover:text-white">520</a>
+                <span class="text-teal-300">/</span>
+                <span class="text-white">Assignment 4</span>
+            </div>
+            <h1 class="text-3xl lg:text-4xl font-bold">Assignment 4: Adding Value Through Personal Lines Underwriting</h1>
+            <p class="text-teal-200 mt-2">How insurers underwrite auto, homeowners, and other personal lines using data, technology, and portfolio management</p>
+            <p class="text-sm text-teal-300 mt-1">3 Parts &bull; ~35 minutes total study time</p>
+        </div>
+    </header>
+
+    <!-- Part Navigation -->
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-wrap gap-2 text-sm">
+                <span class="bg-teal-600 text-white px-3 py-1 rounded font-medium">Intro</span>
+                <a href="part-1/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 1</a>
+                <a href="part-2/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 2</a>
+                <a href="part-3/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 3</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-5xl lg:max-w-7xl">
+
+        <!-- Overview -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-4">What This Assignment Covers</h2>
+
+                <div class="bg-teal-50 dark:bg-teal-900/30 border border-teal-200 dark:border-teal-800 rounded-lg p-5 lg:p-6 mb-6">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Personal lines insurance &mdash; auto, homeowners, renters, umbrella &mdash; touches nearly every household. Unlike commercial underwriting, personal lines operates at <strong>massive scale</strong> with heavy <strong>automation</strong>. This assignment covers the unique loss exposures in personal lines, how technology has transformed the underwriting process, and how insurers use <strong>portfolio analysis and risk modeling</strong> to manage catastrophe exposure and maintain profitability.</p>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 lg:p-5 rounded-r-lg mb-6">
+                    <p class="font-bold text-amber-800 dark:text-amber-300 text-lg">Exam Alert</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">This is a <strong>new chapter</strong> added to the current CPCU 520 edition. Expect questions on how personal lines differs from commercial, the role of telematics and credit scores, tiered rating systems, cat modeling components, and the challenges of climate change on the personal lines market.</p>
+                </div>
+
+                <!-- Educational Objectives -->
+                <h3 class="text-xl font-bold text-gray-800 dark:text-gray-100 mb-4">After this assignment, you will be able to:</h3>
+                <div class="space-y-3">
+                    <div class="flex items-start bg-teal-50 dark:bg-teal-900/20 rounded-lg p-4">
+                        <span class="bg-teal-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Identify the key <strong>loss exposures and hazards</strong> in personal auto and homeowners insurance</p>
+                    </div>
+                    <div class="flex items-start bg-indigo-50 dark:bg-indigo-900/20 rounded-lg p-4">
+                        <span class="bg-indigo-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Explain how <strong>automated underwriting, tiered rating, and technology</strong> (telematics, IoT, aerial imagery) transform personal lines decisions</p>
+                    </div>
+                    <div class="flex items-start bg-green-50 dark:bg-green-900/20 rounded-lg p-4">
+                        <span class="bg-green-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Describe how insurers use <strong>portfolio analysis, catastrophe modeling, and predictive analytics</strong> to manage personal lines profitability</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Part Cards -->
+        <section class="mb-10">
+            <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">Study Parts</h2>
+            <div class="grid md:grid-cols-3 gap-6">
+
+                <a href="part-1/index.html" class="group">
+                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border-l-4 border-teal-500 h-full">
+                        <div class="p-6">
+                            <span class="bg-teal-100 dark:bg-teal-900 text-teal-800 dark:text-teal-200 text-sm font-semibold px-3 py-1 rounded-full">Part 1 &bull; ~12 min</span>
+                            <h3 class="text-xl font-bold text-gray-800 dark:text-gray-100 mt-3 group-hover:text-teal-600 dark:group-hover:text-teal-400 transition-colors">Loss Exposures and Hazards</h3>
+                            <p class="text-gray-600 dark:text-gray-400 mt-2 text-sm lg:text-base">Personal vs. commercial lines, auto coverage parts, homeowners exposures, HO form types, and the role of data (credit scores, telematics, CLUE reports).</p>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="part-2/index.html" class="group">
+                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border-l-4 border-cyan-500 h-full">
+                        <div class="p-6">
+                            <span class="bg-cyan-100 dark:bg-cyan-900 text-cyan-800 dark:text-cyan-200 text-sm font-semibold px-3 py-1 rounded-full">Part 2 &bull; ~12 min</span>
+                            <h3 class="text-xl font-bold text-gray-800 dark:text-gray-100 mt-3 group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors">Underwriting Decisions and Technology</h3>
+                            <p class="text-gray-600 dark:text-gray-400 mt-2 text-sm lg:text-base">Automated underwriting, straight-through processing, tiered rating, rating factors for auto and home, telematics, IoT, embedded insurance, and portfolio management.</p>
+                        </div>
+                    </div>
+                </a>
+
+                <a href="part-3/index.html" class="group">
+                    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border-l-4 border-emerald-500 h-full">
+                        <div class="p-6">
+                            <span class="bg-emerald-100 dark:bg-emerald-900 text-emerald-800 dark:text-emerald-200 text-sm font-semibold px-3 py-1 rounded-full">Part 3 &bull; ~12 min</span>
+                            <h3 class="text-xl font-bold text-gray-800 dark:text-gray-100 mt-3 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">Portfolio Analysis and Risk Modeling</h3>
+                            <p class="text-gray-600 dark:text-gray-400 mt-2 text-sm lg:text-base">Geographic diversification, catastrophe modeling, loss ratio analysis, GLMs and predictive modeling, rate adequacy, and current challenges (climate change, insurer withdrawals).</p>
+                        </div>
+                    </div>
+                </a>
+
+            </div>
+        </section>
+
+        <!-- Quick Reference -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-teal-600 to-teal-800 rounded-xl p-6 lg:p-8 text-white">
+                <h2 class="text-2xl font-bold mb-4">Assignment 4 Quick Reference</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Personal vs Commercial</p>
+                        <p class="text-sm text-teal-100">Higher volume, more standardized, more automated, more regulated</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">HO-3</p>
+                        <p class="text-sm text-teal-100">Most common homeowners form. Special form = open perils on dwelling, named perils on personal property.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Tiered Rating</p>
+                        <p class="text-sm text-teal-100">Preferred, standard, nonstandard tiers based on risk characteristics and scoring models</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Cat Modeling</p>
+                        <p class="text-sm text-teal-100">Hazard + Vulnerability + Financial modules simulate thousands of catastrophe scenarios</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 dark:bg-gray-950 text-gray-300 py-6">
+        <div class="container mx-auto px-4 text-center text-sm">
+            <div class="flex justify-between items-center max-w-2xl mx-auto">
+                <a href="../assignment-3/index.html" class="hover:text-white">&larr; Assignment 3: Commercial Underwriting</a>
+                <span class="text-gray-500">Assignment 4 of 7</span>
+                <a href="part-1/index.html" class="hover:text-white">Start Part 1 &rarr;</a>
+            </div>
+            <p class="mt-4 text-gray-500">For educational purposes only. Not an official exam resource.</p>
+        </div>
+    </footer>
+
+    <!-- AI Tutor -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof createFloatingAIButton === 'function') {
+                createFloatingAIButton({
+                    topic: 'CPCU 520 Assignment 4: Adding Value Through Personal Lines Underwriting',
+                    context: `This is a NEW chapter covering personal lines underwriting. Key topics: (1) Personal vs commercial lines differences - higher volume, more standardized, more automated, more regulated. (2) Auto coverage parts: A (liability), B (med pay), C (UM/UIM), D (physical damage - collision + OTC). (3) Homeowners forms: HO-2 (Broad), HO-3 (Special - most common), HO-4 (Renters), HO-5 (Comprehensive), HO-6 (Condo), HO-8 (Modified). (4) Key hazards: driver characteristics, vehicle factors, territory, credit scores, construction type, fire protection class, claims history. (5) Automated underwriting and straight-through processing (STP). (6) Tiered rating: preferred, standard, nonstandard. (7) Telematics/UBI: tracks driving behavior for premium discounts. (8) IoT/smart home devices for risk reduction. (9) Cat modeling: hazard + vulnerability + financial modules. (10) GLMs as industry standard for pricing. (11) Proxy discrimination concerns with algorithmic pricing. (12) Current challenges: climate change, insurer withdrawals, FAIR plan growth, reinsurance cost increases.`
+                });
+            }
+        });
+    </script>
+</body>
+</html>

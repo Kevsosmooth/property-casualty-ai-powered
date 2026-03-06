@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment 5 Part 2: Distribution Systems and Channels | CPCU 520</title>
+    <link rel="icon" type="image/svg+xml" href="../../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <link rel="stylesheet" href="../../../../css/styles.css">
+    <script src="../../../../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+        }
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <!-- Settings & Theme Toggle Buttons -->
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="showAPIKeySetup()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings">
+            <svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+        </button>
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/>
+            </svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-green-600 to-green-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap gap-2 text-sm mb-2">
+                <a href="../../../../index.html" class="text-green-200 hover:text-white">Home</a>
+                <span class="text-green-300">/</span>
+                <a href="../../../index.html" class="text-green-200 hover:text-white">CPCU</a>
+                <span class="text-green-300">/</span>
+                <a href="../../index.html" class="text-green-200 hover:text-white">520</a>
+                <span class="text-green-300">/</span>
+                <a href="../index.html" class="text-green-200 hover:text-white">Assignment 5</a>
+                <span class="text-green-300">/</span>
+                <span class="text-white">Part 2</span>
+            </div>
+            <h1 class="text-3xl font-bold">Assignment 5 Part 2: Distribution Systems and Channels</h1>
+            <p class="text-green-200 mt-1">How insurance reaches customers: independent agents, exclusive agents, direct writers, and the digital revolution</p>
+        </div>
+    </header>
+
+    <!-- Part Navigation -->
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-wrap gap-2 text-sm">
+                <a href="../index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Overview</a>
+                <a href="../part-1/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 1</a>
+                <span class="bg-green-600 text-white px-3 py-1 rounded font-medium">Part 2</span>
+                <a href="../part-3/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 3</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-5xl lg:max-w-7xl">
+
+        <!-- Start Here: 5 Things You MUST Know -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-green-100 to-emerald-200 dark:from-green-900/40 dark:to-emerald-800/40 rounded-xl p-6 border border-green-300 dark:border-green-700">
+                <h3 class="text-xl lg:text-2xl font-bold text-green-800 dark:text-green-200 mb-4">Start Here: 5 Things You MUST Know</h3>
+                <div class="grid md:grid-cols-2 gap-3">
+                    <div class="flex items-start">
+                        <span class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">There are <strong>3 distribution systems</strong>: independent agency, exclusive/captive agency, and direct writer &mdash; the KEY difference is <strong>who owns the expirations</strong> (the customer list).</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Independent agents own their book of business</strong>. If they leave an insurer, they take their customers with them. This gives independent agents enormous leverage.</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Embedded insurance</strong> is insurance sold at the point of sale by non-insurance companies (Tesla selling auto coverage, airlines selling travel insurance). This is one of the fastest-growing channels.</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">4</span>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Producers (agents/brokers) perform <strong>8 key functions</strong>: prospecting, risk assessment, quoting, placing coverage, servicing, consulting, claims advocacy, and retention.</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">5</span>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">More insurer control = less producer flexibility. <strong>Direct writers</strong> have the most control (and lowest commission costs). <strong>Independent agents</strong> have the most flexibility (and the insurer has the least control).</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Overview Section -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">Distribution Systems and Channels</h2>
+
+                <div class="bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-800 rounded-lg p-5 lg:p-6 mb-6">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Distribution is how insurance products get from the insurer to the customer. It is the single most important strategic decision an insurer makes because it determines <strong>cost structure</strong>, <strong>control over the customer relationship</strong>, <strong>speed to market</strong>, and <strong>which customer segments are accessible</strong>. This part covers the three traditional distribution systems, modern digital channels, embedded insurance, and the specific functions that producers perform.</p>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 lg:p-5 rounded-r-lg">
+                    <p class="font-bold text-amber-800 dark:text-amber-300 text-lg">Exam Alert!</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">This is the <strong>most heavily tested topic</strong> in Assignment 5. Know the three distribution systems, who owns expirations in each, the trade-off between control and flexibility, and be ready to compare them in scenario questions. Embedded insurance and insurtech are newer topics that show up on current exams.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 1: Three Distribution Systems -->
+        <section id="systems" class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">1. The Three Distribution Systems</h2>
+
+                <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-6">Every insurer must decide how to get its products in front of customers. There are three fundamental approaches, and each involves a different trade-off between <strong>control</strong>, <strong>cost</strong>, and <strong>customer ownership</strong>.</p>
+
+                <!-- Three-Column Comparison -->
+                <div class="grid md:grid-cols-3 gap-4 mb-6">
+                    <!-- Independent Agency -->
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 border-l-4 border-blue-500">
+                        <h4 class="font-bold text-blue-800 dark:text-blue-300 mb-2 text-lg">Independent Agency / Brokerage</h4>
+                        <div class="space-y-3 text-sm lg:text-base">
+                            <div>
+                                <p class="font-semibold text-blue-700 dark:text-blue-300">Who owns expirations?</p>
+                                <p class="text-gray-700 dark:text-gray-300">The <strong>AGENT</strong> owns the book of business</p>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-blue-700 dark:text-blue-300">Represents how many insurers?</p>
+                                <p class="text-gray-700 dark:text-gray-300"><strong>Multiple</strong> insurers</p>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-blue-700 dark:text-blue-300">Insurer control?</p>
+                                <p class="text-gray-700 dark:text-gray-300"><strong>Least</strong> control</p>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-blue-700 dark:text-blue-300">Commission cost?</p>
+                                <p class="text-gray-700 dark:text-gray-300"><strong>Highest</strong> commissions</p>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-blue-700 dark:text-blue-300">Customer flexibility?</p>
+                                <p class="text-gray-700 dark:text-gray-300"><strong>Most</strong> &mdash; can shop multiple markets</p>
+                            </div>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm text-gray-600 dark:text-gray-400"><strong>Examples:</strong> Marsh, Aon, Hub International, local independent agencies</p>
+                        </div>
+                    </div>
+
+                    <!-- Exclusive/Captive Agency -->
+                    <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 border-l-4 border-purple-500">
+                        <h4 class="font-bold text-purple-800 dark:text-purple-300 mb-2 text-lg">Exclusive / Captive Agency</h4>
+                        <div class="space-y-3 text-sm lg:text-base">
+                            <div>
+                                <p class="font-semibold text-purple-700 dark:text-purple-300">Who owns expirations?</p>
+                                <p class="text-gray-700 dark:text-gray-300">The <strong>INSURER</strong> owns the book of business</p>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-purple-700 dark:text-purple-300">Represents how many insurers?</p>
+                                <p class="text-gray-700 dark:text-gray-300"><strong>ONE</strong> insurer (or affiliated group)</p>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-purple-700 dark:text-purple-300">Insurer control?</p>
+                                <p class="text-gray-700 dark:text-gray-300"><strong>Moderate</strong> control</p>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-purple-700 dark:text-purple-300">Commission cost?</p>
+                                <p class="text-gray-700 dark:text-gray-300"><strong>Moderate</strong> commissions</p>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-purple-700 dark:text-purple-300">Customer flexibility?</p>
+                                <p class="text-gray-700 dark:text-gray-300"><strong>Limited</strong> &mdash; only one insurer's products</p>
+                            </div>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm text-gray-600 dark:text-gray-400"><strong>Examples:</strong> State Farm agents, Allstate agents, Farmers agents</p>
+                        </div>
+                    </div>
+
+                    <!-- Direct Writer -->
+                    <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 border-l-4 border-green-500">
+                        <h4 class="font-bold text-green-800 dark:text-green-300 mb-2 text-lg">Direct Writer</h4>
+                        <div class="space-y-3 text-sm lg:text-base">
+                            <div>
+                                <p class="font-semibold text-green-700 dark:text-green-300">Who owns expirations?</p>
+                                <p class="text-gray-700 dark:text-gray-300">The <strong>INSURER</strong> owns everything</p>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-green-700 dark:text-green-300">Represents how many insurers?</p>
+                                <p class="text-gray-700 dark:text-gray-300"><strong>Just itself</strong> (no agents at all)</p>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-green-700 dark:text-green-300">Insurer control?</p>
+                                <p class="text-gray-700 dark:text-gray-300"><strong>Most</strong> control</p>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-green-700 dark:text-green-300">Commission cost?</p>
+                                <p class="text-gray-700 dark:text-gray-300"><strong>Lowest</strong> (no agent commissions)</p>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-green-700 dark:text-green-300">Customer flexibility?</p>
+                                <p class="text-gray-700 dark:text-gray-300"><strong>None</strong> &mdash; only this insurer's products</p>
+                            </div>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm text-gray-600 dark:text-gray-400"><strong>Examples:</strong> GEICO, USAA, Lemonade, many online-only carriers</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Real-World Example -->
+                <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500 mb-6">
+                    <p class="font-semibold text-green-800 dark:text-green-300 mb-2">Real-World Scenario: Why Ownership of Expirations Matters</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Tom is an independent agent with 2,000 clients and $5M in total premium. He represents Hartford, Travelers, and CNA. Hartford raises its commercial auto rates by 25% and tightens underwriting guidelines dramatically.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Tom moves 400 commercial auto clients from Hartford to Travelers, which has better rates. Because Tom <strong>owns the expirations</strong>, Hartford cannot stop him. Hartford loses $1.2M in premium overnight.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> This is the power of the independent agency system. The agent controls the customer relationship. If the insurer makes the agent unhappy, the agent takes business elsewhere. This is why independent agents command higher commissions &mdash; the insurer is essentially "renting" access to the agent's book.</p>
+                    </div>
+                </div>
+
+                <!-- Contrast Example -->
+                <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border-l-4 border-purple-500">
+                    <p class="font-semibold text-purple-800 dark:text-purple-300 mb-2">Real-World Scenario: Why Captive Agents Cannot Do This</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Lisa is a State Farm agent. State Farm raises homeowners rates by 20% in her state. Her clients are frustrated.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Lisa cannot move her clients to another insurer because she only represents State Farm and <strong>State Farm owns the expirations</strong>. If Lisa quits, she leaves her book behind. She can only try to retain clients by explaining the value of staying.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> The captive agent has less leverage. But in exchange, State Farm provides Lisa with branding, marketing support, training, and an established customer base. The trade-off is <strong>less freedom for more support</strong>.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Ownership of Expirations -->
+        <section id="expirations" class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">2. Ownership of Expirations: The KEY Concept</h2>
+
+                <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-red-500 mb-6">
+                    <h3 class="font-bold text-red-800 dark:text-red-300 text-lg lg:text-xl">What Are "Expirations"?</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg"><strong>Expirations</strong> = the customer list, policy renewal dates, and all the associated records. In plain English, it is the <strong>book of business</strong>. Whoever "owns the expirations" controls who gets to contact those customers when their policies come up for renewal.</p>
+                    <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded mt-3">
+                        <p class="font-semibold text-gray-700 dark:text-gray-300">Why it matters:</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base mt-1">If you own the expirations, you own the customer relationship. You can move the business, sell it, or use it as leverage. It is the most valuable asset an independent agent has &mdash; agencies are literally bought and sold based on the value of their book of business.</p>
+                    </div>
+                </div>
+
+                <!-- Comparison Grid -->
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border border-green-200 dark:border-green-800">
+                        <p class="font-bold text-green-800 dark:text-green-300 mb-2">AGENT Owns Expirations</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mb-2">Independent agency / brokerage system</p>
+                        <ul class="space-y-1 text-gray-700 dark:text-gray-300 text-sm lg:text-base">
+                            <li>- Agent can move clients to another insurer at renewal</li>
+                            <li>- Agent can sell the book of business as an asset</li>
+                            <li>- Agent has negotiating leverage with insurers</li>
+                            <li>- Insurer must compete to keep the agent's business</li>
+                        </ul>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border border-red-200 dark:border-red-800">
+                        <p class="font-bold text-red-800 dark:text-red-300 mb-2">INSURER Owns Expirations</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mb-2">Exclusive agency and direct writer systems</p>
+                        <ul class="space-y-1 text-gray-700 dark:text-gray-300 text-sm lg:text-base">
+                            <li>- Agent cannot take clients when leaving</li>
+                            <li>- Insurer retains the customer relationship</li>
+                            <li>- Insurer has more control over service and pricing</li>
+                            <li>- Less risk of losing entire blocks of business</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Distribution Channels -->
+        <section id="channels" class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">3. Distribution Channels</h2>
+
+                <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-6">Within the three distribution systems, insurance reaches customers through a variety of specific <strong>channels</strong>. Many insurers use multiple channels simultaneously (an omnichannel approach).</p>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
+                        <p class="font-bold text-blue-800 dark:text-blue-300 mb-1">Internet / Online</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Insurer websites, online quoting, self-service portals. Growing rapidly for personal lines.</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-xs lg:text-sm mt-2"><strong>Example:</strong> Getting a GEICO auto quote on geico.com in 5 minutes.</p>
+                    </div>
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
+                        <p class="font-bold text-blue-800 dark:text-blue-300 mb-1">Call Centers</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Phone-based sales and service with trained representatives. Bridges the gap between digital and personal.</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-xs lg:text-sm mt-2"><strong>Example:</strong> Calling Progressive and speaking with a licensed agent who quotes and binds over the phone.</p>
+                    </div>
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
+                        <p class="font-bold text-blue-800 dark:text-blue-300 mb-1">Mobile Apps</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Smartphone applications for quoting, purchasing, managing policies, and filing claims.</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-xs lg:text-sm mt-2"><strong>Example:</strong> Lemonade's app lets you buy renters insurance and file a claim entirely from your phone.</p>
+                    </div>
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
+                        <p class="font-bold text-blue-800 dark:text-blue-300 mb-1">Agents / Brokers</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Traditional face-to-face or virtual meetings. Still dominant for complex commercial and specialty lines.</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-xs lg:text-sm mt-2"><strong>Example:</strong> A broker meeting with a manufacturer to design a comprehensive insurance program.</p>
+                    </div>
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
+                        <p class="font-bold text-blue-800 dark:text-blue-300 mb-1">Group Marketing</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Offering insurance to members of an organization, employer group, or affinity group at negotiated rates.</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-xs lg:text-sm mt-2"><strong>Example:</strong> AAA members getting discounted auto insurance through a partner insurer.</p>
+                    </div>
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
+                        <p class="font-bold text-blue-800 dark:text-blue-300 mb-1">Financial Institutions</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Banks, credit unions, and mortgage companies selling or referring insurance products to their customers.</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-xs lg:text-sm mt-2"><strong>Example:</strong> Your bank offering homeowners insurance when you close on your mortgage.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Embedded Insurance -->
+        <section id="embedded" class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">4. Embedded Insurance</h2>
+
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-purple-500 mb-6">
+                    <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg lg:text-xl">What Is Embedded Insurance?</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg"><strong>Embedded insurance</strong> is insurance that is sold at the <strong>point of sale</strong> by a <strong>non-insurance company</strong>, seamlessly integrated into the purchase experience. The customer does not have to go find an insurance company separately &mdash; coverage is offered right when and where the need arises.</p>
+                    <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded mt-3">
+                        <p class="font-semibold text-gray-700 dark:text-gray-300">Plain English:</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base mt-1">Instead of buying a product and then separately shopping for insurance, the insurance is baked into the buying experience. It is like getting a warranty offer when you buy a laptop online &mdash; except it is real insurance.</p>
+                    </div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-lg border border-indigo-200 dark:border-indigo-800">
+                        <p class="font-bold text-indigo-800 dark:text-indigo-300 mb-2">Examples of Embedded Insurance</p>
+                        <ul class="space-y-2 text-gray-700 dark:text-gray-300 text-sm lg:text-base">
+                            <li><strong>Tesla auto insurance:</strong> Buy a Tesla, get insurance quoted and offered right in the car's app at delivery</li>
+                            <li><strong>Airline travel insurance:</strong> Booking a flight and checking "add travel insurance" at checkout</li>
+                            <li><strong>Phone protection:</strong> Buying AppleCare+ when purchasing your iPhone</li>
+                            <li><strong>Rental car coverage:</strong> The car rental site asking if you want damage waiver coverage</li>
+                            <li><strong>E-commerce shipping:</strong> Shopify offering shipping insurance at checkout</li>
+                        </ul>
+                    </div>
+                    <div class="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg border border-amber-200 dark:border-amber-800">
+                        <p class="font-bold text-amber-800 dark:text-amber-300 mb-2">Why Embedded Insurance Is Growing</p>
+                        <ul class="space-y-2 text-gray-700 dark:text-gray-300 text-sm lg:text-base">
+                            <li><strong>Convenience:</strong> Customer does not need to shop separately</li>
+                            <li><strong>Higher conversion:</strong> Insurance offered at the moment of need converts better</li>
+                            <li><strong>Lower acquisition cost:</strong> No agent commission or marketing spend</li>
+                            <li><strong>Data advantage:</strong> The seller already knows the product and customer</li>
+                            <li><strong>Scale:</strong> Non-insurance platforms have millions of existing customers</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Real-World Example -->
+                <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                    <p class="font-semibold text-green-800 dark:text-green-300 mb-2">Real-World Scenario: Tesla's Embedded Insurance</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Maria orders a Tesla Model 3. During the ordering process, the Tesla app offers auto insurance priced using Tesla's real-time driving data from the vehicle itself.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Maria taps "add insurance" and gets coverage that starts the day her car is delivered. She never spoke to an agent, never visited an insurance website, and never compared quotes. Tesla has partnered with an insurer that underwrites the risk, but from Maria's perspective, Tesla IS the insurance company.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Tesla collects data from the car (braking, speed, following distance) and adjusts the premium monthly based on actual driving behavior. The traditional agent-based model is completely bypassed. This is embedded insurance at scale.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Insurtech Distribution -->
+        <section id="insurtech" class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">5. Insurtech Distribution</h2>
+
+                <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-4"><strong>Insurtech</strong> refers to technology-driven companies that are reshaping how insurance is distributed, underwritten, and serviced. Three key models are transforming distribution.</p>
+
+                <div class="grid md:grid-cols-3 gap-4 mb-6">
+                    <div class="bg-teal-50 dark:bg-teal-900/20 p-4 rounded-lg border-l-4 border-teal-500">
+                        <h4 class="font-bold text-teal-800 dark:text-teal-300 mb-2">Digital-First Carriers</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Full insurance companies built from scratch using technology, with no legacy systems or traditional agent networks.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm text-gray-600 dark:text-gray-400"><strong>Example:</strong> Lemonade (renters/home), Root (auto), Hippo (home) &mdash; entirely app-based purchasing and claims</p>
+                        </div>
+                    </div>
+                    <div class="bg-teal-50 dark:bg-teal-900/20 p-4 rounded-lg border-l-4 border-teal-500">
+                        <h4 class="font-bold text-teal-800 dark:text-teal-300 mb-2">Comparison / Aggregator Platforms</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Websites that let customers compare quotes from multiple insurers side-by-side, then buy directly.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm text-gray-600 dark:text-gray-400"><strong>Example:</strong> Policygenius, The Zebra, Gabi &mdash; enter your info once, see quotes from 10+ insurers</p>
+                        </div>
+                    </div>
+                    <div class="bg-teal-50 dark:bg-teal-900/20 p-4 rounded-lg border-l-4 border-teal-500">
+                        <h4 class="font-bold text-teal-800 dark:text-teal-300 mb-2">Mobile-First Strategies</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Insurers designing their entire customer experience around smartphone apps first, desktop second.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm text-gray-600 dark:text-gray-400"><strong>Example:</strong> Root uses smartphone sensors to track driving behavior during a test period before quoting a price</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Traditional vs Digital Comparison -->
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="bg-gray-50 dark:bg-gray-700/50 p-4 rounded-lg border border-gray-200 dark:border-gray-600">
+                        <p class="font-bold text-gray-800 dark:text-gray-200 mb-2">Traditional Distribution</p>
+                        <ul class="space-y-1 text-gray-700 dark:text-gray-300 text-sm lg:text-base">
+                            <li>- Agent meetings (in-person or phone)</li>
+                            <li>- Paper applications and manual quoting</li>
+                            <li>- Relationship-driven (personal touch)</li>
+                            <li>- Higher cost per acquisition</li>
+                            <li>- Stronger for complex risks</li>
+                        </ul>
+                    </div>
+                    <div class="bg-teal-50 dark:bg-teal-900/20 p-4 rounded-lg border border-teal-200 dark:border-teal-800">
+                        <p class="font-bold text-teal-800 dark:text-teal-300 mb-2">Digital Distribution</p>
+                        <ul class="space-y-1 text-gray-700 dark:text-gray-300 text-sm lg:text-base">
+                            <li>- Online/app-based (self-service)</li>
+                            <li>- Instant quoting and binding</li>
+                            <li>- Data-driven (algorithms, telematics)</li>
+                            <li>- Lower cost per acquisition</li>
+                            <li>- Stronger for simple, standardized products</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: Producer Functions -->
+        <section id="functions" class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">6. The 8 Producer Functions</h2>
+
+                <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-4">Producers (agents and brokers) do far more than just sell policies. They perform <strong>8 distinct functions</strong> that add value for both the customer and the insurer.</p>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <p class="font-bold text-green-800 dark:text-green-300 mb-1">1. Prospecting</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Identifying and reaching out to potential customers who need insurance. Building a pipeline of new business opportunities.</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-xs lg:text-sm mt-1"><strong>Example:</strong> An agent attending a chamber of commerce meeting to connect with local business owners.</p>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <p class="font-bold text-green-800 dark:text-green-300 mb-1">2. Risk Assessment</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Evaluating the customer's exposures, identifying risks, and determining what coverage is needed. The first step in building the right program.</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-xs lg:text-sm mt-1"><strong>Example:</strong> Walking through a restaurant to identify fire hazards, liquor liability exposure, and employee risks.</p>
+                    </div>
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-l-4 border-blue-500">
+                        <p class="font-bold text-blue-800 dark:text-blue-300 mb-1">3. Quoting</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Obtaining premium quotes from one or more insurers, comparing options, and presenting recommendations to the customer.</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-xs lg:text-sm mt-1"><strong>Example:</strong> Getting quotes from three carriers for a contractor's general liability and presenting a comparison.</p>
+                    </div>
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-l-4 border-blue-500">
+                        <p class="font-bold text-blue-800 dark:text-blue-300 mb-1">4. Placing Coverage</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Binding coverage with the selected insurer, completing applications, and ensuring the policy is issued correctly.</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-xs lg:text-sm mt-1"><strong>Example:</strong> Binding a commercial property policy effective immediately to cover a newly purchased warehouse.</p>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border-l-4 border-purple-500">
+                        <p class="font-bold text-purple-800 dark:text-purple-300 mb-1">5. Servicing</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Handling day-to-day policy needs: endorsements, certificates of insurance, billing questions, policy changes.</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-xs lg:text-sm mt-1"><strong>Example:</strong> Issuing a certificate of insurance so a contractor can start a job on a construction site.</p>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border-l-4 border-purple-500">
+                        <p class="font-bold text-purple-800 dark:text-purple-300 mb-1">6. Consulting</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Advising clients on risk management, coverage gaps, and loss prevention strategies. Going beyond just selling policies.</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-xs lg:text-sm mt-1"><strong>Example:</strong> Advising a retail chain to install security cameras to reduce theft losses and potentially lower premiums.</p>
+                    </div>
+                    <div class="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg border-l-4 border-amber-500">
+                        <p class="font-bold text-amber-800 dark:text-amber-300 mb-1">7. Claims Advocacy</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Helping clients navigate the claims process, advocating on their behalf with the insurer, and ensuring fair settlement.</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-xs lg:text-sm mt-1"><strong>Example:</strong> Helping a client document storm damage and pushing the insurer to process the claim quickly.</p>
+                    </div>
+                    <div class="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg border-l-4 border-amber-500">
+                        <p class="font-bold text-amber-800 dark:text-amber-300 mb-1">8. Retention</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Proactively working to keep existing clients at renewal time through service, relationship building, and competitive pricing.</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-xs lg:text-sm mt-1"><strong>Example:</strong> Calling clients 60 days before renewal to review coverage, shop rates if needed, and lock in the renewal.</p>
+                    </div>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 lg:p-5 rounded-r-lg">
+                    <p class="font-bold text-amber-800 dark:text-amber-300">Memory Trick</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">Think of the 8 functions as the <strong>lifecycle of a client relationship</strong>: <strong>P</strong>rospect &rarr; <strong>R</strong>isk assess &rarr; <strong>Q</strong>uote &rarr; <strong>P</strong>lace &rarr; <strong>S</strong>ervice &rarr; <strong>C</strong>onsult &rarr; <strong>C</strong>laims advocate &rarr; <strong>R</strong>etain. Mnemonic: "<strong>P</strong>roducers <strong>R</strong>eally <strong>Q</strong>uickly <strong>P</strong>lace <strong>S</strong>mart <strong>C</strong>overage, <strong>C</strong>atch <strong>R</strong>enewals."</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 7: Selecting Distribution -->
+        <section id="selecting" class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">7. Selecting a Distribution Strategy</h2>
+
+                <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-4">How does an insurer decide which distribution system to use? They evaluate several key factors.</p>
+
+                <div class="overflow-x-auto mb-6">
+                    <table class="w-full text-sm lg:text-base">
+                        <thead>
+                            <tr class="bg-green-600 text-white">
+                                <th class="p-3 lg:p-4 text-left rounded-tl-lg">Factor</th>
+                                <th class="p-3 lg:p-4 text-left">Independent Agency</th>
+                                <th class="p-3 lg:p-4 text-left">Exclusive Agency</th>
+                                <th class="p-3 lg:p-4 text-left rounded-tr-lg">Direct Writer</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-bold text-gray-800 dark:text-gray-200">Cost</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Highest (agent commissions + agent office overhead)</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Moderate (lower commissions, shared overhead)</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Lowest (no commissions, but high tech investment)</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <td class="p-3 lg:p-4 font-bold text-gray-800 dark:text-gray-200">Control</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Least &mdash; agent controls the relationship</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Moderate &mdash; insurer sets standards but agent has autonomy</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Most &mdash; insurer controls everything</td>
+                            </tr>
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-bold text-gray-800 dark:text-gray-200">Customer Access</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Broadest &mdash; agent's existing client base</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Moderate &mdash; insurer's brand draws customers</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Depends on marketing spend and brand awareness</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <td class="p-3 lg:p-4 font-bold text-gray-800 dark:text-gray-200">Product Complexity</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Best for complex commercial and specialty</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Good for personal and small commercial</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Best for simple, standardized personal lines</td>
+                            </tr>
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-bold text-gray-800 dark:text-gray-200">Geographic Reach</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Instant &mdash; appoint existing agents anywhere</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Slower &mdash; must recruit and train agents</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Instant online &mdash; but may lack local presence</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Real-World Example -->
+                <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-l-4 border-blue-500">
+                    <p class="font-semibold text-blue-800 dark:text-blue-300 mb-2">Real-World Scenario: Choosing a Distribution System</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> A new insurer wants to enter the personal auto market nationwide as quickly as possible with a tech-driven, low-cost product.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> They choose the <strong>direct writer</strong> model. They build a website and mobile app, invest heavily in digital advertising, and skip the agent channel entirely. This gives them the lowest cost per policy, full control over the customer experience, and the ability to launch in all 50 states simultaneously through their website.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> This is exactly what companies like GEICO, Root, and Lemonade have done. The trade-off: they have no local agent presence, which makes it harder to write complex risks or build deep community relationships. But for standardized personal auto, direct works beautifully.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cheat Sheet -->
+        <section id="cheat-sheet" class="mb-10">
+            <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 border-2 border-dashed border-gray-300 dark:border-gray-600">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100">Cheat Sheet</h2>
+                    <span class="text-sm text-gray-500 dark:text-gray-400">Print this page for quick reference</span>
+                </div>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <h3 class="font-bold text-gray-800 dark:text-gray-200 mb-2">3 Distribution Systems</h3>
+                        <ul class="space-y-1 text-sm lg:text-base text-gray-700 dark:text-gray-300">
+                            <li><strong>Independent:</strong> Agent owns expirations, multi-insurer, least control, highest cost</li>
+                            <li><strong>Exclusive:</strong> Insurer owns expirations, single insurer, moderate control</li>
+                            <li><strong>Direct:</strong> No agents, insurer sells directly, most control, lowest cost</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-gray-800 dark:text-gray-200 mb-2">Ownership of Expirations</h3>
+                        <ul class="space-y-1 text-sm lg:text-base text-gray-700 dark:text-gray-300">
+                            <li><strong>Independent agent:</strong> AGENT owns the book</li>
+                            <li><strong>Exclusive agent:</strong> INSURER owns the book</li>
+                            <li><strong>Direct writer:</strong> INSURER owns everything</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-gray-800 dark:text-gray-200 mb-2">8 Producer Functions</h3>
+                        <ul class="space-y-1 text-sm lg:text-base text-gray-700 dark:text-gray-300">
+                            <li>Prospecting, Risk Assessment, Quoting, Placing</li>
+                            <li>Servicing, Consulting, Claims Advocacy, Retention</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-gray-800 dark:text-gray-200 mb-2">Key Channels</h3>
+                        <ul class="space-y-1 text-sm lg:text-base text-gray-700 dark:text-gray-300">
+                            <li>Internet, call centers, mobile apps, agents/brokers</li>
+                            <li>Group marketing, financial institutions, embedded insurance</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Trap Alerts -->
+        <section class="mb-10">
+            <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-xl p-5 lg:p-6">
+                <h2 class="text-2xl lg:text-3xl font-bold text-red-800 dark:text-red-300 mb-4">Exam Trap Alerts</h2>
+                <div class="space-y-4">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">1. Independent Agents OWN Their Book &mdash; This Is the #1 Tested Concept</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">If the exam asks "In which distribution system does the agent own the expirations?" the answer is <strong>always independent agency</strong>. In exclusive agency and direct writer systems, the <strong>insurer</strong> owns the expirations. This is the single most important distinction on the exam.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">2. Exclusive Agent Is NOT an Independent Agent Who Chooses One Insurer</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">An exclusive/captive agent has a <strong>contractual obligation</strong> to represent only one insurer, and the insurer owns the book. An independent agent who happens to only place business with one insurer is still independent &mdash; because the <strong>agent still owns the expirations</strong>. The distinction is about the contract and ownership, not the number of markets used.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">3. Direct Writer Does NOT Mean "No Humans"</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Direct writers sell directly to customers but may still use <strong>company employees</strong> in call centers or retail locations. "Direct" means no <strong>independent agents or exclusive agents</strong> are involved. GEICO has thousands of employees answering phones &mdash; they are still a direct writer because those employees work for GEICO, not for themselves.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">4. Embedded Insurance Is NOT a New Type of Insurance</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Embedded insurance is a <strong>distribution channel</strong>, not a product type. The underlying insurance product (auto, travel, property) is the same &mdash; it is just sold through a non-insurance platform at the point of sale. Do not confuse the channel with the coverage.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">5. More Control = Less Flexibility (and Vice Versa)</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">This is a trade-off, not a "one is better" situation. <strong>Direct writers</strong> have maximum control but cannot tap into an agent's existing client relationships. <strong>Independent agents</strong> offer access to their book but the insurer has minimal control. The exam loves scenario questions that test this trade-off.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">6. Producers Do MORE Than Just Sell</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">If the exam asks "which of the following is a producer function?" expect choices beyond selling. <strong>Claims advocacy, risk assessment, and consulting</strong> are all producer functions. Producers are not just salespeople &mdash; they are full-service risk advisors.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Reference Summary -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-green-600 to-green-800 rounded-xl p-6 text-white">
+                <h2 class="text-2xl lg:text-3xl font-bold mb-6">Quick Reference Summary</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Independent Agency</p>
+                        <p class="text-sm text-green-100">Agent owns expirations, represents multiple insurers, insurer has least control, highest commission cost</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Exclusive / Captive Agency</p>
+                        <p class="text-sm text-green-100">Insurer owns expirations, agent represents ONE insurer, moderate control, moderate cost</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Direct Writer</p>
+                        <p class="text-sm text-green-100">Insurer sells directly (online, call center, employees), most control, lowest cost</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Ownership of Expirations</p>
+                        <p class="text-sm text-green-100">The KEY difference: who owns the customer list? Independent = agent. Exclusive/direct = insurer.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Embedded Insurance</p>
+                        <p class="text-sm text-green-100">Insurance sold at point of sale by non-insurance companies (Tesla, airlines, e-commerce)</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Insurtech Models</p>
+                        <p class="text-sm text-green-100">Digital-first carriers, comparison/aggregator platforms, mobile-first strategies</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">8 Producer Functions</p>
+                        <p class="text-sm text-green-100">Prospect, Risk Assess, Quote, Place, Service, Consult, Claims Advocate, Retain</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Distribution Channels</p>
+                        <p class="text-sm text-green-100">Internet, call centers, mobile apps, agents/brokers, group marketing, financial institutions</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Control vs. Flexibility</p>
+                        <p class="text-sm text-green-100">More insurer control = less agent flexibility. Direct = most control. Independent = least control.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Navigation Footer -->
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="../part-1/index.html" class="text-gray-300 hover:text-white flex items-center">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                    </svg>
+                    Part 1: Marketplace
+                </a>
+                <span class="text-gray-400">Part 2 of 3</span>
+                <a href="../part-3/index.html" class="text-gray-300 hover:text-white flex items-center">
+                    Part 3: Marketing Strategy
+                    <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AI Tutor Button -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            createFloatingAIButton(`CPCU 520 Assignment 5 Part 2: Distribution Systems and Channels
+
+THREE DISTRIBUTION SYSTEMS:
+1. Independent Agency/Brokerage: AGENT owns expirations (book of business), represents MULTIPLE insurers, insurer has LEAST control, HIGHEST commission costs. Examples: Marsh, Aon, local independent agencies.
+2. Exclusive/Captive Agency: INSURER owns expirations, agent represents ONE insurer, MODERATE control, moderate costs. Examples: State Farm, Allstate, Farmers agents.
+3. Direct Writer: INSURER owns everything, sells directly (online/call center/employees), MOST control, LOWEST commission costs. Examples: GEICO, USAA, Lemonade.
+
+OWNERSHIP OF EXPIRATIONS (THE KEY CONCEPT):
+- Expirations = the customer list, renewal dates, book of business
+- Whoever owns expirations controls the customer relationship
+- Independent agents: AGENT owns -> can move business, sell the book, has leverage
+- Exclusive/Direct: INSURER owns -> agent cannot take clients when leaving
+
+DISTRIBUTION CHANNELS:
+- Internet/online, call centers, mobile apps, agents/brokers, group marketing, financial institutions
+
+EMBEDDED INSURANCE:
+- Insurance sold at point of sale by non-insurance companies
+- Examples: Tesla auto insurance, airline travel insurance, AppleCare+, rental car coverage
+- Growing because: convenience, higher conversion, lower cost, data advantage, scale
+- It is a DISTRIBUTION CHANNEL, not a new type of insurance product
+
+INSURTECH DISTRIBUTION:
+- Digital-first carriers (Lemonade, Root, Hippo)
+- Comparison/aggregator platforms (Policygenius, The Zebra)
+- Mobile-first strategies (app-based everything)
+
+8 PRODUCER FUNCTIONS:
+1. Prospecting - find potential customers
+2. Risk Assessment - evaluate exposures
+3. Quoting - get/compare premium quotes
+4. Placing Coverage - bind and issue
+5. Servicing - endorsements, certificates, billing
+6. Consulting - risk management advice
+7. Claims Advocacy - help with claims process
+8. Retention - keep clients at renewal
+
+SELECTING DISTRIBUTION FACTORS:
+- Cost, Control, Customer Access, Product Complexity, Geographic Reach
+- Complex products -> independent agents best
+- Simple/standardized -> direct writer best
+
+EXAM TRAPS:
+- Independent agents OWN their book (#1 tested concept)
+- Exclusive agent ≠ independent agent who only uses one insurer (contract and ownership differ)
+- Direct writer can still use human employees (just not independent/exclusive agents)
+- Embedded insurance = distribution channel, NOT new product type
+- More control = less flexibility (trade-off, not one-is-better)
+- Producers do MORE than sell (claims advocacy, consulting, risk assessment)`);
+        });
+    </script>
+</body>
+</html>

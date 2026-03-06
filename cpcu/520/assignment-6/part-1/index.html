@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment 6 Part 1: Reinsurance Functions and Sources | CPCU 520</title>
+    <link rel="icon" type="image/svg+xml" href="../../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <link rel="stylesheet" href="../../../../css/styles.css">
+    <script src="../../../../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+        }
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <!-- Settings & Theme Toggle Buttons -->
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="showAPIKeySetup()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings">
+            <svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+        </button>
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/>
+            </svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-cyan-600 to-cyan-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap gap-2 text-sm mb-2">
+                <a href="../../../../index.html" class="text-cyan-200 hover:text-white">Home</a>
+                <span class="text-cyan-300">/</span>
+                <a href="../../../index.html" class="text-cyan-200 hover:text-white">CPCU</a>
+                <span class="text-cyan-300">/</span>
+                <a href="../../index.html" class="text-cyan-200 hover:text-white">520</a>
+                <span class="text-cyan-300">/</span>
+                <a href="../index.html" class="text-cyan-200 hover:text-white">Assignment 6</a>
+                <span class="text-cyan-300">/</span>
+                <span class="text-white">Part 1</span>
+            </div>
+            <h1 class="text-3xl font-bold">Assignment 6 Part 1: Reinsurance Functions and Sources</h1>
+            <p class="text-cyan-200 mt-1">What reinsurance is, why insurers need it, where it comes from, and the two fundamental delivery methods</p>
+        </div>
+    </header>
+
+    <!-- Part Navigation -->
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-wrap gap-2 text-sm">
+                <a href="../index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Overview</a>
+                <span class="bg-cyan-600 text-white px-3 py-1 rounded font-medium">Part 1</span>
+                <a href="../part-2/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 2</a>
+                <a href="../part-3/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 3</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-5xl lg:max-w-7xl">
+
+        <!-- Start Here: 5 Things You MUST Know -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-cyan-100 to-teal-200 dark:from-cyan-900/40 dark:to-teal-800/40 rounded-xl p-6 border border-cyan-300 dark:border-cyan-700">
+                <h3 class="text-xl lg:text-2xl font-bold text-cyan-800 dark:text-cyan-200 mb-4">Start Here: 5 Things You MUST Know</h3>
+                <div class="grid md:grid-cols-2 gap-3">
+                    <div class="flex items-start">
+                        <span class="bg-cyan-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Reinsurance is <strong>insurance for insurance companies</strong> &mdash; a primary insurer (ceding company) transfers part of its risk to a reinsurer.</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-cyan-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">There are <strong>six functions</strong> of reinsurance: capacity, catastrophe protection, stabilization, surplus relief, facilitate withdrawal, and underwriting guidance.</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-cyan-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Retrocession</strong> = when a reinsurer transfers risk to ANOTHER reinsurer. It is reinsurance of reinsurance.</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-cyan-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">4</span>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Treaty</strong> = automatic, covers a class of business. <strong>Facultative</strong> = individual risk, negotiated one at a time.</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-cyan-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">5</span>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Three sources of reinsurance: <strong>professional reinsurers</strong>, reinsurance departments of primary insurers, and <strong>pools/syndicates/associations</strong>.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Overview Section -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">Reinsurance Functions and Sources</h2>
+
+                <div class="bg-cyan-50 dark:bg-cyan-900/30 border border-cyan-200 dark:border-cyan-800 rounded-lg p-5 lg:p-6 mb-6">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Imagine you are an insurer and someone asks you to write a $50 million property policy on a skyscraper. Your company has $100 million in surplus. Writing that one policy would put <strong>half your entire net worth</strong> at risk on a single building. That is reckless. Instead, you keep $5 million of the risk and transfer $45 million to reinsurers. Now you have earned a nice premium while keeping your exposure manageable. <strong>That is reinsurance in action.</strong></p>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 lg:p-5 rounded-r-lg">
+                    <p class="font-bold text-amber-800 dark:text-amber-300 text-lg">Exam Alert!</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">The <strong>six functions of reinsurance</strong> are heavily tested. Know each one and be able to match a scenario to the correct function. Also expect questions on <strong>treaty vs. facultative</strong> &mdash; the exam loves giving you a scenario and asking which method applies.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 1: What Is Reinsurance -->
+        <section id="what-is-reinsurance" class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">1. What Is Reinsurance?</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-6">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg lg:text-xl">Definition</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">Reinsurance is a <strong>transaction where a primary insurer (the ceding company) transfers some or all of the risk it has assumed</strong> to another insurer (the reinsurer). The policyholder typically has no idea this is happening &mdash; their contract is still with the primary insurer.</p>
+                    <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded mt-3">
+                        <p class="font-semibold text-gray-700 dark:text-gray-300">Plain English:</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base mt-1">Think of it like a general contractor subcontracting work. You hire a contractor to build your house (the primary insurer). The contractor hires electricians and plumbers to do parts of the job (the reinsurers). You only deal with the contractor &mdash; you never even know the subcontractors exist. But if a problem arises, the contractor is still on the hook to you.</p>
+                    </div>
+                </div>
+
+                <!-- Reinsurance Flow Diagram -->
+                <div class="bg-gray-50 dark:bg-gray-700/50 rounded-xl p-6 mb-6">
+                    <h3 class="font-bold text-gray-800 dark:text-gray-100 text-lg mb-4 text-center">How Reinsurance Flows</h3>
+                    <div class="flex items-center justify-center gap-3 lg:gap-6 flex-wrap">
+                        <div class="bg-green-100 dark:bg-green-900/40 p-4 lg:p-5 rounded-lg text-center min-w-[140px] border border-green-300 dark:border-green-700">
+                            <p class="font-bold text-green-800 dark:text-green-300 text-lg">Policyholder</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Buys insurance policy</p>
+                        </div>
+                        <div class="text-2xl text-gray-400 font-bold">&rarr;</div>
+                        <div class="bg-cyan-100 dark:bg-cyan-900/40 p-4 lg:p-5 rounded-lg text-center min-w-[140px] border border-cyan-300 dark:border-cyan-700">
+                            <p class="font-bold text-cyan-800 dark:text-cyan-300 text-lg">Ceding Company</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Primary insurer</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Keeps some risk</p>
+                        </div>
+                        <div class="text-2xl text-gray-400 font-bold">&rarr;</div>
+                        <div class="bg-indigo-100 dark:bg-indigo-900/40 p-4 lg:p-5 rounded-lg text-center min-w-[140px] border border-indigo-300 dark:border-indigo-700">
+                            <p class="font-bold text-indigo-800 dark:text-indigo-300 text-lg">Reinsurer</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Accepts ceded risk</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Receives premium</p>
+                        </div>
+                        <div class="text-2xl text-gray-400 font-bold">&rarr;</div>
+                        <div class="bg-purple-100 dark:bg-purple-900/40 p-4 lg:p-5 rounded-lg text-center min-w-[140px] border border-purple-300 dark:border-purple-700">
+                            <p class="font-bold text-purple-800 dark:text-purple-300 text-lg">Retrocessionaire</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">Reinsurer of reinsurer</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">(Retrocession)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Real-World Scenario -->
+                <div class="bg-cyan-50 dark:bg-cyan-900/20 p-4 lg:p-5 rounded-lg border-l-4 border-cyan-500">
+                    <p class="font-semibold text-cyan-800 dark:text-cyan-300 mb-2">Real-World Scenario: The Skyscraper Policy</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Acme Insurance has $100 million in surplus. A real estate developer asks Acme to insure a brand-new 40-story office tower for $50 million.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Acme cannot put half its surplus at risk on one building. It writes the $50M policy but immediately cedes $45M of the risk to Munich Re (a professional reinsurer). Acme retains only $5M. It sends a portion of the premium to Munich Re along with the risk.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> If the building suffers a $30M fire loss, Acme pays the developer $30M (it is still on the hook to the policyholder). Then Acme collects $27M from Munich Re (Munich Re's proportional share). Acme's net loss is only $3M. Without reinsurance, Acme would have eaten the entire $30M &mdash; a 30% hit to its surplus.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Key Terminology -->
+        <section id="terminology" class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">2. Key Reinsurance Terminology</h2>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500">
+                        <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg">Ceding Company</h3>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">The primary insurer that <strong>transfers (cedes) risk</strong> to a reinsurer. Also called the "cedent" or "cedant."</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400"><strong>Example:</strong> State Farm writes your homeowners policy. If State Farm cedes part of that risk to a reinsurer, State Farm is the ceding company.</p>
+                        </div>
+                    </div>
+                    <div class="bg-indigo-50 dark:bg-indigo-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-indigo-500">
+                        <h3 class="font-bold text-indigo-800 dark:text-indigo-300 text-lg">Reinsurer</h3>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">The insurer that <strong>accepts the transferred risk</strong> from the ceding company. Also called the "assuming company."</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400"><strong>Example:</strong> Munich Re accepts $45M of the skyscraper risk from Acme. Munich Re is the reinsurer.</p>
+                        </div>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-purple-500">
+                        <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg">Retrocession</h3>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">When a <strong>reinsurer transfers risk to ANOTHER reinsurer</strong>. The second reinsurer is the "retrocessionaire."</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400"><strong>Example:</strong> Munich Re accepted $45M but decides that is too much. It retrocedes $20M to Lloyd's. Munich Re is now both a reinsurer AND a retrocedent.</p>
+                        </div>
+                    </div>
+                    <div class="bg-teal-50 dark:bg-teal-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-teal-500">
+                        <h3 class="font-bold text-teal-800 dark:text-teal-300 text-lg">Cession</h3>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">The <strong>amount of risk (and associated premium) that is transferred</strong> to the reinsurer. This is the portion that gets "ceded."</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400"><strong>Example:</strong> On the $50M skyscraper policy, the cession is $45M &mdash; that is the amount of risk Acme transferred to Munich Re.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Memory Trick -->
+                <div class="bg-amber-50 dark:bg-amber-900/30 border border-amber-200 dark:border-amber-800 rounded-lg p-4 lg:p-5">
+                    <h3 class="font-bold text-amber-800 dark:text-amber-300 text-lg mb-2">Memory Trick: The Chain of Transfers</h3>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>"Cede" sounds like "seed"</strong> &mdash; the ceding company plants the seed of risk in the reinsurer's garden. <strong>"Retro" means "back" or "again"</strong> &mdash; retrocession is doing the same thing again, one more level deep. Think of it as a relay race: the ceding company passes the baton to the reinsurer, who passes it again to the retrocessionaire.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Six Functions of Reinsurance -->
+        <section id="six-functions" class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">3. Six Functions of Reinsurance</h2>
+
+                <div class="bg-red-50 dark:bg-red-900/20 border-l-4 border-red-500 p-4 mb-6 rounded-r-lg">
+                    <p class="font-bold text-red-800 dark:text-red-300">HIGHLY TESTABLE</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-1 text-base lg:text-lg">Memorize all six functions. The exam will describe a scenario and ask which function of reinsurance is being illustrated.</p>
+                </div>
+
+                <!-- Function 1 -->
+                <div class="bg-cyan-50 dark:bg-cyan-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-cyan-500 mb-4">
+                    <h3 class="font-bold text-cyan-800 dark:text-cyan-300 text-lg lg:text-xl">Function 1: Increase Large-Line Capacity</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg"><strong>What it means:</strong> Reinsurance allows an insurer to write policies with limits <strong>larger than its own surplus would safely allow</strong>. Without reinsurance, small and mid-size insurers could never compete for large commercial accounts.</p>
+                    <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded mt-3">
+                        <p class="font-semibold text-gray-700 dark:text-gray-300 mb-2">Real-World Scenario: Small Insurer, Big Client</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base"><strong>The Setup:</strong> Regional Mutual has $20M in surplus. A local factory needs $15M in property coverage.</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base mt-1"><strong>What Happens:</strong> Without reinsurance, Regional Mutual would have to say no &mdash; a $15M loss would wipe out 75% of its surplus. With reinsurance, it keeps $3M and cedes $12M.</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base mt-1"><strong>The Result:</strong> Regional Mutual writes the policy, earns premium, and keeps the client. Its maximum exposure is only $3M &mdash; a manageable 15% of surplus.</p>
+                    </div>
+                </div>
+
+                <!-- Function 2 -->
+                <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-red-500 mb-4">
+                    <h3 class="font-bold text-red-800 dark:text-red-300 text-lg lg:text-xl">Function 2: Provide Catastrophe Protection</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg"><strong>What it means:</strong> Reinsurance protects an insurer against a <strong>massive accumulation of losses from a single event</strong> &mdash; a hurricane, earthquake, wildfire, or terrorist attack that causes thousands of claims all at once.</p>
+                    <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded mt-3">
+                        <p class="font-semibold text-gray-700 dark:text-gray-300 mb-2">Real-World Scenario: Hurricane Season</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base"><strong>The Setup:</strong> Coastal Insurance Co. writes 50,000 homeowners policies in Florida with an average $300K limit.</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base mt-1"><strong>What Happens:</strong> A Category 4 hurricane hits and 10,000 homes are damaged. Total claims reach $800M.</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base mt-1"><strong>The Result:</strong> Coastal's catastrophe reinsurance kicks in above $50M. The reinsurer pays $750M. Without cat reinsurance, Coastal would be insolvent.</p>
+                    </div>
+                </div>
+
+                <!-- Function 3 -->
+                <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-green-500 mb-4">
+                    <h3 class="font-bold text-green-800 dark:text-green-300 text-lg lg:text-xl">Function 3: Stabilize Loss Experience</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg"><strong>What it means:</strong> Reinsurance <strong>smooths out year-to-year fluctuations</strong> in loss results. Instead of swinging between great years and terrible years, the insurer's results become more predictable.</p>
+                    <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded mt-3">
+                        <p class="font-semibold text-gray-700 dark:text-gray-300 mb-2">Real-World Scenario: Rollercoaster Results</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base"><strong>The Setup:</strong> Midwest Fire has loss ratios of 55%, 120%, 50%, 130% over four years &mdash; wildly unstable.</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base mt-1"><strong>What Happens:</strong> By purchasing reinsurance that caps its losses per year, the reinsurer absorbs the spikes.</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base mt-1"><strong>The Result:</strong> After reinsurance, Midwest Fire's net loss ratios become 55%, 70%, 50%, 70% &mdash; much more predictable. Investors and regulators are happier.</p>
+                    </div>
+                </div>
+
+                <!-- Function 4 -->
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-purple-500 mb-4">
+                    <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg lg:text-xl">Function 4: Provide Surplus Relief</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg"><strong>What it means:</strong> When an insurer writes a policy, it must set aside reserves. This <strong>reduces its surplus</strong> (net worth). The reinsurer pays a <strong>ceding commission</strong> to the primary insurer, which effectively puts money back into surplus. This is especially important for <strong>rapidly growing insurers</strong> whose surplus gets strained by writing lots of new business.</p>
+                    <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded mt-3">
+                        <p class="font-semibold text-gray-700 dark:text-gray-300 mb-2">Real-World Scenario: Growing Too Fast</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base"><strong>The Setup:</strong> StartUp Insurance is booming &mdash; premiums grew 40% this year. But every new policy requires reserves, and surplus is dropping fast.</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base mt-1"><strong>What Happens:</strong> StartUp buys quota share reinsurance (cedes 30% of everything). The reinsurer pays a ceding commission of 35% of the ceded premium to cover StartUp's acquisition costs.</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base mt-1"><strong>The Result:</strong> The ceding commission inflows improve StartUp's surplus. It can keep growing without violating regulatory capital requirements.</p>
+                    </div>
+                </div>
+
+                <!-- Function 5 -->
+                <div class="bg-amber-50 dark:bg-amber-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-amber-500 mb-4">
+                    <h3 class="font-bold text-amber-800 dark:text-amber-300 text-lg lg:text-xl">Function 5: Facilitate Withdrawal from a Market</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg"><strong>What it means:</strong> When an insurer wants to <strong>exit a line of business or geographic area</strong>, it still has outstanding policies that could generate future claims. Reinsurance can <strong>transfer that remaining liability</strong> so the insurer can cleanly walk away.</p>
+                    <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded mt-3">
+                        <p class="font-semibold text-gray-700 dark:text-gray-300 mb-2">Real-World Scenario: Exiting a Losing Market</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base"><strong>The Setup:</strong> National Insurance has been writing medical malpractice in California for 15 years. Losses are terrible and it wants out.</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base mt-1"><strong>What Happens:</strong> National stops writing new policies but still has 3,000 active policies with potential future claims. It enters a portfolio reinsurance agreement to transfer all remaining liabilities to a reinsurer.</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base mt-1"><strong>The Result:</strong> National can close its California med-mal book and focus on profitable lines. The reinsurer handles all future claims from those policies.</p>
+                    </div>
+                </div>
+
+                <!-- Function 6 -->
+                <div class="bg-indigo-50 dark:bg-indigo-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-indigo-500 mb-4">
+                    <h3 class="font-bold text-indigo-800 dark:text-indigo-300 text-lg lg:text-xl">Function 6: Provide Underwriting Guidance</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg"><strong>What it means:</strong> Reinsurers have <strong>vast global experience</strong> across many markets and lines of business. They share their expertise on <strong>pricing, risk selection, policy wording, and emerging risks</strong> with ceding companies.</p>
+                    <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded mt-3">
+                        <p class="font-semibold text-gray-700 dark:text-gray-300 mb-2">Real-World Scenario: Entering Cyber Insurance</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base"><strong>The Setup:</strong> Hometown Mutual wants to start writing cyber liability policies but has zero experience pricing cyber risk.</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base mt-1"><strong>What Happens:</strong> Their reinsurer (Swiss Re) provides pricing models, sample policy forms, loss data from other markets, and training for Hometown's underwriters.</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base mt-1"><strong>The Result:</strong> Hometown launches a cyber product with confidence, backed by Swiss Re's global expertise. The reinsurer benefits because a well-priced book means fewer claims on the reinsured portion.</p>
+                    </div>
+                </div>
+
+                <!-- Summary Grid -->
+                <div class="bg-gray-50 dark:bg-gray-700/50 rounded-xl p-5 mt-6">
+                    <h3 class="font-bold text-gray-800 dark:text-gray-100 text-lg mb-4">All Six Functions at a Glance</h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm lg:text-base">
+                            <thead>
+                                <tr class="bg-cyan-600 text-white">
+                                    <th class="p-3 lg:p-4 text-left rounded-tl-lg">Function</th>
+                                    <th class="p-3 lg:p-4 text-left">What It Does</th>
+                                    <th class="p-3 lg:p-4 text-left rounded-tr-lg">Key Word</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-200 dark:divide-gray-600">
+                                <tr class="bg-white dark:bg-gray-800">
+                                    <td class="p-3 lg:p-4 font-semibold text-gray-700 dark:text-gray-300">Large-Line Capacity</td>
+                                    <td class="p-3 lg:p-4 text-gray-600 dark:text-gray-400">Write bigger policies than surplus alone allows</td>
+                                    <td class="p-3 lg:p-4 text-cyan-700 dark:text-cyan-300 font-bold">SIZE</td>
+                                </tr>
+                                <tr class="bg-gray-50 dark:bg-gray-700">
+                                    <td class="p-3 lg:p-4 font-semibold text-gray-700 dark:text-gray-300">Catastrophe Protection</td>
+                                    <td class="p-3 lg:p-4 text-gray-600 dark:text-gray-400">Survive massive losses from one event</td>
+                                    <td class="p-3 lg:p-4 text-red-700 dark:text-red-300 font-bold">DISASTER</td>
+                                </tr>
+                                <tr class="bg-white dark:bg-gray-800">
+                                    <td class="p-3 lg:p-4 font-semibold text-gray-700 dark:text-gray-300">Stabilize Losses</td>
+                                    <td class="p-3 lg:p-4 text-gray-600 dark:text-gray-400">Smooth out year-to-year fluctuations</td>
+                                    <td class="p-3 lg:p-4 text-green-700 dark:text-green-300 font-bold">SMOOTH</td>
+                                </tr>
+                                <tr class="bg-gray-50 dark:bg-gray-700">
+                                    <td class="p-3 lg:p-4 font-semibold text-gray-700 dark:text-gray-300">Surplus Relief</td>
+                                    <td class="p-3 lg:p-4 text-gray-600 dark:text-gray-400">Ceding commission improves financial position</td>
+                                    <td class="p-3 lg:p-4 text-purple-700 dark:text-purple-300 font-bold">MONEY</td>
+                                </tr>
+                                <tr class="bg-white dark:bg-gray-800">
+                                    <td class="p-3 lg:p-4 font-semibold text-gray-700 dark:text-gray-300">Facilitate Withdrawal</td>
+                                    <td class="p-3 lg:p-4 text-gray-600 dark:text-gray-400">Clean exit from a market or line</td>
+                                    <td class="p-3 lg:p-4 text-amber-700 dark:text-amber-300 font-bold">EXIT</td>
+                                </tr>
+                                <tr class="bg-gray-50 dark:bg-gray-700">
+                                    <td class="p-3 lg:p-4 font-semibold text-gray-700 dark:text-gray-300">Underwriting Guidance</td>
+                                    <td class="p-3 lg:p-4 text-gray-600 dark:text-gray-400">Expert advice on pricing and risk selection</td>
+                                    <td class="p-3 lg:p-4 text-indigo-700 dark:text-indigo-300 font-bold">ADVICE</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Three Sources of Reinsurance -->
+        <section id="sources" class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">4. Three Sources of Reinsurance</h2>
+
+                <div class="grid md:grid-cols-3 gap-4 mb-6">
+                    <div class="bg-cyan-50 dark:bg-cyan-900/20 p-4 lg:p-5 rounded-lg border-l-4 border-cyan-500">
+                        <h4 class="font-bold text-cyan-800 dark:text-cyan-300 mb-2 text-lg">Professional Reinsurers</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mb-3">Companies whose <strong>primary business IS reinsurance</strong>. They do not sell policies to the public.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="text-sm text-gray-600 dark:text-gray-400"><strong>Examples:</strong> Munich Re, Swiss Re, Gen Re, RenaissanceRe, Hannover Re, SCOR</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-2">
+                            <p class="text-sm text-gray-600 dark:text-gray-400"><strong>Key trait:</strong> Deepest expertise and largest capacity. They exist solely to reinsure.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-teal-50 dark:bg-teal-900/20 p-4 lg:p-5 rounded-lg border-l-4 border-teal-500">
+                        <h4 class="font-bold text-teal-800 dark:text-teal-300 mb-2 text-lg">Reinsurance Departments of Primary Insurers</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mb-3">Large primary insurers that <strong>also sell reinsurance</strong> as a secondary business through a dedicated department.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="text-sm text-gray-600 dark:text-gray-400"><strong>Examples:</strong> Berkshire Hathaway (writes direct AND reinsurance), AIG, Liberty Mutual</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-2">
+                            <p class="text-sm text-gray-600 dark:text-gray-400"><strong>Key trait:</strong> Dual role &mdash; they understand both sides of the transaction.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-indigo-50 dark:bg-indigo-900/20 p-4 lg:p-5 rounded-lg border-l-4 border-indigo-500">
+                        <h4 class="font-bold text-indigo-800 dark:text-indigo-300 mb-2 text-lg">Reinsurance Pools, Syndicates, and Associations</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mb-3"><strong>Groups of insurers that band together</strong> to share risk that no single company wants to handle alone.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="text-sm text-gray-600 dark:text-gray-400"><strong>Examples:</strong> Lloyd's syndicates, nuclear energy pools, terrorism risk pools (TRIA backstop)</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-2">
+                            <p class="text-sm text-gray-600 dark:text-gray-400"><strong>Key trait:</strong> Strength in numbers. Useful for catastrophic or hard-to-place risks.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Treaty vs. Facultative -->
+        <section id="treaty-facultative" class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">5. Treaty vs. Facultative Reinsurance</h2>
+
+                <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-6">These are the <strong>two methods of delivering reinsurance</strong>. Think of it as the difference between buying in bulk (treaty) vs. buying one item at a time (facultative).</p>
+
+                <!-- Comparison -->
+                <div class="grid md:grid-cols-2 gap-6 mb-6">
+                    <div class="bg-cyan-50 dark:bg-cyan-900/20 rounded-lg p-5 border-l-4 border-cyan-500">
+                        <h3 class="font-bold text-cyan-800 dark:text-cyan-300 text-xl mb-3">Treaty Reinsurance</h3>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-3">A <strong>blanket agreement</strong> that automatically covers an entire class or book of business. Once the treaty is in place, individual risks flow through automatically &mdash; no negotiation needed per policy.</p>
+                        <ul class="space-y-2 text-gray-700 dark:text-gray-300 text-sm lg:text-base">
+                            <li class="flex items-start"><span class="text-cyan-600 mr-2 font-bold">+</span> Automatic &mdash; no delay in coverage</li>
+                            <li class="flex items-start"><span class="text-cyan-600 mr-2 font-bold">+</span> Efficient &mdash; one agreement covers thousands of policies</li>
+                            <li class="flex items-start"><span class="text-cyan-600 mr-2 font-bold">+</span> Lower administrative cost per policy</li>
+                            <li class="flex items-start"><span class="text-red-600 mr-2 font-bold">-</span> Reinsurer must accept ALL qualifying risks (no cherry-picking)</li>
+                        </ul>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-4">
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400"><strong>Analogy:</strong> Treaty = <strong>wholesale</strong>. Like a standing order at a restaurant: "Send me 100 cases of chicken every week." You do not negotiate each case.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-amber-50 dark:bg-amber-900/20 rounded-lg p-5 border-l-4 border-amber-500">
+                        <h3 class="font-bold text-amber-800 dark:text-amber-300 text-xl mb-3">Facultative Reinsurance</h3>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-3">Each risk is <strong>individually negotiated</strong>. The ceding company submits a specific risk, and the reinsurer can <strong>accept or decline</strong> it. Used for large, unusual, or hazardous risks.</p>
+                        <ul class="space-y-2 text-gray-700 dark:text-gray-300 text-sm lg:text-base">
+                            <li class="flex items-start"><span class="text-green-600 mr-2 font-bold">+</span> Reinsurer can evaluate each risk individually</li>
+                            <li class="flex items-start"><span class="text-green-600 mr-2 font-bold">+</span> Used for risks that fall outside treaty limits</li>
+                            <li class="flex items-start"><span class="text-green-600 mr-2 font-bold">+</span> Tailored terms and pricing per risk</li>
+                            <li class="flex items-start"><span class="text-red-600 mr-2 font-bold">-</span> Slow &mdash; takes time to negotiate each placement</li>
+                            <li class="flex items-start"><span class="text-red-600 mr-2 font-bold">-</span> Higher admin cost per risk</li>
+                        </ul>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-4">
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400"><strong>Analogy:</strong> Facultative = <strong>retail</strong>. Like going to a market and negotiating the price of each individual item. "How much for this one tuna?"</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Comparison Table -->
+                <div class="overflow-x-auto mb-6">
+                    <table class="w-full text-sm lg:text-base">
+                        <thead>
+                            <tr class="bg-cyan-600 text-white">
+                                <th class="p-3 lg:p-4 text-left rounded-tl-lg">Feature</th>
+                                <th class="p-3 lg:p-4 text-left">Treaty</th>
+                                <th class="p-3 lg:p-4 text-left rounded-tr-lg">Facultative</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200 dark:divide-gray-600">
+                            <tr class="bg-white dark:bg-gray-800">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-700 dark:text-gray-300">Scope</td>
+                                <td class="p-3 lg:p-4 text-gray-600 dark:text-gray-400">Entire class of business</td>
+                                <td class="p-3 lg:p-4 text-gray-600 dark:text-gray-400">Individual risk</td>
+                            </tr>
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-700 dark:text-gray-300">Negotiation</td>
+                                <td class="p-3 lg:p-4 text-gray-600 dark:text-gray-400">Once (at treaty inception)</td>
+                                <td class="p-3 lg:p-4 text-gray-600 dark:text-gray-400">Per risk, every time</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-700 dark:text-gray-300">Speed</td>
+                                <td class="p-3 lg:p-4 text-gray-600 dark:text-gray-400">Automatic, instant</td>
+                                <td class="p-3 lg:p-4 text-gray-600 dark:text-gray-400">Days or weeks</td>
+                            </tr>
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-700 dark:text-gray-300">Admin Cost</td>
+                                <td class="p-3 lg:p-4 text-gray-600 dark:text-gray-400">Low per policy</td>
+                                <td class="p-3 lg:p-4 text-gray-600 dark:text-gray-400">High per risk</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-700 dark:text-gray-300">Reinsurer Choice</td>
+                                <td class="p-3 lg:p-4 text-gray-600 dark:text-gray-400">Must accept all qualifying risks</td>
+                                <td class="p-3 lg:p-4 text-gray-600 dark:text-gray-400">Can accept or decline each risk</td>
+                            </tr>
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-700 dark:text-gray-300">Best For</td>
+                                <td class="p-3 lg:p-4 text-gray-600 dark:text-gray-400">Standard, high-volume business</td>
+                                <td class="p-3 lg:p-4 text-gray-600 dark:text-gray-400">Large, unusual, or hazardous risks</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Real-World Scenario -->
+                <div class="bg-teal-50 dark:bg-teal-900/20 p-4 lg:p-5 rounded-lg border-l-4 border-teal-500">
+                    <p class="font-semibold text-teal-800 dark:text-teal-300 mb-2">Real-World Scenario: When Both Are Used Together</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Great Lakes Insurance has a treaty that automatically reinsures commercial property risks up to $10M per policy.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> A client needs $25M in coverage for a chemical plant &mdash; this exceeds the treaty limit. Great Lakes uses the treaty for the first $10M of reinsurance, then goes to the facultative market to place the remaining $15M with a specialist reinsurer.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> The treaty handles the routine part automatically. The facultative placement (which takes a few days of negotiation) handles the excess. Most insurers use both methods.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cheat Sheet -->
+        <section id="cheat-sheet" class="mb-10">
+            <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 border-2 border-dashed border-gray-300 dark:border-gray-600">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100">Cheat Sheet</h2>
+                    <span class="text-sm text-gray-500 dark:text-gray-400">Print this page for quick reference</span>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-cyan-700 dark:text-cyan-300 mb-2">Key Terms</p>
+                        <ul class="text-sm text-gray-600 dark:text-gray-400 space-y-1">
+                            <li><strong>Ceding company</strong> = primary insurer that transfers risk</li>
+                            <li><strong>Reinsurer</strong> = company that accepts the risk</li>
+                            <li><strong>Cession</strong> = the amount transferred</li>
+                            <li><strong>Retrocession</strong> = reinsurer reinsuring with another reinsurer</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-cyan-700 dark:text-cyan-300 mb-2">6 Functions</p>
+                        <ol class="text-sm text-gray-600 dark:text-gray-400 space-y-1 list-decimal list-inside">
+                            <li>Increase large-line capacity</li>
+                            <li>Provide catastrophe protection</li>
+                            <li>Stabilize loss experience</li>
+                            <li>Provide surplus relief</li>
+                            <li>Facilitate withdrawal</li>
+                            <li>Provide underwriting guidance</li>
+                        </ol>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-cyan-700 dark:text-cyan-300 mb-2">Treaty vs. Facultative</p>
+                        <ul class="text-sm text-gray-600 dark:text-gray-400 space-y-1">
+                            <li><strong>Treaty</strong> = automatic, blanket, wholesale</li>
+                            <li><strong>Facultative</strong> = individual, negotiated, retail</li>
+                            <li>Most insurers use BOTH</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-cyan-700 dark:text-cyan-300 mb-2">3 Sources</p>
+                        <ul class="text-sm text-gray-600 dark:text-gray-400 space-y-1">
+                            <li>Professional reinsurers (Munich Re, Swiss Re)</li>
+                            <li>Reinsurance depts. of primary insurers</li>
+                            <li>Pools, syndicates, associations</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-cyan-700 dark:text-cyan-300 mb-2">Policyholder Relationship</p>
+                        <ul class="text-sm text-gray-600 dark:text-gray-400 space-y-1">
+                            <li>Policyholder has NO contract with reinsurer</li>
+                            <li>Primary insurer is ALWAYS on the hook to the policyholder</li>
+                            <li>Reinsurance is invisible to the customer</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-cyan-700 dark:text-cyan-300 mb-2">Surplus Relief Mechanism</p>
+                        <ul class="text-sm text-gray-600 dark:text-gray-400 space-y-1">
+                            <li>Writing policies reduces surplus (reserves)</li>
+                            <li>Reinsurer pays ceding commission</li>
+                            <li>Commission replenishes surplus</li>
+                            <li>Critical for fast-growing insurers</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Trap Alerts -->
+        <section class="mb-10">
+            <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-xl p-5 lg:p-6">
+                <h2 class="text-2xl font-bold text-red-800 dark:text-red-300 mb-4">Exam Trap Alerts</h2>
+                <div class="space-y-3">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">1. The Policyholder Has NO Relationship with the Reinsurer</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">If the reinsurer goes bankrupt, the <strong>ceding company still owes the policyholder the full claim</strong>. The policyholder cannot sue the reinsurer directly. The ceding company bears the credit risk of the reinsurer.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">2. Treaty Reinsurers MUST Accept Qualifying Risks</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Under a treaty, the reinsurer <strong>cannot cherry-pick</strong>. If a risk falls within the treaty terms, the reinsurer is obligated to accept it. Only facultative reinsurers can decline individual risks.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">3. Retrocession Is NOT the Same as Reinsurance</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The exam may try to confuse you. Reinsurance = primary insurer to reinsurer. <strong>Retrocession = reinsurer to another reinsurer</strong>. Same concept, but the terminology is different and they will test it.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">4. Surplus Relief vs. Catastrophe Protection</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Both improve financial health, but they work differently. <strong>Surplus relief</strong> is about the ceding commission improving the balance sheet. <strong>Catastrophe protection</strong> is about surviving a single massive event. If the scenario mentions "ceding commission" or "growing fast," it is surplus relief.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">5. Stabilize Losses vs. Catastrophe Protection</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">These are often confused. <strong>Stabilization</strong> is about smoothing out year-to-year fluctuations (overall pattern). <strong>Catastrophe protection</strong> is about one massive event. If the scenario mentions "fluctuations" or "predictability" &mdash; it is stabilization. If it mentions "hurricane" or "one event" &mdash; it is catastrophe protection.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Reference Summary -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-cyan-600 to-cyan-800 rounded-xl p-6 text-white">
+                <h2 class="text-2xl font-bold mb-6">Quick Reference Summary</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Reinsurance</p>
+                        <p class="text-sm text-cyan-100">Insurance for insurance companies. Ceding company transfers risk to reinsurer.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Ceding Company</p>
+                        <p class="text-sm text-cyan-100">The primary insurer that transfers (cedes) risk.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Retrocession</p>
+                        <p class="text-sm text-cyan-100">Reinsurer transferring risk to ANOTHER reinsurer.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">6 Functions</p>
+                        <p class="text-sm text-cyan-100">Capacity, Cat Protection, Stabilization, Surplus Relief, Withdrawal, Guidance</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Treaty</p>
+                        <p class="text-sm text-cyan-100">Automatic, blanket agreement covering a class of business.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Facultative</p>
+                        <p class="text-sm text-cyan-100">Individual risk, negotiated one at a time. Used for large/unusual risks.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 dark:bg-gray-950 text-gray-300 py-6">
+        <div class="container mx-auto px-4 text-center text-sm">
+            <div class="flex justify-between items-center max-w-2xl mx-auto">
+                <a href="../index.html" class="hover:text-white">&larr; Assignment Index</a>
+                <span class="text-gray-500">Part 1 of 3</span>
+                <a href="../part-2/index.html" class="hover:text-white">Part 2: Types of Agreements &rarr;</a>
+            </div>
+            <p class="mt-4 text-gray-500">For educational purposes only. Not an official exam resource.</p>
+        </div>
+    </footer>
+
+    <!-- AI Tutor -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof createFloatingAIButton === 'function') {
+                createFloatingAIButton({
+                    topic: 'CPCU 520 Assignment 6 Part 1: Reinsurance Functions and Sources',
+                    context: `This part covers reinsurance fundamentals. Key concepts: (1) Reinsurance = insurance for insurance companies. Primary insurer (ceding company) transfers risk to reinsurer. (2) Key terms: ceding company, reinsurer, retrocession (reinsurer to another reinsurer), cession (amount transferred). (3) Policyholder has NO direct relationship with reinsurer. (4) Six functions: increase large-line capacity, provide catastrophe protection, stabilize loss experience, provide surplus relief (ceding commission), facilitate withdrawal from a market, provide underwriting guidance. (5) Three sources: professional reinsurers (Munich Re, Swiss Re), reinsurance departments of primary insurers (Berkshire Hathaway), pools/syndicates/associations (Lloyd's). (6) Treaty = automatic/blanket agreement for a class of business, reinsurer must accept all qualifying risks. (7) Facultative = individual risk negotiated one at a time, reinsurer can accept or decline. (8) Treaty = wholesale, Facultative = retail. (9) Most insurers use both methods. (10) Common exam confusion: stabilize losses (year-to-year smoothing) vs. catastrophe protection (one massive event).`
+                });
+            }
+        });
+    </script>
+</body>
+</html>

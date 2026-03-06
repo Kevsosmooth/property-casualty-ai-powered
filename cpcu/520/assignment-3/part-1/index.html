@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment 3 Part 1: The Underwriting Function and Process | CPCU 520</title>
+    <link rel="icon" type="image/svg+xml" href="../../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <link rel="stylesheet" href="../../../../css/styles.css">
+    <script src="../../../../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+        }
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <!-- Settings & Theme Toggle Buttons -->
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="showAPIKeySetup()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings">
+            <svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+        </button>
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/>
+            </svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-amber-600 to-amber-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap gap-2 text-sm mb-2">
+                <a href="../../../../index.html" class="text-amber-200 hover:text-white">Home</a>
+                <span class="text-amber-300">/</span>
+                <a href="../../../index.html" class="text-amber-200 hover:text-white">CPCU</a>
+                <span class="text-amber-300">/</span>
+                <a href="../../index.html" class="text-amber-200 hover:text-white">520</a>
+                <span class="text-amber-300">/</span>
+                <a href="../index.html" class="text-amber-200 hover:text-white">Assignment 3</a>
+                <span class="text-amber-300">/</span>
+                <span class="text-white">Part 1</span>
+            </div>
+            <h1 class="text-3xl font-bold">Assignment 3 Part 1: The Underwriting Function and Process</h1>
+            <p class="text-amber-200 mt-1">How underwriters select profitable risks, combat adverse selection, and follow a systematic process to evaluate every submission</p>
+        </div>
+    </header>
+
+    <!-- Part Navigation -->
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-wrap gap-2 text-sm">
+                <a href="../index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Overview</a>
+                <span class="bg-amber-600 text-white px-3 py-1 rounded font-medium">Part 1</span>
+                <a href="../part-2/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 2</a>
+                <a href="../part-3/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 3</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-5xl lg:max-w-7xl">
+
+        <!-- Start Here: 5 Things You MUST Know -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-amber-100 to-orange-200 dark:from-amber-900/40 dark:to-orange-800/40 rounded-xl p-6 border border-amber-300 dark:border-amber-700">
+                <h3 class="text-xl lg:text-2xl font-bold text-amber-800 dark:text-amber-200 mb-4">Start Here: 5 Things You MUST Know</h3>
+                <div class="grid md:grid-cols-2 gap-3">
+                    <div class="flex items-start">
+                        <span class="bg-amber-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Underwriting exists to help the insurer write <strong>profitable business</strong> by selecting risks whose losses will not exceed what was anticipated when pricing the coverage.</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-amber-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Adverse selection</strong> is the #1 enemy &mdash; high-risk people seek insurance more than low-risk people. Without underwriting, the pool deteriorates.</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-amber-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Line underwriters</strong> make day-to-day accept/reject decisions. <strong>Staff underwriters</strong> write the rule book and guidelines they follow.</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-amber-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">4</span>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">The underwriting process has <strong>6 steps</strong>: Evaluate &rarr; Gather Info &rarr; Decide &rarr; Price &rarr; Implement &rarr; Monitor.</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-amber-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">5</span>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">When a risk is not ideal but not terrible, underwriters can <strong>modify the policy</strong> &mdash; add exclusions, raise deductibles, lower limits, or require safety improvements.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Overview Section -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">The Underwriting Function and Process</h2>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border border-amber-200 dark:border-amber-800 rounded-lg p-5 lg:p-6 mb-6">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Underwriting is the <strong>gatekeeper</strong> of the insurance company. Every application that comes through the door must pass through underwriting before the insurer agrees to take on the risk. The underwriter's job is to figure out whether this particular risk fits the insurer's appetite &mdash; is it likely to be profitable, or will it cost more in claims than the premium collected? This part covers the goal of underwriting, how the function is organized, and the step-by-step process every underwriter follows.</p>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 lg:p-5 rounded-r-lg">
+                    <p class="font-bold text-amber-800 dark:text-amber-300 text-lg">Exam Alert!</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">The exam loves to test the <strong>difference between line and staff underwriters</strong>, the <strong>6-step underwriting process</strong> (especially the order), and how <strong>adverse selection</strong> works. Know these cold. Also expect questions on what information sources underwriters use and when policy modifications are appropriate.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 1: The Goal of Underwriting -->
+        <section id="goal" class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">1. The Goal of Underwriting</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-6">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg lg:text-xl">Core Purpose</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">Help the insurer write and maintain <strong>profitable business</strong> by selecting insureds whose losses are not likely to exceed what the insurer anticipated when pricing the coverage.</p>
+                    <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded mt-3">
+                        <p class="font-semibold text-gray-700 dark:text-gray-300">Plain English:</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base mt-1">The underwriter is the bouncer at the club. They decide who gets in (gets a policy) and who does not. Their job is to make sure the people who get in will not wreck the place (cause losses that exceed the premium).</p>
+                    </div>
+                </div>
+
+                <!-- The Balance -->
+                <div class="bg-amber-50 dark:bg-amber-900/20 rounded-lg p-5 lg:p-6 border border-amber-200 dark:border-amber-800 mb-6">
+                    <h3 class="font-bold text-amber-800 dark:text-amber-300 text-lg lg:text-xl mb-3">The Underwriting Balancing Act</h3>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-4">Underwriters walk a tightrope between two extremes. Being too strict or too lenient both hurt the insurer.</p>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border border-red-200 dark:border-red-800">
+                            <p class="font-bold text-red-800 dark:text-red-300 mb-2">Too Selective (Strict)</p>
+                            <ul class="space-y-1 text-gray-700 dark:text-gray-300 text-sm lg:text-base">
+                                <li>- Reject too many applications</li>
+                                <li>- Lose premium volume and market share</li>
+                                <li>- Agents take business elsewhere</li>
+                                <li>- Fixed costs not covered by shrinking book</li>
+                            </ul>
+                        </div>
+                        <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border border-red-200 dark:border-red-800">
+                            <p class="font-bold text-red-800 dark:text-red-300 mb-2">Too Lenient (Lax)</p>
+                            <ul class="space-y-1 text-gray-700 dark:text-gray-300 text-sm lg:text-base">
+                                <li>- Accept too many bad risks</li>
+                                <li>- Claims exceed premiums collected</li>
+                                <li>- Adverse selection takes hold</li>
+                                <li>- Underwriting losses pile up</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Example -->
+                <div class="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg border-l-4 border-amber-500">
+                    <p class="font-semibold text-amber-800 dark:text-amber-300 mb-2">Real-World Scenario: The Balancing Act</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Apex Insurance is writing commercial property in Florida. Their underwriting guidelines say "no buildings within 1 mile of the coast." A large agent submits a well-maintained, fire-resistant warehouse 0.8 miles from the coast with excellent sprinkler systems and a 20-year clean loss history.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> A rigid underwriter rejects it because it breaks the 1-mile rule. The agent gets frustrated and moves their entire $5M book of business to a competitor. Meanwhile, a lax underwriter at another company accepts every coastal property submitted, including ones with poor maintenance and no sprinklers.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> The rigid insurer loses a profitable relationship over a technicality. The lax insurer gets hammered when the next hurricane hits. The smart underwriter evaluates the warehouse on its individual merits, accepts it with a wind deductible and schedule credit for the sprinklers, and keeps both the agent relationship and profitability intact.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Adverse Selection -->
+        <section id="adverse-selection" class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">2. Adverse Selection</h2>
+
+                <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-red-500 mb-6">
+                    <h3 class="font-bold text-red-800 dark:text-red-300 text-lg lg:text-xl">Definition</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">The tendency for people with <strong>higher-than-average risk</strong> to seek insurance <strong>more actively</strong> than people with lower risk. The people who need insurance the most are the ones most likely to buy it.</p>
+                    <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded mt-3">
+                        <p class="font-semibold text-gray-700 dark:text-gray-300">Plain English:</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base mt-1">If you own a house you know has old knob-and-tube wiring, you are going to make sure you have homeowners insurance. If your house was rewired last year with modern wiring, you might not be as worried. The person more likely to have a fire is more motivated to buy coverage &mdash; that is adverse selection.</p>
+                    </div>
+                </div>
+
+                <!-- The Death Spiral -->
+                <div class="bg-gray-50 dark:bg-gray-700/50 rounded-lg p-5 mb-6">
+                    <h4 class="font-bold text-gray-800 dark:text-gray-200 text-center mb-4">The Adverse Selection Death Spiral</h4>
+                    <div class="flex items-center justify-center gap-2 lg:gap-4 flex-wrap">
+                        <div class="bg-amber-100 dark:bg-amber-900/40 p-3 rounded-lg text-center min-w-[130px]">
+                            <p class="font-bold text-amber-800 dark:text-amber-300 text-sm">No Underwriting</p>
+                            <p class="text-xs text-gray-600 dark:text-gray-400">Accept everyone</p>
+                        </div>
+                        <div class="text-xl text-gray-400 font-bold">&rarr;</div>
+                        <div class="bg-red-100 dark:bg-red-900/40 p-3 rounded-lg text-center min-w-[130px]">
+                            <p class="font-bold text-red-800 dark:text-red-300 text-sm">Bad Risks Flood In</p>
+                            <p class="text-xs text-gray-600 dark:text-gray-400">Losses exceed pricing</p>
+                        </div>
+                        <div class="text-xl text-gray-400 font-bold">&rarr;</div>
+                        <div class="bg-red-100 dark:bg-red-900/40 p-3 rounded-lg text-center min-w-[130px]">
+                            <p class="font-bold text-red-800 dark:text-red-300 text-sm">Rates Increase</p>
+                            <p class="text-xs text-gray-600 dark:text-gray-400">To cover higher losses</p>
+                        </div>
+                        <div class="text-xl text-gray-400 font-bold">&rarr;</div>
+                        <div class="bg-purple-100 dark:bg-purple-900/40 p-3 rounded-lg text-center min-w-[130px]">
+                            <p class="font-bold text-purple-800 dark:text-purple-300 text-sm">Good Risks Leave</p>
+                            <p class="text-xs text-gray-600 dark:text-gray-400">Find cheaper coverage</p>
+                        </div>
+                        <div class="text-xl text-gray-400 font-bold">&rarr;</div>
+                        <div class="bg-gray-200 dark:bg-gray-600 p-3 rounded-lg text-center min-w-[130px]">
+                            <p class="font-bold text-gray-800 dark:text-gray-200 text-sm">Pool Collapses</p>
+                            <p class="text-xs text-gray-600 dark:text-gray-400">Only bad risks remain</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Example -->
+                <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                    <p class="font-semibold text-red-800 dark:text-red-300 mb-2">Real-World Scenario: Adverse Selection in Action</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> QuickCover Insurance launches a new homeowners product with no inspections and no questions about the home's condition. They price it based on average loss experience for all homes in the area.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Homeowners with old roofs, outdated wiring, and unrepaired foundation cracks rush to buy the policy because nobody asks those questions. Homeowners with well-maintained homes stay with their current insurer who gives them credits for good maintenance. QuickCover's loss ratio spikes to 85% in year one because the people buying the policy are far riskier than the "average" they priced for.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> QuickCover raises rates 30% in year two. The few good risks in the pool leave for cheaper options. Now the pool is even worse, losses climb further, and the company either exits the market or goes insolvent. This is why underwriting exists &mdash; to prevent exactly this spiral.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Line vs. Staff Underwriting -->
+        <section id="line-vs-staff" class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">3. Line Underwriters vs. Staff Underwriters</h2>
+
+                <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-6">Insurance companies split the underwriting function into two distinct roles. Think of it as the difference between a <strong>player on the field</strong> (line underwriter) and a <strong>coach drawing up the playbook</strong> (staff underwriter). Both are essential, but they do very different jobs.</p>
+
+                <!-- Comparison Grid -->
+                <div class="grid md:grid-cols-2 gap-4 lg:gap-6 mb-6">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-5 lg:p-6 border-l-4 border-blue-500">
+                        <h4 class="font-bold text-blue-800 dark:text-blue-300 text-lg lg:text-xl mb-3">Line Underwriters (Field Underwriters)</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mb-3">The people who make <strong>individual risk decisions</strong> every day.</p>
+                        <ul class="space-y-2 text-gray-700 dark:text-gray-300 text-sm lg:text-base">
+                            <li><strong>Primary role:</strong> Evaluate specific applications and decide to accept, reject, or modify each one</li>
+                            <li><strong>Daily work:</strong> Review submissions, gather information, assess hazards, set pricing</li>
+                            <li><strong>Authority:</strong> Has a dollar limit they can approve (based on experience level)</li>
+                            <li><strong>Referrals:</strong> Must send risks above their authority level to a senior underwriter or manager</li>
+                            <li><strong>Relationship:</strong> Works directly with agents and brokers</li>
+                        </ul>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> Sarah is a line underwriter at Atlantic Insurance. An agent submits a restaurant application. Sarah reviews the loss history, checks the kitchen inspection report, confirms the fire suppression system is up to code, and decides to accept the risk at standard pricing with a $1,000 deductible.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-5 lg:p-6 border-l-4 border-purple-500">
+                        <h4 class="font-bold text-purple-800 dark:text-purple-300 text-lg lg:text-xl mb-3">Staff Underwriters</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mb-3">The people who create the <strong>rules, guidelines, and tools</strong> that line underwriters follow.</p>
+                        <ul class="space-y-2 text-gray-700 dark:text-gray-300 text-sm lg:text-base">
+                            <li><strong>Primary role:</strong> Develop underwriting guidelines, policies, and procedures</li>
+                            <li><strong>Daily work:</strong> Research new products, analyze portfolio results, recommend rate changes</li>
+                            <li><strong>Authority:</strong> No individual risk decisions &mdash; they set the framework</li>
+                            <li><strong>Training:</strong> Provide technical guidance and training to line underwriters</li>
+                            <li><strong>Monitoring:</strong> Track overall book performance and adjust guidelines accordingly</li>
+                        </ul>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> Mark is a staff underwriter at Atlantic Insurance. He notices the restaurant portfolio has a 78% loss ratio &mdash; way too high. He analyzes the data and finds that restaurants without automated fire suppression have 3x the claims. He updates the guidelines: "All restaurants must have automated fire suppression or face a 25% surcharge."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Comparison Table -->
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm lg:text-base">
+                        <thead>
+                            <tr class="bg-amber-600 text-white">
+                                <th class="p-3 lg:p-4 text-left rounded-tl-lg">Attribute</th>
+                                <th class="p-3 lg:p-4 text-left">Line Underwriter</th>
+                                <th class="p-3 lg:p-4 text-left rounded-tr-lg">Staff Underwriter</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Focus</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Individual risks</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Entire portfolio / book of business</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Decisions</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Accept / reject / modify one risk</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Create guidelines for all risks</td>
+                            </tr>
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Works with</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Agents, brokers, insureds</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Actuaries, management, line underwriters</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Analogy</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Player on the field</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Coach writing the playbook</td>
+                            </tr>
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Output</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Policy decisions, pricing</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Guidelines, rate recommendations, training</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Underwriting Authority -->
+        <section id="authority" class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">4. Underwriting Authority</h2>
+
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-purple-500 mb-6">
+                    <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg lg:text-xl">Definition</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">The <strong>maximum amount of insurance</strong> a given underwriter can approve on a single risk without needing approval from someone higher up. Authority increases with experience, demonstrated judgment, and position within the company.</p>
+                </div>
+
+                <!-- Authority Ladder -->
+                <div class="bg-gray-50 dark:bg-gray-700/50 rounded-lg p-5 mb-6">
+                    <h4 class="font-bold text-gray-800 dark:text-gray-200 text-center mb-4">Typical Authority Ladder</h4>
+                    <div class="flex items-end justify-center gap-3 lg:gap-6 flex-wrap">
+                        <div class="bg-blue-100 dark:bg-blue-900/40 p-4 rounded-lg text-center w-36 lg:w-44">
+                            <p class="text-2xl lg:text-3xl font-bold text-blue-600 dark:text-blue-400">$250K</p>
+                            <p class="text-sm lg:text-base font-semibold text-gray-700 dark:text-gray-300 mt-1">Junior Underwriter</p>
+                            <p class="text-xs lg:text-sm text-gray-500 dark:text-gray-400">0-3 years experience</p>
+                        </div>
+                        <div class="text-xl text-gray-400 font-bold">&rarr;</div>
+                        <div class="bg-green-100 dark:bg-green-900/40 p-4 rounded-lg text-center w-36 lg:w-44">
+                            <p class="text-2xl lg:text-3xl font-bold text-green-600 dark:text-green-400">$1M</p>
+                            <p class="text-sm lg:text-base font-semibold text-gray-700 dark:text-gray-300 mt-1">Senior Underwriter</p>
+                            <p class="text-xs lg:text-sm text-gray-500 dark:text-gray-400">3-7 years experience</p>
+                        </div>
+                        <div class="text-xl text-gray-400 font-bold">&rarr;</div>
+                        <div class="bg-purple-100 dark:bg-purple-900/40 p-4 rounded-lg text-center w-36 lg:w-44">
+                            <p class="text-2xl lg:text-3xl font-bold text-purple-600 dark:text-purple-400">$5M</p>
+                            <p class="text-sm lg:text-base font-semibold text-gray-700 dark:text-gray-300 mt-1">UW Manager</p>
+                            <p class="text-xs lg:text-sm text-gray-500 dark:text-gray-400">7+ years experience</p>
+                        </div>
+                        <div class="text-xl text-gray-400 font-bold">&rarr;</div>
+                        <div class="bg-amber-100 dark:bg-amber-900/40 p-4 rounded-lg text-center w-36 lg:w-44">
+                            <p class="text-2xl lg:text-3xl font-bold text-amber-600 dark:text-amber-400">$10M+</p>
+                            <p class="text-sm lg:text-base font-semibold text-gray-700 dark:text-gray-300 mt-1">VP / Chief UW</p>
+                            <p class="text-xs lg:text-sm text-gray-500 dark:text-gray-400">Executive level</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Example -->
+                <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border-l-4 border-purple-500">
+                    <p class="font-semibold text-purple-800 dark:text-purple-300 mb-2">Real-World Scenario: Authority Limits in Action</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Jake is a junior underwriter with $500K authority. A broker submits a commercial property application for a manufacturing plant that needs $2M in coverage.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Jake evaluates the risk and thinks it is a good fit &mdash; clean loss history, modern fire suppression, well-maintained facility. But $2M exceeds his $500K authority limit. He cannot approve it on his own no matter how good the risk looks.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Jake prepares his analysis and recommendation, then refers the submission to his senior underwriter, Maria, who has $5M authority. Maria reviews Jake's work, agrees with his assessment, and approves the $2M policy. If the risk had been $7M, even Maria would need to refer it to the underwriting manager.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: The Underwriting Process (6 Steps) -->
+        <section id="process" class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">5. The Underwriting Process &mdash; 6 Steps</h2>
+
+                <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-6">Every submission follows the same systematic process. The exam will test you on the <strong>order</strong> of these steps and what happens in each one. Memorize this flow.</p>
+
+                <!-- Visual Flow Diagram -->
+                <div class="bg-gray-50 dark:bg-gray-700/50 rounded-lg p-5 lg:p-6 mb-6">
+                    <h4 class="font-bold text-gray-800 dark:text-gray-200 text-center mb-5 text-lg">The 6-Step Underwriting Process</h4>
+                    <div class="flex items-center justify-center gap-2 lg:gap-3 flex-wrap">
+                        <div class="bg-blue-100 dark:bg-blue-900/40 p-3 lg:p-4 rounded-lg text-center min-w-[110px] lg:min-w-[140px]">
+                            <p class="text-lg lg:text-xl font-bold text-blue-600 dark:text-blue-400">1</p>
+                            <p class="font-bold text-blue-800 dark:text-blue-300 text-xs lg:text-sm">Evaluate</p>
+                            <p class="text-xs text-gray-600 dark:text-gray-400">Review submission</p>
+                        </div>
+                        <div class="text-xl text-gray-400 font-bold">&rarr;</div>
+                        <div class="bg-indigo-100 dark:bg-indigo-900/40 p-3 lg:p-4 rounded-lg text-center min-w-[110px] lg:min-w-[140px]">
+                            <p class="text-lg lg:text-xl font-bold text-indigo-600 dark:text-indigo-400">2</p>
+                            <p class="font-bold text-indigo-800 dark:text-indigo-300 text-xs lg:text-sm">Gather Info</p>
+                            <p class="text-xs text-gray-600 dark:text-gray-400">Inspections, reports</p>
+                        </div>
+                        <div class="text-xl text-gray-400 font-bold">&rarr;</div>
+                        <div class="bg-amber-100 dark:bg-amber-900/40 p-3 lg:p-4 rounded-lg text-center min-w-[110px] lg:min-w-[140px]">
+                            <p class="text-lg lg:text-xl font-bold text-amber-600 dark:text-amber-400">3</p>
+                            <p class="font-bold text-amber-800 dark:text-amber-300 text-xs lg:text-sm">Decide</p>
+                            <p class="text-xs text-gray-600 dark:text-gray-400">Accept / reject / modify</p>
+                        </div>
+                        <div class="text-xl text-gray-400 font-bold">&rarr;</div>
+                        <div class="bg-green-100 dark:bg-green-900/40 p-3 lg:p-4 rounded-lg text-center min-w-[110px] lg:min-w-[140px]">
+                            <p class="text-lg lg:text-xl font-bold text-green-600 dark:text-green-400">4</p>
+                            <p class="font-bold text-green-800 dark:text-green-300 text-xs lg:text-sm">Price</p>
+                            <p class="text-xs text-gray-600 dark:text-gray-400">Rate, credits, debits</p>
+                        </div>
+                        <div class="text-xl text-gray-400 font-bold">&rarr;</div>
+                        <div class="bg-purple-100 dark:bg-purple-900/40 p-3 lg:p-4 rounded-lg text-center min-w-[110px] lg:min-w-[140px]">
+                            <p class="text-lg lg:text-xl font-bold text-purple-600 dark:text-purple-400">5</p>
+                            <p class="font-bold text-purple-800 dark:text-purple-300 text-xs lg:text-sm">Implement</p>
+                            <p class="text-xs text-gray-600 dark:text-gray-400">Issue the policy</p>
+                        </div>
+                        <div class="text-xl text-gray-400 font-bold">&rarr;</div>
+                        <div class="bg-red-100 dark:bg-red-900/40 p-3 lg:p-4 rounded-lg text-center min-w-[110px] lg:min-w-[140px]">
+                            <p class="text-lg lg:text-xl font-bold text-red-600 dark:text-red-400">6</p>
+                            <p class="font-bold text-red-800 dark:text-red-300 text-xs lg:text-sm">Monitor</p>
+                            <p class="text-xs text-gray-600 dark:text-gray-400">Ongoing review</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step Details -->
+                <div class="space-y-5">
+                    <!-- Step 1 -->
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500">
+                        <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg lg:text-xl">Step 1: Evaluating the Submission</h3>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">The underwriter reviews the initial application or submission package from the agent/broker. This includes the application form, loss history, basic financial information, and the agent's description of the risk. The goal is to determine: <strong>Does this risk fit our appetite? Is it worth spending more time on?</strong></p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> An agent submits an application for a dry cleaning business. The underwriter checks: What chemicals do they use? Any prior pollution claims? Is dry cleaning a class we write? If the insurer does not write dry cleaners at all, the submission is declined immediately &mdash; no need for further investigation.</p>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="bg-indigo-50 dark:bg-indigo-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-indigo-500">
+                        <h3 class="font-bold text-indigo-800 dark:text-indigo-300 text-lg lg:text-xl">Step 2: Gathering Additional Information</h3>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">If the initial submission looks promising, the underwriter digs deeper. They may request inspections, credit reports, motor vehicle reports (MVRs), loss control surveys, or financial statements. The depth of investigation depends on the size and complexity of the risk.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> A trucking company applies for commercial auto coverage. The underwriter orders MVRs on all 50 drivers (checking for DUIs, accidents, and license suspensions), requests a fleet inspection report, and pulls the company's CLUE report showing prior claims across all carriers.</p>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="bg-amber-50 dark:bg-amber-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-amber-500">
+                        <h3 class="font-bold text-amber-800 dark:text-amber-300 text-lg lg:text-xl">Step 3: Making the Underwriting Decision</h3>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">Based on all the information gathered, the underwriter makes one of three decisions:</p>
+                        <div class="grid md:grid-cols-3 gap-3 mt-3">
+                            <div class="bg-green-50 dark:bg-green-900/20 p-3 rounded-lg border border-green-200 dark:border-green-800 text-center">
+                                <p class="font-bold text-green-800 dark:text-green-300">ACCEPT</p>
+                                <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400 mt-1">Risk meets all criteria. Issue standard policy.</p>
+                            </div>
+                            <div class="bg-amber-50 dark:bg-amber-900/20 p-3 rounded-lg border border-amber-200 dark:border-amber-800 text-center">
+                                <p class="font-bold text-amber-800 dark:text-amber-300">ACCEPT WITH MODIFICATIONS</p>
+                                <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400 mt-1">Acceptable with changes &mdash; exclusions, higher deductible, surcharge.</p>
+                            </div>
+                            <div class="bg-red-50 dark:bg-red-900/20 p-3 rounded-lg border border-red-200 dark:border-red-800 text-center">
+                                <p class="font-bold text-red-800 dark:text-red-300">REJECT</p>
+                                <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400 mt-1">Risk does not fit insurer's appetite. Decline the submission.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-green-500">
+                        <h3 class="font-bold text-green-800 dark:text-green-300 text-lg lg:text-xl">Step 4: Determining the Appropriate Price</h3>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">If the risk is accepted, the underwriter applies the rating plan to calculate the premium. This includes the base rate plus any <strong>schedule credits</strong> (discounts for good characteristics) or <strong>schedule debits</strong> (surcharges for unfavorable characteristics) and <strong>experience modifications</strong> (adjustments based on the insured's own loss history vs. expected losses).</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> A warehouse has a base premium of $50,000. The underwriter applies a 10% credit for the modern sprinkler system (-$5,000) and a 15% debit for storing flammable chemicals (+$7,500). The experience modification factor is 0.90 (better than average loss history). Final premium: ($50,000 - $5,000 + $7,500) x 0.90 = $47,250.</p>
+                        </div>
+                    </div>
+
+                    <!-- Step 5 -->
+                    <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-purple-500">
+                        <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg lg:text-xl">Step 5: Implementing the Decision</h3>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">The decision is put into action. This means issuing the policy, endorsing modifications onto an existing policy, canceling coverage, or communicating the decision to the agent/broker. Accurate documentation is critical &mdash; any errors in the policy forms can create coverage disputes later.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> The underwriter accepts a contractor's GL policy with an exclusion for work performed over 3 stories high. The policy issuance team attaches the height exclusion endorsement, generates the declarations page with the correct premium, and sends the policy package to the agent, who delivers it to the contractor.</p>
+                        </div>
+                    </div>
+
+                    <!-- Step 6 -->
+                    <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-red-500">
+                        <h3 class="font-bold text-red-800 dark:text-red-300 text-lg lg:text-xl">Step 6: Monitoring the Risk</h3>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">Underwriting does not stop when the policy is issued. The underwriter monitors the risk throughout the policy period and at renewal. They review new claims, changes in operations, loss control recommendations, and overall results. At renewal, they decide whether to continue, modify, or non-renew the policy.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base"><strong>Example:</strong> Mid-policy, the underwriter learns that the insured restaurant added a late-night bar with live entertainment &mdash; significantly increasing their liability exposure. The underwriter contacts the agent, adjusts the premium to reflect the increased risk, and adds an assault-and-battery exclusion. At renewal, if the loss experience is poor, they may non-renew the policy entirely.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: Sources of Underwriting Information -->
+        <section id="info-sources" class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">6. Sources of Underwriting Information</h2>
+
+                <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-6">Underwriters do not make decisions in a vacuum. They pull information from multiple sources to build a complete picture of the risk. The more complex the risk, the more sources they use.</p>
+
+                <div class="overflow-x-auto mb-6">
+                    <table class="w-full text-sm lg:text-base">
+                        <thead>
+                            <tr class="bg-amber-600 text-white">
+                                <th class="p-3 lg:p-4 text-left rounded-tl-lg">Source</th>
+                                <th class="p-3 lg:p-4 text-left">What It Provides</th>
+                                <th class="p-3 lg:p-4 text-left rounded-tr-lg">Example</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Applications / Submissions</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Basic risk information from the agent or broker</td>
+                                <td class="p-3 lg:p-4 text-gray-600 dark:text-gray-400">Business type, location, revenue, requested limits</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Agent/Broker Reports</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Agent's personal knowledge of the insured</td>
+                                <td class="p-3 lg:p-4 text-gray-600 dark:text-gray-400">"Been their agent 10 years, owner is safety-conscious"</td>
+                            </tr>
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Loss History</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Prior claims data &mdash; <strong>most important predictor</strong> of future losses</td>
+                                <td class="p-3 lg:p-4 text-gray-600 dark:text-gray-400">5-year claims history showing frequency, severity, and trends</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Financial Information</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Financial stability and ability to pay deductibles</td>
+                                <td class="p-3 lg:p-4 text-gray-600 dark:text-gray-400">Balance sheets, income statements, credit scores</td>
+                            </tr>
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Physical Inspections</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">On-site condition, hazards, safety measures</td>
+                                <td class="p-3 lg:p-4 text-gray-600 dark:text-gray-400">Inspector reports that building has outdated electrical panels</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Government Records</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Official records on driving, property, violations</td>
+                                <td class="p-3 lg:p-4 text-gray-600 dark:text-gray-400">MVRs showing a driver has 3 speeding tickets in 2 years</td>
+                            </tr>
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">External Databases</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Industry-wide claims and risk data</td>
+                                <td class="p-3 lg:p-4 text-gray-600 dark:text-gray-400">CLUE report, A-PLUS, ISO data on class loss experience</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Social Media / Public Info</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Publicly available information about operations</td>
+                                <td class="p-3 lg:p-4 text-gray-600 dark:text-gray-400">Company website shows services not listed on application</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Key Callout -->
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 lg:p-5 rounded-r-lg mb-6">
+                    <p class="font-bold text-amber-800 dark:text-amber-300 text-lg">Memory Trick: Loss History is King</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">Of all the sources, <strong>prior loss history</strong> is the single most important predictor of future losses. An insured with 5 years of clean claims history is a much better bet than one with 3 large claims in the past 2 years &mdash; regardless of what the application says. If the exam asks which source is most important, the answer is loss history.</p>
+                </div>
+
+                <!-- Example -->
+                <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-l-4 border-blue-500">
+                    <p class="font-semibold text-blue-800 dark:text-blue-300 mb-2">Real-World Scenario: Information Sources at Work</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> An agent submits an application for a mid-size auto body shop requesting $1M general liability and $500K property coverage. The application says "no prior claims" and "all safety equipment up to date."</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> The underwriter pulls the CLUE report and finds two prior liability claims totaling $180K that the application did not mention. The physical inspection reveals paint booths without proper ventilation and expired fire extinguishers. The agent's report says, "I just picked up this account &mdash; do not know the owner well."</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> The application was misleading. The external data sources revealed the true risk. The underwriter either declines the submission (undisclosed claims are a red flag for moral hazard) or accepts it only with significant modifications: higher deductible, safety requirements as conditions of coverage, and a 20% schedule debit for the hazardous conditions.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 7: Underwriting Guidelines -->
+        <section id="guidelines" class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">7. Underwriting Guidelines</h2>
+
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-purple-500 mb-6">
+                    <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg lg:text-xl">The "Rule Book"</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">Underwriting guidelines are the written standards that define <strong>what the insurer will and will not write</strong>. They are created by staff underwriters, approved by management, and used daily by line underwriters to make consistent decisions.</p>
+                </div>
+
+                <!-- What Guidelines Include -->
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-3 lg:gap-4 mb-6">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg border border-gray-200 dark:border-gray-600">
+                        <p class="font-bold text-gray-800 dark:text-gray-200 mb-1">Acceptable Classes</p>
+                        <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400">What types of businesses or risks the insurer is willing to write</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg border border-gray-200 dark:border-gray-600">
+                        <p class="font-bold text-gray-800 dark:text-gray-200 mb-1">Prohibited Classes</p>
+                        <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400">Risks that are automatically declined regardless of individual characteristics</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg border border-gray-200 dark:border-gray-600">
+                        <p class="font-bold text-gray-800 dark:text-gray-200 mb-1">Pricing Guidelines</p>
+                        <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400">Rate tables, credit/debit schedules, experience mod rules</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg border border-gray-200 dark:border-gray-600">
+                        <p class="font-bold text-gray-800 dark:text-gray-200 mb-1">Authority Levels</p>
+                        <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400">Maximum amounts each underwriter level can approve</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg border border-gray-200 dark:border-gray-600">
+                        <p class="font-bold text-gray-800 dark:text-gray-200 mb-1">Documentation Requirements</p>
+                        <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400">What information must be obtained before a decision is made</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg border border-gray-200 dark:border-gray-600">
+                        <p class="font-bold text-gray-800 dark:text-gray-200 mb-1">Referral Triggers</p>
+                        <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400">Conditions that require a senior review (e.g., large limits, unusual hazards)</p>
+                    </div>
+                </div>
+
+                <!-- Balance -->
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 lg:p-5 rounded-r-lg mb-6">
+                    <p class="font-bold text-amber-800 dark:text-amber-300 text-lg">The Guidelines Balancing Act</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">Guidelines must be <strong>structured enough</strong> for consistency (so two underwriters reach similar conclusions on the same risk) but <strong>flexible enough</strong> to allow experienced underwriters to use judgment on borderline cases. If guidelines are too rigid, good risks get rejected. If too loose, bad risks slip through.</p>
+                </div>
+
+                <!-- Example -->
+                <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border-l-4 border-purple-500">
+                    <p class="font-semibold text-purple-800 dark:text-purple-300 mb-2">Real-World Scenario: Guidelines in Practice</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> National Mutual's underwriting guidelines say: "Do not write restaurants with more than 40% alcohol revenue." A popular upscale steakhouse applies. Their revenue is 45% from their extensive wine program.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> The line underwriter sees the 45% alcohol figure and prepares to decline. But she notices the loss history is pristine &mdash; zero liquor liability claims in 12 years. The clientele is high-end professionals, not a rowdy bar crowd. She refers it to her manager, citing the strong risk characteristics that offset the guideline concern.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> The manager approves the risk with a 10% schedule debit for the above-guideline alcohol ratio and a requirement for server training certification. This is the flexibility built into good guidelines &mdash; the 40% rule flags the risk for extra scrutiny, but does not force an automatic rejection when the overall risk profile is excellent.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 8: Policy Modifications -->
+        <section id="modifications" class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">8. Policy Modifications</h2>
+
+                <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-4">Not every risk is a clean accept or reject. Many submissions fall in the middle &mdash; acceptable with some adjustments. Underwriters have several tools to make a borderline risk insurable.</p>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5 mb-6">
+                    <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-red-500">
+                        <h4 class="font-bold text-red-800 dark:text-red-300 mb-2">Exclusions</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Remove specific coverages the insurer is unwilling to provide for this risk.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm"><strong>Example:</strong> A contractor gets GL coverage, but the insurer excludes "work performed above 3 stories" because the contractor has no high-rise experience.</p>
+                        </div>
+                    </div>
+                    <div class="bg-amber-50 dark:bg-amber-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-amber-500">
+                        <h4 class="font-bold text-amber-800 dark:text-amber-300 mb-2">Higher Deductibles</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Require the insured to retain more of the risk themselves before the insurer pays.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm"><strong>Example:</strong> A property with a flat roof (higher leak risk) gets approved with a $10,000 deductible instead of the standard $2,500.</p>
+                        </div>
+                    </div>
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500">
+                        <h4 class="font-bold text-blue-800 dark:text-blue-300 mb-2">Lower Limits</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Reduce the maximum the insurer will pay, capping the insurer's exposure on the risk.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm"><strong>Example:</strong> A business requests $2M in liability coverage. The underwriter approves only $1M because the business is in a litigious industry with uncertain exposures.</p>
+                        </div>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-green-500">
+                        <h4 class="font-bold text-green-800 dark:text-green-300 mb-2">Premium Surcharges / Schedule Debits</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Charge more to account for specific hazards that increase the risk.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm"><strong>Example:</strong> A building with no burglar alarm gets a 15% schedule debit added to the base premium to reflect the higher theft exposure.</p>
+                        </div>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-purple-500">
+                        <h4 class="font-bold text-purple-800 dark:text-purple-300 mb-2">Safety Requirements</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Require the insured to make specific risk improvements as a condition of coverage.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm"><strong>Example:</strong> Coverage is approved on the condition that the insured installs a sprinkler system within 90 days. If they fail to comply, the insurer can cancel the policy.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Comprehensive Example -->
+                <div class="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg border-l-4 border-amber-500">
+                    <p class="font-semibold text-amber-800 dark:text-amber-300 mb-2">Real-World Scenario: Multiple Modifications on One Risk</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> A woodworking shop applies for commercial property and GL coverage. The underwriter likes the business &mdash; 8-year clean loss history, experienced owner, and strong revenue. But the inspection reveals sawdust buildup in the ventilation system, no automatic fire suppression, and the building shares a wall with a paint supply warehouse.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Rather than rejecting this otherwise good risk, the underwriter offers coverage with modifications: (1) exclude coverage for the shared wall exposure (exclusion), (2) require a $5,000 deductible instead of $2,500 (higher deductible), (3) apply a 20% schedule debit for the fire hazards (surcharge), and (4) require the owner to install dust collection and automatic fire suppression within 60 days (safety requirement).</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> The owner agrees. The underwriter writes a profitable piece of business that would have been declined under rigid rules. Once the safety improvements are complete, the underwriter removes the schedule debit at the next renewal &mdash; rewarding the insured for reducing the risk.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cheat Sheet -->
+        <section id="cheat-sheet" class="mb-10">
+            <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 border-2 border-dashed border-gray-300 dark:border-gray-600">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100">Cheat Sheet</h2>
+                    <span class="text-sm text-gray-500 dark:text-gray-400">Print this page for quick reference</span>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    <!-- Goal -->
+                    <div>
+                        <h3 class="font-bold text-gray-800 dark:text-gray-200 mb-2">Underwriting Goal</h3>
+                        <ul class="space-y-1 text-sm lg:text-base text-gray-700 dark:text-gray-300">
+                            <li>Write and maintain <strong>profitable business</strong></li>
+                            <li>Select risks where losses will not exceed anticipated pricing</li>
+                            <li>Balance: too strict = lose business; too lenient = adverse selection</li>
+                        </ul>
+                    </div>
+
+                    <!-- Line vs Staff -->
+                    <div>
+                        <h3 class="font-bold text-gray-800 dark:text-gray-200 mb-2">Line vs. Staff Underwriters</h3>
+                        <ul class="space-y-1 text-sm lg:text-base text-gray-700 dark:text-gray-300">
+                            <li><strong>Line:</strong> Individual risk decisions, works with agents, has authority limits</li>
+                            <li><strong>Staff:</strong> Writes guidelines, monitors portfolio, trains line underwriters</li>
+                        </ul>
+                    </div>
+
+                    <!-- 6 Steps -->
+                    <div>
+                        <h3 class="font-bold text-gray-800 dark:text-gray-200 mb-2">6-Step Process (in order)</h3>
+                        <ul class="space-y-1 text-sm lg:text-base text-gray-700 dark:text-gray-300">
+                            <li><strong>1.</strong> Evaluate the submission</li>
+                            <li><strong>2.</strong> Gather additional information</li>
+                            <li><strong>3.</strong> Make the underwriting decision (accept/reject/modify)</li>
+                            <li><strong>4.</strong> Determine the appropriate price</li>
+                            <li><strong>5.</strong> Implement the decision (issue policy)</li>
+                            <li><strong>6.</strong> Monitor the risk (ongoing + renewal)</li>
+                        </ul>
+                    </div>
+
+                    <!-- Info Sources -->
+                    <div>
+                        <h3 class="font-bold text-gray-800 dark:text-gray-200 mb-2">Key Information Sources</h3>
+                        <ul class="space-y-1 text-sm lg:text-base text-gray-700 dark:text-gray-300">
+                            <li><strong>Most important:</strong> Prior loss history</li>
+                            <li>Applications, agent reports, financial info</li>
+                            <li>Physical inspections, government records (MVRs)</li>
+                            <li>External databases: CLUE, A-PLUS, ISO</li>
+                            <li>Social media and public information</li>
+                        </ul>
+                    </div>
+
+                    <!-- Modifications -->
+                    <div>
+                        <h3 class="font-bold text-gray-800 dark:text-gray-200 mb-2">5 Policy Modification Tools</h3>
+                        <ul class="space-y-1 text-sm lg:text-base text-gray-700 dark:text-gray-300">
+                            <li><strong>1. Exclusions:</strong> Remove specific coverages</li>
+                            <li><strong>2. Higher deductibles:</strong> Insured retains more risk</li>
+                            <li><strong>3. Lower limits:</strong> Cap insurer's max payout</li>
+                            <li><strong>4. Surcharges/debits:</strong> Charge more for hazards</li>
+                            <li><strong>5. Safety requirements:</strong> Require improvements as condition of coverage</li>
+                        </ul>
+                    </div>
+
+                    <!-- Adverse Selection -->
+                    <div>
+                        <h3 class="font-bold text-gray-800 dark:text-gray-200 mb-2">Adverse Selection</h3>
+                        <ul class="space-y-1 text-sm lg:text-base text-gray-700 dark:text-gray-300">
+                            <li>High-risk people seek insurance more than low-risk people</li>
+                            <li>Without underwriting: bad risks flood in, rates rise, good risks leave, pool collapses</li>
+                            <li>Underwriting exists primarily to combat adverse selection</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Trap Alerts -->
+        <section class="mb-10">
+            <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-xl p-5 lg:p-6">
+                <h2 class="text-2xl lg:text-3xl font-bold text-red-800 dark:text-red-300 mb-4">Exam Trap Alerts</h2>
+                <div class="space-y-4">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">1. Line vs. Staff &mdash; Do NOT Confuse Their Roles</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>Line underwriters</strong> make individual risk decisions (accept/reject). <strong>Staff underwriters</strong> create the guidelines and rules. If the exam asks "who writes the underwriting guidelines?" the answer is <strong>staff underwriters</strong>, not line underwriters. If it asks "who evaluates a specific submission?" that is the <strong>line underwriter</strong>.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">2. The 6 Steps Must Be in ORDER</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The exam may list the steps out of order and ask you to identify the correct sequence. Remember: you cannot <strong>price</strong> a risk before you <strong>decide</strong> to accept it. You cannot <strong>decide</strong> before you <strong>gather information</strong>. And you must <strong>monitor</strong> after you <strong>implement</strong>. Mnemonic: <strong>E-G-D-P-I-M</strong> (Evaluate, Gather, Decide, Price, Implement, Monitor) &mdash; "Every Good Decision Produces Ideal Money."</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">3. Loss History is the MOST Important Source</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">If the exam asks which single source of information is the most important predictor of future losses, the answer is <strong>prior loss history</strong> &mdash; not the application, not the inspection, not the financial statements. Past claims are the best indicator of future claims.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">4. Underwriting Authority is About AMOUNT, Not Skill</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Authority refers to the <strong>maximum dollar amount</strong> an underwriter can approve, not whether they are allowed to underwrite at all. A junior underwriter can still make accept/reject decisions &mdash; they just cannot approve risks above their dollar limit without referral.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">5. "Accept with Modifications" is NOT a Rejection</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The exam may present a scenario where the underwriter adds exclusions or raises the deductible and ask if the risk was "rejected." The answer is <strong>no</strong> &mdash; the risk was <strong>accepted with modifications</strong>. A true rejection means no coverage is offered at all. Modifications make a borderline risk acceptable.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">6. Adverse Selection is About the APPLICANT'S Behavior, Not the Insurer's</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Adverse selection describes the tendency of <strong>higher-risk applicants</strong> to seek insurance more actively. It is not about the insurer selecting bad risks (that would just be poor underwriting). The "adverse" refers to the selection bias created by the applicants themselves.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Reference Summary -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-amber-600 to-amber-800 rounded-xl p-6 text-white">
+                <h2 class="text-2xl lg:text-3xl font-bold mb-6">Quick Reference Summary</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Underwriting Goal</p>
+                        <p class="text-sm text-amber-100">Write profitable business by selecting risks whose losses will not exceed anticipated pricing</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Adverse Selection</p>
+                        <p class="text-sm text-amber-100">High-risk people seek insurance more; without underwriting, the pool deteriorates and collapses</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Line Underwriters</p>
+                        <p class="text-sm text-amber-100">Make individual risk decisions day-to-day; work with agents; have dollar authority limits</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Staff Underwriters</p>
+                        <p class="text-sm text-amber-100">Create guidelines, monitor portfolio results, train line underwriters, recommend rate changes</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">6-Step Process</p>
+                        <p class="text-sm text-amber-100">Evaluate &rarr; Gather Info &rarr; Decide &rarr; Price &rarr; Implement &rarr; Monitor</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Most Important Source</p>
+                        <p class="text-sm text-amber-100">Prior loss history is the #1 predictor of future losses</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Underwriting Authority</p>
+                        <p class="text-sm text-amber-100">Max dollar amount an underwriter can approve; increases with experience and position</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Guidelines Purpose</p>
+                        <p class="text-sm text-amber-100">Ensure consistency across all underwriters while allowing flexibility for judgment</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">5 Modification Tools</p>
+                        <p class="text-sm text-amber-100">Exclusions, higher deductibles, lower limits, surcharges/debits, safety requirements</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Navigation Footer -->
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="../index.html" class="text-gray-300 hover:text-white flex items-center">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                    </svg>
+                    Assignment Index
+                </a>
+                <span class="text-gray-400">Part 1 of 3</span>
+                <a href="../part-2/index.html" class="text-gray-300 hover:text-white flex items-center">
+                    Part 2: Measuring Underwriting Results
+                    <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AI Tutor Button -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            createFloatingAIButton(`CPCU 520 Assignment 3 Part 1: The Underwriting Function and Process
+
+UNDERWRITING GOAL:
+- Write and maintain PROFITABLE business
+- Select insureds whose losses won't exceed what was anticipated in pricing
+- Balance: too strict = lose business/agents; too lenient = adverse selection
+
+ADVERSE SELECTION:
+- High-risk people seek insurance MORE than low-risk people
+- Without underwriting: bad risks flood in -> rates rise -> good risks leave -> pool collapses
+- Underwriting exists primarily to combat adverse selection
+
+LINE vs STAFF UNDERWRITERS:
+- LINE (field): Make individual risk decisions daily, work with agents, have dollar authority limits
+- STAFF: Create guidelines/rule book, monitor portfolio, train line underwriters, recommend rate changes
+- Analogy: Line = player on the field, Staff = coach writing the playbook
+
+UNDERWRITING AUTHORITY:
+- Maximum dollar amount an underwriter can approve on a single risk
+- Increases with experience: Junior ($250K) -> Senior ($1M) -> Manager ($5M) -> VP ($10M+)
+- Must refer risks above authority limit to someone higher
+
+6-STEP UNDERWRITING PROCESS (memorize order):
+1. Evaluate the submission - Does it fit our appetite?
+2. Gather additional information - Inspections, MVRs, CLUE, financials
+3. Make the underwriting decision - Accept / Reject / Accept with modifications
+4. Determine appropriate price - Base rate +/- credits/debits x experience mod
+5. Implement the decision - Issue policy, communicate to agent
+6. Monitor the risk - Ongoing review, renewal decisions
+Mnemonic: E-G-D-P-I-M = "Every Good Decision Produces Ideal Money"
+
+INFORMATION SOURCES:
+- Applications/submissions from agents
+- Agent/broker reports (personal knowledge)
+- Loss history (MOST IMPORTANT predictor of future losses)
+- Financial information (stability, ability to pay deductibles)
+- Physical inspections/surveys
+- Government records (MVRs, permits)
+- External databases (CLUE, A-PLUS, ISO)
+- Social media/public information
+
+UNDERWRITING GUIDELINES:
+- The "rule book" created by staff underwriters
+- Include: acceptable/prohibited classes, pricing rules, authority levels, documentation requirements
+- Must balance consistency with flexibility for judgment
+
+5 POLICY MODIFICATION TOOLS:
+1. Exclusions - Remove specific coverages
+2. Higher deductibles - Insured retains more risk
+3. Lower limits - Cap insurer's max exposure
+4. Surcharges/schedule debits - Charge more for hazards
+5. Safety requirements - Require improvements as condition of coverage
+
+COMMON EXAM TRAPS:
+- Line underwriters make individual decisions; Staff underwriters write guidelines
+- 6 steps must be in correct ORDER
+- Loss history = most important information source
+- Authority = dollar amount, not skill level
+- Accept with modifications is NOT a rejection
+- Adverse selection is about APPLICANT behavior, not insurer behavior`);
+        });
+    </script>
+</body>
+</html>

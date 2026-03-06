@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment 7 Part 1: Ratemaking Fundamentals | CPCU 520</title>
+    <link rel="icon" type="image/svg+xml" href="../../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <link rel="stylesheet" href="../../../../css/styles.css">
+    <script src="../../../../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+        }
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <!-- Settings & Theme Toggle Buttons -->
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="showAPIKeySetup()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings">
+            <svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+        </button>
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/>
+            </svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-indigo-600 to-indigo-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap gap-2 text-sm mb-2">
+                <a href="../../../../index.html" class="text-indigo-200 hover:text-white">Home</a>
+                <span class="text-indigo-300">/</span>
+                <a href="../../../index.html" class="text-indigo-200 hover:text-white">CPCU</a>
+                <span class="text-indigo-300">/</span>
+                <a href="../../index.html" class="text-indigo-200 hover:text-white">520</a>
+                <span class="text-indigo-300">/</span>
+                <a href="../index.html" class="text-indigo-200 hover:text-white">Assignment 7</a>
+                <span class="text-indigo-300">/</span>
+                <span class="text-white">Part 1</span>
+            </div>
+            <h1 class="text-3xl font-bold">Assignment 7 Part 1: Ratemaking Fundamentals</h1>
+            <p class="text-indigo-200 mt-1">What actuaries do, the five ideal rate characteristics, rate components, and the gross rate formula explained step by step</p>
+        </div>
+    </header>
+
+    <!-- Part Navigation -->
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-wrap gap-2 text-sm">
+                <a href="../index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Overview</a>
+                <span class="bg-indigo-600 text-white px-3 py-1 rounded font-medium">Part 1: Fundamentals</span>
+                <a href="../part-2/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 2: Methods &amp; Reserves</a>
+                <a href="../part-3/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 3: Regulation &amp; Big Data</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-5xl lg:max-w-7xl">
+
+        <!-- Start Here: 5 Things You MUST Know -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-indigo-100 to-purple-200 dark:from-indigo-900/40 dark:to-purple-800/40 rounded-xl p-6 border border-indigo-300 dark:border-indigo-700">
+                <h3 class="text-xl lg:text-2xl font-bold text-indigo-800 dark:text-indigo-200 mb-4">Start Here: 5 Things You MUST Know</h3>
+                <div class="grid md:grid-cols-2 gap-3">
+                    <div class="flex items-start">
+                        <span class="bg-indigo-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">The five ideal rate characteristics: <strong>Adequate, Not Excessive, Not Unfairly Discriminatory, Responsive, Encourage Loss Control</strong>.</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-indigo-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Gross Rate = Pure Premium / (1 - Expense Ratio - Profit Factor)</strong> &mdash; you MUST know this formula and be able to calculate it.</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-indigo-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Pure Premium = Expected Losses + LAE</strong>. LAE has two types: <strong>DCC</strong> (defense costs tied to specific claims) and <strong>A&amp;O</strong> (general claims overhead).</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-indigo-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">4</span>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Discrimination IS allowed</strong> in insurance pricing. <strong>UNFAIR</strong> discrimination is not. Charging teens more for auto = fair. Charging based on race = unfair.</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-indigo-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">5</span>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Social inflation</strong> and <strong>nuclear verdicts</strong> (jury awards exceeding $10M) are driving up liability rates &mdash; a major modern ratemaking challenge.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 1: What Actuaries Do -->
+        <section id="actuaries" class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">1. What Actuaries Do</h2>
+
+                <div class="bg-indigo-50 dark:bg-indigo-900/20 border-l-4 border-indigo-500 p-4 lg:p-5 rounded-r-lg mb-6">
+                    <h3 class="font-bold text-indigo-800 dark:text-indigo-300 text-lg lg:text-xl">The Actuary in Plain English</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">An actuary is the person who answers two critical questions for an insurance company: <strong>"How much should we charge?"</strong> (ratemaking) and <strong>"How much should we set aside for future claims?"</strong> (reserving). They use historical data and statistical models to predict what the future will cost.</p>
+                </div>
+
+                <!-- How Actuaries Interact -->
+                <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300 mb-4">Actuaries do not work in isolation. They interact with almost every department:</p>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800 text-center">
+                        <p class="font-bold text-blue-800 dark:text-blue-300 text-base lg:text-lg">Underwriting</p>
+                        <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400 mt-1">Provides risk selection data; uses rate classifications the actuary develops</p>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border border-green-200 dark:border-green-800 text-center">
+                        <p class="font-bold text-green-800 dark:text-green-300 text-base lg:text-lg">Claims</p>
+                        <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400 mt-1">Provides loss data; actuary uses it to set reserves and spot trends</p>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border border-purple-200 dark:border-purple-800 text-center">
+                        <p class="font-bold text-purple-800 dark:text-purple-300 text-base lg:text-lg">Finance</p>
+                        <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400 mt-1">Uses reserve estimates for financial reporting and investment planning</p>
+                    </div>
+                    <div class="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg border border-amber-200 dark:border-amber-800 text-center">
+                        <p class="font-bold text-amber-800 dark:text-amber-300 text-base lg:text-lg">Senior Management</p>
+                        <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400 mt-1">Relies on actuarial analysis for strategic decisions and profitability targets</p>
+                    </div>
+                </div>
+
+                <!-- Professional Designations -->
+                <h3 class="text-lg lg:text-xl font-bold text-gray-800 dark:text-gray-100 mb-3">Professional Designations</h3>
+                <div class="grid md:grid-cols-3 gap-4 mb-6">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg border-2 border-indigo-300 dark:border-indigo-600">
+                        <p class="text-xl lg:text-2xl font-bold text-indigo-600 dark:text-indigo-400">FCAS</p>
+                        <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400">Fellow, Casualty Actuarial Society</p>
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300 mt-2">Highest P&amp;C actuarial credential. This is the designation most relevant to CPCU studies.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg border-2 border-indigo-200 dark:border-indigo-700">
+                        <p class="text-xl lg:text-2xl font-bold text-indigo-600 dark:text-indigo-400">ACAS</p>
+                        <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400">Associate, Casualty Actuarial Society</p>
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300 mt-2">Mid-level P&amp;C actuarial credential. Fewer exams than FCAS.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg border-2 border-gray-200 dark:border-gray-600">
+                        <p class="text-xl lg:text-2xl font-bold text-gray-500 dark:text-gray-400">FSA</p>
+                        <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400">Fellow, Society of Actuaries</p>
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300 mt-2">Life and health insurance focused. Less relevant to P&amp;C but know it exists.</p>
+                    </div>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 rounded-r-lg">
+                    <p class="font-bold text-amber-800 dark:text-amber-300">Standards Note</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The <strong>Actuarial Standards Board (ASB)</strong> sets professional standards that actuaries must follow. These Actuarial Standards of Practice (ASOPs) ensure consistency and professionalism across the industry. Think of it like the bar association for lawyers &mdash; it defines what "good work" looks like.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Five Ideal Characteristics of Insurance Rates -->
+        <section id="five-characteristics" class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-2">2. Five Ideal Characteristics of Insurance Rates</h2>
+                <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300 mb-6">This is a <strong>major exam topic</strong>. Insurance rates must balance the needs of insurers (staying solvent) with the needs of consumers (not being gouged). These five characteristics define a "good" rate.</p>
+
+                <!-- Characteristic A: Adequate -->
+                <div class="bg-green-50 dark:bg-green-900/20 border-l-4 border-green-500 p-4 lg:p-5 rounded-r-lg mb-5">
+                    <h3 class="font-bold text-green-800 dark:text-green-300 text-lg lg:text-xl">A. Adequate</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg"><strong>What it means:</strong> The rate must be high enough to cover expected losses, expenses, and provide a reasonable profit. If rates are too low, the insurer cannot pay claims and becomes insolvent &mdash; which hurts everyone.</p>
+                    <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded mt-3">
+                        <p class="font-semibold text-green-800 dark:text-green-300 mb-2">Real-World Scenario: The Underfunded Auto Insurer</p>
+                        <div class="space-y-2 text-sm lg:text-base">
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> QuickRate Auto Insurance sets its annual premium at $700 per policy to attract customers. But expected losses are $650, expenses are $250, and they need $100 profit. That totals $1,000 per policy.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> After two years of collecting $700 but paying out $900+ per policy, the company's surplus is depleted.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> The state regulator places QuickRate into receivership. Policyholders scramble to find new coverage, and some claims go unpaid. Inadequate rates led to insolvency.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Characteristic B: Not Excessive -->
+                <div class="bg-red-50 dark:bg-red-900/20 border-l-4 border-red-500 p-4 lg:p-5 rounded-r-lg mb-5">
+                    <h3 class="font-bold text-red-800 dark:text-red-300 text-lg lg:text-xl">B. Not Excessive</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg"><strong>What it means:</strong> Rates should not be so high that policyholders are being gouged. Regulators watch for this, especially in lines where coverage is mandatory (like auto insurance).</p>
+                    <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded mt-3">
+                        <p class="font-semibold text-red-800 dark:text-red-300 mb-2">Real-World Scenario: The Price-Gouging Homeowners Insurer</p>
+                        <div class="space-y-2 text-sm lg:text-base">
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> After a major hurricane, only two insurers remain in a coastal market. One of them starts charging $3,000 for coverage that costs $1,000 to provide.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Homeowners have no choice but to pay because they need coverage for their mortgage. The insurer pockets enormous profits.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> The state insurance commissioner rejects the rate filing and orders the insurer to reduce rates. Excessive rates are a regulatory red flag.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Characteristic C: Not Unfairly Discriminatory -->
+                <div class="bg-purple-50 dark:bg-purple-900/20 border-l-4 border-purple-500 p-4 lg:p-5 rounded-r-lg mb-5">
+                    <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg lg:text-xl">C. Not Unfairly Discriminatory</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg"><strong>What it means:</strong> Insureds in the same risk class should pay similar rates. But here is the critical distinction &mdash;</p>
+
+                    <div class="grid md:grid-cols-2 gap-4 mt-4">
+                        <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border border-green-200 dark:border-green-800">
+                            <p class="font-bold text-green-800 dark:text-green-300 text-base lg:text-lg">FAIR Discrimination (Allowed)</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-2">Charging a 16-year-old driver more than a 40-year-old driver. Why? Because data shows teens have far more accidents. The rate difference is based on <strong>actuarial data about risk</strong>.</p>
+                        </div>
+                        <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border border-red-200 dark:border-red-800">
+                            <p class="font-bold text-red-800 dark:text-red-300 text-base lg:text-lg">UNFAIR Discrimination (Prohibited)</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-2">Charging different auto rates based on ethnicity or religion. There is no actuarial justification for this. The rate difference is based on <strong>a protected characteristic, not risk</strong>.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 rounded-r-lg mt-4">
+                        <p class="font-bold text-amber-800 dark:text-amber-300">Exam Alert</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The exam LOVES this distinction. The word is "not <strong>unfairly</strong> discriminatory" &mdash; not "not discriminatory." Insurance fundamentally discriminates between risk levels. That is the entire point of underwriting. The requirement is that the discrimination be actuarially justified.</p>
+                    </div>
+                </div>
+
+                <!-- Characteristic D: Responsive -->
+                <div class="bg-blue-50 dark:bg-blue-900/20 border-l-4 border-blue-500 p-4 lg:p-5 rounded-r-lg mb-5">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg lg:text-xl">D. Responsive</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg"><strong>What it means:</strong> Rates should adjust as conditions change. If medical costs spike, or distracted driving causes more accidents, or construction material costs surge &mdash; rates must respond to these shifts.</p>
+                    <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded mt-3">
+                        <p class="font-semibold text-blue-800 dark:text-blue-300 mb-2">Real-World Scenario: Post-Pandemic Auto Rates</p>
+                        <div class="space-y-2 text-sm lg:text-base">
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> During the pandemic, driving dropped dramatically. After it ended, driving surged back &mdash; but with worse habits (speeding, distraction). Accident severity increased 15% in two years.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> An actuary analyzes the data and recommends a rate increase to keep pace with rising claim costs.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> The insurer files for a rate increase. The rate is "responsive" &mdash; it reflects current conditions rather than being stuck at a level based on outdated data.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Characteristic E: Encourage Loss Control -->
+                <div class="bg-teal-50 dark:bg-teal-900/20 border-l-4 border-teal-500 p-4 lg:p-5 rounded-r-lg mb-4">
+                    <h3 class="font-bold text-teal-800 dark:text-teal-300 text-lg lg:text-xl">E. Encourage Loss Control</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg"><strong>What it means:</strong> Rates should reward policyholders who take steps to reduce risk. This creates a financial incentive to be safer, which benefits everyone.</p>
+                    <div class="grid md:grid-cols-3 gap-3 mt-4">
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg border border-teal-200 dark:border-teal-800 text-center">
+                            <p class="font-bold text-teal-700 dark:text-teal-300">Homeowners</p>
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400">Discount for fire sprinklers, smoke detectors, security systems</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg border border-teal-200 dark:border-teal-800 text-center">
+                            <p class="font-bold text-teal-700 dark:text-teal-300">Auto</p>
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400">Discount for anti-theft devices, defensive driving courses, telematics</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg border border-teal-200 dark:border-teal-800 text-center">
+                            <p class="font-bold text-teal-700 dark:text-teal-300">Workers Comp</p>
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400">Experience mods reward safe workplaces; lower mods = lower premiums</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Summary Grid -->
+                <div class="overflow-x-auto mt-6">
+                    <table class="w-full text-sm lg:text-base">
+                        <thead>
+                            <tr class="bg-indigo-600 text-white">
+                                <th class="p-3 lg:p-4 text-left rounded-tl-lg">Characteristic</th>
+                                <th class="p-3 lg:p-4 text-left">One-Line Definition</th>
+                                <th class="p-3 lg:p-4 text-left rounded-tr-lg">If Violated...</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-bold text-gray-800 dark:text-gray-200">Adequate</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">High enough to cover losses + expenses + profit</td>
+                                <td class="p-3 lg:p-4 text-red-700 dark:text-red-400">Insurer becomes insolvent</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <td class="p-3 lg:p-4 font-bold text-gray-800 dark:text-gray-200">Not Excessive</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Not unreasonably high relative to coverage provided</td>
+                                <td class="p-3 lg:p-4 text-red-700 dark:text-red-400">Consumers are gouged; regulator intervenes</td>
+                            </tr>
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-bold text-gray-800 dark:text-gray-200">Not Unfairly Discriminatory</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Same risk class = similar rates; differences must be data-justified</td>
+                                <td class="p-3 lg:p-4 text-red-700 dark:text-red-400">Legal action; regulator penalties</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <td class="p-3 lg:p-4 font-bold text-gray-800 dark:text-gray-200">Responsive</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Adjusts as conditions change (inflation, new risks)</td>
+                                <td class="p-3 lg:p-4 text-red-700 dark:text-red-400">Rates become inadequate or excessive over time</td>
+                            </tr>
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-bold text-gray-800 dark:text-gray-200">Encourage Loss Control</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Rewards safer behavior with lower premiums</td>
+                                <td class="p-3 lg:p-4 text-red-700 dark:text-red-400">No incentive to reduce risk; losses stay high</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Components of an Insurance Rate -->
+        <section id="rate-components" class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">3. Components of an Insurance Rate</h2>
+
+                <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300 mb-6">This is where the math lives. Do not panic &mdash; we will walk through every piece. The core formula is:</p>
+
+                <!-- The Big Formula -->
+                <div class="bg-indigo-50 dark:bg-indigo-900/30 border-2 border-indigo-400 dark:border-indigo-600 rounded-xl p-5 lg:p-6 mb-6 text-center">
+                    <p class="text-sm lg:text-base text-indigo-700 dark:text-indigo-300 mb-2 font-medium">THE GROSS RATE FORMULA</p>
+                    <p class="text-2xl lg:text-3xl font-bold text-indigo-800 dark:text-indigo-200">Gross Rate = Pure Premium / (1 - Expense Ratio - Profit &amp; Contingency Factor)</p>
+                </div>
+
+                <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300 mb-6">Let us break down every term in this formula, one at a time.</p>
+
+                <!-- Pure Premium -->
+                <div class="bg-blue-50 dark:bg-blue-900/20 border-l-4 border-blue-500 p-4 lg:p-5 rounded-r-lg mb-5">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg lg:text-xl">Pure Premium (aka Loss Cost)</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">The pure premium represents the portion of the rate that pays for <strong>claims and the costs of handling those claims</strong>. No overhead, no profit &mdash; just loss money.</p>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg mt-3 text-center">
+                        <p class="text-xl lg:text-2xl font-bold text-blue-700 dark:text-blue-300">Pure Premium = Expected Losses + LAE</p>
+                    </div>
+                </div>
+
+                <!-- Expected Losses -->
+                <div class="bg-gray-50 dark:bg-gray-700/50 p-4 lg:p-5 rounded-lg mb-5 border border-gray-200 dark:border-gray-600">
+                    <h4 class="font-bold text-gray-800 dark:text-gray-200 text-base lg:text-lg mb-2">Expected Losses = Frequency x Severity</h4>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div>
+                            <p class="font-semibold text-gray-700 dark:text-gray-300">Frequency</p>
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400">How often claims happen. Example: Out of 1,000 auto policies, 50 have claims. Frequency = 50/1,000 = 0.05 (or 5%).</p>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-gray-700 dark:text-gray-300">Severity</p>
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400">How much each claim costs on average. Example: Those 50 claims cost a total of $600,000. Average severity = $600,000 / 50 = $12,000.</p>
+                        </div>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 p-3 rounded mt-3 text-center">
+                        <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300">Expected Losses per policy = 0.05 x $12,000 = <strong class="text-blue-700 dark:text-blue-300">$600</strong></p>
+                    </div>
+                </div>
+
+                <!-- LAE Breakdown -->
+                <h3 class="text-lg lg:text-xl font-bold text-gray-800 dark:text-gray-100 mb-3">Loss Adjustment Expenses (LAE) &mdash; Two Types</h3>
+                <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300 mb-4">LAE covers the cost of <strong>handling</strong> claims. It breaks into two categories. The industry recently changed the terminology, but the exam may use either set of terms:</p>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-indigo-50 dark:bg-indigo-900/20 p-4 lg:p-5 rounded-lg border border-indigo-200 dark:border-indigo-800">
+                        <p class="text-lg lg:text-xl font-bold text-indigo-800 dark:text-indigo-300">ALAE / DCC</p>
+                        <p class="text-xs lg:text-sm text-indigo-600 dark:text-indigo-400 mb-2">Allocated LAE = Defense &amp; Cost Containment</p>
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>What it is:</strong> Costs tied to a <strong>specific claim</strong>. You can point to claim #12345 and say "we spent this money on THAT claim."</p>
+                        <div class="mt-3 space-y-1">
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400">- Lawyer fees defending the insured</p>
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400">- Expert witness fees</p>
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400">- Court costs and filing fees</p>
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400">- Accident reconstruction specialists</p>
+                        </div>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 lg:p-5 rounded-lg border border-purple-200 dark:border-purple-800">
+                        <p class="text-lg lg:text-xl font-bold text-purple-800 dark:text-purple-300">ULAE / A&amp;O</p>
+                        <p class="text-xs lg:text-sm text-purple-600 dark:text-purple-400 mb-2">Unallocated LAE = Adjusting &amp; Other</p>
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>What it is:</strong> General overhead costs of running the <strong>claims department as a whole</strong>. You cannot tie these to any single claim.</p>
+                        <div class="mt-3 space-y-1">
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400">- Claims adjuster salaries</p>
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400">- Claims office rent and utilities</p>
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400">- Claims management software</p>
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400">- Training programs for adjusters</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 rounded-r-lg mb-6">
+                    <p class="font-bold text-amber-800 dark:text-amber-300">Terminology Update</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The NAIC replaced ALAE with <strong>DCC (Defense &amp; Cost Containment)</strong> and ULAE with <strong>A&amp;O (Adjusting &amp; Other)</strong>. The exam may use either set of terms. When you see DCC, think "specific claim costs." When you see A&amp;O, think "general overhead."</p>
+                </div>
+
+                <!-- Expense Ratio and Profit -->
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-amber-50 dark:bg-amber-900/20 border-l-4 border-amber-500 p-4 lg:p-5 rounded-r-lg">
+                        <h3 class="font-bold text-amber-800 dark:text-amber-300 text-lg lg:text-xl">Expense Ratio</h3>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">Operating expenses expressed as a <strong>percentage of premium</strong>. This covers all the non-claim costs of running the business:</p>
+                        <ul class="mt-2 space-y-1 text-sm lg:text-base text-gray-600 dark:text-gray-400">
+                            <li>- Agent/broker commissions</li>
+                            <li>- Policy administration costs</li>
+                            <li>- Marketing and advertising</li>
+                            <li>- State premium taxes</li>
+                            <li>- General overhead (corporate offices, IT)</li>
+                        </ul>
+                        <p class="mt-3 text-sm lg:text-base text-gray-700 dark:text-gray-300">A typical expense ratio is <strong>25-35%</strong> of premium.</p>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/20 border-l-4 border-green-500 p-4 lg:p-5 rounded-r-lg">
+                        <h3 class="font-bold text-green-800 dark:text-green-300 text-lg lg:text-xl">Profit &amp; Contingency Factor</h3>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">The target profit margin <strong>plus a buffer</strong> for unexpected events. This has two parts:</p>
+                        <ul class="mt-2 space-y-1 text-sm lg:text-base text-gray-600 dark:text-gray-400">
+                            <li>- <strong>Profit:</strong> Return on the capital shareholders have invested (typically 3-5%)</li>
+                            <li>- <strong>Contingency:</strong> Cushion for things that go wrong &mdash; unexpected catastrophes, worse-than-expected loss trends, economic shocks</li>
+                        </ul>
+                        <p class="mt-3 text-sm lg:text-base text-gray-700 dark:text-gray-300">A typical combined factor is <strong>3-7%</strong> of premium.</p>
+                    </div>
+                </div>
+
+                <!-- Flow Diagram -->
+                <h3 class="text-lg lg:text-xl font-bold text-gray-800 dark:text-gray-100 mb-3">How the Pieces Fit Together</h3>
+                <div class="flex items-center gap-3 flex-wrap justify-center mb-6 p-4 bg-gray-50 dark:bg-gray-700/50 rounded-lg">
+                    <div class="bg-blue-100 dark:bg-blue-900/40 p-3 lg:p-4 rounded-lg text-center min-w-[120px]">
+                        <p class="font-bold text-blue-800 dark:text-blue-300 text-sm lg:text-base">Expected Losses</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Freq x Severity</p>
+                    </div>
+                    <div class="text-xl lg:text-2xl text-gray-400 font-bold">+</div>
+                    <div class="bg-indigo-100 dark:bg-indigo-900/40 p-3 lg:p-4 rounded-lg text-center min-w-[80px]">
+                        <p class="font-bold text-indigo-800 dark:text-indigo-300 text-sm lg:text-base">LAE</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">DCC + A&amp;O</p>
+                    </div>
+                    <div class="text-xl lg:text-2xl text-gray-400 font-bold">=</div>
+                    <div class="bg-purple-100 dark:bg-purple-900/40 p-3 lg:p-4 rounded-lg text-center min-w-[120px]">
+                        <p class="font-bold text-purple-800 dark:text-purple-300 text-sm lg:text-base">Pure Premium</p>
+                    </div>
+                    <div class="text-xl lg:text-2xl text-gray-400 font-bold">/</div>
+                    <div class="bg-amber-100 dark:bg-amber-900/40 p-3 lg:p-4 rounded-lg text-center min-w-[180px]">
+                        <p class="font-bold text-amber-800 dark:text-amber-300 text-sm lg:text-base">(1 - Expenses - Profit)</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">The loading factor</p>
+                    </div>
+                    <div class="text-xl lg:text-2xl text-gray-400 font-bold">=</div>
+                    <div class="bg-green-100 dark:bg-green-900/40 p-3 lg:p-4 rounded-lg text-center min-w-[100px] border-2 border-green-500">
+                        <p class="font-bold text-green-800 dark:text-green-300 text-sm lg:text-base">GROSS RATE</p>
+                    </div>
+                </div>
+
+                <!-- Worked Example -->
+                <div class="bg-indigo-50 dark:bg-indigo-900/20 border-2 border-indigo-300 dark:border-indigo-700 rounded-xl p-5 lg:p-6">
+                    <h3 class="text-lg lg:text-xl font-bold text-indigo-800 dark:text-indigo-300 mb-4">Worked Example: Calculating the Gross Rate</h3>
+
+                    <div class="space-y-3 mb-4">
+                        <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300"><strong>Given information (per policy):</strong></p>
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                                <p class="text-xl lg:text-2xl font-bold text-blue-600 dark:text-blue-400">$600</p>
+                                <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Expected Losses</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                                <p class="text-xl lg:text-2xl font-bold text-indigo-600 dark:text-indigo-400">$50</p>
+                                <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">ALAE (DCC)</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                                <p class="text-xl lg:text-2xl font-bold text-purple-600 dark:text-purple-400">$30</p>
+                                <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">ULAE (A&amp;O)</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                                <p class="text-xl lg:text-2xl font-bold text-amber-600 dark:text-amber-400">28% / 5%</p>
+                                <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Expense / Profit</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-700 p-4 lg:p-5 rounded-lg space-y-4">
+                        <div>
+                            <p class="font-bold text-indigo-800 dark:text-indigo-300 mb-1">Step 1: Calculate Pure Premium</p>
+                            <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300">Pure Premium = Expected Losses + ALAE + ULAE</p>
+                            <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300">Pure Premium = $600 + $50 + $30 = <strong class="text-indigo-700 dark:text-indigo-300">$680</strong></p>
+                        </div>
+                        <div>
+                            <p class="font-bold text-indigo-800 dark:text-indigo-300 mb-1">Step 2: Calculate the Loading Denominator</p>
+                            <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300">Denominator = 1 - Expense Ratio - Profit Factor</p>
+                            <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300">Denominator = 1 - 0.28 - 0.05 = <strong class="text-indigo-700 dark:text-indigo-300">0.67</strong></p>
+                        </div>
+                        <div>
+                            <p class="font-bold text-indigo-800 dark:text-indigo-300 mb-1">Step 3: Calculate Gross Rate</p>
+                            <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300">Gross Rate = Pure Premium / Denominator</p>
+                            <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300">Gross Rate = $680 / 0.67 = <strong class="text-2xl text-green-700 dark:text-green-300">$1,014.93</strong></p>
+                        </div>
+                    </div>
+
+                    <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 rounded-r-lg mt-4">
+                        <p class="font-bold text-amber-800 dark:text-amber-300">Why Divide by (1 - Expenses - Profit)?</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">This is the part that confuses people. Here is the key insight: <strong>expenses and profit are percentages of the FINAL rate, not of the pure premium</strong>. We need to find the rate that, AFTER taking out 28% for expenses and 5% for profit, still leaves enough to cover the $680 in expected losses.</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-2"><strong>Proof it works:</strong> $1,014.93 x 0.28 = $284.18 (expenses) + $1,014.93 x 0.05 = $50.75 (profit) = $334.93. The remainder: $1,014.93 - $334.93 = <strong>$680.00</strong>. Exactly the pure premium.</p>
+                    </div>
+
+                    <div class="bg-red-50 dark:bg-red-900/20 border-l-4 border-red-500 p-4 rounded-r-lg mt-3">
+                        <p class="font-bold text-red-800 dark:text-red-300">Common Mistake</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Students often try to simply ADD 33% to the pure premium: $680 x 1.33 = $904.40. This is WRONG because it understates the rate. The correct method is DIVIDING by 0.67. The mathematical difference is significant &mdash; $1,014.93 vs $904.40.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Five Factors That Affect Ratemaking -->
+        <section id="factors" class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">4. Five Factors That Affect Ratemaking</h2>
+                <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300 mb-6">Ratemaking does not happen in a vacuum. These five external forces can dramatically shift what rates need to be.</p>
+
+                <div class="space-y-4">
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 lg:p-5 rounded-lg border-l-4 border-red-500">
+                        <h3 class="font-bold text-red-800 dark:text-red-300 text-base lg:text-lg">1. Catastrophe Exposure</h3>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Hurricanes, earthquakes, wildfires, and severe convective storms create massive, unpredictable losses that can dwarf all historical patterns. A single hurricane can cause more insured losses than a decade of normal claims.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-2">
+                            <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>Example:</strong> Florida homeowners rates tripled after the 2004-2005 hurricane seasons because catastrophe models showed the old rates were wildly inadequate for the actual risk.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 lg:p-5 rounded-lg border-l-4 border-purple-500">
+                        <h3 class="font-bold text-purple-800 dark:text-purple-300 text-base lg:text-lg">2. Changes in the Legal Environment</h3>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Tort reform (or the lack of it), nuclear verdicts, expanded liability theories, and legislative changes all affect how much claims cost. When courts expand what counts as covered, claims costs rise.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-2">
+                            <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>Example:</strong> A state eliminates the cap on non-economic damages in medical malpractice cases. Verdict sizes increase, so med-mal insurers must raise rates to remain adequate.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-amber-50 dark:bg-amber-900/20 p-4 lg:p-5 rounded-lg border-l-4 border-amber-500">
+                        <h3 class="font-bold text-amber-800 dark:text-amber-300 text-base lg:text-lg">3. Economic Conditions</h3>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Inflation increases the cost of repairs, medical treatment, building materials, and replacement parts. Investment returns also affect pricing &mdash; when interest rates are high, insurers can charge less because they earn more on invested premiums.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-2">
+                            <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>Example:</strong> Construction material costs surge 30% due to supply chain disruptions. Homeowners insurance claims for roof replacements and water damage repairs now cost significantly more, requiring rate increases.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 lg:p-5 rounded-lg border-l-4 border-blue-500">
+                        <h3 class="font-bold text-blue-800 dark:text-blue-300 text-base lg:text-lg">4. Social Trends</h3>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Societal changes affect risk. Distracted driving increases auto claims. Climate migration shifts population into catastrophe-prone areas. The opioid crisis affected workers comp and health insurance claims.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-2">
+                            <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>Example:</strong> Smartphone use while driving has increased accident frequency. Auto insurers must factor in this behavioral shift when setting rates, even though the vehicles themselves may be safer.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-teal-50 dark:bg-teal-900/20 p-4 lg:p-5 rounded-lg border-l-4 border-teal-500">
+                        <h3 class="font-bold text-teal-800 dark:text-teal-300 text-base lg:text-lg">5. Reinsurance Costs</h3>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">If reinsurance becomes more expensive (often after large catastrophes), primary insurers must pass that cost along. Reinsurance cost is a direct input to the expense side of the rate.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-2">
+                            <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>Example:</strong> After a $100 billion global catastrophe year, reinsurers raise their rates 25%. A regional insurer that buys catastrophe reinsurance must increase its own rates to cover the higher reinsurance premiums it now pays.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Social Inflation and Nuclear Verdicts -->
+        <section id="social-inflation" class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">5. Social Inflation and Nuclear Verdicts</h2>
+
+                <div class="bg-red-50 dark:bg-red-900/20 border-l-4 border-red-500 p-4 lg:p-5 rounded-r-lg mb-5">
+                    <h3 class="font-bold text-red-800 dark:text-red-300 text-lg lg:text-xl">Social Inflation &mdash; Defined</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">The tendency for insurance claims costs to rise <strong>faster than general economic inflation</strong>, driven by changing societal attitudes toward litigation, expanded theories of liability, and larger jury awards. It is not about the CPI &mdash; it is about juries awarding more, courts accepting broader claims, and plaintiffs' attorneys becoming more aggressive.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border border-purple-200 dark:border-purple-800">
+                        <p class="font-bold text-purple-800 dark:text-purple-300 text-base lg:text-lg">Nuclear Verdicts</p>
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300 mt-2">Jury awards <strong>exceeding $10 million</strong>. These were once rare but are now increasingly common. In the 2020s, billion-dollar verdicts have appeared in trucking, product liability, and pharmaceutical cases.</p>
+                    </div>
+                    <div class="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg border border-amber-200 dark:border-amber-800">
+                        <p class="font-bold text-amber-800 dark:text-amber-300 text-base lg:text-lg">Third-Party Litigation Funding</p>
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300 mt-2">Investors fund lawsuits in exchange for a share of the verdict. This means plaintiffs can afford to go to trial rather than settle cheaply. The result: more cases go to trial, and trial outcomes tend to be larger.</p>
+                    </div>
+                </div>
+
+                <div class="bg-indigo-50 dark:bg-indigo-900/20 border-l-4 border-indigo-500 p-4 lg:p-5 rounded-r-lg mb-5">
+                    <p class="font-semibold text-indigo-800 dark:text-indigo-300 mb-2">Real-World Scenario: The $50 Million Trucking Verdict</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> A commercial trucking company has a policy with $5M liability limits. Their insurer set reserves based on historical average verdicts of $3-5M for serious accidents.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> One of their drivers causes a multi-vehicle accident. At trial, the plaintiff's attorney (funded by a litigation finance company) presents a compelling case. The jury awards $50 million &mdash; 10x what historical data predicted.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> The insurer's $5M policy limit is exhausted instantly. The trucking company faces $45M in excess liability. The insurer must revise its ratemaking models upward because historical averages no longer reflect current jury behavior. This is social inflation in action.</p>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700/50 p-4 lg:p-5 rounded-lg border border-gray-200 dark:border-gray-600">
+                    <h4 class="font-bold text-gray-800 dark:text-gray-200 text-base lg:text-lg mb-2">Why Social Inflation Matters for Ratemaking</h4>
+                    <ul class="space-y-2 text-sm lg:text-base text-gray-700 dark:text-gray-300">
+                        <li><strong>Reserve inadequacy:</strong> If past data underestimates future verdicts, reserves are too low and the insurer is technically insolvent</li>
+                        <li><strong>Trend factors break down:</strong> Actuaries rely on trend factors to project future costs. Social inflation can cause sudden jumps that trend lines do not capture</li>
+                        <li><strong>Liability lines hit hardest:</strong> Commercial auto, general liability, medical malpractice, and product liability are the most affected</li>
+                        <li><strong>Reinsurance costs increase:</strong> Reinsurers raise prices to account for larger-than-expected claims, which flows through to primary rates</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cheat Sheet -->
+        <section id="cheat-sheet" class="mb-10">
+            <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 border-2 border-dashed border-gray-300 dark:border-gray-600">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100">Cheat Sheet</h2>
+                    <span class="text-sm text-gray-500 dark:text-gray-400">Print this page for quick reference</span>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-200 mb-2">The Formula</p>
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300 font-mono bg-white dark:bg-gray-700 p-2 rounded">Gross Rate = Pure Premium / (1 - Exp% - Profit%)</p>
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300 font-mono bg-white dark:bg-gray-700 p-2 rounded mt-1">Pure Premium = Expected Losses + ALAE + ULAE</p>
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300 font-mono bg-white dark:bg-gray-700 p-2 rounded mt-1">Expected Losses = Frequency x Severity</p>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-200 mb-2">5 Ideal Rate Characteristics</p>
+                        <ol class="text-sm lg:text-base text-gray-700 dark:text-gray-300 space-y-1 list-decimal list-inside">
+                            <li>Adequate (covers losses + expenses + profit)</li>
+                            <li>Not Excessive (no gouging)</li>
+                            <li>Not Unfairly Discriminatory (data-justified differences only)</li>
+                            <li>Responsive (changes with conditions)</li>
+                            <li>Encourage Loss Control (rewards safety)</li>
+                        </ol>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-200 mb-2">LAE Terminology</p>
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>ALAE = DCC</strong> (specific claim costs: lawyers, experts, court)</p>
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>ULAE = A&amp;O</strong> (general overhead: salaries, rent, software)</p>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-200 mb-2">5 Ratemaking Factors</p>
+                        <ol class="text-sm lg:text-base text-gray-700 dark:text-gray-300 space-y-1 list-decimal list-inside">
+                            <li>Catastrophe exposure</li>
+                            <li>Legal environment changes</li>
+                            <li>Economic conditions / inflation</li>
+                            <li>Social trends</li>
+                            <li>Reinsurance costs</li>
+                        </ol>
+                    </div>
+                    <div class="md:col-span-2">
+                        <p class="font-bold text-gray-800 dark:text-gray-200 mb-2">Key Terms</p>
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-2 text-sm lg:text-base">
+                            <p class="text-gray-700 dark:text-gray-300"><strong>Social inflation</strong> = claims costs rising faster than CPI</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>Nuclear verdict</strong> = jury award exceeding $10M</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>FCAS</strong> = top P&amp;C actuarial credential</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>ASB</strong> = sets actuarial professional standards</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Trap Alerts -->
+        <section id="exam-traps" class="mb-10">
+            <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-xl p-5 lg:p-6">
+                <h2 class="text-2xl font-bold text-red-800 dark:text-red-300 mb-4">Exam Trap Alerts</h2>
+                <div class="space-y-4">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">1. "Not Discriminatory" vs "Not UNFAIRLY Discriminatory"</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Insurance IS discriminatory by design &mdash; that is how risk classification works. The requirement is that discrimination be <strong>actuarially justified</strong>. If the exam asks whether it is acceptable to charge different rates to different drivers, the answer is YES &mdash; as long as the difference is based on risk data, not protected characteristics.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">2. Multiplying vs Dividing for the Gross Rate</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">NEVER multiply the pure premium by (1 + expense ratio + profit). You must DIVIDE by (1 - expense ratio - profit). Multiplying gives a rate that is too low. The exam may present both methods as answer choices &mdash; always choose the division method.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">3. ALAE vs ULAE Terminology Swap</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The exam may use old terms (ALAE/ULAE) or new terms (DCC/A&amp;O). Know both. <strong>ALAE = DCC = tied to specific claims. ULAE = A&amp;O = general claims overhead.</strong> If you see "Defense &amp; Cost Containment," that is the same as ALAE.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">4. Social Inflation is NOT Regular Inflation</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Do not confuse social inflation (changing jury attitudes, litigation trends) with economic inflation (CPI, consumer prices). Social inflation causes claims costs to rise <strong>above and beyond</strong> what economic inflation would predict. They are separate forces.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">5. Adequate Comes First</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Of the five characteristics, adequacy is considered the most important. An insurer that charges rates too low will go insolvent and then NOBODY gets paid. Regulators primarily focus on "adequate" and "not excessive" &mdash; but if forced to pick, solvency (adequacy) wins.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">6. Pure Premium Does NOT Include Expenses or Profit</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Pure premium = losses + LAE only. Commissions, marketing, admin costs, and profit are NOT part of the pure premium. Those are loaded onto the rate through the denominator formula. If an exam question asks "What is included in the pure premium?" &mdash; the answer is expected losses and loss adjustment expenses. Nothing else.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Reference Summary -->
+        <section id="summary" class="mb-10">
+            <div class="bg-gradient-to-r from-indigo-600 to-indigo-800 rounded-xl p-6 text-white">
+                <h2 class="text-2xl font-bold mb-6">Quick Reference Summary</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Actuary's Role</p>
+                        <p class="text-sm text-indigo-100">Answers "How much to charge?" and "How much to reserve?" using historical data and statistical models</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">5 Rate Characteristics</p>
+                        <p class="text-sm text-indigo-100">Adequate, Not Excessive, Not Unfairly Discriminatory, Responsive, Encourage Loss Control</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Gross Rate Formula</p>
+                        <p class="text-sm text-indigo-100">Pure Premium / (1 - Expense Ratio - Profit Factor) &mdash; always DIVIDE, never multiply</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Pure Premium</p>
+                        <p class="text-sm text-indigo-100">Expected Losses + LAE (both DCC and A&amp;O). Does NOT include expenses or profit.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">LAE Types</p>
+                        <p class="text-sm text-indigo-100">ALAE/DCC = specific claim costs (lawyers, experts). ULAE/A&amp;O = general claims overhead (salaries, rent).</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Social Inflation</p>
+                        <p class="text-sm text-indigo-100">Claims costs rising faster than CPI due to changing jury attitudes, litigation funding, and nuclear verdicts (awards over $10M)</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">5 Ratemaking Factors</p>
+                        <p class="text-sm text-indigo-100">Catastrophes, legal environment, economic conditions, social trends, reinsurance costs</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Key Designations</p>
+                        <p class="text-sm text-indigo-100">FCAS (P&amp;C top), ACAS (P&amp;C mid), FSA (Life/Health). Standards set by the ASB.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Fair vs Unfair Discrimination</p>
+                        <p class="text-sm text-indigo-100">Risk-based differences = fair. Protected-characteristic differences = unfair. Insurance discriminates by design.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Navigation -->
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="../../assignment-6-new/index.html" class="text-gray-300 hover:text-white text-sm lg:text-base">&larr; Assignment 6 Overview</a>
+                <span class="text-gray-400 text-sm">Part 1 of 3</span>
+                <a href="../part-2/index.html" class="text-gray-300 hover:text-white text-sm lg:text-base">Part 2: Methods &amp; Reserves &rarr;</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AI Tutor Button -->
+    <button onclick="openAITutor()" class="fixed bottom-6 right-6 z-50 bg-indigo-600 hover:bg-indigo-700 text-white p-4 rounded-full shadow-xl hover:scale-110 transition-transform" title="AI Study Tutor">
+        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/>
+        </svg>
+    </button>
+
+    <script>
+        function openAITutor() {
+            const context = `Topic: CPCU 520 Assignment 7 Part 1 - Ratemaking Fundamentals.
+Key concepts: The actuary's role (ratemaking and reserving), five ideal rate characteristics (adequate, not excessive, not unfairly discriminatory, responsive, encourage loss control), gross rate formula (Pure Premium / (1 - Expense Ratio - Profit Factor)), pure premium components (expected losses + LAE), LAE types (ALAE/DCC vs ULAE/A&O), five factors affecting ratemaking (catastrophes, legal changes, economics, social trends, reinsurance costs), social inflation and nuclear verdicts.
+Key formula: Gross Rate = Pure Premium / (1 - Expense% - Profit%). Example: $680 / (1 - 0.28 - 0.05) = $680 / 0.67 = $1,014.93.
+Common confusions: Fair discrimination vs unfair discrimination, multiplying vs dividing for gross rate, ALAE vs ULAE terminology, social inflation vs economic inflation, what is included in pure premium vs what is not.`;
+            if (typeof showAITutor === 'function') {
+                showAITutor(context);
+            }
+        }
+    </script>
+</body>
+</html>

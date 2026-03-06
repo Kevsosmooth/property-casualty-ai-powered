@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment 5 Part 1: The Insurance Marketplace and Customer Segments | CPCU 520</title>
+    <link rel="icon" type="image/svg+xml" href="../../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <link rel="stylesheet" href="../../../../css/styles.css">
+    <script src="../../../../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+        }
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <!-- Settings & Theme Toggle Buttons -->
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="showAPIKeySetup()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings">
+            <svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+        </button>
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/>
+            </svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-green-600 to-green-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap gap-2 text-sm mb-2">
+                <a href="../../../../index.html" class="text-green-200 hover:text-white">Home</a>
+                <span class="text-green-300">/</span>
+                <a href="../../../index.html" class="text-green-200 hover:text-white">CPCU</a>
+                <span class="text-green-300">/</span>
+                <a href="../../index.html" class="text-green-200 hover:text-white">520</a>
+                <span class="text-green-300">/</span>
+                <a href="../index.html" class="text-green-200 hover:text-white">Assignment 5</a>
+                <span class="text-green-300">/</span>
+                <span class="text-white">Part 1</span>
+            </div>
+            <h1 class="text-3xl font-bold">Assignment 5 Part 1: The Insurance Marketplace and Customer Segments</h1>
+            <p class="text-green-200 mt-1">Who buys insurance, what marketing activities insurers perform, and how new products are developed and delivered</p>
+        </div>
+    </header>
+
+    <!-- Part Navigation -->
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-wrap gap-2 text-sm">
+                <a href="../index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Overview</a>
+                <span class="bg-green-600 text-white px-3 py-1 rounded font-medium">Part 1</span>
+                <a href="../part-2/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 2</a>
+                <a href="../part-3/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 3</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-5xl lg:max-w-7xl">
+
+        <!-- Start Here: 5 Things You MUST Know -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-green-100 to-emerald-200 dark:from-green-900/40 dark:to-emerald-800/40 rounded-xl p-6 border border-green-300 dark:border-green-700">
+                <h3 class="text-xl lg:text-2xl font-bold text-green-800 dark:text-green-200 mb-4">Start Here: 5 Things You MUST Know</h3>
+                <div class="grid md:grid-cols-2 gap-3">
+                    <div class="flex items-start">
+                        <span class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">The P&amp;C marketplace has <strong>four customer segments</strong>: Personal, Commercial, Specialty, and Government &mdash; each with very different needs and buying behaviors.</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Insurance marketing includes <strong>9 key activities</strong>: market research, product development, pricing, advertising, sales, customer service, distribution, public relations, and sales fulfillment.</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">The <strong>marketing mix</strong> (4 Ps) applies to insurance: Product, Price, Place (distribution), and Promotion.</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">4</span>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Product development follows a <strong>6-step process</strong>: Identify Need &rarr; Design &rarr; Test &rarr; Regulatory Approval &rarr; Launch &rarr; Monitor.</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">5</span>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Specialty lines</strong> cover unique risks (aviation, cyber, marine) that standard markets do not handle &mdash; they require specialized underwriting expertise.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Overview Section -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">The Insurance Marketplace and Customer Segments</h2>
+
+                <div class="bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-800 rounded-lg p-5 lg:p-6 mb-6">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Insurance is an <strong>intangible product</strong> &mdash; you cannot touch it, test-drive it, or return it if you do not like it. That makes marketing insurance fundamentally different from marketing a car or a smartphone. Insurers must convince customers to pay money today for a promise that may or may not pay off in the future. This part covers who the customers are, what marketing activities insurers perform, and how new insurance products are developed from idea to policy.</p>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 lg:p-5 rounded-r-lg">
+                    <p class="font-bold text-amber-800 dark:text-amber-300 text-lg">Exam Alert!</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">Know the <strong>four customer segments</strong> and what makes each unique. Be ready to identify which segment a scenario describes. The <strong>marketing mix (4 Ps)</strong> and the <strong>product development process</strong> are commonly tested &mdash; especially the step where regulatory approval is needed before launch.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 1: The P&C Insurance Marketplace -->
+        <section id="marketplace" class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">1. The P&amp;C Insurance Marketplace</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-6">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg lg:text-xl">What Is the P&amp;C Marketplace?</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">The P&amp;C insurance marketplace is the broad environment where insurers, producers, and customers interact. It includes <strong>personal lines</strong> (coverage for individuals and families), <strong>commercial lines</strong> (coverage for businesses), and <strong>specialty lines</strong> (coverage for unique or hard-to-place risks).</p>
+                    <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded mt-3">
+                        <p class="font-semibold text-gray-700 dark:text-gray-300">Plain English:</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base mt-1">Think of the marketplace like a giant shopping mall. One floor is for regular consumers (personal lines), another floor is for businesses (commercial lines), and there is a specialty boutique section for weird and unusual stuff nobody else will sell (specialty lines).</p>
+                    </div>
+                </div>
+
+                <!-- Three Market Categories -->
+                <div class="grid md:grid-cols-3 gap-4 mb-6">
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <h4 class="font-bold text-green-800 dark:text-green-300 mb-2">Personal Lines</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mb-2">Coverage for individuals and families.</p>
+                        <ul class="space-y-1 text-gray-600 dark:text-gray-400 text-sm lg:text-base">
+                            <li>- Auto insurance</li>
+                            <li>- Homeowners insurance</li>
+                            <li>- Renters insurance</li>
+                            <li>- Personal umbrella</li>
+                        </ul>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm text-gray-600 dark:text-gray-400"><strong>Volume:</strong> High volume, standardized products, lower premiums per policy</p>
+                        </div>
+                    </div>
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-l-4 border-blue-500">
+                        <h4 class="font-bold text-blue-800 dark:text-blue-300 mb-2">Commercial Lines</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mb-2">Coverage for businesses of all sizes.</p>
+                        <ul class="space-y-1 text-gray-600 dark:text-gray-400 text-sm lg:text-base">
+                            <li>- Commercial General Liability (CGL)</li>
+                            <li>- Commercial auto</li>
+                            <li>- Workers compensation</li>
+                            <li>- Commercial property</li>
+                        </ul>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm text-gray-600 dark:text-gray-400"><strong>Volume:</strong> Lower volume, more customized, higher premiums per policy</p>
+                        </div>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border-l-4 border-purple-500">
+                        <h4 class="font-bold text-purple-800 dark:text-purple-300 mb-2">Specialty Lines</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mb-2">Unique or hard-to-place risks.</p>
+                        <ul class="space-y-1 text-gray-600 dark:text-gray-400 text-sm lg:text-base">
+                            <li>- Aviation insurance</li>
+                            <li>- Marine / ocean cargo</li>
+                            <li>- Cyber liability</li>
+                            <li>- Entertainment / film production</li>
+                        </ul>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm text-gray-600 dark:text-gray-400"><strong>Volume:</strong> Low volume, highly customized, requires specialist expertise</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Real-World Example -->
+                <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                    <p class="font-semibold text-green-800 dark:text-green-300 mb-2">Real-World Scenario: Which Market Category?</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Sarah wants auto insurance for her Honda Civic. Meanwhile, TechCorp needs liability insurance for its 200 employees. And MovieMagic Productions needs coverage for a $50M action film shoot involving helicopters and pyrotechnics.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Sarah shops online and gets a quote in minutes (personal lines). TechCorp works with a broker who tailors a package with CGL, workers comp, and commercial auto (commercial lines). MovieMagic needs a specialty broker who understands film production risks and can find a surplus lines insurer willing to cover stunt work (specialty lines).</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Each customer interacts with the marketplace differently. Sarah sees ads on TV. TechCorp needs expert advice. MovieMagic needs a specialist who knows which markets will even consider their risk.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Four Customer Segments -->
+        <section id="segments" class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">2. The Four Customer Segments</h2>
+
+                <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-6">Insurers divide their customers into four broad segments. Each segment has different needs, different buying behaviors, and requires different marketing approaches.</p>
+
+                <!-- Customer Segments Table -->
+                <div class="overflow-x-auto mb-6">
+                    <table class="w-full text-sm lg:text-base">
+                        <thead>
+                            <tr class="bg-green-600 text-white">
+                                <th class="p-3 lg:p-4 text-left rounded-tl-lg">Segment</th>
+                                <th class="p-3 lg:p-4 text-left">Who They Are</th>
+                                <th class="p-3 lg:p-4 text-left">What They Buy</th>
+                                <th class="p-3 lg:p-4 text-left rounded-tr-lg">How They Buy</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                            <tr class="bg-green-50 dark:bg-green-900/10">
+                                <td class="p-3 lg:p-4 font-bold text-green-800 dark:text-green-300">Personal</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Individuals and families</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Auto, homeowners, renters, umbrella, personal articles</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Online, direct, through agents; price-driven, brand-aware</td>
+                            </tr>
+                            <tr class="bg-blue-50 dark:bg-blue-900/10">
+                                <td class="p-3 lg:p-4 font-bold text-blue-800 dark:text-blue-300">Commercial</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Businesses of all sizes</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">CGL, commercial auto, workers comp, property, BOP, D&amp;O</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Through agents/brokers; need advice, customization</td>
+                            </tr>
+                            <tr class="bg-purple-50 dark:bg-purple-900/10">
+                                <td class="p-3 lg:p-4 font-bold text-purple-800 dark:text-purple-300">Specialty</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Unique or hard-to-place risks</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Aviation, marine, cyber, entertainment, energy, professional liability</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Through specialty brokers, wholesale brokers, surplus lines</td>
+                            </tr>
+                            <tr class="bg-amber-50 dark:bg-amber-900/10">
+                                <td class="p-3 lg:p-4 font-bold text-amber-800 dark:text-amber-300">Government</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Federal, state, and local entities</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Property, liability, auto fleets, workers comp, public official liability</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Competitive bidding (RFP process); procurement rules apply</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Real-World Example -->
+                <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-l-4 border-blue-500 mb-6">
+                    <p class="font-semibold text-blue-800 dark:text-blue-300 mb-2">Real-World Scenario: Government Segment</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> The City of Springfield needs to renew its property and liability insurance covering city hall, fire trucks, police vehicles, public parks, and the city council members.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> The city issues a formal Request for Proposal (RFP) that any qualified insurer can respond to. Three insurers submit proposals. The city's risk manager evaluates the proposals based on coverage, price, and insurer financial strength. Unlike a personal lines customer who just clicks "buy," the government must follow procurement rules and justify the selection.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> The winning insurer provides a tailored program covering all city assets, public official liability for the council, and workers comp for city employees. The process takes months, not minutes.</p>
+                    </div>
+                </div>
+
+                <!-- Key Differences Callout -->
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 lg:p-5 rounded-r-lg">
+                    <p class="font-bold text-amber-800 dark:text-amber-300 text-lg">Key Difference to Remember</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg"><strong>Personal</strong> customers are price-sensitive and often buy standardized products online. <strong>Commercial</strong> customers need customization and expert advice. <strong>Specialty</strong> customers need access to markets willing to write unusual risks. <strong>Government</strong> customers must follow formal procurement processes. The marketing approach must match the segment.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Marketing Activities -->
+        <section id="activities" class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">3. Insurance Marketing Activities</h2>
+
+                <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-4">Marketing is much more than advertising. In insurance, marketing encompasses <strong>9 interconnected activities</strong> that work together to identify customer needs, create products, and deliver them effectively.</p>
+
+                <div class="grid md:grid-cols-3 gap-4 mb-6">
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border border-green-200 dark:border-green-800">
+                        <p class="font-bold text-green-800 dark:text-green-300 mb-1">1. Market Research</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Studying customer needs, competitor offerings, and market trends to identify opportunities.</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-xs lg:text-sm mt-2"><strong>Example:</strong> Surveying small businesses to discover they want simpler cyber insurance options.</p>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border border-green-200 dark:border-green-800">
+                        <p class="font-bold text-green-800 dark:text-green-300 mb-1">2. Product Development</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Creating new insurance products or modifying existing ones to meet identified needs.</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-xs lg:text-sm mt-2"><strong>Example:</strong> Designing a gig-worker auto policy for Uber/Lyft drivers who need hybrid personal/commercial coverage.</p>
+                    </div>
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border border-green-200 dark:border-green-800">
+                        <p class="font-bold text-green-800 dark:text-green-300 mb-1">3. Pricing</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Setting premiums that are competitive yet adequate to cover expected losses and expenses.</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-xs lg:text-sm mt-2"><strong>Example:</strong> Using telematics data to offer usage-based auto insurance pricing.</p>
+                    </div>
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
+                        <p class="font-bold text-blue-800 dark:text-blue-300 mb-1">4. Advertising</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Communicating the insurer's value proposition through various media channels.</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-xs lg:text-sm mt-2"><strong>Example:</strong> GEICO's TV commercials emphasizing "15 minutes could save you 15%."</p>
+                    </div>
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
+                        <p class="font-bold text-blue-800 dark:text-blue-300 mb-1">5. Sales</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The actual process of converting prospects into policyholders through agents, brokers, or direct channels.</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-xs lg:text-sm mt-2"><strong>Example:</strong> An agent meeting with a restaurant owner to explain the BOP policy options available.</p>
+                    </div>
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
+                        <p class="font-bold text-blue-800 dark:text-blue-300 mb-1">6. Customer Service</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Supporting policyholders after the sale with billing, policy changes, certificates, and questions.</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-xs lg:text-sm mt-2"><strong>Example:</strong> 24/7 claims reporting hotline and online portal for policy management.</p>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border border-purple-200 dark:border-purple-800">
+                        <p class="font-bold text-purple-800 dark:text-purple-300 mb-1">7. Distribution</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Choosing and managing the channels through which policies reach customers.</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-xs lg:text-sm mt-2"><strong>Example:</strong> Deciding whether to sell through independent agents, exclusive agents, or directly online.</p>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border border-purple-200 dark:border-purple-800">
+                        <p class="font-bold text-purple-800 dark:text-purple-300 mb-1">8. Public Relations</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Managing the insurer's public image through community involvement, media relations, and thought leadership.</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-xs lg:text-sm mt-2"><strong>Example:</strong> Sponsoring disaster preparedness seminars in hurricane-prone communities.</p>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border border-purple-200 dark:border-purple-800">
+                        <p class="font-bold text-purple-800 dark:text-purple-300 mb-1">9. Sales Fulfillment</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Processing applications, issuing policies, and ensuring the customer receives their coverage documentation.</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-xs lg:text-sm mt-2"><strong>Example:</strong> Automated systems that generate policy documents within minutes of binding coverage.</p>
+                    </div>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 lg:p-5 rounded-r-lg">
+                    <p class="font-bold text-amber-800 dark:text-amber-300">Memory Trick</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">Think of the 9 activities as a pipeline: <strong>Research</strong> what customers need &rarr; <strong>Develop</strong> a product &rarr; <strong>Price</strong> it &rarr; <strong>Advertise</strong> it &rarr; <strong>Sell</strong> it &rarr; <strong>Service</strong> the customer &rarr; <strong>Distribute</strong> through channels &rarr; Build <strong>PR</strong> image &rarr; <strong>Fulfill</strong> the sale. The pipeline flows from idea to delivery.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Product Development Process -->
+        <section id="product-dev" class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">4. The Product Development Process</h2>
+
+                <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-6">Creating a new insurance product is not as simple as writing a policy form. There is a structured <strong>6-step process</strong> that ensures the product is needed, viable, legally compliant, and properly launched.</p>
+
+                <!-- Visual Flow Diagram -->
+                <div class="flex items-center gap-3 flex-wrap mb-6 justify-center">
+                    <div class="bg-green-100 dark:bg-green-900/40 p-4 rounded-lg text-center min-w-[120px]">
+                        <p class="text-2xl font-bold text-green-700 dark:text-green-300">1</p>
+                        <p class="font-bold text-green-800 dark:text-green-200 text-sm">Identify Need</p>
+                    </div>
+                    <div class="text-2xl text-gray-400">&rarr;</div>
+                    <div class="bg-teal-100 dark:bg-teal-900/40 p-4 rounded-lg text-center min-w-[120px]">
+                        <p class="text-2xl font-bold text-teal-700 dark:text-teal-300">2</p>
+                        <p class="font-bold text-teal-800 dark:text-teal-200 text-sm">Design Product</p>
+                    </div>
+                    <div class="text-2xl text-gray-400">&rarr;</div>
+                    <div class="bg-blue-100 dark:bg-blue-900/40 p-4 rounded-lg text-center min-w-[120px]">
+                        <p class="text-2xl font-bold text-blue-700 dark:text-blue-300">3</p>
+                        <p class="font-bold text-blue-800 dark:text-blue-200 text-sm">Test</p>
+                    </div>
+                    <div class="text-2xl text-gray-400">&rarr;</div>
+                    <div class="bg-purple-100 dark:bg-purple-900/40 p-4 rounded-lg text-center min-w-[120px]">
+                        <p class="text-2xl font-bold text-purple-700 dark:text-purple-300">4</p>
+                        <p class="font-bold text-purple-800 dark:text-purple-200 text-sm">Regulatory Approval</p>
+                    </div>
+                    <div class="text-2xl text-gray-400">&rarr;</div>
+                    <div class="bg-amber-100 dark:bg-amber-900/40 p-4 rounded-lg text-center min-w-[120px]">
+                        <p class="text-2xl font-bold text-amber-700 dark:text-amber-300">5</p>
+                        <p class="font-bold text-amber-800 dark:text-amber-200 text-sm">Launch</p>
+                    </div>
+                    <div class="text-2xl text-gray-400">&rarr;</div>
+                    <div class="bg-red-100 dark:bg-red-900/40 p-4 rounded-lg text-center min-w-[120px]">
+                        <p class="text-2xl font-bold text-red-700 dark:text-red-300">6</p>
+                        <p class="font-bold text-red-800 dark:text-red-200 text-sm">Monitor</p>
+                    </div>
+                </div>
+
+                <!-- Step Details -->
+                <div class="space-y-4 mb-6">
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <p class="font-bold text-green-800 dark:text-green-300">Step 1: Identify the Need</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Use market research to discover unmet customer needs or gaps in the market. What risks are customers facing that current products do not cover?</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-xs lg:text-sm mt-2"><strong>Example:</strong> In 2015, insurers noticed businesses were getting hacked left and right but had no standalone cyber insurance. Market research confirmed massive demand.</p>
+                    </div>
+                    <div class="bg-teal-50 dark:bg-teal-900/20 p-4 rounded-lg border-l-4 border-teal-500">
+                        <p class="font-bold text-teal-800 dark:text-teal-300">Step 2: Design the Product</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Draft policy forms, define coverages, set exclusions, determine limits and deductibles. Actuaries calculate the expected losses and develop preliminary pricing.</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-xs lg:text-sm mt-2"><strong>Example:</strong> The cyber policy team designs coverage for data breach costs, business interruption from cyberattacks, and regulatory fines.</p>
+                    </div>
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-l-4 border-blue-500">
+                        <p class="font-bold text-blue-800 dark:text-blue-300">Step 3: Test the Product</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Pilot the product with a limited group of agents and customers. Gather feedback. Refine the product before full rollout.</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-xs lg:text-sm mt-2"><strong>Example:</strong> The cyber policy is offered to 50 technology companies through 10 agents. Feedback reveals the application is too complex &mdash; it gets simplified.</p>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border-l-4 border-purple-500">
+                        <p class="font-bold text-purple-800 dark:text-purple-300">Step 4: Regulatory Approval</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Submit the policy forms and rates to state insurance regulators for approval. This is <strong>mandatory</strong> &mdash; you cannot sell an unapproved product.</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-xs lg:text-sm mt-2"><strong>Example:</strong> The insurer files the cyber policy form and rate manual with each state's Department of Insurance. Some states approve in weeks; others take months.</p>
+                    </div>
+                    <div class="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg border-l-4 border-amber-500">
+                        <p class="font-bold text-amber-800 dark:text-amber-300">Step 5: Launch</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Roll out the product to the full distribution network. Train agents, update systems, begin marketing campaigns.</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-xs lg:text-sm mt-2"><strong>Example:</strong> Nationwide launch with agent training webinars, marketing brochures, and online quoting capability.</p>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                        <p class="font-bold text-red-800 dark:text-red-300">Step 6: Monitor</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Track sales, claims, profitability, and customer feedback. Adjust pricing, coverage, or marketing as needed. This step never ends.</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-xs lg:text-sm mt-2"><strong>Example:</strong> After 18 months, claims data shows ransomware losses are 3x higher than expected. Pricing is adjusted upward and a ransomware sub-limit is added.</p>
+                    </div>
+                </div>
+
+                <!-- Exam Callout -->
+                <div class="bg-red-50 dark:bg-red-900/30 border-l-4 border-red-500 p-4 lg:p-5 rounded-r-lg">
+                    <p class="font-bold text-red-800 dark:text-red-300">Exam Trap!</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">The exam may ask: "What must happen <strong>before</strong> a new insurance product can be sold?" The answer is <strong>regulatory approval</strong> (Step 4). You cannot launch (Step 5) without it, no matter how great the product is.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: The Marketing Mix (4 Ps) -->
+        <section id="marketing-mix" class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">5. The Marketing Mix in Insurance (4 Ps)</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-6">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg lg:text-xl">What Is the Marketing Mix?</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">The <strong>marketing mix</strong> is a framework for the four key decisions every insurer makes when bringing a product to market. Originally developed for consumer goods, it applies perfectly to insurance with some insurance-specific twists.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <h4 class="font-bold text-green-800 dark:text-green-300 mb-2">Product</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The insurance policy itself &mdash; coverages, exclusions, limits, deductibles, endorsements. Unlike a physical product, insurance is an <strong>intangible promise</strong> to pay if a covered loss occurs.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm text-gray-600 dark:text-gray-400"><strong>Insurance twist:</strong> Customers cannot "try before they buy." The product quality is only tested when a claim happens.</p>
+                        </div>
+                    </div>
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-l-4 border-blue-500">
+                        <h4 class="font-bold text-blue-800 dark:text-blue-300 mb-2">Price</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The premium charged for coverage. Unlike most products, the insurer sets the price <strong>before knowing the actual cost</strong> (future claims). Actuaries estimate expected losses, then add expenses and profit.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm text-gray-600 dark:text-gray-400"><strong>Insurance twist:</strong> Prices are regulated. Insurers cannot charge whatever they want &mdash; rates must be filed and approved in most states.</p>
+                        </div>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border-l-4 border-purple-500">
+                        <h4 class="font-bold text-purple-800 dark:text-purple-300 mb-2">Place (Distribution)</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">How the product reaches customers &mdash; through independent agents, exclusive agents, direct online sales, call centers, or embedded channels. This is arguably the <strong>most important P</strong> in insurance.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm text-gray-600 dark:text-gray-400"><strong>Insurance twist:</strong> Distribution choice affects cost structure, control, customer relationships, and even which segments the insurer can reach.</p>
+                        </div>
+                    </div>
+                    <div class="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg border-l-4 border-amber-500">
+                        <h4 class="font-bold text-amber-800 dark:text-amber-300 mb-2">Promotion</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Advertising, PR, agent incentives, digital marketing, social media, content marketing. How the insurer communicates its value proposition to target customers.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm text-gray-600 dark:text-gray-400"><strong>Insurance twist:</strong> Promotion is heavily regulated &mdash; ads cannot be misleading, and some states restrict rebating and inducements.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Real-World Example -->
+                <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                    <p class="font-semibold text-green-800 dark:text-green-300 mb-2">Real-World Scenario: The 4 Ps in Action</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Lemonade Insurance wants to sell renters insurance to millennials.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> <strong>Product</strong> &mdash; Simple renters policy with minimal exclusions and easy-to-understand language. <strong>Price</strong> &mdash; Starting at $5/month (low price point targeting price-sensitive young renters). <strong>Place</strong> &mdash; 100% direct-to-consumer through a mobile app (no agents). <strong>Promotion</strong> &mdash; Social media ads, influencer marketing, "powered by AI" branding that appeals to tech-savvy customers.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Lemonade grew rapidly by aligning all 4 Ps to their target customer. Every decision &mdash; product simplicity, low price, mobile-only distribution, digital promotion &mdash; was designed specifically for the millennial segment.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cheat Sheet -->
+        <section id="cheat-sheet" class="mb-10">
+            <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 border-2 border-dashed border-gray-300 dark:border-gray-600">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100">Cheat Sheet</h2>
+                    <span class="text-sm text-gray-500 dark:text-gray-400">Print this page for quick reference</span>
+                </div>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <h3 class="font-bold text-gray-800 dark:text-gray-200 mb-2">4 Customer Segments</h3>
+                        <ul class="space-y-1 text-sm lg:text-base text-gray-700 dark:text-gray-300">
+                            <li><strong>Personal:</strong> Individuals/families &rarr; auto, home, renters</li>
+                            <li><strong>Commercial:</strong> Businesses &rarr; CGL, WC, commercial auto</li>
+                            <li><strong>Specialty:</strong> Hard-to-place &rarr; aviation, marine, cyber</li>
+                            <li><strong>Government:</strong> Public entities &rarr; RFP/procurement process</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-gray-800 dark:text-gray-200 mb-2">Marketing Mix (4 Ps)</h3>
+                        <ul class="space-y-1 text-sm lg:text-base text-gray-700 dark:text-gray-300">
+                            <li><strong>Product:</strong> Policy coverages, exclusions, limits</li>
+                            <li><strong>Price:</strong> Premium (set before knowing actual cost)</li>
+                            <li><strong>Place:</strong> Distribution channels (most important P)</li>
+                            <li><strong>Promotion:</strong> Advertising, PR, digital marketing</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-gray-800 dark:text-gray-200 mb-2">9 Marketing Activities</h3>
+                        <ul class="space-y-1 text-sm lg:text-base text-gray-700 dark:text-gray-300">
+                            <li>Market Research, Product Development, Pricing</li>
+                            <li>Advertising, Sales, Customer Service</li>
+                            <li>Distribution, Public Relations, Sales Fulfillment</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-gray-800 dark:text-gray-200 mb-2">6-Step Product Development</h3>
+                        <ul class="space-y-1 text-sm lg:text-base text-gray-700 dark:text-gray-300">
+                            <li><strong>1.</strong> Identify Need</li>
+                            <li><strong>2.</strong> Design Product</li>
+                            <li><strong>3.</strong> Test</li>
+                            <li><strong>4.</strong> Regulatory Approval (REQUIRED before launch)</li>
+                            <li><strong>5.</strong> Launch</li>
+                            <li><strong>6.</strong> Monitor (never ends)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Trap Alerts -->
+        <section class="mb-10">
+            <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-xl p-5 lg:p-6">
+                <h2 class="text-2xl lg:text-3xl font-bold text-red-800 dark:text-red-300 mb-4">Exam Trap Alerts</h2>
+                <div class="space-y-4">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">1. Marketing Is NOT Just Advertising</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">If the exam asks "which of the following is a marketing activity?" expect choices beyond advertising. <strong>Market research, product development, pricing, distribution, and customer service are ALL marketing activities.</strong> Advertising is just one of nine.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">2. Regulatory Approval Comes BEFORE Launch</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">You cannot sell a new insurance product without regulatory approval. If the exam presents a scenario where an insurer skips the filing step and goes straight to market, that is <strong>a violation</strong>. Step 4 (regulatory approval) must come before Step 5 (launch).</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">3. Specialty Lines Are NOT Just "Expensive" Commercial Lines</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Specialty lines are defined by the <strong>unique nature of the risk</strong>, not the price. A $10M commercial property policy is still commercial lines. But a $500K policy covering a drone fleet is specialty because standard markets will not write it. The distinction is about <strong>risk uniqueness and market availability</strong>, not dollar amount.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">4. Government Segment Uses Formal Procurement</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Government entities cannot just pick any insurer they like. They must follow <strong>competitive bidding and procurement rules</strong> (RFP process). If the exam describes a government entity buying insurance, look for answer choices involving formal processes, not casual agent relationships.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">5. "Place" in Insurance = Distribution, NOT Location</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">In the marketing mix, "Place" does not mean a physical office location. It means the <strong>distribution channel</strong> &mdash; how the product reaches the customer. For insurance, this includes agents, brokers, online platforms, call centers, and embedded channels.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Reference Summary -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-green-600 to-green-800 rounded-xl p-6 text-white">
+                <h2 class="text-2xl lg:text-3xl font-bold mb-6">Quick Reference Summary</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">P&amp;C Marketplace</p>
+                        <p class="text-sm text-green-100">Three categories: personal lines (individuals), commercial lines (businesses), specialty lines (unique risks)</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Personal Segment</p>
+                        <p class="text-sm text-green-100">Individuals/families; auto, home, renters; price-driven, buy online or through agents</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Commercial Segment</p>
+                        <p class="text-sm text-green-100">Businesses; CGL, WC, commercial auto; need advice and customization from brokers</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Specialty Segment</p>
+                        <p class="text-sm text-green-100">Unique risks; aviation, cyber, marine; requires specialty brokers and surplus lines</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Government Segment</p>
+                        <p class="text-sm text-green-100">Public entities; formal RFP/procurement process; competitive bidding required</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">9 Marketing Activities</p>
+                        <p class="text-sm text-green-100">Research, product dev, pricing, advertising, sales, service, distribution, PR, fulfillment</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Product Development</p>
+                        <p class="text-sm text-green-100">6 steps: Need &rarr; Design &rarr; Test &rarr; Regulatory Approval &rarr; Launch &rarr; Monitor</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Marketing Mix (4 Ps)</p>
+                        <p class="text-sm text-green-100">Product (policy), Price (premium), Place (distribution), Promotion (advertising/PR)</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Insurance Is Intangible</p>
+                        <p class="text-sm text-green-100">You cannot touch, test, or return insurance. Quality is proven only at claims time.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Navigation Footer -->
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="../index.html" class="text-gray-300 hover:text-white flex items-center">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                    </svg>
+                    Assignment Index
+                </a>
+                <span class="text-gray-400">Part 1 of 3</span>
+                <a href="../part-2/index.html" class="text-gray-300 hover:text-white flex items-center">
+                    Part 2: Distribution Systems
+                    <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AI Tutor Button -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            createFloatingAIButton(`CPCU 520 Assignment 5 Part 1: The Insurance Marketplace and Customer Segments
+
+P&C INSURANCE MARKETPLACE:
+- Three categories: Personal lines (individuals), Commercial lines (businesses), Specialty lines (unique/hard-to-place risks)
+- Personal: high volume, standardized, lower premiums per policy
+- Commercial: lower volume, customized, higher premiums, needs expert advice
+- Specialty: low volume, highly customized, requires specialist expertise
+
+FOUR CUSTOMER SEGMENTS:
+1. Personal: individuals/families buying auto, home, renters, umbrella. Price-driven, buy online or through agents.
+2. Commercial: businesses buying CGL, commercial auto, workers comp, property. Need advice and customization from brokers.
+3. Specialty: unique risks (aviation, marine, cyber, entertainment). Require specialty brokers, wholesale brokers, surplus lines.
+4. Government: federal/state/local entities. Must follow competitive bidding (RFP process) and procurement rules.
+
+9 MARKETING ACTIVITIES:
+1. Market Research - study needs, competitors, trends
+2. Product Development - create/modify products
+3. Pricing - set premiums (competitive yet adequate)
+4. Advertising - communicate value proposition
+5. Sales - convert prospects to policyholders
+6. Customer Service - support after the sale
+7. Distribution - choose/manage channels
+8. Public Relations - manage public image
+9. Sales Fulfillment - process apps, issue policies
+
+PRODUCT DEVELOPMENT PROCESS (6 Steps):
+1. Identify Need - market research finds gap
+2. Design Product - draft forms, set coverages, actuarial pricing
+3. Test - pilot with limited agents/customers
+4. Regulatory Approval - file with state DOI (MANDATORY before launch)
+5. Launch - roll out to full distribution network
+6. Monitor - track sales, claims, profitability (never ends)
+
+MARKETING MIX (4 Ps):
+- Product: the policy (intangible promise)
+- Price: the premium (set before knowing actual cost, regulated)
+- Place: distribution channel (most important P in insurance)
+- Promotion: advertising, PR, digital marketing (heavily regulated)
+
+EXAM TRAPS:
+- Marketing includes ALL 9 activities, not just advertising
+- Regulatory approval must come BEFORE launch
+- Specialty = unique risk nature, NOT just expensive commercial
+- Government uses formal procurement/RFP, not casual buying
+- "Place" = distribution channel, NOT physical location`);
+        });
+    </script>
+</body>
+</html>

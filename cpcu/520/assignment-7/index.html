@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment 7: The Actuary's Role in Ratemaking | CPCU 520</title>
+    <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <link rel="stylesheet" href="../../../css/styles.css">
+    <script src="../../../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+        }
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <!-- Settings & Theme Toggle Buttons -->
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="showAPIKeySetup()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings">
+            <svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+        </button>
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/>
+            </svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-indigo-600 to-indigo-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap gap-2 text-sm mb-2">
+                <a href="../../../index.html" class="text-indigo-200 hover:text-white">Home</a>
+                <span class="text-indigo-300">/</span>
+                <a href="../../index.html" class="text-indigo-200 hover:text-white">CPCU</a>
+                <span class="text-indigo-300">/</span>
+                <a href="../index.html" class="text-indigo-200 hover:text-white">520</a>
+                <span class="text-indigo-300">/</span>
+                <span class="text-white">Assignment 7</span>
+            </div>
+            <h1 class="text-3xl font-bold">Assignment 7: The Actuary's Role in Ratemaking</h1>
+            <p class="text-indigo-200 mt-1">Pricing Insurance, Loss Reserves, Rate Regulation, and Modern Actuarial Practice</p>
+        </div>
+    </header>
+
+    <!-- Part Navigation -->
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-wrap gap-2 text-sm">
+                <span class="bg-indigo-600 text-white px-3 py-1 rounded font-medium">Overview</span>
+                <a href="part-1/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 1</a>
+                <a href="part-2/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 2</a>
+                <a href="part-3/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 3</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-5xl lg:max-w-7xl">
+
+        <!-- Overview Section -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">Welcome to Assignment 7</h2>
+
+                <div class="bg-indigo-50 dark:bg-indigo-900/30 border border-indigo-200 dark:border-indigo-800 rounded-lg p-5 lg:p-6 mb-6">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">The <strong>actuary</strong> is the person who answers one of the most important questions in insurance: <strong>"How much should we charge?"</strong> Actuaries analyze historical loss data, project future losses, and develop the rates that insurers use to price their products. They also determine how much money an insurer needs to set aside (reserves) to pay future claims.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mt-4">In this assignment, you will learn the fundamentals of ratemaking, the three methods actuaries use to calculate rates, how loss reserves work, the different types of rate regulation, and how modern technology (AI, telematics, GLMs) is transforming actuarial practice.</p>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 lg:p-5 rounded-r-lg">
+                    <p class="font-bold text-amber-800 dark:text-amber-300 text-lg">Exam Alert!</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">This assignment is formula-light compared to a real actuarial exam, but you MUST know: the <strong>five ideal characteristics of rates</strong>, the <strong>three ratemaking methods</strong> (and when to use each), the <strong>four types of loss reserves</strong>, and the <strong>five types of rate regulation</strong>. Expect scenario questions that ask you to identify the correct method or regulation type.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Educational Objectives -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">Educational Objectives</h2>
+
+                <div class="bg-indigo-50 dark:bg-indigo-900/20 rounded-lg p-5 lg:p-6 border border-indigo-200 dark:border-indigo-800">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-4">After completing this assignment, you should be able to:</p>
+                    <div class="space-y-3">
+                        <div class="flex items-start">
+                            <span class="bg-indigo-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
+                            <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Describe the actuary's role in insurance operations and explain the five ideal characteristics of insurance rates</p>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="bg-indigo-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
+                            <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Identify the components of an insurance rate and the factors that affect ratemaking</p>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="bg-indigo-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
+                            <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Compare the three ratemaking methods: pure premium, loss ratio, and judgment</p>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="bg-indigo-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">4</span>
+                            <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Explain the types of loss reserves and why accurate reserving is critical to insurer solvency</p>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="bg-indigo-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">5</span>
+                            <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Describe the five types of rate regulation and the rate filing process</p>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="bg-indigo-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">6</span>
+                            <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Explain how modern actuarial techniques (GLMs, telematics, AI) are changing ratemaking and the regulatory concerns they raise</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chapter Parts Overview -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">What You'll Learn</h2>
+
+                <div class="grid md:grid-cols-3 gap-6">
+                    <!-- Part 1 Card -->
+                    <a href="part-1/index.html" class="block bg-indigo-50 dark:bg-indigo-900/20 rounded-xl p-5 lg:p-6 border-2 border-indigo-200 dark:border-indigo-800 hover:border-indigo-400 dark:hover:border-indigo-600 transition-colors">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-indigo-600 text-white w-10 h-10 rounded-full flex items-center justify-center font-bold text-lg mr-3">1</div>
+                            <h3 class="font-bold text-indigo-800 dark:text-indigo-300 text-lg">Ratemaking Fundamentals</h3>
+                        </div>
+                        <ul class="text-gray-700 dark:text-gray-300 space-y-1 text-sm lg:text-base">
+                            <li>- What actuaries do and the questions they answer</li>
+                            <li>- Five ideal characteristics of insurance rates</li>
+                            <li>- Components of an insurance rate (the formula)</li>
+                            <li>- Five factors that affect ratemaking</li>
+                            <li>- ALAE vs. ULAE (and the modern NAIC terms)</li>
+                            <li>- Social inflation and nuclear verdicts</li>
+                        </ul>
+                        <div class="mt-4 text-indigo-600 dark:text-indigo-400 font-medium text-sm">Start Part 1 &rarr;</div>
+                    </a>
+
+                    <!-- Part 2 Card -->
+                    <a href="part-2/index.html" class="block bg-purple-50 dark:bg-purple-900/20 rounded-xl p-5 lg:p-6 border-2 border-purple-200 dark:border-purple-800 hover:border-purple-400 dark:hover:border-purple-600 transition-colors">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-purple-600 text-white w-10 h-10 rounded-full flex items-center justify-center font-bold text-lg mr-3">2</div>
+                            <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg">Ratemaking Methods and Loss Reserves</h3>
+                        </div>
+                        <ul class="text-gray-700 dark:text-gray-300 space-y-1 text-sm lg:text-base">
+                            <li>- Pure premium method (with worked example)</li>
+                            <li>- Loss ratio method (with worked example)</li>
+                            <li>- Judgment method (when data is scarce)</li>
+                            <li>- Advisory organizations: ISO, NCCI, AAIS</li>
+                            <li>- Four types of loss reserves (Case, IBNR, IBNER, Reopened)</li>
+                            <li>- Loss development and reserve dangers</li>
+                        </ul>
+                        <div class="mt-4 text-purple-600 dark:text-purple-400 font-medium text-sm">Start Part 2 &rarr;</div>
+                    </a>
+
+                    <!-- Part 3 Card -->
+                    <a href="part-3/index.html" class="block bg-teal-50 dark:bg-teal-900/20 rounded-xl p-5 lg:p-6 border-2 border-teal-200 dark:border-teal-800 hover:border-teal-400 dark:hover:border-teal-600 transition-colors">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-teal-600 text-white w-10 h-10 rounded-full flex items-center justify-center font-bold text-lg mr-3">3</div>
+                            <h3 class="font-bold text-teal-800 dark:text-teal-300 text-lg">Rate Filing and Modern Actuarial Practice</h3>
+                        </div>
+                        <ul class="text-gray-700 dark:text-gray-300 space-y-1 text-sm lg:text-base">
+                            <li>- Five types of rate regulation</li>
+                            <li>- The rate filing process</li>
+                            <li>- Credibility and large loss limitations</li>
+                            <li>- GLMs, GBMs, and telematics-based rating</li>
+                            <li>- Proxy discrimination and algorithmic bias</li>
+                            <li>- The actuary's role across the value chain</li>
+                        </ul>
+                        <div class="mt-4 text-teal-600 dark:text-teal-400 font-medium text-sm">Start Part 3 &rarr;</div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Terms to Know Section -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">Key Terms to Know</h2>
+
+                <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-6">Before diving in, familiarize yourself with these foundational terms that appear throughout this assignment:</p>
+
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 lg:p-5 border-l-4 border-indigo-500">
+                        <h4 class="font-bold text-indigo-800 dark:text-indigo-300 text-lg">Actuary</h4>
+                        <p class="text-gray-600 dark:text-gray-400 mt-2 text-sm lg:text-base">A professional who uses math, statistics, and financial theory to study uncertain future events -- especially those of concern to insurance and pension programs.</p>
+                        <div class="bg-white dark:bg-gray-600 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-300"><strong>Example:</strong> Before an insurer launches a new cyber liability product, an actuary analyzes historical data breach costs, frequency trends, and regulatory fines to determine that the rate should be $4,200 per year for a mid-size company.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 lg:p-5 border-l-4 border-purple-500">
+                        <h4 class="font-bold text-purple-800 dark:text-purple-300 text-lg">Pure Premium</h4>
+                        <p class="text-gray-600 dark:text-gray-400 mt-2 text-sm lg:text-base">The portion of the rate that covers expected losses only -- before any expenses, profit, or contingencies are added. Also called "loss cost."</p>
+                        <div class="bg-white dark:bg-gray-600 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-300"><strong>Example:</strong> If an insurer expects to pay $600 in claims per home insured, the pure premium is $600. The final rate will be higher because you still need to add expenses and profit.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 lg:p-5 border-l-4 border-teal-500">
+                        <h4 class="font-bold text-teal-800 dark:text-teal-300 text-lg">Loss Reserve</h4>
+                        <p class="text-gray-600 dark:text-gray-400 mt-2 text-sm lg:text-base">Money set aside by an insurer to pay for claims that have already occurred but have not yet been fully settled or paid.</p>
+                        <div class="bg-white dark:bg-gray-600 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-300"><strong>Example:</strong> A worker is injured on the job in November. The insurer estimates future medical costs at $85,000 and sets that amount aside as a loss reserve, even though it has not paid a dime yet.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 lg:p-5 border-l-4 border-amber-500">
+                        <h4 class="font-bold text-amber-800 dark:text-amber-300 text-lg">Loss Ratio</h4>
+                        <p class="text-gray-600 dark:text-gray-400 mt-2 text-sm lg:text-base">Incurred losses divided by earned premiums. It shows what percentage of premium dollars go to paying claims. A 70% loss ratio means 70 cents of every premium dollar pays claims.</p>
+                        <div class="bg-white dark:bg-gray-600 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-300"><strong>Example:</strong> An auto insurer collects $50 million in premiums and pays $35 million in claims. The loss ratio is 35M / 50M = 70%. If the expected ratio was 65%, the actuary knows rates need to increase.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 lg:p-5 border-l-4 border-red-500">
+                        <h4 class="font-bold text-red-800 dark:text-red-300 text-lg">IBNR (Incurred But Not Reported)</h4>
+                        <p class="text-gray-600 dark:text-gray-400 mt-2 text-sm lg:text-base">Losses that have already happened but the insurer does not know about them yet because no claim has been filed.</p>
+                        <div class="bg-white dark:bg-gray-600 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-300"><strong>Example:</strong> Workers were exposed to asbestos in the 1970s. The diseases did not appear until the 1990s. Those losses were "incurred" decades before they were "reported."</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500">
+                        <h4 class="font-bold text-blue-800 dark:text-blue-300 text-lg">Credibility</h4>
+                        <p class="text-gray-600 dark:text-gray-400 mt-2 text-sm lg:text-base">A statistical measure of how reliable your data is. More data = more credible. Highly credible data can be relied upon alone; low-credibility data needs to be supplemented with industry data.</p>
+                        <div class="bg-white dark:bg-gray-600 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-300"><strong>Example:</strong> A large national insurer with 500,000 auto policies has highly credible data. A small regional insurer with 2,000 policies has low credibility and must blend its data with ISO industry data to set rates.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Reference Summary -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-indigo-600 to-indigo-800 rounded-xl p-6 lg:p-8 text-white">
+                <h2 class="text-2xl lg:text-3xl font-bold mb-6">Assignment 7 Quick Reference</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold text-lg">5 Rate Characteristics</p>
+                        <p class="text-sm text-indigo-100">Adequate, not excessive, not unfairly discriminatory, responsive, encourage loss control</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold text-lg">3 Ratemaking Methods</p>
+                        <p class="text-sm text-indigo-100">Pure premium, loss ratio, judgment</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold text-lg">4 Reserve Types</p>
+                        <p class="text-sm text-indigo-100">Case, IBNR, IBNER, reopened claims</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold text-lg">5 Regulation Types</p>
+                        <p class="text-sm text-indigo-100">Prior approval, file-and-use, use-and-file, flex, no-file</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold text-lg">3 Advisory Orgs</p>
+                        <p class="text-sm text-indigo-100">ISO, NCCI, AAIS</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold text-lg">2 LAE Types</p>
+                        <p class="text-sm text-indigo-100">ALAE (DCC) = specific claim; ULAE (A&O) = overhead</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold text-lg">Rate Formula</p>
+                        <p class="text-sm text-indigo-100">Pure Premium / (1 - Expense Ratio - Profit Factor)</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold text-lg">Modern Tools</p>
+                        <p class="text-sm text-indigo-100">GLMs, GBMs, telematics, climate modeling</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Navigation Footer -->
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="../assignment-6/index.html" class="text-gray-300 hover:text-white flex items-center">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                    </svg>
+                    Assignment 6: Reinsurance
+                </a>
+                <span class="text-gray-400">Assignment 7 of 7</span>
+                <a href="part-1/index.html" class="text-gray-300 hover:text-white flex items-center">
+                    Start Part 1
+                    <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AI Tutor Button -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            createFloatingAIButton(`Assignment 7: The Actuary's Role in Ratemaking
+
+This assignment covers how actuaries price insurance and establish reserves:
+
+Key Topics:
+- Five ideal characteristics of rates: adequate, not excessive, not unfairly discriminatory, responsive, encourage loss control
+- Rate components: pure premium + expenses + profit
+- Rate formula: Pure Premium / (1 - Expense Ratio - Profit Factor)
+- Three ratemaking methods: pure premium, loss ratio, judgment
+- Four types of loss reserves: case, IBNR, IBNER, reopened claims
+- Five types of rate regulation: prior approval, file-and-use, use-and-file, flex, no-file
+- Advisory organizations: ISO, NCCI, AAIS
+- Modern techniques: GLMs, GBMs, telematics, climate modeling
+- Regulatory concerns: proxy discrimination, algorithmic bias
+
+Common Exam Topics:
+- ALAE (allocated to specific claim) vs. ULAE (general overhead)
+- Pure premium method (builds rate from scratch) vs. loss ratio method (adjusts existing rate)
+- IBNR (not yet reported) vs. IBNER (reported but underreserved)
+- Prior approval (before use) vs. file-and-use (use immediately) vs. use-and-file (use first, file later)`);
+        });
+    </script>
+</body>
+</html>

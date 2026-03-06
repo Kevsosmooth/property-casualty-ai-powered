@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment 2 Part 2: The Claims Handling Process and Coverage Analysis | CPCU 520</title>
+    <link rel="icon" type="image/svg+xml" href="../../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <link rel="stylesheet" href="../../../../css/styles.css">
+    <script src="../../../../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+        }
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <!-- Settings & Theme Toggle Buttons -->
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="showAPIKeySetup()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings">
+            <svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+        </button>
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/>
+            </svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-red-600 to-red-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap gap-2 text-sm mb-2">
+                <a href="../../../../index.html" class="text-red-200 hover:text-white">Home</a>
+                <span class="text-red-300">/</span>
+                <a href="../../../index.html" class="text-red-200 hover:text-white">CPCU</a>
+                <span class="text-red-300">/</span>
+                <a href="../../index.html" class="text-red-200 hover:text-white">520</a>
+                <span class="text-red-300">/</span>
+                <a href="../index.html" class="text-red-200 hover:text-white">Assignment 2</a>
+                <span class="text-red-300">/</span>
+                <span class="text-white">Part 2</span>
+            </div>
+            <h1 class="text-3xl font-bold">Assignment 2 Part 2: The Claims Handling Process and Coverage Analysis</h1>
+            <p class="text-red-200 mt-1">The six-step claims process, the nine-question coverage framework, and what good faith really means for insurers</p>
+        </div>
+    </header>
+
+    <!-- Part Navigation -->
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-wrap gap-2 text-sm">
+                <a href="../index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Overview</a>
+                <a href="../part-1/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 1</a>
+                <span class="bg-red-600 text-white px-3 py-1 rounded font-medium">Part 2</span>
+                <a href="../part-3/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 3</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-5xl lg:max-w-7xl">
+
+        <!-- Start Here: 5 Things You MUST Know -->
+        <div class="bg-gradient-to-r from-red-100 to-red-200 dark:from-red-900/40 dark:to-red-800/40 rounded-xl p-6 mb-8 border border-red-300 dark:border-red-700">
+            <h3 class="text-xl lg:text-2xl font-bold text-red-800 dark:text-red-200 mb-4">Start Here: 5 Things You MUST Know</h3>
+            <div class="grid md:grid-cols-2 gap-3">
+                <div class="flex items-start">
+                    <span class="bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Claims handling follows <strong>six steps</strong>: Acknowledge/Assign, Identify Policy/Set Reserves, Contact Insured, Investigate, Determine Cause/Liability/Amount, and Conclude.</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Reserves</strong> are the insurer's best estimate of what a claim will cost &mdash; they appear as liabilities on financial statements and directly affect profitability.</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Coverage analysis uses <strong>9 questions</strong> as a checklist &mdash; a claim can be denied at any step, from "does a policy exist?" to "what is the loss amount?"</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">4</span>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Claims can be concluded by <strong>payment, denial, compromise, litigation, or ADR</strong> (mediation, arbitration, appraisal, mini-trial, pretrial conference).</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-red-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">5</span>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Bad faith</strong> claims handling can result in <strong>extracontractual damages</strong> (beyond policy limits) and punitive damages &mdash; a massive financial risk for insurers.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 1: Overview / Introduction -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">Introduction: From First Call to Final Payment</h2>
+
+                <div class="bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-800 rounded-lg p-4 lg:p-5 mb-6">
+                    <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300">When someone has a car accident, a house fire, or a slip-and-fall at their business, the <strong>claims department</strong> is where the insurer's promise becomes real. Everything the insurer did &mdash; selling the policy, collecting the premium, investing the funds &mdash; was building up to this moment. The claims handling process is a structured, repeatable workflow that ensures every claim is evaluated fairly, efficiently, and in compliance with the law. This part walks you through the entire process step by step, then teaches you the coverage analysis framework that claims reps use to decide whether (and how much) to pay.</p>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 lg:p-5 rounded-r-lg">
+                    <p class="font-bold text-amber-800 dark:text-amber-300 text-base lg:text-lg">Exam Alert</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mt-1">The exam loves to test the <strong>order</strong> of the six steps and the <strong>nine coverage analysis questions</strong>. Know them cold. Also expect scenarios where you must identify whether a claims rep acted in <strong>good faith or bad faith</strong>.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: The Six-Step Claims Handling Process -->
+        <section id="six-steps" class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-6">1. The Six-Step Claims Handling Process</h2>
+
+                <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300 mb-6">Every claim &mdash; whether it is a fender bender or a multi-million-dollar commercial liability suit &mdash; follows the same six-step workflow. Think of it as an assembly line: each step must be completed before the next one can work properly.</p>
+
+                <!-- Visual Flow Diagram -->
+                <div class="bg-gray-50 dark:bg-gray-700/50 rounded-xl p-4 lg:p-6 mb-8">
+                    <h3 class="text-lg lg:text-xl font-bold text-gray-800 dark:text-gray-100 mb-4 text-center">The Claims Process at a Glance</h3>
+                    <div class="flex flex-wrap items-center justify-center gap-2 lg:gap-3">
+                        <div class="bg-red-100 dark:bg-red-900/40 p-3 lg:p-4 rounded-lg text-center min-w-[120px] border border-red-300 dark:border-red-700">
+                            <p class="text-xs lg:text-sm font-bold text-red-700 dark:text-red-300">Step 1</p>
+                            <p class="text-sm lg:text-base font-semibold text-gray-800 dark:text-gray-200">Acknowledge &amp; Assign</p>
+                        </div>
+                        <div class="text-2xl text-gray-400 dark:text-gray-500 hidden md:block">&rarr;</div>
+                        <div class="text-gray-400 dark:text-gray-500 md:hidden text-center w-full">&darr;</div>
+                        <div class="bg-orange-100 dark:bg-orange-900/40 p-3 lg:p-4 rounded-lg text-center min-w-[120px] border border-orange-300 dark:border-orange-700">
+                            <p class="text-xs lg:text-sm font-bold text-orange-700 dark:text-orange-300">Step 2</p>
+                            <p class="text-sm lg:text-base font-semibold text-gray-800 dark:text-gray-200">Identify Policy &amp; Set Reserves</p>
+                        </div>
+                        <div class="text-2xl text-gray-400 dark:text-gray-500 hidden md:block">&rarr;</div>
+                        <div class="text-gray-400 dark:text-gray-500 md:hidden text-center w-full">&darr;</div>
+                        <div class="bg-amber-100 dark:bg-amber-900/40 p-3 lg:p-4 rounded-lg text-center min-w-[120px] border border-amber-300 dark:border-amber-700">
+                            <p class="text-xs lg:text-sm font-bold text-amber-700 dark:text-amber-300">Step 3</p>
+                            <p class="text-sm lg:text-base font-semibold text-gray-800 dark:text-gray-200">Contact Insured</p>
+                        </div>
+                        <div class="text-2xl text-gray-400 dark:text-gray-500 hidden md:block">&rarr;</div>
+                        <div class="text-gray-400 dark:text-gray-500 md:hidden text-center w-full">&darr;</div>
+                        <div class="bg-blue-100 dark:bg-blue-900/40 p-3 lg:p-4 rounded-lg text-center min-w-[120px] border border-blue-300 dark:border-blue-700">
+                            <p class="text-xs lg:text-sm font-bold text-blue-700 dark:text-blue-300">Step 4</p>
+                            <p class="text-sm lg:text-base font-semibold text-gray-800 dark:text-gray-200">Investigate &amp; Document</p>
+                        </div>
+                        <div class="text-2xl text-gray-400 dark:text-gray-500 hidden md:block">&rarr;</div>
+                        <div class="text-gray-400 dark:text-gray-500 md:hidden text-center w-full">&darr;</div>
+                        <div class="bg-purple-100 dark:bg-purple-900/40 p-3 lg:p-4 rounded-lg text-center min-w-[120px] border border-purple-300 dark:border-purple-700">
+                            <p class="text-xs lg:text-sm font-bold text-purple-700 dark:text-purple-300">Step 5</p>
+                            <p class="text-sm lg:text-base font-semibold text-gray-800 dark:text-gray-200">Determine Cause, Liability &amp; Amount</p>
+                        </div>
+                        <div class="text-2xl text-gray-400 dark:text-gray-500 hidden md:block">&rarr;</div>
+                        <div class="text-gray-400 dark:text-gray-500 md:hidden text-center w-full">&darr;</div>
+                        <div class="bg-green-100 dark:bg-green-900/40 p-3 lg:p-4 rounded-lg text-center min-w-[120px] border border-green-300 dark:border-green-700">
+                            <p class="text-xs lg:text-sm font-bold text-green-700 dark:text-green-300">Step 6</p>
+                            <p class="text-sm lg:text-base font-semibold text-gray-800 dark:text-gray-200">Conclude the Claim</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 1 -->
+                <div class="mb-8">
+                    <div class="flex items-center mb-3">
+                        <span class="bg-red-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-lg font-bold mr-3 flex-shrink-0">1</span>
+                        <h3 class="text-lg lg:text-xl font-bold text-gray-800 dark:text-gray-100">Acknowledging and Assigning the Claim</h3>
+                    </div>
+
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-4">
+                        <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300"><strong>First Notice of Loss (FNOL)</strong> is the initial report that a loss has occurred. It can come from the insured, their agent, a third-party claimant, or even an attorney. Once the insurer receives it, two things happen immediately: the insurer <strong>acknowledges</strong> receipt (many states require this within a specific timeframe, often 15 days) and the claim is <strong>assigned</strong> to the right person.</p>
+                    </div>
+
+                    <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 border-l-4 border-purple-500 mb-4">
+                        <p class="font-semibold text-purple-800 dark:text-purple-300 mb-2">Who Gets the Claim?</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Assignment depends on four factors:</p>
+                        <ul class="list-disc list-inside text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-2 space-y-1">
+                            <li><strong>Type of claim</strong> &mdash; auto vs. property vs. liability vs. workers' comp</li>
+                            <li><strong>Complexity</strong> &mdash; a simple windshield crack vs. a multi-vehicle pileup</li>
+                            <li><strong>Location</strong> &mdash; local claims go to local reps; catastrophe claims may need field adjusters</li>
+                            <li><strong>Expertise needed</strong> &mdash; medical malpractice needs a specialist, not a generalist</li>
+                        </ul>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-2">The claim may go to a <strong>staff adjuster</strong> (insurer employee), <strong>independent adjuster</strong> (contracted out), or <strong>third-party administrator (TPA)</strong>.</p>
+                    </div>
+
+                    <div class="bg-gray-50 dark:bg-gray-700/50 p-4 rounded-lg border-l-4 border-gray-400">
+                        <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Scenario: The Late-Night Fender Bender</p>
+                        <div class="space-y-2 text-sm lg:text-base">
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Maria rear-ends another car at 11 PM on a Saturday night. She calls her insurer's 24/7 claims line.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> The call center rep creates the FNOL, generates a claim number, and tells Maria she will hear from her assigned adjuster within 1 business day. Since it is a straightforward auto collision (low complexity, standard coverage), the system automatically assigns it to a staff adjuster in Maria's region.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Maria gets a confirmation email with her claim number and the adjuster's contact info by Monday morning. Step 1 is complete.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="mb-8">
+                    <div class="flex items-center mb-3">
+                        <span class="bg-orange-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-lg font-bold mr-3 flex-shrink-0">2</span>
+                        <h3 class="text-lg lg:text-xl font-bold text-gray-800 dark:text-gray-100">Identifying the Policy and Setting Reserves</h3>
+                    </div>
+
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-4">
+                        <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300">Before anything else, the claims rep must verify the basics: Was the <strong>policy in force</strong> at the time of the loss? Were <strong>premiums paid</strong>? Is this the <strong>correct policy</strong> for this type of loss? Then the rep sets an <strong>initial reserve</strong> &mdash; the insurer's best estimate of what the claim will ultimately cost to resolve.</p>
+                    </div>
+
+                    <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 rounded-r-lg mb-4">
+                        <p class="font-bold text-amber-800 dark:text-amber-300">Why Reserves Matter So Much</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Reserves are <strong>not just internal bookkeeping</strong>. They appear as <strong>liabilities</strong> on the insurer's balance sheet. If reserves are too low, the insurer looks more profitable than it really is (dangerous). If reserves are too high, the insurer looks less profitable and may overpay taxes or scare off investors. Getting reserves right is a balancing act that affects every financial decision the company makes.</p>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-4 mb-4">
+                        <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border border-green-200 dark:border-green-800">
+                            <p class="font-bold text-green-800 dark:text-green-300">Reserve Set Correctly</p>
+                            <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">Auto claim estimated at $8,000. Actual payout is $7,500. The insurer's financials were accurate, and there is a small favorable development.</p>
+                        </div>
+                        <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border border-red-200 dark:border-red-800">
+                            <p class="font-bold text-red-800 dark:text-red-300">Reserve Set Too Low</p>
+                            <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">Liability claim reserved at $50,000. Lawsuit results in $350,000 judgment. The insurer must suddenly book $300,000 in additional expense &mdash; a devastating hit to the quarter's earnings.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-50 dark:bg-gray-700/50 p-4 rounded-lg border-l-4 border-gray-400">
+                        <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Scenario: The Policy Verification Catch</p>
+                        <div class="space-y-2 text-sm lg:text-base">
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Tom files a claim for water damage to his basement. He gives his policy number over the phone.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> The adjuster pulls up Tom's policy and discovers his homeowners policy lapsed 3 weeks ago due to non-payment of premium. Tom did not realize the cancellation notice had been sent.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> No coverage. The loss occurred while the policy was not in force. The claim cannot proceed. Tom is responsible for the full cost of repairs out of pocket.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="mb-8">
+                    <div class="flex items-center mb-3">
+                        <span class="bg-amber-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-lg font-bold mr-3 flex-shrink-0">3</span>
+                        <h3 class="text-lg lg:text-xl font-bold text-gray-800 dark:text-gray-100">Contacting the Insured or Representative</h3>
+                    </div>
+
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-4">
+                        <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300">The claims rep reaches out to the insured <strong>as soon as possible</strong> to explain the process, gather initial facts, set expectations for the timeline, and determine if any <strong>immediate assistance</strong> is needed. This is also where the rep begins building <strong>rapport</strong> &mdash; a good relationship with the insured reduces disputes, complaints, and litigation later.</p>
+                    </div>
+
+                    <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 border-l-4 border-purple-500 mb-4">
+                        <p class="font-semibold text-purple-800 dark:text-purple-300 mb-2">What Gets Covered in the First Contact</p>
+                        <ul class="list-disc list-inside text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                            <li>How the claims process works and what to expect</li>
+                            <li>What documentation the insured needs to provide</li>
+                            <li>Approximate timeline for resolution</li>
+                            <li>Immediate needs: emergency board-up, rental car, temporary housing</li>
+                            <li>Insured's duties under the policy (protect property, cooperate, etc.)</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-gray-50 dark:bg-gray-700/50 p-4 rounded-lg border-l-4 border-gray-400">
+                        <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Scenario: Emergency Assistance</p>
+                        <div class="space-y-2 text-sm lg:text-base">
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> A tree falls through the Johnsons' roof during a storm. Rain is pouring into the house.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> The claims rep calls within 2 hours of the FNOL and immediately authorizes emergency tarping of the roof to prevent further water damage. The rep also arranges a hotel for the family for 3 nights under the policy's Additional Living Expense coverage.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> The Johnsons are safe and comfortable while the full investigation begins. The quick action also prevents additional water damage that would have increased the claim cost significantly.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="mb-8">
+                    <div class="flex items-center mb-3">
+                        <span class="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-lg font-bold mr-3 flex-shrink-0">4</span>
+                        <h3 class="text-lg lg:text-xl font-bold text-gray-800 dark:text-gray-100">Investigating and Documenting the Claim</h3>
+                    </div>
+
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-4">
+                        <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300">This is the detective work. The adjuster must answer: <strong>Who, What, When, Where, Why, and How Much?</strong> The depth of investigation depends on the claim's complexity and value. A $500 windshield claim gets a quick review; a $2 million fire loss gets a forensic investigation.</p>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg border border-gray-200 dark:border-gray-600">
+                            <p class="font-bold text-gray-800 dark:text-gray-200 mb-2">Interview</p>
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400">Talk to the insured, witnesses, police, firefighters, and anyone else with relevant information. Record statements.</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg border border-gray-200 dark:border-gray-600">
+                            <p class="font-bold text-gray-800 dark:text-gray-200 mb-2">Inspect</p>
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400">Physically examine the damaged property or injury. Take photos, measure damage, assess scope of repairs needed.</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg border border-gray-200 dark:border-gray-600">
+                            <p class="font-bold text-gray-800 dark:text-gray-200 mb-2">Review Records</p>
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400">Police reports, fire reports, medical records, repair estimates, prior claim history, weather data.</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg border border-gray-200 dark:border-gray-600">
+                            <p class="font-bold text-gray-800 dark:text-gray-200 mb-2">Expert Opinions</p>
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400">Engineers, medical professionals, accident reconstructionists, forensic accountants &mdash; depending on claim complexity.</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg border border-gray-200 dark:border-gray-600">
+                            <p class="font-bold text-gray-800 dark:text-gray-200 mb-2">Subrogation Check</p>
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400">Can the insurer recover from a third party who caused the loss? If yes, flag for subrogation after paying the insured.</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg border border-gray-200 dark:border-gray-600">
+                            <p class="font-bold text-gray-800 dark:text-gray-200 mb-2">Fraud Detection</p>
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400">Watch for red flags: inconsistent stories, prior similar claims, financial distress, unusual timing, reluctance to provide documentation.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-50 dark:bg-gray-700/50 p-4 rounded-lg border-l-4 border-gray-400">
+                        <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Scenario: The Subrogation Opportunity</p>
+                        <div class="space-y-2 text-sm lg:text-base">
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Linda's parked car is hit by a delivery truck. She files a claim under her own auto policy's collision coverage.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> During the investigation, the adjuster obtains the police report showing the delivery truck driver was 100% at fault. The adjuster notes the truck's commercial insurer information and flags the claim for subrogation.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Linda's insurer pays her $6,200 for repairs (minus her $500 deductible). The insurer then pursues the delivery company's insurer for the full $6,200 plus Linda's deductible. When recovered, Linda gets her $500 back, and the insurer recovers the rest.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 5 -->
+                <div class="mb-8">
+                    <div class="flex items-center mb-3">
+                        <span class="bg-purple-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-lg font-bold mr-3 flex-shrink-0">5</span>
+                        <h3 class="text-lg lg:text-xl font-bold text-gray-800 dark:text-gray-100">Determining Cause of Loss, Liability, and Loss Amount</h3>
+                    </div>
+
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-4">
+                        <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300">This step answers three critical questions: <strong>(1)</strong> Was the loss caused by a covered peril? <strong>(2)</strong> Is the insured legally liable (for liability claims)? <strong>(3)</strong> How much is the claim worth? The answers to these questions determine whether the claim is paid and for how much.</p>
+                    </div>
+
+                    <div class="grid md:grid-cols-3 gap-4 mb-4">
+                        <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                            <p class="font-bold text-red-800 dark:text-red-300 mb-2">Cause of Loss</p>
+                            <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300">What peril caused the damage? Was it fire, theft, wind, collision, negligence? Is that peril listed as covered under the policy, or is it excluded?</p>
+                        </div>
+                        <div class="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-lg border-l-4 border-indigo-500">
+                            <p class="font-bold text-indigo-800 dark:text-indigo-300 mb-2">Liability</p>
+                            <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300">For liability claims: Is the insured legally responsible for the injury or damage? Was there negligence? Comparative fault? This only applies to third-party claims.</p>
+                        </div>
+                        <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                            <p class="font-bold text-green-800 dark:text-green-300 mb-2">Loss Amount</p>
+                            <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300">How much is the loss worth in dollars? Property claims use ACV or replacement cost. Liability claims total up special damages plus general damages.</p>
+                        </div>
+                    </div>
+
+                    <!-- ACV vs Replacement Cost -->
+                    <div class="bg-indigo-50 dark:bg-indigo-900/20 rounded-lg p-4 lg:p-5 border border-indigo-200 dark:border-indigo-800 mb-4">
+                        <p class="font-bold text-indigo-800 dark:text-indigo-300 mb-3 text-base lg:text-lg">Property Valuation: ACV vs. Replacement Cost</p>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                                <p class="font-bold text-gray-800 dark:text-gray-200">Actual Cash Value (ACV)</p>
+                                <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400 mt-1">Replacement cost <strong>minus depreciation</strong>. You get what the item was worth at the time of loss, not what it costs to buy new.</p>
+                                <div class="bg-gray-100 dark:bg-gray-600 rounded p-3 mt-2">
+                                    <p class="text-sm text-gray-700 dark:text-gray-300"><strong>Example:</strong> 10-year-old roof costs $20,000 to replace. With 50% depreciation, ACV = $10,000.</p>
+                                </div>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                                <p class="font-bold text-gray-800 dark:text-gray-200">Replacement Cost</p>
+                                <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400 mt-1">The full cost to <strong>replace or repair</strong> with materials of like kind and quality. No deduction for depreciation.</p>
+                                <div class="bg-gray-100 dark:bg-gray-600 rounded p-3 mt-2">
+                                    <p class="text-sm text-gray-700 dark:text-gray-300"><strong>Example:</strong> Same 10-year-old roof. Replacement cost policy pays the full $20,000 to install a new roof.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Liability Damages Breakdown -->
+                    <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 lg:p-5 border border-purple-200 dark:border-purple-800 mb-4">
+                        <p class="font-bold text-purple-800 dark:text-purple-300 mb-3 text-base lg:text-lg">Liability Claim Damages</p>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                                <p class="font-bold text-gray-800 dark:text-gray-200">Special Damages (Economic)</p>
+                                <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400 mt-1">Concrete, documented, dollar-for-dollar losses:</p>
+                                <ul class="list-disc list-inside text-sm text-gray-600 dark:text-gray-400 mt-1 space-y-1">
+                                    <li>Medical bills</li>
+                                    <li>Lost wages</li>
+                                    <li>Property repair costs</li>
+                                    <li>Future medical expenses</li>
+                                </ul>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                                <p class="font-bold text-gray-800 dark:text-gray-200">General Damages (Non-Economic)</p>
+                                <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400 mt-1">Subjective, harder-to-quantify losses:</p>
+                                <ul class="list-disc list-inside text-sm text-gray-600 dark:text-gray-400 mt-1 space-y-1">
+                                    <li>Pain and suffering</li>
+                                    <li>Emotional distress</li>
+                                    <li>Loss of enjoyment of life</li>
+                                    <li>Loss of consortium</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-50 dark:bg-gray-700/50 p-4 rounded-lg border-l-4 border-gray-400">
+                        <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Scenario: Calculating a Liability Claim</p>
+                        <div class="space-y-2 text-sm lg:text-base">
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> The insured, a restaurant owner, is sued after a customer slips on a wet floor and breaks her wrist.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> The adjuster reviews medical records and employment history. Special damages total $28,000 (surgery $18,000, physical therapy $5,000, lost wages $5,000). The claimant's attorney also demands $56,000 for pain and suffering (a common multiplier of 2x special damages).</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Total demand is $84,000. The adjuster evaluates liability (the restaurant failed to post a wet floor sign), confirms it is a covered premises liability claim, and begins negotiation to settle within a reasonable range.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 6 -->
+                <div class="mb-4">
+                    <div class="flex items-center mb-3">
+                        <span class="bg-green-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-lg font-bold mr-3 flex-shrink-0">6</span>
+                        <h3 class="text-lg lg:text-xl font-bold text-gray-800 dark:text-gray-100">Concluding the Claim</h3>
+                    </div>
+
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-4">
+                        <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300">Every claim must end. There are five ways a claim can be concluded, and understanding the differences between them is key for the exam.</p>
+                    </div>
+
+                    <!-- Five Conclusion Methods -->
+                    <div class="space-y-3 mb-4">
+                        <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                            <p class="font-bold text-green-800 dark:text-green-300">Payment</p>
+                            <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300">The straightforward outcome. The insurer and insured agree on the amount, the insured signs a release, and the insurer issues payment. For property claims, this might be a check to the insured. For liability claims, it is payment to the third-party claimant.</p>
+                        </div>
+                        <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                            <p class="font-bold text-red-800 dark:text-red-300">Denial</p>
+                            <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300">The claim is not covered. The insurer must provide a <strong>written explanation</strong> citing the specific policy provisions that support the denial. A vague denial like "your claim has been denied" is not acceptable and can lead to bad faith allegations.</p>
+                        </div>
+                        <div class="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg border-l-4 border-amber-500">
+                            <p class="font-bold text-amber-800 dark:text-amber-300">Compromise / Negotiation</p>
+                            <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300">The most common outcome for disputed claims. Both sides give a little. The insured may accept less than demanded, and the insurer may pay more than initially offered. A signed release ends the matter.</p>
+                        </div>
+                        <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border-l-4 border-purple-500">
+                            <p class="font-bold text-purple-800 dark:text-purple-300">Litigation</p>
+                            <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300">A lawsuit is filed. The claim may go to trial, but the vast majority settle before verdict. Litigation is the most expensive way to resolve a claim due to legal fees, court costs, and time.</p>
+                        </div>
+                        <div class="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-lg border-l-4 border-indigo-500">
+                            <p class="font-bold text-indigo-800 dark:text-indigo-300">Alternative Dispute Resolution (ADR)</p>
+                            <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300">Methods to resolve disputes without a full trial. Faster and cheaper than litigation. Includes mediation, arbitration, appraisal, mini-trial, and pretrial settlement conferences.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: ADR Methods Comparison -->
+        <section id="adr" class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">2. Alternative Dispute Resolution (ADR) Methods Compared</h2>
+
+                <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300 mb-6">ADR is a broad term for "settling a dispute without going through a full lawsuit." Each method has different rules, costs, and levels of formality. The exam will test whether you know the differences.</p>
+
+                <div class="overflow-x-auto mb-6">
+                    <table class="w-full text-sm lg:text-base">
+                        <thead>
+                            <tr class="bg-red-600 text-white">
+                                <th class="p-3 lg:p-4 text-left rounded-tl-lg">ADR Method</th>
+                                <th class="p-3 lg:p-4 text-left">How It Works</th>
+                                <th class="p-3 lg:p-4 text-left">Binding?</th>
+                                <th class="p-3 lg:p-4 text-left rounded-tr-lg">Best For</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Mediation</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">A neutral mediator helps both sides negotiate. The mediator does <strong>not</strong> make a decision &mdash; they facilitate discussion.</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">No (voluntary agreement)</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">When both sides want to settle but cannot agree on terms</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Arbitration</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">An arbitrator (or panel) hears both sides and <strong>makes a decision</strong>. Similar to a private trial but faster and less formal.</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Usually binding</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">When parties need a definitive answer without the cost of trial</td>
+                            </tr>
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Appraisal</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Each side picks an appraiser; the two appraisers pick an umpire. They determine the <strong>value of the loss</strong> only (not coverage).</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Binding on amount</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">When both sides agree coverage exists but disagree on how much</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-800">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Mini-Trial</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Abbreviated presentations by each side to senior decision-makers from both parties. A neutral advisor may offer an opinion.</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Non-binding</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Complex commercial disputes where executives need to understand the merits</td>
+                            </tr>
+                            <tr class="bg-gray-50 dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-semibold text-gray-800 dark:text-gray-200">Pretrial Settlement Conference</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">A judge meets with both parties before trial to discuss settlement. The judge may indicate how they would likely rule.</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Non-binding</td>
+                                <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Cases already in litigation that may still settle</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 rounded-r-lg mb-4">
+                    <p class="font-bold text-amber-800 dark:text-amber-300">Key Distinction: Mediation vs. Arbitration</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">This is the most commonly tested comparison. A <strong>mediator facilitates</strong> &mdash; they help the parties reach their own agreement. An <strong>arbitrator decides</strong> &mdash; they hear evidence and render a ruling. Think: Mediator = Middleman, Arbitrator = Authority.</p>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700/50 p-4 rounded-lg border-l-4 border-gray-400">
+                    <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Scenario: Appraisal in Action</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> A homeowner has a fire that destroys the kitchen. Both sides agree the fire is a covered loss. But the homeowner says repairs will cost $85,000, and the insurer's estimate is $52,000.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> The homeowner invokes the appraisal clause in the policy. Each side selects an appraiser. The two appraisers select a neutral umpire. After reviewing the damage, two of the three agree on $68,500.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> The insurer pays $68,500 (minus the deductible). The appraisal resolved a $33,000 disagreement without a lawsuit, saving both sides time and legal fees.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: The 9-Question Coverage Analysis Framework -->
+        <section id="coverage-analysis" class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">3. The Coverage Analysis Framework: 9 Questions</h2>
+
+                <div class="bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-800 rounded-lg p-4 lg:p-5 mb-6">
+                    <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300">When a claim lands on a claims rep's desk, they do not just start writing checks. They systematically work through <strong>nine questions</strong>. If the answer to any question is "no," the claim may be denied at that point. Think of it as a <strong>nine-gate checkpoint</strong>: the claim must pass through every gate to be paid.</p>
+                </div>
+
+                <!-- The 9 Questions -->
+                <div class="space-y-4 mb-6">
+                    <!-- Question 1 -->
+                    <div class="bg-white dark:bg-gray-700 rounded-lg p-4 lg:p-5 border border-gray-200 dark:border-gray-600 shadow-sm">
+                        <div class="flex items-start">
+                            <span class="bg-red-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0 mt-0.5">1</span>
+                            <div class="flex-1">
+                                <p class="font-bold text-gray-800 dark:text-gray-200 text-base lg:text-lg">Does an insurance policy exist between the claimant and the insurer?</p>
+                                <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400 mt-1">Is there actually a valid, enforceable policy in the system? Did the applicant go through underwriting and get approved?</p>
+                                <div class="bg-red-50 dark:bg-red-900/20 rounded p-3 mt-2">
+                                    <p class="text-sm text-gray-700 dark:text-gray-300"><strong>Fails when:</strong> Someone files a claim thinking they have coverage, but the application was never finalized, or they confused which insurer they are with.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Question 2 -->
+                    <div class="bg-white dark:bg-gray-700 rounded-lg p-4 lg:p-5 border border-gray-200 dark:border-gray-600 shadow-sm">
+                        <div class="flex items-start">
+                            <span class="bg-red-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0 mt-0.5">2</span>
+                            <div class="flex-1">
+                                <p class="font-bold text-gray-800 dark:text-gray-200 text-base lg:text-lg">Does the policy cover the type of loss reported?</p>
+                                <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400 mt-1">Each policy covers specific categories of loss. An auto policy does not cover a house fire. A general liability policy does not cover employee injuries (that is workers' comp).</p>
+                                <div class="bg-red-50 dark:bg-red-900/20 rounded p-3 mt-2">
+                                    <p class="text-sm text-gray-700 dark:text-gray-300"><strong>Fails when:</strong> A business owner files a product liability claim under their commercial property policy. Wrong policy type entirely.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Question 3 -->
+                    <div class="bg-white dark:bg-gray-700 rounded-lg p-4 lg:p-5 border border-gray-200 dark:border-gray-600 shadow-sm">
+                        <div class="flex items-start">
+                            <span class="bg-red-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0 mt-0.5">3</span>
+                            <div class="flex-1">
+                                <p class="font-bold text-gray-800 dark:text-gray-200 text-base lg:text-lg">Did the loss occur during the policy period?</p>
+                                <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400 mt-1">The loss must happen between the effective date and expiration date of the policy. Time and date stamps matter.</p>
+                                <div class="bg-red-50 dark:bg-red-900/20 rounded p-3 mt-2">
+                                    <p class="text-sm text-gray-700 dark:text-gray-300"><strong>Fails when:</strong> A policy expired on March 31st, and the accident happened on April 2nd. Two days too late &mdash; no coverage.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Question 4 -->
+                    <div class="bg-white dark:bg-gray-700 rounded-lg p-4 lg:p-5 border border-gray-200 dark:border-gray-600 shadow-sm">
+                        <div class="flex items-start">
+                            <span class="bg-red-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0 mt-0.5">4</span>
+                            <div class="flex-1">
+                                <p class="font-bold text-gray-800 dark:text-gray-200 text-base lg:text-lg">Is the person or organization making the claim covered under the policy?</p>
+                                <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400 mt-1">Policies define who is an "insured." Named insureds, spouses, household residents, permissive users &mdash; each has different rights depending on the policy language.</p>
+                                <div class="bg-red-50 dark:bg-red-900/20 rounded p-3 mt-2">
+                                    <p class="text-sm text-gray-700 dark:text-gray-300"><strong>Fails when:</strong> A friend borrows the insured's car but is specifically excluded by name on the policy (excluded driver endorsement). The friend causes an accident &mdash; no coverage for that driver.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Question 5 -->
+                    <div class="bg-white dark:bg-gray-700 rounded-lg p-4 lg:p-5 border border-gray-200 dark:border-gray-600 shadow-sm">
+                        <div class="flex items-start">
+                            <span class="bg-red-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0 mt-0.5">5</span>
+                            <div class="flex-1">
+                                <p class="font-bold text-gray-800 dark:text-gray-200 text-base lg:text-lg">Is the property or interest covered under the policy?</p>
+                                <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400 mt-1">A policy may cover the building but not the contents, or vice versa. Scheduled property (items specifically listed) is covered; unscheduled items may not be.</p>
+                                <div class="bg-red-50 dark:bg-red-900/20 rounded p-3 mt-2">
+                                    <p class="text-sm text-gray-700 dark:text-gray-300"><strong>Fails when:</strong> A homeowner claims $15,000 for a stolen engagement ring, but jewelry over $1,500 was not scheduled on the policy. Only the sublimit of $1,500 applies.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Question 6 -->
+                    <div class="bg-white dark:bg-gray-700 rounded-lg p-4 lg:p-5 border border-gray-200 dark:border-gray-600 shadow-sm">
+                        <div class="flex items-start">
+                            <span class="bg-red-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0 mt-0.5">6</span>
+                            <div class="flex-1">
+                                <p class="font-bold text-gray-800 dark:text-gray-200 text-base lg:text-lg">Is the cause of loss covered under the policy?</p>
+                                <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400 mt-1">This is about <strong>perils</strong>. Named perils policies only cover what is listed. Open perils (all-risk) policies cover everything except what is specifically excluded.</p>
+                                <div class="bg-red-50 dark:bg-red-900/20 rounded p-3 mt-2">
+                                    <p class="text-sm text-gray-700 dark:text-gray-300"><strong>Fails when:</strong> A homeowner's policy excludes flood. Heavy rains cause river flooding that destroys the basement. Wind damage from the same storm IS covered, but the flood damage is not.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Question 7 -->
+                    <div class="bg-white dark:bg-gray-700 rounded-lg p-4 lg:p-5 border border-gray-200 dark:border-gray-600 shadow-sm">
+                        <div class="flex items-start">
+                            <span class="bg-red-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0 mt-0.5">7</span>
+                            <div class="flex-1">
+                                <p class="font-bold text-gray-800 dark:text-gray-200 text-base lg:text-lg">Is the location of the loss covered?</p>
+                                <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400 mt-1">Policies often define covered locations. A commercial policy may list specific addresses. A homeowners policy covers the residence premises and may have limited off-premises coverage.</p>
+                                <div class="bg-red-50 dark:bg-red-900/20 rounded p-3 mt-2">
+                                    <p class="text-sm text-gray-700 dark:text-gray-300"><strong>Fails when:</strong> A commercial property policy lists only the main warehouse at 100 Industrial Drive. Inventory stored at an unlisted secondary location is damaged in a fire &mdash; that location was never added to the policy.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Question 8 -->
+                    <div class="bg-white dark:bg-gray-700 rounded-lg p-4 lg:p-5 border border-gray-200 dark:border-gray-600 shadow-sm">
+                        <div class="flex items-start">
+                            <span class="bg-red-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0 mt-0.5">8</span>
+                            <div class="flex-1">
+                                <p class="font-bold text-gray-800 dark:text-gray-200 text-base lg:text-lg">Has the insured fulfilled all policy conditions?</p>
+                                <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400 mt-1">The insured has duties: notify the insurer promptly, protect property from further damage, cooperate with the investigation, provide documentation, submit to examination under oath if requested.</p>
+                                <div class="bg-red-50 dark:bg-red-900/20 rounded p-3 mt-2">
+                                    <p class="text-sm text-gray-700 dark:text-gray-300"><strong>Fails when:</strong> An insured has a theft loss but waits 8 months to report it, destroying security footage in the meantime. The insurer argues the late notice prejudiced their ability to investigate.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Question 9 -->
+                    <div class="bg-white dark:bg-gray-700 rounded-lg p-4 lg:p-5 border border-gray-200 dark:border-gray-600 shadow-sm">
+                        <div class="flex items-start">
+                            <span class="bg-red-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0 mt-0.5">9</span>
+                            <div class="flex-1">
+                                <p class="font-bold text-gray-800 dark:text-gray-200 text-base lg:text-lg">What is the amount of the covered loss?</p>
+                                <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400 mt-1">After all prior questions are answered "yes," the final question is: how much does the insurer owe? This accounts for policy limits, deductibles, coinsurance, and valuation method (ACV vs. replacement cost).</p>
+                                <div class="bg-green-50 dark:bg-green-900/20 rounded p-3 mt-2">
+                                    <p class="text-sm text-gray-700 dark:text-gray-300"><strong>Example:</strong> The covered loss totals $45,000. The policy has a $1,000 deductible and a $250,000 limit. The insurer pays $44,000 ($45,000 - $1,000 deductible). Well within the policy limit.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Comprehensive Case Study -->
+        <section id="case-study" class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">4. Case Study: Walking Through a Real Claim</h2>
+
+                <div class="bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-800 rounded-lg p-4 lg:p-5 mb-6">
+                    <p class="font-bold text-red-800 dark:text-red-300 text-lg">The Scenario: Intersection Collision</p>
+                    <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300 mt-2">On January 15th at 5:30 PM, <strong>David Chen</strong> runs a red light and T-bones <strong>Sarah Miller's</strong> SUV at a busy intersection. Sarah suffers a broken collarbone and whiplash. Her 2021 Toyota RAV4 sustains $14,200 in damage. David drives a 2019 Honda Civic with the following auto policy: <strong>100/300/50</strong> liability limits ($100K per person / $300K per accident bodily injury / $50K property damage), $500 collision deductible.</p>
+                </div>
+
+                <!-- Step-by-step walkthrough -->
+                <div class="space-y-6">
+                    <!-- Case Step 1 -->
+                    <div class="bg-red-50 dark:bg-red-900/10 rounded-lg p-4 lg:p-5 border-l-4 border-red-400">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">Step 1: Acknowledge and Assign</p>
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300">David calls his insurer from the scene. The call center creates an FNOL with all available details: date, time, location, other driver's info, police report number. Two claims are opened: <strong>(1)</strong> a liability claim for Sarah's injuries and vehicle damage, and <strong>(2)</strong> a collision claim for David's own vehicle damage. The liability claim is assigned to an experienced bodily injury adjuster since it involves medical treatment. The property damage portion is assigned to an auto damage appraiser.</p>
+                    </div>
+
+                    <!-- Case Step 2 -->
+                    <div class="bg-orange-50 dark:bg-orange-900/10 rounded-lg p-4 lg:p-5 border-l-4 border-orange-400">
+                        <p class="font-bold text-orange-700 dark:text-orange-300 mb-2">Step 2: Identify Policy and Set Reserves</p>
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300">The adjuster confirms David's policy was active on January 15th with premiums current. Limits: 100/300/50. Initial reserves are set:</p>
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mt-3">
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center border border-gray-200 dark:border-gray-600">
+                                <p class="text-xl lg:text-2xl font-bold text-red-600 dark:text-red-400">$35,000</p>
+                                <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Sarah's BI reserve</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center border border-gray-200 dark:border-gray-600">
+                                <p class="text-xl lg:text-2xl font-bold text-blue-600 dark:text-blue-400">$14,200</p>
+                                <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Sarah's PD reserve</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center border border-gray-200 dark:border-gray-600">
+                                <p class="text-xl lg:text-2xl font-bold text-purple-600 dark:text-purple-400">$8,500</p>
+                                <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">David's collision reserve</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center border border-gray-200 dark:border-gray-600">
+                                <p class="text-xl lg:text-2xl font-bold text-green-600 dark:text-green-400">$57,700</p>
+                                <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Total reserve</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Case Step 3 -->
+                    <div class="bg-amber-50 dark:bg-amber-900/10 rounded-lg p-4 lg:p-5 border-l-4 border-amber-400">
+                        <p class="font-bold text-amber-700 dark:text-amber-300 mb-2">Step 3: Contact the Insured</p>
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300">The adjuster calls David the next morning. She explains that two claims are open: one for his liability to Sarah, and one for his own car's collision damage. She explains that David should not discuss fault with anyone, that the insurer will handle communication with Sarah or her attorney, and that David should forward any correspondence he receives. She arranges a rental car for David under his rental reimbursement coverage.</p>
+                    </div>
+
+                    <!-- Case Step 4 -->
+                    <div class="bg-blue-50 dark:bg-blue-900/10 rounded-lg p-4 lg:p-5 border-l-4 border-blue-400">
+                        <p class="font-bold text-blue-700 dark:text-blue-300 mb-2">Step 4: Investigate and Document</p>
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300">The adjuster gathers evidence:</p>
+                        <ul class="list-disc list-inside text-sm lg:text-base text-gray-700 dark:text-gray-300 mt-2 space-y-1">
+                            <li><strong>Police report</strong> &mdash; confirms David ran the red light; no alcohol involved</li>
+                            <li><strong>Witness statements</strong> &mdash; two witnesses confirm the light was red for David</li>
+                            <li><strong>Photos</strong> &mdash; both vehicles photographed showing point of impact</li>
+                            <li><strong>Medical records</strong> &mdash; Sarah's ER visit, X-rays, orthopedic follow-ups, physical therapy plan</li>
+                            <li><strong>Repair estimate</strong> &mdash; body shop quotes $14,200 for Sarah's RAV4 and $8,500 for David's Civic</li>
+                            <li><strong>Fraud check</strong> &mdash; no red flags identified; consistent accounts from all parties</li>
+                        </ul>
+                    </div>
+
+                    <!-- Case Step 5 -->
+                    <div class="bg-purple-50 dark:bg-purple-900/10 rounded-lg p-4 lg:p-5 border-l-4 border-purple-400">
+                        <p class="font-bold text-purple-700 dark:text-purple-300 mb-2">Step 5: Determine Cause of Loss, Liability, and Amount</p>
+                        <div class="space-y-3 text-sm lg:text-base text-gray-700 dark:text-gray-300">
+                            <p><strong>Cause of loss:</strong> Collision (covered peril under auto policy).</p>
+                            <p><strong>Liability:</strong> David ran a red light &mdash; 100% at fault. His insurer accepts liability for Sarah's damages.</p>
+                            <p><strong>Loss amount for Sarah:</strong></p>
+                            <div class="bg-white dark:bg-gray-700 rounded-lg p-4 mt-2">
+                                <div class="space-y-1">
+                                    <div class="flex justify-between"><span>Vehicle repair</span><span class="font-mono">$14,200</span></div>
+                                    <div class="flex justify-between"><span>Medical bills (ER, surgery, PT)</span><span class="font-mono">$22,400</span></div>
+                                    <div class="flex justify-between"><span>Lost wages (6 weeks off work)</span><span class="font-mono">$7,200</span></div>
+                                    <div class="flex justify-between border-t border-gray-300 dark:border-gray-600 pt-1"><span class="font-semibold">Special damages subtotal</span><span class="font-mono font-semibold">$43,800</span></div>
+                                    <div class="flex justify-between"><span>Pain and suffering (1.5x specials)</span><span class="font-mono">$65,700</span></div>
+                                    <div class="flex justify-between border-t-2 border-gray-400 dark:border-gray-500 pt-1"><span class="font-bold">Total demand</span><span class="font-mono font-bold">$109,500</span></div>
+                                </div>
+                            </div>
+                            <p class="mt-2">The BI reserve is increased from $35,000 to $75,000 based on the medical documentation. The adjuster evaluates the pain and suffering demand and prepares a counter-offer.</p>
+                        </div>
+                    </div>
+
+                    <!-- Case Step 6 -->
+                    <div class="bg-green-50 dark:bg-green-900/10 rounded-lg p-4 lg:p-5 border-l-4 border-green-400">
+                        <p class="font-bold text-green-700 dark:text-green-300 mb-2">Step 6: Conclude the Claim</p>
+                        <div class="space-y-3 text-sm lg:text-base text-gray-700 dark:text-gray-300">
+                            <p><strong>Property damage (Sarah's car):</strong> Paid in full at $14,200. No dispute &mdash; straightforward repair estimate. Well within the $50,000 PD limit.</p>
+                            <p><strong>Bodily injury (Sarah):</strong> Settled by negotiation/compromise. Sarah's attorney demanded $109,500. After negotiation, both sides agreed on $78,000 (within the $100,000 per-person BI limit). Sarah signs a release.</p>
+                            <p><strong>David's collision claim:</strong> David's Civic repaired for $8,500. He pays his $500 deductible; the insurer pays $8,000.</p>
+                        </div>
+                        <div class="grid grid-cols-2 md:grid-cols-3 gap-3 mt-4">
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center border border-gray-200 dark:border-gray-600">
+                                <p class="text-lg lg:text-xl font-bold text-red-600 dark:text-red-400">$78,000</p>
+                                <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">BI settlement</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center border border-gray-200 dark:border-gray-600">
+                                <p class="text-lg lg:text-xl font-bold text-blue-600 dark:text-blue-400">$14,200</p>
+                                <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">PD payment</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center border border-gray-200 dark:border-gray-600">
+                                <p class="text-lg lg:text-xl font-bold text-purple-600 dark:text-purple-400">$8,000</p>
+                                <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Collision (net of deductible)</p>
+                            </div>
+                        </div>
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300 mt-3"><strong>Total insurer payout: $100,200.</strong> All within policy limits. Claim closed.</p>
+                    </div>
+                </div>
+
+                <!-- Coverage Analysis Applied -->
+                <div class="bg-indigo-50 dark:bg-indigo-900/20 rounded-lg p-4 lg:p-5 border border-indigo-200 dark:border-indigo-800 mt-6">
+                    <p class="font-bold text-indigo-800 dark:text-indigo-300 mb-3 text-base lg:text-lg">Coverage Analysis: All 9 Questions Passed</p>
+                    <div class="grid md:grid-cols-3 gap-2 text-sm lg:text-base">
+                        <div class="flex items-start"><span class="text-green-600 dark:text-green-400 mr-2 font-bold">Q1:</span><p class="text-gray-700 dark:text-gray-300">Policy exists &mdash; Yes, David has active auto insurance</p></div>
+                        <div class="flex items-start"><span class="text-green-600 dark:text-green-400 mr-2 font-bold">Q2:</span><p class="text-gray-700 dark:text-gray-300">Covers this type &mdash; Yes, auto liability and collision</p></div>
+                        <div class="flex items-start"><span class="text-green-600 dark:text-green-400 mr-2 font-bold">Q3:</span><p class="text-gray-700 dark:text-gray-300">During policy period &mdash; Yes, January 15th is within the policy term</p></div>
+                        <div class="flex items-start"><span class="text-green-600 dark:text-green-400 mr-2 font-bold">Q4:</span><p class="text-gray-700 dark:text-gray-300">Person covered &mdash; Yes, David is the named insured</p></div>
+                        <div class="flex items-start"><span class="text-green-600 dark:text-green-400 mr-2 font-bold">Q5:</span><p class="text-gray-700 dark:text-gray-300">Property covered &mdash; Yes, David's car is the insured vehicle</p></div>
+                        <div class="flex items-start"><span class="text-green-600 dark:text-green-400 mr-2 font-bold">Q6:</span><p class="text-gray-700 dark:text-gray-300">Cause covered &mdash; Yes, collision is a covered peril</p></div>
+                        <div class="flex items-start"><span class="text-green-600 dark:text-green-400 mr-2 font-bold">Q7:</span><p class="text-gray-700 dark:text-gray-300">Location covered &mdash; Yes, no geographic exclusions apply</p></div>
+                        <div class="flex items-start"><span class="text-green-600 dark:text-green-400 mr-2 font-bold">Q8:</span><p class="text-gray-700 dark:text-gray-300">Conditions met &mdash; Yes, David reported promptly and cooperated</p></div>
+                        <div class="flex items-start"><span class="text-green-600 dark:text-green-400 mr-2 font-bold">Q9:</span><p class="text-gray-700 dark:text-gray-300">Amount &mdash; $100,200 total, all within policy limits</p></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: Claims Compliance and Good Faith -->
+        <section id="good-faith" class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">5. Claims Compliance and Good Faith</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-6">
+                    <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300"><strong>Good faith</strong> means the insurer must handle every claim honestly, fairly, and with reasonable diligence. This is not just good business &mdash; it is a <strong>legal obligation</strong>. When an insurer fails to act in good faith, it is called <strong>bad faith</strong>, and the financial consequences can be catastrophic.</p>
+                </div>
+
+                <!-- Good Faith vs Bad Faith -->
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border border-green-200 dark:border-green-800">
+                        <p class="font-bold text-green-800 dark:text-green-300 mb-3">Good Faith Looks Like</p>
+                        <ul class="space-y-2 text-sm lg:text-base text-gray-700 dark:text-gray-300">
+                            <li class="flex items-start"><span class="text-green-600 mr-2 font-bold flex-shrink-0">+</span>Promptly acknowledging and investigating claims</li>
+                            <li class="flex items-start"><span class="text-green-600 mr-2 font-bold flex-shrink-0">+</span>Providing clear, honest communication throughout</li>
+                            <li class="flex items-start"><span class="text-green-600 mr-2 font-bold flex-shrink-0">+</span>Making fair settlement offers when liability is clear</li>
+                            <li class="flex items-start"><span class="text-green-600 mr-2 font-bold flex-shrink-0">+</span>Explaining denials with specific policy language</li>
+                            <li class="flex items-start"><span class="text-green-600 mr-2 font-bold flex-shrink-0">+</span>Treating claimants with respect and dignity</li>
+                        </ul>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border border-red-200 dark:border-red-800">
+                        <p class="font-bold text-red-800 dark:text-red-300 mb-3">Bad Faith Looks Like</p>
+                        <ul class="space-y-2 text-sm lg:text-base text-gray-700 dark:text-gray-300">
+                            <li class="flex items-start"><span class="text-red-600 mr-2 font-bold flex-shrink-0">X</span>Ignoring claims or taking unreasonably long to respond</li>
+                            <li class="flex items-start"><span class="text-red-600 mr-2 font-bold flex-shrink-0">X</span>Failing to conduct a thorough investigation</li>
+                            <li class="flex items-start"><span class="text-red-600 mr-2 font-bold flex-shrink-0">X</span>Lowballing offers hoping the claimant will give up</li>
+                            <li class="flex items-start"><span class="text-red-600 mr-2 font-bold flex-shrink-0">X</span>Denying valid claims without legitimate basis</li>
+                            <li class="flex items-start"><span class="text-red-600 mr-2 font-bold flex-shrink-0">X</span>Misrepresenting what the policy covers</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Consequences -->
+                <div class="bg-red-50 dark:bg-red-900/30 border-l-4 border-red-500 p-4 lg:p-5 rounded-r-lg mb-6">
+                    <p class="font-bold text-red-800 dark:text-red-300 text-base lg:text-lg mb-2">Consequences of Bad Faith</p>
+                    <div class="grid md:grid-cols-2 gap-4 mt-3">
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                            <p class="font-bold text-gray-800 dark:text-gray-200">Extracontractual Damages</p>
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400 mt-1">Damages <strong>beyond the policy limits</strong>. If an insurer acts in bad faith on a $100,000 policy, the court can order payment of $500,000 or more.</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                            <p class="font-bold text-gray-800 dark:text-gray-200">Punitive Damages</p>
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400 mt-1">Damages meant to <strong>punish</strong> the insurer and deter future misconduct. These can be millions of dollars and are NOT covered by the insurer's own insurance.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700/50 p-4 rounded-lg border-l-4 border-gray-400 mb-6">
+                    <p class="font-semibold text-gray-800 dark:text-gray-200 mb-2">Real-World Scenario: The Cost of Bad Faith</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> An insured's home is severely damaged by a tornado. The homeowners policy has a $300,000 dwelling limit. The insured files a claim for $240,000 in repairs.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> The insurer assigns an inexperienced adjuster who does a superficial inspection, ignores structural damage, and offers only $45,000. When the insured protests, the insurer delays for 14 months without re-inspecting. The insured hires a public adjuster and then an attorney.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> A jury finds the insurer acted in bad faith. They award $240,000 for the covered loss, PLUS $180,000 in extracontractual damages for the insured's out-of-pocket costs, emotional distress, and having to live in a damaged home for over a year, PLUS $500,000 in punitive damages. Total: $920,000 on a $300,000 policy.</p>
+                    </div>
+                </div>
+
+                <!-- Unfair Claims Settlement Practices -->
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 lg:p-5 border border-purple-200 dark:border-purple-800">
+                    <p class="font-bold text-purple-800 dark:text-purple-300 mb-3 text-base lg:text-lg">Unfair Claims Settlement Practices Act (NAIC Model)</p>
+                    <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300 mb-3">Most states have adopted some version of this model law. It defines specific practices that are prohibited:</p>
+                    <div class="space-y-3">
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                            <p class="font-semibold text-gray-800 dark:text-gray-200">Misrepresenting policy provisions</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Telling an insured their policy does not cover something when it actually does, or misquoting limits or deductibles.</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                            <p class="font-semibold text-gray-800 dark:text-gray-200">Failing to acknowledge claims promptly</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Ignoring FNOLs, not returning calls, or letting claims sit in a queue for weeks without any action.</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                            <p class="font-semibold text-gray-800 dark:text-gray-200">Failing to adopt reasonable investigation standards</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Not having clear procedures for investigating claims, or routinely skipping steps to save time or money.</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                            <p class="font-semibold text-gray-800 dark:text-gray-200">Not attempting fair settlement when liability is clear</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">When the insured is clearly at fault and damages are well-documented, the insurer cannot drag its feet or make unreasonably low offers.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cheat Sheet -->
+        <section id="cheat-sheet" class="mb-8 lg:mb-10">
+            <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 border-2 border-dashed border-gray-300 dark:border-gray-600">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100">Cheat Sheet</h2>
+                    <span class="text-sm text-gray-500 dark:text-gray-400">Print this page for quick reference</span>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">6 Steps (in order)</p>
+                        <ol class="list-decimal list-inside text-sm text-gray-700 dark:text-gray-300 space-y-1">
+                            <li>Acknowledge &amp; Assign</li>
+                            <li>Identify Policy &amp; Set Reserves</li>
+                            <li>Contact Insured</li>
+                            <li>Investigate &amp; Document</li>
+                            <li>Determine Cause/Liability/Amount</li>
+                            <li>Conclude the Claim</li>
+                        </ol>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">5 Conclusion Methods</p>
+                        <ul class="list-disc list-inside text-sm text-gray-700 dark:text-gray-300 space-y-1">
+                            <li>Payment (agreed amount)</li>
+                            <li>Denial (written explanation required)</li>
+                            <li>Compromise/Negotiation</li>
+                            <li>Litigation (lawsuit)</li>
+                            <li>ADR (mediation, arbitration, etc.)</li>
+                        </ul>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">9 Coverage Questions</p>
+                        <ol class="list-decimal list-inside text-sm text-gray-700 dark:text-gray-300 space-y-1">
+                            <li>Policy exists?</li>
+                            <li>Right type of loss?</li>
+                            <li>During policy period?</li>
+                            <li>Person covered?</li>
+                            <li>Property covered?</li>
+                            <li>Cause of loss covered?</li>
+                            <li>Location covered?</li>
+                            <li>Conditions met?</li>
+                            <li>What is the amount?</li>
+                        </ol>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">ACV vs. Replacement Cost</p>
+                        <p class="text-sm text-gray-700 dark:text-gray-300"><strong>ACV</strong> = Replacement cost MINUS depreciation</p>
+                        <p class="text-sm text-gray-700 dark:text-gray-300"><strong>RC</strong> = Full cost to replace, no depreciation deducted</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">Mediation vs. Arbitration</p>
+                        <p class="text-sm text-gray-700 dark:text-gray-300"><strong>Mediator</strong> = Facilitates (no decision power)</p>
+                        <p class="text-sm text-gray-700 dark:text-gray-300"><strong>Arbitrator</strong> = Decides (binding ruling)</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">Bad Faith Consequences</p>
+                        <p class="text-sm text-gray-700 dark:text-gray-300"><strong>Extracontractual</strong> = Beyond policy limits</p>
+                        <p class="text-sm text-gray-700 dark:text-gray-300"><strong>Punitive</strong> = Punishment damages (can be millions)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Trap Alerts -->
+        <section id="exam-traps" class="mb-8 lg:mb-10">
+            <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-xl p-5 lg:p-6">
+                <h2 class="text-2xl font-bold text-red-800 dark:text-red-300 mb-4">Exam Trap Alerts</h2>
+                <div class="space-y-3">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">1. Reserves Are Liabilities, Not Cash</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">A reserve is an <strong>accounting entry</strong>, not money set aside in a separate bank account. It represents the insurer's estimated liability. When the exam asks "what are reserves?" do not say "money put aside" &mdash; say "the insurer's estimate of what the claim will ultimately cost, recorded as a liability."</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">2. Step Order Matters</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The exam may ask which step comes first: setting reserves or contacting the insured. The answer is <strong>setting reserves comes first</strong> (Step 2 before Step 3). You identify the policy and set reserves before you call the insured to discuss the claim.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">3. Appraisal Only Determines Amount, Not Coverage</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">If the exam gives a scenario where the insurer and insured disagree about <strong>whether</strong> something is covered, appraisal is NOT the answer. Appraisal only resolves disputes about <strong>how much</strong> a covered loss is worth. Coverage disputes go to arbitration or litigation.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">4. Denial Requires Written Explanation</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">An insurer cannot just say "denied." They must provide a <strong>written explanation citing specific policy language</strong>. If a scenario shows an insurer denying a claim with no explanation, that is a violation of unfair claims settlement practices.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">5. FNOL Can Come From Anyone</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">First Notice of Loss does not have to come from the insured. It can come from the insured's agent, the claimant, the claimant's attorney, or even a family member. Do not pick "only the policyholder" if that is an answer choice.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">6. Extracontractual vs. Punitive Damages</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Both result from bad faith, but they are different. <strong>Extracontractual</strong> = compensatory damages beyond the policy limits (for actual harm caused by the bad faith). <strong>Punitive</strong> = punishment to deter future misconduct. The exam may test whether you know the distinction.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">7. Special vs. General Damages</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>Special damages</strong> have receipts (medical bills, lost wages, repair costs). <strong>General damages</strong> do not (pain and suffering, emotional distress). If the exam describes damages you can put a dollar figure on with documentation, those are special damages.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Reference Summary -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-gradient-to-r from-red-600 to-red-800 rounded-xl p-6 text-white">
+                <h2 class="text-2xl font-bold mb-6">Quick Reference Summary</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">FNOL</p>
+                        <p class="text-sm text-red-100">First Notice of Loss &mdash; the initial report that triggers the claims process</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Reserve</p>
+                        <p class="text-sm text-red-100">Insurer's estimate of ultimate claim cost, recorded as a liability</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Subrogation</p>
+                        <p class="text-sm text-red-100">Insurer's right to recover from a third party who caused the loss</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">ACV</p>
+                        <p class="text-sm text-red-100">Actual Cash Value = Replacement Cost minus Depreciation</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Special Damages</p>
+                        <p class="text-sm text-red-100">Documented economic losses: medical bills, lost wages, repair costs</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">General Damages</p>
+                        <p class="text-sm text-red-100">Non-economic losses: pain and suffering, emotional distress</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Good Faith</p>
+                        <p class="text-sm text-red-100">Legal obligation to handle claims honestly, fairly, and diligently</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Bad Faith</p>
+                        <p class="text-sm text-red-100">Failing to properly investigate, unreasonable delays, lowballing, wrongful denials</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Extracontractual Damages</p>
+                        <p class="text-sm text-red-100">Court-ordered damages beyond policy limits for insurer misconduct</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Mediation</p>
+                        <p class="text-sm text-red-100">Neutral facilitator helps parties negotiate &mdash; non-binding</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Arbitration</p>
+                        <p class="text-sm text-red-100">Neutral arbitrator hears evidence and makes a decision &mdash; usually binding</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Appraisal</p>
+                        <p class="text-sm text-red-100">Resolves disputes about loss AMOUNT only &mdash; not coverage questions</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Navigation -->
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="../part-1/index.html" class="text-gray-300 hover:text-white transition-colors">&larr; Part 1</a>
+                <span class="text-gray-400">Part 2 of 3</span>
+                <a href="../part-3/index.html" class="text-gray-300 hover:text-white transition-colors">Part 3: Third-Party Claimants &rarr;</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AI Tutor Button -->
+    <button onclick="openAITutor()" class="fixed bottom-6 right-6 bg-red-600 hover:bg-red-700 text-white p-4 rounded-full shadow-lg hover:scale-110 transition-transform z-40" title="Ask AI Tutor">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+        </svg>
+    </button>
+
+    <script>
+        function openAITutor() {
+            const context = `Topic: The Claims Handling Process and Coverage Analysis (CPCU 520 Assignment 2 Part 2).
+Key concepts: The six-step claims handling process (Acknowledge/Assign, Identify Policy/Set Reserves, Contact Insured, Investigate/Document, Determine Cause/Liability/Amount, Conclude). The nine-question coverage analysis framework. Five methods of concluding claims (Payment, Denial, Compromise, Litigation, ADR). ADR methods (Mediation, Arbitration, Appraisal, Mini-trial, Pretrial Settlement Conference). Property valuation (ACV vs Replacement Cost). Liability damages (Special vs General). Good faith and bad faith claims handling. Unfair Claims Settlement Practices Act. Extracontractual and punitive damages.
+Common confusions: Reserves are liabilities not cash. Appraisal only resolves amount disputes not coverage disputes. Mediators facilitate while arbitrators decide. Special damages are documented economic losses while general damages are subjective non-economic losses. FNOL can come from anyone not just the policyholder. Denial requires written explanation citing policy language.`;
+            if (typeof showAIHelper === 'function') {
+                showAIHelper(context);
+            }
+        }
+    </script>
+</body>
+</html>

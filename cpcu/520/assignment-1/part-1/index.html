@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment 1 Part 1: Understanding the Insurance Value Chain | CPCU 520</title>
+    <link rel="icon" type="image/svg+xml" href="../../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <link rel="stylesheet" href="../../../../css/styles.css">
+    <script src="../../../../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+        }
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <!-- Settings & Theme Toggle Buttons -->
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="showAPIKeySetup()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings">
+            <svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+        </button>
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/>
+            </svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap gap-2 text-sm mb-2">
+                <a href="../../../../index.html" class="text-blue-200 hover:text-white">Home</a>
+                <span class="text-blue-300">/</span>
+                <a href="../../../index.html" class="text-blue-200 hover:text-white">CPCU</a>
+                <span class="text-blue-300">/</span>
+                <a href="../../index.html" class="text-blue-200 hover:text-white">520</a>
+                <span class="text-blue-300">/</span>
+                <a href="../index.html" class="text-blue-200 hover:text-white">Assignment 1</a>
+                <span class="text-blue-300">/</span>
+                <span class="text-white">Part 1</span>
+            </div>
+            <h1 class="text-3xl font-bold">Assignment 1 Part 1: Understanding the Insurance Value Chain</h1>
+            <p class="text-blue-200 mt-1">How every department in an insurer works together to create and deliver value &mdash; from product idea to claims payment</p>
+        </div>
+    </header>
+
+    <!-- Part Navigation -->
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-wrap gap-2 text-sm">
+                <a href="../index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Overview</a>
+                <span class="bg-blue-600 text-white px-3 py-1 rounded font-medium">Part 1</span>
+                <a href="../part-2/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 2</a>
+                <a href="../part-3/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 3</a>
+                <a href="../part-4/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 4</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-5xl lg:max-w-7xl">
+
+        <!-- Start Here: 5 Things You MUST Know -->
+        <div class="bg-gradient-to-r from-blue-100 to-blue-200 dark:from-blue-900/40 dark:to-blue-800/40 rounded-xl p-6 mb-8 border border-blue-300 dark:border-blue-700">
+            <h3 class="text-xl lg:text-2xl font-bold text-blue-800 dark:text-blue-200 mb-4">Start Here: 5 Things You MUST Know</h3>
+            <div class="grid md:grid-cols-2 gap-3">
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">An insurance <strong>value chain</strong> is the full sequence of interconnected activities that turns a risk concept into a paid claim &mdash; creating value for the customer at every step.</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Primary activities</strong> directly produce and deliver the product: Product Development, Marketing/Distribution, Underwriting, Policy Service, and Claims.</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Support activities</strong> enable the primary ones: Actuarial, Reinsurance, Risk Control, Premium Auditing, IT, Investments, HR/Legal/Compliance.</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">4</span>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Every insurer balances <strong>five goals</strong>: earn profit, meet customer needs, comply with laws, diversify risk, and fulfill social duty &mdash; and these goals often <strong>conflict</strong>.</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">5</span>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Insurers face <strong>internal constraints</strong> (things they control) and <strong>external constraints</strong> (things they cannot control) that shape how the value chain operates.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 1: Overview / Introduction -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">Introduction: Why the Value Chain Matters</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-800 rounded-lg p-4 lg:p-5 mb-6">
+                    <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300">Insurance is not a single product sitting on a shelf. It is a <strong>promise</strong> &mdash; a promise that if something bad happens, the insurer will pay. Delivering that promise requires an entire chain of departments working together, from the people who design the policy wording all the way to the adjusters who write the check when a loss occurs. This chain of interconnected activities is the <strong>insurance value chain</strong>, and understanding how it works is the foundation of CPCU 520.</p>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 lg:p-5 rounded-r-lg">
+                    <p class="font-bold text-amber-800 dark:text-amber-300 text-base lg:text-lg">Exam Alert</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mt-1">The value chain concept is the <strong>organizing framework</strong> for the entire CPCU 520 course. Questions will test whether you understand how departments depend on each other &mdash; not just what each department does in isolation. Always think about the <strong>connections</strong> between functions.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: What Is an Insurance Value Chain? -->
+        <section id="value-chain-concept" class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">1. What Is an Insurance Value Chain?</h2>
+
+                <!-- Definition Box -->
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-6">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg lg:text-xl">Value Chain (Definition)</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">A <strong>value chain</strong> is a network of interconnected activities performed by an organization to create, deliver, and sustain value for the customer. Each activity adds value to the product, and the chain is only as strong as its weakest link.</p>
+                    <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded mt-3">
+                        <p class="font-semibold text-gray-700 dark:text-gray-300">Plain English:</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base mt-1">Think of it like a relay race. Each runner (department) does their leg, then passes the baton to the next. If one runner drops the baton, the whole team loses &mdash; even if the other runners were perfect.</p>
+                    </div>
+                </div>
+
+                <!-- Porter's Framework -->
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-purple-500 mb-6">
+                    <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg lg:text-xl">Michael Porter's Framework</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">The value chain concept comes from Harvard professor <strong>Michael Porter</strong>. He originally designed it for manufacturing companies, but it works perfectly for insurance. Porter divided all business activities into two categories:</p>
+                    <div class="grid md:grid-cols-2 gap-4 mt-4">
+                        <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border border-green-200 dark:border-green-800">
+                            <p class="font-bold text-green-800 dark:text-green-300 text-base lg:text-lg">Primary Activities</p>
+                            <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">Activities that <strong>directly</strong> create and deliver the product to the customer. In insurance: designing the policy, selling it, underwriting it, servicing it, and paying claims.</p>
+                        </div>
+                        <div class="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-lg border border-indigo-200 dark:border-indigo-800">
+                            <p class="font-bold text-indigo-800 dark:text-indigo-300 text-base lg:text-lg">Support Activities</p>
+                            <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base">Activities that <strong>enable</strong> the primary activities but do not directly produce the product. In insurance: actuarial analysis, reinsurance, IT systems, investments, HR, and legal.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Real-World Example -->
+                <div class="bg-gray-50 dark:bg-gray-700/50 p-4 lg:p-5 rounded-lg border-l-4 border-blue-500">
+                    <p class="font-semibold text-blue-800 dark:text-blue-300 mb-2 text-base lg:text-lg">Real-World Scenario: A Homeowner Buys Insurance</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Sarah just bought her first home in New Jersey and needs homeowners insurance.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> The insurer's <strong>product development</strong> team already designed the HO-3 policy form. <strong>Marketing</strong> placed ads online that Sarah found. Her <strong>agent</strong> (distribution channel) helps her apply. <strong>Underwriting</strong> reviews her home's age, roof condition, and location to set the price. <strong>Policy service</strong> issues the policy and mails her ID cards. Two years later, a tree falls on her roof. The <strong>claims</strong> department sends an adjuster, verifies coverage, and pays $18,000 for repairs.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Every single primary activity in the value chain touched Sarah's experience. Behind the scenes, <strong>actuaries</strong> set the rate, <strong>reinsurance</strong> protected the insurer from catastrophic storm losses, and <strong>IT</strong> powered the online quote system. The value chain delivered on the insurer's promise.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Primary Activities -->
+        <section id="primary-activities" class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">2. Primary Activities in the Insurance Value Chain</h2>
+
+                <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300 mb-6">These five activities are the <strong>core production line</strong> of insurance. Each one directly touches the product that the customer receives.</p>
+
+                <!-- Visual Flow Diagram -->
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-4 lg:p-6 mb-6 border border-blue-200 dark:border-blue-800">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg lg:text-xl mb-4 text-center">The Insurance Value Chain: Primary Activities Flow</h3>
+                    <div class="flex items-center justify-center gap-2 lg:gap-4 flex-wrap">
+                        <div class="bg-blue-600 text-white p-3 lg:p-4 rounded-lg text-center min-w-[120px]">
+                            <p class="font-bold text-sm lg:text-base">Product Development</p>
+                            <p class="text-xs lg:text-sm text-blue-200 mt-1">Design the policy</p>
+                        </div>
+                        <div class="text-2xl text-blue-400 dark:text-blue-500 font-bold">&rarr;</div>
+                        <div class="bg-blue-600 text-white p-3 lg:p-4 rounded-lg text-center min-w-[120px]">
+                            <p class="font-bold text-sm lg:text-base">Marketing &amp; Distribution</p>
+                            <p class="text-xs lg:text-sm text-blue-200 mt-1">Sell the policy</p>
+                        </div>
+                        <div class="text-2xl text-blue-400 dark:text-blue-500 font-bold">&rarr;</div>
+                        <div class="bg-blue-600 text-white p-3 lg:p-4 rounded-lg text-center min-w-[120px]">
+                            <p class="font-bold text-sm lg:text-base">Underwriting</p>
+                            <p class="text-xs lg:text-sm text-blue-200 mt-1">Select &amp; price risks</p>
+                        </div>
+                        <div class="text-2xl text-blue-400 dark:text-blue-500 font-bold">&rarr;</div>
+                        <div class="bg-blue-600 text-white p-3 lg:p-4 rounded-lg text-center min-w-[120px]">
+                            <p class="font-bold text-sm lg:text-base">Policy Issuance &amp; Service</p>
+                            <p class="text-xs lg:text-sm text-blue-200 mt-1">Issue &amp; maintain</p>
+                        </div>
+                        <div class="text-2xl text-blue-400 dark:text-blue-500 font-bold">&rarr;</div>
+                        <div class="bg-green-600 text-white p-3 lg:p-4 rounded-lg text-center min-w-[120px]">
+                            <p class="font-bold text-sm lg:text-base">Claims Management</p>
+                            <p class="text-xs lg:text-sm text-green-200 mt-1">Pay covered losses</p>
+                        </div>
+                    </div>
+                    <p class="text-center text-gray-600 dark:text-gray-400 mt-4 text-sm lg:text-base">Each step adds value. The final step &mdash; claims &mdash; is where the insurer <strong>delivers on its promise</strong>.</p>
+                </div>
+
+                <!-- 2a. Product Development -->
+                <div class="mb-6">
+                    <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-green-500 mb-4">
+                        <h3 class="font-bold text-green-800 dark:text-green-300 text-lg lg:text-xl">A. Product Development</h3>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg"><strong>What it is:</strong> Designing the actual insurance product &mdash; the coverage forms, policy language, terms and conditions, endorsements, and exclusions. This is where the "blueprint" of the policy is created.</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg"><strong>Key activities:</strong> Identifying market needs, drafting policy language, working with actuaries to ensure the product can be priced profitably, getting regulatory approval for new forms.</p>
+                    </div>
+                    <div class="bg-gray-50 dark:bg-gray-700/50 p-4 rounded-lg border-l-4 border-green-500">
+                        <p class="font-semibold text-green-800 dark:text-green-300 mb-2">Real-World Scenario: Cyber Insurance is Born</p>
+                        <div class="space-y-2 text-sm lg:text-base">
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> In the early 2010s, data breaches were skyrocketing. Traditional commercial policies did not cover cyber-related losses.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> An insurer's product development team identifies the gap. They draft a new standalone cyber liability policy covering data breach notification costs, business interruption from cyberattacks, and ransomware payments. Actuaries analyze limited historical data to estimate losses. Legal reviews the forms. The product gets filed with state regulators.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> A brand-new insurance product enters the market. Without product development, the entire value chain would have nothing to sell, underwrite, or pay claims on. This is always where the chain <strong>starts</strong>.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2b. Marketing & Distribution -->
+                <div class="mb-6">
+                    <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-green-500 mb-4">
+                        <h3 class="font-bold text-green-800 dark:text-green-300 text-lg lg:text-xl">B. Marketing &amp; Distribution</h3>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg"><strong>What it is:</strong> Getting the insurance product into the hands of customers. This includes advertising, brand management, and the <strong>distribution channel</strong> &mdash; the method used to reach the buyer.</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg"><strong>Distribution channels include:</strong></p>
+                        <div class="grid md:grid-cols-3 gap-3 mt-3">
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center border border-green-200 dark:border-green-800">
+                                <p class="font-bold text-green-700 dark:text-green-300">Independent Agents</p>
+                                <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400 mt-1">Represent multiple insurers</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center border border-green-200 dark:border-green-800">
+                                <p class="font-bold text-green-700 dark:text-green-300">Captive Agents</p>
+                                <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400 mt-1">Represent one insurer only</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center border border-green-200 dark:border-green-800">
+                                <p class="font-bold text-green-700 dark:text-green-300">Direct / Online</p>
+                                <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400 mt-1">Insurer sells directly to customer</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-gray-50 dark:bg-gray-700/50 p-4 rounded-lg border-l-4 border-green-500">
+                        <p class="font-semibold text-green-800 dark:text-green-300 mb-2">Real-World Scenario: Agent vs. Direct</p>
+                        <div class="space-y-2 text-sm lg:text-base">
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Mike wants auto insurance. He visits a local independent agent. His coworker Lisa goes online to a direct-writer's website.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Mike's agent shops three different insurers and recommends the best price-coverage combination. Lisa enters her info online and gets an instant quote. Both end up with similar policies, but Mike got personalized advice while Lisa got speed and convenience.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Different distribution channels serve different customer needs. The marketing and distribution function determines <strong>how</strong> the product reaches the customer &mdash; and that choice impacts cost, service quality, and customer satisfaction.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2c. Underwriting -->
+                <div class="mb-6">
+                    <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-green-500 mb-4">
+                        <h3 class="font-bold text-green-800 dark:text-green-300 text-lg lg:text-xl">C. Underwriting</h3>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg"><strong>What it is:</strong> The process of <strong>selecting which risks to insure</strong> and <strong>pricing those risks appropriately</strong>. Underwriting is the gatekeeper of the value chain &mdash; it decides who gets in and at what price.</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg"><strong>Two key decisions:</strong> (1) Should we accept or decline this risk? (2) If we accept, what premium should we charge?</p>
+                    </div>
+                    <div class="bg-gray-50 dark:bg-gray-700/50 p-4 rounded-lg border-l-4 border-green-500">
+                        <p class="font-semibold text-green-800 dark:text-green-300 mb-2">Real-World Scenario: The Restaurant Application</p>
+                        <div class="space-y-2 text-sm lg:text-base">
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Two restaurants apply for commercial property insurance. Restaurant A is a modern building with a sprinkler system and a clean inspection history. Restaurant B operates from a 90-year-old wooden structure with no fire suppression and two prior grease fire claims.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> The underwriter accepts Restaurant A at standard rates. For Restaurant B, the underwriter either declines the risk entirely or offers coverage at a much higher premium with additional conditions (like requiring fire suppression installation within 90 days).</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Underwriting protects the insurer's book of business by ensuring premiums collected are adequate to cover expected losses. Without proper underwriting, an insurer would take on too much bad risk and eventually go insolvent.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2d. Policy Issuance & Service -->
+                <div class="mb-6">
+                    <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-green-500 mb-4">
+                        <h3 class="font-bold text-green-800 dark:text-green-300 text-lg lg:text-xl">D. Policy Issuance &amp; Service</h3>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg"><strong>What it is:</strong> Once the underwriter says "yes," this function takes over. It includes issuing the policy documents, processing mid-term changes (endorsements), handling renewals, answering customer questions, and processing cancellations.</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg"><strong>Think of it as:</strong> The ongoing relationship management between insurer and policyholder, from day one until the policy expires or is cancelled.</p>
+                    </div>
+                    <div class="bg-gray-50 dark:bg-gray-700/50 p-4 rounded-lg border-l-4 border-green-500">
+                        <p class="font-semibold text-green-800 dark:text-green-300 mb-2">Real-World Scenario: Mid-Term Endorsement</p>
+                        <div class="space-y-2 text-sm lg:text-base">
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Carlos has a homeowners policy effective January 1. In March, he finishes building a $30,000 detached garage on his property.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Carlos calls his agent to add coverage for the new garage. The policy service team processes an endorsement adding the structure to his policy, recalculates the premium for the remaining 9 months, and sends Carlos updated documents.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Without policy service, the garage would be uninsured until renewal. This function keeps the policy <strong>accurate and current</strong> throughout its life, ensuring the customer is properly protected.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2e. Claims Management -->
+                <div class="mb-6">
+                    <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-green-500 mb-4">
+                        <h3 class="font-bold text-green-800 dark:text-green-300 text-lg lg:text-xl">E. Claims Management</h3>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg"><strong>What it is:</strong> The moment of truth. Claims management is where the insurer <strong>fulfills its promise</strong> by investigating and paying covered losses. This is often called the insurer's "product" &mdash; because this is what the customer actually bought: the right to be made whole after a loss.</p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg"><strong>Key activities:</strong> Receiving notice of loss, investigating the claim, determining coverage, evaluating damages, negotiating settlement, and issuing payment.</p>
+                    </div>
+                    <div class="bg-gray-50 dark:bg-gray-700/50 p-4 rounded-lg border-l-4 border-green-500">
+                        <p class="font-semibold text-green-800 dark:text-green-300 mb-2">Real-World Scenario: The Hailstorm</p>
+                        <div class="space-y-2 text-sm lg:text-base">
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> A major hailstorm hits a Texas suburb. 500 policyholders file roof damage claims within 48 hours.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> The claims department mobilizes adjusters, sets up a catastrophe response team, inspects each damaged roof, verifies coverage (checking for exclusions and deductibles), and begins issuing payments. Some claims are straightforward; others require engineers or contractors for damage estimates.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Policyholders get their roofs repaired. The insurer spent years collecting premiums, and this is the moment that spending becomes <strong>real value</strong> for the customer. Poor claims handling destroys trust; excellent claims handling creates lifelong customers.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Section 4: Support Activities -->
+        <section id="support-activities" class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">3. Support Activities</h2>
+
+                <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300 mb-6">Support activities do not directly produce the insurance product, but without them, the primary activities would <strong>collapse</strong>. Think of them as the engine room of a ship &mdash; passengers never see it, but the ship cannot move without it.</p>
+
+                <!-- Support Activities Grid -->
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6 mb-6">
+
+                    <!-- Actuarial -->
+                    <div class="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-lg border border-indigo-200 dark:border-indigo-800">
+                        <h4 class="font-bold text-indigo-800 dark:text-indigo-300 text-base lg:text-lg mb-2">Actuarial</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Analyzes historical data to <strong>set proper rates</strong> and <strong>establish loss reserves</strong> (money set aside for future claim payments). Without actuaries, insurers would be guessing at prices.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400"><strong>Feeds into:</strong> Underwriting (rates), Product Development (pricing feasibility), Claims (reserve adequacy)</p>
+                        </div>
+                    </div>
+
+                    <!-- Reinsurance -->
+                    <div class="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-lg border border-indigo-200 dark:border-indigo-800">
+                        <h4 class="font-bold text-indigo-800 dark:text-indigo-300 text-base lg:text-lg mb-2">Reinsurance</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Transferring portions of risk to other insurers. This gives the insurer <strong>stability</strong> (protection against catastrophic losses) and <strong>capacity</strong> (ability to write more business).</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400"><strong>Feeds into:</strong> Underwriting (capacity limits), Claims (catastrophe recovery), Financial stability</p>
+                        </div>
+                    </div>
+
+                    <!-- Risk Control -->
+                    <div class="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-lg border border-indigo-200 dark:border-indigo-800">
+                        <h4 class="font-bold text-indigo-800 dark:text-indigo-300 text-base lg:text-lg mb-2">Risk Control</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Helping policyholders <strong>reduce losses</strong> through inspections, safety training, and loss prevention recommendations. Fewer losses = better results for everyone.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400"><strong>Feeds into:</strong> Underwriting (risk quality), Claims (fewer claims), Customer satisfaction</p>
+                        </div>
+                    </div>
+
+                    <!-- Premium Auditing -->
+                    <div class="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-lg border border-indigo-200 dark:border-indigo-800">
+                        <h4 class="font-bold text-indigo-800 dark:text-indigo-300 text-base lg:text-lg mb-2">Premium Auditing</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Verifying that the premium charged <strong>matches actual exposures</strong>. If a business said it had 10 employees but actually has 25, the premium needs adjustment.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400"><strong>Feeds into:</strong> Underwriting (exposure accuracy), Actuarial (data quality), Revenue assurance</p>
+                        </div>
+                    </div>
+
+                    <!-- Information Technology -->
+                    <div class="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-lg border border-indigo-200 dark:border-indigo-800">
+                        <h4 class="font-bold text-indigo-800 dark:text-indigo-300 text-base lg:text-lg mb-2">Information Technology</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The digital backbone: policy management systems, claims platforms, data analytics, online portals, and cybersecurity. Modern insurance <strong>cannot function</strong> without IT.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400"><strong>Feeds into:</strong> Every single activity in the value chain</p>
+                        </div>
+                    </div>
+
+                    <!-- Investments -->
+                    <div class="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-lg border border-indigo-200 dark:border-indigo-800">
+                        <h4 class="font-bold text-indigo-800 dark:text-indigo-300 text-base lg:text-lg mb-2">Investments</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Managing the <strong>premium float</strong> &mdash; the money collected in premiums that has not yet been paid out as claims. This invested money generates investment income, a major source of insurer profit.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400"><strong>Feeds into:</strong> Profitability, Financial strength, Pricing flexibility</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- HR, Legal, Compliance brief mention -->
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-purple-500 mb-6">
+                    <h3 class="font-bold text-purple-800 dark:text-purple-300 text-base lg:text-lg">Also Supporting the Chain: HR, Legal, and Compliance</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-sm lg:text-base"><strong>Human Resources</strong> recruits and trains the people who do all the work. <strong>Legal</strong> ensures policy language holds up in court and handles coverage disputes. <strong>Compliance</strong> makes sure the insurer follows state and federal regulations. These enabling functions keep the entire operation running lawfully and with qualified people.</p>
+                </div>
+
+                <!-- Support Activities Example -->
+                <div class="bg-gray-50 dark:bg-gray-700/50 p-4 lg:p-5 rounded-lg border-l-4 border-indigo-500">
+                    <p class="font-semibold text-indigo-800 dark:text-indigo-300 mb-2 text-base lg:text-lg">Real-World Scenario: How Actuaries Saved an Insurer</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> An insurer's workers' compensation line has been profitable for 5 years. Underwriters are confident. But the actuarial department notices a troubling trend: medical cost inflation is accelerating, and claim severity (the average cost per claim) has been quietly rising 8% per year.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> The actuarial team runs new projections and recommends a 12% rate increase to stay ahead of the trend. They also recommend increasing loss reserves by $15 million. Underwriting adjusts its pricing. Product development modifies some policy terms.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Two years later, competitors who ignored the trend are posting massive losses. This insurer remains profitable because the support activity (actuarial) fed critical data into the primary activities (underwriting, product development). The chain held because the support links were strong.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: How Departments Interconnect -->
+        <section id="interconnections" class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">4. How Departments Interconnect</h2>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 lg:p-5 rounded-r-lg mb-6">
+                    <p class="font-bold text-amber-800 dark:text-amber-300 text-base lg:text-lg">Why This Matters for the Exam</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mt-1">The exam loves to test <strong>connections between departments</strong>. You will not just be asked "What does underwriting do?" but rather "How does claims data affect underwriting decisions?" or "Why does marketing need underwriting guidelines?" Think in terms of <strong>information flow</strong>.</p>
+                </div>
+
+                <!-- Interconnection Diagram -->
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-4 lg:p-6 mb-6 border border-blue-200 dark:border-blue-800">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg lg:text-xl mb-4 text-center">Key Department Connections</h3>
+
+                    <div class="space-y-4">
+                        <!-- Connection 1 -->
+                        <div class="flex items-center gap-3 flex-wrap bg-white dark:bg-gray-700 p-3 rounded-lg">
+                            <span class="bg-blue-600 text-white px-3 py-1 rounded font-bold text-sm">Actuarial</span>
+                            <span class="text-xl text-blue-500 font-bold">&rarr;</span>
+                            <span class="bg-blue-600 text-white px-3 py-1 rounded font-bold text-sm">Underwriting</span>
+                            <span class="text-gray-600 dark:text-gray-400 text-sm lg:text-base ml-2">Actuaries set the rates; underwriters apply them to individual risks</span>
+                        </div>
+
+                        <!-- Connection 2 -->
+                        <div class="flex items-center gap-3 flex-wrap bg-white dark:bg-gray-700 p-3 rounded-lg">
+                            <span class="bg-green-600 text-white px-3 py-1 rounded font-bold text-sm">Claims</span>
+                            <span class="text-xl text-green-500 font-bold">&rarr;</span>
+                            <span class="bg-blue-600 text-white px-3 py-1 rounded font-bold text-sm">Underwriting</span>
+                            <span class="text-gray-600 dark:text-gray-400 text-sm lg:text-base ml-2">Loss data reveals which risks are actually profitable or problematic</span>
+                        </div>
+
+                        <!-- Connection 3 -->
+                        <div class="flex items-center gap-3 flex-wrap bg-white dark:bg-gray-700 p-3 rounded-lg">
+                            <span class="bg-blue-600 text-white px-3 py-1 rounded font-bold text-sm">Underwriting</span>
+                            <span class="text-xl text-blue-500 font-bold">&rarr;</span>
+                            <span class="bg-purple-600 text-white px-3 py-1 rounded font-bold text-sm">Marketing</span>
+                            <span class="text-gray-600 dark:text-gray-400 text-sm lg:text-base ml-2">Underwriting guidelines tell agents what the insurer will and will not write</span>
+                        </div>
+
+                        <!-- Connection 4 -->
+                        <div class="flex items-center gap-3 flex-wrap bg-white dark:bg-gray-700 p-3 rounded-lg">
+                            <span class="bg-amber-600 text-white px-3 py-1 rounded font-bold text-sm">Reinsurance</span>
+                            <span class="text-xl text-amber-500 font-bold">&rarr;</span>
+                            <span class="bg-blue-600 text-white px-3 py-1 rounded font-bold text-sm">Underwriting</span>
+                            <span class="text-gray-600 dark:text-gray-400 text-sm lg:text-base ml-2">Reinsurance determines how much capacity underwriters have to write large risks</span>
+                        </div>
+
+                        <!-- Connection 5 -->
+                        <div class="flex items-center gap-3 flex-wrap bg-white dark:bg-gray-700 p-3 rounded-lg">
+                            <span class="bg-red-600 text-white px-3 py-1 rounded font-bold text-sm">Risk Control</span>
+                            <span class="text-xl text-red-500 font-bold">&rarr;</span>
+                            <span class="bg-blue-600 text-white px-3 py-1 rounded font-bold text-sm">Underwriting</span>
+                            <span class="text-gray-600 dark:text-gray-400 text-sm lg:text-base ml-2">Inspection reports help underwriters evaluate risks they cannot see in person</span>
+                        </div>
+
+                        <!-- Connection 6 -->
+                        <div class="flex items-center gap-3 flex-wrap bg-white dark:bg-gray-700 p-3 rounded-lg">
+                            <span class="bg-teal-600 text-white px-3 py-1 rounded font-bold text-sm">Premium Audit</span>
+                            <span class="text-xl text-teal-500 font-bold">&rarr;</span>
+                            <span class="bg-blue-600 text-white px-3 py-1 rounded font-bold text-sm">Underwriting</span>
+                            <span class="text-gray-600 dark:text-gray-400 text-sm lg:text-base ml-2">Confirms whether original underwriting assumptions about exposures were correct</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Full Flow Example -->
+                <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-green-500 mb-4">
+                    <h3 class="font-bold text-green-800 dark:text-green-300 text-lg lg:text-xl mb-3">Full Value Chain Walkthrough: Life of a Commercial Policy</h3>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mb-4">Follow a single policy through every link in the chain to see how departments interconnect:</p>
+
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-3">
+                            <span class="bg-blue-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold flex-shrink-0 mt-0.5">1</span>
+                            <div>
+                                <p class="font-bold text-gray-800 dark:text-gray-200">Product Development</p>
+                                <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The insurer designs a Business Owners Policy (BOP) combining property and liability coverage for small businesses. Actuaries confirm the bundled rate is viable.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="bg-blue-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold flex-shrink-0 mt-0.5">2</span>
+                            <div>
+                                <p class="font-bold text-gray-800 dark:text-gray-200">Marketing &amp; Distribution</p>
+                                <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">An independent agent meets with Maria, who owns a bakery. The agent explains the BOP coverage and submits an application to the insurer.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="bg-blue-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold flex-shrink-0 mt-0.5">3</span>
+                            <div>
+                                <p class="font-bold text-gray-800 dark:text-gray-200">Underwriting</p>
+                                <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The underwriter reviews the bakery's location (flood zone? high crime?), building age, prior claims history, and financial stability. <strong>Risk control</strong> sends an inspection report noting the bakery has a fire suppression system. The underwriter accepts the risk and applies the <strong>actuarially determined</strong> rate, with a small credit for the fire suppression system.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="bg-blue-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold flex-shrink-0 mt-0.5">4</span>
+                            <div>
+                                <p class="font-bold text-gray-800 dark:text-gray-200">Policy Issuance &amp; Service</p>
+                                <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The policy is issued via the <strong>IT system</strong>, documents are generated and sent to Maria and her agent. Six months later, Maria adds a catering van &mdash; policy service processes the endorsement.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="bg-blue-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold flex-shrink-0 mt-0.5">5</span>
+                            <div>
+                                <p class="font-bold text-gray-800 dark:text-gray-200">Claims Management</p>
+                                <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">A kitchen fire causes $45,000 in damage. The claims team investigates, confirms coverage, and pays the claim. The <strong>reinsurer</strong> is not triggered because the loss is below the reinsurance attachment point.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="bg-green-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold flex-shrink-0 mt-0.5">6</span>
+                            <div>
+                                <p class="font-bold text-gray-800 dark:text-gray-200">Feedback Loop</p>
+                                <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The claims data feeds back to <strong>actuarial</strong> (to refine bakery loss projections), to <strong>underwriting</strong> (to adjust risk selection for bakeries), and to <strong>risk control</strong> (to recommend enhanced fire prevention for future bakery policyholders). The <strong>premium auditor</strong> later verifies Maria's actual payroll matched the estimate used to price workers' comp.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/20 border-l-4 border-amber-500 p-4 rounded-r-lg">
+                    <p class="font-bold text-amber-800 dark:text-amber-300">Key Takeaway</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Notice how <strong>underwriting</strong> sits at the center of the web &mdash; it receives input from almost every other function. This is why underwriting is often called the "hub" of the insurance value chain. But the chain is circular, not linear: claims data flows back to improve everything.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: The Insurer's Five Goals -->
+        <section id="five-goals" class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">5. The Insurer's Five Goals</h2>
+
+                <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300 mb-6">Every insurance company, regardless of size or type, must pursue these five goals simultaneously. The value chain exists to achieve all of them &mdash; but they often <strong>pull in opposite directions</strong>.</p>
+
+                <!-- Five Goals Grid -->
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5 mb-6">
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 lg:p-5 rounded-lg border-l-4 border-green-500">
+                        <div class="flex items-center mb-2">
+                            <span class="bg-green-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-3">1</span>
+                            <h4 class="font-bold text-green-800 dark:text-green-300 text-base lg:text-lg">Earn a Profit</h4>
+                        </div>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The insurer must bring in more revenue (premiums + investment income) than it pays out (claims + expenses). Without profit, the insurer cannot survive long-term or attract capital.</p>
+                    </div>
+
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 lg:p-5 rounded-lg border-l-4 border-blue-500">
+                        <div class="flex items-center mb-2">
+                            <span class="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-3">2</span>
+                            <h4 class="font-bold text-blue-800 dark:text-blue-300 text-base lg:text-lg">Meet Customer Needs</h4>
+                        </div>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Provide the coverages customers actually need, at fair prices, with excellent service. Happy customers renew policies and refer others. Dissatisfied customers leave and complain to regulators.</p>
+                    </div>
+
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 lg:p-5 rounded-lg border-l-4 border-purple-500">
+                        <div class="flex items-center mb-2">
+                            <span class="bg-purple-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-3">3</span>
+                            <h4 class="font-bold text-purple-800 dark:text-purple-300 text-base lg:text-lg">Comply with Legal Requirements</h4>
+                        </div>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Insurance is one of the most regulated industries. Insurers must follow state laws on rates, forms, licensing, claims handling, solvency, and consumer protection. Violations lead to fines, sanctions, or loss of license.</p>
+                    </div>
+
+                    <div class="bg-amber-50 dark:bg-amber-900/20 p-4 lg:p-5 rounded-lg border-l-4 border-amber-500">
+                        <div class="flex items-center mb-2">
+                            <span class="bg-amber-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-3">4</span>
+                            <h4 class="font-bold text-amber-800 dark:text-amber-300 text-base lg:text-lg">Diversify Risk</h4>
+                        </div>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Spread risk across many policyholders, geographic areas, and lines of business. Concentration kills: an insurer writing only Florida coastal property is one hurricane away from insolvency.</p>
+                    </div>
+
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 lg:p-5 rounded-lg border-l-4 border-red-500">
+                        <div class="flex items-center mb-2">
+                            <span class="bg-red-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-3">5</span>
+                            <h4 class="font-bold text-red-800 dark:text-red-300 text-base lg:text-lg">Fulfill Duty to Society</h4>
+                        </div>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Insurance serves a vital social function: it enables economic activity by transferring risk. Insurers have a responsibility to be fair, to remain solvent for policyholders, and to not abandon markets that need coverage.</p>
+                    </div>
+                </div>
+
+                <!-- Goal Conflicts -->
+                <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-red-500 mb-6">
+                    <h3 class="font-bold text-red-800 dark:text-red-300 text-lg lg:text-xl mb-3">When Goals Collide: The Conflict Problem</h3>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-4">These five goals are NOT always compatible. The value chain must constantly <strong>balance</strong> competing priorities:</p>
+
+                    <div class="space-y-3">
+                        <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded-lg">
+                            <p class="font-bold text-red-700 dark:text-red-300 text-sm lg:text-base">Profit vs. Customer Needs</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Raising premiums boosts profit but may make coverage unaffordable for customers. Paying every claim generously makes customers happy but may sink the bottom line.</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded-lg">
+                            <p class="font-bold text-red-700 dark:text-red-300 text-sm lg:text-base">Profit vs. Social Duty</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">The most profitable move might be to stop writing policies in hurricane-prone areas. But doing so leaves communities without insurance, harming society.</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded-lg">
+                            <p class="font-bold text-red-700 dark:text-red-300 text-sm lg:text-base">Diversification vs. Compliance</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">An insurer may want to expand into new states for diversification, but each state has different licensing requirements, rate filings, and regulations that increase compliance costs.</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded-lg">
+                            <p class="font-bold text-red-700 dark:text-red-300 text-sm lg:text-base">Compliance vs. Customer Needs</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Regulators may mandate specific policy language or prohibit certain coverages that customers actually want. The insurer cannot offer what the customer wants because the law says no.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Example -->
+                <div class="bg-gray-50 dark:bg-gray-700/50 p-4 lg:p-5 rounded-lg border-l-4 border-red-500">
+                    <p class="font-semibold text-red-800 dark:text-red-300 mb-2 text-base lg:text-lg">Real-World Scenario: Hurricane Season Dilemma</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> After a devastating hurricane season, an insurer's data shows that coastal Florida homeowners policies lost $200 million. The CEO is under pressure from shareholders to stop the bleeding.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Goal 1 (Profit) screams: "Stop writing in Florida!" Goal 4 (Diversify) agrees: "We are too concentrated in one risky area." But Goal 5 (Social Duty) pushes back: "These families need coverage. If we leave, who will insure them?" Goal 3 (Legal) adds: "The state insurance commissioner may not let us withdraw without a fight." Goal 2 (Customer Needs) notes: "Our Florida agents and customers are counting on us."</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> The insurer compromises: it stays in Florida but reduces its exposure by writing fewer new coastal policies, increasing deductibles, raising rates (after regulatory approval), and buying more reinsurance. No goal is fully satisfied, but all five are partially addressed. This is the constant balancing act of insurance management.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 7: Internal vs. External Constraints -->
+        <section id="constraints" class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">6. Internal vs. External Constraints</h2>
+
+                <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300 mb-6">The value chain does not operate in a vacuum. It is shaped by forces that limit what an insurer can do. Some of these forces are <strong>within the insurer's control</strong> (internal), and some are <strong>outside its control</strong> (external).</p>
+
+                <!-- Side-by-side comparison -->
+                <div class="grid lg:grid-cols-2 gap-6 mb-6">
+                    <!-- Internal -->
+                    <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-green-500">
+                        <h3 class="font-bold text-green-800 dark:text-green-300 text-lg lg:text-xl mb-3">Internal Constraints (Insurer Can Control)</h3>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mb-3">These are factors the insurer can improve, change, or invest in:</p>
+                        <div class="space-y-3">
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                                <p class="font-bold text-green-700 dark:text-green-300 text-sm lg:text-base">Efficiency</p>
+                                <p class="text-gray-600 dark:text-gray-400 text-xs lg:text-sm">How well does the insurer use its resources? Streamlined processes cost less.</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                                <p class="font-bold text-green-700 dark:text-green-300 text-sm lg:text-base">Expertise</p>
+                                <p class="text-gray-600 dark:text-gray-400 text-xs lg:text-sm">Quality of underwriters, actuaries, and claims adjusters. Skilled people make better decisions.</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                                <p class="font-bold text-green-700 dark:text-green-300 text-sm lg:text-base">Size</p>
+                                <p class="text-gray-600 dark:text-gray-400 text-xs lg:text-sm">Larger insurers can spread risk more broadly and achieve economies of scale.</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                                <p class="font-bold text-green-700 dark:text-green-300 text-sm lg:text-base">Financial Resources</p>
+                                <p class="text-gray-600 dark:text-gray-400 text-xs lg:text-sm">Capital and surplus determine how much risk an insurer can absorb.</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                                <p class="font-bold text-green-700 dark:text-green-300 text-sm lg:text-base">Technology</p>
+                                <p class="text-gray-600 dark:text-gray-400 text-xs lg:text-sm">Modern systems enable faster underwriting, better analytics, and smoother customer experiences.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- External -->
+                    <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-red-500">
+                        <h3 class="font-bold text-red-800 dark:text-red-300 text-lg lg:text-xl mb-3">External Constraints (Cannot Control)</h3>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mb-3">These are forces outside the insurer's control that it must adapt to:</p>
+                        <div class="space-y-3">
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                                <p class="font-bold text-red-700 dark:text-red-300 text-sm lg:text-base">Regulation</p>
+                                <p class="text-gray-600 dark:text-gray-400 text-xs lg:text-sm">State insurance departments set rules on rates, forms, licensing, and solvency. Insurers must comply.</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                                <p class="font-bold text-red-700 dark:text-red-300 text-sm lg:text-base">Rating Agencies</p>
+                                <p class="text-gray-600 dark:text-gray-400 text-xs lg:text-sm">AM Best, S&amp;P, and Moody's evaluate insurer financial strength. A downgrade hurts business.</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                                <p class="font-bold text-red-700 dark:text-red-300 text-sm lg:text-base">Competition</p>
+                                <p class="text-gray-600 dark:text-gray-400 text-xs lg:text-sm">Other insurers set the market price. Charging too much loses customers; charging too little loses money.</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                                <p class="font-bold text-red-700 dark:text-red-300 text-sm lg:text-base">Economic Conditions</p>
+                                <p class="text-gray-600 dark:text-gray-400 text-xs lg:text-sm">Recessions reduce demand. Low interest rates shrink investment income. Inflation increases claim costs.</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                                <p class="font-bold text-red-700 dark:text-red-300 text-sm lg:text-base">Public Sentiment</p>
+                                <p class="text-gray-600 dark:text-gray-400 text-xs lg:text-sm">Negative public opinion (e.g., after denied claims go viral) can trigger political action and regulatory changes.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Memory Trick -->
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-purple-500 mb-6">
+                    <h3 class="font-bold text-purple-800 dark:text-purple-300 text-base lg:text-lg">Memory Trick: Internal = "EESFT"</h3>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-2"><strong>E</strong>fficiency, <strong>E</strong>xpertise, <strong>S</strong>ize, <strong>F</strong>inancial resources, <strong>T</strong>echnology. Think "EESFT" &mdash; "Every Expert Starts From Training." These are all things an insurer can invest in and improve over time.</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-2"><strong>External = "RRCE + P"</strong> &mdash; <strong>R</strong>egulation, <strong>R</strong>ating agencies, <strong>C</strong>ompetition, <strong>E</strong>conomy, <strong>P</strong>ublic sentiment. "Regulators Really Control Everything, Period."</p>
+                </div>
+
+                <!-- Example -->
+                <div class="bg-gray-50 dark:bg-gray-700/50 p-4 lg:p-5 rounded-lg border-l-4 border-purple-500">
+                    <p class="font-semibold text-purple-800 dark:text-purple-300 mb-2 text-base lg:text-lg">Real-World Scenario: The Small Insurer's Challenge</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> A small regional insurer in the Midwest writes only commercial property insurance. It has 50 employees and $100 million in annual premium.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Internal constraints hit first: the insurer's <strong>size</strong> limits diversification, its <strong>technology</strong> is outdated (still using paper files), and it lacks <strong>expertise</strong> in emerging risks like cyber. Then external constraints compound the problem: a major <strong>competitor</strong> launches a slick online platform, <strong>economic</strong> inflation increases claim costs 15%, and the state <strong>regulator</strong> denies the insurer's requested rate increase, saying it is excessive.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> The insurer must decide: invest in technology (address internal constraint), find a niche where it can compete despite its size, or consider merging with a larger company. The interaction between internal and external constraints shapes every strategic decision in the value chain.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cheat Sheet -->
+        <section id="cheat-sheet" class="mb-8 lg:mb-10">
+            <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-5 lg:p-6 border-2 border-dashed border-gray-300 dark:border-gray-600">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100">Cheat Sheet</h2>
+                    <span class="text-sm text-gray-500 dark:text-gray-400">Print this page for quick reference</span>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4 lg:gap-6">
+                    <!-- Primary Activities -->
+                    <div>
+                        <h3 class="font-bold text-blue-700 dark:text-blue-300 text-base lg:text-lg mb-2">5 Primary Activities (in order)</h3>
+                        <ol class="list-decimal list-inside space-y-1 text-gray-700 dark:text-gray-300 text-sm lg:text-base">
+                            <li><strong>Product Development</strong> &mdash; design the policy</li>
+                            <li><strong>Marketing &amp; Distribution</strong> &mdash; sell the policy</li>
+                            <li><strong>Underwriting</strong> &mdash; select and price risks</li>
+                            <li><strong>Policy Issuance &amp; Service</strong> &mdash; issue and maintain</li>
+                            <li><strong>Claims Management</strong> &mdash; pay covered losses</li>
+                        </ol>
+                    </div>
+
+                    <!-- Support Activities -->
+                    <div>
+                        <h3 class="font-bold text-indigo-700 dark:text-indigo-300 text-base lg:text-lg mb-2">7 Support Activities</h3>
+                        <ul class="list-disc list-inside space-y-1 text-gray-700 dark:text-gray-300 text-sm lg:text-base">
+                            <li><strong>Actuarial</strong> &mdash; rates and reserves</li>
+                            <li><strong>Reinsurance</strong> &mdash; transfer risk for stability/capacity</li>
+                            <li><strong>Risk Control</strong> &mdash; help policyholders reduce losses</li>
+                            <li><strong>Premium Auditing</strong> &mdash; verify exposure/premium accuracy</li>
+                            <li><strong>IT</strong> &mdash; systems, data, digital infrastructure</li>
+                            <li><strong>Investments</strong> &mdash; grow premium float</li>
+                            <li><strong>HR / Legal / Compliance</strong> &mdash; enabling functions</li>
+                        </ul>
+                    </div>
+
+                    <!-- Five Goals -->
+                    <div>
+                        <h3 class="font-bold text-green-700 dark:text-green-300 text-base lg:text-lg mb-2">5 Insurer Goals</h3>
+                        <ol class="list-decimal list-inside space-y-1 text-gray-700 dark:text-gray-300 text-sm lg:text-base">
+                            <li>Earn a profit</li>
+                            <li>Meet customer needs</li>
+                            <li>Comply with legal requirements</li>
+                            <li>Diversify risk</li>
+                            <li>Fulfill duty to society</li>
+                        </ol>
+                        <p class="text-xs lg:text-sm text-gray-500 dark:text-gray-400 mt-2">These goals often CONFLICT with each other.</p>
+                    </div>
+
+                    <!-- Constraints -->
+                    <div>
+                        <h3 class="font-bold text-purple-700 dark:text-purple-300 text-base lg:text-lg mb-2">Constraints</h3>
+                        <p class="font-semibold text-gray-700 dark:text-gray-300 text-sm lg:text-base">Internal (can control):</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-xs lg:text-sm">Efficiency, Expertise, Size, Financial resources, Technology</p>
+                        <p class="font-semibold text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-2">External (cannot control):</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-xs lg:text-sm">Regulation, Rating agencies, Competition, Economy, Public sentiment</p>
+                    </div>
+                </div>
+
+                <!-- Key Concepts -->
+                <div class="mt-4 pt-4 border-t border-gray-300 dark:border-gray-600">
+                    <h3 class="font-bold text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-2">Key Concepts</h3>
+                    <div class="grid md:grid-cols-3 gap-3 text-sm lg:text-base">
+                        <div class="text-gray-700 dark:text-gray-300"><strong>Value Chain</strong> = interconnected activities creating customer value</div>
+                        <div class="text-gray-700 dark:text-gray-300"><strong>Porter's Framework</strong> = primary vs. support activities</div>
+                        <div class="text-gray-700 dark:text-gray-300"><strong>Underwriting</strong> = the "hub" that connects to almost every other function</div>
+                        <div class="text-gray-700 dark:text-gray-300"><strong>Claims</strong> = the "moment of truth" where the promise is fulfilled</div>
+                        <div class="text-gray-700 dark:text-gray-300"><strong>Premium Float</strong> = collected premiums not yet paid as claims (invested for income)</div>
+                        <div class="text-gray-700 dark:text-gray-300"><strong>Feedback Loop</strong> = claims data flows back to improve underwriting, actuarial, risk control</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Trap Alerts -->
+        <section id="exam-traps" class="mb-8 lg:mb-10">
+            <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-xl p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-red-800 dark:text-red-300 mb-4">Exam Trap Alerts</h2>
+                <div class="space-y-3">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2 text-base lg:text-lg">1. Primary vs. Support &mdash; Do Not Confuse Them</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Actuarial and reinsurance are <strong>support</strong> activities, even though they are critical. The test: does the activity directly produce or deliver the product to the customer? If no, it is support. Underwriting is primary (it directly decides who gets the product). Actuarial is support (it provides the data underwriting needs).</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2 text-base lg:text-lg">2. Claims Is the "Product"</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">If the exam asks "What is the insurer's actual product?" the answer is <strong>the promise to pay claims</strong>, not the paper policy document. The policy is just the contract. The real value the customer receives happens at claims time.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2 text-base lg:text-lg">3. Goals CONFLICT &mdash; They Are Not All Achievable Simultaneously</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Do not pick an answer that suggests an insurer can maximize all five goals at once. The correct answer always involves <strong>balancing</strong> or <strong>trade-offs</strong> between goals. If a choice says "the insurer should prioritize profit above all else," that is wrong.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2 text-base lg:text-lg">4. Internal vs. External &mdash; Know the Difference</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">"Competition" is <strong>external</strong> &mdash; the insurer cannot control what competitors do. "Technology" is <strong>internal</strong> &mdash; the insurer can choose to invest in better systems. If you see a constraint and are unsure, ask: "Can the insurer's CEO decide to change this?" If yes, it is internal. If no, external.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2 text-base lg:text-lg">5. The Chain Is Circular, Not Just Linear</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Do not think of the value chain as a one-way assembly line. Data flows <strong>backward</strong> through the chain: claims data informs underwriting, which informs product development, which informs marketing. If the exam asks about "feedback," this is what it means.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2 text-base lg:text-lg">6. Reinsurance = Support, Not Primary</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Reinsurance is a behind-the-scenes activity. The policyholder never directly interacts with the reinsurer. Even though reinsurance is critical to the insurer's capacity, it is a <strong>support</strong> function. Do not confuse it with the insurer's primary underwriting function.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Reference Summary -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-gradient-to-r from-blue-600 to-blue-800 rounded-xl p-5 lg:p-6 text-white">
+                <h2 class="text-xl lg:text-2xl font-bold mb-6">Quick Reference Summary</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Value Chain</p>
+                        <p class="text-sm text-blue-100">Interconnected activities creating and delivering customer value; based on Porter's framework</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Primary Activities (5)</p>
+                        <p class="text-sm text-blue-100">Product Dev, Marketing/Distribution, Underwriting, Policy Service, Claims</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Support Activities (7)</p>
+                        <p class="text-sm text-blue-100">Actuarial, Reinsurance, Risk Control, Premium Audit, IT, Investments, HR/Legal/Compliance</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Five Insurer Goals</p>
+                        <p class="text-sm text-blue-100">Profit, Customer Needs, Legal Compliance, Risk Diversification, Social Duty</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Internal Constraints</p>
+                        <p class="text-sm text-blue-100">Efficiency, Expertise, Size, Financial Resources, Technology (can control)</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">External Constraints</p>
+                        <p class="text-sm text-blue-100">Regulation, Rating Agencies, Competition, Economy, Public Sentiment (cannot control)</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Underwriting = Hub</p>
+                        <p class="text-sm text-blue-100">Receives input from almost every support function; central to the value chain</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Claims = Promise Fulfilled</p>
+                        <p class="text-sm text-blue-100">The moment of truth where the insurer delivers its actual product: paying losses</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Goal Conflicts</p>
+                        <p class="text-sm text-blue-100">Goals pull in opposite directions; management must constantly balance trade-offs</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Navigation -->
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="../index.html" class="text-blue-300 hover:text-blue-100 transition-colors">&larr; Assignment Index</a>
+                <span class="text-gray-400">Part 1 of 4</span>
+                <a href="../part-2/index.html" class="text-blue-300 hover:text-blue-100 transition-colors">Part 2: Harnessing the Value Chain &rarr;</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AI Tutor Button -->
+    <button onclick="openAITutor({topic: 'Insurance Value Chain', context: 'CPCU 520 Assignment 1 Part 1: Understanding the Insurance Value Chain. Key concepts: Porters value chain framework adapted to insurance. 5 Primary Activities: Product Development, Marketing/Distribution, Underwriting, Policy Issuance/Service, Claims Management. 7 Support Activities: Actuarial, Reinsurance, Risk Control, Premium Auditing, IT, Investments, HR/Legal/Compliance. 5 Insurer Goals: Earn profit, Meet customer needs, Comply with laws, Diversify risk, Fulfill social duty - these goals CONFLICT. Internal constraints (can control): Efficiency, Expertise, Size, Financial Resources, Technology. External constraints (cannot control): Regulation, Rating Agencies, Competition, Economy, Public Sentiment. Underwriting is the hub of the chain. Claims is the moment of truth. The chain is circular with feedback loops.'})" class="fixed bottom-6 right-6 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full p-4 shadow-lg z-50 transition-colors">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+        </svg>
+    </button>
+
+</body>
+</html>

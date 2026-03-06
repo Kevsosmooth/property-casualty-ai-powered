@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment 6 Part 2: Types of Reinsurance Agreements | CPCU 520</title>
+    <link rel="icon" type="image/svg+xml" href="../../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <link rel="stylesheet" href="../../../../css/styles.css">
+    <script src="../../../../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+        }
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <!-- Settings & Theme Toggle Buttons -->
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="showAPIKeySetup()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings">
+            <svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+        </button>
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/>
+            </svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-cyan-600 to-cyan-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap gap-2 text-sm mb-2">
+                <a href="../../../../index.html" class="text-cyan-200 hover:text-white">Home</a>
+                <span class="text-cyan-300">/</span>
+                <a href="../../../index.html" class="text-cyan-200 hover:text-white">CPCU</a>
+                <span class="text-cyan-300">/</span>
+                <a href="../../index.html" class="text-cyan-200 hover:text-white">520</a>
+                <span class="text-cyan-300">/</span>
+                <a href="../index.html" class="text-cyan-200 hover:text-white">Assignment 6</a>
+                <span class="text-cyan-300">/</span>
+                <span class="text-white">Part 2</span>
+            </div>
+            <h1 class="text-3xl font-bold">Assignment 6 Part 2: Types of Reinsurance Agreements</h1>
+            <p class="text-cyan-200 mt-1">Pro rata vs. excess of loss &mdash; how premiums, losses, and dollars actually flow between insurer and reinsurer</p>
+        </div>
+    </header>
+
+    <!-- Part Navigation -->
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-wrap gap-2 text-sm">
+                <a href="../index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Overview</a>
+                <a href="../part-1/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 1</a>
+                <span class="bg-teal-600 text-white px-3 py-1 rounded font-medium">Part 2</span>
+                <a href="../part-3/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 3</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-5xl lg:max-w-7xl">
+
+        <!-- Start Here: 5 Things You MUST Know -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-teal-100 to-cyan-200 dark:from-teal-900/40 dark:to-cyan-800/40 rounded-xl p-6 border border-teal-300 dark:border-teal-700">
+                <h3 class="text-xl lg:text-2xl font-bold text-teal-800 dark:text-teal-200 mb-4">Start Here: 5 Things You MUST Know</h3>
+                <div class="grid md:grid-cols-2 gap-3">
+                    <div class="flex items-start">
+                        <span class="bg-teal-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Pro rata (proportional)</strong> reinsurance shares premiums AND losses in the same percentage. If the reinsurer takes 40% of premium, it pays 40% of every loss.</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-teal-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Excess of loss (non-proportional)</strong> only kicks in when a loss exceeds a threshold. The reinsurer charges a flat premium, NOT a proportional share.</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-teal-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Quota share</strong> = fixed % on ALL policies. <strong>Surplus share</strong> = variable % based on each policy's size vs. the insurer's retention ("line").</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-teal-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">4</span>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Three types of XOL: <strong>per risk</strong> (one building), <strong>per occurrence/cat</strong> (one event, many policies), and <strong>aggregate stop loss</strong> (whole year).</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-teal-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">5</span>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Most insurers use <strong>BOTH</strong> pro rata and excess of loss in layers. A complete reinsurance program stacks multiple treaties for protection at every level.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Overview Section -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">How Reinsurance Agreements Actually Work</h2>
+
+                <div class="bg-teal-50 dark:bg-teal-900/30 border border-teal-200 dark:border-teal-800 rounded-lg p-5 lg:p-6 mb-6">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Part 1 covered <em>why</em> insurers use reinsurance and <em>where</em> it comes from. Now we get into the mechanics: <strong>how do the dollars actually flow?</strong> There are two fundamentally different approaches. In <strong>pro rata</strong> reinsurance, the insurer and reinsurer split premiums and losses in the same proportion &mdash; like business partners sharing revenue and expenses. In <strong>excess of loss</strong> reinsurance, the reinsurer only pays when losses blow past a set threshold &mdash; more like buying a deductible for the insurer itself.</p>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 lg:p-5 rounded-r-lg">
+                    <p class="font-bold text-amber-800 dark:text-amber-300 text-lg">Exam Alert!</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">This is THE most math-heavy reinsurance topic. Expect calculation questions: "Given a 40% quota share, what does the reinsurer pay on a $200,000 loss?" Be ready to calculate ceding commissions, surplus share percentages, and excess of loss payments. <strong>Know the formulas cold.</strong></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 1: Pro Rata (Proportional) Reinsurance -->
+        <section id="pro-rata" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">1. Pro Rata (Proportional) Reinsurance</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-6">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg lg:text-xl">The Core Idea</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">The insurer and reinsurer share premiums AND losses in a <strong>pre-agreed proportion</strong>. If the reinsurer takes 40% of the premium, it also pays 40% of every loss. Think of it as a partnership where both sides share the revenue and the costs in the same ratio.</p>
+                </div>
+
+                <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-green-500 mb-6">
+                    <h3 class="font-bold text-green-800 dark:text-green-300 text-lg lg:text-xl">Ceding Commission</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">In pro rata treaties, the reinsurer pays a <strong>ceding commission</strong> back to the primary insurer. Why? Because the insurer did all the work &mdash; marketing, underwriting, issuing the policy, handling claims. The ceding commission reimburses the insurer for those <strong>acquisition costs</strong>. It typically ranges from <strong>25% to 40%</strong> of ceded premium.</p>
+                </div>
+
+                <!-- Quota Share -->
+                <div class="bg-gray-50 dark:bg-gray-700/50 rounded-xl p-5 lg:p-6 mb-6 border border-gray-200 dark:border-gray-600">
+                    <h3 class="text-xl lg:text-2xl font-bold text-teal-700 dark:text-teal-300 mb-4">1A. Quota Share Treaty</h3>
+
+                    <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 border-l-4 border-purple-500 mb-4">
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Definition:</strong> A fixed percentage split applied to <strong>ALL</strong> policies in the treaty. Every policy, every premium, every loss &mdash; same percentage, no exceptions. The insurer cannot cherry-pick which risks to cede.</p>
+                    </div>
+
+                    <!-- Worked Example -->
+                    <div class="bg-teal-50 dark:bg-teal-900/20 p-5 lg:p-6 rounded-lg border-l-4 border-teal-500 mb-4">
+                        <p class="font-semibold text-teal-800 dark:text-teal-300 mb-3 text-lg">Worked Example: 40% Quota Share with 30% Ceding Commission</p>
+                        <div class="space-y-3 text-base lg:text-lg">
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> ABC Insurance writes a commercial property policy with a <strong>$100,000 premium</strong>. They have a 40% quota share treaty. The reinsurer pays a 30% ceding commission on ceded premium.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> A fire causes an <strong>$80,000 loss</strong>.</p>
+                        </div>
+
+                        <div class="grid md:grid-cols-2 gap-4 mt-4">
+                            <div class="bg-white dark:bg-gray-700 p-4 rounded-lg border border-teal-200 dark:border-teal-700">
+                                <p class="font-bold text-teal-700 dark:text-teal-300 mb-2">Reinsurer (40%)</p>
+                                <ul class="space-y-1 text-gray-700 dark:text-gray-300 text-sm lg:text-base">
+                                    <li>Receives premium: 40% x $100,000 = <strong>$40,000</strong></li>
+                                    <li>Pays loss: 40% x $80,000 = <strong>$32,000</strong></li>
+                                    <li>Pays ceding commission: 30% x $40,000 = <strong>$12,000</strong></li>
+                                    <li class="border-t border-gray-300 dark:border-gray-500 pt-1 mt-1">Net: $40,000 - $32,000 - $12,000 = <strong class="text-red-600 dark:text-red-400">-$4,000</strong></li>
+                                </ul>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-4 rounded-lg border border-cyan-200 dark:border-cyan-700">
+                                <p class="font-bold text-cyan-700 dark:text-cyan-300 mb-2">Ceding Insurer (60%)</p>
+                                <ul class="space-y-1 text-gray-700 dark:text-gray-300 text-sm lg:text-base">
+                                    <li>Keeps premium: 60% x $100,000 = <strong>$60,000</strong></li>
+                                    <li>Pays loss: 60% x $80,000 = <strong>$48,000</strong></li>
+                                    <li>Receives ceding commission: <strong>+$12,000</strong></li>
+                                    <li class="border-t border-gray-300 dark:border-gray-500 pt-1 mt-1">Net: $60,000 - $48,000 + $12,000 = <strong class="text-green-600 dark:text-green-400">+$24,000</strong></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="bg-amber-50 dark:bg-amber-900/20 p-3 rounded mt-4 border border-amber-200 dark:border-amber-700">
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>Why did the reinsurer lose money here?</strong> This was a bad risk (80% loss ratio). On profitable policies with low losses, the reinsurer comes out ahead. Over thousands of policies, the math works in the reinsurer's favor &mdash; that is the law of large numbers.</p>
+                        </div>
+                    </div>
+
+                    <!-- Pros and Cons -->
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border border-green-200 dark:border-green-800">
+                            <p class="font-bold text-green-800 dark:text-green-300 mb-2">Advantages</p>
+                            <ul class="space-y-1 text-gray-700 dark:text-gray-300 text-sm lg:text-base">
+                                <li><strong>Simple</strong> &mdash; one percentage for everything</li>
+                                <li><strong>Predictable</strong> &mdash; cash flows are easy to forecast</li>
+                                <li><strong>Surplus relief</strong> &mdash; immediately reduces net liabilities on the balance sheet</li>
+                                <li><strong>Great for new insurers</strong> &mdash; limits exposure while building a book of business</li>
+                            </ul>
+                        </div>
+                        <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border border-red-200 dark:border-red-800">
+                            <p class="font-bold text-red-800 dark:text-red-300 mb-2">Disadvantages</p>
+                            <ul class="space-y-1 text-gray-700 dark:text-gray-300 text-sm lg:text-base">
+                                <li><strong>Gives away profit on good risks</strong> &mdash; even the most profitable policies get ceded at 40%</li>
+                                <li><strong>No selectivity</strong> &mdash; cannot keep more of the best risks</li>
+                                <li><strong>Expensive over time</strong> &mdash; as the book matures and profitability improves, the insurer may want to retain more</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Surplus Share -->
+                <div class="bg-gray-50 dark:bg-gray-700/50 rounded-xl p-5 lg:p-6 border border-gray-200 dark:border-gray-600">
+                    <h3 class="text-xl lg:text-2xl font-bold text-teal-700 dark:text-teal-300 mb-4">1B. Surplus Share Treaty</h3>
+
+                    <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 border-l-4 border-purple-500 mb-4">
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Definition:</strong> The percentage ceded <strong>varies from policy to policy</strong> based on each policy's insured value relative to the insurer's retention (called a <strong>"line"</strong>). Small policies may not be ceded at all. Large ones are ceded heavily.</p>
+                    </div>
+
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 border-l-4 border-blue-500 mb-4">
+                        <h4 class="font-bold text-blue-800 dark:text-blue-300 mb-2">Key Terms You Must Know</h4>
+                        <ul class="mt-2 space-y-2 text-gray-700 dark:text-gray-300 text-base lg:text-lg">
+                            <li><strong>Line</strong> = the dollar amount the insurer retains on each risk. Think of it as the insurer's "comfort level" for a single policy.</li>
+                            <li><strong>Surplus</strong> = everything above the line that gets ceded to the reinsurer.</li>
+                            <li><strong>Treaty limit</strong> = expressed as a multiple of lines. A "9-line surplus share" means the reinsurer accepts up to <strong>9 times</strong> the insurer's line.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Key Formula Box -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-3 lg:gap-4 mb-4">
+                        <div class="bg-white dark:bg-gray-800 p-3 lg:p-4 rounded-lg text-center border border-teal-200 dark:border-teal-700">
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400 mb-1">Ceded Percentage</p>
+                            <p class="text-sm lg:text-base font-bold text-teal-700 dark:text-teal-300">(Value - Line) / Value</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-800 p-3 lg:p-4 rounded-lg text-center border border-teal-200 dark:border-teal-700">
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400 mb-1">Max Reinsurer Accepts</p>
+                            <p class="text-sm lg:text-base font-bold text-teal-700 dark:text-teal-300">Line x Number of Lines</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-800 p-3 lg:p-4 rounded-lg text-center border border-teal-200 dark:border-teal-700">
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400 mb-1">Max Policy Insurer Can Write</p>
+                            <p class="text-sm lg:text-base font-bold text-teal-700 dark:text-teal-300">Line + (Line x # Lines)</p>
+                        </div>
+                    </div>
+
+                    <!-- Worked Example with 3 policies -->
+                    <div class="bg-teal-50 dark:bg-teal-900/20 p-5 lg:p-6 rounded-lg border-l-4 border-teal-500 mb-4">
+                        <p class="font-semibold text-teal-800 dark:text-teal-300 mb-3 text-lg">Worked Example: 9-Line Surplus Share (Line = $500,000)</p>
+                        <div class="space-y-2 text-base lg:text-lg mb-4">
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Midwest Insurance has a surplus share treaty. Their line is <strong>$500,000</strong> and the treaty is a 9-line maximum.</p>
+                            <p class="text-gray-700 dark:text-gray-300">Maximum the reinsurer accepts on any risk: 9 x $500,000 = <strong>$4,500,000</strong></p>
+                            <p class="text-gray-700 dark:text-gray-300">Maximum policy value the insurer can write: $500K + $4.5M = <strong>$5,000,000</strong></p>
+                        </div>
+
+                        <div class="overflow-x-auto mb-4">
+                            <table class="w-full text-sm lg:text-base">
+                                <thead>
+                                    <tr class="bg-teal-600 text-white">
+                                        <th class="p-3 lg:p-4 text-left rounded-tl-lg">Policy</th>
+                                        <th class="p-3 lg:p-4 text-left">Insured Value</th>
+                                        <th class="p-3 lg:p-4 text-left">Insurer Keeps (Line)</th>
+                                        <th class="p-3 lg:p-4 text-left">Ceded to Reinsurer</th>
+                                        <th class="p-3 lg:p-4 text-left rounded-tr-lg">Ceded %</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-gray-200 dark:divide-gray-600">
+                                    <tr class="bg-white dark:bg-gray-700">
+                                        <td class="p-3 lg:p-4 font-semibold">Policy A &mdash; Small shop</td>
+                                        <td class="p-3 lg:p-4">$500,000</td>
+                                        <td class="p-3 lg:p-4 text-green-700 dark:text-green-400 font-bold">$500,000</td>
+                                        <td class="p-3 lg:p-4">$0</td>
+                                        <td class="p-3 lg:p-4 font-bold">0%</td>
+                                    </tr>
+                                    <tr class="bg-gray-50 dark:bg-gray-600">
+                                        <td class="p-3 lg:p-4 font-semibold">Policy B &mdash; Warehouse</td>
+                                        <td class="p-3 lg:p-4">$2,000,000</td>
+                                        <td class="p-3 lg:p-4 text-green-700 dark:text-green-400 font-bold">$500,000</td>
+                                        <td class="p-3 lg:p-4 text-teal-700 dark:text-teal-400 font-bold">$1,500,000</td>
+                                        <td class="p-3 lg:p-4 font-bold">75%</td>
+                                    </tr>
+                                    <tr class="bg-white dark:bg-gray-700">
+                                        <td class="p-3 lg:p-4 font-semibold">Policy C &mdash; Factory</td>
+                                        <td class="p-3 lg:p-4">$5,000,000</td>
+                                        <td class="p-3 lg:p-4 text-green-700 dark:text-green-400 font-bold">$500,000</td>
+                                        <td class="p-3 lg:p-4 text-teal-700 dark:text-teal-400 font-bold">$4,500,000</td>
+                                        <td class="p-3 lg:p-4 font-bold">90%</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="space-y-3 text-base lg:text-lg">
+                            <p class="text-gray-700 dark:text-gray-300"><strong>Now add a loss to Policy B:</strong> Fire causes a <strong>$400,000</strong> loss. Policy B's ceded percentage is 75%.</p>
+                            <div class="grid md:grid-cols-2 gap-4 mt-2">
+                                <div class="bg-white dark:bg-gray-700 p-4 rounded-lg border border-teal-200 dark:border-teal-700">
+                                    <p class="font-bold text-teal-700 dark:text-teal-300">Reinsurer pays</p>
+                                    <p class="text-gray-700 dark:text-gray-300">75% x $400,000 = <strong>$300,000</strong></p>
+                                </div>
+                                <div class="bg-white dark:bg-gray-700 p-4 rounded-lg border border-cyan-200 dark:border-cyan-700">
+                                    <p class="font-bold text-cyan-700 dark:text-cyan-300">Insurer pays</p>
+                                    <p class="text-gray-700 dark:text-gray-300">25% x $400,000 = <strong>$100,000</strong></p>
+                                </div>
+                            </div>
+                            <p class="text-gray-700 dark:text-gray-300 mt-3"><strong>Now add a loss to Policy A:</strong> Same $400,000 fire loss. Policy A's ceded percentage is <strong>0%</strong> &mdash; the insurer pays the entire $400,000 itself because the policy fits within its line.</p>
+                        </div>
+                    </div>
+
+                    <!-- Pros and Cons -->
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border border-green-200 dark:border-green-800">
+                            <p class="font-bold text-green-800 dark:text-green-300 mb-2">Advantages</p>
+                            <ul class="space-y-1 text-gray-700 dark:text-gray-300 text-sm lg:text-base">
+                                <li><strong>Keeps 100% of small risks</strong> &mdash; only cedes what exceeds the line</li>
+                                <li><strong>Retains more profit</strong> on the smaller, bread-and-butter policies</li>
+                                <li><strong>Increases large-line capacity</strong> &mdash; can write policies well beyond its own retention</li>
+                            </ul>
+                        </div>
+                        <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border border-red-200 dark:border-red-800">
+                            <p class="font-bold text-red-800 dark:text-red-300 mb-2">Disadvantages</p>
+                            <ul class="space-y-1 text-gray-700 dark:text-gray-300 text-sm lg:text-base">
+                                <li><strong>Complex administration</strong> &mdash; every policy has a different cession percentage</li>
+                                <li><strong>Detailed reporting</strong> &mdash; must send individual policy details to the reinsurer</li>
+                                <li><strong>No catastrophe protection</strong> &mdash; a hurricane hitting 500 small policies within the line is not helped at all</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Excess of Loss (Non-Proportional) Reinsurance -->
+        <section id="xol" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">2. Excess of Loss (Non-Proportional) Reinsurance</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-6">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg lg:text-xl">The Core Idea</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">The reinsurer only pays when losses <strong>exceed a specified threshold</strong> called the <strong>retention</strong> (or <strong>attachment point</strong>). Premium is NOT shared proportionally &mdash; the reinsurer charges a flat negotiated fee for the protection. Think of it like a very high deductible that the insurer buys for itself.</p>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 rounded-r-lg mb-6">
+                    <p class="font-bold text-amber-800 dark:text-amber-300">Key Notation: "$X xs $Y"</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">XOL treaties are written as <strong>"$X xs $Y"</strong> &mdash; read as "X excess of Y." Example: <strong>"$2M xs $500K"</strong> means the reinsurer covers up to $2 million of loss that exceeds the insurer's $500K retention. Maximum covered loss = $500K + $2M = <strong>$2.5M</strong>. Anything above $2.5M is uninsured unless there is another layer.</p>
+                </div>
+
+                <!-- Per Risk XOL -->
+                <div class="bg-gray-50 dark:bg-gray-700/50 rounded-xl p-5 lg:p-6 mb-6 border border-gray-200 dark:border-gray-600">
+                    <h3 class="text-xl lg:text-2xl font-bold text-teal-700 dark:text-teal-300 mb-4">2A. Per Risk Excess of Loss</h3>
+
+                    <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 border-l-4 border-purple-500 mb-4">
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>How it works:</strong> Applies to <strong>individual risks</strong> &mdash; one building, one policy. Each loss on a single risk is measured against the retention. If the loss is below the retention, the reinsurer pays nothing. Used primarily for property and large commercial risks.</p>
+                    </div>
+
+                    <div class="bg-teal-50 dark:bg-teal-900/20 p-5 lg:p-6 rounded-lg border-l-4 border-teal-500 mb-4">
+                        <p class="font-semibold text-teal-800 dark:text-teal-300 mb-3 text-lg">Worked Example: $2M xs $500K Per Risk XOL</p>
+                        <div class="space-y-3 text-base lg:text-lg">
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Coastal Insurance has a per risk excess of loss treaty: <strong>$2,000,000 xs $500,000</strong>. This means the insurer pays the first $500K on any single risk; the reinsurer covers the next $2M above that.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> A fire destroys a warehouse. Total loss = <strong>$1,800,000</strong>.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong></p>
+                        </div>
+                        <div class="grid md:grid-cols-2 gap-4 mt-3">
+                            <div class="bg-white dark:bg-gray-700 p-4 rounded-lg border border-cyan-200 dark:border-cyan-700">
+                                <p class="font-bold text-cyan-700 dark:text-cyan-300">Insurer pays</p>
+                                <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">First <strong>$500,000</strong> (retention)</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-4 rounded-lg border border-teal-200 dark:border-teal-700">
+                                <p class="font-bold text-teal-700 dark:text-teal-300">Reinsurer pays</p>
+                                <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">$1,800,000 - $500,000 = <strong>$1,300,000</strong></p>
+                            </div>
+                        </div>
+                        <div class="bg-amber-50 dark:bg-amber-900/20 p-3 rounded mt-4 border border-amber-200 dark:border-amber-700">
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What if the loss were $3,000,000?</strong> Insurer pays $500K. Reinsurer pays $2M (the treaty limit). The remaining $500K is <strong>uninsured</strong> unless there is another layer above this one.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-l-4 border-blue-500">
+                        <p class="font-semibold text-blue-800 dark:text-blue-300 mb-2">Another Scenario: Small Loss</p>
+                        <div class="space-y-2 text-sm lg:text-base">
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Same treaty &mdash; $2M xs $500K. A minor kitchen fire causes a <strong>$200,000</strong> loss.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Insurer pays the entire $200,000. <strong>Reinsurer pays nothing</strong> because $200K is below the $500K retention. This is the key difference from pro rata &mdash; the reinsurer does not participate in small losses.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Per Occurrence / Catastrophe XOL -->
+                <div class="bg-gray-50 dark:bg-gray-700/50 rounded-xl p-5 lg:p-6 mb-6 border border-gray-200 dark:border-gray-600">
+                    <h3 class="text-xl lg:text-2xl font-bold text-teal-700 dark:text-teal-300 mb-4">2B. Per Occurrence / Catastrophe Excess of Loss</h3>
+
+                    <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 border-l-4 border-purple-500 mb-4">
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>How it works:</strong> Applies when a <strong>single event</strong> (hurricane, earthquake, tornado) causes losses across <strong>multiple policies</strong>. All losses from that one event are added together and measured against the retention. <strong>This is how insurers survive catastrophes.</strong></p>
+                    </div>
+
+                    <div class="bg-teal-50 dark:bg-teal-900/20 p-5 lg:p-6 rounded-lg border-l-4 border-teal-500 mb-4">
+                        <p class="font-semibold text-teal-800 dark:text-teal-300 mb-3 text-lg">Worked Example: $40M xs $10M Catastrophe XOL</p>
+                        <div class="space-y-3 text-base lg:text-lg">
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Sunshine Insurance writes homeowners policies across Florida. They have a catastrophe XOL treaty: <strong>$40,000,000 xs $10,000,000</strong>.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> A Category 4 hurricane causes damage across 200 policies. Total claims from this single event = <strong>$50,000,000</strong>.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong></p>
+                        </div>
+                        <div class="grid md:grid-cols-2 gap-4 mt-3">
+                            <div class="bg-white dark:bg-gray-700 p-4 rounded-lg border border-cyan-200 dark:border-cyan-700">
+                                <p class="font-bold text-cyan-700 dark:text-cyan-300">Insurer pays</p>
+                                <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">First <strong>$10,000,000</strong> (retention)</p>
+                                <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">This is the insurer's "deductible" for the event</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-4 rounded-lg border border-teal-200 dark:border-teal-700">
+                                <p class="font-bold text-teal-700 dark:text-teal-300">Reinsurer pays</p>
+                                <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">$50M - $10M = <strong>$40,000,000</strong> (at the treaty limit)</p>
+                                <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Without this, Sunshine Insurance might be bankrupt</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Layering Diagram -->
+                    <div class="bg-indigo-50 dark:bg-indigo-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-indigo-500">
+                        <h4 class="font-bold text-indigo-800 dark:text-indigo-300 text-lg mb-3">Catastrophe XOL Is Often Layered</h4>
+                        <p class="text-gray-700 dark:text-gray-300 mb-4 text-base lg:text-lg">Instead of buying one massive treaty, insurers stack multiple layers. Each layer has a different reinsurer and a different price. Lower layers are cheaper per dollar (they trigger more often). Higher layers are expensive per dollar (rare but enormous).</p>
+                        <div class="flex flex-col gap-2">
+                            <div class="bg-red-100 dark:bg-red-900/30 p-3 lg:p-4 rounded-lg text-center border border-red-300 dark:border-red-700">
+                                <p class="font-bold text-red-800 dark:text-red-300 text-base lg:text-lg">Layer 3: $50M xs $50M</p>
+                                <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300">Covers losses from $50M to $100M &mdash; most expensive, least likely to trigger</p>
+                            </div>
+                            <div class="text-center text-gray-400 text-lg font-bold">|</div>
+                            <div class="bg-amber-100 dark:bg-amber-900/30 p-3 lg:p-4 rounded-lg text-center border border-amber-300 dark:border-amber-700">
+                                <p class="font-bold text-amber-800 dark:text-amber-300 text-base lg:text-lg">Layer 2: $30M xs $20M</p>
+                                <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300">Covers losses from $20M to $50M &mdash; moderate price</p>
+                            </div>
+                            <div class="text-center text-gray-400 text-lg font-bold">|</div>
+                            <div class="bg-green-100 dark:bg-green-900/30 p-3 lg:p-4 rounded-lg text-center border border-green-300 dark:border-green-700">
+                                <p class="font-bold text-green-800 dark:text-green-300 text-base lg:text-lg">Layer 1: $10M xs $10M</p>
+                                <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300">Covers losses from $10M to $20M &mdash; cheapest, most likely to trigger</p>
+                            </div>
+                            <div class="text-center text-gray-400 text-lg font-bold">|</div>
+                            <div class="bg-cyan-100 dark:bg-cyan-900/30 p-3 lg:p-4 rounded-lg text-center border border-cyan-300 dark:border-cyan-700">
+                                <p class="font-bold text-cyan-800 dark:text-cyan-300 text-base lg:text-lg">Insurer Retention: First $10M</p>
+                                <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300">The insurer always absorbs this before any reinsurance kicks in</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Aggregate / Stop Loss XOL -->
+                <div class="bg-gray-50 dark:bg-gray-700/50 rounded-xl p-5 lg:p-6 border border-gray-200 dark:border-gray-600">
+                    <h3 class="text-xl lg:text-2xl font-bold text-teal-700 dark:text-teal-300 mb-4">2C. Aggregate Excess of Loss (Stop Loss)</h3>
+
+                    <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 border-l-4 border-purple-500 mb-4">
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>How it works:</strong> Instead of looking at individual risks or events, this covers the insurer's <strong>total losses over an entire year</strong>. The retention is typically expressed as a <strong>loss ratio</strong> (total losses divided by total earned premium). If the annual loss ratio exceeds the agreed threshold, the reinsurer pays the excess.</p>
+                    </div>
+
+                    <div class="bg-teal-50 dark:bg-teal-900/20 p-5 lg:p-6 rounded-lg border-l-4 border-teal-500 mb-4">
+                        <p class="font-semibold text-teal-800 dark:text-teal-300 mb-3 text-lg">Worked Example: Stop Loss at 75% Loss Ratio</p>
+                        <div class="space-y-3 text-base lg:text-lg">
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Heartland Insurance earns <strong>$20,000,000</strong> in annual premium. Their aggregate stop loss treaty says the reinsurer pays when the loss ratio exceeds <strong>75%</strong>, up to a <strong>95%</strong> cap.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> A terrible year with severe weather across the Midwest. Total claims = <strong>$18,000,000</strong>. Loss ratio = $18M / $20M = <strong>90%</strong>.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong></p>
+                        </div>
+                        <div class="grid md:grid-cols-2 gap-4 mt-3">
+                            <div class="bg-white dark:bg-gray-700 p-4 rounded-lg border border-cyan-200 dark:border-cyan-700">
+                                <p class="font-bold text-cyan-700 dark:text-cyan-300">Insurer pays</p>
+                                <p class="text-gray-700 dark:text-gray-300">75% x $20M = <strong>$15,000,000</strong></p>
+                                <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Their retention: the first 75 cents of every premium dollar in losses</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-4 rounded-lg border border-teal-200 dark:border-teal-700">
+                                <p class="font-bold text-teal-700 dark:text-teal-300">Reinsurer pays</p>
+                                <p class="text-gray-700 dark:text-gray-300">(90% - 75%) x $20M = 15% x $20M = <strong>$3,000,000</strong></p>
+                                <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Covers the gap between actual (90%) and threshold (75%)</p>
+                            </div>
+                        </div>
+                        <div class="bg-amber-50 dark:bg-amber-900/20 p-3 rounded mt-4 border border-amber-200 dark:border-amber-700">
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>What if the loss ratio hit 100% ($20M in losses)?</strong> The treaty caps at 95%, so the reinsurer pays (95% - 75%) x $20M = <strong>$4,000,000</strong>. The remaining 5% ($1,000,000) is on the insurer. Total insurer cost: $15M + $1M = <strong>$16M</strong>.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 border-l-4 border-blue-500">
+                        <p class="font-bold text-blue-800 dark:text-blue-300 mb-2">Why Is This Type Useful?</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Aggregate stop loss protects against the <strong>accumulation of many smaller losses</strong>. A single hurricane is dramatic, but an insurer can also be crushed by a year where every line of business has slightly worse-than-expected losses. No single event triggers per risk or cat XOL, but the total adds up and devastates profitability. Stop loss is the safety net for that scenario.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Pro Rata vs. Excess of Loss Comparison -->
+        <section id="comparison" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">3. Pro Rata vs. Excess of Loss: Side-by-Side</h2>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm lg:text-base">
+                        <thead>
+                            <tr class="bg-teal-600 text-white">
+                                <th class="p-3 lg:p-4 text-left rounded-tl-lg">Feature</th>
+                                <th class="p-3 lg:p-4 text-left">Pro Rata (Proportional)</th>
+                                <th class="p-3 lg:p-4 text-left rounded-tr-lg">Excess of Loss (XOL)</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                            <tr class="bg-white dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-semibold">Premium sharing</td>
+                                <td class="p-3 lg:p-4"><strong class="text-green-700 dark:text-green-400">Yes</strong> &mdash; proportional split</td>
+                                <td class="p-3 lg:p-4"><strong class="text-red-700 dark:text-red-400">No</strong> &mdash; flat negotiated fee</td>
+                            </tr>
+                            <tr class="bg-gray-50 dark:bg-gray-600">
+                                <td class="p-3 lg:p-4 font-semibold">When reinsurer pays</td>
+                                <td class="p-3 lg:p-4">On <strong>every loss</strong>, proportionally</td>
+                                <td class="p-3 lg:p-4">Only when loss <strong>exceeds threshold</strong></td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-semibold">Ceding commission</td>
+                                <td class="p-3 lg:p-4"><strong class="text-green-700 dark:text-green-400">Yes</strong> &mdash; reinsurer pays insurer 25-40%</td>
+                                <td class="p-3 lg:p-4"><strong class="text-red-700 dark:text-red-400">No</strong></td>
+                            </tr>
+                            <tr class="bg-gray-50 dark:bg-gray-600">
+                                <td class="p-3 lg:p-4 font-semibold">Best for</td>
+                                <td class="p-3 lg:p-4">Surplus relief, new/growing insurers, stabilizing results</td>
+                                <td class="p-3 lg:p-4">Catastrophe protection, large-loss capacity</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-semibold">Complexity</td>
+                                <td class="p-3 lg:p-4">Simple (quota share) to moderate (surplus share)</td>
+                                <td class="p-3 lg:p-4">Moderate to complex (especially layered cat programs)</td>
+                            </tr>
+                            <tr class="bg-gray-50 dark:bg-gray-600">
+                                <td class="p-3 lg:p-4 font-semibold">Subtypes</td>
+                                <td class="p-3 lg:p-4">Quota share, surplus share</td>
+                                <td class="p-3 lg:p-4">Per risk, per occurrence/cat, aggregate stop loss</td>
+                            </tr>
+                            <tr class="bg-white dark:bg-gray-700">
+                                <td class="p-3 lg:p-4 font-semibold">Effect on balance sheet</td>
+                                <td class="p-3 lg:p-4">Reduces both premium <strong>and</strong> loss on the books</td>
+                                <td class="p-3 lg:p-4">Reduces only losses above the attachment point</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Layering a Reinsurance Program -->
+        <section id="layering" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">4. Layering a Complete Reinsurance Program</h2>
+
+                <div class="bg-teal-50 dark:bg-teal-900/30 border border-teal-200 dark:border-teal-800 rounded-lg p-5 lg:p-6 mb-6">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Real-world insurers do not pick just one type. They build a <strong>multi-layered program</strong> combining pro rata and excess of loss treaties to cover every level of loss &mdash; from everyday claims to once-in-a-century catastrophes. Each layer handles a different slice of the risk spectrum.</p>
+                </div>
+
+                <!-- Visual Stack Diagram -->
+                <div class="bg-gray-50 dark:bg-gray-700/50 rounded-xl p-5 lg:p-6 border border-gray-200 dark:border-gray-600 mb-6">
+                    <h3 class="text-xl font-bold text-gray-800 dark:text-gray-100 mb-4 text-center">Typical Reinsurance Program Stack</h3>
+                    <div class="flex flex-col gap-2 max-w-3xl mx-auto">
+                        <div class="bg-red-100 dark:bg-red-900/30 p-4 rounded-lg text-center border-2 border-red-400 dark:border-red-700">
+                            <p class="font-bold text-red-800 dark:text-red-300 text-base lg:text-lg">Layer 4: Aggregate Stop Loss</p>
+                            <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300">If annual loss ratio exceeds 80%, reinsurer covers the excess</p>
+                            <p class="text-xs lg:text-sm text-gray-500 dark:text-gray-400 mt-1">Safety net for "death by a thousand cuts" years</p>
+                        </div>
+                        <div class="text-center text-gray-400 text-lg font-bold">|</div>
+                        <div class="bg-amber-100 dark:bg-amber-900/30 p-4 rounded-lg text-center border-2 border-amber-400 dark:border-amber-700">
+                            <p class="font-bold text-amber-800 dark:text-amber-300 text-base lg:text-lg">Layer 3: Catastrophe XOL &mdash; $50M xs $15M</p>
+                            <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300">Hurricane / earthquake &rarr; reinsurer covers aggregate event losses from $15M to $65M</p>
+                            <p class="text-xs lg:text-sm text-gray-500 dark:text-gray-400 mt-1">Protects against multi-policy catastrophic events</p>
+                        </div>
+                        <div class="text-center text-gray-400 text-lg font-bold">|</div>
+                        <div class="bg-blue-100 dark:bg-blue-900/30 p-4 rounded-lg text-center border-2 border-blue-400 dark:border-blue-700">
+                            <p class="font-bold text-blue-800 dark:text-blue-300 text-base lg:text-lg">Layer 2: Per Risk XOL &mdash; $10M xs $5M</p>
+                            <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300">Single large loss on one risk &rarr; reinsurer covers $5M to $15M</p>
+                            <p class="text-xs lg:text-sm text-gray-500 dark:text-gray-400 mt-1">Handles individual big claims (factory fire, large liability verdict)</p>
+                        </div>
+                        <div class="text-center text-gray-400 text-lg font-bold">|</div>
+                        <div class="bg-green-100 dark:bg-green-900/30 p-4 rounded-lg text-center border-2 border-green-400 dark:border-green-700">
+                            <p class="font-bold text-green-800 dark:text-green-300 text-base lg:text-lg">Layer 1: Quota Share &mdash; 40% of first $5M</p>
+                            <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300">Every policy &rarr; reinsurer takes 40% of premium and pays 40% of losses up to $5M</p>
+                            <p class="text-xs lg:text-sm text-gray-500 dark:text-gray-400 mt-1">Provides surplus relief and steady ceding commission income</p>
+                        </div>
+                        <div class="text-center text-gray-400 text-lg font-bold">|</div>
+                        <div class="bg-cyan-200 dark:bg-cyan-900/40 p-4 rounded-lg text-center border-2 border-cyan-500 dark:border-cyan-600">
+                            <p class="font-bold text-cyan-800 dark:text-cyan-200 text-base lg:text-lg">Base: Insurer Net Retention &mdash; $1M</p>
+                            <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300">After all reinsurance, the insurer's maximum exposure on any one risk is $1M</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- How the Stack Works Together -->
+                <div class="bg-teal-50 dark:bg-teal-900/20 p-5 lg:p-6 rounded-lg border-l-4 border-teal-500">
+                    <p class="font-semibold text-teal-800 dark:text-teal-300 mb-3 text-lg">Worked Example: How the Stack Handles Three Different Scenarios</p>
+                    <div class="space-y-4 text-base lg:text-lg">
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                            <p class="font-bold text-green-700 dark:text-green-300 mb-2">Scenario A: Routine Loss &mdash; $200,000 fire at one building</p>
+                            <p class="text-gray-700 dark:text-gray-300">Only the quota share is involved. Insurer pays 60% = <strong>$120,000</strong>. Reinsurer pays 40% = <strong>$80,000</strong>. No XOL layers triggered because no individual or aggregate threshold is breached.</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                            <p class="font-bold text-amber-700 dark:text-amber-300 mb-2">Scenario B: Large Single Loss &mdash; $8,000,000 factory explosion</p>
+                            <p class="text-gray-700 dark:text-gray-300">Quota share handles 40% of the first $5M (reinsurer pays <strong>$2,000,000</strong>). The insurer's 60% net share of the first $5M = $3M. Then per risk XOL kicks in for the $3M above $5M &mdash; reinsurer pays <strong>$3,000,000</strong>. Insurer's total net cost is dramatically reduced.</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                            <p class="font-bold text-red-700 dark:text-red-300 mb-2">Scenario C: Hurricane &mdash; $45,000,000 across 300 policies</p>
+                            <p class="text-gray-700 dark:text-gray-300">Quota share reduces each individual policy's net exposure by 40%. Cat XOL kicks in above $15M in aggregate event losses &mdash; reinsurer covers up to <strong>$50M</strong> of the excess. If these losses also push the annual loss ratio past 80%, the stop loss layer catches the remainder. <strong>Multiple layers working together prevent insolvency.</strong></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cheat Sheet -->
+        <section id="cheat-sheet" class="mb-10">
+            <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 border-2 border-dashed border-gray-300 dark:border-gray-600">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100">Cheat Sheet</h2>
+                    <span class="text-sm text-gray-500 dark:text-gray-400">Print this page for quick reference</span>
+                </div>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <h3 class="font-bold text-teal-700 dark:text-teal-300 mb-2">Pro Rata (Proportional)</h3>
+                        <ul class="space-y-1 text-gray-700 dark:text-gray-300 text-sm lg:text-base">
+                            <li><strong>Quota Share</strong> &mdash; Fixed % on ALL policies. Simple. Gives away profit on good risks.</li>
+                            <li><strong>Surplus Share</strong> &mdash; Variable % per policy (based on size vs. insurer's "line"). Keeps 100% on small risks.</li>
+                            <li>Both include <strong>ceding commission</strong> (25-40% of ceded premium) paid to insurer.</li>
+                            <li>Premium and losses shared in <strong>same proportion</strong>.</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-teal-700 dark:text-teal-300 mb-2">Excess of Loss (Non-Proportional)</h3>
+                        <ul class="space-y-1 text-gray-700 dark:text-gray-300 text-sm lg:text-base">
+                            <li><strong>Per Risk XOL</strong> &mdash; One risk, loss exceeds retention. "$X xs $Y."</li>
+                            <li><strong>Per Occurrence / Cat XOL</strong> &mdash; One event, many policies. Often layered.</li>
+                            <li><strong>Aggregate / Stop Loss</strong> &mdash; Annual loss ratio exceeds threshold (e.g., 75%).</li>
+                            <li>Reinsurer charges <strong>flat premium</strong>. <strong>No ceding commission.</strong></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-teal-700 dark:text-teal-300 mb-2">Surplus Share Formulas</h3>
+                        <ul class="space-y-1 text-gray-700 dark:text-gray-300 text-sm lg:text-base">
+                            <li>Ceded % = (Policy Value - Line) / Policy Value</li>
+                            <li>Max cession = Line x Number of Lines</li>
+                            <li>Max policy = Line + (Line x Number of Lines)</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-teal-700 dark:text-teal-300 mb-2">XOL Formulas</h3>
+                        <ul class="space-y-1 text-gray-700 dark:text-gray-300 text-sm lg:text-base">
+                            <li>Reinsurer pays = Loss - Retention (capped at treaty limit)</li>
+                            <li>Stop loss payout = (Actual LR - Threshold LR) x Earned Premium</li>
+                            <li>Notation: "$[limit] xs $[retention]"</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Trap Alerts -->
+        <section id="exam-traps" class="mb-10">
+            <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-xl p-5 lg:p-6">
+                <h2 class="text-2xl lg:text-3xl font-bold text-red-800 dark:text-red-300 mb-4">Exam Trap Alerts</h2>
+                <div class="space-y-4">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">1. Quota Share Cedes EVERYTHING at the Same Percentage</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The exam might describe a profitable policy and ask if the insurer can retain a larger share. <strong>No</strong> &mdash; quota share applies the same percentage to every policy in the treaty. The insurer cannot cherry-pick. That is the tradeoff for simplicity.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">2. Surplus Share Percentage Is NOT Fixed</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Do not confuse surplus share with quota share. In surplus share, a $500K policy with a $500K line = <strong>0% ceded</strong>. A $2M policy with the same line = <strong>75% ceded</strong>. The percentage depends entirely on the individual risk's insured value.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">3. "xs" Means "Excess Of," NOT Multiplication</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">"$2M xs $500K" means $2 million <strong>in excess of</strong> $500K. The reinsurer covers losses from $500K to $2.5M. Do not misread "xs" as "times." The total coverage limit = retention + treaty limit.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">4. XOL Has NO Ceding Commission</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Ceding commissions only exist in <strong>pro rata</strong> treaties because the premium is shared proportionally. In XOL, the insurer pays a flat fee &mdash; there is no proportional premium flow, so no commission flows back.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">5. Per Risk vs. Per Occurrence &mdash; Know the Trigger</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>Per risk</strong> looks at one policy's loss. <strong>Per occurrence</strong> adds up all losses from one event. A $300K loss on one building does not trigger a $500K per risk retention &mdash; but 200 such losses from one hurricane totaling $60M absolutely triggers a cat XOL treaty.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">6. Aggregate Stop Loss Uses Loss RATIO, Not Dollar Amount</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The threshold is a <strong>percentage of earned premium</strong> (like 75%), not a flat dollar figure. You must calculate losses / earned premium first, then compare to the threshold. An insurer with $10M premium and $8M losses has an 80% loss ratio &mdash; above the 75% threshold.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">7. "Line" Means Retention, NOT Limit</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">In surplus share, the "line" is what the insurer <strong>keeps</strong>. A "9-line surplus share" means the reinsurer accepts up to 9x the line. Line of $500K means the reinsurer's max = $4.5M, and the max policy the insurer can write = $5M total.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Reference Summary -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-cyan-600 to-teal-700 rounded-xl p-6 text-white">
+                <h2 class="text-2xl lg:text-3xl font-bold mb-6">Quick Reference Summary</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold text-lg">Quota Share</p>
+                        <p class="text-sm text-cyan-100">Fixed % on all policies. Reinsurer shares premium + losses proportionally. Simple but gives away profit on every risk.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold text-lg">Surplus Share</p>
+                        <p class="text-sm text-cyan-100">Variable % per policy based on insurer's line. Keeps 100% on small risks, cedes heavily on large ones. More complex.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold text-lg">Ceding Commission</p>
+                        <p class="text-sm text-cyan-100">Pro rata only. 25-40% of ceded premium returned to insurer for acquisition costs. Does NOT exist in XOL.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold text-lg">Per Risk XOL</p>
+                        <p class="text-sm text-cyan-100">Reinsurer pays when ONE risk's loss exceeds retention. "$2M xs $500K" = covers $500K to $2.5M on a single risk.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold text-lg">Catastrophe XOL</p>
+                        <p class="text-sm text-cyan-100">One event, many policies. All losses aggregated and measured against retention. Often stacked in multiple layers.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold text-lg">Aggregate Stop Loss</p>
+                        <p class="text-sm text-cyan-100">Annual loss ratio exceeds threshold (e.g., 75%). Protects against accumulation of many smaller losses across an entire year.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold text-lg">Pro Rata vs. XOL</p>
+                        <p class="text-sm text-cyan-100">Pro rata shares every loss proportionally. XOL only pays above a threshold. Pro rata has ceding commissions; XOL does not.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold text-lg">Layered Programs</p>
+                        <p class="text-sm text-cyan-100">Stack quota share + per risk XOL + cat XOL + stop loss. Each layer handles a different slice of the risk spectrum.</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold text-lg">Key Formulas</p>
+                        <p class="text-sm text-cyan-100">Surplus ceded % = (Value - Line) / Value. XOL payout = Loss - Retention (capped). Stop loss = (Actual LR - Threshold) x Premium.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Navigation -->
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="../part-1/index.html" class="text-cyan-400 hover:text-cyan-300 transition-colors">&larr; Part 1: Reinsurance Functions</a>
+                <span class="text-gray-400">Part 2 of 3</span>
+                <a href="../part-3/index.html" class="text-cyan-400 hover:text-cyan-300 transition-colors">Part 3: Capital Markets &rarr;</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AI Tutor Button -->
+    <button onclick="openAITutor()" id="ai-tutor-btn"
+        class="fixed bottom-6 right-6 bg-teal-600 hover:bg-teal-700 text-white rounded-full p-4 shadow-xl hover:scale-110 transition-all z-50"
+        title="Ask AI Tutor">
+        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+        </svg>
+    </button>
+
+    <script>
+        function openAITutor() {
+            const context = {
+                topic: "Types of Reinsurance Agreements",
+                course: "CPCU 520 - Insurance Operations",
+                assignment: "Assignment 6: Reinsurance",
+                part: "Part 2: Types of Reinsurance Agreements",
+                concepts: [
+                    "Pro rata (proportional) reinsurance: quota share and surplus share",
+                    "Excess of loss (non-proportional) reinsurance: per risk, per occurrence/cat, aggregate/stop loss",
+                    "Ceding commission: 25-40% of ceded premium, only in pro rata treaties",
+                    "Quota share: fixed percentage on ALL policies, no cherry-picking",
+                    "Surplus share: variable percentage based on policy size vs. insurer's line (retention)",
+                    "Per risk XOL: applies to individual risks, $X xs $Y notation",
+                    "Catastrophe XOL: one event across multiple policies, often layered in tiers",
+                    "Aggregate stop loss: annual loss ratio exceeds threshold, covers accumulation of smaller losses",
+                    "Layered reinsurance programs: most insurers stack both pro rata and XOL for complete protection"
+                ],
+                keyNumbers: [
+                    "Ceding commission: typically 25-40% of ceded premium",
+                    "Surplus share line: dollar amount insurer retains (e.g., $500,000)",
+                    "9-line surplus share: reinsurer accepts up to 9x the line ($4.5M if line is $500K)",
+                    "XOL notation: $2M xs $500K = $2M limit above $500K retention, max covered = $2.5M",
+                    "Stop loss threshold: expressed as loss ratio (e.g., 75%), often capped (e.g., 95%)"
+                ],
+                commonConfusions: [
+                    "Quota share cedes ALL policies at the same %, cannot pick and choose",
+                    "Surplus share % varies by individual policy size, not fixed like quota share",
+                    "xs means excess of, NOT times or multiplication",
+                    "XOL has NO ceding commission - only pro rata treaties have them",
+                    "Per risk XOL = one risk measured; per occurrence = all losses from one event aggregated",
+                    "Stop loss uses loss RATIO (%), not flat dollar amount as the trigger",
+                    "Line = what insurer KEEPS (retention), not the limit or what is ceded"
+                ]
+            };
+            if (typeof showAITutor === 'function') {
+                showAITutor(context);
+            }
+        }
+    </script>
+</body>
+</html>

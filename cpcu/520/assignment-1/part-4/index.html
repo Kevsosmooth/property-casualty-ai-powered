@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment 1 Part 4: Regulatory Influence on the Insurance Value Chain | CPCU 520</title>
+    <link rel="icon" type="image/svg+xml" href="../../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <link rel="stylesheet" href="../../../../css/styles.css">
+    <script src="../../../../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+        }
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <!-- Settings & Theme Toggle Buttons -->
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="showAPIKeySetup()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings">
+            <svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+        </button>
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/>
+            </svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap gap-2 text-sm mb-2">
+                <a href="../../../../index.html" class="text-blue-200 hover:text-white">Home</a>
+                <span class="text-blue-300">/</span>
+                <a href="../../../index.html" class="text-blue-200 hover:text-white">CPCU</a>
+                <span class="text-blue-300">/</span>
+                <a href="../../index.html" class="text-blue-200 hover:text-white">520</a>
+                <span class="text-blue-300">/</span>
+                <a href="../index.html" class="text-blue-200 hover:text-white">Assignment 1</a>
+                <span class="text-blue-300">/</span>
+                <span class="text-white">Part 4</span>
+            </div>
+            <h1 class="text-3xl font-bold">Assignment 1 Part 4: Regulatory Influence on the Insurance Value Chain</h1>
+            <p class="text-blue-200 mt-1">How government oversight shapes every link in the insurance chain -- from underwriting to claims</p>
+        </div>
+    </header>
+
+    <!-- Part Navigation -->
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-wrap gap-2 text-sm">
+                <a href="../index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Overview</a>
+                <a href="../part-1/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 1</a>
+                <a href="../part-2/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 2</a>
+                <a href="../part-3/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 3</a>
+                <span class="bg-blue-600 text-white px-3 py-1 rounded font-medium">Part 4</span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-5xl lg:max-w-7xl">
+
+        <!-- Start Here: 5 Things You MUST Know -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-blue-100 to-blue-200 dark:from-blue-900/40 dark:to-blue-800/40 rounded-xl p-6 border border-blue-300 dark:border-blue-700">
+                <h3 class="text-xl lg:text-2xl font-bold text-blue-800 dark:text-blue-200 mb-4">Start Here: 5 Things You MUST Know</h3>
+                <div class="grid md:grid-cols-2 gap-3">
+                    <div class="flex items-start">
+                        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>McCarran-Ferguson Act (1945)</strong> = states regulate insurance, unless Congress specifically says otherwise. This is THE foundation.</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>5 types of rate regulation</strong>: Prior Approval, File-and-Use, Use-and-File, Flex Rating, No-File (Open Competition)</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Risk-Based Capital (RBC)</strong> has 4 action levels, from Company Action (mildest) to Mandatory Control (regulator seizes the insurer)</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">4</span>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>NAIC</strong> is NOT a regulator -- it creates model laws, but each state must adopt them individually</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">5</span>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Guaranty funds</strong> pay claims when insurers go insolvent -- typically up to <strong>$300,000</strong> per claim</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Overview Section -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-4">Overview: Why Regulation Matters for the Value Chain</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-800 rounded-lg p-4 lg:p-5 mb-6">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Insurance is one of the most heavily regulated industries in the United States. Unlike banking or securities (which are federally regulated), insurance is primarily regulated by <strong>each individual state</strong>. This means insurers operating in all 50 states must comply with up to 50 different sets of rules. Regulation touches every part of the value chain -- from how policies are priced, to how claims are paid, to how much capital an insurer must hold.</p>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 lg:p-5 rounded-r-lg">
+                    <p class="font-bold text-amber-800 dark:text-amber-300 text-lg">Exam Alert!</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mt-1">The historical timeline (Paul v. Virginia through Dodd-Frank) is <strong>heavily tested</strong>. You need to know which case or law did what, and the specific YEARS. The 5 types of rate regulation are also a favorite exam question -- know the differences cold.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 1: Why Insurance Is Regulated -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">1. Why Insurance Is Regulated</h2>
+
+                <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-6">Insurance regulation exists for three core reasons. Think of them as the three pillars holding up the system.</p>
+
+                <div class="grid md:grid-cols-3 gap-4 lg:gap-6 mb-6">
+                    <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-green-500">
+                        <h3 class="font-bold text-green-800 dark:text-green-300 text-lg lg:text-xl mb-2">Protect Consumers</h3>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Insurance is complex. Buyers have far less information than sellers -- this is called <strong>information asymmetry</strong>. Regulators step in to level the playing field.</p>
+                    </div>
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500">
+                        <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg lg:text-xl mb-2">Ensure Solvency</h3>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">If insurers cannot pay claims, the entire system collapses. Regulators enforce minimum capital requirements and monitor financial health.</p>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-purple-500">
+                        <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg lg:text-xl mb-2">Promote Fair Markets</h3>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Prevent price-fixing, unfair discrimination, and deceptive practices. Ensure a competitive marketplace where consumers have real choices.</p>
+                    </div>
+                </div>
+
+                <!-- Real-World Example -->
+                <div class="bg-blue-50 dark:bg-blue-900/20 p-4 lg:p-5 rounded-lg border-l-4 border-blue-500">
+                    <p class="font-semibold text-blue-800 dark:text-blue-300 mb-2 text-lg">Real-World Scenario: Why Information Asymmetry Matters</p>
+                    <div class="space-y-2">
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>The Setup:</strong> Maria buys a homeowners policy online. The policy has a "water damage" exclusion buried on page 47. The marketing says "comprehensive protection for your home."</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>What Happens:</strong> A pipe bursts and floods her basement. Maria files a claim, confident she is covered.</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>The Result:</strong> Without regulation, the insurer could deny the claim based on fine print Maria never understood. Regulation requires clear policy language, mandated disclosures, and prohibits misleading marketing -- protecting consumers like Maria from information asymmetry.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: The Historical Framework -->
+        <section id="history" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">2. The Historical Framework -- How We Got Here</h2>
+
+                <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-6">The question of WHO regulates insurance has bounced between states and the federal government for over 150 years. This timeline is <strong>heavily tested</strong> -- memorize the years and what each case/law decided.</p>
+
+                <!-- Timeline Visual -->
+                <div class="mb-8">
+                    <h3 class="text-xl font-bold text-gray-800 dark:text-gray-100 mb-4">The Regulation Timeline</h3>
+
+                    <!-- Timeline: 1869 -->
+                    <div class="flex items-start mb-6">
+                        <div class="flex-shrink-0 w-24 lg:w-32 text-right pr-4">
+                            <span class="text-2xl lg:text-3xl font-bold text-blue-600 dark:text-blue-400">1869</span>
+                        </div>
+                        <div class="flex-shrink-0 flex flex-col items-center mr-4">
+                            <div class="w-4 h-4 bg-blue-600 rounded-full"></div>
+                            <div class="w-0.5 h-full bg-blue-300 dark:bg-blue-700 min-h-[60px]"></div>
+                        </div>
+                        <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 flex-1">
+                            <h4 class="font-bold text-blue-800 dark:text-blue-300 text-lg">Paul v. Virginia</h4>
+                            <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mt-1">Supreme Court ruled insurance is <strong>NOT interstate commerce</strong>. Result: only STATES can regulate insurance. This stood for 75 years.</p>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                                <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>Memory Trick:</strong> "Paul says it is PERSONAL (state), not PUBLIC (federal)." Paul = Personal = State-level.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Timeline: 1944 -->
+                    <div class="flex items-start mb-6">
+                        <div class="flex-shrink-0 w-24 lg:w-32 text-right pr-4">
+                            <span class="text-2xl lg:text-3xl font-bold text-red-600 dark:text-red-400">1944</span>
+                        </div>
+                        <div class="flex-shrink-0 flex flex-col items-center mr-4">
+                            <div class="w-4 h-4 bg-red-600 rounded-full"></div>
+                            <div class="w-0.5 h-full bg-red-300 dark:bg-red-700 min-h-[60px]"></div>
+                        </div>
+                        <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-red-500 flex-1">
+                            <h4 class="font-bold text-red-800 dark:text-red-300 text-lg">South-Eastern Underwriters Association (SEUA) Case</h4>
+                            <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mt-1">Supreme Court <strong>REVERSED</strong> Paul v. Virginia. Insurance <strong>IS</strong> interstate commerce. The federal government COULD now regulate insurance. This created panic in the industry.</p>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                                <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>Why panic?</strong> States had built entire regulatory systems over 75 years. Federal takeover would mean starting over. Congress had to act fast.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Timeline: 1945 -->
+                    <div class="flex items-start mb-6">
+                        <div class="flex-shrink-0 w-24 lg:w-32 text-right pr-4">
+                            <span class="text-2xl lg:text-3xl font-bold text-green-600 dark:text-green-400">1945</span>
+                        </div>
+                        <div class="flex-shrink-0 flex flex-col items-center mr-4">
+                            <div class="w-4 h-4 bg-green-600 rounded-full"></div>
+                            <div class="w-0.5 h-full bg-green-300 dark:bg-green-700 min-h-[60px]"></div>
+                        </div>
+                        <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-green-500 flex-1">
+                            <h4 class="font-bold text-green-800 dark:text-green-300 text-lg">McCarran-Ferguson Act</h4>
+                            <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mt-1">Congress responded just ONE YEAR later. The deal: <strong>States keep regulating insurance, UNLESS Congress specifically passes a law saying otherwise.</strong> This is the foundation of modern insurance regulation.</p>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                                <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>Key nuance:</strong> McCarran-Ferguson does NOT say the federal government CAN'T regulate insurance. It says the federal government CHOOSES to let states do it -- for now. Congress can override state regulation anytime it wants to.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Timeline: 1999 -->
+                    <div class="flex items-start mb-6">
+                        <div class="flex-shrink-0 w-24 lg:w-32 text-right pr-4">
+                            <span class="text-2xl lg:text-3xl font-bold text-purple-600 dark:text-purple-400">1999</span>
+                        </div>
+                        <div class="flex-shrink-0 flex flex-col items-center mr-4">
+                            <div class="w-4 h-4 bg-purple-600 rounded-full"></div>
+                            <div class="w-0.5 h-full bg-purple-300 dark:bg-purple-700 min-h-[60px]"></div>
+                        </div>
+                        <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-purple-500 flex-1">
+                            <h4 class="font-bold text-purple-800 dark:text-purple-300 text-lg">Gramm-Leach-Bliley Act (GLBA)</h4>
+                            <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mt-1"><strong>Financial modernization</strong>. Allowed banks, insurance companies, and securities firms to merge and sell each other's products. Broke down the old walls between financial industries.</p>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                                <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>Example:</strong> Before GLBA, your bank could NOT sell you insurance. After GLBA, companies like Citigroup could offer banking, insurance, and investment services all under one roof.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Timeline: 2010 -->
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 w-24 lg:w-32 text-right pr-4">
+                            <span class="text-2xl lg:text-3xl font-bold text-indigo-600 dark:text-indigo-400">2010</span>
+                        </div>
+                        <div class="flex-shrink-0 flex flex-col items-center mr-4">
+                            <div class="w-4 h-4 bg-indigo-600 rounded-full"></div>
+                        </div>
+                        <div class="bg-indigo-50 dark:bg-indigo-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-indigo-500 flex-1">
+                            <h4 class="font-bold text-indigo-800 dark:text-indigo-300 text-lg">Dodd-Frank Act</h4>
+                            <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mt-1">Created the <strong>Federal Insurance Office (FIO)</strong> within the U.S. Treasury. FIO monitors the insurance industry, identifies regulatory gaps, and negotiates international insurance agreements. But here is the critical point: <strong>FIO does NOT directly regulate insurers.</strong></p>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                                <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>Exam trap:</strong> FIO is a monitoring body, not a regulator. If the exam asks "which entity regulates insurance," FIO is the WRONG answer. States regulate. FIO watches.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Timeline Summary -->
+                <div class="bg-amber-50 dark:bg-amber-900/30 border border-amber-200 dark:border-amber-800 rounded-lg p-4 lg:p-5">
+                    <h4 class="font-bold text-amber-800 dark:text-amber-300 text-lg mb-3">Memory Trick: The Ping-Pong of Regulation</h4>
+                    <div class="flex items-center gap-2 lg:gap-4 flex-wrap text-sm lg:text-base">
+                        <div class="bg-blue-100 dark:bg-blue-900/40 p-2 lg:p-3 rounded-lg text-center">
+                            <p class="font-bold text-blue-700 dark:text-blue-300">1869</p>
+                            <p class="text-gray-600 dark:text-gray-400">States</p>
+                        </div>
+                        <div class="text-xl lg:text-2xl text-gray-400">&#8594;</div>
+                        <div class="bg-red-100 dark:bg-red-900/40 p-2 lg:p-3 rounded-lg text-center">
+                            <p class="font-bold text-red-700 dark:text-red-300">1944</p>
+                            <p class="text-gray-600 dark:text-gray-400">Federal</p>
+                        </div>
+                        <div class="text-xl lg:text-2xl text-gray-400">&#8594;</div>
+                        <div class="bg-green-100 dark:bg-green-900/40 p-2 lg:p-3 rounded-lg text-center">
+                            <p class="font-bold text-green-700 dark:text-green-300">1945</p>
+                            <p class="text-gray-600 dark:text-gray-400">Back to States</p>
+                        </div>
+                        <div class="text-xl lg:text-2xl text-gray-400">&#8594;</div>
+                        <div class="bg-purple-100 dark:bg-purple-900/40 p-2 lg:p-3 rounded-lg text-center">
+                            <p class="font-bold text-purple-700 dark:text-purple-300">1999</p>
+                            <p class="text-gray-600 dark:text-gray-400">Walls Down</p>
+                        </div>
+                        <div class="text-xl lg:text-2xl text-gray-400">&#8594;</div>
+                        <div class="bg-indigo-100 dark:bg-indigo-900/40 p-2 lg:p-3 rounded-lg text-center">
+                            <p class="font-bold text-indigo-700 dark:text-indigo-300">2010</p>
+                            <p class="text-gray-600 dark:text-gray-400">Fed Watches</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: State vs. Federal Regulation -->
+        <section id="state-vs-federal" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">3. State vs. Federal Regulation</h2>
+
+                <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-6">Insurance is the ONLY major financial service regulated primarily at the state level. Banks, securities, and credit unions all have federal regulators. Insurance does not.</p>
+
+                <div class="grid md:grid-cols-2 gap-4 lg:gap-6 mb-6">
+                    <!-- State Regulation -->
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500">
+                        <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg lg:text-xl mb-3">State Regulation</h3>
+                        <ul class="space-y-2 text-gray-700 dark:text-gray-300 text-base lg:text-lg">
+                            <li><strong>Department of Insurance</strong> in each state</li>
+                            <li>Headed by a <strong>Commissioner</strong> (elected or appointed)</li>
+                            <li>Approves rates, forms, and licenses</li>
+                            <li>Conducts financial and market conduct exams</li>
+                            <li>Handles consumer complaints</li>
+                            <li>Enforces solvency requirements</li>
+                        </ul>
+                    </div>
+
+                    <!-- Federal Role -->
+                    <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-purple-500">
+                        <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg lg:text-xl mb-3">Federal Role (Limited)</h3>
+                        <ul class="space-y-2 text-gray-700 dark:text-gray-300 text-base lg:text-lg">
+                            <li><strong>FIO</strong> -- monitors, does not regulate</li>
+                            <li><strong>NFIP</strong> -- federal flood insurance</li>
+                            <li><strong>TRIA</strong> -- terrorism risk backstop</li>
+                            <li><strong>FCRA/HIPAA</strong> -- privacy and data rules</li>
+                            <li>Antitrust enforcement (Sherman Act still applies)</li>
+                            <li>International trade agreements</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- NAIC Section -->
+                <div class="bg-indigo-50 dark:bg-indigo-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-indigo-500 mb-6">
+                    <h3 class="font-bold text-indigo-800 dark:text-indigo-300 text-lg lg:text-xl mb-2">The NAIC -- The Glue That Holds It Together</h3>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-3">The <strong>National Association of Insurance Commissioners (NAIC)</strong> is the organization of all state insurance commissioners. It creates <strong>model laws</strong> and coordinates regulation across states. But here is the critical distinction:</p>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>The NAIC is NOT a regulator.</strong> It writes model laws, but those laws have NO legal force until a state legislature individually adopts them. Think of NAIC as the recipe writer -- each state decides whether to cook the dish, and some add their own ingredients.</p>
+                    </div>
+                    <div class="mt-3 bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-indigo-700 dark:text-indigo-300 mb-1">NAIC Accreditation Program</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The NAIC certifies that state insurance departments meet minimum regulatory standards. This creates consistency even though there is no federal regulator. If a state fails accreditation, other states may not accept its regulatory oversight of insurers domiciled there.</p>
+                    </div>
+                </div>
+
+                <!-- Real-World Example -->
+                <div class="bg-green-50 dark:bg-green-900/20 p-4 lg:p-5 rounded-lg border-l-4 border-green-500">
+                    <p class="font-semibold text-green-800 dark:text-green-300 mb-2 text-lg">Real-World Scenario: Why 50 Sets of Rules Matter</p>
+                    <div class="space-y-2">
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>The Setup:</strong> Nationwide Insurance wants to raise auto rates by 8% across all states due to rising repair costs.</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>What Happens:</strong> In a "prior approval" state like New York, they must file the increase, justify it with data, and wait for approval -- which could take months. In a "no-file" state, they can implement the increase immediately.</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>The Result:</strong> The same insurer, with the same cost pressures, faces completely different regulatory processes depending on which state the policyholder lives in. This is why insurers need large compliance departments.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: How Regulation Affects the Value Chain -->
+        <section id="value-chain" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">4. How Regulation Touches Every Department</h2>
+
+                <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-6">Regulation does not just sit in a compliance office. It affects underwriting, pricing, claims, marketing, and finance. Here is how it intersects with each part of the value chain.</p>
+
+                <!-- 4A: Underwriting Regulation -->
+                <div class="mb-8">
+                    <h3 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">4A. Underwriting Regulation</h3>
+                    <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-red-500 mb-4">
+                        <h4 class="font-bold text-red-800 dark:text-red-300 text-lg mb-2">Prohibited Practices</h4>
+                        <ul class="space-y-2 text-gray-700 dark:text-gray-300 text-base lg:text-lg">
+                            <li><strong>Unfair discrimination</strong> -- cannot use race, religion, national origin, or other protected classes as underwriting factors</li>
+                            <li><strong>Redlining</strong> -- cannot refuse to insure entire neighborhoods based on the demographics of the people living there</li>
+                            <li><strong>Permitted rating factors vary by state</strong> -- some states allow credit scores for auto insurance, others do not</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 lg:p-5 rounded-lg border-l-4 border-red-500">
+                        <p class="font-semibold text-red-800 dark:text-red-300 mb-2 text-lg">Real-World Scenario: Redlining</p>
+                        <div class="space-y-2">
+                            <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>The Setup:</strong> An insurer's data shows that claims are higher in zip codes 07101-07108 (Newark, NJ). The underwriting team proposes declining all new business in those zip codes.</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>What Happens:</strong> A state regulator reviews the company's underwriting guidelines and notices the blanket refusal pattern correlates with predominantly minority neighborhoods.</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>The Result:</strong> The regulator issues a cease-and-desist order. The insurer must underwrite risks individually based on legitimate factors (condition of property, claims history) -- NOT by drawing a red line around entire zip codes.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4B: Rate Regulation -->
+                <div class="mb-8">
+                    <h3 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">4B. Rate Regulation -- The 5 Types</h3>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-4">Rates must be: <strong>adequate</strong> (enough to pay claims), <strong>not excessive</strong> (not gouging consumers), and <strong>not unfairly discriminatory</strong> (same risk = same price). How states enforce this varies by which of these 5 systems they use:</p>
+
+                    <!-- Comparison Grid: 5 Rate Regulation Types -->
+                    <div class="overflow-x-auto mb-4">
+                        <table class="w-full text-sm lg:text-base">
+                            <thead>
+                                <tr class="bg-blue-600 text-white">
+                                    <th class="p-3 lg:p-4 text-left rounded-tl-lg">Type</th>
+                                    <th class="p-3 lg:p-4 text-left">When Can You Use Rates?</th>
+                                    <th class="p-3 lg:p-4 text-left">Regulator Control</th>
+                                    <th class="p-3 lg:p-4 text-left rounded-tr-lg">Speed</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                                <tr class="bg-red-50 dark:bg-red-900/20">
+                                    <td class="p-3 lg:p-4 font-bold text-red-700 dark:text-red-300">Prior Approval</td>
+                                    <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Only AFTER regulator approves</td>
+                                    <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Highest -- full review before use</td>
+                                    <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Slowest</td>
+                                </tr>
+                                <tr class="bg-amber-50 dark:bg-amber-900/20">
+                                    <td class="p-3 lg:p-4 font-bold text-amber-700 dark:text-amber-300">File-and-Use</td>
+                                    <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Immediately after filing</td>
+                                    <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Moderate -- filed, can be rejected later</td>
+                                    <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Fast</td>
+                                </tr>
+                                <tr class="bg-blue-50 dark:bg-blue-900/20">
+                                    <td class="p-3 lg:p-4 font-bold text-blue-700 dark:text-blue-300">Use-and-File</td>
+                                    <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Use first, file within set period</td>
+                                    <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Lower -- review happens after the fact</td>
+                                    <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Fastest (with filing)</td>
+                                </tr>
+                                <tr class="bg-purple-50 dark:bg-purple-900/20">
+                                    <td class="p-3 lg:p-4 font-bold text-purple-700 dark:text-purple-300">Flex Rating</td>
+                                    <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Within approved band without filing</td>
+                                    <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Moderate -- stays within limits</td>
+                                    <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Fast (within band)</td>
+                                </tr>
+                                <tr class="bg-green-50 dark:bg-green-900/20">
+                                    <td class="p-3 lg:p-4 font-bold text-green-700 dark:text-green-300">No-File / Open Competition</td>
+                                    <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Anytime -- no filing required</td>
+                                    <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Lowest -- market forces set rates</td>
+                                    <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Fastest</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 lg:p-5 rounded-r-lg mb-4">
+                        <p class="font-bold text-amber-800 dark:text-amber-300">Memory Trick: Think of a Spectrum</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mt-1">From MOST regulator control to LEAST: <strong>Prior Approval</strong> &#8594; <strong>File-and-Use</strong> &#8594; <strong>Use-and-File</strong> &#8594; <strong>Flex Rating</strong> &#8594; <strong>No-File</strong>. Think: "Please File Using Flexible Numbers" (P-F-U-F-N).</p>
+                    </div>
+
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 lg:p-5 rounded-lg border-l-4 border-green-500">
+                        <p class="font-semibold text-green-800 dark:text-green-300 mb-2 text-lg">Real-World Scenario: Flex Rating in Action</p>
+                        <div class="space-y-2">
+                            <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>The Setup:</strong> A state uses flex rating with a +/- 7% band. An auto insurer currently charges $1,000/year for a standard driver.</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>What Happens:</strong> Repair costs rise 5%. The insurer raises the rate to $1,050 (a 5% increase) -- within the 7% band. No filing needed. But if they wanted a 10% increase to $1,100, they would need regulator approval because that exceeds the band.</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>The Result:</strong> Flex rating gives insurers speed for small adjustments while keeping large changes under regulator control. It is the middle ground between freedom and oversight.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4C: Claims Regulation -->
+                <div class="mb-8">
+                    <h3 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">4C. Claims Regulation</h3>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-purple-500 mb-4">
+                        <h4 class="font-bold text-purple-800 dark:text-purple-300 text-lg mb-2">Unfair Claims Settlement Practices Act (NAIC Model)</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-3">This NAIC model law (adopted in most states) defines what insurers CANNOT do during claims:</p>
+                        <ul class="space-y-2 text-gray-700 dark:text-gray-300 text-base lg:text-lg">
+                            <li><strong>Misrepresenting</strong> policy provisions to avoid paying claims</li>
+                            <li><strong>Failing to promptly acknowledge</strong> and act on claims</li>
+                            <li><strong>Lowballing</strong> -- offering unreasonably low settlements to force acceptance</li>
+                            <li><strong>Delaying</strong> investigation or payment without reasonable basis</li>
+                            <li><strong>Bad faith</strong> -- failing to act in good faith toward the insured</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 lg:p-5 rounded-lg border-l-4 border-purple-500">
+                        <p class="font-semibold text-purple-800 dark:text-purple-300 mb-2 text-lg">Real-World Scenario: Bad Faith Claims Handling</p>
+                        <div class="space-y-2">
+                            <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>The Setup:</strong> Tom's house is damaged by a tornado. His policy covers wind damage up to $300,000. The damage is clearly $180,000 based on three independent contractor estimates.</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>What Happens:</strong> The insurer sends their own adjuster who values the damage at $45,000. They refuse to explain the difference, ignore Tom's documentation, and delay responses for months.</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>The Result:</strong> Tom files a complaint with the state DOI. The regulator investigates and finds a pattern of lowball offers. The insurer faces fines, a market conduct exam, and Tom can sue for bad faith damages -- which in many states means the insurer pays MORE than the original claim amount.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4D: Market Conduct -->
+                <div>
+                    <h3 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">4D. Market Conduct Regulation</h3>
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-4">
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Market conduct regulation examines HOW insurers behave in the marketplace. Regulators look at:</p>
+                        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-3 mt-3">
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                                <p class="font-bold text-blue-600 dark:text-blue-400">Examinations</p>
+                                <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base">Regular audits of insurer practices</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                                <p class="font-bold text-blue-600 dark:text-blue-400">Complaints</p>
+                                <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base">Tracking consumer complaint ratios</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                                <p class="font-bold text-blue-600 dark:text-blue-400">Anti-Rebating</p>
+                                <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base">Prohibiting kickbacks to buyers</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                                <p class="font-bold text-blue-600 dark:text-blue-400">Licensing</p>
+                                <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base">Producer qualifications and CE</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Solvency Regulation -->
+        <section id="solvency" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">5. Solvency Regulation -- Keeping Insurers Financially Sound</h2>
+
+                <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-6">Solvency regulation ensures insurers have enough money to pay claims. This is the MOST critical type of regulation -- without solvent insurers, insurance is just a broken promise.</p>
+
+                <!-- Capital Requirements -->
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-6">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg lg:text-xl mb-2">Minimum Capital and Surplus Requirements</h3>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Every state requires insurers to maintain a minimum amount of capital (money from investors) and surplus (assets minus liabilities). Think of surplus as the insurer's safety cushion -- if claims spike unexpectedly, surplus absorbs the blow.</p>
+                </div>
+
+                <!-- RBC Section -->
+                <div class="mb-6">
+                    <h3 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">Risk-Based Capital (RBC)</h3>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-4">RBC is the modern solvency standard. Instead of a flat minimum, it measures how much capital an insurer needs <strong>based on the specific risks it takes</strong>. An insurer writing high-risk policies (hurricane-prone areas) needs more capital than one writing low-risk policies (small-town auto).</p>
+
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-4">When an insurer's capital falls below certain RBC thresholds, escalating action kicks in. There are <strong>4 action levels</strong>, from mildest to most severe:</p>
+
+                    <!-- RBC Flow Diagram -->
+                    <div class="space-y-4 mb-6">
+                        <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-green-500">
+                            <div class="flex items-start">
+                                <span class="bg-green-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
+                                <div>
+                                    <h4 class="font-bold text-green-800 dark:text-green-300 text-lg">Company Action Level</h4>
+                                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mt-1">The <strong>mildest</strong> level. The insurer must submit a plan to the regulator explaining how it will fix its capital shortfall. The company is still in control.</p>
+                                    <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base mt-1"><strong>Analogy:</strong> Your doctor says your cholesterol is a little high -- here is a diet plan, come back in 3 months.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex justify-center">
+                            <div class="text-2xl text-gray-400">&#8595;</div>
+                        </div>
+
+                        <div class="bg-amber-50 dark:bg-amber-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-amber-500">
+                            <div class="flex items-start">
+                                <span class="bg-amber-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
+                                <div>
+                                    <h4 class="font-bold text-amber-800 dark:text-amber-300 text-lg">Regulatory Action Level</h4>
+                                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mt-1">The regulator gets involved. They can examine the insurer, issue orders, and require corrective actions. The regulator is now directing the fix.</p>
+                                    <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base mt-1"><strong>Analogy:</strong> Your doctor says this is serious -- we are prescribing medication and monitoring you weekly.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex justify-center">
+                            <div class="text-2xl text-gray-400">&#8595;</div>
+                        </div>
+
+                        <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-red-500">
+                            <div class="flex items-start">
+                                <span class="bg-red-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
+                                <div>
+                                    <h4 class="font-bold text-red-800 dark:text-red-300 text-lg">Authorized Control Level</h4>
+                                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mt-1">The regulator is <strong>authorized</strong> (but not required) to take control of the insurer. This is the "we CAN seize you" level.</p>
+                                    <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base mt-1"><strong>Analogy:</strong> Your doctor says if things do not improve immediately, we are admitting you to the hospital.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex justify-center">
+                            <div class="text-2xl text-gray-400">&#8595;</div>
+                        </div>
+
+                        <div class="bg-red-100 dark:bg-red-900/40 rounded-lg p-4 lg:p-5 border-l-4 border-red-700">
+                            <div class="flex items-start">
+                                <span class="bg-red-800 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">4</span>
+                                <div>
+                                    <h4 class="font-bold text-red-900 dark:text-red-200 text-lg">Mandatory Control Level</h4>
+                                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mt-1">The regulator <strong>MUST</strong> take control. No choice. The insurer is placed under receivership -- regulators run the company. This is the insurance equivalent of life support.</p>
+                                    <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base mt-1"><strong>Analogy:</strong> You are in the ICU. The doctors are making all decisions now.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 lg:p-5 rounded-r-lg mb-6">
+                        <p class="font-bold text-amber-800 dark:text-amber-300">Memory Trick: C-R-A-M</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mt-1">The four levels spell <strong>CRAM</strong>: <strong>C</strong>ompany, <strong>R</strong>egulatory, <strong>A</strong>uthorized, <strong>M</strong>andatory. "CRAM for the exam -- remember the RBC levels!"</p>
+                    </div>
+                </div>
+
+                <!-- ORSA -->
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-purple-500 mb-6">
+                    <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg lg:text-xl mb-2">ORSA -- Own Risk and Solvency Assessment</h3>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Large insurers must conduct their own internal risk assessment (ORSA) and report it to regulators. Think of it as a self-exam: the insurer identifies its own risks and explains how it plans to stay solvent. This is in ADDITION to the regulator's RBC analysis.</p>
+                </div>
+
+                <!-- Guaranty Funds -->
+                <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-green-500 mb-6">
+                    <h3 class="font-bold text-green-800 dark:text-green-300 text-lg lg:text-xl mb-2">Guaranty Funds -- The Safety Net</h3>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-3">When an insurer goes insolvent, who pays the claims? <strong>Guaranty funds</strong> -- funded by assessments on all the OTHER insurers in the state. Every state has one.</p>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                            <p class="font-bold text-green-700 dark:text-green-300 mb-1">How They Work</p>
+                            <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                                <li>All licensed insurers contribute via assessments</li>
+                                <li>Activated when an insurer is declared insolvent</li>
+                                <li>Pay policyholder claims up to the state's limit</li>
+                                <li>Typically cap at <strong>$300,000</strong> per claim</li>
+                            </ul>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                            <p class="font-bold text-red-700 dark:text-red-300 mb-1">Critical Limitation</p>
+                            <ul class="text-gray-700 dark:text-gray-300 text-sm lg:text-base space-y-1">
+                                <li>Only covers <strong>admitted</strong> (licensed) insurers</li>
+                                <li>Surplus lines policies = NO guaranty fund</li>
+                                <li>Limits vary by state</li>
+                                <li>Not pre-funded like FDIC -- assessed after insolvency</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Real-World Example -->
+                <div class="bg-blue-50 dark:bg-blue-900/20 p-4 lg:p-5 rounded-lg border-l-4 border-blue-500">
+                    <p class="font-semibold text-blue-800 dark:text-blue-300 mb-2 text-lg">Real-World Scenario: Insurer Insolvency and the Guaranty Fund</p>
+                    <div class="space-y-2">
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>The Setup:</strong> Sunshine Mutual Insurance writes homeowners policies in Florida. A massive hurricane season depletes their reserves. Their RBC ratio drops below the mandatory control level.</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>What Happens:</strong> The Florida DOI places Sunshine Mutual into receivership. They have 10,000 open claims totaling $500 million. The guaranty fund is activated.</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>The Result:</strong> The guaranty fund pays claims up to $300,000 each. Policyholders with claims above $300,000 receive the cap and become unsecured creditors for the rest. Every other licensed insurer in Florida gets assessed to fund these payments -- which may cause them to raise THEIR premiums.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: Surplus Lines Market -->
+        <section id="surplus-lines" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">6. Surplus Lines Market</h2>
+
+                <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-6">The surplus lines market exists for risks that the <strong>standard (admitted) market will not cover</strong>. Think of unusual, high-risk, or specialty exposures -- celebrity body parts, large construction projects, nightclub liability.</p>
+
+                <div class="grid md:grid-cols-2 gap-4 lg:gap-6 mb-6">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500">
+                        <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg mb-2">Admitted (Standard) Market</h3>
+                        <ul class="space-y-2 text-gray-700 dark:text-gray-300 text-base lg:text-lg">
+                            <li>Licensed in the state</li>
+                            <li>Rates and forms approved by regulator</li>
+                            <li>Covered by guaranty fund</li>
+                            <li>Must follow all state regulations</li>
+                        </ul>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-red-500">
+                        <h3 class="font-bold text-red-800 dark:text-red-300 text-lg mb-2">Non-Admitted (Surplus Lines)</h3>
+                        <ul class="space-y-2 text-gray-700 dark:text-gray-300 text-base lg:text-lg">
+                            <li>NOT licensed in the state</li>
+                            <li>More flexibility in rates and forms</li>
+                            <li><strong>NO guaranty fund protection</strong></li>
+                            <li>Accessed through licensed surplus lines brokers</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="bg-indigo-50 dark:bg-indigo-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-indigo-500 mb-6">
+                    <h4 class="font-bold text-indigo-800 dark:text-indigo-300 text-lg mb-2">NRRA -- Nonadmitted and Reinsurance Reform Act</h4>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Before the NRRA, surplus lines taxes had to be paid to every state where the risk was located -- a nightmare for multi-state risks. The NRRA simplified this: surplus lines tax is paid only to the insured's <strong>home state</strong>.</p>
+                </div>
+
+                <div class="bg-green-50 dark:bg-green-900/20 p-4 lg:p-5 rounded-lg border-l-4 border-green-500">
+                    <p class="font-semibold text-green-800 dark:text-green-300 mb-2 text-lg">Real-World Scenario: Why Surplus Lines Exist</p>
+                    <div class="space-y-2">
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>The Setup:</strong> A special effects company in Hollywood needs insurance for pyrotechnic stunts. They approach five standard insurers -- all decline. The risk is too unusual.</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>What Happens:</strong> A surplus lines broker places the coverage with Lloyd's of London (a non-admitted insurer in California). The premium is high, the form is customized, and there is no guaranty fund backup.</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>The Result:</strong> The company gets coverage that would otherwise be unavailable. The tradeoff: if Lloyd's failed to pay, California's guaranty fund would NOT step in. Surplus lines = more flexibility, less safety net.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 7: Government Insurance Programs -->
+        <section id="gov-programs" class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">7. Government Insurance Programs</h2>
+
+                <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-6">When private insurers cannot or will not provide coverage for certain catastrophic risks, the government steps in. These programs fill critical gaps in the market.</p>
+
+                <!-- NFIP -->
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-6">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg lg:text-xl mb-2">NFIP -- National Flood Insurance Program</h3>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-3">Federal program providing flood insurance, since most private insurers will not cover flood. Administered by FEMA.</p>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>Risk Rating 2.0 (2021-2022):</strong> Modernized NFIP pricing. Instead of using outdated flood zone maps, Risk Rating 2.0 uses property-specific factors -- distance to water, flood type, cost to rebuild. Result: more accurate but often higher premiums for high-risk properties.</p>
+                    </div>
+                </div>
+
+                <!-- FAIR Plans -->
+                <div class="bg-amber-50 dark:bg-amber-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-amber-500 mb-6">
+                    <h3 class="font-bold text-amber-800 dark:text-amber-300 text-lg lg:text-xl mb-2">FAIR Plans -- Fair Access to Insurance Requirements</h3>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-3">State-run programs providing property insurance in high-risk areas where private insurers have withdrawn. Every licensed insurer in the state shares the risk.</p>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>Current example:</strong> The California FAIR Plan has grown massively due to wildfire-driven insurer withdrawals. State Farm, Allstate, and others stopped writing new homeowners policies in wildfire-prone areas, pushing thousands of homeowners into the FAIR Plan as a last resort.</p>
+                    </div>
+                </div>
+
+                <!-- TRIA -->
+                <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-red-500 mb-6">
+                    <h3 class="font-bold text-red-800 dark:text-red-300 text-lg lg:text-xl mb-2">TRIA/TRIPRA -- Terrorism Risk Insurance</h3>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-3">After 9/11, private insurers excluded terrorism. Congress created TRIA as a federal backstop. The government shares the cost of catastrophic terrorism losses with private insurers. Currently reauthorized through <strong>2027</strong>.</p>
+                </div>
+
+                <!-- TRIA Key Numbers -->
+                <div class="bg-red-50 dark:bg-red-900/30 rounded-xl p-6 border border-red-200 dark:border-red-700 mb-6">
+                    <h3 class="text-xl font-bold text-red-800 dark:text-red-200 mb-4">TRIA Key Numbers to Memorize</h3>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 lg:gap-4">
+                        <div class="bg-white dark:bg-gray-800 p-3 lg:p-4 rounded-lg text-center border">
+                            <p class="text-2xl lg:text-3xl font-bold text-red-600 dark:text-red-400">$5M</p>
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Certification threshold (Treasury must certify as terrorism)</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-800 p-3 lg:p-4 rounded-lg text-center border">
+                            <p class="text-2xl lg:text-3xl font-bold text-red-600 dark:text-red-400">$200M</p>
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Program trigger (industry losses must exceed this)</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-800 p-3 lg:p-4 rounded-lg text-center border">
+                            <p class="text-2xl lg:text-3xl font-bold text-red-600 dark:text-red-400">80%</p>
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Federal share (government pays this % above deductible)</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-800 p-3 lg:p-4 rounded-lg text-center border">
+                            <p class="text-2xl lg:text-3xl font-bold text-red-600 dark:text-red-400">$100B</p>
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Annual cap on federal payouts</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TRIA Example -->
+                <div class="bg-red-50 dark:bg-red-900/20 p-4 lg:p-5 rounded-lg border-l-4 border-red-500">
+                    <p class="font-semibold text-red-800 dark:text-red-300 mb-2 text-lg">Real-World Scenario: How TRIA Works</p>
+                    <div class="space-y-2">
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>The Setup:</strong> A certified act of terrorism destroys several office buildings in a major city. Total insured losses reach $10 billion. An insurer, MegaCorp Insurance, has $500 million in terrorism-related claims and a TRIA deductible of $100 million.</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>What Happens:</strong> MegaCorp pays its $100M deductible first. Of the remaining $400M, the federal government pays 80% ($320M) and MegaCorp pays 20% ($80M).</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>The Result:</strong> MegaCorp's total out-of-pocket: $180M ($100M deductible + $80M co-share) instead of the full $500M. Without TRIA, MegaCorp might not even offer terrorism coverage -- and building owners would be uninsurable against this risk.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Numbers Section -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/30 dark:to-indigo-900/30 rounded-xl p-6 border border-blue-200 dark:border-blue-700">
+                <h2 class="text-2xl lg:text-3xl font-bold text-blue-800 dark:text-blue-200 mb-6">Quick Reference: Key Numbers and Dates</h2>
+                <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-3 lg:gap-4">
+                    <div class="bg-white dark:bg-gray-800 p-3 lg:p-4 rounded-lg text-center border">
+                        <p class="text-2xl lg:text-3xl font-bold text-blue-600 dark:text-blue-400">1869</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Paul v. Virginia -- states regulate</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 p-3 lg:p-4 rounded-lg text-center border">
+                        <p class="text-2xl lg:text-3xl font-bold text-red-600 dark:text-red-400">1944</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">SEUA -- feds COULD regulate</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 p-3 lg:p-4 rounded-lg text-center border">
+                        <p class="text-2xl lg:text-3xl font-bold text-green-600 dark:text-green-400">1945</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">McCarran-Ferguson -- states keep it</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 p-3 lg:p-4 rounded-lg text-center border">
+                        <p class="text-2xl lg:text-3xl font-bold text-purple-600 dark:text-purple-400">1999</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">GLBA -- financial modernization</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 p-3 lg:p-4 rounded-lg text-center border">
+                        <p class="text-2xl lg:text-3xl font-bold text-indigo-600 dark:text-indigo-400">2010</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Dodd-Frank -- FIO created</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 p-3 lg:p-4 rounded-lg text-center border">
+                        <p class="text-2xl lg:text-3xl font-bold text-red-600 dark:text-red-400">$300K</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Typical guaranty fund cap</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 p-3 lg:p-4 rounded-lg text-center border">
+                        <p class="text-2xl lg:text-3xl font-bold text-amber-600 dark:text-amber-400">$5M</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">TRIA certification threshold</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 p-3 lg:p-4 rounded-lg text-center border">
+                        <p class="text-2xl lg:text-3xl font-bold text-amber-600 dark:text-amber-400">$200M</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">TRIA program trigger</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 p-3 lg:p-4 rounded-lg text-center border">
+                        <p class="text-2xl lg:text-3xl font-bold text-amber-600 dark:text-amber-400">80%</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">TRIA federal share</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 p-3 lg:p-4 rounded-lg text-center border">
+                        <p class="text-2xl lg:text-3xl font-bold text-amber-600 dark:text-amber-400">$100B</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">TRIA annual cap</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cheat Sheet -->
+        <section id="cheat-sheet" class="mb-10">
+            <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 border-2 border-dashed border-gray-300 dark:border-gray-600">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100">Cheat Sheet</h2>
+                    <span class="text-sm text-gray-500 dark:text-gray-400">Print this page for quick reference</span>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-blue-700 dark:text-blue-300 mb-1">Why Regulate?</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Consumer protection, solvency, fair markets</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-blue-700 dark:text-blue-300 mb-1">McCarran-Ferguson (1945)</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">States regulate unless Congress says otherwise</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-purple-700 dark:text-purple-300 mb-1">NAIC</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Model laws, NOT a regulator. States must adopt individually.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-purple-700 dark:text-purple-300 mb-1">FIO (Dodd-Frank 2010)</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Monitors insurance. Does NOT regulate.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-1">Rate Regulation Types</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Prior Approval, File-and-Use, Use-and-File, Flex, No-File</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-1">RBC Action Levels</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">CRAM: Company, Regulatory, Authorized, Mandatory</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-green-700 dark:text-green-300 mb-1">Guaranty Funds</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Pay claims of insolvent admitted insurers. ~$300K cap. No surplus lines.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-green-700 dark:text-green-300 mb-1">Surplus Lines</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Non-admitted, flexible rates/forms, NO guaranty fund</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-amber-700 dark:text-amber-300 mb-1">NFIP</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Federal flood insurance. Risk Rating 2.0 = property-specific pricing.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-amber-700 dark:text-amber-300 mb-1">TRIA Key Numbers</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">$5M cert, $200M trigger, 80% fed share, $100B cap, thru 2027</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Trap Alerts -->
+        <section class="mb-10">
+            <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-xl p-5 lg:p-6">
+                <h2 class="text-2xl lg:text-3xl font-bold text-red-800 dark:text-red-300 mb-6">Exam Trap Alerts</h2>
+                <div class="space-y-4">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">1. McCarran-Ferguson Does NOT Prohibit Federal Regulation</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Students often think McCarran-Ferguson says the federal government CANNOT regulate insurance. Wrong. It says the federal government CHOOSES to let states regulate -- unless Congress specifically passes a law overriding state regulation. Congress retains full authority to step in anytime.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">2. SEUA (1944) vs. McCarran-Ferguson (1945) -- The One-Year Reversal</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">The SEUA case said the feds COULD regulate. McCarran-Ferguson (just one year later) said the feds would NOT regulate -- for now. If the exam asks "which case established federal authority over insurance," the answer is SEUA. If it asks "which law preserved state regulation," the answer is McCarran-Ferguson.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">3. File-and-Use vs. Use-and-File -- They Sound the Same!</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>File-and-Use</strong>: you FILE first, then USE immediately. You still file before using. <strong>Use-and-File</strong>: you USE first, then FILE later. The first word tells you what comes first. If the exam describes "insurer implements rates then files within 30 days," that is Use-and-File, not File-and-Use.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">4. RBC: Authorized vs. Mandatory Control</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">At the Authorized Control Level, the regulator CAN take control but does not HAVE to. At the Mandatory Control Level, the regulator MUST take control -- no discretion. The exam loves testing whether "authorized" means optional or required. Answer: Authorized = optional. Mandatory = required.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">5. NAIC Is NOT a Regulator</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">The NAIC creates model laws and coordinates regulation, but it has NO regulatory authority. It cannot fine insurers, revoke licenses, or enforce rules. Only individual STATE insurance departments can do that. If the exam asks "who enforces insurance regulations," the answer is the state DOI -- never the NAIC.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">6. FIO Monitors, Does NOT Regulate</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">The Federal Insurance Office was created by Dodd-Frank to monitor the industry and advise Congress. It does NOT approve rates, license insurers, or examine companies. If the exam asks about a "federal insurance regulator," FIO is the wrong answer -- there is no federal insurance regulator.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">7. Surplus Lines = NO Guaranty Fund</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Guaranty funds ONLY cover admitted (licensed) insurers. If a surplus lines insurer becomes insolvent, policyholders are on their own. This is the tradeoff for the flexibility and broader coverage that surplus lines provide. The exam may present a scenario where a non-admitted insurer fails and ask about guaranty fund coverage -- the answer is NO.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">8. Guaranty Funds Are NOT Pre-Funded Like FDIC</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Unlike the FDIC (which has a standing fund), insurance guaranty funds are typically funded AFTER an insolvency through assessments on surviving insurers. This means there can be a delay in payments, and the cost is ultimately passed to other policyholders through higher premiums.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Reference Summary -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-blue-600 to-blue-800 rounded-xl p-6 text-white">
+                <h2 class="text-2xl lg:text-3xl font-bold mb-6">Quick Reference Summary</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold text-lg">3 Reasons for Regulation</p>
+                        <p class="text-sm text-blue-100">Consumer protection, solvency, fair markets</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold text-lg">Paul v. Virginia (1869)</p>
+                        <p class="text-sm text-blue-100">Insurance is NOT interstate commerce -- states regulate</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold text-lg">SEUA Case (1944)</p>
+                        <p class="text-sm text-blue-100">Reversed -- insurance IS interstate commerce</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold text-lg">McCarran-Ferguson (1945)</p>
+                        <p class="text-sm text-blue-100">States keep regulating unless Congress overrides</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold text-lg">GLBA (1999)</p>
+                        <p class="text-sm text-blue-100">Banks + insurers + securities can merge</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold text-lg">Dodd-Frank / FIO (2010)</p>
+                        <p class="text-sm text-blue-100">Federal Insurance Office monitors, does NOT regulate</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold text-lg">Rate Regulation Types</p>
+                        <p class="text-sm text-blue-100">Prior Approval (strictest) to No-File (most free)</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold text-lg">RBC Action Levels</p>
+                        <p class="text-sm text-blue-100">CRAM: Company, Regulatory, Authorized, Mandatory</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold text-lg">Guaranty Funds</p>
+                        <p class="text-sm text-blue-100">~$300K cap, admitted only, post-funded</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold text-lg">Surplus Lines</p>
+                        <p class="text-sm text-blue-100">Non-admitted, flexible, NO guaranty fund</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold text-lg">NFIP</p>
+                        <p class="text-sm text-blue-100">Federal flood insurance, Risk Rating 2.0</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold text-lg">TRIA</p>
+                        <p class="text-sm text-blue-100">$5M cert, $200M trigger, 80% fed, $100B cap</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Navigation Footer -->
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="../part-3/index.html" class="text-gray-300 hover:text-white flex items-center">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                    </svg>
+                    Part 3: Innovating the Value Chain
+                </a>
+                <span class="text-gray-400">Part 4 of 4</span>
+                <a href="../../assignment-2-new/index.html" class="text-gray-300 hover:text-white flex items-center">
+                    Assignment 2: Claims
+                    <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AI Tutor Button -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            createFloatingAIButton(`Assignment 1 Part 4: Regulatory Influence on the Insurance Value Chain
+
+KEY CONCEPTS:
+
+WHY REGULATE INSURANCE:
+1. Consumer protection (information asymmetry)
+2. Ensure solvency (insurers must be able to pay claims)
+3. Promote fair markets (prevent price-fixing, discrimination)
+
+HISTORICAL TIMELINE (MEMORIZE YEARS):
+- 1869 Paul v. Virginia: Insurance is NOT interstate commerce -> states regulate
+- 1944 SEUA Case: REVERSED -> insurance IS interstate commerce -> feds COULD regulate
+- 1945 McCarran-Ferguson Act: States keep regulating UNLESS Congress overrides
+- 1999 Gramm-Leach-Bliley (GLBA): Banks + insurers + securities can merge
+- 2010 Dodd-Frank: Created FIO (monitors but does NOT regulate)
+
+STATE VS. FEDERAL:
+- Insurance is primarily STATE-regulated (unique among financial services)
+- Each state has DOI headed by Commissioner
+- NAIC creates model laws but is NOT a regulator
+- FIO monitors but does NOT regulate
+
+5 RATE REGULATION TYPES (most to least control):
+1. Prior Approval - must be approved BEFORE use (strictest)
+2. File-and-Use - file, then use immediately
+3. Use-and-File - use first, file within set period
+4. Flex Rating - change within approved band without filing
+5. No-File/Open Competition - no filing required (most free)
+Memory: "Please File Using Flexible Numbers"
+
+RBC ACTION LEVELS (CRAM):
+1. Company Action - insurer submits plan (mildest)
+2. Regulatory Action - regulator directs the fix
+3. Authorized Control - regulator CAN seize (optional)
+4. Mandatory Control - regulator MUST seize (required)
+
+SOLVENCY:
+- ORSA = large insurers self-assess their own risks
+- Guaranty funds = safety net for insolvent admitted insurers
+- Typically $300,000 cap per claim
+- NOT pre-funded like FDIC
+- Surplus lines = NO guaranty fund coverage
+
+SURPLUS LINES:
+- Non-admitted insurers for risks standard market won't cover
+- More flexibility in rates and forms
+- NO guaranty fund protection
+- NRRA simplified multi-state taxation
+
+GOVERNMENT PROGRAMS:
+- NFIP: Federal flood insurance, Risk Rating 2.0
+- FAIR Plans: State programs for high-risk areas
+- TRIA: $5M certification, $200M trigger, 80% federal share, $100B cap, through 2027
+
+EXAM TRAPS:
+- McCarran-Ferguson does NOT prohibit federal regulation
+- SEUA = federal authority, McCarran-Ferguson = state preservation
+- File-and-Use vs Use-and-File: first word = what happens first
+- Authorized Control = optional, Mandatory Control = required
+- NAIC is NOT a regulator
+- FIO monitors, does NOT regulate
+- Surplus lines = NO guaranty fund
+- Guaranty funds are NOT pre-funded like FDIC`);
+        });
+    </script>
+</body>
+</html>

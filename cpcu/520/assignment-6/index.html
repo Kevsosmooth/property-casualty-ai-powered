@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment 6: Expanding Capacity with Reinsurance | CPCU 520</title>
+    <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <link rel="stylesheet" href="../../../css/styles.css">
+    <script src="../../../js/ai-helper.js"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+        }
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+    </script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
+    <!-- Settings & Theme Toggle -->
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="showAPIKeySetup()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform" title="AI Settings">
+            <svg class="w-6 h-6 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+        </button>
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/>
+            </svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-cyan-600 to-cyan-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap gap-2 text-sm mb-2">
+                <a href="../../../index.html" class="text-cyan-200 hover:text-white">Home</a>
+                <span class="text-cyan-300">/</span>
+                <a href="../../index.html" class="text-cyan-200 hover:text-white">CPCU</a>
+                <span class="text-cyan-300">/</span>
+                <a href="../index.html" class="text-cyan-200 hover:text-white">520</a>
+                <span class="text-cyan-300">/</span>
+                <span class="text-white">Assignment 6</span>
+            </div>
+            <h1 class="text-3xl lg:text-4xl font-bold">Assignment 6: Expanding Capacity with Reinsurance</h1>
+            <p class="text-cyan-200 mt-2">How insurers transfer risk to other insurers, expand their capacity, and protect against catastrophic losses</p>
+            <p class="text-sm text-cyan-300 mt-1">3 Parts &bull; ~45 minutes total study time</p>
+        </div>
+    </header>
+
+    <!-- Part Navigation -->
+    <nav class="bg-white dark:bg-gray-800 shadow-sm sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex flex-wrap gap-2 text-sm">
+                <span class="bg-cyan-600 text-white px-3 py-1 rounded font-medium">Intro</span>
+                <a href="part-1/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 1</a>
+                <a href="part-2/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 2</a>
+                <a href="part-3/index.html" class="text-gray-600 dark:text-gray-300 hover:text-gray-800 px-3 py-1 rounded hover:bg-gray-50 dark:hover:bg-gray-700">Part 3</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-5xl lg:max-w-7xl">
+
+        <!-- Overview -->
+        <section class="mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 lg:p-8">
+                <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-4">What This Assignment Covers</h2>
+
+                <div class="bg-cyan-50 dark:bg-cyan-900/30 border border-cyan-200 dark:border-cyan-800 rounded-lg p-5 lg:p-6 mb-6">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Reinsurance is <strong>insurance for insurance companies</strong>. When a primary insurer writes a policy that is too large or too risky to handle alone, it transfers some of that risk to a reinsurer. This allows insurers to write bigger policies, survive catastrophes, and keep their financial statements healthy. Without reinsurance, the entire insurance industry would be far smaller and less stable. This assignment covers how reinsurance works, the different types of agreements, and how capital markets are creating new alternatives to traditional reinsurance.</p>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 lg:p-5 rounded-r-lg mb-6">
+                    <p class="font-bold text-amber-800 dark:text-amber-300 text-lg">Exam Alert</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">The exam heavily tests the <strong>six functions of reinsurance</strong>, the difference between <strong>treaty and facultative</strong> reinsurance, and the difference between <strong>pro rata (proportional) and excess of loss (non-proportional)</strong> agreements. You must also know <strong>quota share vs. surplus share</strong> and be able to calculate how premiums and losses are split. Catastrophe bonds and alternative capital are growing in exam importance.</p>
+                </div>
+
+                <!-- Educational Objectives -->
+                <h3 class="text-xl font-bold text-gray-800 dark:text-gray-100 mb-4">After this assignment, you will be able to:</h3>
+                <div class="space-y-3">
+                    <div class="flex items-start bg-cyan-50 dark:bg-cyan-900/20 rounded-lg p-4">
+                        <span class="bg-cyan-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Explain <strong>what reinsurance is</strong>, identify its key terminology (ceding company, reinsurer, retrocession, cession), describe the <strong>six functions</strong> reinsurance serves, and distinguish between its three sources</p>
+                    </div>
+                    <div class="flex items-start bg-indigo-50 dark:bg-indigo-900/20 rounded-lg p-4">
+                        <span class="bg-indigo-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Compare <strong>pro rata (proportional)</strong> and <strong>excess of loss (non-proportional)</strong> reinsurance, distinguish quota share from surplus share, calculate premium and loss splits, and explain how insurers layer multiple types of reinsurance into a program</p>
+                    </div>
+                    <div class="flex items-start bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4">
+                        <span class="bg-purple-600 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Describe <strong>capital market alternatives</strong> to traditional reinsurance including catastrophe bonds, sidecars, ILWs, and collateralized reinsurance, and explain modern trends reshaping the reinsurance market</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Part Cards -->
+        <section class="mb-10">
+            <h2 class="text-2xl lg:text-3xl font-bold text-gray-800 dark:text-gray-100 mb-6">Assignment Parts</h2>
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- Part 1 -->
+                <a href="part-1/index.html" class="block bg-white dark:bg-gray-800 rounded-xl shadow-md hover:shadow-lg transition-shadow p-6 border-t-4 border-cyan-500">
+                    <div class="flex items-center mb-3">
+                        <span class="bg-cyan-600 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold mr-3">1</span>
+                        <h3 class="text-lg lg:text-xl font-bold text-gray-800 dark:text-gray-100">Reinsurance Functions and Sources</h3>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base">What reinsurance is, key terminology, the six functions it serves, three sources of reinsurance, and treaty vs. facultative agreements.</p>
+                    <div class="mt-4 flex flex-wrap gap-2">
+                        <span class="bg-cyan-100 dark:bg-cyan-900/40 text-cyan-800 dark:text-cyan-300 text-xs px-2 py-1 rounded">Ceding Company</span>
+                        <span class="bg-cyan-100 dark:bg-cyan-900/40 text-cyan-800 dark:text-cyan-300 text-xs px-2 py-1 rounded">6 Functions</span>
+                        <span class="bg-cyan-100 dark:bg-cyan-900/40 text-cyan-800 dark:text-cyan-300 text-xs px-2 py-1 rounded">Treaty vs. Facultative</span>
+                    </div>
+                </a>
+
+                <!-- Part 2 -->
+                <a href="part-2/index.html" class="block bg-white dark:bg-gray-800 rounded-xl shadow-md hover:shadow-lg transition-shadow p-6 border-t-4 border-teal-500">
+                    <div class="flex items-center mb-3">
+                        <span class="bg-teal-600 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold mr-3">2</span>
+                        <h3 class="text-lg lg:text-xl font-bold text-gray-800 dark:text-gray-100">Types of Reinsurance Agreements</h3>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base">Pro rata (quota share, surplus share) vs. excess of loss (per risk, per occurrence, aggregate). Worked examples with dollar amounts.</p>
+                    <div class="mt-4 flex flex-wrap gap-2">
+                        <span class="bg-teal-100 dark:bg-teal-900/40 text-teal-800 dark:text-teal-300 text-xs px-2 py-1 rounded">Quota Share</span>
+                        <span class="bg-teal-100 dark:bg-teal-900/40 text-teal-800 dark:text-teal-300 text-xs px-2 py-1 rounded">Surplus Share</span>
+                        <span class="bg-teal-100 dark:bg-teal-900/40 text-teal-800 dark:text-teal-300 text-xs px-2 py-1 rounded">Excess of Loss</span>
+                    </div>
+                </a>
+
+                <!-- Part 3 -->
+                <a href="part-3/index.html" class="block bg-white dark:bg-gray-800 rounded-xl shadow-md hover:shadow-lg transition-shadow p-6 border-t-4 border-blue-500">
+                    <div class="flex items-center mb-3">
+                        <span class="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold mr-3">3</span>
+                        <h3 class="text-lg lg:text-xl font-bold text-gray-800 dark:text-gray-100">Capital Market Alternatives and Modern Reinsurance</h3>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base">Catastrophe bonds, sidecars, ILWs, collateralized reinsurance, finite risk, and modern trends reshaping the reinsurance landscape.</p>
+                    <div class="mt-4 flex flex-wrap gap-2">
+                        <span class="bg-blue-100 dark:bg-blue-900/40 text-blue-800 dark:text-blue-300 text-xs px-2 py-1 rounded">Cat Bonds</span>
+                        <span class="bg-blue-100 dark:bg-blue-900/40 text-blue-800 dark:text-blue-300 text-xs px-2 py-1 rounded">Sidecars</span>
+                        <span class="bg-blue-100 dark:bg-blue-900/40 text-blue-800 dark:text-blue-300 text-xs px-2 py-1 rounded">Market Trends</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- Quick Reference -->
+        <section class="mb-10">
+            <div class="bg-gradient-to-r from-cyan-600 to-cyan-800 rounded-xl p-6 text-white">
+                <h2 class="text-2xl font-bold mb-6">Quick Reference: Reinsurance at a Glance</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">6 Functions</p>
+                        <p class="text-sm text-cyan-100">Capacity, catastrophe protection, stabilization, surplus relief, withdrawal, underwriting guidance</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">2 Main Categories</p>
+                        <p class="text-sm text-cyan-100">Pro rata (proportional) shares premiums AND losses; Excess of loss (non-proportional) only pays above a threshold</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Treaty vs. Facultative</p>
+                        <p class="text-sm text-cyan-100">Treaty = blanket/automatic; Facultative = individual risk, negotiated one at a time</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Capital Market Alternatives</p>
+                        <p class="text-sm text-cyan-100">Cat bonds, sidecars, ILWs, collateralized reinsurance &mdash; now ~20% of global capacity</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 dark:bg-gray-950 text-gray-300 py-6">
+        <div class="container mx-auto px-4 text-center text-sm">
+            <div class="flex justify-between items-center max-w-2xl mx-auto">
+                <a href="../assignment-5/index.html" class="hover:text-white">&larr; Assignment 5: Marketing</a>
+                <span class="text-gray-500">Assignment 6 of 7</span>
+                <a href="part-1/index.html" class="hover:text-white">Start Part 1 &rarr;</a>
+            </div>
+            <p class="mt-4 text-gray-500">For educational purposes only. Not an official exam resource.</p>
+        </div>
+    </footer>
+
+    <!-- AI Tutor -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof createFloatingAIButton === 'function') {
+                createFloatingAIButton({
+                    topic: 'CPCU 520 Assignment 6: Expanding Capacity with Reinsurance',
+                    context: `This assignment covers reinsurance fundamentals, types of agreements, and capital market alternatives. Key topics: (1) Reinsurance = insurance for insurance companies. (2) Key terms: ceding company, reinsurer, retrocession, cession. (3) Six functions: increase large-line capacity, catastrophe protection, stabilize losses, surplus relief, facilitate withdrawal, underwriting guidance. (4) Three sources: professional reinsurers, reinsurance departments of primary insurers, pools/syndicates. (5) Treaty (automatic/blanket) vs. facultative (individual risk). (6) Pro rata: quota share (fixed %) and surplus share (variable by policy size). (7) Excess of loss: per risk, per occurrence/catastrophe, aggregate. (8) Capital market alternatives: cat bonds, sidecars, ILWs, collateralized reinsurance. (9) Finite risk reinsurance and the 10-10 rule. (10) Modern trends: market hardening, cyber reinsurance growth, climate change impact, ILS now ~20% of capacity.`
+                });
+            }
+        });
+    </script>
+</body>
+</html>
