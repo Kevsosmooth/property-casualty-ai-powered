@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 4: Company Underwriting & Risk Classification - Life Insurance Ch.1</title>
+    <link rel="icon" type="image/svg+xml" href="../../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+        }
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+        }
+    </script>
+    <link rel="stylesheet" href="../../../../css/styles.css">
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors duration-300">
+    <!-- Theme Toggle -->
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/></svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>
+        </button>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <nav class="text-blue-200 text-sm mb-3">
+                <a href="../../../../index.html" class="hover:text-white">Home</a>
+                <span class="mx-2">/</span>
+                <a href="../../../index.html" class="hover:text-white">Life & Health</a>
+                <span class="mx-2">/</span>
+                <a href="../../index.html" class="hover:text-white">Life Insurance</a>
+                <span class="mx-2">/</span>
+                <a href="../index.html" class="hover:text-white">Chapter 1</a>
+                <span class="mx-2">/</span>
+                <span class="text-white">Part 4</span>
+            </nav>
+            <h1 class="text-3xl lg:text-4xl font-bold">Part 4: Company Underwriting & Risk Classification</h1>
+            <p class="mt-2 text-blue-100 text-lg">How the insurance company decides whether to insure you - and how much to charge</p>
+        </div>
+    </header>
+
+    <!-- Sticky Part Navigation -->
+    <nav class="sticky top-0 z-40 bg-white dark:bg-gray-800 shadow-md border-b border-gray-200 dark:border-gray-700">
+        <div class="container mx-auto px-4 overflow-x-auto">
+            <div class="flex gap-1 py-2 text-sm whitespace-nowrap">
+                <a href="../part-1/index.html" class="px-3 py-2 rounded-lg text-gray-600 dark:text-gray-400 hover:bg-blue-50 dark:hover:bg-blue-900/30">Part 1</a>
+                <a href="../part-2/index.html" class="px-3 py-2 rounded-lg text-gray-600 dark:text-gray-400 hover:bg-blue-50 dark:hover:bg-blue-900/30">Part 2</a>
+                <a href="../part-3/index.html" class="px-3 py-2 rounded-lg text-gray-600 dark:text-gray-400 hover:bg-blue-50 dark:hover:bg-blue-900/30">Part 3</a>
+                <a href="../part-4/index.html" class="px-3 py-2 rounded-lg bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 font-bold">Part 4</a>
+                <a href="../part-5/index.html" class="px-3 py-2 rounded-lg text-gray-600 dark:text-gray-400 hover:bg-blue-50 dark:hover:bg-blue-900/30">Part 5</a>
+                <a href="../part-6/index.html" class="px-3 py-2 rounded-lg text-gray-600 dark:text-gray-400 hover:bg-blue-50 dark:hover:bg-blue-900/30">Part 6</a>
+                <a href="../part-7/index.html" class="px-3 py-2 rounded-lg text-gray-600 dark:text-gray-400 hover:bg-blue-50 dark:hover:bg-blue-900/30">Part 7</a>
+                <a href="../recap/index.html" class="px-3 py-2 rounded-lg text-gray-600 dark:text-gray-400 hover:bg-blue-50 dark:hover:bg-blue-900/30">Recap</a>
+                <span class="border-l border-gray-300 dark:border-gray-600 mx-1"></span>
+                <a href="#underwriting" class="px-3 py-2 rounded-lg text-gray-500 dark:text-gray-500 hover:text-blue-600 dark:hover:text-blue-400">Underwriting</a>
+                <a href="#insurable-interest" class="px-3 py-2 rounded-lg text-gray-500 dark:text-gray-500 hover:text-blue-600 dark:hover:text-blue-400">Insurable Interest</a>
+                <a href="#sources" class="px-3 py-2 rounded-lg text-gray-500 dark:text-gray-500 hover:text-blue-600 dark:hover:text-blue-400">Info Sources</a>
+                <a href="#fcra" class="px-3 py-2 rounded-lg text-gray-500 dark:text-gray-500 hover:text-blue-600 dark:hover:text-blue-400">FCRA</a>
+                <a href="#risk-classes" class="px-3 py-2 rounded-lg text-gray-500 dark:text-gray-500 hover:text-blue-600 dark:hover:text-blue-400">Risk Classes</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-5xl lg:max-w-7xl">
+
+        <!-- Start Here: 5 Things You MUST Know -->
+        <div class="bg-gradient-to-r from-blue-100 to-blue-200 dark:from-blue-900/40 dark:to-blue-800/40 rounded-xl p-6 mb-8 border border-blue-300 dark:border-blue-700">
+            <h3 class="text-xl lg:text-2xl font-bold text-blue-800 dark:text-blue-200 mb-4">Start Here: 5 Things You MUST Know</h3>
+            <div class="grid md:grid-cols-2 gap-3">
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Insurable interest must exist at time of APPLICATION</strong> - not at time of claim. This is the #1 tested concept.</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Beneficiaries do NOT need insurable interest.</strong> You can name anyone as your beneficiary.</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>MIB cannot be the sole reason</strong> to deny coverage. It's only an aid, never the final word.</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">4</span>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>HIV tests are at the insurer's expense</strong> and require written consent and confidentiality procedures.</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">5</span>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg"><strong>Four risk classes</strong>: Preferred (best), Standard (average), Substandard/Rated (higher premium), Declined (no coverage).</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Overview Section -->
+        <section id="underwriting" class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">1. What is Company Underwriting?</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-800 rounded-lg p-4 lg:p-5 mb-6">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg lg:text-xl">Underwriting = The Decision-Making Process</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg"><strong>Underwriting</strong> is the process of deciding whether to insure someone and how much to charge them. The <strong>underwriter</strong> is the person at the insurance company who reviews all the information about an applicant and makes the call: approve, modify, or reject.</p>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 lg:p-5 mb-6">
+                    <p class="font-bold text-amber-800 dark:text-amber-300 mb-2">Field Underwriting vs. Company Underwriting</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">In Part 3, you learned about <strong>field underwriting</strong> - that's what the agent does out in the field (gathering info, filling out the application). <strong>Company underwriting</strong> is what happens back at headquarters. The underwriter at the company takes all that info the agent collected and makes the final decision.</p>
+                </div>
+
+                <div class="mb-6">
+                    <h3 class="font-bold text-gray-800 dark:text-gray-100 text-lg mb-3">The Underwriter's Primary Goal</h3>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-3">Protect the company against <strong>adverse selection</strong> - when people who are more likely to die or get sick are disproportionately the ones buying insurance. If only sick people bought life insurance, the company would go bankrupt paying out claims.</p>
+                </div>
+
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-purple-500 mb-4">
+                    <p class="font-semibold text-purple-800 dark:text-purple-300 mb-2">Primary Underwriting Criteria</p>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-3">
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                            <p class="font-bold text-purple-700 dark:text-purple-300">Health</p>
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400">Current conditions and past medical history</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                            <p class="font-bold text-purple-700 dark:text-purple-300">Occupation</p>
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400">Desk job vs. coal miner vs. pilot</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                            <p class="font-bold text-purple-700 dark:text-purple-300">Lifestyle</p>
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400">Smoking, drinking, drug use</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                            <p class="font-bold text-purple-700 dark:text-purple-300">Hobbies/Habits</p>
+                            <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400">Skydiving, scuba diving, racing</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700/50 p-4 rounded-lg border-l-4 border-blue-500">
+                    <p class="font-semibold text-blue-800 dark:text-blue-300 mb-2">Real-World Scenario: Why Underwriting Matters</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Two 35-year-old men both apply for $500,000 life insurance policies.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Applicant A is a healthy accountant who jogs. Applicant B is a smoker with diabetes who does BASE jumping on weekends.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Applicant A gets preferred rates (low premium). Applicant B gets substandard/rated rates (much higher premium) or may be declined. Without underwriting, both would pay the same - which would be unfair to Applicant A and financially devastating to the insurer.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Insurable Interest -->
+        <section id="insurable-interest" class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">2. Insurable Interest in Life Insurance</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-800 rounded-lg p-4 lg:p-5 mb-6">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg lg:text-xl">What is Insurable Interest?</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">The policyowner must face the <strong>possibility of losing money or something of value</strong> if the insured person dies. In other words, you have to have a real financial reason to want the person to stay alive - not a reason to want them dead.</p>
+                </div>
+
+                <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-xl p-5 lg:p-6 mb-6">
+                    <h3 class="text-lg lg:text-xl font-bold text-red-800 dark:text-red-300 mb-3">CRITICAL EXAM RULE</h3>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">In life insurance, insurable interest must exist <strong>at the time of APPLICATION</strong> - NOT at the time of claim. Once the policy is issued, the insurer must pay the death benefit regardless of whether insurable interest still exists.</p>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>Example:</strong> A wife takes out a policy on her husband. Two years later, they divorce. He dies 5 years after the divorce. The ex-wife STILL collects the death benefit because insurable interest existed when the application was filed.</p>
+                    </div>
+                </div>
+
+                <h3 class="font-bold text-gray-800 dark:text-gray-100 text-lg mb-3">Who Has Insurable Interest?</h3>
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border border-green-200 dark:border-green-800">
+                        <p class="font-bold text-green-800 dark:text-green-300 mb-3">VALID Insurable Interest</p>
+                        <div class="space-y-2">
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                                <p class="font-semibold text-gray-800 dark:text-gray-200 text-sm lg:text-base">Your own life</p>
+                                <p class="text-gray-600 dark:text-gray-400 text-sm">Everyone has unlimited insurable interest in their own life</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                                <p class="font-semibold text-gray-800 dark:text-gray-200 text-sm lg:text-base">Spouse</p>
+                                <p class="text-gray-600 dark:text-gray-400 text-sm">Husband/wife depends on each other financially</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                                <p class="font-semibold text-gray-800 dark:text-gray-200 text-sm lg:text-base">Close blood relatives</p>
+                                <p class="text-gray-600 dark:text-gray-400 text-sm">Parents, children, siblings - financial and emotional ties</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                                <p class="font-semibold text-gray-800 dark:text-gray-200 text-sm lg:text-base">Business partner / Key employee</p>
+                                <p class="text-gray-600 dark:text-gray-400 text-sm">Their death would hurt the business financially</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                                <p class="font-semibold text-gray-800 dark:text-gray-200 text-sm lg:text-base">Creditor on debtor's life</p>
+                                <p class="text-gray-600 dark:text-gray-400 text-sm">If the debtor dies, the creditor loses the money owed</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border border-red-200 dark:border-red-800">
+                        <p class="font-bold text-red-800 dark:text-red-300 mb-3">NO Insurable Interest / Special Rules</p>
+                        <div class="space-y-2">
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                                <p class="font-semibold text-gray-800 dark:text-gray-200 text-sm lg:text-base">Random stranger</p>
+                                <p class="text-gray-600 dark:text-gray-400 text-sm">You cannot take a policy on someone you have no connection to</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                                <p class="font-semibold text-gray-800 dark:text-gray-200 text-sm lg:text-base">Distant relative (no financial tie)</p>
+                                <p class="text-gray-600 dark:text-gray-400 text-sm">A cousin you never see and don't depend on financially</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                                <p class="font-semibold text-gray-800 dark:text-gray-200 text-sm lg:text-base">Ex-spouse (at time of application)</p>
+                                <p class="text-gray-600 dark:text-gray-400 text-sm">Cannot take a NEW policy on an ex - no current financial tie</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded border-2 border-amber-300 dark:border-amber-600">
+                                <p class="font-semibold text-amber-800 dark:text-amber-300 text-sm lg:text-base">BENEFICIARIES - Special Rule</p>
+                                <p class="text-gray-600 dark:text-gray-400 text-sm">Beneficiaries do NOT need insurable interest. You can name your best friend, a charity, or anyone as beneficiary.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700/50 p-4 rounded-lg border-l-4 border-blue-500">
+                    <p class="font-semibold text-blue-800 dark:text-blue-300 mb-2">Real-World Scenario: Insurable Interest in Business</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Sarah and Mike are 50/50 business partners in a restaurant worth $2 million. Sarah takes out a $1 million life insurance policy on Mike's life.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Mike dies suddenly. Without his expertise and connections, the restaurant suffers a major financial blow.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Sarah collects the $1 million death benefit. This is valid because she had a clear financial stake in Mike staying alive - his death genuinely hurt her financially. This is called a <strong>key person</strong> (or "key man") insurance arrangement.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sources of Underwriting Information -->
+        <section id="sources" class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">3. Sources of Underwriting Information</h2>
+
+                <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-6">The underwriter doesn't just guess - they use multiple sources to build a complete picture of the applicant. Think of it like a detective gathering evidence before making a decision.</p>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6 mb-6">
+                    <!-- Application -->
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-l-4 border-blue-500">
+                        <p class="font-bold text-blue-800 dark:text-blue-300 text-base lg:text-lg">The Application</p>
+                        <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400 mt-1">The <strong>key source</strong> - everything the applicant disclosed about themselves (health history, income, habits).</p>
+                    </div>
+                    <!-- Agent's Report -->
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-l-4 border-blue-500">
+                        <p class="font-bold text-blue-800 dark:text-blue-300 text-base lg:text-lg">Agent's Report</p>
+                        <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400 mt-1">The agent's personal observations - did the applicant seem honest? Healthy? Any red flags during the meeting?</p>
+                    </div>
+                    <!-- Investigative Consumer Report -->
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border-l-4 border-purple-500">
+                        <p class="font-bold text-purple-800 dark:text-purple-300 text-base lg:text-lg">Investigative Consumer Report</p>
+                        <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400 mt-1">An investigation by an independent firm or credit agency. Covers financial standing and moral character. Subject to the <strong>Fair Credit Reporting Act</strong>.</p>
+                    </div>
+                    <!-- Paramedical Report -->
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <p class="font-bold text-green-800 dark:text-green-300 text-base lg:text-lg">Paramedical Report</p>
+                        <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400 mt-1">A basic medical exam performed by a paramedic or nurse (height, weight, blood pressure, blood/urine samples).</p>
+                    </div>
+                    <!-- APS -->
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <p class="font-bold text-green-800 dark:text-green-300 text-base lg:text-lg">APS (Attending Physician's Statement)</p>
+                        <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400 mt-1">A report from the applicant's actual doctor who has treated them. <strong>APS = Attending Physician's Statement</strong> - the doctor who knows your real medical history.</p>
+                    </div>
+                    <!-- MIB -->
+                    <div class="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg border-l-4 border-amber-500">
+                        <p class="font-bold text-amber-800 dark:text-amber-300 text-base lg:text-lg">MIB (Medical Information Bureau)</p>
+                        <p class="text-sm lg:text-base text-gray-600 dark:text-gray-400 mt-1">A shared database where insurance companies exchange info about applicants. <strong>Can only be used as an aid</strong> - never the sole reason to deny.</p>
+                    </div>
+                </div>
+
+                <!-- MIB Deep Dive -->
+                <div class="bg-amber-50 dark:bg-amber-900/30 border border-amber-200 dark:border-amber-800 rounded-xl p-5 lg:p-6 mb-6">
+                    <h3 class="text-lg lg:text-xl font-bold text-amber-800 dark:text-amber-300 mb-3">The MIB - What You Need to Know</h3>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-4"><strong>MIB = Medical Information Bureau</strong> - a nonprofit organization owned by its member insurance companies. Think of it as a shared database where insurers can flag information about applicants. If you applied for insurance at Company A and disclosed a heart condition, that info gets coded into the MIB. When you apply at Company B, they can see the flag.</p>
+
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border border-green-200 dark:border-green-800">
+                            <p class="font-bold text-green-800 dark:text-green-300 mb-2">What MIB CAN Do</p>
+                            <ul class="space-y-1 text-sm lg:text-base text-gray-700 dark:text-gray-300">
+                                <li class="flex items-start"><span class="text-green-500 mr-2 mt-1">+</span> Alert insurers to potential risk factors</li>
+                                <li class="flex items-start"><span class="text-green-500 mr-2 mt-1">+</span> Help catch applicants who lie on applications</li>
+                                <li class="flex items-start"><span class="text-green-500 mr-2 mt-1">+</span> Serve as an additional underwriting tool</li>
+                            </ul>
+                        </div>
+                        <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border border-red-200 dark:border-red-800">
+                            <p class="font-bold text-red-800 dark:text-red-300 mb-2">What MIB CANNOT Do</p>
+                            <ul class="space-y-1 text-sm lg:text-base text-gray-700 dark:text-gray-300">
+                                <li class="flex items-start"><span class="text-red-500 mr-2 mt-1">X</span> Be the SOLE basis for denying coverage</li>
+                                <li class="flex items-start"><span class="text-red-500 mr-2 mt-1">X</span> Replace proper medical underwriting</li>
+                                <li class="flex items-start"><span class="text-red-500 mr-2 mt-1">X</span> Provide a final decision - it's only an aid</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded mt-4">
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>Example:</strong> John applies at ABC Insurance and the MIB flags a previous diabetes code. ABC Insurance <strong>cannot</strong> just say "MIB says diabetes, denied." They must do their own investigation - order an APS, run their own tests. Maybe John's diabetes is well-controlled and he qualifies as standard risk.</p>
+                    </div>
+                </div>
+
+                <!-- Medical Exams & HIV -->
+                <div class="bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-800 rounded-xl p-5 lg:p-6 mb-6">
+                    <h3 class="text-lg lg:text-xl font-bold text-green-800 dark:text-green-300 mb-3">Medical Exams & HIV Testing</h3>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-4">Medical exams and HIV tests are done <strong>at the insurer's expense</strong> - the applicant does not pay for these.</p>
+
+                    <div class="bg-white dark:bg-gray-700 rounded-lg p-4 mb-3">
+                        <p class="font-bold text-gray-800 dark:text-gray-200 mb-2">HIV Testing Has Three Requirements:</p>
+                        <div class="space-y-2">
+                            <div class="flex items-start">
+                                <span class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
+                                <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>Written disclosure</strong> to the applicant that an HIV test will be conducted</p>
+                            </div>
+                            <div class="flex items-start">
+                                <span class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
+                                <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>Written consent</strong> from the applicant agreeing to the test</p>
+                            </div>
+                            <div class="flex items-start">
+                                <span class="bg-green-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
+                                <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>Confidentiality procedures</strong> must be in place to protect results</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- HIPAA -->
+                <div class="bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-800 rounded-xl p-5 lg:p-6 mb-6">
+                    <h3 class="text-lg lg:text-xl font-bold text-blue-800 dark:text-blue-300 mb-3">HIPAA - Your Medical Privacy Rights</h3>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-4"><strong>HIPAA = Health Insurance Portability and Accountability Act</strong> - the federal law that keeps your medical records private. In plain English: doctors, hospitals, and insurers cannot share your health information without your permission.</p>
+
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                            <p class="font-bold text-blue-700 dark:text-blue-300 mb-2">Patient Rights Under HIPAA</p>
+                            <ul class="space-y-2 text-sm lg:text-base text-gray-700 dark:text-gray-300">
+                                <li>Can <strong>view their own medical records</strong></li>
+                                <li>Can find out <strong>who has accessed</strong> their records in the <strong>past 6 years</strong></li>
+                                <li>Can request corrections to their records</li>
+                            </ul>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                            <p class="font-bold text-blue-700 dark:text-blue-300 mb-2">Disclosure Authorization Notice</p>
+                            <ul class="space-y-2 text-sm lg:text-base text-gray-700 dark:text-gray-300">
+                                <li>Must be written in <strong>plain language</strong> (no legalese)</li>
+                                <li>Must be approved by the <strong>head of the Department of Insurance</strong></li>
+                                <li>Tells the applicant exactly what information will be shared and with whom</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Disclosure Auth Example -->
+                <div class="bg-gray-50 dark:bg-gray-700/50 p-4 rounded-lg border-l-4 border-blue-500">
+                    <p class="font-semibold text-blue-800 dark:text-blue-300 mb-2">Real-World Scenario: HIPAA in Action</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Maria applies for life insurance. The company wants her medical records from her cardiologist.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> The insurer sends Maria a Disclosure Authorization Notice (in plain English, not legal jargon) explaining that they need her heart records. Maria signs it. The cardiologist releases the records to the insurer.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> Three years later, Maria can ask the cardiologist "Who has looked at my records in the past 6 years?" and they must tell her. If the insurer shared her records without authorization, that's a HIPAA violation.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Fair Credit Reporting Act -->
+        <section id="fcra" class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">4. Fair Credit Reporting Act (FCRA)</h2>
+
+                <div class="bg-purple-50 dark:bg-purple-900/30 border border-purple-200 dark:border-purple-800 rounded-lg p-4 lg:p-5 mb-6">
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">The Fair Credit Reporting Act is a federal law that controls how insurers can gather and use personal information about applicants. It defines two types of reports and gives consumers specific rights.</p>
+                </div>
+
+                <!-- Two Types of Reports -->
+                <h3 class="font-bold text-gray-800 dark:text-gray-100 text-lg mb-3">Two Types of Reports - Know the Difference</h3>
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 border-l-4 border-blue-500">
+                        <h4 class="font-bold text-blue-800 dark:text-blue-300 mb-2">Consumer Report</h4>
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300 mb-2">Information gathered from <strong>records and documents</strong> - things that already exist on paper or in databases.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-2">
+                            <p class="text-sm text-gray-600 dark:text-gray-400"><strong>Sources:</strong> Credit reports, employment records, public records (court filings, bankruptcies), financial databases</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-2">
+                            <p class="text-sm text-gray-600 dark:text-gray-400"><strong>Think of it as:</strong> Looking up what's already written down about you</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-indigo-50 dark:bg-indigo-900/20 rounded-lg p-4 border-l-4 border-indigo-500">
+                        <h4 class="font-bold text-indigo-800 dark:text-indigo-300 mb-2">Investigative Consumer Report</h4>
+                        <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300 mb-2">Information gathered through <strong>personal interviews</strong> - actually talking to people who know you.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-2">
+                            <p class="text-sm text-gray-600 dark:text-gray-400"><strong>Sources:</strong> Interviews with your neighbors, friends, coworkers, associates</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-2">
+                            <p class="text-sm text-gray-600 dark:text-gray-400"><strong>Think of it as:</strong> An investigator asking people about your character and habits</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Consumer Rights & Rules -->
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-purple-500 mb-6">
+                    <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg mb-3">Investigative Report - Special Rules</h3>
+                    <div class="space-y-3 text-sm lg:text-base text-gray-700 dark:text-gray-300">
+                        <div class="flex items-start">
+                            <span class="bg-purple-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
+                            <p>Consumer must be <strong>advised in writing within 3 days</strong> that an investigative report will be done</p>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="bg-purple-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
+                            <p>Consumer has the right to <strong>request additional information</strong> about what the report will cover</p>
+                        </div>
+                        <div class="flex items-start">
+                            <span class="bg-purple-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
+                            <p>Company must provide that additional info within <strong>5 days</strong> of the request</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- If Policy Declined -->
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 lg:p-5 mb-6">
+                    <h3 class="font-bold text-amber-800 dark:text-amber-300 text-lg mb-3">If Your Policy is Declined or Modified Due to a Report</h3>
+                    <div class="space-y-2 text-sm lg:text-base text-gray-700 dark:text-gray-300">
+                        <p>The insurer MUST give the consumer the <strong>name and address of the reporting agency</strong>.</p>
+                        <p>The consumer can find out <strong>what is in their report</strong> and <strong>who has received it</strong> in the past year.</p>
+                        <p>The consumer can <strong>challenge any information</strong> they believe is wrong - the agency must <strong>reinvestigate</strong>.</p>
+                    </div>
+                </div>
+
+                <!-- Report Limitations -->
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-6">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg mb-3">Time Limits on Negative Info (Policies Under $150,000)</h3>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mb-3">For policies with face amounts under $150,000, reports <strong>cannot include</strong>:</p>
+                    <div class="grid md:grid-cols-2 gap-3">
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                            <p class="text-2xl lg:text-3xl font-bold text-blue-600 dark:text-blue-400">10+ years</p>
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Bankruptcies older than this are excluded</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded-lg text-center">
+                            <p class="text-2xl lg:text-3xl font-bold text-blue-600 dark:text-blue-400">7+ years</p>
+                            <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Civil suits, arrest records, and convictions older than this are excluded</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Penalties -->
+                <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-red-500 mb-6">
+                    <h3 class="font-bold text-red-800 dark:text-red-300 text-lg mb-3">FCRA Penalties</h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm lg:text-base">
+                            <thead>
+                                <tr class="bg-red-600 text-white">
+                                    <th class="p-3 lg:p-4 text-left rounded-tl-lg">Violation Type</th>
+                                    <th class="p-3 lg:p-4 text-left rounded-tr-lg">Penalty</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                                <tr class="bg-white dark:bg-gray-700">
+                                    <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300"><strong>Willful false pretenses</strong> (deliberately lying to get a report)</td>
+                                    <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Fined and/or <strong>imprisoned up to 2 years</strong></td>
+                                </tr>
+                                <tr class="bg-gray-50 dark:bg-gray-600">
+                                    <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300"><strong>Unknowing violation</strong> (accidental non-compliance)</td>
+                                    <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Liable for <strong>consumer's actual loss + attorney fees</strong></td>
+                                </tr>
+                                <tr class="bg-white dark:bg-gray-700">
+                                    <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300"><strong>Willful pattern of violation</strong> (repeated, intentional non-compliance)</td>
+                                    <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Up to <strong>$2,500 penalty</strong></td>
+                                </tr>
+                                <tr class="bg-gray-50 dark:bg-gray-600">
+                                    <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300"><strong>Any non-compliance</strong></td>
+                                    <td class="p-3 lg:p-4 text-gray-700 dark:text-gray-300">Consumer can bring <strong>civil action</strong> (lawsuit)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 dark:bg-gray-700/50 p-4 rounded-lg border-l-4 border-purple-500">
+                    <p class="font-semibold text-purple-800 dark:text-purple-300 mb-2">Real-World Scenario: FCRA Consumer Rights</p>
+                    <div class="space-y-2 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Tom applies for a $100,000 life insurance policy. The insurer orders an investigative consumer report. An investigator interviews Tom's neighbor, who has a grudge and says Tom is a heavy drinker (he's not).</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> The insurer declines Tom based partly on the report. Tom must be given the name/address of the reporting agency. Tom requests his report, sees the false drinking claim, and challenges it.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> The agency must reinvestigate. When they find the neighbor was lying, the info is corrected. Tom can reapply with accurate information. If the insurer failed to notify Tom within 3 days about the investigative report, they face civil action.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Risk Classification -->
+        <section id="risk-classes" class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">5. Risk Classification</h2>
+
+                <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-6">After gathering all the information, the underwriter places the applicant into one of four categories. This determines whether they get coverage and how much they pay.</p>
+
+                <div class="grid md:grid-cols-2 gap-4 lg:gap-6 mb-6">
+                    <!-- Preferred -->
+                    <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-green-500">
+                        <h4 class="font-bold text-green-800 dark:text-green-300 text-lg mb-2">Preferred Risk</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mb-3">Superior health, clean history, safe occupation, healthy lifestyle. These are the insurance company's dream customers.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>Premium:</strong> Lowest rates available</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mt-1"><strong>Example:</strong> A 30-year-old non-smoking yoga instructor with no family history of disease, perfect blood pressure, and a desk job.</p>
+                        </div>
+                    </div>
+
+                    <!-- Standard -->
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500">
+                        <h4 class="font-bold text-blue-800 dark:text-blue-300 text-lg mb-2">Standard Risk</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mb-3">Average risk - the <strong>majority of applicants</strong> fall here. Normal health, typical occupation, no major red flags.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>Premium:</strong> Standard rates (the "normal" price)</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mt-1"><strong>Example:</strong> A 40-year-old office manager, slightly overweight, occasional social drinker, family history of mild high blood pressure.</p>
+                        </div>
+                    </div>
+
+                    <!-- Substandard -->
+                    <div class="bg-amber-50 dark:bg-amber-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-amber-500">
+                        <h4 class="font-bold text-amber-800 dark:text-amber-300 text-lg mb-2">Substandard (High Exposure) Risk</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mb-3">Not acceptable at standard rates due to health conditions, dangerous occupation, or risky habits. These are called <strong>"rated" policies</strong> - meaning the premium is "rated up" (increased) because the person is riskier to insure.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>Premium:</strong> Higher than standard ("rated up")</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mt-1"><strong>Example:</strong> A 45-year-old smoker with controlled diabetes who works as a commercial fisherman. Insurable, but at a significantly higher premium.</p>
+                        </div>
+                    </div>
+
+                    <!-- Declined -->
+                    <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-red-500">
+                        <h4 class="font-bold text-red-800 dark:text-red-300 text-lg mb-2">Declined</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mb-3">Not insurable at any price. The risk is simply too great or there's a fundamental problem with the application.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>Premium:</strong> N/A - no policy issued</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mt-1"><strong>Reasons for decline:</strong> No insurable interest, medically unacceptable (terminal illness), risk too great, or prohibited by law.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Visual Flow -->
+                <div class="bg-gray-50 dark:bg-gray-700/50 rounded-lg p-4 lg:p-5 mb-4">
+                    <h3 class="font-bold text-gray-800 dark:text-gray-200 text-lg mb-3">The Underwriting Decision Flow</h3>
+                    <div class="flex items-center gap-3 lg:gap-4 flex-wrap justify-center">
+                        <div class="bg-blue-100 dark:bg-blue-900/40 p-3 lg:p-4 rounded-lg text-center">
+                            <p class="font-bold text-blue-800 dark:text-blue-300 text-sm lg:text-base">Application Received</p>
+                        </div>
+                        <div class="text-2xl text-gray-400">--></div>
+                        <div class="bg-purple-100 dark:bg-purple-900/40 p-3 lg:p-4 rounded-lg text-center">
+                            <p class="font-bold text-purple-800 dark:text-purple-300 text-sm lg:text-base">Gather Info (MIB, APS, Reports)</p>
+                        </div>
+                        <div class="text-2xl text-gray-400">--></div>
+                        <div class="bg-amber-100 dark:bg-amber-900/40 p-3 lg:p-4 rounded-lg text-center">
+                            <p class="font-bold text-amber-800 dark:text-amber-300 text-sm lg:text-base">Evaluate Risk</p>
+                        </div>
+                        <div class="text-2xl text-gray-400">--></div>
+                        <div class="bg-green-100 dark:bg-green-900/40 p-3 lg:p-4 rounded-lg text-center">
+                            <p class="font-bold text-green-800 dark:text-green-300 text-sm lg:text-base">Classify: Preferred / Standard / Substandard / Declined</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Numbers Box -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/30 dark:to-purple-900/30 rounded-xl p-6 border border-blue-200 dark:border-blue-800">
+                <h2 class="text-2xl font-bold text-blue-800 dark:text-blue-200 mb-4">Quick Reference: Key Numbers to Memorize</h2>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-3 lg:gap-4">
+                    <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded-lg text-center border border-gray-200 dark:border-gray-600">
+                        <p class="text-2xl lg:text-3xl font-bold text-red-600 dark:text-red-400">2 yrs</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Max imprisonment for willful false pretenses (FCRA)</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded-lg text-center border border-gray-200 dark:border-gray-600">
+                        <p class="text-2xl lg:text-3xl font-bold text-red-600 dark:text-red-400">$2,500</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Penalty for willful pattern of FCRA violation</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded-lg text-center border border-gray-200 dark:border-gray-600">
+                        <p class="text-2xl lg:text-3xl font-bold text-purple-600 dark:text-purple-400">3 days</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Written notice required for investigative report</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded-lg text-center border border-gray-200 dark:border-gray-600">
+                        <p class="text-2xl lg:text-3xl font-bold text-purple-600 dark:text-purple-400">5 days</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">To provide additional info when consumer requests it</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded-lg text-center border border-gray-200 dark:border-gray-600">
+                        <p class="text-2xl lg:text-3xl font-bold text-blue-600 dark:text-blue-400">6 yrs</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">HIPAA - can see who accessed records (past 6 years)</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded-lg text-center border border-gray-200 dark:border-gray-600">
+                        <p class="text-2xl lg:text-3xl font-bold text-blue-600 dark:text-blue-400">7 yrs</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Time limit for civil suits, arrests, convictions in reports</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded-lg text-center border border-gray-200 dark:border-gray-600">
+                        <p class="text-2xl lg:text-3xl font-bold text-blue-600 dark:text-blue-400">10 yrs</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Time limit for bankruptcies in reports</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded-lg text-center border border-gray-200 dark:border-gray-600">
+                        <p class="text-2xl lg:text-3xl font-bold text-green-600 dark:text-green-400">$150K</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Policy threshold - time limits on negative info apply below this</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cheat Sheet -->
+        <section id="cheat-sheet" class="mb-8 lg:mb-10">
+            <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 border-2 border-dashed border-gray-300 dark:border-gray-600">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100">Cheat Sheet</h2>
+                    <span class="text-sm text-gray-500 dark:text-gray-400">Print this page for quick reference</span>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                        <p class="font-bold text-gray-800 dark:text-gray-200 text-sm">Underwriting</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Process of selecting insurable risks; protects against adverse selection</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                        <p class="font-bold text-gray-800 dark:text-gray-200 text-sm">Insurable Interest Timing</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Must exist at APPLICATION, not at claim</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                        <p class="font-bold text-gray-800 dark:text-gray-200 text-sm">Beneficiary Rule</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Beneficiaries do NOT need insurable interest</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                        <p class="font-bold text-gray-800 dark:text-gray-200 text-sm">MIB Rule</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Aid only - CANNOT be sole reason to deny coverage</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                        <p class="font-bold text-gray-800 dark:text-gray-200 text-sm">APS</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Attending Physician's Statement - report from applicant's own doctor</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                        <p class="font-bold text-gray-800 dark:text-gray-200 text-sm">HIV Testing</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Insurer pays; requires written disclosure, written consent, confidentiality</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                        <p class="font-bold text-gray-800 dark:text-gray-200 text-sm">HIPAA</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Federal medical privacy law; patients can view records; 6-year access log</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                        <p class="font-bold text-gray-800 dark:text-gray-200 text-sm">Consumer Report</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Info from records/documents (credit, employment, public records)</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                        <p class="font-bold text-gray-800 dark:text-gray-200 text-sm">Investigative Consumer Report</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Info from interviews with associates/neighbors; 3-day written notice required</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                        <p class="font-bold text-gray-800 dark:text-gray-200 text-sm">Rated Policy</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Substandard risk = premium "rated up" (higher than standard)</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                        <p class="font-bold text-gray-800 dark:text-gray-200 text-sm">Four Risk Classes</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Preferred (best) > Standard (average) > Substandard (rated) > Declined</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                        <p class="font-bold text-gray-800 dark:text-gray-200 text-sm">Disclosure Authorization</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Must be plain language; approved by Dept of Insurance head</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Trap Alerts -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-xl p-5 lg:p-6">
+                <h2 class="text-2xl font-bold text-red-800 dark:text-red-300 mb-4">Exam Trap Alerts</h2>
+                <div class="space-y-3">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">1. Insurable Interest Timing - The #1 Trap</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The exam LOVES to test this. In <strong>life insurance</strong>, insurable interest must exist at the time of <strong>APPLICATION</strong>. In property/casualty insurance, it must exist at the time of LOSS. Do NOT confuse them. For life insurance: APPLICATION. Always APPLICATION.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">2. Beneficiary Does NOT Need Insurable Interest</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The exam may try to trick you: "Can a person with no insurable interest receive the death benefit?" YES - if they're named as beneficiary. The <strong>policyowner</strong> needs insurable interest, not the beneficiary.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">3. MIB is an Aid, Not a Decision-Maker</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">If a question asks "Can the insurer deny coverage based solely on MIB information?" the answer is NO. The MIB is only a flag - the insurer must do its own investigation.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">4. Consumer Report vs. Investigative Consumer Report</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Consumer Report = from <strong>records and documents</strong>. Investigative Consumer Report = from <strong>personal interviews</strong>. The investigative type has extra rules (3-day written notice). Don't mix them up.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">5. Who Pays for Medical Exams?</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The <strong>insurer</strong> pays for medical exams and HIV tests, NOT the applicant. If the exam asks who bears the cost, it's always the insurance company.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">6. "Rated" Policy Means Higher Premium</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">A "rated" policy does NOT mean the policy was reviewed or evaluated. It means the premium was <strong>rated UP</strong> (increased) because the applicant is a substandard risk. Rated = more expensive.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">7. $150,000 Threshold for Report Time Limits</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The 7-year and 10-year limits on negative info only apply to policies <strong>under $150,000</strong>. For larger policies, there are no time limits on negative information in reports.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">8. 3 Days vs. 5 Days (FCRA)</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>3 days</strong> = notify the consumer that an investigative report is being ordered. <strong>5 days</strong> = provide additional info when the consumer requests it. Don't swap them.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Reference Summary -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-gradient-to-r from-blue-600 to-blue-800 rounded-xl p-6 text-white">
+                <h2 class="text-2xl font-bold mb-6">Quick Reference Summary</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Company Underwriting</p>
+                        <p class="text-sm text-blue-100">Risk selection process at HQ to protect against adverse selection</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Insurable Interest</p>
+                        <p class="text-sm text-blue-100">Must exist at APPLICATION; beneficiaries exempt</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">MIB</p>
+                        <p class="text-sm text-blue-100">Shared nonprofit database; aid only, never sole basis to deny</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">APS</p>
+                        <p class="text-sm text-blue-100">Report from applicant's own treating physician</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">HIPAA</p>
+                        <p class="text-sm text-blue-100">Federal medical privacy; 6-year access log; view/correct records</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Consumer Report</p>
+                        <p class="text-sm text-blue-100">From records/documents (credit, employment, public)</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Investigative Report</p>
+                        <p class="text-sm text-blue-100">From interviews; 3-day notice, 5-day response window</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Risk Classes</p>
+                        <p class="text-sm text-blue-100">Preferred > Standard > Substandard (Rated) > Declined</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">HIV Testing</p>
+                        <p class="text-sm text-blue-100">Insurer pays; written disclosure + consent + confidentiality</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Navigation -->
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="../part-3/index.html" class="text-blue-300 hover:text-blue-100 transition-colors flex items-center gap-2">
+                    <span>&larr;</span> Part 3: Field Underwriting
+                </a>
+                <span class="text-gray-400">Part 4 of 7</span>
+                <a href="../part-5/index.html" class="text-blue-300 hover:text-blue-100 transition-colors flex items-center gap-2">
+                    Part 5: Premium Determination <span>&rarr;</span>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AI Tutor Button -->
+    <button onclick="openTutor()" class="fixed bottom-6 right-6 bg-blue-600 hover:bg-blue-700 text-white p-4 rounded-full shadow-xl hover:scale-110 transition-transform z-50" title="Ask AI Tutor">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+    </button>
+
+    <script>
+    function openTutor() {
+        const context = `Topic: Company Underwriting & Risk Classification (Life Insurance Ch.1 Part 4).
+Key concepts: Underwriting is the process of deciding whether to insure someone and how much to charge. Insurable interest must exist at time of APPLICATION (not claim). Beneficiaries do NOT need insurable interest. MIB (Medical Information Bureau) is a shared database - can only be used as an aid, never sole basis to deny. APS = Attending Physician's Statement (from applicant's doctor). HIPAA protects medical privacy (6-year access log). Fair Credit Reporting Act: Consumer Report (from records) vs Investigative Consumer Report (from interviews - 3-day notice, 5-day response). HIV tests at insurer's expense (written disclosure + consent + confidentiality). Risk classes: Preferred (lowest premium) > Standard (average) > Substandard/Rated (higher premium) > Declined (no coverage). Key numbers: 2 years imprisonment, $2,500 penalty, 3 days notice, 5 days to respond, 6 years HIPAA, 7 years negative info, 10 years bankruptcy, $150,000 threshold.
+Common confusions: Insurable interest at APPLICATION not claim; beneficiary doesn't need it; MIB is aid only; "rated" means higher premium not "reviewed"; consumer report vs investigative consumer report; $150K threshold only.`;
+
+        const question = prompt("Ask the AI Tutor about Company Underwriting & Risk Classification:");
+        if (question) {
+            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent`;
+            alert("AI Tutor is thinking... Check your browser console for the full response, or integrate with your preferred AI API.");
+        }
+    }
+    </script>
+</body>
+</html>

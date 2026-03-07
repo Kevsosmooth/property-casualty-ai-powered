@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 7: Do Not Call List - Ch 1 Life Insurance</title>
+    <link rel="icon" type="image/svg+xml" href="../../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') { document.documentElement.classList.remove('dark'); }
+        function toggleTheme() { document.documentElement.classList.toggle('dark'); localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light'); }
+    </script>
+    <link rel="stylesheet" href="../../../../css/styles.css">
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors duration-300">
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/></svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>
+        </button>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <nav class="text-blue-200 text-sm mb-3">
+                <a href="../../../../index.html" class="hover:text-white">Home</a>
+                <span class="mx-2">/</span>
+                <a href="../../../index.html" class="hover:text-white">Life & Health</a>
+                <span class="mx-2">/</span>
+                <a href="../../index.html" class="hover:text-white">Life Insurance</a>
+                <span class="mx-2">/</span>
+                <a href="../index.html" class="hover:text-white">Chapter 1</a>
+                <span class="mx-2">/</span>
+                <span class="text-white">Part 7</span>
+            </nav>
+            <h1 class="text-3xl lg:text-4xl font-bold">Chapter 1, Part 7: Do Not Call List</h1>
+            <p class="mt-2 text-blue-100">The federal rules that control when and how insurance agents can call consumers</p>
+        </div>
+    </header>
+
+    <!-- Sticky Part Navigation -->
+    <nav class="sticky top-0 z-40 bg-white dark:bg-gray-800 shadow-md border-b border-gray-200 dark:border-gray-700">
+        <div class="container mx-auto px-4 overflow-x-auto">
+            <div class="flex space-x-1 py-2 text-sm min-w-max">
+                <a href="../part-1/index.html" class="px-3 py-1.5 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">Part 1</a>
+                <a href="../part-2/index.html" class="px-3 py-1.5 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">Part 2</a>
+                <a href="../part-3/index.html" class="px-3 py-1.5 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">Part 3</a>
+                <a href="../part-4/index.html" class="px-3 py-1.5 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">Part 4</a>
+                <a href="../part-5/index.html" class="px-3 py-1.5 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">Part 5</a>
+                <a href="../part-6/index.html" class="px-3 py-1.5 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">Part 6</a>
+                <a href="index.html" class="px-3 py-1.5 rounded-full bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 font-semibold">Part 7</a>
+                <a href="../recap/index.html" class="px-3 py-1.5 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">Recap</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-5xl lg:max-w-7xl">
+
+        <!-- Start Here: 5 Things You MUST Know -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-gradient-to-r from-blue-100 to-blue-200 dark:from-blue-900/40 dark:to-blue-800/40 rounded-xl p-6 border border-blue-300 dark:border-blue-700">
+                <h3 class="text-xl lg:text-2xl font-bold text-blue-800 dark:text-blue-200 mb-4">Start Here: 5 Things You MUST Know</h3>
+                <div class="grid md:grid-cols-2 gap-3">
+                    <div class="flex items-start">
+                        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">The <strong>National Do Not Call Registry</strong> was created in 2003 by the FTC and FCC to stop unwanted sales calls.</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Calling hours are <strong>8:00 AM to 9:00 PM</strong> only - calls outside this window are illegal.</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Existing customers CAN be called for up to <strong>18 months</strong> after the last sale or transaction.</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">4</span>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Organizations must check the registry every <strong>31 days</strong> and remove listed numbers.</p>
+                    </div>
+                    <div class="flex items-start">
+                        <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">5</span>
+                        <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Insurance agents are <strong>NOT exempt</strong> - they must follow the same Do Not Call rules as any other telemarketer.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- What is the Do Not Call Registry? -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">1. What is the Do Not Call Registry?</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-6">
+                    <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300 leading-relaxed">In 2003, two federal agencies teamed up to create a nationwide list where consumers can register their phone numbers to stop getting <strong>solicitation calls</strong> - that means unsolicited sales calls, also known as cold calls. Once your number is on the list, telemarketers (including insurance agents) are not allowed to call you.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border-l-4 border-purple-500">
+                        <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg">FTC - Federal Trade Commission</h3>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-2">The government agency that <strong>protects consumers from unfair business practices</strong>. They're the ones who go after companies that scam people, use deceptive advertising, or violate consumer rights. They co-created and manage the Do Not Call Registry.</p>
+                    </div>
+                    <div class="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg border-l-4 border-purple-500">
+                        <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg">FCC - Federal Communications Commission</h3>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-2">The government agency that <strong>regulates phone, TV, radio, and internet communications</strong>. Since telemarketing involves phone lines, the FCC enforces the technical side - like caller ID rules and robocall restrictions.</p>
+                    </div>
+                </div>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 rounded-r-lg">
+                    <p class="font-bold text-amber-800 dark:text-amber-300">Why This Matters for Insurance Agents</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Insurance companies and their agents make phone calls to sell policies all the time. These are <strong>solicitation calls</strong> - calls trying to sell you something you didn't ask for. The Do Not Call rules apply to insurance producers just like any other salesperson. Violating these rules can result in hefty fines.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- The 7 Things Telemarketers CANNOT Do -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">2. The 7 Things Telemarketers CANNOT Do</h2>
+                <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300 mb-6">Under the Telemarketing Sales Rules, every one of these is a violation. Insurance agents are included.</p>
+
+                <div class="space-y-4">
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                        <p class="font-bold text-red-800 dark:text-red-300 text-base lg:text-lg">1. Call any number on the Do Not Call Registry or the seller's own Do Not Call list</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">If a consumer's number is on either the national registry OR has asked your specific company not to call them, you cannot call. Period. Both lists must be respected.</p>
+                    </div>
+
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                        <p class="font-bold text-red-800 dark:text-red-300 text-base lg:text-lg">2. Deny someone the right to be placed on any Do Not Call list</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">If a consumer says "Stop calling me" or "Put me on your Do Not Call list," you MUST comply. You cannot argue, guilt-trip, or refuse. It's their legal right.</p>
+                    </div>
+
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                        <p class="font-bold text-red-800 dark:text-red-300 text-base lg:text-lg">3. Call outside permissible hours (before 8 AM or after 9 PM)</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">The calling window is <strong>8:00 AM to 9:00 PM</strong> in the consumer's local time zone. A 7:55 AM call or a 9:05 PM call is a violation, even if it's a quick call.</p>
+                    </div>
+
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                        <p class="font-bold text-red-800 dark:text-red-300 text-base lg:text-lg">4. Abandon calls</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1"><strong>Abandoned calls</strong> means calling someone and then hanging up, or using automated dialing systems (robocalls) that don't connect the consumer to a live person. If you dial someone, a real human must be on the line to speak with them.</p>
+                    </div>
+
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                        <p class="font-bold text-red-800 dark:text-red-300 text-base lg:text-lg">5. Fail to transmit caller ID information</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">You cannot block your caller ID. The consumer must be able to see who is calling them. Hiding your number is a violation - transparency is required.</p>
+                    </div>
+
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                        <p class="font-bold text-red-800 dark:text-red-300 text-base lg:text-lg">6. Threaten, intimidate, or use obscene language</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">This should be obvious, but aggressive sales tactics like "You'll regret not buying this" or using profanity are illegal, not just rude.</p>
+                    </div>
+
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border-l-4 border-red-500">
+                        <p class="font-bold text-red-800 dark:text-red-300 text-base lg:text-lg">7. Ring a phone or engage someone with intent to annoy, abuse, or harass</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Calling repeatedly after someone says no, calling just to waste their time, or letting the phone ring endlessly to pressure someone - all violations.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- The 4 Exceptions -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">3. The 4 Exceptions - When You CAN Still Call</h2>
+                <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300 mb-6">Not every call to a registered number is illegal. These four exceptions allow calls even to numbers on the Do Not Call list.</p>
+
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <h4 class="font-bold text-green-800 dark:text-green-300 mb-2">Exception 1: Existing Business Relationship</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">If the consumer is already your customer, you CAN call them for up to <strong>18 months</strong> from the date of their last sale or transaction.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>Example:</strong> Sarah bought a term life policy from ABC Insurance on January 1, 2025. Even though Sarah's number is on the Do Not Call list, ABC Insurance can call her about other products until July 1, 2026 (18 months later). After that date, she's off-limits unless she gives written permission.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <h4 class="font-bold text-green-800 dark:text-green-300 mb-2">Exception 2: Prior Written Permission</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">If the consumer gave you <strong>written permission</strong> to call, you can call regardless of the registry. Verbal permission is not enough - it must be in writing.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>Example:</strong> At a community event, Mike fills out a card that says "Yes, I'd like an agent to call me about life insurance" and signs it. Even though Mike's number is on the Do Not Call list, the agent can call because Mike gave written consent.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <h4 class="font-bold text-green-800 dark:text-green-300 mb-2">Exception 3: Non-Commercial / Non-Solicitation Calls</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Calls that are <strong>not trying to sell anything</strong> and don't contain unsolicited advertisements are exempt. Surveys, informational calls, and political calls fall here.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>Example:</strong> A research firm calls registered numbers to conduct a survey about consumer satisfaction with insurance. No products are pitched. This is allowed because it's not a sales call.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border-l-4 border-green-500">
+                        <h4 class="font-bold text-green-800 dark:text-green-300 mb-2">Exception 4: Tax-Exempt Nonprofit Organizations</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Calls made <strong>by or on behalf of</strong> tax-exempt nonprofit organizations are exempt from the Do Not Call rules.</p>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="text-sm lg:text-base text-gray-700 dark:text-gray-300"><strong>Example:</strong> A nonprofit veterans' organization calls registered numbers asking for donations. This is allowed. However, if a for-profit insurance company sponsors the call and the nonprofit pitches insurance products, that would NOT be exempt.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Numbers to Memorize -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/30 dark:to-purple-900/30 rounded-xl p-6 border border-blue-200 dark:border-blue-800">
+                <h2 class="text-2xl font-bold text-blue-800 dark:text-blue-200 mb-4">Key Numbers to Memorize</h2>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-3 lg:gap-4">
+                    <div class="bg-white dark:bg-gray-800 p-3 lg:p-4 rounded-lg text-center border border-gray-200 dark:border-gray-700">
+                        <p class="text-2xl lg:text-3xl font-bold text-blue-600 dark:text-blue-400">2003</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Year registry created</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 p-3 lg:p-4 rounded-lg text-center border border-gray-200 dark:border-gray-700">
+                        <p class="text-2xl lg:text-3xl font-bold text-red-600 dark:text-red-400">8am-9pm</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Legal calling window</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 p-3 lg:p-4 rounded-lg text-center border border-gray-200 dark:border-gray-700">
+                        <p class="text-2xl lg:text-3xl font-bold text-green-600 dark:text-green-400">18 mo</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Business relationship window</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 p-3 lg:p-4 rounded-lg text-center border border-gray-200 dark:border-gray-700">
+                        <p class="text-2xl lg:text-3xl font-bold text-purple-600 dark:text-purple-400">31 days</p>
+                        <p class="text-xs lg:text-sm text-gray-600 dark:text-gray-400">Must re-check registry</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How This Applies to Insurance Agents -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">4. How This Applies to Insurance Agents</h2>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 rounded-r-lg mb-6">
+                    <p class="font-bold text-amber-800 dark:text-amber-300">Bottom Line for Producers</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">Insurance agents are telemarketers in the eyes of the law when they make cold calls. Every rule above applies to you. Your agency must check the registry every 31 days and scrub any registered numbers from its call lists.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg border border-green-200 dark:border-green-800">
+                        <p class="font-bold text-green-800 dark:text-green-300 mb-2">OK TO CALL</p>
+                        <div class="space-y-2 text-sm lg:text-base text-gray-700 dark:text-gray-300">
+                            <p><strong>The Setup:</strong> Agent Tom works for XYZ Life Insurance. Mrs. Chen bought a whole life policy from XYZ 6 months ago. Her number is on the Do Not Call Registry.</p>
+                            <p><strong>What Happens:</strong> Tom calls Mrs. Chen to discuss adding a disability income rider to her existing policy.</p>
+                            <p><strong>The Result:</strong> This is LEGAL. Mrs. Chen is an existing customer (within the 18-month window). XYZ has an established business relationship with her.</p>
+                        </div>
+                    </div>
+                    <div class="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg border border-red-200 dark:border-red-800">
+                        <p class="font-bold text-red-800 dark:text-red-300 mb-2">VIOLATION</p>
+                        <div class="space-y-2 text-sm lg:text-base text-gray-700 dark:text-gray-300">
+                            <p><strong>The Setup:</strong> Agent Lisa buys a list of phone numbers from a marketing company. She doesn't check the Do Not Call Registry first.</p>
+                            <p><strong>What Happens:</strong> Lisa cold-calls 200 people offering term life insurance quotes. Forty of those numbers are on the registry.</p>
+                            <p><strong>The Result:</strong> ILLEGAL. Lisa violated the Do Not Call rules 40 times. Her agency failed to scrub the list against the registry. Both Lisa and her agency face potential fines.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- The 31-Day Rule -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">5. The 31-Day Registry Check Rule</h2>
+
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-purple-500 mb-4">
+                    <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300">To stay compliant, organizations must <strong>consult the National Do Not Call Registry at least once every 31 days</strong>. Any phone numbers that appear on the registry must immediately be dropped from the organization's call lists. This is not optional - it's a legal requirement.</p>
+                </div>
+
+                <div class="flex items-center gap-4 flex-wrap">
+                    <div class="bg-blue-100 dark:bg-blue-900/40 p-4 rounded-lg text-center flex-1 min-w-[140px]">
+                        <p class="font-bold text-blue-800 dark:text-blue-300">Day 1</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Check registry, scrub call list</p>
+                    </div>
+                    <div class="text-2xl text-gray-400">--</div>
+                    <div class="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg text-center flex-1 min-w-[140px]">
+                        <p class="font-bold text-gray-800 dark:text-gray-300">Days 2-30</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Make calls using clean list</p>
+                    </div>
+                    <div class="text-2xl text-gray-400">--</div>
+                    <div class="bg-red-100 dark:bg-red-900/40 p-4 rounded-lg text-center flex-1 min-w-[140px]">
+                        <p class="font-bold text-red-800 dark:text-red-300">Day 31</p>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">MUST re-check registry again</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cheat Sheet -->
+        <section id="cheat-sheet" class="mb-8 lg:mb-10">
+            <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 border-2 border-dashed border-gray-300 dark:border-gray-600">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100">Cheat Sheet</h2>
+                    <span class="text-sm text-gray-500 dark:text-gray-400">Print this page for quick reference</span>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">7 Prohibited Actions:</p>
+                        <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-1">
+                            <li>- Call numbers on DNC list</li>
+                            <li>- Deny DNC registration request</li>
+                            <li>- Call before 8 AM or after 9 PM</li>
+                            <li>- Abandon calls (robocalls, hang-ups)</li>
+                            <li>- Block caller ID</li>
+                            <li>- Threaten or use obscene language</li>
+                            <li>- Call to annoy, abuse, or harass</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">4 Exceptions (CAN Call):</p>
+                        <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-1">
+                            <li>- Existing customer (within 18 months)</li>
+                            <li>- Prior written permission</li>
+                            <li>- Non-commercial / non-sales calls</li>
+                            <li>- Tax-exempt nonprofit organizations</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold text-gray-800 dark:text-gray-100 mb-2">Key Numbers:</p>
+                        <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-1">
+                            <li>- <strong>2003</strong> = Year registry created</li>
+                            <li>- <strong>8 AM - 9 PM</strong> = Calling window</li>
+                            <li>- <strong>18 months</strong> = Business relationship exception</li>
+                            <li>- <strong>31 days</strong> = Must re-check registry</li>
+                            <li>- <strong>FTC + FCC</strong> = Created the registry</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Trap Alerts -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-xl p-5 lg:p-6">
+                <h2 class="text-2xl font-bold text-red-800 dark:text-red-300 mb-4">Exam Trap Alerts</h2>
+                <div class="space-y-3">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">1. The 18-month rule is from the LAST transaction, not the first</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">If a customer bought a policy 2 years ago and has had no other transactions since, the 18-month window has expired. You can no longer call them even though they were once your customer - unless they give you written permission.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">2. Written permission, not verbal</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">If someone verbally says "Sure, call me anytime" but never puts it in writing, that is NOT enough to override the Do Not Call list. The exam may try to trick you - the answer is always WRITTEN permission required.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">3. The 31-day check is mandatory, not a suggestion</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">An agency that checks the registry once a year, or only when they "get around to it," is in violation. Every 31 days, no exceptions. Numbers that show up on the registry must be removed from call lists immediately.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">4. Calling hours are in the CONSUMER'S time zone</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">If you're in New York (Eastern) and calling someone in California (Pacific), 9 PM your time is only 6 PM their time - that's fine. But 9 PM THEIR time means you must stop by 9 PM Pacific, even though it's midnight for you.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">5. Insurance agents are NOT exempt from the Do Not Call rules</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The exam may imply that "licensed professionals" or "regulated industries" don't have to follow the DNC rules. Wrong. Insurance agents making solicitation calls are telemarketers under the law and must follow every rule.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Reference Summary -->
+        <div class="bg-gradient-to-r from-blue-600 to-blue-800 rounded-xl p-6 text-white">
+            <h2 class="text-2xl font-bold mb-6">Quick Reference Summary</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div class="bg-white/20 rounded-lg p-4">
+                    <p class="font-bold">Do Not Call Registry</p>
+                    <p class="text-sm text-blue-100">National list where consumers block sales calls (created 2003 by FTC + FCC)</p>
+                </div>
+                <div class="bg-white/20 rounded-lg p-4">
+                    <p class="font-bold">Calling Hours</p>
+                    <p class="text-sm text-blue-100">8:00 AM to 9:00 PM in the consumer's time zone only</p>
+                </div>
+                <div class="bg-white/20 rounded-lg p-4">
+                    <p class="font-bold">Existing Customers</p>
+                    <p class="text-sm text-blue-100">Can be called for 18 months from last sale/transaction</p>
+                </div>
+                <div class="bg-white/20 rounded-lg p-4">
+                    <p class="font-bold">Registry Check</p>
+                    <p class="text-sm text-blue-100">Must consult every 31 days and remove listed numbers</p>
+                </div>
+                <div class="bg-white/20 rounded-lg p-4">
+                    <p class="font-bold">Written Permission</p>
+                    <p class="text-sm text-blue-100">Overrides DNC list - but must be in writing, not verbal</p>
+                </div>
+                <div class="bg-white/20 rounded-lg p-4">
+                    <p class="font-bold">Insurance Agents</p>
+                    <p class="text-sm text-blue-100">NOT exempt - same rules as any other telemarketer</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Navigation -->
+    <footer class="bg-gray-800 dark:bg-gray-950 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="../part-6/index.html" class="text-gray-300 hover:text-white flex items-center gap-1">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                    Part 6: Policy Delivery
+                </a>
+                <span class="text-gray-400">Part 7 of 7</span>
+                <a href="../recap/index.html" class="text-gray-300 hover:text-white flex items-center gap-1">
+                    Chapter 1 Recap
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

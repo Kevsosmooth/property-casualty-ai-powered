@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part 3: Field Underwriting & The Application - Ch 1 Life Insurance</title>
+    <link rel="icon" type="image/svg+xml" href="../../../../favicon.svg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') { document.documentElement.classList.remove('dark'); }
+        function toggleTheme() { document.documentElement.classList.toggle('dark'); localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light'); }
+    </script>
+    <link rel="stylesheet" href="../../../../css/styles.css">
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors duration-300">
+    <div class="header-btn-group fixed top-4 right-4 z-50 flex gap-2">
+        <button onclick="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <svg class="w-6 h-6 text-gray-800 dark:text-yellow-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/></svg>
+            <svg class="w-6 h-6 text-gray-800 dark:hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>
+        </button>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-6 shadow-lg">
+        <div class="container mx-auto px-4">
+            <nav class="text-blue-200 text-sm mb-3">
+                <a href="../../../../index.html" class="hover:text-white">Home</a>
+                <span class="mx-2">/</span>
+                <a href="../../../index.html" class="hover:text-white">Life & Health</a>
+                <span class="mx-2">/</span>
+                <a href="../../index.html" class="hover:text-white">Life Insurance</a>
+                <span class="mx-2">/</span>
+                <a href="../index.html" class="hover:text-white">Chapter 1</a>
+                <span class="mx-2">/</span>
+                <span class="text-white">Part 3</span>
+            </nav>
+            <h1 class="text-3xl lg:text-4xl font-bold">Chapter 1, Part 3: Field Underwriting & The Application</h1>
+            <p class="mt-2 text-blue-100">The application process, required signatures, premiums, conditional receipts, and the difference between warranties and representations</p>
+        </div>
+    </header>
+
+    <!-- Sticky Part Navigation -->
+    <nav class="sticky top-0 z-40 bg-white dark:bg-gray-800 shadow-md border-b border-gray-200 dark:border-gray-700">
+        <div class="container mx-auto px-4 overflow-x-auto">
+            <div class="flex space-x-1 py-2 text-sm min-w-max">
+                <a href="../part-1/index.html" class="px-3 py-1.5 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">Part 1</a>
+                <a href="../part-2/index.html" class="px-3 py-1.5 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">Part 2</a>
+                <a href="index.html" class="px-3 py-1.5 rounded-full bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 font-semibold">Part 3</a>
+                <a href="../part-4/index.html" class="px-3 py-1.5 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">Part 4</a>
+                <a href="../part-5/index.html" class="px-3 py-1.5 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">Part 5</a>
+                <a href="../part-6/index.html" class="px-3 py-1.5 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">Part 6</a>
+                <a href="../part-7/index.html" class="px-3 py-1.5 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">Part 7</a>
+                <a href="../recap/index.html" class="px-3 py-1.5 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700">Recap</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto px-4 lg:px-8 py-8 max-w-5xl lg:max-w-7xl">
+
+        <!-- Start Here: 5 Things You MUST Know -->
+        <div class="bg-gradient-to-r from-blue-100 to-indigo-100 dark:from-blue-900/40 dark:to-indigo-900/40 rounded-xl p-6 mb-8 border border-blue-300 dark:border-blue-700">
+            <h3 class="text-xl font-bold text-blue-800 dark:text-blue-200 mb-4">Start Here: 5 Things You MUST Know</h3>
+            <div class="grid md:grid-cols-2 gap-3">
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">1</span>
+                    <p class="text-gray-700 dark:text-gray-300">The <strong>agent is the field underwriter</strong> - the insurance company's front-line person who screens applicants before the home office ever sees the application</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">2</span>
+                    <p class="text-gray-700 dark:text-gray-300">The application has <strong>two parts</strong>: Part 1 is general info (name, age, income), Part 2 is medical info (health history, family health)</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">3</span>
+                    <p class="text-gray-700 dark:text-gray-300">A <strong>conditional receipt</strong> can provide coverage as early as the date of application - even before the policy is issued - IF the applicant qualifies as a standard risk</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">4</span>
+                    <p class="text-gray-700 dark:text-gray-300">Application answers are <strong>representations</strong> (believed to be true), NOT warranties (guaranteed true). Only <strong>material</strong> misrepresentations can void a policy</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="bg-blue-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold mr-3 flex-shrink-0">5</span>
+                    <p class="text-gray-700 dark:text-gray-300">If a policy is issued with <strong>unanswered questions</strong>, the insurer waived its right to that info and CANNOT later deny a claim based on what the answer might have been</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Overview -->
+        <section class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">Overview</h2>
+                <div class="bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-800 rounded-lg p-4 lg:p-5 mb-5">
+                    <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300 leading-relaxed">This part covers everything that happens when a customer actually sits down to apply for life insurance. You (the agent) are not just a salesperson - you are the insurance company's <strong>field underwriter</strong>. That means you are the first line of defense against bad risks. You help fill out the application, collect signatures, take the first premium payment, and issue a receipt. Every step has rules, and those rules show up on the exam.</p>
+                </div>
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4">
+                    <p class="font-bold text-amber-800 dark:text-amber-300">Exam Alert!</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-1 text-base lg:text-lg">The <strong>conditional receipt</strong> is one of the most heavily tested topics in life insurance. Understand exactly when coverage starts, when it does NOT start, and what happens if the applicant dies before the policy is issued. This part also tests your understanding of warranties vs. representations - know the difference cold.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 1: What is a Field Underwriter? -->
+        <section id="field-underwriter" class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">1. What is a Field Underwriter?</h2>
+
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-5">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg lg:text-xl">Field Underwriter = The Agent</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mt-2 text-base lg:text-lg">A <strong>field underwriter</strong> is just the insurance agent working out "in the field" - meaning at a client's kitchen table, in an office, or wherever the sale happens. They are called a "field" underwriter because they work outside the insurance company's home office. The home office has its own underwriters who review applications at a desk. But YOU, the agent, are the company's eyes and ears on the ground. You meet the applicant face-to-face and can spot things a desk underwriter never could.</p>
+                    <div class="bg-white dark:bg-gray-700 p-3 lg:p-4 rounded mt-3">
+                        <p class="font-semibold text-gray-700 dark:text-gray-300">Key fact for the exam:</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm lg:text-base mt-1">A life insurance <strong>producer</strong> (agent) is the company's field underwriter. If the exam asks "who is the field underwriter?" - the answer is always the agent/producer.</p>
+                    </div>
+                </div>
+
+                <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300 mb-4">The field underwriter has <strong>6 key responsibilities</strong>. Think of them as the agent's job checklist every time they sit down with a customer:</p>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-5">
+                    <div class="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-lg border-l-4 border-indigo-500">
+                        <p class="font-bold text-indigo-800 dark:text-indigo-300 mb-1">1. Proper Solicitation</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Find and approach potential customers the right way - following all legal and ethical rules.</p>
+                    </div>
+                    <div class="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-lg border-l-4 border-indigo-500">
+                        <p class="font-bold text-indigo-800 dark:text-indigo-300 mb-1">2. Prevent Adverse Selection</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Screen out people who are rushing to buy insurance because they know they are high-risk (sick, dangerous job, etc.).</p>
+                    </div>
+                    <div class="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-lg border-l-4 border-indigo-500">
+                        <p class="font-bold text-indigo-800 dark:text-indigo-300 mb-1">3. Complete the Application</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Help the customer fill out every question - accurately, completely, and legibly.</p>
+                    </div>
+                    <div class="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-lg border-l-4 border-indigo-500">
+                        <p class="font-bold text-indigo-800 dark:text-indigo-300 mb-1">4. Obtain Signatures</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Get the required signatures from the applicant AND sign the application yourself as the agent.</p>
+                    </div>
+                    <div class="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-lg border-l-4 border-indigo-500">
+                        <p class="font-bold text-indigo-800 dark:text-indigo-300 mb-1">5. Collect Premium & Issue Receipt</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Take the first premium payment and give the applicant a premium receipt (usually a conditional receipt).</p>
+                    </div>
+                    <div class="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-lg border-l-4 border-indigo-500">
+                        <p class="font-bold text-indigo-800 dark:text-indigo-300 mb-1">6. Deliver the Policy</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Once the policy is issued, personally deliver it and explain the key provisions to the policyholder.</p>
+                    </div>
+                </div>
+
+                <!-- Adverse Selection Explainer -->
+                <div class="bg-amber-50 dark:bg-amber-900/30 border border-amber-200 dark:border-amber-800 rounded-lg p-4 lg:p-5">
+                    <h3 class="font-bold text-amber-800 dark:text-amber-300 text-lg mb-2">What is Adverse Selection?</h3>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-3">Adverse selection is when people who are <strong>more likely to file claims</strong> are the ones most eager to buy insurance. Think of it as the insurance company's nightmare: a person who just got diagnosed with a serious illness suddenly wants to buy as much life insurance as possible before the company finds out.</p>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded mt-2">
+                        <p class="font-semibold text-amber-800 dark:text-amber-300 mb-2">Real-World Scenario: Adverse Selection in Action</p>
+                        <div class="space-y-2 text-sm lg:text-base">
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Dave, age 55, has never owned life insurance. He is just told by his doctor that he has a serious heart condition. He calls an agent the next day wanting a $500,000 policy.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Dave is trying to buy insurance because he now knows he is high-risk. This is adverse selection - the sick rushing to get covered.</p>
+                            <p class="text-gray-700 dark:text-gray-300"><strong>The Agent's Role:</strong> As the field underwriter, you must ask probing health questions and report honestly. You are the company's first defense against paying out claims it would never have agreed to cover.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: The Application - Part 1 vs Part 2 -->
+        <section id="application" class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">2. The Application: Part 1 vs Part 2</h2>
+
+                <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300 mb-5">The life insurance application is the <strong>starting point for risk selection</strong>. It is how the insurance company begins to decide whether to insure you and how much to charge. The application has two distinct parts:</p>
+
+                <div class="grid md:grid-cols-2 gap-4 lg:gap-6 mb-5">
+                    <!-- Part 1 -->
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500">
+                        <h4 class="font-bold text-blue-800 dark:text-blue-300 text-lg mb-3">Part 1: General Information</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mb-3">This is the "tell us about yourself" section. Basic personal and financial facts.</p>
+                        <ul class="space-y-1.5 text-sm lg:text-base text-gray-700 dark:text-gray-300">
+                            <li class="flex items-start"><span class="text-blue-500 mr-2 font-bold">-</span> Full name and address</li>
+                            <li class="flex items-start"><span class="text-blue-500 mr-2 font-bold">-</span> Age and date of birth</li>
+                            <li class="flex items-start"><span class="text-blue-500 mr-2 font-bold">-</span> Gender</li>
+                            <li class="flex items-start"><span class="text-blue-500 mr-2 font-bold">-</span> Income and occupation</li>
+                            <li class="flex items-start"><span class="text-blue-500 mr-2 font-bold">-</span> Marital status</li>
+                            <li class="flex items-start"><span class="text-blue-500 mr-2 font-bold">-</span> Existing insurance policies</li>
+                            <li class="flex items-start"><span class="text-blue-500 mr-2 font-bold">-</span> Type of policy applied for</li>
+                            <li class="flex items-start"><span class="text-blue-500 mr-2 font-bold">-</span> Coverage amount requested</li>
+                            <li class="flex items-start"><span class="text-blue-500 mr-2 font-bold">-</span> Beneficiary information</li>
+                        </ul>
+                    </div>
+
+                    <!-- Part 2 -->
+                    <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-green-500">
+                        <h4 class="font-bold text-green-800 dark:text-green-300 text-lg mb-3">Part 2: Medical Information</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mb-3">This is the "tell us about your health" section. The insurer needs this to gauge your risk.</p>
+                        <ul class="space-y-1.5 text-sm lg:text-base text-gray-700 dark:text-gray-300">
+                            <li class="flex items-start"><span class="text-green-500 mr-2 font-bold">-</span> Medical background / history</li>
+                            <li class="flex items-start"><span class="text-green-500 mr-2 font-bold">-</span> Present health condition</li>
+                            <li class="flex items-start"><span class="text-green-500 mr-2 font-bold">-</span> Recent medical visits</li>
+                            <li class="flex items-start"><span class="text-green-500 mr-2 font-bold">-</span> Health of living relatives</li>
+                            <li class="flex items-start"><span class="text-green-500 mr-2 font-bold">-</span> Causes of death of deceased relatives</li>
+                        </ul>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-4">
+                            <p class="font-semibold text-green-800 dark:text-green-300 text-sm">Medical Exam: Required or Not?</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm mt-1"><strong>Small policies</strong> = nonmedical application (no doctor visit needed - the insurer trusts the written answers). <strong>Larger policies</strong> = a medical exam is required because more money is at stake.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Agent's Duty -->
+                <div class="bg-purple-50 dark:bg-purple-900/20 border-l-4 border-purple-500 rounded-r-lg p-4 lg:p-5 mb-5">
+                    <h3 class="font-bold text-purple-800 dark:text-purple-300 text-lg mb-2">The Agent's Duty: Accuracy Matters</h3>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">The agent must make sure the application is <strong>complete, correct, and honest</strong>. If the agent suspects the applicant is lying or hiding something (misrepresentation), the agent MUST probe further and inform the insurance company. Misleading, inaccurate, or illegible information on the application will delay the policy from being issued.</p>
+                </div>
+
+                <!-- Agent's Report -->
+                <div class="bg-amber-50 dark:bg-amber-900/30 border border-amber-200 dark:border-amber-800 rounded-lg p-4 lg:p-5">
+                    <h3 class="font-bold text-amber-800 dark:text-amber-300 text-lg mb-2">The Agent's Report</h3>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-2">In addition to the application itself, the agent fills out a separate <strong>Agent's Report</strong>. This is the agent's personal observations about the proposed insured - things like their appearance, demeanor, lifestyle, or anything that seemed off during the meeting.</p>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded mt-2">
+                        <p class="font-semibold text-red-700 dark:text-red-300 text-sm">Critical Exam Fact:</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">The Agent's Report is <strong>NOT part of the insurance contract</strong>. It is part of the application process (it helps the company decide), but it does not become a piece of the actual policy contract. The exam loves to test this distinction.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Who Signs? -->
+        <section id="signatures" class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">3. Who Must Sign the Application?</h2>
+
+                <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300 mb-5">Two signatures are <strong>always</strong> required: the agent's and the proposed insured's. But there are special cases where a third signature is needed.</p>
+
+                <!-- Visual: Signature Requirements -->
+                <div class="grid md:grid-cols-3 gap-4 mb-5">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg text-center border-2 border-blue-300 dark:border-blue-700">
+                        <p class="text-3xl lg:text-4xl font-bold text-blue-600 dark:text-blue-400 mb-2">1</p>
+                        <p class="font-bold text-blue-800 dark:text-blue-300">The Agent</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">Always signs</p>
+                    </div>
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg text-center border-2 border-blue-300 dark:border-blue-700">
+                        <p class="text-3xl lg:text-4xl font-bold text-blue-600 dark:text-blue-400 mb-2">2</p>
+                        <p class="font-bold text-blue-800 dark:text-blue-300">The Proposed Insured</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">Always signs</p>
+                    </div>
+                    <div class="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg text-center border-2 border-amber-300 dark:border-amber-700">
+                        <p class="text-3xl lg:text-4xl font-bold text-amber-600 dark:text-amber-400 mb-2">3</p>
+                        <p class="font-bold text-amber-800 dark:text-amber-300">The Policyowner</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">Only if different from insured</p>
+                    </div>
+                </div>
+
+                <div class="bg-green-50 dark:bg-green-900/20 border-l-4 border-green-500 p-4 rounded-r-lg mb-4">
+                    <p class="font-semibold text-green-800 dark:text-green-300 mb-2">When Does the Policyowner Also Sign?</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">When the person who <strong>owns</strong> the policy is NOT the same person being <strong>insured</strong>. For example, a business owner buying life insurance on a key employee. The business is the policyowner, the employee is the insured - both must sign.</p>
+                </div>
+
+                <div class="bg-purple-50 dark:bg-purple-900/20 border-l-4 border-purple-500 p-4 rounded-r-lg">
+                    <p class="font-semibold text-purple-800 dark:text-purple-300 mb-2">Exception: Adult Insuring a Minor Child</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">When a parent applies for insurance on their minor child, the child does NOT sign. The parent signs as both the policyowner and on behalf of the insured (the child). Minors cannot legally enter into contracts, so only the adult's signature is needed.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Application Rules -->
+        <section id="app-rules" class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">4. Application Rules: Changes & Incomplete Apps</h2>
+
+                <div class="grid md:grid-cols-2 gap-4 lg:gap-6 mb-5">
+                    <!-- Changes -->
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500">
+                        <h4 class="font-bold text-blue-800 dark:text-blue-300 text-lg mb-3">Making Changes on the Application</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mb-3">If something needs to be corrected on the application, the agent has two choices:</p>
+                        <div class="space-y-2">
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                                <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>Option A:</strong> Cross out the incorrect info, write the correct info, and have the applicant <strong>initial the change</strong></p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                                <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>Option B:</strong> Complete an entirely new application</p>
+                            </div>
+                        </div>
+                        <div class="bg-red-50 dark:bg-red-900/20 p-3 rounded mt-3 border border-red-200 dark:border-red-800">
+                            <p class="font-bold text-red-700 dark:text-red-300 text-sm">NEVER erase or white-out information on an application.</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">This looks like you are trying to hide something. Corrections must be visible and initialed.</p>
+                        </div>
+                    </div>
+
+                    <!-- Incomplete Apps -->
+                    <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-red-500">
+                        <h4 class="font-bold text-red-800 dark:text-red-300 text-lg mb-3">Incomplete Applications</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mb-3">What happens when questions are left blank?</p>
+                        <div class="space-y-3">
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                                <p class="font-semibold text-gray-700 dark:text-gray-300 text-sm">Before the policy is issued:</p>
+                                <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">The insurer must return the incomplete application to be finished. It cannot process an app with missing answers.</p>
+                            </div>
+                            <div class="bg-white dark:bg-gray-700 p-3 rounded border-2 border-red-300 dark:border-red-700">
+                                <p class="font-semibold text-red-700 dark:text-red-300 text-sm">After the policy is issued with blank questions:</p>
+                                <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">If the insurer goes ahead and issues the policy anyway despite unanswered questions, the insurer has <strong>waived its right</strong> to that information. It CANNOT later deny a claim based on what the answer "might have been."</p>
+                            </div>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="font-semibold text-red-800 dark:text-red-300 mb-2 text-sm">Real-World Scenario: The Blank Question</p>
+                            <div class="space-y-1 text-sm">
+                                <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Maria's application has a question about tobacco use left blank. The insurer issues the policy anyway.</p>
+                                <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> Maria dies 2 years later. The insurer discovers she was a smoker and tries to deny the claim, saying they would have charged more.</p>
+                                <p class="text-gray-700 dark:text-gray-300"><strong>The Result:</strong> The insurer MUST pay. By issuing the policy with a blank answer, they waived their right to that information. They had the chance to ask and chose to proceed without the answer.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Premiums & The Conditional Receipt (MAIN EVENT) -->
+        <section id="conditional-receipt" class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">5. Premiums & The Conditional Receipt</h2>
+
+                <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-500 p-4 mb-5">
+                    <p class="font-bold text-amber-800 dark:text-amber-300 text-lg">This is a MAJOR Exam Topic</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-1 text-base lg:text-lg">The conditional receipt is one of the most tested concepts on the life insurance exam. Read this section carefully and make sure you understand every scenario.</p>
+                </div>
+
+                <!-- Premium Collection -->
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-blue-500 mb-5">
+                    <h3 class="font-bold text-blue-800 dark:text-blue-300 text-lg mb-2">Collecting the Premium</h3>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Most agents collect the <strong>initial premium</strong> (first payment) at the same time the application is completed. When they do, they MUST give the applicant a <strong>premium receipt</strong>. The most common type is the <strong>conditional receipt</strong>.</p>
+                </div>
+
+                <!-- What is a Conditional Receipt? -->
+                <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-green-500 mb-5">
+                    <h3 class="font-bold text-green-800 dark:text-green-300 text-lg mb-2">What is a Conditional Receipt?</h3>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg mb-3">A conditional receipt is a special receipt given to the applicant <strong>only when they pay the premium with the application</strong> (a "prepaid application"). It means coverage <strong>may begin immediately</strong> - even before the policy is officially issued by the insurance company. But there are conditions (hence the name).</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-base lg:text-lg">Think of it as the company saying: "We have your money and your application. If everything checks out, we'll consider you covered starting TODAY - not from whenever we finally get around to issuing the policy."</p>
+                </div>
+
+                <!-- When Coverage Starts - Flow Diagram -->
+                <div class="bg-gray-50 dark:bg-gray-700/50 rounded-lg p-4 lg:p-5 mb-5">
+                    <h3 class="font-bold text-gray-800 dark:text-gray-200 text-lg mb-4">When Does Coverage Begin Under a Conditional Receipt?</h3>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mb-4">Coverage is effective on the <strong>date of application</strong> OR the <strong>date of the medical exam</strong> - whichever comes LAST. But only if ALL conditions are met:</p>
+
+                    <div class="flex items-center gap-3 flex-wrap justify-center mb-5">
+                        <div class="bg-blue-100 dark:bg-blue-900/40 p-3 lg:p-4 rounded-lg text-center min-w-[140px]">
+                            <p class="font-bold text-blue-800 dark:text-blue-300 text-sm">Premium Paid with App</p>
+                        </div>
+                        <div class="text-xl text-gray-400">+</div>
+                        <div class="bg-blue-100 dark:bg-blue-900/40 p-3 lg:p-4 rounded-lg text-center min-w-[140px]">
+                            <p class="font-bold text-blue-800 dark:text-blue-300 text-sm">Applicant is Insurable as Standard Risk</p>
+                        </div>
+                        <div class="text-xl text-gray-400">+</div>
+                        <div class="bg-blue-100 dark:bg-blue-900/40 p-3 lg:p-4 rounded-lg text-center min-w-[140px]">
+                            <p class="font-bold text-blue-800 dark:text-blue-300 text-sm">Policy Issued as Applied For</p>
+                        </div>
+                        <div class="text-xl text-gray-400">=</div>
+                        <div class="bg-green-100 dark:bg-green-900/40 p-4 rounded-lg text-center min-w-[160px] border-2 border-green-400 dark:border-green-600">
+                            <p class="font-bold text-green-800 dark:text-green-300">Coverage from Date of App or Exam (whichever is last)</p>
+                        </div>
+                    </div>
+
+                    <!-- What "standard risk" and "rated" means -->
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div class="bg-green-50 dark:bg-green-900/20 p-3 rounded-lg border border-green-200 dark:border-green-800">
+                            <p class="font-bold text-green-800 dark:text-green-300 text-sm">What is a "Standard Risk"?</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm mt-1">A person whose health, age, occupation, and lifestyle are average. They qualify for the standard premium rate - nothing extra, no special conditions.</p>
+                        </div>
+                        <div class="bg-red-50 dark:bg-red-900/20 p-3 rounded-lg border border-red-200 dark:border-red-800">
+                            <p class="font-bold text-red-800 dark:text-red-300 text-sm">What is a "Rated" Policy?</p>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm mt-1">A policy issued at a <strong>higher premium</strong> because the applicant is higher risk than average (for example, a smoker or someone with high blood pressure). "Rated" = you got dinged with a higher price.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- When the Conditional Receipt Does NOT Apply -->
+                <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-red-500 mb-5">
+                    <h3 class="font-bold text-red-800 dark:text-red-300 text-lg mb-3">When the Conditional Receipt Does NOT Provide Coverage</h3>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mb-3">The conditional receipt does NOT backdatecover coverage if any of the following happen:</p>
+                    <div class="space-y-2">
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded flex items-start">
+                            <span class="text-red-500 mr-3 text-lg font-bold flex-shrink-0">X</span>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>Application is declined</strong> - the company says "no, we won't insure this person"</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded flex items-start">
+                            <span class="text-red-500 mr-3 text-lg font-bold flex-shrink-0">X</span>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>Policy is rated</strong> - issued at a higher premium than what was applied for (the applicant is substandard risk)</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded flex items-start">
+                            <span class="text-red-500 mr-3 text-lg font-bold flex-shrink-0">X</span>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base"><strong>Policy is issued with riders excluding coverage</strong> - the company added exclusions that were not on the original application</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- The Big Scenario -->
+                <div class="bg-indigo-50 dark:bg-indigo-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-indigo-500 mb-5">
+                    <p class="font-semibold text-indigo-800 dark:text-indigo-300 text-lg mb-2">Real-World Scenario: Applicant Dies Before Policy Is Issued</p>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mb-3">This is the classic exam scenario. Understand this and you own the conditional receipt topic.</p>
+                    <div class="space-y-3 text-sm lg:text-base">
+                        <p class="text-gray-700 dark:text-gray-300"><strong>The Setup:</strong> Tom applies for a $250,000 life insurance policy. He pays the premium with his application. The agent gives him a conditional receipt. The next day, Tom is killed in a car accident. His policy has NOT been issued yet.</p>
+                        <p class="text-gray-700 dark:text-gray-300"><strong>What Happens:</strong> The insurance company must now conduct underwriting as if Tom were still alive. They review his application, medical history, and all the usual information.</p>
+                        <div class="grid md:grid-cols-2 gap-3 mt-3">
+                            <div class="bg-green-50 dark:bg-green-900/20 p-3 rounded border border-green-200 dark:border-green-800">
+                                <p class="font-bold text-green-800 dark:text-green-300 mb-1">IF Tom Would Have Been Approved:</p>
+                                <p class="text-gray-700 dark:text-gray-300 text-sm">The beneficiary receives the full $250,000 death benefit. The conditional receipt made coverage effective on the date of the application.</p>
+                            </div>
+                            <div class="bg-red-50 dark:bg-red-900/20 p-3 rounded border border-red-200 dark:border-red-800">
+                                <p class="font-bold text-red-800 dark:text-red-300 mb-1">IF Tom Would Have Been Declined:</p>
+                                <p class="text-gray-700 dark:text-gray-300 text-sm">The premium is refunded to the beneficiary or estate. No death benefit is paid. The conditional receipt conditions were not met.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Key Takeaway Box -->
+                <div class="bg-green-50 dark:bg-green-900/30 border-l-4 border-green-500 p-4 rounded-r-lg">
+                    <p class="font-bold text-green-800 dark:text-green-300 text-base lg:text-lg">Key Takeaway</p>
+                    <p class="text-gray-700 dark:text-gray-300 mt-1 text-base lg:text-lg">A conditional receipt means the applicant <strong>may be covered as early as the date of the application</strong>. The word "may" is critical - coverage is not guaranteed. It depends on whether the applicant qualifies as a standard risk and the policy is issued as applied for.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: Warranties vs Representations -->
+        <section id="warranties-representations" class="mb-8 lg:mb-10">
+            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-5 lg:p-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">6. Warranties vs Representations</h2>
+
+                <p class="text-base lg:text-lg text-gray-700 dark:text-gray-300 mb-5">When you fill out a life insurance application, your answers could be classified as either <strong>warranties</strong> or <strong>representations</strong>. This distinction matters enormously because it determines how much trouble you're in if an answer turns out to be wrong.</p>
+
+                <!-- Side-by-Side Comparison -->
+                <div class="grid md:grid-cols-2 gap-4 lg:gap-6 mb-5">
+                    <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-red-500">
+                        <h4 class="font-bold text-red-800 dark:text-red-300 text-lg mb-3">Warranty</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mb-2">A statement that is guaranteed to be <strong>absolutely, 100% true</strong>. No wiggle room.</p>
+                        <ul class="space-y-2 text-sm lg:text-base text-gray-700 dark:text-gray-300">
+                            <li class="flex items-start"><span class="text-red-500 mr-2 font-bold">-</span> Must be literally true in every detail</li>
+                            <li class="flex items-start"><span class="text-red-500 mr-2 font-bold">-</span> ANY breach can void the policy - even a minor one</li>
+                            <li class="flex items-start"><span class="text-red-500 mr-2 font-bold">-</span> Very harsh standard</li>
+                        </ul>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="font-semibold text-red-700 dark:text-red-300 text-sm">In life/health insurance:</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">Application statements are usually <strong>NOT treated as warranties</strong> (except in cases of fraud). This protects the consumer.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 lg:p-5 border-l-4 border-green-500">
+                        <h4 class="font-bold text-green-800 dark:text-green-300 text-lg mb-3">Representation</h4>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mb-2">A statement that is <strong>believed to be true</strong> to the best of the person's knowledge. Some room for honest mistakes.</p>
+                        <ul class="space-y-2 text-sm lg:text-base text-gray-700 dark:text-gray-300">
+                            <li class="flex items-start"><span class="text-green-500 mr-2 font-bold">-</span> Must be substantially true (not perfect)</li>
+                            <li class="flex items-start"><span class="text-green-500 mr-2 font-bold">-</span> Only a MATERIAL untruth can void the policy</li>
+                            <li class="flex items-start"><span class="text-green-500 mr-2 font-bold">-</span> More forgiving standard</li>
+                        </ul>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded mt-3">
+                            <p class="font-semibold text-green-700 dark:text-green-300 text-sm">In life/health insurance:</p>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm mt-1">Application answers ARE <strong>representations</strong>. This is the standard used for all answers on a life insurance application.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- The Misrepresentation Chain -->
+                <div class="bg-gray-50 dark:bg-gray-700/50 rounded-lg p-4 lg:p-5 mb-5">
+                    <h3 class="font-bold text-gray-800 dark:text-gray-200 text-lg mb-4">The Misrepresentation Chain: From Innocent Mistake to Fraud</h3>
+                    <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mb-4">Not every wrong answer is the same. There is a spectrum from harmless mistake to criminal fraud:</p>
+
+                    <div class="flex items-center gap-2 lg:gap-4 flex-wrap justify-center">
+                        <div class="bg-green-100 dark:bg-green-900/40 p-3 lg:p-4 rounded-lg text-center min-w-[130px]">
+                            <p class="font-bold text-green-800 dark:text-green-300 text-sm">Untrue Statement</p>
+                            <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">Answer is wrong (could be honest mistake)</p>
+                        </div>
+                        <div class="text-xl text-gray-400">-></div>
+                        <div class="bg-amber-100 dark:bg-amber-900/40 p-3 lg:p-4 rounded-lg text-center min-w-[130px]">
+                            <p class="font-bold text-amber-800 dark:text-amber-300 text-sm">Misrepresentation</p>
+                            <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">Answer is wrong and misleading</p>
+                        </div>
+                        <div class="text-xl text-gray-400">-></div>
+                        <div class="bg-red-100 dark:bg-red-900/40 p-3 lg:p-4 rounded-lg text-center min-w-[130px]">
+                            <p class="font-bold text-red-800 dark:text-red-300 text-sm">Material Misrepresentation</p>
+                            <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">Would have changed the underwriting decision</p>
+                        </div>
+                        <div class="text-xl text-gray-400">-></div>
+                        <div class="bg-red-200 dark:bg-red-900/60 p-3 lg:p-4 rounded-lg text-center min-w-[130px] border-2 border-red-400 dark:border-red-600">
+                            <p class="font-bold text-red-900 dark:text-red-200 text-sm">Fraud</p>
+                            <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">Intentional material misrepresentation</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Key Definitions -->
+                <div class="space-y-3 mb-5">
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-l-4 border-blue-500">
+                        <p class="font-bold text-blue-800 dark:text-blue-300">Material Misrepresentation</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">A false statement that is "material" - meaning it would have <strong>altered the underwriting decision</strong>. If the company would have charged more, added exclusions, or declined the application entirely had they known the truth, the misrepresentation is material.</p>
+                    </div>
+                    <div class="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border-l-4 border-blue-500">
+                        <p class="font-bold text-blue-800 dark:text-blue-300">Fraud</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base mt-1">An <strong>intentional</strong> material misrepresentation. The applicant knowingly lied about something important. This is the most serious level and can void the policy entirely.</p>
+                    </div>
+                </div>
+
+                <!-- Example -->
+                <div class="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-lg border-l-4 border-indigo-500">
+                    <p class="font-semibold text-indigo-800 dark:text-indigo-300 mb-2">Real-World Scenario: The Spectrum of Wrong Answers</p>
+                    <div class="space-y-3 text-sm lg:text-base">
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="text-gray-700 dark:text-gray-300"><strong>Harmless error:</strong> Lisa writes her weight as 145 lbs but she actually weighs 148 lbs. This is an untrue statement, but it is not material - a 3-pound difference would not change the underwriting decision. The policy is fine.</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="text-gray-700 dark:text-gray-300"><strong>Material misrepresentation:</strong> Lisa writes that she has never been treated for heart disease. In reality, she had open-heart surgery last year and forgot (or "forgot"). This would absolutely change the underwriting decision - the company might have declined her or charged much more. This is material.</p>
+                        </div>
+                        <div class="bg-white dark:bg-gray-700 p-3 rounded">
+                            <p class="text-gray-700 dark:text-gray-300"><strong>Fraud:</strong> Lisa knows about her heart surgery and intentionally marks "no" to hide it from the insurer. She is deliberately lying about a material fact. This is fraud, and the insurer can void the contract.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cheat Sheet -->
+        <section id="cheat-sheet" class="mb-8 lg:mb-10">
+            <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-6 border-2 border-dashed border-gray-300 dark:border-gray-600">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100">Cheat Sheet</h2>
+                    <span class="text-sm text-gray-500 dark:text-gray-400">Print this page for quick reference</span>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                        <p class="font-bold text-blue-700 dark:text-blue-300 text-sm">Field Underwriter</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm">= The agent/producer</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                        <p class="font-bold text-blue-700 dark:text-blue-300 text-sm">App Part 1</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm">= General info (name, age, income)</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                        <p class="font-bold text-blue-700 dark:text-blue-300 text-sm">App Part 2</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm">= Medical info (health, family history)</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                        <p class="font-bold text-blue-700 dark:text-blue-300 text-sm">Agent's Report</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm">= Agent's observations, NOT part of contract</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                        <p class="font-bold text-blue-700 dark:text-blue-300 text-sm">Required Signatures</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm">= Agent + Insured (+ owner if different)</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                        <p class="font-bold text-blue-700 dark:text-blue-300 text-sm">Changes on App</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm">= Cross out + initial, or new app. NEVER erase</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                        <p class="font-bold text-blue-700 dark:text-blue-300 text-sm">Incomplete App Issued</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm">= Insurer waived right to that info</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                        <p class="font-bold text-blue-700 dark:text-blue-300 text-sm">Conditional Receipt</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm">= Coverage from app date IF standard risk</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                        <p class="font-bold text-blue-700 dark:text-blue-300 text-sm">Conditional Receipt Fails</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm">= Declined, rated, or excluded riders</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                        <p class="font-bold text-blue-700 dark:text-blue-300 text-sm">Warranty</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm">= Guaranteed true. NOT used for app answers</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                        <p class="font-bold text-blue-700 dark:text-blue-300 text-sm">Representation</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm">= Believed true. IS used for app answers</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-3 rounded-lg">
+                        <p class="font-bold text-blue-700 dark:text-blue-300 text-sm">Material Misrep</p>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm">= Would have changed underwriting decision</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exam Trap Alerts -->
+        <section id="exam-traps" class="mb-8 lg:mb-10">
+            <div class="bg-red-50 dark:bg-red-900/30 border-2 border-red-300 dark:border-red-700 rounded-xl p-5 lg:p-6">
+                <h2 class="text-2xl font-bold text-red-800 dark:text-red-300 mb-4">Exam Trap Alerts</h2>
+                <div class="space-y-3">
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">1. Conditional Receipt Requires Prepayment</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">A conditional receipt is ONLY issued when the premium is paid WITH the application. If no money is collected at the time of application, there is no conditional receipt and no early coverage. The exam will try to trick you with scenarios where no premium was paid.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">2. "Date of Application OR Date of Medical Exam - Whichever is LAST"</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Coverage under a conditional receipt starts on the LATER of the two dates. If the application is signed on March 1 but the medical exam happens on March 10, coverage starts March 10 - not March 1. The exam loves testing this.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">3. Rated Policy = No Conditional Receipt Coverage</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">If the insurer decides the applicant is a substandard risk and issues a "rated" policy (higher premium), the conditional receipt does NOT apply. The applicant must accept the new terms and coverage begins from the new issue date - not the application date.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">4. Agent's Report is NOT Part of the Contract</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The exam may ask "which of the following is part of the insurance contract?" and include the Agent's Report as an answer choice. It is NOT. The Agent's Report helps the company make a decision but does not become part of the actual policy contract.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">5. Representations vs Warranties - Know the Default</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">In life and health insurance, application answers are treated as <strong>representations</strong>, NOT warranties. If the exam asks "statements on a life insurance application are considered..." - the answer is representations. Warranties are too harsh a standard and are only invoked in cases of fraud.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">6. Blank Questions = Insurer Waived Its Rights</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">If an insurer issues a policy with unanswered questions on the application, the insurer CANNOT later deny a claim based on those missing answers. By issuing the policy with blanks, they waived their right to that information. This is a common exam trick.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">7. NEVER Erase or White-Out</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">The only acceptable ways to correct an application are: cross out and have the applicant initial, or start a new application. Erasing or using white-out is NEVER acceptable. The exam will present this as an option - do not choose it.</p>
+                    </div>
+                    <div class="bg-white dark:bg-gray-700 p-4 rounded-lg">
+                        <p class="font-bold text-red-700 dark:text-red-300 mb-2">8. "Material" is the Magic Word for Misrepresentation</p>
+                        <p class="text-gray-700 dark:text-gray-300 text-sm lg:text-base">Not every wrong answer voids a policy. Only a <strong>material</strong> misrepresentation - one that would have changed the underwriting decision - can void the contract. A minor error (like getting your weight wrong by 2 pounds) is not material and will not affect the policy.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Reference Summary -->
+        <section id="summary" class="mb-8 lg:mb-10">
+            <div class="bg-gradient-to-r from-blue-600 to-blue-800 rounded-xl p-6 text-white">
+                <h2 class="text-2xl font-bold mb-6">Quick Reference Summary</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Field Underwriter</p>
+                        <p class="text-sm text-blue-100">The agent - company's front-line risk screener working outside the home office</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">6 Agent Duties</p>
+                        <p class="text-sm text-blue-100">Solicit, prevent adverse selection, complete app, get signatures, collect premium, deliver policy</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Application Parts</p>
+                        <p class="text-sm text-blue-100">Part 1 = general/personal info; Part 2 = medical/health info</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Nonmedical Application</p>
+                        <p class="text-sm text-blue-100">Small policy amounts skip the doctor exam - company trusts the written health answers</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Conditional Receipt</p>
+                        <p class="text-sm text-blue-100">Prepaid app = possible coverage from date of app or exam (last date), IF standard risk</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Conditional Receipt Fails When</p>
+                        <p class="text-sm text-blue-100">Declined, rated (higher premium), or issued with exclusion riders</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Warranty vs Representation</p>
+                        <p class="text-sm text-blue-100">Warranty = guaranteed true (harsh); Representation = believed true (app standard)</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Material Misrepresentation</p>
+                        <p class="text-sm text-blue-100">A lie/error that would have changed the underwriting decision - can void the policy</p>
+                    </div>
+                    <div class="bg-white/20 rounded-lg p-4">
+                        <p class="font-bold">Fraud</p>
+                        <p class="text-sm text-blue-100">Intentional material misrepresentation - the most serious offense, voids the contract</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Navigation -->
+    <footer class="bg-gray-800 dark:bg-gray-950 text-gray-300 py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <a href="../part-2/index.html" class="text-gray-300 hover:text-white flex items-center gap-1">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                    Part 2: Solicitation
+                </a>
+                <span class="text-gray-500 text-sm">Part 3 of 7</span>
+                <a href="../part-4/index.html" class="text-gray-300 hover:text-white flex items-center gap-1">
+                    Part 4: Company Underwriting
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AI Tutor Button -->
+    <button onclick="openTutor()" class="fixed bottom-6 right-6 bg-blue-600 hover:bg-blue-700 text-white p-4 rounded-full shadow-xl hover:scale-110 transition-transform z-50" title="AI Study Help">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+    </button>
+
+    <script>
+    function openTutor() {
+        const context = `Topic: Field Underwriting & The Application (Life Insurance Ch1 Part 3).
+Key concepts: Field underwriter = agent, Application Part 1 (general info) vs Part 2 (medical info), Agent's Report (NOT part of contract), required signatures (agent + insured + owner if different), application changes (cross out + initial or new app, NEVER erase), incomplete applications (insurer waives right to unanswered questions), conditional receipt (coverage from date of app or exam if standard risk and prepaid), warranties (guaranteed true - NOT used for app answers) vs representations (believed true - IS used for app answers), material misrepresentation (would change underwriting decision), fraud (intentional material misrepresentation).
+Common confusions: Conditional receipt only works with prepaid applications. Coverage starts on LATER of app date or exam date. Rated or declined policies do NOT get conditional receipt coverage. Agent's Report is NOT part of the contract. App answers are representations, not warranties.`;
+        const question = prompt("Ask me anything about field underwriting, the application, conditional receipts, or warranties vs representations:");
+        if (question) {
+            window.open(`https://aistudio.google.com/app/prompts/new_chat?q=${encodeURIComponent(context + '\n\nStudent question: ' + question)}`, '_blank');
+        }
+    }
+    </script>
+</body>
+</html>
